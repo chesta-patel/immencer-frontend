@@ -183,11 +183,7 @@ const menu = [
         link: "/auth-login",
         newTab: true,
       },
-      {
-        text: "Register / Signup",
-        link: "/auth-register",
-        newTab: true,
-      },
+     
       {
         text: "Forgot Password",
         link: "/auth-reset",
