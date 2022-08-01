@@ -368,7 +368,7 @@ const FormLayoutsPage = ({ ...props }) => {
                 <Col lg="7">
                   <FormGroup>
                     <div className="form-control-wrap">
-                      <input type="text" id="site-email" className="form-control" defaultValue="info@softnio.com" />
+                      <input type="text" id="site-email" className="form-control" defaultValue="user@immence.in" />
                     </div>
                   </FormGroup>
                 </Col>

@@ -25,7 +25,7 @@ const Login = () => {
 
   const onFormSubmit = (formData) => {
     setLoading(true);
-    const loginName = "info@softnio.com";
+    const loginName = "user@immence.in";
     const pass = "123456";
     if (formData.name === loginName && formData.passcode === pass) {
       localStorage.setItem("accessToken", "token");
@@ -80,7 +80,7 @@ const Login = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="default-01">
-                    Email or Username <span className="error">*</span>
+                    Email <span className="error">*</span>
                   </label>
                 </div>
                 <div className="form-control-wrap">

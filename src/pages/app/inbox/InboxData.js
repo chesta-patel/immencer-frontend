@@ -627,7 +627,7 @@ export const inboxList = [
         {
           replyId: "rep_1",
           userId: 1,
-          to: { mail: "info@softnio.com" },
+          to: { mail: "user@immence.in" },
           date: "11 Jan, 2020",
           time: "10:30 AM",
           replyMessage: ["I would like to decline an offer made"],
@@ -1017,7 +1017,7 @@ export const contacts = [
     img: User,
     theme: "primary",
     designation: "CEO of Softnio",
-    mail: "info@softnio.com",
+    mail: "user@immence.in",
   },
   {
     id: 2,

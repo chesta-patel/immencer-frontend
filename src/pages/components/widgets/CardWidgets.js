@@ -437,7 +437,7 @@ const CardWidgets = () => {
                       </li>
                       <li>
                         <span>Email</span>
-                        <span>info@softnio.com</span>
+                        <span>user@immence.in</span>
                       </li>
                     </ul>
                     <div className="team-view">
@@ -512,7 +512,7 @@ const CardWidgets = () => {
       </li>
       <li>
         <span>Email</span>
-        <span>info@softnio.com</span>
+        <span>user@immence.in</span>
       </li>
     </ul>
     <div className="team-view">
