@@ -1,4 +1,7 @@
 $form-control-select-icon: $ni-chevron-down !default;
+.error{ 
+    color: var(--toastify-color-error);
+}
 .form{
     &-icon{
         position: absolute;

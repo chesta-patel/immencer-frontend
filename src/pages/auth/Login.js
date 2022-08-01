@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../../images/logo.png";
-import LogoDark from "../../images/logo-dark.png";
+import LogoDark from "../../images/logo_immence.svg";
 import PageContainer from "../../layout/page-container/PageContainer";
 import Head from "../../layout/head/Head";
 import AuthFooter from "./AuthFooter";
@@ -64,7 +64,7 @@ const Login = () => {
               <BlockContent>
                 <BlockTitle tag="h4">Sign-In</BlockTitle>
                 <BlockDes>
-                  <p>Access Dashlite using your email and passcode.</p>
+                  <p>Access immence using your email and passcode.</p>
                 </BlockDes>
               </BlockContent>
             </BlockHead>
@@ -80,17 +80,17 @@ const Login = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="default-01">
-                    Email or Username
+                    Email or Username <span className="error">*</span>
                   </label>
                 </div>
                 <div className="form-control-wrap">
                   <input
-                    type="text"
+                    type="email"
                     id="default-01"
                     name="name"
                     ref={register({ required: "This field is required" })}
-                    defaultValue="info@softnio.com"
-                    placeholder="Enter your email address or username"
+                    defaultValue="user@immence.in"
+                    placeholder="Enter your email address"
                     className="form-control-lg form-control"
                   />
                   {errors.name && <span className="invalid">{errors.name.message}</span>}
@@ -99,7 +99,7 @@ const Login = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="password">
-                    Passcode
+                    Passcode <span className="error">*</span>
                   </label>
                   <Link className="link link-primary link-sm" to={`${process.env.PUBLIC_URL}/auth-reset`}>
                     Forgot Code?
@@ -136,39 +136,7 @@ const Login = () => {
                 </Button>
               </FormGroup>
             </Form>
-            <div className="form-note-s2 text-center pt-4">
-              {" "}
-              New on our platform? <Link to={`${process.env.PUBLIC_URL}/auth-register`}>Create an account</Link>
-            </div>
-            <div className="text-center pt-4 pb-3">
-              <h6 className="overline-title overline-title-sap">
-                <span>OR</span>
-              </h6>
-            </div>
-            <ul className="nav justify-center gx-4">
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#socials"
-                  onClick={(ev) => {
-                    ev.preventDefault();
-                  }}
-                >
-                  Facebook
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="#socials"
-                  onClick={(ev) => {
-                    ev.preventDefault();
-                  }}
-                >
-                  Google
-                </a>
-              </li>
-            </ul>
+           
           </PreviewCard>
         </Block>
         <AuthFooter />

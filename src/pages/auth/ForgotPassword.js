@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../../images/logo.png";
-import LogoDark from "../../images/logo-dark.png";
+import LogoDark from "../../images/logo_immence.svg";
 import PageContainer from "../../layout/page-container/PageContainer";
 import Head from "../../layout/head/Head";
 import AuthFooter from "./AuthFooter";
