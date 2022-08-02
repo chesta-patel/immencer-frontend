@@ -5,6 +5,11 @@ import { UserContextProvider } from "../pages/pre-built/user-manage/UserContext"
 import { RedirectAs404 } from "../utils/Utils";
 
 import Homepage from "../pages/Homepage";
+import Role from "../pages/pre-built/user-manage/Role";
+import UserPermission from "../pages/pre-built/user-manage/UserPermission";
+import SetupRolePermission from "../pages/pre-built/user-manage/SetupRolePermission";
+import UserInfo from "../pages/pre-built/user-manage/UserInfo";
+import Employee from "../pages/pre-built/user-manage/Employee";
 import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
@@ -112,6 +117,12 @@ const Pages = () => {
     <Suspense fallback={<div />}>
       <Switch>
         {/*Dashboards*/}
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/role`} component={Role}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/user-permission`} component={UserPermission}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/setup-role-permission`} component={SetupRolePermission}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/user-info`} component={UserInfo}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/employee`} component={Employee}></Route>
+
         <Route exact path={`${process.env.PUBLIC_URL}/crypto`} component={Crypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/analytics`} component={Analytics}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/invest`} component={Invest}></Route>

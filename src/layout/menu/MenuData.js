@@ -5,6 +5,49 @@ const menu = [
     link: "/",
   },
   {
+    icon: "users",
+    text: "User Manage",
+    active: false,
+    subMenu: [
+      {
+        text: "Role",
+        link: "/user-manage/role",
+      },
+      {
+        text: "Permission",
+        link: "/user-manage/user-permission",
+      },
+      {
+        text: "Setup Role Permission",
+        link: "/user-manage/setup-role-permission",
+      },
+      {
+        text: "User",
+        link: "/user-manage/user-info",
+      },
+      {
+        text: "Employee",
+        link: "/user-manage/employee",
+      },
+    ],
+  },
+  {
+    icon: "Assets",
+    text: "Assets",
+    active: false,
+    subMenu: [
+      {
+        text: "Assets Type",
+        link: "/user-manage/role",
+      },
+      {
+        text: "Assets Application",
+        link: "/user-manage/user-permission",
+      },
+     
+    ],
+  },
+  {
     icon: "bitcoin-cash",
     text: "Crypto Dashboard",
     link: "/crypto",
