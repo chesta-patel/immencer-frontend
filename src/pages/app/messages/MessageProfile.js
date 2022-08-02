@@ -62,7 +62,7 @@ const MessageProfileSidebar = ({ sidebar, profile }) => {
               <ul className="user-contacts">
                 <li>
                   <Icon name="mail"></Icon>
-                  <span>info@softnio.com</span>
+                  <span>user@immence.in</span>
                 </li>
                 <li>
                   <Icon name="call"></Icon>

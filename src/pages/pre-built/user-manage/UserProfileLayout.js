@@ -54,7 +54,7 @@ const UserProfileLayout = () => {
                     <UserAvatar text={findUpper(profileName)} theme="primary" />
                     <div className="user-info">
                       <span className="lead-text">{profileName}</span>
-                      <span className="sub-text">info@softnio.com</span>
+                      <span className="sub-text">user@immence.in</span>
                     </div>
                     <div className="user-action">
                       <UncontrolledDropdown>
