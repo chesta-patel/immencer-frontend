@@ -1,15 +1,15 @@
 import React, { Suspense, useLayoutEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ProductContextProvider } from "../pages/pre-built/products/ProductContext";
-import { UserContextProvider } from "../pages/pre-built/user-manage/UserContext";
+import { UserContextProvider } from "../pages/user-manage/UserContext";
 import { RedirectAs404 } from "../utils/Utils";
 
 import Homepage from "../pages/Homepage";
-import Role from "../pages/pre-built/user-manage/Role";
-import UserPermission from "../pages/pre-built/user-manage/UserPermission";
-import SetupRolePermission from "../pages/pre-built/user-manage/SetupRolePermission";
-import UserInfo from "../pages/pre-built/user-manage/UserInfo";
-import Employee from "../pages/pre-built/user-manage/Employee";
+import Role from "../pages/user-manage/Role";
+import UserPermission from "../pages/user-manage/UserPermission";
+import SetupRolePermission from "../pages/user-manage/SetupRolePermission";
+import UserInfo from "../pages/user-manage/UserInfo";
+import Employee from "../pages/user-manage/Employee";
 import AssetsType from "../pages/assets/AssetsType";
 import AssetApplication from "../pages/assets/AssetsApplication";
 import LeaveType from "../pages/leave/LeaveType";
@@ -77,11 +77,11 @@ import SVGIconPage from "../pages/components/crafted-icons/SvgIcons";
 
 import ProjectCardPage from "../pages/pre-built/projects/ProjectCard";
 import ProjectListPage from "../pages/pre-built/projects/ProjectList";
-import UserListRegularPage from "../pages/pre-built/user-manage/UserListRegular";
-import UserContactCardPage from "../pages/pre-built/user-manage/UserContactCard";
-import UserDetailsPage from "../pages/pre-built/user-manage/UserDetailsRegular";
-import UserListCompact from "../pages/pre-built/user-manage/UserListCompact";
-import UserProfileLayout from "../pages/pre-built/user-manage/UserProfileLayout";
+import UserListRegularPage from "../pages/user-manage/UserListRegular";
+import UserContactCardPage from "../pages/user-manage/UserContactCard";
+import UserDetailsPage from "../pages/user-manage/UserDetailsRegular";
+import UserListCompact from "../pages/user-manage/UserListCompact";
+import UserProfileLayout from "../pages/user-manage/UserProfileLayout";
 import KycListRegular from "../pages/pre-built/kyc-list-regular/KycListRegular";
 import KycDetailsRegular from "../pages/pre-built/kyc-list-regular/kycDetailsRegular";
 import TransListBasic from "../pages/pre-built/trans-list/TransListBasic";

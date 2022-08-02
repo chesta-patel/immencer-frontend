@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
+import Content from "../../layout/content/Content";
+import Head from "../../layout/head/Head";
 import {
   DropdownMenu,
   DropdownToggle,
@@ -24,10 +24,10 @@ import {
   UserAvatar,
   Button,
   PreviewAltCard,
-} from "../../../components/Component";
+} from "../../components/Component";
 import { Link } from "react-router-dom";
 import { userData } from "./UserData";
-import { findUpper } from "../../../utils/Utils";
+import { findUpper } from "../../utils/Utils";
 import { useForm } from "react-hook-form";
 import { UserContext } from "./UserContext";
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
+import Content from "../../layout/content/Content";
+import Head from "../../layout/head/Head";
 import { Card, Modal, ModalBody } from "reactstrap";
 import {
   Button,
@@ -16,9 +16,9 @@ import {
   OverlineTitle,
   Sidebar,
   UserAvatar,
-} from "../../../components/Component";
+} from "../../components/Component";
 import { useHistory } from "react-router";
-import { currentTime, findUpper, monthNames, todaysDate } from "../../../utils/Utils";
+import { currentTime, findUpper, monthNames, todaysDate } from "../../utils/Utils";
 import { UserContext } from "./UserContext";
 import { notes } from "./UserData";
 

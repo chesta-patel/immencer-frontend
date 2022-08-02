@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import { findUpper } from "../../../utils/Utils";
+import Content from "../../layout/content/Content";
+import Head from "../../layout/head/Head";
+import { findUpper } from "../../utils/Utils";
 import { userData, filterRole, filterStatus } from "./UserData";
 import {
   DropdownMenu,
@@ -33,11 +33,11 @@ import {
   Button,
   RSelect,
   TooltipComponent,
-} from "../../../components/Component";
+} from "../../components/Component";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { UserContext } from "./UserContext";
-import { bulkActionOptions } from "../../../utils/Utils";
+import { bulkActionOptions } from "../../utils/Utils";
 
 const UserListCompact = () => {
   const { contextData } = useContext(UserContext);

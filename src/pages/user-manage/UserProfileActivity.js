@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "../../../layout/head/Head";
+import Head from "../../layout/head/Head";
 import {
   BlockBetween,
   BlockDes,
@@ -9,7 +9,7 @@ import {
   Icon,
   LoginLogTable,
   Button,
-} from "../../../components/Component";
+} from "../../components/Component";
 
 const UserProfileActivityPage = ({ sm, updateSm }) => {
   return (

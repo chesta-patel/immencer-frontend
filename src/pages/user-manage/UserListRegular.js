@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
+import Content from "../../layout/content/Content";
+import Head from "../../layout/head/Head";
 import {
   DropdownMenu,
   DropdownToggle,
@@ -31,9 +31,9 @@ import {
   DataTableItem,
   TooltipComponent,
   RSelect,
-} from "../../../components/Component";
+} from "../../components/Component";
 import { filterRole, filterStatus, userData } from "./UserData";
-import { bulkActionOptions, findUpper } from "../../../utils/Utils";
+import { bulkActionOptions, findUpper } from "../../utils/Utils";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { UserContext } from "./UserContext";

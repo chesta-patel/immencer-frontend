@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "../../../layout/head/Head";
+import Head from "../../layout/head/Head";
 import {
   BlockBetween,
   BlockContent,
@@ -10,7 +10,7 @@ import {
   Icon,
   InputSwitch,
   Button,
-} from "../../../components/Component";
+} from "../../components/Component";
 
 const UserProfileNotificationPage = ({ sm, updateSm }) => {
   return (

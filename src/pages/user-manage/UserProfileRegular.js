@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Head from "../../../layout/head/Head";
+import Head from "../../layout/head/Head";
 import DatePicker from "react-datepicker";
 import { Modal, ModalBody, FormGroup } from "reactstrap";
 import {
@@ -14,9 +14,9 @@ import {
   Col,
   Button,
   RSelect,
-} from "../../../components/Component";
+} from "../../components/Component";
 import { countryOptions, userData } from "./UserData";
-import { getDateStructured } from "../../../utils/Utils";
+import { getDateStructured } from "../../utils/Utils";
 
 const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
   const [modalTab, setModalTab] = useState("1");
