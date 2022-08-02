@@ -38,14 +38,18 @@ const menu = [
     subMenu: [
       {
         text: "Assets Type",
-        link: "/user-manage/role",
+        link: "/assets/assets-type",
       },
       {
         text: "Assets Application",
-        link: "/user-manage/user-permission",
+        link: "/assets/assets-application",
       },
-     
     ],
+  },
+  {
+    icon: "bitcoin-cash",
+    text: "Leave",
+    link: "/Leave",
   },
   {
     icon: "bitcoin-cash",

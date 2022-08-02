@@ -10,6 +10,8 @@ import UserPermission from "../pages/pre-built/user-manage/UserPermission";
 import SetupRolePermission from "../pages/pre-built/user-manage/SetupRolePermission";
 import UserInfo from "../pages/pre-built/user-manage/UserInfo";
 import Employee from "../pages/pre-built/user-manage/Employee";
+import AssetsType from "../pages/pre-built/assets/AssetsType";
+import AssetApplication from "../pages/pre-built/assets/AssetsApplication";
 import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
@@ -108,6 +110,7 @@ import TinymcePreview from "../pages/components/forms/rich-editor/TinymcePreview
 import KnobPreview from "../pages/components/charts/KnobPreview";
 import { FileManagerContextProvider } from "../pages/app/file-manager/FileManagerContext";
 
+
 const Pages = () => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -122,6 +125,9 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/user-manage/setup-role-permission`} component={SetupRolePermission}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-manage/user-info`} component={UserInfo}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-manage/employee`} component={Employee}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/assets/assets-type`} component={AssetsType}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/assets/assets-application`} component={AssetApplication}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/crypto`} component={Crypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/analytics`} component={Analytics}></Route>
