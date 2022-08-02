@@ -47,9 +47,35 @@ const menu = [
     ],
   },
   {
-    icon: "bitcoin-cash",
+    icon: "Assets",
     text: "Leave",
-    link: "/Leave",
+    active: false,
+    subMenu: [
+      {
+        text: "Leave Type",
+        link: "/leave/leave-type",
+      },
+      {
+        text: "Leave Application",
+        link: "/leave/leave-application",
+      },
+    ],
+  },
+  {
+    icon: "Assets",
+    text: "Holiday",
+    active: false,
+    subMenu: [
+      {
+        text: "Holiday List",
+        link: "/Holiday/holiday-list",
+      },
+      {
+        text: "Holiday Type",
+        link: "/holiday/holiday-type",
+      },
+     
+    ],
   },
   {
     icon: "bitcoin-cash",
