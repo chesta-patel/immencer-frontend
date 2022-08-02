@@ -32,7 +32,7 @@ const menu = [
     ],
   },
   {
-    icon: "Assets",
+    icon: "archived",
     text: "Assets",
     active: false,
     subMenu: [
@@ -47,7 +47,7 @@ const menu = [
     ],
   },
   {
-    icon: "Assets",
+    icon: "calendar-alt",
     text: "Leave",
     active: false,
     subMenu: [
@@ -62,7 +62,7 @@ const menu = [
     ],
   },
   {
-    icon: "Assets",
+    icon: "calendar-booking",
     text: "Holiday",
     active: false,
     subMenu: [
@@ -78,12 +78,12 @@ const menu = [
     ],
   },
   {
-    icon: "bitcoin-cash",
+    icon: "file-docs",
     text: "Company Document",
     link: "/company-info/company-document",
   },
   {
-    icon: "bitcoin-cash",
+    icon: "policy",
     text: "Company Policy",
     link: "/company-info/company-policy",
   },
