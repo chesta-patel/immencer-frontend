@@ -79,6 +79,16 @@ const menu = [
   },
   {
     icon: "bitcoin-cash",
+    text: "Company Document",
+    link: "/company-info/company-document",
+  },
+  {
+    icon: "bitcoin-cash",
+    text: "Company Policy",
+    link: "/company-info/company-policy",
+  },
+  {
+    icon: "bitcoin-cash",
     text: "Crypto Dashboard",
     link: "/crypto",
   },

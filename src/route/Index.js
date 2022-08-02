@@ -16,6 +16,8 @@ import LeaveType from "../pages/pre-built/leave/LeaveType";
 import LeaveApplication from "../pages/pre-built/leave/LeaveApplication";
 import HolidayType from "../pages/pre-built/holiday/HolidayType";
 import HolidayList from "../pages/pre-built/holiday/HolidayList";
+import CompanyDocument from "../pages/pre-built/company-info/CompanyDocument";
+import CompanyPolicy from "../pages/pre-built/company-info/CompanyPolicy";
 import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
@@ -117,6 +119,7 @@ import { FileManagerContextProvider } from "../pages/app/file-manager/FileManage
 
 
 
+
 const Pages = () => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -140,6 +143,9 @@ const Pages = () => {
 
         <Route exact path={`${process.env.PUBLIC_URL}/holiday/holiday-type`} component={HolidayType}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/holiday/holiday-list`} component={HolidayList}></Route>
+        
+        <Route exact path={`${process.env.PUBLIC_URL}/company-info/company-document`} component={CompanyDocument}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/company-info/company-policy`} component={CompanyPolicy}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/crypto`} component={Crypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/analytics`} component={Analytics}></Route>
