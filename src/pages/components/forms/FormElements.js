@@ -218,7 +218,7 @@ const FormElementsPage = () => {
                   <input
                     className="form-control"
                     disabled
-                    defaultValue="info@softnio.com"
+                    defaultValue="user@immence.in"
                     placeholder="Input placeholder"
                   />
                 </FormGroup>

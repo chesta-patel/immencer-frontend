@@ -34,7 +34,7 @@ const InboxMessages = ({
   const [inboxText, setInboxText] = useState("");
   const [templateList, setTemplateList] = useState(formTemplates);
   const [attachmentList, setAttachmentList] = useState([]);
-  const [tagifyOptions, setTagifyOptions] = useState([{ value: "info@softnio.com" }]);
+  const [tagifyOptions, setTagifyOptions] = useState([{ value: "user@immence.in" }]);
   const [ccTagify, setCCTagify] = useState({
     toggle: false,
     value: [""],

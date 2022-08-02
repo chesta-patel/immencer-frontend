@@ -101,7 +101,7 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
           <div className="data-item">
             <div className="data-col">
               <span className="data-label">Email</span>
-              <span className="data-value">info@softnio.com</span>
+              <span className="data-value">user@immence.in</span>
             </div>
             <div className="data-col data-col-end">
               <span className="data-more disable">
