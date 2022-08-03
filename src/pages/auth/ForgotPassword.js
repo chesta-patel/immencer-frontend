@@ -4,8 +4,8 @@ import LogoDark from "../../images/logo_immence.svg";
 import PageContainer from "../../layout/page-container/PageContainer";
 import Head from "../../layout/head/Head";
 import AuthFooter from "./AuthFooter";
-import { Block, BlockContent, BlockDes, BlockHead, BlockTitle, Button, PreviewCard } from "../../components/Component";
-import { FormGroup } from "reactstrap";
+import { Block, BlockContent, BlockDes, BlockHead, BlockTitle, Button, PreviewCard, Icon } from "../../components/Component";
+import { FormGroup ,Spinner, Alert} from "reactstrap";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -57,6 +57,14 @@ const ForgotPassword = () => {
                 </BlockDes>
               </BlockContent>
             </BlockHead>
+            {errorVal && (
+              <div className="mb-3">
+                <Alert color="danger" className="alert-icon">
+                  {" "}
+                  <Icon name="alert-circle" /> Unable to login with credentials{" "}
+                </Alert>
+              </div>
+            )}
             <form  onSubmit={handleSubmit(onFormSubmit)}>
               <FormGroup>
                 <div className="form-label-group">
@@ -78,8 +86,8 @@ const ForgotPassword = () => {
                 </div>
               </FormGroup>
               <FormGroup>
-                <Button color="primary" size="lg" className="btn-block" type="submit">
-                  Send Reset Link
+              <Button size="lg" className="btn-block" type="submit" color="primary">
+                  {loading ? <Spinner size="sm" color="light" /> : "Sign in"}
                 </Button>
               </FormGroup>
             </form>
