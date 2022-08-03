@@ -5,6 +5,89 @@ const menu = [
     link: "/",
   },
   {
+    icon: "users",
+    text: "User Manage",
+    active: false,
+    subMenu: [
+      {
+        text: "Role",
+        link: "/user-manage/role",
+      },
+      {
+        text: "Permission",
+        link: "/user-manage/user-permission",
+      },
+      {
+        text: "Setup Role Permission",
+        link: "/user-manage/setup-role-permission",
+      },
+      {
+        text: "User",
+        link: "/user-manage/user-info",
+      },
+      {
+        text: "Employee",
+        link: "/user-manage/employee",
+      },
+    ],
+  },
+  {
+    icon: "archived",
+    text: "Assets",
+    active: false,
+    subMenu: [
+      {
+        text: "Assets Type",
+        link: "/assets/assets-type",
+      },
+      {
+        text: "Assets Application",
+        link: "/assets/assets-application",
+      },
+    ],
+  },
+  {
+    icon: "calendar-alt",
+    text: "Leave",
+    active: false,
+    subMenu: [
+      {
+        text: "Leave Type",
+        link: "/leave/leave-type",
+      },
+      {
+        text: "Leave Application",
+        link: "/leave/leave-application",
+      },
+    ],
+  },
+  {
+    icon: "calendar-booking",
+    text: "Holiday",
+    active: false,
+    subMenu: [
+      {
+        text: "Holiday List",
+        link: "/Holiday/holiday-list",
+      },
+      {
+        text: "Holiday Type",
+        link: "/holiday/holiday-type",
+      },
+     
+    ],
+  },
+  {
+    icon: "file-docs",
+    text: "Company Document",
+    link: "/company-info/company-document",
+  },
+  {
+    icon: "policy",
+    text: "Company Policy",
+    link: "/company-info/company-policy",
+  },
+  {
     icon: "bitcoin-cash",
     text: "Crypto Dashboard",
     link: "/crypto",

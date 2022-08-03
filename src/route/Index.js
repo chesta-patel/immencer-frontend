@@ -1,10 +1,23 @@
 import React, { Suspense, useLayoutEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ProductContextProvider } from "../pages/pre-built/products/ProductContext";
-import { UserContextProvider } from "../pages/pre-built/user-manage/UserContext";
+import { UserContextProvider } from "../pages/user-manage/UserContext";
 import { RedirectAs404 } from "../utils/Utils";
 
 import Homepage from "../pages/Homepage";
+import Role from "../pages/user-manage/Role";
+import UserPermission from "../pages/user-manage/UserPermission";
+import SetupRolePermission from "../pages/user-manage/SetupRolePermission";
+import UserInfo from "../pages/user-manage/UserInfo";
+import Employee from "../pages/user-manage/Employee";
+import AssetsType from "../pages/assets/AssetsType";
+import AssetApplication from "../pages/assets/AssetsApplication";
+import LeaveType from "../pages/leave/LeaveType";
+import LeaveApplication from "../pages/leave/LeaveApplication";
+import HolidayType from "../pages/holiday/HolidayType";
+import HolidayList from "../pages/holiday/HolidayList";
+import CompanyDocument from "../pages/company-info/CompanyDocument";
+import CompanyPolicy from "../pages/company-info/CompanyPolicy";
 import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
@@ -64,11 +77,11 @@ import SVGIconPage from "../pages/components/crafted-icons/SvgIcons";
 
 import ProjectCardPage from "../pages/pre-built/projects/ProjectCard";
 import ProjectListPage from "../pages/pre-built/projects/ProjectList";
-import UserListRegularPage from "../pages/pre-built/user-manage/UserListRegular";
-import UserContactCardPage from "../pages/pre-built/user-manage/UserContactCard";
-import UserDetailsPage from "../pages/pre-built/user-manage/UserDetailsRegular";
-import UserListCompact from "../pages/pre-built/user-manage/UserListCompact";
-import UserProfileLayout from "../pages/pre-built/user-manage/UserProfileLayout";
+import UserListRegularPage from "../pages/user-manage/UserListRegular";
+import UserContactCardPage from "../pages/user-manage/UserContactCard";
+import UserDetailsPage from "../pages/user-manage/UserDetailsRegular";
+import UserListCompact from "../pages/user-manage/UserListCompact";
+import UserProfileLayout from "../pages/user-manage/UserProfileLayout";
 import KycListRegular from "../pages/pre-built/kyc-list-regular/KycListRegular";
 import KycDetailsRegular from "../pages/pre-built/kyc-list-regular/kycDetailsRegular";
 import TransListBasic from "../pages/pre-built/trans-list/TransListBasic";
@@ -103,6 +116,10 @@ import TinymcePreview from "../pages/components/forms/rich-editor/TinymcePreview
 import KnobPreview from "../pages/components/charts/KnobPreview";
 import { FileManagerContextProvider } from "../pages/app/file-manager/FileManagerContext";
 
+
+
+
+
 const Pages = () => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -112,6 +129,24 @@ const Pages = () => {
     <Suspense fallback={<div />}>
       <Switch>
         {/*Dashboards*/}
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/role`} component={Role}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/user-permission`} component={UserPermission}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/setup-role-permission`} component={SetupRolePermission}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/user-info`} component={UserInfo}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/employee`} component={Employee}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/assets/assets-type`} component={AssetsType}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/assets/assets-application`} component={AssetApplication}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/leave/leave-type`} component={LeaveType}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/leave/leave-application`} component={LeaveApplication}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/holiday/holiday-type`} component={HolidayType}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/holiday/holiday-list`} component={HolidayList}></Route>
+        
+        <Route exact path={`${process.env.PUBLIC_URL}/company-info/company-document`} component={CompanyDocument}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/company-info/company-policy`} component={CompanyPolicy}></Route>
+
         <Route exact path={`${process.env.PUBLIC_URL}/crypto`} component={Crypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/analytics`} component={Analytics}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/invest`} component={Invest}></Route>
