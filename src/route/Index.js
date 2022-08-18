@@ -129,7 +129,15 @@ const Pages = () => {
     <Suspense fallback={<div />}>
       <Switch>
         {/*Dashboards*/}
-        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/role`} component={Role}></Route>
+        <Route //Context Api added
+          exact
+          path={`${process.env.PUBLIC_URL}/user-manage/role`}
+          render={() => (
+            <UserContextProvider>
+              <Role />
+            </UserContextProvider>
+          )}
+        ></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-manage/user-permission`} component={UserPermission}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-manage/setup-role-permission`} component={SetupRolePermission}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-manage/user-info`} component={UserInfo}></Route>
