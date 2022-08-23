@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import Content from "../../layout/content/Content";
 import Head from "../../layout/head/Head";
 import { useForm } from "react-hook-form";
-import { filterStatus, filterRole, userData } from "./UserData";
+import { filterStatus, filterRole, userData, isdelete, isactive } from "./UserData";
 import { findUpper } from "../../utils/Utils";
 import {
   DropdownMenu,
@@ -32,7 +32,6 @@ import {
   DataTableRow,
   DataTableItem,
   UserAvatar,
-  TooltipComponent,
 } from "../../components/Component";
 import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
@@ -41,7 +40,6 @@ import { bulkActionOptions } from "../../utils/Utils";
 
 const Role = ({ ...props }) => {
 
-  const [editId, setEditedId] = useState();
   const [actionText, setActionText] = useState("");
   const [onSearch, setonSearch] = useState(true);
   const [onSearchText, setSearchText] = useState("");
@@ -84,8 +82,6 @@ const Role = ({ ...props }) => {
       isDelete: "No",
     });
   };
-
-
   // submit function to add a new item
   const onFormSubmit = (submitData) => {
     const { name, email, balance, phone } = submitData;
@@ -134,38 +130,13 @@ const Role = ({ ...props }) => {
     setData([...newData]);
   };
 
-  // function that loads the want to editted data
-  const onEditClick = (id) => {
-    data.forEach((item) => {
-      if (item.id === id) {
-        setFormData({
-          name: item.name,
-          email: item.email,
-          status: item.status,
-          phone: item.phone,
-          balance: item.balance,
-        });
-        setModal({ edit: true }, { add: false });
-        setEditedId(id);
-      }
-    });
-  };
-
-  // function to change to suspend property for an item
-  const suspendUser = (id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].status = "Suspend";
-    setData([...newData]);
-  };
-
     // function to set the action to be taken in table header
     const onActionText = (e) => {
       setActionText(e.value);
     };
 
      // function which fires on applying selected action
-  const onActionClick = (e) => {
+   const onActionClick = (e) => {
     if (actionText === "suspend") {
       let newData = data.map((item) => {
         if (item.checked === true) item.status = "Suspend";
@@ -222,7 +193,7 @@ const Role = ({ ...props }) => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                Role
+                User Role
               </BlockTitle>
               <BlockDes className="text-soft">
                 <p>You have total 2,595 users.</p>
@@ -263,7 +234,7 @@ const Role = ({ ...props }) => {
         </BlockHead>
         <Block>
           <DataTable className="card-stretch">
-          <div className="card-inner position-relative card-tools-toggle">
+            <div className="card-inner position-relative card-tools-toggle">
               <div className="card-title-group">
                 <div className="card-tools">
                   <div className="form-inline flex-nowrap gx-3">
@@ -541,71 +512,19 @@ const Role = ({ ...props }) => {
                   </div>
                 </DataTableRow>
                 <DataTableRow>
-                  <span className="sub-text">User</span>
+                  <span className="sub-text">Title</span>
                 </DataTableRow>
                 <DataTableRow size="md">
-                  <span className="sub-text">Role</span>
+                  <span className="sub-text">Type</span>
                 </DataTableRow>
                 <DataTableRow size="sm">
-                  <span className="sub-text">Email</span>
+                  <span className="sub-text">Active</span>
                 </DataTableRow>
                 <DataTableRow size="md">
-                  <span className="sub-text">Phone</span>
+                  <span className="sub-text">isActive</span>
                 </DataTableRow>
                 <DataTableRow size="lg">
-                  <span className="sub-text">Company</span>
-                </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">Verified</span>
-                </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">Last Login</span>
-                </DataTableRow>
-                <DataTableRow>
-                  <span className="sub-text">Status</span>
-                </DataTableRow>
-                <DataTableRow className="nk-tb-col-tools text-right">
-                  <UncontrolledDropdown>
-                    <DropdownToggle tag="a" className="btn btn-xs btn-outline-light btn-icon dropdown-toggle">
-                      <Icon name="plus"></Icon>
-                    </DropdownToggle>
-                    <DropdownMenu right className="dropdown-menu-xs">
-                      <ul className="link-tidy sm no-bdr">
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="bl" />
-                            <label className="custom-control-label" htmlFor="bl">
-                              Balance
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="ph" />
-                            <label className="custom-control-label" htmlFor="ph">
-                              Phone
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="vri" />
-                            <label className="custom-control-label" htmlFor="vri">
-                              Verified
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="st" />
-                            <label className="custom-control-label" htmlFor="st">
-                              Status
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
+                  <span className="sub-text">isDeleted</span>
                 </DataTableRow>
               </DataTableHead>
               {/*Head*/}
@@ -653,106 +572,6 @@ const Role = ({ ...props }) => {
                       <DataTableRow size="lg">
                         <span>{item.country}</span>
                       </DataTableRow>
-                      <DataTableRow size="lg">
-                        <ul className="list-status">
-                          <li>
-                            <Icon
-                              className={`text-${item.emailStatus === "success"
-                                ? "success"
-                                : item.emailStatus === "pending"
-                                  ? "info"
-                                  : "secondary"
-                                }`}
-                              name={`${item.emailStatus === "success"
-                                ? "check-circle"
-                                : item.emailStatus === "alert"
-                                  ? "alert-circle"
-                                  : "alarm-alt"
-                                }`}
-                            ></Icon>{" "}
-                            <span>Email</span>
-                          </li>
-                        </ul>
-                      </DataTableRow>
-                      <DataTableRow size="lg">
-                        <span>{item.lastLogin}</span>
-                      </DataTableRow>
-                      <DataTableRow>
-                        <span
-                          className={`tb-status text-${item.status === "Active" ? "success" : item.status === "Pending" ? "warning" : "danger"
-                            }`}
-                        >
-                          {item.status}
-                        </span>
-                      </DataTableRow>
-                      <DataTableRow className="nk-tb-col-tools">
-                        <ul className="nk-tb-actions gx-1">
-                          <li className="nk-tb-action-hidden" onClick={() => onEditClick(item.id)}>
-                            <TooltipComponent
-                              tag="a"
-                              containerClassName="btn btn-trigger btn-icon"
-                              id={"edit" + item.id}
-                              icon="edit-alt-fill"
-                              direction="top"
-                              text="Edit"
-                            />
-                          </li>
-                          {item.status !== "Suspend" && (
-                            <React.Fragment>
-                              <li className="nk-tb-action-hidden" onClick={() => suspendUser(item.id)}>
-                                <TooltipComponent
-                                  tag="a"
-                                  containerClassName="btn btn-trigger btn-icon"
-                                  id={"suspend" + item.id}
-                                  icon="user-cross-fill"
-                                  direction="top"
-                                  text="Suspend"
-                                />
-                              </li>
-                            </React.Fragment>
-                          )}
-                          <li>
-                            <UncontrolledDropdown>
-                              <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
-                                <Icon name="more-h"></Icon>
-                              </DropdownToggle>
-                              <DropdownMenu right>
-                                <ul className="link-list-opt no-bdr">
-                                  <li onClick={() => onEditClick(item.id)}>
-                                    <DropdownItem
-                                      tag="a"
-                                      href="#edit"
-                                      onClick={(ev) => {
-                                        ev.preventDefault();
-                                      }}
-                                    >
-                                      <Icon name="edit"></Icon>
-                                      <span>Edit</span>
-                                    </DropdownItem>
-                                  </li>
-                                  {item.status !== "Suspend" && (
-                                    <React.Fragment>
-                                      <li className="divider"></li>
-                                      <li onClick={() => suspendUser(item.id)}>
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#suspend"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                          }}
-                                        >
-                                          <Icon name="na"></Icon>
-                                          <span>Suspend User</span>
-                                        </DropdownItem>
-                                      </li>
-                                    </React.Fragment>
-                                  )}
-                                </ul>
-                              </DropdownMenu>
-                            </UncontrolledDropdown>
-                          </li>
-                        </ul>
-                      </DataTableRow>
                     </DataTableItem>
                   );
                 })
@@ -796,24 +615,26 @@ const Role = ({ ...props }) => {
                       <input
                         className="form-control"
                         type="text"
-                        name="slug"
+                        name="type"
                         defaultValue={formData.slug}
                         placeholder="Enter Slug"
                         ref={register({ required: "This field is required" })}
                       />
-                      {errors.slug && <span className="invalid">{errors.slug.message}</span>}
+                      {errors.type && <span className="invalid">{errors.type.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Description </label>
+                      <label className="form-label">Description</label>
                       <input
                         className="form-control"
                         type="text"
-                        name="description"
-                        defaultValue={formData.description}
+                        name="type"
+                        defaultValue={formData.des}
                         placeholder="Enter Description"
+                        ref={register({ required: "This field is required" })}
                       />
+                      {errors.type && <span className="invalid">{errors.type.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -824,24 +645,10 @@ const Role = ({ ...props }) => {
                         type="text"
                         name="type"
                         defaultValue={formData.type}
-                        placeholder="Type"
+                        placeholder="Enter Role Type"
                         ref={register({ required: "This field is required" })}
                       />
                       {errors.type && <span className="invalid">{errors.type.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Content</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="content"
-                        defaultValue={formData.type}
-                        placeholder="Type"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.content && <span className="invalid">{errors.content.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -850,7 +657,47 @@ const Role = ({ ...props }) => {
                       <div className="form-control-wrap">
                         <RSelect
                           options={filterStatus}
-                          defaultValue={{ value: "active", label: "Active" }}
+                          defaultValue={{ value: "active", label: "Select Status" }}
+                          onChange={(e) => setFormData({ ...formData, status: e.value })}
+                          ref={register({ required: "Please Select Status" })}
+                        />
+                        {errors.status && <span className="invalid">{errors.status.message}</span>}
+                      </div>
+                    </FormGroup>
+                  </Col>
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Content</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="type"
+                        defaultValue={formData.des}
+                        placeholder="Enter Detail's Of Role"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.type && <span className="invalid">{errors.type.message}</span>}
+                    </FormGroup>
+                  </Col>
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">IsActive</label>
+                      <div className="form-control-wrap">
+                        <RSelect
+                          options={isactive}
+                          defaultValue={{ value: "active", label: "Select" }}
+                          onChange={(e) => setFormData({ ...formData, status: e.value })}
+                        />
+                      </div>
+                    </FormGroup>
+                  </Col>
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">IsDeleted</label>
+                      <div className="form-control-wrap">
+                        <RSelect
+                          options={isdelete}
+                          defaultValue={{ value: "delete", label: "Select" }}
                           onChange={(e) => setFormData({ ...formData, status: e.value })}
                         />
                       </div>

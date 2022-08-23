@@ -438,6 +438,37 @@ export const filterStatus = [
   { value: "Suspend", label: "Suspend" },
 ];
 
+export const userbloodgroup =[
+  {value:"positive (A+)", label:"A positive (A+)"},
+  {value:"negative (A-)", label:"A negative (A-)"},
+  {value:"positive (B+)", label:"B positive (B+)"},
+  {value:"negative (B-)", label:"B negative (B-)"},
+  {value:"positive (O+)", label:"O positive (O+)"},
+  {value:"negative (O-)", label:"O negative (O-)"},
+  {value:"positive (AB+)", label:"AB positive (AB+)"},
+  {value:"negative (AB-)", label:"AB negative (AB-)"},
+]
+
+export const usergender=[
+  {value:"Male",label:"Male"},
+  {value:"Female",label:"Female"},
+]
+
+export const userrole = [
+  {value:"Admin", label:"Admin"},
+  {value:"User", label:"User"}
+]
+
+export const isactive=[
+  {value:"Active", label:"Active"},
+  {value:"InActive", label:"InActive"},
+];
+
+export const isdelete=[
+  {value:"IsDeleted", label:"IsDeleted"},
+  {value:"IsNotDeleted", label:"IsNotDeleted"},
+];
+
 export const filterRole = [
   { value: "investor", label: "Investor" },
   { value: "seller", label: "Seller" },

@@ -138,9 +138,33 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/user-permission`} component={UserPermission}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/setup-role-permission`} component={SetupRolePermission}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/user-manage/user-info`} component={UserInfo}></Route>
+        <Route //Context Api added
+          exact
+          path={`${process.env.PUBLIC_URL}/user-manage/user-permission`}
+          render={() => (
+            <UserContextProvider>
+              <UserPermission />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`${process.env.PUBLIC_URL}/user-manage/setup-role-permission`}
+          render={() => (
+            <UserContextProvider>
+              <SetupRolePermission/>
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`${process.env.PUBLIC_URL}/user-manage/user-info`}
+          render={() => (
+            <UserContextProvider>
+              <UserInfo />
+            </UserContextProvider>
+          )}
+          ></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-manage/employee`} component={Employee}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/assets/assets-type`} component={AssetsType}></Route>
