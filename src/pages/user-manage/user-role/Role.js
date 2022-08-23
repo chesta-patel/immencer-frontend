@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import Content from "../../../layout/content/Content";
+import Head from "../../../layout/head/Head";
 import { useForm } from "react-hook-form";
-import { filterStatus, filterRole, userData, isdelete, isactive } from "./UserData";
-import { findUpper } from "../../utils/Utils";
+import { filterStatus, filterRole, userData, isdelete, isactive } from "../UserData";
+import { findUpper } from "../../../utils/Utils";
 import {
   DropdownMenu,
   DropdownToggle,
@@ -32,11 +32,11 @@ import {
   DataTableRow,
   DataTableItem,
   UserAvatar,
-} from "../../components/Component";
-import { UserContext } from "./UserContext";
+} from "../../../components/Component";
+import { UserContext } from "../UserContext";
 import { Link } from "react-router-dom";
-import { bulkActionOptions } from "../../utils/Utils";
-
+import { bulkActionOptions } from "../../../utils/Utils";
+import {userrolecolum,formfield} from './Rolejson'
 
 const Role = ({ ...props }) => {
 
@@ -511,21 +511,13 @@ const Role = ({ ...props }) => {
                     <label className="custom-control-label" htmlFor="uid"></label>
                   </div>
                 </DataTableRow>
-                <DataTableRow>
-                  <span className="sub-text">Title</span>
-                </DataTableRow>
-                <DataTableRow size="md">
-                  <span className="sub-text">Type</span>
-                </DataTableRow>
-                <DataTableRow size="sm">
-                  <span className="sub-text">Active</span>
-                </DataTableRow>
-                <DataTableRow size="md">
-                  <span className="sub-text">isActive</span>
-                </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">isDeleted</span>
-                </DataTableRow>
+                {
+                  userrolecolum.map((colum,id)=>(
+                    <DataTableRow size={colum.size} key={id}>
+                      <span className={colum.className}>{colum.name}</span>
+                    </DataTableRow>
+                  ))
+                }
               </DataTableHead>
               {/*Head*/}
               {currentItems.length > 0
@@ -595,62 +587,24 @@ const Role = ({ ...props }) => {
               <h5 className="title">Add Role</h5>
               <div className="mt-4">
                 <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Title</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="title"
-                        defaultValue={formData.title}
-                        placeholder="Enter Title"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.title && <span className="invalid">{errors.title.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Slug</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="type"
-                        defaultValue={formData.slug}
-                        placeholder="Enter Slug"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.type && <span className="invalid">{errors.type.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Description</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="type"
-                        defaultValue={formData.des}
-                        placeholder="Enter Description"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.type && <span className="invalid">{errors.type.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Type</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="type"
-                        defaultValue={formData.type}
-                        placeholder="Enter Role Type"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.type && <span className="invalid">{errors.type.message}</span>}
-                    </FormGroup>
-                  </Col>
+                  {
+                    formfield.map((fieldname,id)=>(
+                      <Col md="6">
+                        <FormGroup>
+                          <label className={fieldname.label_class}>{fieldname.label_name}</label>
+                          <input
+                            className={fieldname.input_class}
+                            type={fieldname.type}
+                            name={fieldname.name}
+                            defaultValue={formData.title}
+                            placeholder={fieldname.placeholder}
+                            ref={register({ required: "This field is required" })}
+                            />
+                          {errors.title && <span className="invalid">{errors.title.message}</span>}                            
+                        </FormGroup>
+                      </Col>
+                    ))
+                  }
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Status</label>
@@ -663,20 +617,6 @@ const Role = ({ ...props }) => {
                         />
                         {errors.status && <span className="invalid">{errors.status.message}</span>}
                       </div>
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Content</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="type"
-                        defaultValue={formData.des}
-                        placeholder="Enter Detail's Of Role"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.type && <span className="invalid">{errors.type.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">
