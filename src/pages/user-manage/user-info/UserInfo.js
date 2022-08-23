@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import Content from "../../../layout/content/Content";
+import Head from "../../../layout/head/Head";
 import { useForm } from "react-hook-form";
-import { filterStatus, filterRole, userData, isdelete, isactive, userrole, userbloodgroup, usergender } from "./UserData";
-import { findUpper } from "../../utils/Utils";
+import { filterStatus, filterRole, userData, isdelete, isactive, userrole, userbloodgroup, usergender } from "../UserData";
+import { findUpper } from "../../../utils/Utils";
 import {
   DropdownMenu,
   DropdownToggle,
@@ -32,11 +32,12 @@ import {
   DataTableRow,
   DataTableItem,
   UserAvatar,
-} from "../../components/Component";
-import { UserContext } from "./UserContext";
+} from "../../../components/Component";
+import { UserContext } from "../UserContext";
 import { Link } from "react-router-dom";
-import { bulkActionOptions } from "../../utils/Utils";
+import { bulkActionOptions } from "../../../utils/Utils";
 import Stepsform from "./Stepsform";
+import { userinfo } from "./userinfojson";
 
 
 const UserInfo = ({ ...props }) => {
@@ -546,36 +547,13 @@ const UserInfo = ({ ...props }) => {
                     <label className="custom-control-label" htmlFor="uid"></label>
                   </div>
                 </DataTableRow>
-                <DataTableRow size="sm">
-                  <span className="sub-text">Avatar</span>
-                </DataTableRow>
-                <DataTableRow size="sm">
-                  <span className="sub-text">First Name</span>
-                </DataTableRow>
-                <DataTableRow size="sm">
-                  <span className="sub-text">Last Name</span>
-                </DataTableRow>
-                <DataTableRow>
-                  <span className="sub-text">Role Id</span>
-                </DataTableRow>
-                <DataTableRow size="md">
-                  <span className="sub-text">Department</span>
-                </DataTableRow>
-                <DataTableRow size="sm">
-                  <span className="sub-text">Mobile</span>
-                </DataTableRow>
-                <DataTableRow size="sm">
-                  <span className="sub-text">Email</span>
-                </DataTableRow>
-                <DataTableRow size="sm">
-                  <span className="sub-text">Registered At</span>
-                </DataTableRow>                
-                <DataTableRow size="md">
-                  <span className="sub-text">isActive</span>
-                </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">isDeleted</span>
-                </DataTableRow>
+                {
+                  userinfo.map((colum,id)=>(
+                    <DataTableRow size={colum.size} key={id}>
+                      <span className={colum.className}>{colum.name}</span>
+                    </DataTableRow>
+                  ))
+                }
               </DataTableHead>
               {/*Head*/}
               {currentItems.length > 0

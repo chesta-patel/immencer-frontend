@@ -8,7 +8,7 @@ import Homepage from "../pages/Homepage";
 import Role from "../pages/user-manage/user-role/Role";
 import UserPermission from "../pages/user-manage/user-permission/UserPermission";
 import SetupRolePermission from "../pages/user-manage/SetupRolePermission";
-import UserInfo from "../pages/user-manage/UserInfo";
+import UserInfo from "../pages/user-manage/user-info/UserInfo";
 import Employee from "../pages/user-manage/Employee";
 import AssetsType from "../pages/assets/AssetsType";
 import AssetApplication from "../pages/assets/AssetsApplication";

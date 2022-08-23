@@ -591,62 +591,50 @@ const UserPermission = ({ ...props }) => {
               <Icon name="cross-sm"></Icon>
             </a>
             <div className="p-2">
-              <h5 className="title">Add Role</h5>
+              <h5 className="title">Add Permission</h5>
               <div className="mt-4">
                 <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
                 {
-                    formfield.map((fieldname,id)=>(
-                      <Col md="6">
-                        <FormGroup>
-                          <label className={fieldname.label_class}>{fieldname.label_name}</label>
-                          <input
-                            className={fieldname.input_class}
-                            type={fieldname.type}
-                            name={fieldname.name}
-                            defaultValue={formData.title}
-                            placeholder={fieldname.placeholder}
-                            ref={register({ required: "This field is required" })}
-                            />
-                          {errors.title && <span className="invalid">{errors.title.message}</span>}                            
-                        </FormGroup>
-                      </Col>
-                    ))
-                  }
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Status</label>
-                      <div className="form-control-wrap">
-                        <RSelect
-                          options={filterStatus}
-                          defaultValue={{ value: "active", label: "Select Status" }}
-                          onChange={(e) => setFormData({ ...formData, status: e.value })}
-                        />
-                      </div>
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">IsActive</label>
-                      <div className="form-control-wrap">
-                        <RSelect
-                          options={isactive}
-                          defaultValue={{ value: "active", label: "Select" }}
-                          onChange={(e) => setFormData({ ...formData, status: e.value })}
-                        />
-                      </div>
-                    </FormGroup>
-                  </Col><Col md="6">
-                    <FormGroup>
-                      <label className="form-label">IsDeleted</label>
-                      <div className="form-control-wrap">
-                        <RSelect
-                          options={isdelete}
-                          defaultValue={{ value: "delete", label: "Select" }}
-                          onChange={(e) => setFormData({ ...formData, status: e.value })}
-                        />
-                      </div>
-                    </FormGroup>
-                  </Col>
+                    formfield.map((fieldname,id)=>{
+                      if(fieldname.type!=="text")
+                      {
+                        return(                          
+                          <Col md="6">
+                            <FormGroup>
+                              <label className={fieldname.label_class}>{fieldname.label_name}</label>
+                              <div className="form-control-wrap">
+                                <RSelect
+                                  options={fieldname.option}
+                                  defaultValue={{ value: fieldname.option?.[0]?.value, label: fieldname.option?.[0]?.label }}
+                                  onChange={(e) => setFormData({ ...formData, status: e.value })}
+                                  ref={register({ required: "Please Select Status" })}
+                                />
+                                {errors.status && <span className="invalid">{errors.status.message}</span>}
+                              </div>
+                            </FormGroup>
+                          </Col>                         
+                        )
+                      }
+                      else{
+                        return(
+                          <Col md="6">
+                            <FormGroup>
+                              <label className={fieldname.label_class}>{fieldname.label_name}</label>
+                              <input
+                                className={fieldname.input_class}
+                                type={fieldname.type}
+                                name={fieldname.name}
+                                defaultValue={formData.title}
+                                placeholder={fieldname.placeholder}
+                                ref={register({ required: "This field is required" })}
+                              />
+                              {errors.title && <span className="invalid">{errors.title.message}</span>}                            
+                            </FormGroup>
+                          </Col>
+                        )
+                      }
+                    })
+                }
                   <Col size="12">
                     <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                       <li>
