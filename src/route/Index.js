@@ -6,7 +6,7 @@ import { RedirectAs404 } from "../utils/Utils";
 
 import Homepage from "../pages/Homepage";
 import Role from "../pages/user-manage/user-role/Role";
-import UserPermission from "../pages/user-manage/UserPermission";
+import UserPermission from "../pages/user-manage/user-permission/UserPermission";
 import SetupRolePermission from "../pages/user-manage/SetupRolePermission";
 import UserInfo from "../pages/user-manage/UserInfo";
 import Employee from "../pages/user-manage/Employee";
