@@ -12,10 +12,10 @@ import UserInfo from '../pages/user-manage/user-info/UserInfo'
 import Employee from '../pages/user-manage/user-employe/Employee'
 import AssetsType from '../pages/assets/asset-type/AssetsType'
 import AssetApplication from '../pages/assets/assets-application/AssetsApplication'
-import LeaveType from '../pages/leave/LeaveType'
-import LeaveApplication from '../pages/leave/LeaveApplication'
-import HolidayType from '../pages/holiday/HolidayType'
-import HolidayList from '../pages/holiday/HolidayList'
+import LeaveType from '../pages/leave/leave-type/LeaveType'
+import LeaveApplication from '../pages/leave/leave-application/LeaveApplication'
+import HolidayType from '../pages/holiday/holiday-type/HolidayType'
+import HolidayList from '../pages/holiday/holiday-list/HolidayList'
 import CompanyDocument from '../pages/company-info/CompanyDocument'
 import CompanyPolicy from '../pages/company-info/CompanyPolicy'
 import Crypto from '../pages/Crypto'
@@ -193,23 +193,39 @@ const Pages = () => {
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/leave/leave-type`}
-          component={LeaveType}
+          render={() => (
+            <UserContextProvider>
+              <LeaveType />
+            </UserContextProvider>
+          )}
         ></Route>
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/leave/leave-application`}
-          component={LeaveApplication}
+          render={() => (
+            <UserContextProvider>
+              <LeaveApplication />
+            </UserContextProvider>
+          )}
         ></Route>
 
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/holiday/holiday-type`}
-          component={HolidayType}
+          render={() => (
+            <UserContextProvider>
+              <HolidayList />
+            </UserContextProvider>
+          )}
         ></Route>
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/holiday/holiday-list`}
-          component={HolidayList}
+          render={() => (
+            <UserContextProvider>
+              <HolidayType />
+            </UserContextProvider>
+          )}
         ></Route>
 
         <Route
