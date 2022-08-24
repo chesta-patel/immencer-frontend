@@ -1,190 +1,329 @@
-export const userinfo =[
-    {
-        id: 1,
-        name:"Avatar",
-        size: "sm",
-        className:"sub-text"
-    },
-    {
-        id: 2,
-        name:"First NAme",
-        size: "sm",
-        className:"sub-text"
-
-    },
-    {
-        id: 3,
-        name:"Last Name",
-        size: "sm",
-        className:"sub-text"
-    },
-    {
-        id: 4,
-        name:"Role Id",
-        size: "md",
-        className:"sub-text"
-
-    },
-    {
-        id:6,
-        name:"Department",
-        size:"md",
-        className:"sub-text"
-
-    },
-    {
-        id:6,
-        name:"Mobile",
-        size:"md",
-        className:"sub-text"
-
-    },
-    {
-        id:6,
-        name:"Email",
-        size:"md",
-        className:"sub-text"
-
-    },
-    {
-        id:7,
-        name:"Registered At",
-        size:"sm",
-        className:"sub-text"
-    },    
-    {
-        id:8,
-        name:"isActive",
-        size:"sm",
-        className:"sub-text"
-    },
-    {
-        id:9,
-        name:"isDeleted",
-        size:"sm",
-        className:"sub-text"
-    },    
+export const userinfo = [
+  {
+    id: 1,
+    name: 'Avatar',
+    size: 'sm',
+    className: 'sub-text',
+  },
+  {
+    id: 2,
+    name: 'First NAme',
+    size: 'sm',
+    className: 'sub-text',
+  },
+  {
+    id: 3,
+    name: 'Last Name',
+    size: 'sm',
+    className: 'sub-text',
+  },
+  {
+    id: 4,
+    name: 'Role Id',
+    size: 'md',
+    className: 'sub-text',
+  },
+  {
+    id: 6,
+    name: 'Department',
+    size: 'md',
+    className: 'sub-text',
+  },
+  {
+    id: 6,
+    name: 'Mobile',
+    size: 'md',
+    className: 'sub-text',
+  },
+  {
+    id: 6,
+    name: 'Email',
+    size: 'md',
+    className: 'sub-text',
+  },
+  {
+    id: 7,
+    name: 'Registered At',
+    size: 'sm',
+    className: 'sub-text',
+  },
+  {
+    id: 8,
+    name: 'isActive',
+    size: 'sm',
+    className: 'sub-text',
+  },
+  {
+    id: 9,
+    name: 'isDeleted',
+    size: 'sm',
+    className: 'sub-text',
+  },
 ]
 
-export const personalfield=[
-    {
-        id:1,
-        label_class:"form-label",
-        label_name:"First Name",
-        input_class:"form-control",
-        type:"text",
-        name:"firstname",
-        placeholder:"Enter FName"
-    },
-    {
-        id:2,
-        label_class:"form-label",
-        label_name:"Last Name",
-        input_class:"form-control",
-        type:"text",
-        name:"lastname",
-        placeholder:"Enter LName"
-    },
-    {
-        id:3,
-        label_class:"form-label",
-        label_name:"Gender",
-        input_class:"form-control",
-        type:"select",
-        name:"gender",
-        option:[
-            {value:"Male",label:"Male"},
-            {value:"Female",label:"Female"},
-        ]
-    },
-    {
-        id:4,
-        label_class:"form-label",
-        label_name:"Birth-Day",
-        input_class:"form-control",
-        type:"date",
-        name:"dob",
-    },
-    {
-        id:5,
-        label_class:"form-label",
-        label_name:"Department",
-        input_class:"form-control",
-        type:"text",
-        name:"type",
-        placeholder:"Enter Department"
-    },
-    {
-        id:6,
-        label_class:"form-label",
-        label_name:"Role",
-        input_class:"form-control",
-        type:"select",
-        option:[            
-        {value:"Admin", label:"Admin"},
-        {value:"User", label:"User"},
-        ]
-    },
+export const personalfield = [
+  {
+    id: 1,
+    label_class: 'form-label',
+    label_name: 'First Name',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'firstname',
+    placeholder: 'Enter FName',
+  },
+  {
+    id: 2,
+    label_class: 'form-label',
+    label_name: 'Last Name',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'lastname',
+    placeholder: 'Enter LName',
+  },
+  {
+    id: 3,
+    label_class: 'form-label',
+    label_name: 'Gender',
+    input_class: 'form-control',
+    type: 'select',
+    name: 'gender',
+    option: [
+      { value: 'Male', label: 'Male' },
+      { value: 'Female', label: 'Female' },
+    ],
+  },
+  {
+    id: 4,
+    label_class: 'form-label',
+    label_name: 'Birth-Day',
+    input_class: 'form-control',
+    type: 'date',
+    name: 'dob',
+  },
+  {
+    id: 5,
+    label_class: 'form-label',
+    label_name: 'Department',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'type',
+    placeholder: 'Enter Department',
+  },
+  {
+    id: 6,
+    label_class: 'form-label',
+    label_name: 'Role',
+    input_class: 'form-control',
+    type: 'select',
+    option: [
+      { value: 'Admin', label: 'Admin' },
+      { value: 'User', label: 'User' },
+    ],
+  },
 ]
 
-export const personaldetail=[
-    {
-        id:1,
-        label_class:"form-label",
-        label_name:"Current Address",
-        input_class:"form-control",
-        type:"text",
-        name:"C.add",
-        placeholder:"Enter Current address"
-    },
-    {
-        id:2,
-        label_class:"form-label",
-        label_name:"Permenent Address",
-        input_class:"form-control",
-        type:"text",
-        name:"p.add",
-        placeholder:"Enter Permenent address"
-    },
-    {
-        id:3,
-        label_class:"form-label",
-        label_name:"Education",
-        input_class:"form-control",
-        type:"text",
-        name:"education",
-        placeholder:"Enter Education"
-    },
-    {
-        id:4,
-        label_class:"form-label",
-        label_name:"Country",
-        input_class:"form-control",
-        type:"select",
-        name:"country",
-        placeholder:"Select country"
-    },
-    {
-        id:5,
-        label_class:"form-label",
-        label_name:"Height",
-        input_class:"form-control",
-        type:"text",
-        name:"country",
-        placeholder:"Enter Height"
-    },
-    {
-        id:6,
-        label_class:"form-label",
-        label_name:"Status",
-        input_class:"form-control",
-        type:"select",
-        name:"type",
-        option:[
-            { value: "Active", label: "Active" },
-            { value: "Pending", label: "Pending" },
-            { value: "Suspend", label: "Suspend" },
+export const personaldetail = [
+  {
+    id: 1,
+    label_class: 'form-label',
+    label_name: 'Current Address',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'C.add',
+    placeholder: 'Enter Current address',
+  },
+  {
+    id: 2,
+    label_class: 'form-label',
+    label_name: 'Permenent Address',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'p.add',
+    placeholder: 'Enter Permenent address',
+  },
+  {
+    id: 3,
+    label_class: 'form-label',
+    label_name: 'Education',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'education',
+    placeholder: 'Enter Education',
+  },
+  {
+    id: 4,
+    label_class: 'form-label',
+    label_name: 'Country',
+    input_class: 'form-control',
+    type: 'select',
+    name: 'country',
+    placeholder: 'Select country',
+    option: [
+      { value: 'Active', label: 'Active' },
+      { value: 'Pending', label: 'Pending' },
+      { value: 'Suspend', label: 'Suspend' },
+    ],
+  },
+  {
+    id: 5,
+    label_class: 'form-label',
+    label_name: 'Height',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'country',
+    placeholder: 'Enter Height',
+  },
+  {
+    id: 6,
+    label_class: 'form-label',
+    label_name: 'Status',
+    input_class: 'form-control',
+    type: 'select',
+    name: 'type',
+    option: [
+      { value: 'Active', label: 'Active' },
+      { value: 'Pending', label: 'Pending' },
+      { value: 'Suspend', label: 'Suspend' },
+    ],
+  },
+]
 
-        ]
-    },
+export const numberemail = [
+  {
+    id: 1,
+    label_class: 'form-label',
+    label_name: 'Email',
+    input_class: 'form-control',
+    type: 'email',
+    name: 'email',
+    placeholder: 'Enter Email',
+  },
+  {
+    id: 2,
+    label_class: 'form-label',
+    label_name: 'Personal Email',
+    input_class: 'form-control',
+    type: 'email',
+    name: 'p.email',
+    placeholder: 'Enter Personal Email',
+  },
+  {
+    id: 3,
+    label_class: 'form-label',
+    label_name: 'Mobile',
+    input_class: 'form-control',
+    type: 'number',
+    name: 'mobile',
+    placeholder: 'Enter Mobile Number',
+  },
+  {
+    id: 4,
+    label_class: 'form-label',
+    label_name: 'Parent Mobile',
+    input_class: 'form-control',
+    type: 'number',
+    name: 'p.mobile',
+    placeholder: 'Enter Parent Mobile Number',
+  },
+  {
+    id: 5,
+    label_class: 'form-label',
+    label_name: 'Whatsapp Mobile Number',
+    input_class: 'form-control',
+    type: 'number',
+    name: 'w.mobile',
+    placeholder: 'Enter Whatsapp Mobile Number',
+  },
+  {
+    id: 6,
+    label_class: 'form-label',
+    label_name: 'Adhar Card Number',
+    input_class: 'form-control',
+    type: 'number',
+    name: 'adharcardnumber',
+    placeholder: 'Enter Adhar Card Number',
+  },
+  {
+    id: 7,
+    label_class: 'form-label',
+    label_name: 'Pan Card Number',
+    input_class: 'form-control',
+    type: 'number',
+    name: 'pancardnumber',
+    placeholder: 'Enter Pan Card Number',
+  },
+]
+export const officedetail = [
+  {
+    id: 1,
+    label_class: 'form-label',
+    label_name: 'Registered At',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'registerat',
+  },
+  {
+    id: 2,
+    label_class: 'form-label',
+    label_name: 'Last Login',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'l.login',
+  },
+  {
+    id: 3,
+    label_class: 'form-label',
+    label_name: 'intro',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'intro',
+  },
+  {
+    id: 3,
+    label_class: 'form-label',
+    label_name: 'intro',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'intro',
+  },
+]
+export const otherdetail = [
+  {
+    id: 1,
+    label_class: 'form-label',
+    label_name: 'Swift Time',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'swift_time',
+  },
+  {
+    id: 2,
+    label_class: 'form-label',
+    label_name: 'IsActive',
+    input_class: 'form-control',
+    type: 'select',
+    name: 'type',
+    option: [
+      { value: 'Active', label: 'Active' },
+      { value: 'InActive', label: 'InActive' },
+    ],
+  },
+  {
+    id: 3,
+    label_class: 'form-label',
+    label_name: 'IsDelete',
+    input_class: 'form-control',
+    type: 'select',
+    name: 'type',
+    option: [
+      { value: 'IsDeleted', label: 'IsDeleted' },
+      { value: 'IsNotDeleted', label: 'IsNotDeleted' },
+    ],
+  },
+]
+
+// for vertical and horizental form in userinfo
+export const verticalhorizental = [
+  'nk-wizard nk-wizard-simple is-vertical is-alter wizard clearfix',
+  //   'nk-wizard nk-wizard-simple is-alter wizard clearfix',
 ]
