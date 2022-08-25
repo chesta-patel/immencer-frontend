@@ -7,7 +7,7 @@ import { RedirectAs404 } from '../utils/Utils'
 import Homepage from '../pages/Homepage'
 import Role from '../pages/user-manage/user-role/Role'
 import UserPermission from '../pages/user-manage/user-permission/UserPermission'
-import SetupRolePermission from '../pages/user-manage/SetupRolePermission'
+import SetupRolePermission from '../pages/user-manage/userpermission-role/SetupRolePermission'
 import UserInfo from '../pages/user-manage/user-info/UserInfo'
 import Employee from '../pages/user-manage/user-employe/Employee'
 import AssetsType from '../pages/assets/asset-type/AssetsType'
@@ -16,8 +16,8 @@ import LeaveType from '../pages/leave/leave-type/LeaveType'
 import LeaveApplication from '../pages/leave/leave-application/LeaveApplication'
 import HolidayType from '../pages/holiday/holiday-type/HolidayType'
 import HolidayList from '../pages/holiday/holiday-list/HolidayList'
-import CompanyDocument from '../pages/company-info/CompanyDocument'
-import CompanyPolicy from '../pages/company-info/CompanyPolicy'
+import CompanyDocument from '../pages/company-info/company-documents/CompanyDocument'
+import CompanyPolicy from '../pages/company-info/company-policy/CompanyPolicy'
 import Crypto from '../pages/Crypto'
 import Analytics from '../pages/Analytics'
 import Invest from '../pages/Invest'
@@ -231,12 +231,20 @@ const Pages = () => {
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/company-info/company-document`}
-          component={CompanyDocument}
+          render={() => (
+            <UserContextProvider>
+              <CompanyDocument />
+            </UserContextProvider>
+          )}
         ></Route>
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/company-info/company-policy`}
-          component={CompanyPolicy}
+          render={() => (
+            <UserContextProvider>
+              <CompanyPolicy />
+            </UserContextProvider>
+          )}
         ></Route>
 
         <Route

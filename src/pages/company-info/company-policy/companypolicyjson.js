@@ -1,0 +1,98 @@
+export const companypolicyform = [
+  {
+    id: 1,
+    label_class: 'form-label',
+    label_name: 'Organization Meta Id',
+    input_class: 'form-control',
+    type: 'number',
+    name: 'organization-meta-id',
+  },
+  {
+    id: 2,
+    label_class: 'form-label',
+    label_name: 'Title',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'title',
+  },
+  {
+    id: 3,
+    label_class: 'form-label',
+    label_name: 'Description',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'description',
+  },
+  {
+    id: 4,
+    label_class: 'form-label',
+    label_name: 'Assets',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'assets',
+  },
+  {
+    id: 5,
+    label_class: 'form-label',
+    label_name: 'Created By',
+    input_class: 'form-control',
+    type: 'text',
+    name: 'createdby',
+  },
+  {
+    id: 6,
+    label_class: 'form-label',
+    label_name: 'IsActive',
+    input_class: 'form-control',
+    type: 'select',
+    name: 'type',
+    option: [
+      { value: 'Active', label: 'Active' },
+      { value: 'InActive', label: 'InActive' },
+    ],
+  },
+  {
+    id: 7,
+    label_class: 'form-label',
+    label_name: 'IsDelete',
+    input_class: 'form-control',
+    type: 'select',
+    name: 'type',
+    option: [
+      { value: 'IsDeleted', label: 'IsDeleted' },
+      { value: 'IsNotDeleted', label: 'IsNotDeleted' },
+    ],
+  },
+]
+export const companypolicytable = [
+  {
+    id: 1,
+    name: 'Organization Meta Id',
+    size: 'sm',
+    className: 'sub-text',
+  },
+  {
+    id: 2,
+    name: 'Title',
+    size: 'sm',
+    className: 'sub-text',
+  },
+  {
+    id: 3,
+    name: 'Created By',
+    size: 'sm',
+    className: 'sub-text',
+  },
+  {
+    id: 4,
+    name: 'IsActive',
+    size: 'sm',
+    className: 'sub-text',
+  },
+  {
+    id: 5,
+    name: 'IsDelete',
+    size: 'sm',
+    className: 'sub-text',
+  },
+]
