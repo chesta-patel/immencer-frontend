@@ -1,6 +1,6 @@
-import React from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
+import React from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
 import {
   Block,
   BlockHead,
@@ -10,8 +10,8 @@ import {
   BackTo,
   PreviewCard,
   CodeBlock,
-} from "../../../components/Component";
-import { Input, Row, Col } from "reactstrap";
+} from '../../../components/Component'
+import { Input, Row, Col } from 'reactstrap'
 
 const CheckboxRadio = () => {
   return (
@@ -27,7 +27,9 @@ const CheckboxRadio = () => {
               Checkbox & Radio
             </BlockTitle>
             <BlockDes>
-              <p className="lead">Examples and usage guidelines for checkboxes and radio.</p>
+              <p className="lead">
+                Examples and usage guidelines for checkboxes and radio.
+              </p>
             </BlockDes>
           </BlockHeadContent>
         </BlockHead>
@@ -37,9 +39,12 @@ const CheckboxRadio = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Checkbox Styles</BlockTitle>
               <p>
-                To create custom control, wrapped with <code className="code-tag">&lt;div&gt;</code> each checkbox{" "}
-                <code className="code-tag">&lt;input&gt;</code> &amp; <code className="code-tag">&lt;label&gt;</code>{" "}
-                using <code>.custom-control</code>, <code>.custom-checkbox</code> classes.
+                To create custom control, wrapped with{' '}
+                <code className="code-tag">&lt;div&gt;</code> each checkbox{' '}
+                <code className="code-tag">&lt;input&gt;</code> &amp;{' '}
+                <code className="code-tag">&lt;label&gt;</code> using{' '}
+                <code>.custom-control</code>, <code>.custom-checkbox</code>{' '}
+                classes.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -49,8 +54,15 @@ const CheckboxRadio = () => {
                 <div className="preview-block">
                   <span className="preview-title overline-title">Default</span>
                   <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input form-control" id="customCheck1" />
-                    <label className="custom-control-label" htmlFor="customCheck1">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input form-control"
+                      id="customCheck1"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck1"
+                    >
                       Option Label
                     </label>
                   </div>
@@ -65,7 +77,10 @@ const CheckboxRadio = () => {
                     defaultChecked
                     id="customCheck2"
                   />
-                  <label className="custom-control-label" htmlFor="customCheck2">
+                  <label
+                    className="custom-control-label"
+                    htmlFor="customCheck2"
+                  >
                     Option Label
                   </label>
                 </div>
@@ -74,8 +89,16 @@ const CheckboxRadio = () => {
                 <div className="preview-block">
                   <span className="preview-title overline-title">Disabled</span>
                   <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input form-control" disabled id="customCheck3" />
-                    <label className="custom-control-label" htmlFor="customCheck3">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input form-control"
+                      disabled
+                      id="customCheck3"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck3"
+                    >
                       Option Label
                     </label>
                   </div>
@@ -83,7 +106,9 @@ const CheckboxRadio = () => {
               </Col>
               <Col sm="6" md="3">
                 <div className="preview-block">
-                  <span className="preview-title overline-title">Check Disabled</span>
+                  <span className="preview-title overline-title">
+                    Check Disabled
+                  </span>
                   <div className="custom-control custom-checkbox">
                     <input
                       type="checkbox"
@@ -92,7 +117,10 @@ const CheckboxRadio = () => {
                       disabled
                       id="customCheck4"
                     />
-                    <label className="custom-control-label" htmlFor="customCheck4">
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck4"
+                    >
                       Option Label
                     </label>
                   </div>
@@ -104,24 +132,45 @@ const CheckboxRadio = () => {
                   <div className="g-3 align-center flex-wrap">
                     <div className="g">
                       <div className="custom-control custom-control-sm custom-checkbox">
-                        <input type="checkbox" className="custom-control-input form-control" id="customCheck7" />
-                        <label className="custom-control-label" htmlFor="customCheck7">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input form-control"
+                          id="customCheck7"
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customCheck7"
+                        >
                           Option Label
                         </label>
                       </div>
                     </div>
                     <div className="g">
                       <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input form-control" id="customCheck6" />
-                        <label className="custom-control-label" htmlFor="customCheck6">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input form-control"
+                          id="customCheck6"
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customCheck6"
+                        >
                           Option Label
                         </label>
                       </div>
                     </div>
                     <div className="g">
                       <div className="custom-control custom-control-lg custom-checkbox">
-                        <input type="checkbox" className="custom-control-input form-control" id="customCheck5" />
-                        <label className="custom-control-label" htmlFor="customCheck5">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input form-control"
+                          id="customCheck5"
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customCheck5"
+                        >
                           Option Label
                         </label>
                       </div>
@@ -131,8 +180,9 @@ const CheckboxRadio = () => {
               </Col>
               <Col xl="12">
                 <p className="text-soft">
-                  For large or small size of <code>.custom-checkbox</code>, use <code>.custom-control-{`lg|sm`}</code>{" "}
-                  with <code>.custom-control</code> className.
+                  For large or small size of <code>.custom-checkbox</code>, use{' '}
+                  <code>.custom-control-{`lg|sm`}</code> with{' '}
+                  <code>.custom-control</code> className.
                 </p>
               </Col>
             </Row>
@@ -145,9 +195,12 @@ const CheckboxRadio = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Radio Style</BlockTitle>
               <p>
-                To create custom control, wrapped with <code className="code-tag">&lt;div&gt;</code> each radio{" "}
-                <code className="code-tag">&lt;input&gt;</code> &amp; <code className="code-tag">&lt;label&gt;</code>{" "}
-                using <code>.custom-control</code>, <code>.custom-radio</code> classNames.
+                To create custom control, wrapped with{' '}
+                <code className="code-tag">&lt;div&gt;</code> each radio{' '}
+                <code className="code-tag">&lt;input&gt;</code> &amp;{' '}
+                <code className="code-tag">&lt;label&gt;</code> using{' '}
+                <code>.custom-control</code>, <code>.custom-radio</code>{' '}
+                classNames.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -163,7 +216,10 @@ const CheckboxRadio = () => {
                       name="customRadio"
                       className="custom-control-input form-control"
                     />
-                    <label className="custom-control-label" htmlFor="customRadio1">
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customRadio1"
+                    >
                       Option Label
                     </label>
                   </div>
@@ -180,7 +236,10 @@ const CheckboxRadio = () => {
                       defaultChecked
                       className="custom-control-input form-control"
                     />
-                    <label className="custom-control-label" htmlFor="customRadio2">
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customRadio2"
+                    >
                       Option Label
                     </label>
                   </div>
@@ -197,7 +256,10 @@ const CheckboxRadio = () => {
                       disabled
                       className="custom-control-input form-control"
                     />
-                    <label className="custom-control-label" htmlFor="customRadio3">
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customRadio3"
+                    >
                       Option Label
                     </label>
                   </div>
@@ -205,7 +267,9 @@ const CheckboxRadio = () => {
               </Col>
               <Col md="3" sm="6">
                 <div className="preview-block">
-                  <span className="preview-title overline-title">Check Disabled</span>
+                  <span className="preview-title overline-title">
+                    Check Disabled
+                  </span>
                   <div className="custom-control custom-radio">
                     <input
                       type="radio"
@@ -215,7 +279,10 @@ const CheckboxRadio = () => {
                       disabled
                       className="custom-control-input form-control"
                     />
-                    <label className="custom-control-label" htmlFor="customRadio4">
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customRadio4"
+                    >
                       Option Label
                     </label>
                   </div>
@@ -233,7 +300,10 @@ const CheckboxRadio = () => {
                           name="radioSize"
                           id="customRadio7"
                         />
-                        <label className="custom-control-label" htmlFor="customRadio7">
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customRadio7"
+                        >
                           Option Label
                         </label>
                       </div>
@@ -246,7 +316,10 @@ const CheckboxRadio = () => {
                           name="radioSize"
                           id="customRadio6"
                         />
-                        <label className="custom-control-label" htmlFor="customRadio6">
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customRadio6"
+                        >
                           Option Label
                         </label>
                       </div>
@@ -259,7 +332,10 @@ const CheckboxRadio = () => {
                           name="radioSize"
                           id="customRadio5"
                         />
-                        <label className="custom-control-label" htmlFor="customRadio5">
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customRadio5"
+                        >
                           Option Label
                         </label>
                       </div>
@@ -269,7 +345,8 @@ const CheckboxRadio = () => {
               </Col>
               <Col xl="12">
                 <p className="text-soft">
-                  For large or small size of <code>.custom-radio</code>, use <code>.custom-control-{`lg|sm`}</code> with{" "}
+                  For large or small size of <code>.custom-radio</code>, use{' '}
+                  <code>.custom-control-{`lg|sm`}</code> with{' '}
                   <code>.custom-control</code> className.
                 </p>
               </Col>
@@ -283,8 +360,9 @@ const CheckboxRadio = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Switch Style</BlockTitle>
               <p>
-                The switch markup of a <code>.custom-control</code> <code className="code-fnc">checkbox</code> but uses
-                the <code>.custom-switch</code> className to render a toggle switch.
+                The switch markup of a <code>.custom-control</code>{' '}
+                <code className="code-fnc">checkbox</code> but uses the{' '}
+                <code>.custom-switch</code> className to render a toggle switch.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -294,8 +372,15 @@ const CheckboxRadio = () => {
                 <div className="preview-block">
                   <span className="preview-title overline-title">Default</span>
                   <div className="custom-control custom-switch">
-                    <input type="checkbox" className="custom-control-input form-control" id="customSwitch1" />
-                    <label className="custom-control-label" htmlFor="customSwitch1">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input form-control"
+                      id="customSwitch1"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customSwitch1"
+                    >
                       Switch
                     </label>
                   </div>
@@ -311,7 +396,10 @@ const CheckboxRadio = () => {
                       defaultChecked
                       id="customSwitch2"
                     />
-                    <label className="custom-control-label" htmlFor="customSwitch2">
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customSwitch2"
+                    >
                       Switch
                     </label>
                   </div>
@@ -321,8 +409,16 @@ const CheckboxRadio = () => {
                 <div className="preview-block">
                   <span className="preview-title overline-title">Disabled</span>
                   <div className="custom-control custom-switch">
-                    <input type="checkbox" className="custom-control-input form-control" disabled id="customSwitch3" />
-                    <label className="custom-control-label" htmlFor="customSwitch3">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input form-control"
+                      disabled
+                      id="customSwitch3"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customSwitch3"
+                    >
                       Switch
                     </label>
                   </div>
@@ -330,7 +426,9 @@ const CheckboxRadio = () => {
               </Col>
               <Col md="3" sm="6">
                 <div className="preview-block">
-                  <span className="preview-title overline-title">Check Disabled</span>
+                  <span className="preview-title overline-title">
+                    Check Disabled
+                  </span>
                   <div className="custom-control custom-switch">
                     <input
                       type="checkbox"
@@ -339,7 +437,10 @@ const CheckboxRadio = () => {
                       disabled
                       id="customSwitch4"
                     />
-                    <label className="custom-control-label" htmlFor="customSwitch4">
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customSwitch4"
+                    >
                       Switch
                     </label>
                   </div>
@@ -351,24 +452,45 @@ const CheckboxRadio = () => {
                   <div className="g-3 align-center flex-wrap">
                     <div className="g">
                       <div className="custom-control custom-control-sm custom-switch">
-                        <input type="checkbox" className="custom-control-input" id="customSwitch7" />
-                        <label className="custom-control-label" htmlFor="customSwitch7">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input"
+                          id="customSwitch7"
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customSwitch7"
+                        >
                           Switch Label
                         </label>
                       </div>
                     </div>
                     <div className="g">
                       <div className="custom-control custom-switch">
-                        <Input type="checkbox" className="custom-control-input form-control" id="customSwitch6" />
-                        <label className="custom-control-label" htmlFor="customSwitch6">
+                        <Input
+                          type="checkbox"
+                          className="custom-control-input form-control"
+                          id="customSwitch6"
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customSwitch6"
+                        >
                           Switch Label
                         </label>
                       </div>
                     </div>
                     <div className="g">
                       <div className="custom-control custom-control-lg custom-switch">
-                        <input type="checkbox" className="custom-control-input form-control" id="customSwitch5" />
-                        <label className="custom-control-label" htmlFor="customSwitch5">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input form-control"
+                          id="customSwitch5"
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor="customSwitch5"
+                        >
                           Switch Label
                         </label>
                       </div>
@@ -378,8 +500,9 @@ const CheckboxRadio = () => {
               </Col>
               <Col xl="12">
                 <p className="text-soft">
-                  For large or small size of <code>.custom-switch</code>, use <code>.custom-control-{`lg|sm`}</code>{" "}
-                  with <code>.custom-control</code> className.
+                  For large or small size of <code>.custom-switch</code>, use{' '}
+                  <code>.custom-control-{`lg|sm`}</code> with{' '}
+                  <code>.custom-control</code> className.
                 </p>
               </Col>
             </Row>
@@ -391,7 +514,7 @@ const CheckboxRadio = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default CheckboxRadio;
+export default CheckboxRadio

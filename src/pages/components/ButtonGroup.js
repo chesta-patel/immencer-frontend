@@ -1,11 +1,18 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
 
-import { Row, Col, Button, ButtonGroup, ButtonToolbar } from "reactstrap";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, CodeBlock } from "../../components/preview/Preview";
-import { OverlineTitle } from "../../components/text/Text";
+import { Row, Col, Button, ButtonGroup, ButtonToolbar } from 'reactstrap'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import { PreviewCard, CodeBlock } from '../../components/preview/Preview'
+import { OverlineTitle } from '../../components/text/Text'
 
 const ButtonGroupPage = () => {
   return (
@@ -22,12 +29,20 @@ const ButtonGroupPage = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Group a series of buttons together on a single line with the button group, and super-power them with
-                JavaScript. To use it, import it such as <code>import {`{ButtonGroup}`} from "reactstrap"</code>. Visit
-                the{" "}
-                <a href={"https://deploy-preview-2356--reactstrap.netlify.app/components/button-group"} target="_blank" rel="noreferrer">
+                Group a series of buttons together on a single line with the
+                button group, and super-power them with JavaScript. To use it,
+                import it such as{' '}
+                <code>import {`{ButtonGroup}`} from "reactstrap"</code>. Visit
+                the{' '}
+                <a
+                  href={
+                    'https://deploy-preview-2356--reactstrap.netlify.app/components/button-group'
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Reactstrap
-                </a>{" "}
+                </a>{' '}
                 library for detailed instructions.
               </p>
             </BlockDes>
@@ -39,7 +54,8 @@ const ButtonGroupPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Basic Example</BlockTitle>
               <p>
-                Combine sets of button to wrap a series of <code>Button</code> in <code>ButtonGroup</code> component.
+                Combine sets of button to wrap a series of <code>Button</code>{' '}
+                in <code>ButtonGroup</code> component.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -118,7 +134,10 @@ const ButtonGroupPage = () => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Button Toolbar</BlockTitle>
-              <p>Combine sets of button groups into button toolbars for more complex components.</p>
+              <p>
+                Combine sets of button groups into button toolbars for more
+                complex components.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -163,8 +182,8 @@ const ButtonGroupPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Button Sizing</BlockTitle>
               <p>
-                Just add <code>size</code> to each <code>ButtonGroup</code> component to control applying button sizing
-                globaly.
+                Just add <code>size</code> to each <code>ButtonGroup</code>{' '}
+                component to control applying button sizing globaly.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -203,7 +222,7 @@ const ButtonGroupPage = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ButtonGroupPage;
+export default ButtonGroupPage

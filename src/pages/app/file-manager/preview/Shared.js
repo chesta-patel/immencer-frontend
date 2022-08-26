@@ -1,26 +1,52 @@
-import React, { useEffect, useState } from "react";
-import Incoming from "../views/shared/Incoming";
-import Links from "../views/shared/Links";
-import Outgoing from "../views/shared/Outgoing";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { Block, BlockBetween, BlockHead, BlockHeadContent, BlockTitle, Icon } from "../../../../components/Component";
+import React, { useEffect, useState } from 'react'
+import Incoming from '../views/shared/Incoming'
+import Links from '../views/shared/Links'
+import Outgoing from '../views/shared/Outgoing'
+import {
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import {
+  Block,
+  BlockBetween,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  Icon,
+} from '../../../../components/Component'
 
-const Shared = ({ data, setData, searchText, setSearchText, toggleCreateModal, toggleUploadModal, toggleScreenLg }) => {
-  const [tabs, setTab] = useState("incoming");
-  const [search, setSearch] = useState(false);
-  const [dataList, setDataList] = useState();
+const Shared = ({
+  data,
+  setData,
+  searchText,
+  setSearchText,
+  toggleCreateModal,
+  toggleUploadModal,
+  toggleScreenLg,
+}) => {
+  const [tabs, setTab] = useState('incoming')
+  const [search, setSearch] = useState(false)
+  const [dataList, setDataList] = useState()
 
   useEffect(() => {
-    let filteredIncoming = data.filter((item) => item.meta.members && item.meta.members.length > 0);
-    let filteredOutgoing = data.filter((item) => item.shared);
-    let filteredLinks = data.filter((item) => item.meta.link === true);
+    let filteredIncoming = data.filter(
+      (item) => item.meta.members && item.meta.members.length > 0
+    )
+    let filteredOutgoing = data.filter((item) => item.shared)
+    let filteredLinks = data.filter((item) => item.meta.link === true)
 
-    setDataList({ incoming: filteredIncoming, outgoing: filteredOutgoing, links: filteredLinks });
-  }, [data]);
+    setDataList({
+      incoming: filteredIncoming,
+      outgoing: filteredOutgoing,
+      links: filteredLinks,
+    })
+  }, [data])
 
   const toggleSearch = () => {
-    setSearch(!search);
-  };
+    setSearch(!search)
+  }
 
   return (
     <React.Fragment>
@@ -35,8 +61,8 @@ const Shared = ({ data, setData, searchText, setSearchText, toggleCreateModal, t
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleSearch();
+                    ev.preventDefault()
+                    toggleSearch()
                   }}
                   className="btn btn-trigger btn-icon search-toggle toggle-search"
                 >
@@ -60,8 +86,8 @@ const Shared = ({ data, setData, searchText, setSearchText, toggleCreateModal, t
                           tag="a"
                           href="#upload"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            toggleUploadModal();
+                            ev.preventDefault()
+                            toggleUploadModal()
                           }}
                         >
                           <Icon name="upload-cloud"></Icon>
@@ -73,8 +99,8 @@ const Shared = ({ data, setData, searchText, setSearchText, toggleCreateModal, t
                           tag="a"
                           href="#upload"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            toggleCreateModal();
+                            ev.preventDefault()
+                            toggleCreateModal()
                           }}
                         >
                           <Icon name="folder-plus"></Icon>
@@ -89,8 +115,8 @@ const Shared = ({ data, setData, searchText, setSearchText, toggleCreateModal, t
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleScreenLg();
+                    ev.preventDefault()
+                    toggleScreenLg()
                   }}
                   className="btn btn-trigger btn-icon toggle"
                 >
@@ -99,13 +125,15 @@ const Shared = ({ data, setData, searchText, setSearchText, toggleCreateModal, t
               </li>
             </ul>
           </BlockHeadContent>
-          <div className={`search-wrap px-2 d-lg-none ${search ? "active" : ""}`}>
+          <div
+            className={`search-wrap px-2 d-lg-none ${search ? 'active' : ''}`}
+          >
             <div className="search-content">
               <a
                 href="#toggle"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  toggleSearch();
+                  ev.preventDefault()
+                  toggleSearch()
                 }}
                 className="search-back btn btn-icon toggle-search"
               >
@@ -127,37 +155,49 @@ const Shared = ({ data, setData, searchText, setSearchText, toggleCreateModal, t
       </BlockHead>
 
       <ul className="nk-nav nav nav-tabs">
-        <li className={`nav-item ${tabs === "incoming" ? "active current-page" : ""}`}>
+        <li
+          className={`nav-item ${
+            tabs === 'incoming' ? 'active current-page' : ''
+          }`}
+        >
           <a
             className="nav-link"
             href="#tabs"
             onClick={(ev) => {
-              ev.preventDefault();
-              setTab("incoming");
+              ev.preventDefault()
+              setTab('incoming')
             }}
           >
             Incoming
           </a>
         </li>
-        <li className={`nav-item ${tabs === "outgoing" ? "active current-page" : ""}`}>
+        <li
+          className={`nav-item ${
+            tabs === 'outgoing' ? 'active current-page' : ''
+          }`}
+        >
           <a
             className="nav-link"
             href="#tabs"
             onClick={(ev) => {
-              ev.preventDefault();
-              setTab("outgoing");
+              ev.preventDefault()
+              setTab('outgoing')
             }}
           >
             Outgoing
           </a>
         </li>
-        <li className={`nav-item ${tabs === "links" ? "active current-page" : ""}`}>
+        <li
+          className={`nav-item ${
+            tabs === 'links' ? 'active current-page' : ''
+          }`}
+        >
           <a
             className="nav-link"
             href="#tabs"
             onClick={(ev) => {
-              ev.preventDefault();
-              setTab("links");
+              ev.preventDefault()
+              setTab('links')
             }}
           >
             Links
@@ -167,9 +207,9 @@ const Shared = ({ data, setData, searchText, setSearchText, toggleCreateModal, t
 
       {dataList && (
         <Block size="xs" className="nk-fmg-listing">
-          {tabs === "incoming" ? (
+          {tabs === 'incoming' ? (
             <Incoming data={dataList.incoming} setData={setData} />
-          ) : tabs === "outgoing" ? (
+          ) : tabs === 'outgoing' ? (
             <Outgoing data={dataList.outgoing} setData={setData} />
           ) : (
             <Links data={dataList.links} setData={setData} />
@@ -177,7 +217,7 @@ const Shared = ({ data, setData, searchText, setSearchText, toggleCreateModal, t
         </Block>
       )}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Shared;
+export default Shared

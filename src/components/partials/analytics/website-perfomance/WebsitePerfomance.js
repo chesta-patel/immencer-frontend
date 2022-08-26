@@ -1,7 +1,12 @@
-import React from "react";
-import { TimeOnSiteData, NewUsersData, PageviewsData, BounceRateData } from "../../charts/analytics/AnalyticsData";
-import { WPCharts } from "../../charts/analytics/AnalyticsCharts";
-import { Icon, TooltipComponent } from "../../../Component";
+import React from 'react'
+import {
+  TimeOnSiteData,
+  NewUsersData,
+  PageviewsData,
+  BounceRateData,
+} from '../../charts/analytics/AnalyticsData'
+import { WPCharts } from '../../charts/analytics/AnalyticsCharts'
+import { Icon, TooltipComponent } from '../../../Component'
 
 const WebsitePerformance = () => {
   return (
@@ -29,7 +34,10 @@ const WebsitePerformance = () => {
                 Bounce Rate <span>(avg)</span>
               </div>
               <div className="analytic-wp-ck">
-                <WPCharts className="analytics-line-small" data={BounceRateData}></WPCharts>
+                <WPCharts
+                  className="analytics-line-small"
+                  data={BounceRateData}
+                ></WPCharts>
               </div>
             </div>
             <div className="analytic-wp-text">
@@ -46,7 +54,10 @@ const WebsitePerformance = () => {
                 Pageviews <span>(avg)</span>
               </div>
               <div className="analytic-wp-ck">
-                <WPCharts className="analytics-line-small" data={PageviewsData}></WPCharts>
+                <WPCharts
+                  className="analytics-line-small"
+                  data={PageviewsData}
+                ></WPCharts>
               </div>
             </div>
             <div className="analytic-wp-text">
@@ -63,7 +74,10 @@ const WebsitePerformance = () => {
                 New Users <span>(avg)</span>
               </div>
               <div className="analytic-wp-ck">
-                <WPCharts className="analytics-line-small" data={NewUsersData}></WPCharts>
+                <WPCharts
+                  className="analytics-line-small"
+                  data={NewUsersData}
+                ></WPCharts>
               </div>
             </div>
             <div className="analytic-wp-text">
@@ -80,7 +94,10 @@ const WebsitePerformance = () => {
                 Time on Site <span>(avg)</span>
               </div>
               <div className="analytic-wp-ck">
-                <WPCharts className="analytics-line-small" data={TimeOnSiteData}></WPCharts>
+                <WPCharts
+                  className="analytics-line-small"
+                  data={TimeOnSiteData}
+                ></WPCharts>
               </div>
             </div>
             <div className="analytic-wp-text">
@@ -94,6 +111,6 @@ const WebsitePerformance = () => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
-export default WebsitePerformance;
+  )
+}
+export default WebsitePerformance

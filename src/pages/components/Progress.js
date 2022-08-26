@@ -1,10 +1,17 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
 
-import { Progress } from "reactstrap";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, CodeBlock } from "../../components/preview/Preview";
+import { Progress } from 'reactstrap'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import { PreviewCard, CodeBlock } from '../../components/preview/Preview'
 
 const ProgressPage = ({ ...props }) => {
   return (
@@ -21,12 +28,19 @@ const ProgressPage = ({ ...props }) => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Examples for using custom progress bars featuring support for stacked bars, animated backgrounds, and
-                text labels. To use it, import it such as <code>import {`{Progress}`} from "reactstrap"</code>. Visit
-                the{" "}
-                <a href={"https://deploy-preview-2356--reactstrap.netlify.app/components/progress"} target="_blank" rel="noreferrer">
+                Examples for using custom progress bars featuring support for
+                stacked bars, animated backgrounds, and text labels. To use it,
+                import it such as{' '}
+                <code>import {`{Progress}`} from "reactstrap"</code>. Visit the{' '}
+                <a
+                  href={
+                    'https://deploy-preview-2356--reactstrap.netlify.app/components/progress'
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Reactstrap
-                </a>{" "}
+                </a>{' '}
                 library for detailed instructions.
               </p>
             </BlockDes>
@@ -38,7 +52,8 @@ const ProgressPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Basic Examples</BlockTitle>
               <p>
-                Use the <code>value</code> props in <code>Progress</code> element to indicate progress status.
+                Use the <code>value</code> props in <code>Progress</code>{' '}
+                element to indicate progress status.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -69,7 +84,8 @@ const ProgressPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Different Sizes</BlockTitle>
               <p>
-                Use additional className of <code>progress-[sm|lg]</code> on the <code>Progress</code> component.
+                Use additional className of <code>progress-[sm|lg]</code> on the{' '}
+                <code>Progress</code> component.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -94,7 +110,8 @@ const ProgressPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">With Label</BlockTitle>
               <p>
-                Add labels to your progress bars by placing text within the <code>Progress</code>.
+                Add labels to your progress bars by placing text within the{' '}
+                <code>Progress</code>.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -114,7 +131,10 @@ const ProgressPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Set Background</BlockTitle>
-              <p>Use background utility classNames to change the appearance of individual progress bars.</p>
+              <p>
+                Use background utility classNames to change the appearance of
+                individual progress bars.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -141,7 +161,8 @@ const ProgressPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Multiple Bars</BlockTitle>
               <p>
-                Include multiple progress bars in a progress component if you need with <code>multi</code> props
+                Include multiple progress bars in a progress component if you
+                need with <code>multi</code> props
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -170,8 +191,9 @@ const ProgressPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Striped Bar</BlockTitle>
               <p>
-                Add <code>striped</code> props to any <code>Progress</code> component to apply a stripe via CSS gradient
-                over the progress bar’s background color.
+                Add <code>striped</code> props to any <code>Progress</code>{' '}
+                component to apply a stripe via CSS gradient over the progress
+                bar’s background color.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -202,8 +224,9 @@ const ProgressPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Animated Stripes</BlockTitle>
               <p>
-                The striped gradient can also be animated. Add <code>animated</code> props to <code>Progress</code> to
-                animate the stripes right to left via CSS3 animations.
+                The striped gradient can also be animated. Add{' '}
+                <code>animated</code> props to <code>Progress</code> to animate
+                the stripes right to left via CSS3 animations.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -218,7 +241,7 @@ const ProgressPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ProgressPage;
+export default ProgressPage

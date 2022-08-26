@@ -1,12 +1,12 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react'
+import classNames from 'classnames'
 
 export const OverlineTitle = ({ className, alt, ...props }) => {
   const classes = classNames({
-    "overline-title": true,
+    'overline-title': true,
     [`${className}`]: className,
-    "overline-title-alt": alt,
-  });
+    'overline-title-alt': alt,
+  })
   return (
     <React.Fragment>
       {!props.tag ? (
@@ -15,5 +15,5 @@ export const OverlineTitle = ({ className, alt, ...props }) => {
         <props.tag className={classes}>{props.children}</props.tag>
       )}
     </React.Fragment>
-  );
-};
+  )
+}

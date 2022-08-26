@@ -1,7 +1,12 @@
-import React from "react";
-import { DropdownItem, DropdownToggle, DropdownMenu, UncontrolledDropdown } from "reactstrap";
-import { Icon } from "../../../Component";
-import { LineChart } from "../../charts/default/Charts";
+import React from 'react'
+import {
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import { Icon } from '../../../Component'
+import { LineChart } from '../../charts/default/Charts'
 
 const SalesOverview = () => {
   return (
@@ -10,11 +15,11 @@ const SalesOverview = () => {
         <div className="card-title">
           <h6 className="title">Sales Overview</h6>
           <p>
-            In 30 days sales of product subscription.{" "}
+            In 30 days sales of product subscription.{' '}
             <a
               href="#details"
               onClick={(ev) => {
-                ev.preventDefault();
+                ev.preventDefault()
               }}
             >
               See Details
@@ -49,7 +54,7 @@ const SalesOverview = () => {
                     tag="a"
                     href="#dropdownitem"
                     onClick={(ev) => {
-                      ev.preventDefault();
+                      ev.preventDefault()
                     }}
                   >
                     <span>Download Mini Version</span>
@@ -60,7 +65,7 @@ const SalesOverview = () => {
                     tag="a"
                     href="#dropdownitem"
                     onClick={(ev) => {
-                      ev.preventDefault();
+                      ev.preventDefault()
                     }}
                   >
                     <span>Download Full Version</span>
@@ -72,7 +77,7 @@ const SalesOverview = () => {
                     tag="a"
                     href="#dropdownitem"
                     onClick={(ev) => {
-                      ev.preventDefault();
+                      ev.preventDefault()
                     }}
                   >
                     <Icon name="opt-alt" />
@@ -98,6 +103,6 @@ const SalesOverview = () => {
         <LineChart />
       </div>
     </React.Fragment>
-  );
-};
-export default SalesOverview;
+  )
+}
+export default SalesOverview

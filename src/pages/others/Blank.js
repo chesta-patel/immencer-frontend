@@ -1,6 +1,6 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
 
 const BlankPage = ({ ...props }) => {
   return (
@@ -10,7 +10,7 @@ const BlankPage = ({ ...props }) => {
         <p>Starter Page for general layout</p>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default BlankPage;
+export default BlankPage

@@ -1,9 +1,21 @@
-import React, { useEffect, useState } from "react";
-import Grid from "../views/Grid";
-import Groups from "../views/Groups";
-import List from "../views/List";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { Block, BlockBetween, BlockHead, BlockHeadContent, BlockTitle, Icon } from "../../../../components/Component";
+import React, { useEffect, useState } from 'react'
+import Grid from '../views/Grid'
+import Groups from '../views/Groups'
+import List from '../views/List'
+import {
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import {
+  Block,
+  BlockBetween,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  Icon,
+} from '../../../../components/Component'
 
 const Files = ({
   data,
@@ -15,25 +27,25 @@ const Files = ({
   toggleUploadModal,
   toggleScreenLg,
 }) => {
-  const [view, setView] = useState("grid");
-  const [search, setSearch] = useState(false);
+  const [view, setView] = useState('grid')
+  const [search, setSearch] = useState(false)
 
   useEffect(() => {
-    if (folderName === "Search Files") {
-      setSearch(true);
+    if (folderName === 'Search Files') {
+      setSearch(true)
     }
-  }, []);
+  }, [])
 
   const toggleSearch = () => {
-    setSearch(!search);
-  };
+    setSearch(!search)
+  }
 
   return (
     <React.Fragment>
       <BlockHead size="sm">
         <BlockBetween className="position-relative">
           <BlockHeadContent>
-            <BlockTitle page>{folderName ? folderName : "Files"}</BlockTitle>
+            <BlockTitle page>{folderName ? folderName : 'Files'}</BlockTitle>
           </BlockHeadContent>
           <BlockHeadContent>
             <ul className="nk-block-tools g-1">
@@ -41,8 +53,8 @@ const Files = ({
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleSearch();
+                    ev.preventDefault()
+                    toggleSearch()
                   }}
                   className="btn btn-trigger btn-icon search-toggle toggle-search"
                 >
@@ -65,8 +77,8 @@ const Files = ({
                         <DropdownItem
                           tag="a"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            setView("grid");
+                            ev.preventDefault()
+                            setView('grid')
                           }}
                           href="#item"
                         >
@@ -78,8 +90,8 @@ const Files = ({
                         <DropdownItem
                           tag="a"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            setView("group");
+                            ev.preventDefault()
+                            setView('group')
                           }}
                           href="#item"
                         >
@@ -91,8 +103,8 @@ const Files = ({
                         <DropdownItem
                           tag="a"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            setView("list");
+                            ev.preventDefault()
+                            setView('list')
                           }}
                           href="#item"
                         >
@@ -121,8 +133,8 @@ const Files = ({
                           tag="a"
                           href="#upload"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            toggleUploadModal();
+                            ev.preventDefault()
+                            toggleUploadModal()
                           }}
                         >
                           <Icon name="upload-cloud"></Icon>
@@ -134,8 +146,8 @@ const Files = ({
                           tag="a"
                           href="#upload"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            toggleCreateModal();
+                            ev.preventDefault()
+                            toggleCreateModal()
                           }}
                         >
                           <Icon name="folder-plus"></Icon>
@@ -150,8 +162,8 @@ const Files = ({
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleScreenLg();
+                    ev.preventDefault()
+                    toggleScreenLg()
                   }}
                   className="btn btn-trigger btn-icon toggle"
                 >
@@ -160,13 +172,15 @@ const Files = ({
               </li>
             </ul>
           </BlockHeadContent>
-          <div className={`search-wrap px-2 d-lg-none ${search ? "active" : ""}`}>
+          <div
+            className={`search-wrap px-2 d-lg-none ${search ? 'active' : ''}`}
+          >
             <div className="search-content">
               <a
                 href="#toggle"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  toggleSearch();
+                  ev.preventDefault()
+                  toggleSearch()
                 }}
                 className="search-back btn btn-icon toggle-search"
               >
@@ -177,7 +191,7 @@ const Files = ({
                 className="form-control border-transparent form-focus-none"
                 placeholder="Search by user or message"
                 value={searchText}
-                autoFocus={folderName === "Search Files" ? true : false}
+                autoFocus={folderName === 'Search Files' ? true : false}
                 onChange={(ev) => setSearchText(ev.target.value)}
               />
               <button className="search-submit btn btn-icon">
@@ -191,10 +205,12 @@ const Files = ({
                 <a
                   href="#link"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setView("grid");
+                    ev.preventDefault()
+                    setView('grid')
                   }}
-                  className={`nk-switch-icon ${view === "grid" ? "active" : ""}`}
+                  className={`nk-switch-icon ${
+                    view === 'grid' ? 'active' : ''
+                  }`}
                 >
                   <Icon name="view-grid3-wd"></Icon>
                 </a>
@@ -203,10 +219,12 @@ const Files = ({
                 <a
                   href="#link"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setView("group");
+                    ev.preventDefault()
+                    setView('group')
                   }}
-                  className={`nk-switch-icon ${view === "group" ? "active" : ""}`}
+                  className={`nk-switch-icon ${
+                    view === 'group' ? 'active' : ''
+                  }`}
                 >
                   <Icon name="view-group-wd"></Icon>
                 </a>
@@ -215,10 +233,12 @@ const Files = ({
                 <a
                   href="#link"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setView("list");
+                    ev.preventDefault()
+                    setView('list')
                   }}
-                  className={`nk-switch-icon ${view === "list" ? "active" : ""}`}
+                  className={`nk-switch-icon ${
+                    view === 'list' ? 'active' : ''
+                  }`}
                 >
                   <Icon name="view-row-wd"></Icon>
                 </a>
@@ -230,19 +250,21 @@ const Files = ({
 
       {data.length > 0 ? (
         <Block className="nk-fmg-listing">
-          {view === "grid" ? (
+          {view === 'grid' ? (
             <Grid data={data} setData={setData} />
-          ) : view === "group" ? (
+          ) : view === 'group' ? (
             <Groups data={data} setData={setData} />
           ) : (
             <List data={data} setData={setData} />
           )}
         </Block>
       ) : (
-        <Block className="nk-fmg-listing">No files found in this directory</Block>
+        <Block className="nk-fmg-listing">
+          No files found in this directory
+        </Block>
       )}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Files;
+export default Files

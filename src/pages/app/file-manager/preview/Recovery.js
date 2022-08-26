@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react'
+import DatePicker from 'react-datepicker'
+import { Link } from 'react-router-dom'
 import {
   Button,
   Col,
@@ -10,7 +10,7 @@ import {
   FormGroup,
   Row,
   UncontrolledDropdown,
-} from "reactstrap";
+} from 'reactstrap'
 import {
   Block,
   BlockBetween,
@@ -19,9 +19,9 @@ import {
   BlockTitle,
   Icon,
   RSelect,
-} from "../../../../components/Component";
-import { selectOptions } from "../Data";
-import { FileManagerContext } from "../FileManagerContext";
+} from '../../../../components/Component'
+import { selectOptions } from '../Data'
+import { FileManagerContext } from '../FileManagerContext'
 
 const Recovery = ({
   data,
@@ -32,47 +32,52 @@ const Recovery = ({
   toggleUploadModal,
   toggleScreenLg,
 }) => {
-  const [dataList, setDataList] = useState();
-  const [search, setSearch] = useState(false);
-  const [filterOptions, setFilterOptions] = useState(false);
+  const [dataList, setDataList] = useState()
+  const [search, setSearch] = useState(false)
+  const [filterOptions, setFilterOptions] = useState(false)
   const [dates, setDates] = useState({
     from: new Date(),
     to: new Date(),
-  });
+  })
 
   useEffect(() => {
-    setDataList([...data]);
-  }, [data]);
+    setDataList([...data])
+  }, [data])
 
-  const { restoreFolder, permanentDelete, getTotalSize } = useContext(FileManagerContext);
+  const { restoreFolder, permanentDelete, getTotalSize } =
+    useContext(FileManagerContext)
 
   // Sets the filter to default
   const resetFilter = () => {
-    setDates({ from: new Date(), to: new Date() });
-  };
+    setDates({ from: new Date(), to: new Date() })
+  }
 
   // Runs the filter function
   const filterOnDates = () => {
-    let defaultData = data;
-    let dateDay = new Date().getDate();
+    let defaultData = data
+    let dateDay = new Date().getDate()
     if (dates.to.getDate() === dateDay && dates.from.getDate() === dateDay) {
-      defaultData = defaultData.filter((item) => item.recovery && item.recovery.deletedAt === "Today");
-      setDataList([...defaultData]);
+      defaultData = defaultData.filter(
+        (item) => item.recovery && item.recovery.deletedAt === 'Today'
+      )
+      setDataList([...defaultData])
     } else if (dates.to.getDate() !== dateDay) {
-      defaultData = defaultData.filter((item) => item.recovery && item.recovery.deletedAt !== "Today");
-      setDataList([...defaultData]);
+      defaultData = defaultData.filter(
+        (item) => item.recovery && item.recovery.deletedAt !== 'Today'
+      )
+      setDataList([...defaultData])
     } else {
-      setDataList([...data]);
+      setDataList([...data])
     }
-  };
+  }
 
   const toggleSearch = () => {
-    setSearch(!search);
-  };
+    setSearch(!search)
+  }
 
   const toggleFilterOptions = () => {
-    setFilterOptions(!filterOptions);
-  };
+    setFilterOptions(!filterOptions)
+  }
 
   return (
     <React.Fragment>
@@ -87,8 +92,8 @@ const Recovery = ({
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleSearch();
+                    ev.preventDefault()
+                    toggleSearch()
                   }}
                   className="btn btn-trigger btn-icon search-toggle toggle-search"
                 >
@@ -99,8 +104,8 @@ const Recovery = ({
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleFilterOptions();
+                    ev.preventDefault()
+                    toggleFilterOptions()
                   }}
                   className="btn btn-trigger btn-icon toggle-expand"
                 >
@@ -124,8 +129,8 @@ const Recovery = ({
                           tag="a"
                           href="#upload"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            toggleUploadModal();
+                            ev.preventDefault()
+                            toggleUploadModal()
                           }}
                         >
                           <Icon name="upload-cloud"></Icon>
@@ -137,8 +142,8 @@ const Recovery = ({
                           tag="a"
                           href="#upload"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            toggleCreateModal();
+                            ev.preventDefault()
+                            toggleCreateModal()
                           }}
                         >
                           <Icon name="folder-plus"></Icon>
@@ -153,8 +158,8 @@ const Recovery = ({
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleScreenLg();
+                    ev.preventDefault()
+                    toggleScreenLg()
                   }}
                   className="btn btn-trigger btn-icon toggle"
                 >
@@ -163,13 +168,15 @@ const Recovery = ({
               </li>
             </ul>
           </BlockHeadContent>
-          <div className={`search-wrap px-2 d-lg-none ${search ? "active" : ""}`}>
+          <div
+            className={`search-wrap px-2 d-lg-none ${search ? 'active' : ''}`}
+          >
             <div className="search-content">
               <a
                 href="#toggle"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  toggleSearch();
+                  ev.preventDefault()
+                  toggleSearch()
                 }}
                 className="search-back btn btn-icon toggle-search"
               >
@@ -194,7 +201,11 @@ const Recovery = ({
         {dataList && dataList.length > 0 ? (
           <Row>
             <Col xl="3" className="order-xl-12">
-              <div className={`nk-fmg-filter toggle-expand-content ${filterOptions ? "expanded" : ""}`}>
+              <div
+                className={`nk-fmg-filter toggle-expand-content ${
+                  filterOptions ? 'expanded' : ''
+                }`}
+              >
                 <form>
                   <Row>
                     <Col lg="12" md="4">
@@ -203,7 +214,9 @@ const Recovery = ({
                         <div className="form-control-wrap">
                           <DatePicker
                             selected={dates.from}
-                            onChange={(date) => setDates({ ...dates, from: date })}
+                            onChange={(date) =>
+                              setDates({ ...dates, from: date })
+                            }
                             className="form-control date-picker"
                           />
                         </div>
@@ -215,7 +228,9 @@ const Recovery = ({
                         <div className="form-control-wrap">
                           <DatePicker
                             selected={dates.to}
-                            onChange={(date) => setDates({ ...dates, to: date })}
+                            onChange={(date) =>
+                              setDates({ ...dates, to: date })
+                            }
                             className="form-control date-picker"
                           />
                         </div>
@@ -231,10 +246,18 @@ const Recovery = ({
                     </Col>
                     <Col lg="12">
                       <div className="d-flex justify-between mt-1">
-                        <button type="reset" className="link link-sm link-primary ml-n1" onClick={() => resetFilter()}>
+                        <button
+                          type="reset"
+                          className="link link-sm link-primary ml-n1"
+                          onClick={() => resetFilter()}
+                        >
                           Reset Filter
                         </button>
-                        <Button color="primary" size="sm" onClick={() => filterOnDates()}>
+                        <Button
+                          color="primary"
+                          size="sm"
+                          onClick={() => filterOnDates()}
+                        >
                           Filter
                         </Button>
                       </div>
@@ -264,40 +287,56 @@ const Recovery = ({
                     .map((item) => (
                       <div className="nk-file-item nk-file" key={item.id}>
                         <div className="nk-file-info">
-                          {item.meta.type === "folder" ? (
+                          {item.meta.type === 'folder' ? (
                             <Link
                               className="nk-file-link"
                               to={`${process.env.PUBLIC_URL}/app-file-manager/folder/${item.id}`}
                             >
                               <div className="nk-file-title">
                                 <div className="nk-file-icon">
-                                  <span className="nk-file-icon-type">{item.meta.svg}</span>
+                                  <span className="nk-file-icon-type">
+                                    {item.meta.svg}
+                                  </span>
                                 </div>
                                 <div className="nk-file-name">
                                   <div className="nk-file-name-text">
-                                    <span className="title">{item.meta.name}</span>
+                                    <span className="title">
+                                      {item.meta.name}
+                                    </span>
                                   </div>
                                   <ul className="breadcrumb breadcrumb-alt breadcrumb-xs breadcrumb-arrow">
                                     <li className="breadcrumb-item">Project</li>
-                                    <li className="breadcrumb-item">Dashlite</li>
+                                    <li className="breadcrumb-item">
+                                      Dashlite
+                                    </li>
                                     <li className="breadcrumb-item">apps</li>
                                   </ul>
                                 </div>
                               </div>
                             </Link>
                           ) : (
-                            <a className="nk-file-link" href="#link" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              className="nk-file-link"
+                              href="#link"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               <div className="nk-file-title">
                                 <div className="nk-file-icon">
-                                  <span className="nk-file-icon-type">{item.meta.svg}</span>
+                                  <span className="nk-file-icon-type">
+                                    {item.meta.svg}
+                                  </span>
                                 </div>
                                 <div className="nk-file-name">
                                   <div className="nk-file-name-text">
-                                    <span className="title">{item.meta.name}</span>
+                                    <span className="title">
+                                      {item.meta.name}
+                                    </span>
                                   </div>
                                   <ul className="breadcrumb breadcrumb-alt breadcrumb-xs breadcrumb-arrow">
                                     <li className="breadcrumb-item">Project</li>
-                                    <li className="breadcrumb-item">Dashlite</li>
+                                    <li className="breadcrumb-item">
+                                      Dashlite
+                                    </li>
                                     <li className="breadcrumb-item">apps</li>
                                   </ul>
                                 </div>
@@ -307,7 +346,10 @@ const Recovery = ({
                         </div>
                         <div className="nk-file-size">
                           <div className="tb-lead">
-                            {item.meta.type === "folder" ? getTotalSize(item) : item.meta.size} MB
+                            {item.meta.type === 'folder'
+                              ? getTotalSize(item)
+                              : item.meta.size}{' '}
+                            MB
                           </div>
                         </div>
                         <div className="nk-file-date">
@@ -329,8 +371,8 @@ const Recovery = ({
                                   <DropdownItem
                                     tag="a"
                                     onClick={(ev) => {
-                                      ev.preventDefault();
-                                      restoreFolder(item.id);
+                                      ev.preventDefault()
+                                      restoreFolder(item.id)
                                     }}
                                     href="#item"
                                     className="text-primary"
@@ -343,8 +385,8 @@ const Recovery = ({
                                   <DropdownItem
                                     tag="a"
                                     onClick={(ev) => {
-                                      ev.preventDefault();
-                                      permanentDelete(item.id);
+                                      ev.preventDefault()
+                                      permanentDelete(item.id)
                                     }}
                                     href="#item"
                                     className="text-danger"
@@ -368,7 +410,7 @@ const Recovery = ({
         )}
       </Block>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Recovery;
+export default Recovery

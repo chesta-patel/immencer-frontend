@@ -1,12 +1,12 @@
-import React from "react";
-import { CardTitle } from "reactstrap";
-import { Icon, TooltipComponent } from "../../../Component";
-import { BarChart } from "../../charts/default/Charts";
+import React from 'react'
+import { CardTitle } from 'reactstrap'
+import { Icon, TooltipComponent } from '../../../Component'
+import { BarChart } from '../../charts/default/Charts'
 
 const AvgSubscription = () => {
   return (
     <React.Fragment>
-      {" "}
+      {' '}
       <div className="card-title-group align-start mb-2">
         <CardTitle>
           <h6 className="title">Avg Subscriptions</h6>
@@ -37,6 +37,6 @@ const AvgSubscription = () => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
-export default AvgSubscription;
+  )
+}
+export default AvgSubscription

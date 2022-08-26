@@ -1,17 +1,23 @@
-import React, { useState, useContext } from "react";
-import Share from "../../../../../pages/app/file-manager/modals/Share";
-import { Icon } from "../../../../../components/Component";
-import { Link } from "react-router-dom";
-import { DropdownItem, DropdownMenu, Modal, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { FileManagerContext } from "../../FileManagerContext";
+import React, { useState, useContext } from 'react'
+import Share from '../../../../../pages/app/file-manager/modals/Share'
+import { Icon } from '../../../../../components/Component'
+import { Link } from 'react-router-dom'
+import {
+  DropdownItem,
+  DropdownMenu,
+  Modal,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import { FileManagerContext } from '../../FileManagerContext'
 
 const Outgoing = ({ data, setData }) => {
-  const { removeShare, getTotalSize } = useContext(FileManagerContext);
-  const [shareModal, setShareModal] = useState(false);
+  const { removeShare, getTotalSize } = useContext(FileManagerContext)
+  const [shareModal, setShareModal] = useState(false)
 
   const toggleShareModal = () => {
-    setShareModal(!shareModal);
-  };
+    setShareModal(!shareModal)
+  }
   return (
     <div className="nk-files nk-files-view-list">
       {data.length > 0 ? (
@@ -43,7 +49,7 @@ const Outgoing = ({ data, setData }) => {
                         <DropdownItem
                           tag="a"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                           href="#item"
                         >
@@ -86,20 +92,36 @@ const Outgoing = ({ data, setData }) => {
                   <div className="nk-file-info">
                     <div className="nk-file-title">
                       <div className="custom-control custom-control-sm custom-checkbox notext">
-                        <input type="checkbox" className="custom-control-input" id={`folder-${item.id}`} />
-                        <label className="custom-control-label" htmlFor={`folder-${item.id}`}></label>
+                        <input
+                          type="checkbox"
+                          className="custom-control-input"
+                          id={`folder-${item.id}`}
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor={`folder-${item.id}`}
+                        ></label>
                       </div>
                       <div className="nk-file-icon">
-                        <span className="nk-file-icon-type">{item.meta.svg}</span>
+                        <span className="nk-file-icon-type">
+                          {item.meta.svg}
+                        </span>
                       </div>
                       <div className="nk-file-name">
                         <div className="nk-file-name-text">
-                          {item.meta.type === "folder" ? (
-                            <Link to={`${process.env.PUBLIC_URL}/app-file-manager/folder/${item.id}`} className="title">
+                          {item.meta.type === 'folder' ? (
+                            <Link
+                              to={`${process.env.PUBLIC_URL}/app-file-manager/folder/${item.id}`}
+                              className="title"
+                            >
                               {item.meta.name}
                             </Link>
                           ) : (
-                            <a href="#link" onClick={(ev) => ev.preventDefault()} className="title">
+                            <a
+                              href="#link"
+                              onClick={(ev) => ev.preventDefault()}
+                              className="title"
+                            >
                               {item.meta.name}
                             </a>
                           )}
@@ -109,7 +131,10 @@ const Outgoing = ({ data, setData }) => {
                   </div>
                   <div className="nk-file-size">
                     <div className="tb-lead">
-                      {item.meta.type === "folder" ? getTotalSize(item) : item.meta.size} MB
+                      {item.meta.type === 'folder'
+                        ? getTotalSize(item)
+                        : item.meta.size}{' '}
+                      MB
                     </div>
                   </div>
                   <div className="nk-file-date">
@@ -131,8 +156,8 @@ const Outgoing = ({ data, setData }) => {
                             <DropdownItem
                               tag="a"
                               onClick={(ev) => {
-                                ev.preventDefault();
-                                toggleShareModal();
+                                ev.preventDefault()
+                                toggleShareModal()
                               }}
                               href="#item"
                             >
@@ -155,8 +180,8 @@ const Outgoing = ({ data, setData }) => {
                             <DropdownItem
                               tag="a"
                               onClick={(ev) => {
-                                ev.preventDefault();
-                                removeShare(item.id, "outgoing");
+                                ev.preventDefault()
+                                removeShare(item.id, 'outgoing')
                               }}
                               href="#item"
                               className="link-danger"
@@ -181,7 +206,7 @@ const Outgoing = ({ data, setData }) => {
         <div>No files or folders available</div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Outgoing;
+export default Outgoing

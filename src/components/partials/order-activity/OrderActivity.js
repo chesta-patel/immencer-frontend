@@ -1,63 +1,84 @@
-import React, { useEffect, useState } from "react";
-import Icon from "../../icon/Icon";
-import { orderActivityData } from "./OrderData";
-import { CardTitle } from "reactstrap";
-import { DataTableBody, DataTableHead, DataTableItem, DataTableRow } from "../../table/DataTable";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import Icon from '../../icon/Icon'
+import { orderActivityData } from './OrderData'
+import { CardTitle } from 'reactstrap'
+import {
+  DataTableBody,
+  DataTableHead,
+  DataTableItem,
+  DataTableRow,
+} from '../../table/DataTable'
+import { Link } from 'react-router-dom'
 
 const OrderActivity = () => {
-  const [orderData, setOrderData] = useState(orderActivityData);
-  const [orderActivity, setActivity] = useState("");
+  const [orderData, setOrderData] = useState(orderActivityData)
+  const [orderActivity, setActivity] = useState('')
   useEffect(() => {
-    let data;
-    if (orderActivity === "Buy") {
-      data = orderActivityData.filter((item) => item.desc.split(" ")[0] === "Buy");
-    } else if (orderActivity === "Sell") {
-      data = orderActivityData.filter((item) => item.desc.split(" ")[0] === "Sell");
+    let data
+    if (orderActivity === 'Buy') {
+      data = orderActivityData.filter(
+        (item) => item.desc.split(' ')[0] === 'Buy'
+      )
+    } else if (orderActivity === 'Sell') {
+      data = orderActivityData.filter(
+        (item) => item.desc.split(' ')[0] === 'Sell'
+      )
     } else {
-      data = orderActivityData;
+      data = orderActivityData
     }
-    setOrderData(data);
-  }, [orderActivity]);
+    setOrderData(data)
+  }, [orderActivity])
   return (
     <React.Fragment>
       <div className="card-inner">
         <div className="card-title-group">
           <CardTitle>
             <h6 className="title">
-              <span className="mr-2">Orders Activities</span>{" "}
-              <Link to={`${process.env.PUBLIC_URL}/transaction-crypto`} className="link d-none d-sm-inline">
+              <span className="mr-2">Orders Activities</span>{' '}
+              <Link
+                to={`${process.env.PUBLIC_URL}/transaction-crypto`}
+                className="link d-none d-sm-inline"
+              >
                 See History
               </Link>
             </h6>
           </CardTitle>
           <div className="card-tools">
             <ul className="card-tools-nav">
-              <li className={orderActivity === "Buy" ? "active" : ""} onClick={() => setActivity("Buy")}>
+              <li
+                className={orderActivity === 'Buy' ? 'active' : ''}
+                onClick={() => setActivity('Buy')}
+              >
                 <a
                   href="#buy"
                   onClick={(ev) => {
-                    ev.preventDefault();
+                    ev.preventDefault()
                   }}
                 >
                   <span>Buy</span>
                 </a>
               </li>
-              <li className={orderActivity === "Sell" ? "active" : ""} onClick={() => setActivity("Sell")}>
+              <li
+                className={orderActivity === 'Sell' ? 'active' : ''}
+                onClick={() => setActivity('Sell')}
+              >
                 <a
                   href="#sell"
                   onClick={(ev) => {
-                    ev.preventDefault();
+                    ev.preventDefault()
                   }}
                 >
                   <span>Sell</span>
                 </a>
               </li>
-              <li className={orderActivity === "" ? "active" : ""} onClick={() => setActivity("")}>
+              <li
+                className={orderActivity === '' ? 'active' : ''}
+                onClick={() => setActivity('')}
+              >
                 <a
                   href="#all"
                   onClick={(ev) => {
-                    ev.preventDefault();
+                    ev.preventDefault()
                   }}
                 >
                   <span>All</span>
@@ -127,10 +148,10 @@ const OrderActivity = () => {
                 </span>
               </DataTableRow>
             </DataTableItem>
-          );
+          )
         })}
       </DataTableBody>
     </React.Fragment>
-  );
-};
-export default OrderActivity;
+  )
+}
+export default OrderActivity

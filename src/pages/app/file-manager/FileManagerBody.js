@@ -1,84 +1,100 @@
-import React, { useState, useEffect } from "react";
-import Home from "./preview/Home";
-import Files from "./preview/Files";
-import Upload from "./modals/Upload";
-import Shared from "./preview/Shared";
-import Pricing from "./preview/Pricing";
-import Starred from "./preview/Starred";
-import Recovery from "./preview/Recovery";
-import CreateFolder from "./modals/CreateFolder";
-import SettingsPreview from "./preview/Settings";
-import SpecificFolder from "./preview/SpecificFolder";
-import { folderList } from "./Data";
-import { Icon } from "../../../components/Component";
-import { Route, Switch } from "react-router";
-import { Button, DropdownItem, DropdownMenu, DropdownToggle, Modal, UncontrolledDropdown } from "reactstrap";
+import React, { useState, useEffect } from 'react'
+import Home from './preview/Home'
+import Files from './preview/Files'
+import Upload from './modals/Upload'
+import Shared from './preview/Shared'
+import Pricing from './preview/Pricing'
+import Starred from './preview/Starred'
+import Recovery from './preview/Recovery'
+import CreateFolder from './modals/CreateFolder'
+import SettingsPreview from './preview/Settings'
+import SpecificFolder from './preview/SpecificFolder'
+import { folderList } from './Data'
+import { Icon } from '../../../components/Component'
+import { Route, Switch } from 'react-router'
+import {
+  Button,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Modal,
+  UncontrolledDropdown,
+} from 'reactstrap'
 
 const FileManagerBody = ({ data, setData, toggleScreenLg }) => {
-  const [dataList, setDataList] = useState();
-  const [createModal, setCreateModal] = useState(false);
-  const [uploadModal, setUploadModal] = useState(false);
-  const [searchText, setSearchText] = useState("");
-  const [children, setChildren] = useState([]);
+  const [dataList, setDataList] = useState()
+  const [createModal, setCreateModal] = useState(false)
+  const [uploadModal, setUploadModal] = useState(false)
+  const [searchText, setSearchText] = useState('')
+  const [children, setChildren] = useState([])
 
   const toggleCreateModal = () => {
-    setCreateModal(!createModal);
-  };
+    setCreateModal(!createModal)
+  }
   const toggleUploadModal = () => {
-    setUploadModal(!uploadModal);
-  };
+    setUploadModal(!uploadModal)
+  }
 
   const returnFolder = (id) => {
-    return data.find((item) => item.id === id);
-  };
+    return data.find((item) => item.id === id)
+  }
 
   useEffect(() => {
-    setDataList(data);
-  }, [data]);
+    setDataList(data)
+  }, [data])
 
   useEffect(() => {
     if (dataList) {
       let findFolder = dataList.find(
         (item) =>
-          item.id === Number(window.location.pathname.split("/")[window.location.pathname.split("/").length - 1])
-      );
+          item.id ===
+          Number(
+            window.location.pathname.split('/')[
+              window.location.pathname.split('/').length - 1
+            ]
+          )
+      )
       if (findFolder) {
-        let children = [];
+        let children = []
         findFolder.subFolder.map((el) => {
-          children.push(returnFolder(el.fileId));
-        });
-        setChildren([...children]);
+          children.push(returnFolder(el.fileId))
+        })
+        setChildren([...children])
       }
     }
-  }, [window.location.pathname, dataList]);
+  }, [window.location.pathname, dataList])
 
   useEffect(() => {
-    setSearchText("");
-  }, [window.location.pathname]);
+    setSearchText('')
+  }, [window.location.pathname])
 
   useEffect(() => {
-    let defaultData = data;
-    if (searchText !== "") {
+    let defaultData = data
+    if (searchText !== '') {
       if (children.length > 0) {
         defaultData = children.filter((item) => {
-          return item.meta.name.toLowerCase().includes(searchText.toLowerCase());
-        });
-        setChildren(defaultData);
+          return item.meta.name.toLowerCase().includes(searchText.toLowerCase())
+        })
+        setChildren(defaultData)
       } else {
         defaultData = folderList.filter((item) => {
-          return item.meta.name.toLowerCase().includes(searchText.toLowerCase());
-        });
-        setDataList([...defaultData]);
+          return item.meta.name.toLowerCase().includes(searchText.toLowerCase())
+        })
+        setDataList([...defaultData])
       }
     } else {
-      setDataList([...folderList]);
+      setDataList([...folderList])
     }
-  }, [searchText]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [searchText]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="nk-fmg-body">
-      {window.location.pathname.split("/")[window.location.pathname.split("/").length - 1] !== "settings" &&
-        window.location.pathname.split("/")[window.location.pathname.split("/").length - 1] !== "pricing" && (
+      {window.location.pathname.split('/')[
+        window.location.pathname.split('/').length - 1
+      ] !== 'settings' &&
+        window.location.pathname.split('/')[
+          window.location.pathname.split('/').length - 1
+        ] !== 'pricing' && (
           <div className="nk-fmg-body-head d-none d-lg-flex">
             <div className="nk-fmg-search">
               <Icon name="search"></Icon>
@@ -109,8 +125,8 @@ const FileManagerBody = ({ data, setData, toggleScreenLg }) => {
                             tag="a"
                             href="#upload"
                             onClick={(ev) => {
-                              ev.preventDefault();
-                              toggleUploadModal();
+                              ev.preventDefault()
+                              toggleUploadModal()
                             }}
                           >
                             <Icon name="upload-cloud"></Icon>
@@ -122,8 +138,8 @@ const FileManagerBody = ({ data, setData, toggleScreenLg }) => {
                             tag="a"
                             href="#upload"
                             onClick={(ev) => {
-                              ev.preventDefault();
-                              toggleCreateModal();
+                              ev.preventDefault()
+                              toggleCreateModal()
                             }}
                           >
                             <Icon name="folder-plus"></Icon>
@@ -144,13 +160,13 @@ const FileManagerBody = ({ data, setData, toggleScreenLg }) => {
           </div>
         )}
       <div className="nk-fmg-body-content">
-        {searchText !== "" ? (
+        {searchText !== '' ? (
           <Files
             data={dataList}
             setData={setData}
             searchText={searchText}
             setSearchText={setSearchText}
-            folderName={"Search Files"}
+            folderName={'Search Files'}
             toggleCreateModal={toggleCreateModal}
             toggleUploadModal={toggleUploadModal}
             toggleScreenLg={toggleScreenLg}
@@ -236,7 +252,9 @@ const FileManagerBody = ({ data, setData, toggleScreenLg }) => {
               <Route
                 exact
                 path={`${process.env.PUBLIC_URL}/app-file-manager/settings`}
-                render={() => <SettingsPreview toggleScreenLg={toggleScreenLg} />}
+                render={() => (
+                  <SettingsPreview toggleScreenLg={toggleScreenLg} />
+                )}
               ></Route>
               <Route
                 exact
@@ -271,7 +289,7 @@ const FileManagerBody = ({ data, setData, toggleScreenLg }) => {
         <Upload toggle={toggleUploadModal} />
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default FileManagerBody;
+export default FileManagerBody

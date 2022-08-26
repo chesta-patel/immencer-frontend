@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { Icon, UserGroup, UserAvatar } from "../../../../components/Component";
-import { findUpper } from "../../../../utils/Utils";
-import { FileManagerContext } from "../FileManagerContext";
+import React, { useContext } from 'react'
+import { Icon, UserGroup, UserAvatar } from '../../../../components/Component'
+import { findUpper } from '../../../../utils/Utils'
+import { FileManagerContext } from '../FileManagerContext'
 
 const Details = ({ file, toggle, toggleShare }) => {
-  const { downloadFile } = useContext(FileManagerContext);
+  const { downloadFile } = useContext(FileManagerContext)
 
   return (
     <React.Fragment>
@@ -21,8 +21,8 @@ const Details = ({ file, toggle, toggleShare }) => {
         <a
           href="#close"
           onClick={(ev) => {
-            ev.preventDefault();
-            toggle();
+            ev.preventDefault()
+            toggle()
           }}
           className="close"
         >
@@ -70,11 +70,20 @@ const Details = ({ file, toggle, toggleShare }) => {
                           key={index}
                         />
                       ))}
-                      <UserAvatar theme="light" className="xs" text={`+${file.meta.members.length - 3}`} />
+                      <UserAvatar
+                        theme="light"
+                        className="xs"
+                        text={`+${file.meta.members.length - 3}`}
+                      />
                     </React.Fragment>
                   ) : (
                     file.meta.members.map((user, index) => (
-                      <UserAvatar theme={user.theme} text={findUpper(user.user)} className="xs" key={index} />
+                      <UserAvatar
+                        theme={user.theme}
+                        text={findUpper(user.user)}
+                        className="xs"
+                        key={index}
+                      />
                     ))
                   )}
                 </UserGroup>
@@ -83,7 +92,9 @@ const Details = ({ file, toggle, toggleShare }) => {
           </div>
           <div className="nk-file-details-row">
             <div className="nk-file-details-col">Modified</div>
-            <div className="nk-file-details-col">Feb 19, 2020 by Abu Bit Istiyak</div>
+            <div className="nk-file-details-col">
+              Feb 19, 2020 by Abu Bit Istiyak
+            </div>
           </div>
           <div className="nk-file-details-row">
             <div className="nk-file-details-col">Opened</div>
@@ -98,7 +109,11 @@ const Details = ({ file, toggle, toggleShare }) => {
       <div className="modal-footer modal-footer-stretch bg-light">
         <div className="modal-footer-between">
           <div className="g">
-            <a href="link" onClick={(ev) => ev.preventDefault()} className="link link-primary">
+            <a
+              href="link"
+              onClick={(ev) => ev.preventDefault()}
+              className="link link-primary"
+            >
               View All Activity
             </a>
           </div>
@@ -108,9 +123,9 @@ const Details = ({ file, toggle, toggleShare }) => {
                 <a
                   href="#file-share"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggle();
-                    toggleShare();
+                    ev.preventDefault()
+                    toggle()
+                    toggleShare()
                   }}
                   className="btn btn-outline-light btn-white"
                 >
@@ -121,8 +136,8 @@ const Details = ({ file, toggle, toggleShare }) => {
                 <a
                   href="link"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    downloadFile(file);
+                    ev.preventDefault()
+                    downloadFile(file)
                   }}
                   className="btn btn-primary file-dl-toast"
                 >
@@ -134,7 +149,7 @@ const Details = ({ file, toggle, toggleShare }) => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Details;
+export default Details

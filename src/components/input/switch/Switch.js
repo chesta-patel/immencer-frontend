@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 const InputSwitch = ({ label, id, checked }) => {
-  const [inputCheck, setCheck] = useState(checked ? true : false);
+  const [inputCheck, setCheck] = useState(checked ? true : false)
 
   return (
     <React.Fragment>
@@ -16,7 +16,7 @@ const InputSwitch = ({ label, id, checked }) => {
         {label}
       </label>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default InputSwitch;
+export default InputSwitch

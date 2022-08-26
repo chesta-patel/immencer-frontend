@@ -1,10 +1,17 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
 
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, CodeBlock } from "../../components/preview/Preview";
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import { PreviewCard, CodeBlock } from '../../components/preview/Preview'
 
 const BreadcrumbsPage = ({ ...props }) => {
   return (
@@ -21,12 +28,22 @@ const BreadcrumbsPage = ({ ...props }) => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Indicate the current page’s location within a navigational hierarchy that automatically adds separators
-                via CSS. To use the components, import it such as{" "}
-                <code>import {`{Breadcrumb, BreadcrumbItem}`} from "reactstrap"</code>. Visit the{" "}
-                <a href={"https://deploy-preview-2356--reactstrap.netlify.app/components/breadcrumbs"} target="_blank" rel="noreferrer">
+                Indicate the current page’s location within a navigational
+                hierarchy that automatically adds separators via CSS. To use the
+                components, import it such as{' '}
+                <code>
+                  import {`{Breadcrumb, BreadcrumbItem}`} from "reactstrap"
+                </code>
+                . Visit the{' '}
+                <a
+                  href={
+                    'https://deploy-preview-2356--reactstrap.netlify.app/components/breadcrumbs'
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Reactstrap
-                </a>{" "}
+                </a>{' '}
                 library for detailed instructions.
               </p>
             </BlockDes>
@@ -133,7 +150,7 @@ const BreadcrumbsPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default BreadcrumbsPage;
+export default BreadcrumbsPage

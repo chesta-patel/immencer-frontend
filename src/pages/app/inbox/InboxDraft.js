@@ -1,28 +1,50 @@
-import React, { useState } from "react";
-import SimpleBar from "simplebar-react";
-import InboxForm from "./InboxForm";
-import { Icon, TooltipComponent } from "../../../components/Component";
-import { Badge, Spinner, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import React, { useState } from 'react'
+import SimpleBar from 'simplebar-react'
+import InboxForm from './InboxForm'
+import { Icon, TooltipComponent } from '../../../components/Component'
+import {
+  Badge,
+  Spinner,
+  UncontrolledDropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+} from 'reactstrap'
 
-export const InboxDraftList = ({ item, deleteInbox, onArchiveClick, onFavoriteClick, checkMessage, data, setData }) => {
-  const [compose, setCompose] = useState(false);
-  const [draftData, setDraftData] = useState({ id: "", mail: "", subject: "", message: "" });
+export const InboxDraftList = ({
+  item,
+  deleteInbox,
+  onArchiveClick,
+  onFavoriteClick,
+  checkMessage,
+  data,
+  setData,
+}) => {
+  const [compose, setCompose] = useState(false)
+  const [draftData, setDraftData] = useState({
+    id: '',
+    mail: '',
+    subject: '',
+    message: '',
+  })
   const toggleModal = () => {
-    setCompose(!compose);
-  };
+    setCompose(!compose)
+  }
   return (
     <React.Fragment>
       <div className={`nk-ibx-item is-unread`} key={item.id}>
         <a
           href="#item"
           onClick={(ev) => {
-            ev.preventDefault();
+            ev.preventDefault()
             setDraftData({
               mail: item.message.reply[item.message.reply.length - 1].to.mail,
               subject: item.message.subject,
-              message: item.message.reply[item.message.reply.length - 1].replyMessage[0],
-            });
-            toggleModal();
+              message:
+                item.message.reply[item.message.reply.length - 1]
+                  .replyMessage[0],
+            })
+            toggleModal()
           }}
           className="nk-ibx-link current"
         >
@@ -38,20 +60,25 @@ export const InboxDraftList = ({ item, deleteInbox, onArchiveClick, onFavoriteCl
               key={Math.random()}
               onChange={(e) => checkMessage(item.id, e.target.checked)}
             />
-            <label className="custom-control-label" htmlFor={`conversionItem${item.id}`}></label>
+            <label
+              className="custom-control-label"
+              htmlFor={`conversionItem${item.id}`}
+            ></label>
           </div>
         </div>
         <div className="nk-ibx-item-elem nk-ibx-item-star">
           <div className="asterisk">
             <a
               href="#item"
-              className={item.message.meta.favourite ? "active" : ""}
+              className={item.message.meta.favourite ? 'active' : ''}
               onClick={(ev) => {
-                ev.preventDefault();
-                onFavoriteClick(item.id);
+                ev.preventDefault()
+                onFavoriteClick(item.id)
               }}
             >
-              <Icon name={`${item.message.meta.favourite ? "star-fill" : "star"}`}></Icon>
+              <Icon
+                name={`${item.message.meta.favourite ? 'star-fill' : 'star'}`}
+              ></Icon>
             </a>
           </div>
         </div>
@@ -62,26 +89,39 @@ export const InboxDraftList = ({ item, deleteInbox, onArchiveClick, onFavoriteCl
           <div className="nk-ibx-context-group">
             {item.message.meta.tags.length > 0 && (
               <div className="nk-ibx-context-badges">
-                <Badge color={item.message.meta.tags[0].color}>{item.message.meta.tags[0].text}</Badge>
+                <Badge color={item.message.meta.tags[0].color}>
+                  {item.message.meta.tags[0].text}
+                </Badge>
               </div>
             )}
             <div className="nk-ibx-context">
               <span className="nk-ibx-context-text">
-                <span className="heading">{item.message.subject ? item.message.subject : "(no subject)"}</span>{" "}
-                {item.message.reply[item.message.reply.length - 1].replyMessage[0]}
+                <span className="heading">
+                  {item.message.subject ? item.message.subject : '(no subject)'}
+                </span>{' '}
+                {
+                  item.message.reply[item.message.reply.length - 1]
+                    .replyMessage[0]
+                }
               </span>
             </div>
           </div>
         </div>
         {item.message.reply[item.message.reply.length - 1].attachment && (
           <div className="nk-ibx-item-elem nk-ibx-item-attach">
-            <a className="link link-light" href="#link" onClick={(ev) => ev.preventDefault()}>
+            <a
+              className="link link-light"
+              href="#link"
+              onClick={(ev) => ev.preventDefault()}
+            >
               <Icon name="clip-h"></Icon>
             </a>
           </div>
         )}
         <div className="nk-ibx-item-elem nk-ibx-item-time">
-          <div className="sub-text">{item.message.reply[item.message.reply.length - 1].time}</div>
+          <div className="sub-text">
+            {item.message.reply[item.message.reply.length - 1].time}
+          </div>
         </div>
         <div className="nk-ibx-item-elem nk-ibx-item-tools">
           <div className="ibx-actions">
@@ -111,7 +151,7 @@ export const InboxDraftList = ({ item, deleteInbox, onArchiveClick, onFavoriteCl
               <li>
                 <UncontrolledDropdown>
                   <DropdownToggle
-                    tag={"a"}
+                    tag={'a'}
                     href="#item"
                     onClick={(ev) => ev.preventDefault()}
                     className="dropdown-toggle btn btn-sm btn-icon btn-trigger"
@@ -125,7 +165,7 @@ export const InboxDraftList = ({ item, deleteInbox, onArchiveClick, onFavoriteCl
                           tag="a"
                           href="#item"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                         >
                           <Icon name="eye"></Icon>
@@ -137,8 +177,8 @@ export const InboxDraftList = ({ item, deleteInbox, onArchiveClick, onFavoriteCl
                           tag="a"
                           href="#item"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            deleteInbox(item.id);
+                            ev.preventDefault()
+                            deleteInbox(item.id)
                           }}
                         >
                           <Icon name="trash"></Icon>
@@ -150,8 +190,8 @@ export const InboxDraftList = ({ item, deleteInbox, onArchiveClick, onFavoriteCl
                           tag="a"
                           href="#item"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onArchiveClick(item.id);
+                            ev.preventDefault()
+                            onArchiveClick(item.id)
                           }}
                         >
                           <Icon name="archived"></Icon>
@@ -178,8 +218,8 @@ export const InboxDraftList = ({ item, deleteInbox, onArchiveClick, onFavoriteCl
         editOnOpen
       />
     </React.Fragment>
-  );
-};
+  )
+}
 
 const InboxDraft = ({
   data,
@@ -210,7 +250,7 @@ const InboxDraft = ({
               data={data}
               setData={setData}
             />
-          );
+          )
         })
       ) : (
         <div className="d-flex justify-content-center align-items-center mt-5">
@@ -218,7 +258,7 @@ const InboxDraft = ({
         </div>
       )}
     </SimpleBar>
-  );
-};
+  )
+}
 
-export default InboxDraft;
+export default InboxDraft

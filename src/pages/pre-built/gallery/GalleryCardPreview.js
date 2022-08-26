@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import GalleryCard from "../../../components/partials/gallery/GalleryCard";
+import React, { useState } from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import GalleryCard from '../../../components/partials/gallery/GalleryCard'
 import {
   BlockBetween,
   BlockDes,
@@ -13,11 +13,11 @@ import {
   Row,
   Icon,
   Button,
-} from "../../../components/Component";
-import { galleryData } from "./GalleryData";
+} from '../../../components/Component'
+import { galleryData } from './GalleryData'
 
 const GalleryCardPreview = () => {
-  const [data] = useState(galleryData);
+  const [data] = useState(galleryData)
   return (
     <React.Fragment>
       <Head title="Gallery"></Head>
@@ -33,11 +33,19 @@ const GalleryCardPreview = () => {
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
-              <Button color="light" outline className="bg-white d-none d-sm-inline-flex">
+              <Button
+                color="light"
+                outline
+                className="bg-white d-none d-sm-inline-flex"
+              >
                 <Icon name="download-cloud"></Icon>
                 <span>Download All</span>
               </Button>
-              <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">
+              <Button
+                color="light"
+                outline
+                className="btn-icon bg-white d-inline-flex d-sm-none"
+              >
                 <Icon name="download-cloud"></Icon>
               </Button>
             </BlockHeadContent>
@@ -58,13 +66,13 @@ const GalleryCardPreview = () => {
                     heartCount={item.heart}
                   />
                 </Col>
-              );
+              )
             })}
           </Row>
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default GalleryCardPreview;
+export default GalleryCardPreview

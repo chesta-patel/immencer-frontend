@@ -1,15 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
-import Dropzone from "react-dropzone";
-import ProductH from "../../../images/product/h.png";
-import ProductLGB from "../../../images/product/lg-b.jpg";
-import ProductLGC from "../../../images/product/lg-c.jpg";
-import ProductLGD from "../../../images/product/lg-d.jpg";
-import ProductLGE from "../../../images/product/lg-e.jpg";
-import ProductLGF from "../../../images/product/lg-f.jpg";
-import SimpleBar from "simplebar-react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
+import Dropzone from 'react-dropzone'
+import ProductH from '../../../images/product/h.png'
+import ProductLGB from '../../../images/product/lg-b.jpg'
+import ProductLGC from '../../../images/product/lg-c.jpg'
+import ProductLGD from '../../../images/product/lg-d.jpg'
+import ProductLGE from '../../../images/product/lg-e.jpg'
+import ProductLGF from '../../../images/product/lg-f.jpg'
+import SimpleBar from 'simplebar-react'
+import { Link } from 'react-router-dom'
 import {
   BlockHead,
   BlockDes,
@@ -22,54 +22,61 @@ import {
   Row,
   Col,
   PaginationComponent,
-} from "../../../components/Component";
-import { useForm } from "react-hook-form";
-import { Card, DropdownItem, UncontrolledDropdown, DropdownMenu, DropdownToggle, Badge } from "reactstrap";
-import { ProductContext } from "./ProductContext";
-import { productCardData } from "./ProductData";
+} from '../../../components/Component'
+import { useForm } from 'react-hook-form'
+import {
+  Card,
+  DropdownItem,
+  UncontrolledDropdown,
+  DropdownMenu,
+  DropdownToggle,
+  Badge,
+} from 'reactstrap'
+import { ProductContext } from './ProductContext'
+import { productCardData } from './ProductData'
 
 const ProductCard = () => {
-  const { contextData } = useContext(ProductContext);
+  const { contextData } = useContext(ProductContext)
 
-  const [data, setData] = contextData;
+  const [data, setData] = contextData
 
-  const [smOption, setSmOption] = useState(false);
+  const [smOption, setSmOption] = useState(false)
   const [formData] = useState({
-    name: "",
+    name: '',
     img: null,
-    title: "",
+    title: '',
     prevPrice: 0,
     newPrice: 0,
-    type: "",
+    type: '',
     new: false,
     hot: false,
     like: false,
     cart: false,
-  });
-  const [view, setView] = useState(false);
-  const [filter, setFilter] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage] = useState(8);
-  const [files, setFiles] = useState([]);
+  })
+  const [view, setView] = useState(false)
+  const [filter, setFilter] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemPerPage] = useState(8)
+  const [files, setFiles] = useState([])
 
   // Changing state value when searching name
   useEffect(() => {
-    if (filter !== "") {
+    if (filter !== '') {
       const filteredObject = productCardData.filter((item) => {
-        return item.name.toLowerCase().includes(filter.toLowerCase());
-      });
-      setData([...filteredObject]);
+        return item.name.toLowerCase().includes(filter.toLowerCase())
+      })
+      setData([...filteredObject])
     } else {
-      setData([...productCardData]);
+      setData([...productCardData])
     }
-  }, [filter, setData]);
+  }, [filter, setData])
 
   const toggle = () => {
-    setView(!view);
-  };
+    setView(!view)
+  }
 
   const onFormSubmit = (form) => {
-    const { name, title, prevPrice, newPrice, type } = form;
+    const { name, title, prevPrice, newPrice, type } = form
     let submittedData = {
       id: data.length,
       name: name,
@@ -90,16 +97,16 @@ const ProductCard = () => {
         { id: 4, img: ProductLGE },
         { id: 5, img: ProductLGF },
       ],
-    };
-    setData([submittedData, ...data]);
-    setView(false);
-    setFiles([]);
-  };
+    }
+    setData([submittedData, ...data])
+    setView(false)
+    setFiles([])
+  }
 
   // filter text
   const onFilterChange = (e) => {
-    setFilter(e.target.value);
-  };
+    setFilter(e.target.value)
+  }
 
   // handles ondrop function of dropzone
   const handleDropChange = (acceptedFiles) => {
@@ -109,18 +116,18 @@ const ProductCard = () => {
           preview: URL.createObjectURL(file),
         })
       )
-    );
-  };
+    )
+  }
 
   // Get current list, pagination
-  const indexOfLastItem = currentPage * itemPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemPerPage
+  const indexOfFirstItem = indexOfLastItem - itemPerPage
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
 
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   return (
     <React.Fragment>
@@ -137,13 +144,16 @@ const ProductCard = () => {
                   href="#more"
                   className="btn btn-icon btn-trigger toggle-expand mr-n1"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setSmOption(!smOption);
+                    ev.preventDefault()
+                    setSmOption(!smOption)
                   }}
                 >
                   <Icon name="more-v"></Icon>
                 </a>
-                <div className="toggle-expand-content" style={{ display: smOption ? "block" : "none" }}>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: smOption ? 'block' : 'none' }}
+                >
                   <ul className="nk-block-tools g-3">
                     <li>
                       <div className="form-control-wrap">
@@ -170,17 +180,29 @@ const ProductCard = () => {
                         <DropdownMenu right>
                           <ul className="link-list-opt no-bdr">
                             <li>
-                              <DropdownItem tag="a" href="#dropdownitem" onClick={(ev) => ev.preventDefault()}>
+                              <DropdownItem
+                                tag="a"
+                                href="#dropdownitem"
+                                onClick={(ev) => ev.preventDefault()}
+                              >
                                 <span>New Items</span>
                               </DropdownItem>
                             </li>
                             <li>
-                              <DropdownItem tag="a" href="#dropdownitem" onClick={(ev) => ev.preventDefault()}>
+                              <DropdownItem
+                                tag="a"
+                                href="#dropdownitem"
+                                onClick={(ev) => ev.preventDefault()}
+                              >
                                 <span>Featured</span>
                               </DropdownItem>
                             </li>
                             <li>
-                              <DropdownItem tag="a" href="#dropdownitem" onClick={(ev) => ev.preventDefault()}>
+                              <DropdownItem
+                                tag="a"
+                                href="#dropdownitem"
+                                onClick={(ev) => ev.preventDefault()}
+                              >
                                 <span>Out of Stock</span>
                               </DropdownItem>
                             </li>
@@ -189,10 +211,18 @@ const ProductCard = () => {
                       </UncontrolledDropdown>
                     </li>
                     <li className="nk-block-tools-opt">
-                      <Button className="toggle btn-icon d-md-none" color="primary" onClick={toggle}>
+                      <Button
+                        className="toggle btn-icon d-md-none"
+                        color="primary"
+                        onClick={toggle}
+                      >
                         <Icon name="plus"></Icon>
                       </Button>
-                      <Button className="toggle d-none d-md-inline-flex" color="primary" onClick={toggle}>
+                      <Button
+                        className="toggle d-none d-md-inline-flex"
+                        color="primary"
+                        onClick={toggle}
+                      >
                         <Icon name="plus"></Icon>
                         <span>Add Product</span>
                       </Button>
@@ -211,7 +241,9 @@ const ProductCard = () => {
                   <Col xxl={3} lg={4} sm={6} key={item.id}>
                     <Card className="card-bordered product-card">
                       <div className="product-thumb">
-                        <Link to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}>
+                        <Link
+                          to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}
+                        >
                           <img className="card-img-top" src={item.img} alt="" />
                         </Link>
                         <ul className="product-badges">
@@ -228,12 +260,18 @@ const ProductCard = () => {
                         </ul>
                         <ul className="product-actions">
                           <li>
-                            <a href="#cart" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              href="#cart"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               <Icon name="cart"></Icon>
                             </a>
                           </li>
                           <li>
-                            <a href="#like" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              href="#like"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               <Icon name="heart"></Icon>
                             </a>
                           </li>
@@ -242,20 +280,32 @@ const ProductCard = () => {
                       <div className="card-inner text-center">
                         <ul className="product-tags">
                           <li>
-                            <Link to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}>{item.name}</Link>
+                            <Link
+                              to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}
+                            >
+                              {item.name}
+                            </Link>
                           </li>
                         </ul>
                         <h5 className="product-title">
-                          <Link to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}>{item.title}</Link>
+                          <Link
+                            to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}
+                          >
+                            {item.title}
+                          </Link>
                         </h5>
                         <div className="product-price text-primary h5">
-                          {item.prevPrice && <small className="text-muted del fs-13px">${item.prevPrice}</small>} $
-                          {item.newPrice}
+                          {item.prevPrice && (
+                            <small className="text-muted del fs-13px">
+                              ${item.prevPrice}
+                            </small>
+                          )}{' '}
+                          ${item.newPrice}
                         </div>
                       </div>
                     </Card>
                   </Col>
-                );
+                )
               })
             ) : (
               <div className="ml-2">No product found</div>
@@ -274,7 +324,9 @@ const ProductCard = () => {
         </Block>
 
         <SimpleBar
-          className={`nk-add-product toggle-slide toggle-slide-right toggle-screen-any ${view ? "content-active" : ""}`}
+          className={`nk-add-product toggle-slide toggle-slide-right toggle-screen-any ${
+            view ? 'content-active' : ''
+          }`}
         >
           <BlockHead>
             <BlockHeadContent>
@@ -298,9 +350,11 @@ const ProductCard = () => {
                         name="name"
                         className="form-control"
                         defaultValue={formData.name}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                       />
-                      {errors.name && <span className="invalid">{errors.name.message}</span>}
+                      {errors.name && (
+                        <span className="invalid">{errors.name.message}</span>
+                      )}
                     </div>
                   </div>
                 </Col>
@@ -314,10 +368,12 @@ const ProductCard = () => {
                         type="text"
                         name="title"
                         defaultValue={formData.title}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         className="form-control"
                       />
-                      {errors.title && <span className="invalid">{errors.title.message}</span>}
+                      {errors.title && (
+                        <span className="invalid">{errors.title.message}</span>
+                      )}
                     </div>
                   </div>
                 </Col>
@@ -331,10 +387,14 @@ const ProductCard = () => {
                         type="number"
                         name="prevPrice"
                         defaultValue={formData.prevPrice}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         className="form-control"
                       />
-                      {errors.prevPrice && <span className="invalid">{errors.prevPrice.message}</span>}
+                      {errors.prevPrice && (
+                        <span className="invalid">
+                          {errors.prevPrice.message}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </Col>
@@ -348,10 +408,14 @@ const ProductCard = () => {
                         type="number"
                         name="newPrice"
                         defaultValue={formData.newPrice}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         className="form-control"
                       />
-                      {errors.newPrice && <span className="invalid">{errors.newPrice.message}</span>}
+                      {errors.newPrice && (
+                        <span className="invalid">
+                          {errors.newPrice.message}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </Col>
@@ -366,19 +430,31 @@ const ProductCard = () => {
                         className="form-control"
                         name="type"
                         defaultValue={formData.type}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                       />
-                      {errors.type && <span className="invalid">{errors.type.message}</span>}
+                      {errors.type && (
+                        <span className="invalid">{errors.type.message}</span>
+                      )}
                     </div>
                   </div>
                 </Col>
                 <Col size="12">
-                  <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}>
+                  <Dropzone
+                    onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}
+                  >
                     {({ getRootProps, getInputProps }) => (
                       <section>
-                        <div {...getRootProps()} className="dropzone upload-zone small bg-lighter my-2 dz-clickable">
+                        <div
+                          {...getRootProps()}
+                          className="dropzone upload-zone small bg-lighter my-2 dz-clickable"
+                        >
                           <input {...getInputProps()} />
-                          {files.length === 0 && <p>Drag 'n' drop some files here, or click to select files</p>}
+                          {files.length === 0 && (
+                            <p>
+                              Drag 'n' drop some files here, or click to select
+                              files
+                            </p>
+                          )}
                           {files.map((file) => (
                             <div
                               key={file.name}
@@ -407,6 +483,6 @@ const ProductCard = () => {
         {view && <div className="toggle-overlay" onClick={toggle}></div>}
       </Content>
     </React.Fragment>
-  );
-};
-export default ProductCard;
+  )
+}
+export default ProductCard

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
+import { Link } from 'react-router-dom'
 import {
   Block,
   BlockHead,
@@ -15,14 +15,14 @@ import {
   UserAvatar,
   CodeBlock,
   Rating,
-} from "../../../components/Component";
-import { findUpper } from "../../../utils/Utils";
-import { Row, Col, Progress, Card, Collapse, Button } from "reactstrap";
+} from '../../../components/Component'
+import { findUpper } from '../../../utils/Utils'
+import { Row, Col, Progress, Card, Collapse, Button } from 'reactstrap'
 
 const RatingWidgets = () => {
-  const [collapse, setCollapse] = useState(false);
-  const [collapse2, setCollapse2] = useState(true);
-  const [collapse3, setCollapse3] = useState(false);
+  const [collapse, setCollapse] = useState(false)
+  const [collapse2, setCollapse2] = useState(true)
+  const [collapse3, setCollapse3] = useState(false)
 
   return (
     <React.Fragment>
@@ -37,7 +37,10 @@ const RatingWidgets = () => {
               Card Style for Ratings
             </BlockTitle>
             <BlockDes>
-              <p>Use ratings card with variant for an invaluable source of feedback.</p>
+              <p>
+                Use ratings card with variant for an invaluable source of
+                feedback.
+              </p>
             </BlockDes>
           </BlockHeadContent>
         </BlockHead>
@@ -54,7 +57,11 @@ const RatingWidgets = () => {
                 <PreviewAltCard className="h-100">
                   <div className="team">
                     <div className="user-card user-card-s2">
-                      <UserAvatar theme="purple" className="md" text={findUpper("Abu Bin")}>
+                      <UserAvatar
+                        theme="purple"
+                        className="md"
+                        text={findUpper('Abu Bin')}
+                      >
                         <div className="status dot dot-lg dot-success"></div>
                       </UserAvatar>
                       <div className="user-info">
@@ -140,27 +147,47 @@ const RatingWidgets = () => {
                   <div className="gy-3 pt-4">
                     <div className="progress-rating">
                       <div className="progress-rating-title">5 star</div>
-                      <Progress value={72} color="teal" className="progress-md"></Progress>
+                      <Progress
+                        value={72}
+                        color="teal"
+                        className="progress-md"
+                      ></Progress>
                       <div className="progress-rating-percent">72%</div>
                     </div>
                     <div className="progress-rating">
                       <div className="progress-rating-title">4 star</div>
-                      <Progress value={58} color="success" className="progress-md"></Progress>
+                      <Progress
+                        value={58}
+                        color="success"
+                        className="progress-md"
+                      ></Progress>
                       <div className="progress-rating-percent">58%</div>
                     </div>
                     <div className="progress-rating">
                       <div className="progress-rating-title">3 star</div>
-                      <Progress value={34} color="info" className="progress-md"></Progress>
+                      <Progress
+                        value={34}
+                        color="info"
+                        className="progress-md"
+                      ></Progress>
                       <div className="progress-rating-percent">34%</div>
                     </div>
                     <div className="progress-rating">
                       <div className="progress-rating-title">2 star</div>
-                      <Progress value={18} color="warning" className="progress-md"></Progress>
+                      <Progress
+                        value={18}
+                        color="warning"
+                        className="progress-md"
+                      ></Progress>
                       <div className="progress-rating-percent">18%</div>
                     </div>
                     <div className="progress-rating">
                       <div className="progress-rating-title">1 star</div>
-                      <Progress value={55} color="danger" className="progress-md"></Progress>
+                      <Progress
+                        value={55}
+                        color="danger"
+                        className="progress-md"
+                      ></Progress>
                       <div className="progress-rating-percent">55%</div>
                     </div>
                   </div>
@@ -265,27 +292,47 @@ const RatingWidgets = () => {
                     <div className="gy-3 pt-4">
                       <div className="progress-rating">
                         <div className="progress-rating-title">5 star</div>
-                        <Progress value={72} color="primary" className="progress-md"></Progress>
+                        <Progress
+                          value={72}
+                          color="primary"
+                          className="progress-md"
+                        ></Progress>
                         <div className="progress-rating-percent">72%</div>
                       </div>
                       <div className="progress-rating">
                         <div className="progress-rating-title">4 star</div>
-                        <Progress value={58} color="primary" className="progress-md"></Progress>
+                        <Progress
+                          value={58}
+                          color="primary"
+                          className="progress-md"
+                        ></Progress>
                         <div className="progress-rating-percent">58%</div>
                       </div>
                       <div className="progress-rating">
                         <div className="progress-rating-title">3 star</div>
-                        <Progress value={34} color="primary" className="progress-md"></Progress>
+                        <Progress
+                          value={34}
+                          color="primary"
+                          className="progress-md"
+                        ></Progress>
                         <div className="progress-rating-percent">34%</div>
                       </div>
                       <div className="progress-rating">
                         <div className="progress-rating-title">2 star</div>
-                        <Progress value={18} color="primary" className="progress-md"></Progress>
+                        <Progress
+                          value={18}
+                          color="primary"
+                          className="progress-md"
+                        ></Progress>
                         <div className="progress-rating-percent">18%</div>
                       </div>
                       <div className="progress-rating">
                         <div className="progress-rating-title">1 star</div>
-                        <Progress value={55} color="primary" className="progress-md"></Progress>
+                        <Progress
+                          value={55}
+                          color="primary"
+                          className="progress-md"
+                        ></Progress>
                         <div className="progress-rating-percent">55%</div>
                       </div>
                     </div>
@@ -321,23 +368,43 @@ const RatingWidgets = () => {
                     <div className="rating-progress-bar gy-1 w-100">
                       <div className="progress-rating">
                         <div className="progress-rating mr-2">5</div>
-                        <Progress value={72} color="teal" className="progress-lg"></Progress>
+                        <Progress
+                          value={72}
+                          color="teal"
+                          className="progress-lg"
+                        ></Progress>
                       </div>
                       <div className="progress-rating">
                         <div className="progress-rating mr-2">4</div>
-                        <Progress value={58} color="success" className="progress-lg"></Progress>
+                        <Progress
+                          value={58}
+                          color="success"
+                          className="progress-lg"
+                        ></Progress>
                       </div>
                       <div className="progress-rating">
                         <div className="progress-rating mr-2">3</div>
-                        <Progress value={34} color="info" className="progress-lg"></Progress>
+                        <Progress
+                          value={34}
+                          color="info"
+                          className="progress-lg"
+                        ></Progress>
                       </div>
                       <div className="progress-rating">
                         <div className="progress-rating mr-2">2</div>
-                        <Progress value={18} color="warning" className="progress-lg"></Progress>
+                        <Progress
+                          value={18}
+                          color="warning"
+                          className="progress-lg"
+                        ></Progress>
                       </div>
                       <div className="progress-rating">
                         <div className="progress-rating mr-2">1</div>
-                        <Progress value={55} color="danger" className="progress-lg"></Progress>
+                        <Progress
+                          value={55}
+                          color="danger"
+                          className="progress-lg"
+                        ></Progress>
                       </div>
                     </div>
                   </div>
@@ -409,7 +476,9 @@ const RatingWidgets = () => {
               <Col md="6">
                 <Card className="card-bordered">
                   <div className="card-inner">
-                    <h4 className="card-title mb-1">UI/UX Designer at Google</h4>
+                    <h4 className="card-title mb-1">
+                      UI/UX Designer at Google
+                    </h4>
                     <ul className="rating">
                       <li>
                         <Icon name="star-fill"></Icon>
@@ -442,15 +511,18 @@ const RatingWidgets = () => {
                           <span>Fulltime</span>
                         </li>
                       </ul>
-                      <span className="badge badge-dim badge-sm badge-pill badge-outline-info">$1550.00</span>
+                      <span className="badge badge-dim badge-sm badge-pill badge-outline-info">
+                        $1550.00
+                      </span>
                     </div>
                     <Collapse isOpen={collapse}>
                       <div className="divider"></div>
                       <div className="rating-card-description">
                         <h5 className="card-title">Description</h5>
                         <p className="text-muted">
-                          Some quick example text to build on the card title and make up the bulk of the card's content.
-                          Some quick example text to build on the card title bulk.
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content. Some quick
+                          example text to build on the card title bulk.
                         </p>
                         <ul className="pt-2 gy-1">
                           <li>
@@ -477,8 +549,8 @@ const RatingWidgets = () => {
                     <a
                       className="switch-text collapsed"
                       onClick={(ev) => {
-                        ev.preventDefault();
-                        setCollapse(!collapse);
+                        ev.preventDefault()
+                        setCollapse(!collapse)
                       }}
                       href="#collapseDes1"
                     >
@@ -534,15 +606,18 @@ const RatingWidgets = () => {
                           <span>Fulltime</span>
                         </li>
                       </ul>
-                      <span className="badge badge-dim badge-sm badge-pill badge-outline-info">$1550.00</span>
+                      <span className="badge badge-dim badge-sm badge-pill badge-outline-info">
+                        $1550.00
+                      </span>
                     </div>
                     <Collapse isOpen={collapse2}>
                       <div className="divider"></div>
                       <div className="rating-card-description">
                         <h5 className="card-title">Description</h5>
                         <p className="text-muted">
-                          Some quick example text to build on the card title and make up the bulk of the card's content.
-                          Some quick example text to build on the card title bulk.
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content. Some quick
+                          example text to build on the card title bulk.
                         </p>
                         <ul className="pt-2 gy-1">
                           <li>
@@ -569,8 +644,8 @@ const RatingWidgets = () => {
                     <a
                       className="switch-text collapsed"
                       onClick={(ev) => {
-                        ev.preventDefault();
-                        setCollapse2(!collapse2);
+                        ev.preventDefault()
+                        setCollapse2(!collapse2)
                       }}
                       href="#collapseDes1"
                     >
@@ -806,8 +881,9 @@ const RatingWidgets = () => {
                       <div className="rating-card-description">
                         <h5 className="card-title">Description</h5>
                         <p className="text-muted">
-                          Some quick example text to build on the card title and make up the bulk of the card's content.
-                          Some quick example text to build on the card title bulk.
+                          Some quick example text to build on the card title and
+                          make up the bulk of the card's content. Some quick
+                          example text to build on the card title bulk.
                         </p>
                         <ul className="pt-2 gy-1">
                           <li>
@@ -834,8 +910,8 @@ const RatingWidgets = () => {
                     <a
                       className="switch-text collapsed"
                       onClick={(ev) => {
-                        ev.preventDefault();
-                        setCollapse3(!collapse3);
+                        ev.preventDefault()
+                        setCollapse3(!collapse3)
                       }}
                       href="#collapseDes1"
                     >
@@ -1148,7 +1224,11 @@ const RatingWidgets = () => {
                           Title
                         </label>
                         <div className="form-control-wrap">
-                          <input type="text" className="form-control" id="title" />
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="title"
+                          />
                         </div>
                       </div>
                       <div className="form-group">
@@ -1156,7 +1236,11 @@ const RatingWidgets = () => {
                           Job Title
                         </label>
                         <div className="form-control-wrap">
-                          <input type="text" className="form-control" id="job-title" />
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="job-title"
+                          />
                         </div>
                       </div>
                       <div className="form-group">
@@ -1164,7 +1248,10 @@ const RatingWidgets = () => {
                           How was your experience?
                         </label>
                         <div className="form-control-wrap">
-                          <textarea className="form-control no-resize" id="review"></textarea>
+                          <textarea
+                            className="form-control no-resize"
+                            id="review"
+                          ></textarea>
                         </div>
                       </div>
                     </form>
@@ -1351,8 +1438,11 @@ const RatingWidgets = () => {
                       <h5 className="title">Design Quality</h5>
                       <div className="d-flex">
                         <p className="m-0 pr-2">
-                          by{" "}
-                          <a href="#softnio" onClick={(ev) => ev.preventDefault()}>
+                          by{' '}
+                          <a
+                            href="#softnio"
+                            onClick={(ev) => ev.preventDefault()}
+                          >
                             softnio
                           </a>
                         </p>
@@ -1385,8 +1475,11 @@ const RatingWidgets = () => {
                         <h5 className="title">Feature Quality</h5>
                         <div className="d-sm-flex">
                           <span className="m-0 pr-2">
-                            by{" "}
-                            <a href="#softnio" onClick={(ev) => ev.preventDefault()}>
+                            by{' '}
+                            <a
+                              href="#softnio"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               softnio
                             </a>
                           </span>
@@ -1414,9 +1507,11 @@ const RatingWidgets = () => {
                   </div>
                   <div className="card-inner">
                     <p className="text-soft">
-                      I've been using Dashlite for months now and with every update, update it's just becoming more and
-                      more better it's just becoming better. Thank you for such a great design touch. Further I
-                      definitely cooperate with your product . Highly appriciate it. Really love it
+                      I've been using Dashlite for months now and with every
+                      update, update it's just becoming more and more better
+                      it's just becoming better. Thank you for such a great
+                      design touch. Further I definitely cooperate with your
+                      product . Highly appriciate it. Really love it
                     </p>
                   </div>
                   <div className="card-inner border-top">
@@ -1427,12 +1522,15 @@ const RatingWidgets = () => {
                       <div className="fake-class">
                         <h6 className="mt-0 d-flex align-center">
                           <span>Abu Bin Ishiyak</span>
-                          <span className="badge badge-dim badge-outline-info ml-2">Author</span>
+                          <span className="badge badge-dim badge-outline-info ml-2">
+                            Author
+                          </span>
                         </h6>
                         <p className="text-soft">
-                          Time zone depend on your server time as we use that by default. So you need to change that
-                          from your server. For data display issues, you may send your website url so we can check what
-                          actually wrong.
+                          Time zone depend on your server time as we use that by
+                          default. So you need to change that from your server.
+                          For data display issues, you may send your website url
+                          so we can check what actually wrong.
                         </p>
                       </div>
                     </div>
@@ -1446,7 +1544,9 @@ const RatingWidgets = () => {
                         <h6 className="mt-0 d-flex align-center">
                           <span>Ifrat Binte</span>
                         </h6>
-                        <p className="text-soft">Thanks for the help. Really great support.</p>
+                        <p className="text-soft">
+                          Thanks for the help. Really great support.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -1497,7 +1597,8 @@ const RatingWidgets = () => {
               <BlockTitle tag="h5">Customization</BlockTitle>
               <BlockDes>
                 <p>
-                  You can use customize <code>Rating</code> component used in react dashlite.
+                  You can use customize <code>Rating</code> component used in
+                  react dashlite.
                 </p>
               </BlockDes>
             </BlockHeadContent>
@@ -1511,7 +1612,7 @@ const RatingWidgets = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default RatingWidgets;
+export default RatingWidgets

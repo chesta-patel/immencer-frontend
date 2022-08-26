@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { contacts, inboxList } from "./InboxData";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { Icon } from "../../../components/Component";
+import React, { useEffect, useState } from 'react'
+import { contacts, inboxList } from './InboxData'
+import {
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import { Icon } from '../../../components/Component'
 
 const InboxBodyHead = ({
   allData,
@@ -20,57 +25,69 @@ const InboxBodyHead = ({
   paginate,
   currentPage,
 }) => {
-  const [searchText, setSearchText] = useState("");
-  const [searchToggle, setSearchToggle] = useState(false);
+  const [searchText, setSearchText] = useState('')
+  const [searchToggle, setSearchToggle] = useState(false)
 
   useEffect(() => {
-    if (searchText !== "") {
-      const filteredUser = contacts.filter((item) => item.name.toLowerCase().includes(searchText.toLowerCase()));
-      const filteredData = inboxList.filter((item) => filteredUser.some((el) => item.userId === el.id));
-      setData([...filteredData]);
+    if (searchText !== '') {
+      const filteredUser = contacts.filter((item) =>
+        item.name.toLowerCase().includes(searchText.toLowerCase())
+      )
+      const filteredData = inboxList.filter((item) =>
+        filteredUser.some((el) => item.userId === el.id)
+      )
+      setData([...filteredData])
     } else {
-      if (currentTab !== "All Mails" && currentTab !== "Trash" && currentTab !== "Archive") {
+      if (
+        currentTab !== 'All Mails' &&
+        currentTab !== 'Trash' &&
+        currentTab !== 'Archive'
+      ) {
         let defaultData = allData.filter(
           (item) =>
             item.message.meta[currentTab.toLowerCase()] === true &&
             item.message.meta.trash !== true &&
             item.message.meta.archive !== true
-        );
-        setTimeout(() => setData([...defaultData]), 1);
-      } else if (currentTab === "Archive") {
-        let defaultData = allData.filter((item) => item.message.meta.archive === true);
-        setData([...defaultData]);
-      } else if (currentTab === "Trash") {
-        let defaultData = allData.filter((item) => item.message.meta.trash === true);
-        setTimeout(() => setData([...defaultData]), 1);
+        )
+        setTimeout(() => setData([...defaultData]), 1)
+      } else if (currentTab === 'Archive') {
+        let defaultData = allData.filter(
+          (item) => item.message.meta.archive === true
+        )
+        setData([...defaultData])
+      } else if (currentTab === 'Trash') {
+        let defaultData = allData.filter(
+          (item) => item.message.meta.trash === true
+        )
+        setTimeout(() => setData([...defaultData]), 1)
       } else {
-        setData(inboxList);
+        setData(inboxList)
       }
     }
-  }, [searchText]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [searchText]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const onSearchChange = (e) => {
-    let value = e.target.value;
-    setSearchText(value);
-  };
+    let value = e.target.value
+    setSearchText(value)
+  }
 
   const toggleSearch = () => {
-    setSearchToggle(!searchToggle);
-  };
+    setSearchToggle(!searchToggle)
+  }
 
-  const pageNumbers = [];
+  const pageNumbers = []
 
   for (let i = 1; i <= Math.ceil(totalItems / itemPerPage); i++) {
-    pageNumbers.push(i);
+    pageNumbers.push(i)
   }
 
   const nextPage = () => {
-    paginate(currentPage + 1);
-  };
+    paginate(currentPage + 1)
+  }
 
   const prevPage = () => {
-    paginate(currentPage - 1);
-  };
+    paginate(currentPage - 1)
+  }
 
   return (
     <div className="nk-ibx-head">
@@ -85,7 +102,10 @@ const InboxBodyHead = ({
               id="conversionAll"
               onChange={(e) => setChecked(e.target.checked)}
             />
-            <label className="custom-control-label" htmlFor="conversionAll"></label>
+            <label
+              className="custom-control-label"
+              htmlFor="conversionAll"
+            ></label>
           </div>
         </div>
         <ul className="nk-ibx-head-tools g-1">
@@ -93,8 +113,8 @@ const InboxBodyHead = ({
             <a
               href="#item"
               onClick={(ev) => {
-                ev.preventDefault();
-                toggleRefresh();
+                ev.preventDefault()
+                toggleRefresh()
               }}
               className="btn btn-icon btn-trigger"
             >
@@ -105,8 +125,8 @@ const InboxBodyHead = ({
             <a
               href="#item"
               onClick={(ev) => {
-                ev.preventDefault();
-                selectorArchive();
+                ev.preventDefault()
+                selectorArchive()
               }}
               className={`btn btn-icon btn-trigger`}
             >
@@ -117,8 +137,8 @@ const InboxBodyHead = ({
             <a
               href="#item"
               onClick={(ev) => {
-                ev.preventDefault();
-                selectorDeleteInbox();
+                ev.preventDefault()
+                selectorDeleteInbox()
               }}
               className={`btn btn-icon btn-trigger`}
             >
@@ -138,13 +158,21 @@ const InboxBodyHead = ({
               <DropdownMenu>
                 <ul className="link-list-opt no-bdr">
                   <li onClick={() => selectorDeleteInbox()}>
-                    <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                    <DropdownItem
+                      tag="a"
+                      href="#item"
+                      onClick={(ev) => ev.preventDefault()}
+                    >
                       <Icon name="trash"></Icon>
                       <span>Delete</span>
                     </DropdownItem>
                   </li>
                   <li onClick={() => selectorArchive()}>
-                    <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                    <DropdownItem
+                      tag="a"
+                      href="#item"
+                      onClick={(ev) => ev.preventDefault()}
+                    >
                       <Icon name="archived"></Icon>
                       <span>Archive</span>
                     </DropdownItem>
@@ -161,10 +189,12 @@ const InboxBodyHead = ({
             <a
               href="#item"
               onClick={(ev) => {
-                ev.preventDefault();
-                prevPage();
+                ev.preventDefault()
+                prevPage()
               }}
-              className={`btn btn-trigger btn-icon btn-tooltip ${currentPage - 1 === 0 ? "disabled" : ""}`}
+              className={`btn btn-trigger btn-icon btn-tooltip ${
+                currentPage - 1 === 0 ? 'disabled' : ''
+              }`}
             >
               <Icon name="arrow-left"></Icon>
             </a>
@@ -173,11 +203,14 @@ const InboxBodyHead = ({
             <a
               href="#item"
               onClick={(ev) => {
-                ev.preventDefault();
-                nextPage();
+                ev.preventDefault()
+                nextPage()
               }}
               className={`btn btn-trigger btn-icon btn-tooltip ${
-                pageNumbers[pageNumbers.length - 1] === currentPage || pageNumbers.length === 0 ? "disabled" : ""
+                pageNumbers[pageNumbers.length - 1] === currentPage ||
+                pageNumbers.length === 0
+                  ? 'disabled'
+                  : ''
               }`}
             >
               <Icon name="arrow-right"></Icon>
@@ -187,8 +220,8 @@ const InboxBodyHead = ({
             <a
               href="#item"
               onClick={(ev) => {
-                ev.preventDefault();
-                toggleSearch();
+                ev.preventDefault()
+                toggleSearch()
               }}
               className="btn btn-trigger btn-icon search-toggle toggle-search"
             >
@@ -199,8 +232,8 @@ const InboxBodyHead = ({
             <a
               href="#item"
               onClick={(ev) => {
-                ev.preventDefault();
-                setAside(!aside);
+                ev.preventDefault()
+                setAside(!aside)
               }}
               className="btn btn-trigger btn-icon toggle"
             >
@@ -209,13 +242,13 @@ const InboxBodyHead = ({
           </li>
         </ul>
       </div>
-      <div className={`search-wrap ${searchToggle ? "active" : ""}`}>
+      <div className={`search-wrap ${searchToggle ? 'active' : ''}`}>
         <div className="search-content">
           <a
             href="#item"
             onClick={(ev) => {
-              ev.preventDefault();
-              toggleSearch();
+              ev.preventDefault()
+              toggleSearch()
             }}
             className="search-back btn btn-icon toggle-search"
           >
@@ -233,7 +266,7 @@ const InboxBodyHead = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default InboxBodyHead;
+export default InboxBodyHead

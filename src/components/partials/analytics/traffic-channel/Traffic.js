@@ -1,27 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 import {
   trafficChannelData,
   trafficChannelDataSet2,
   trafficChannelDataSet3,
   trafficChannelDataSet4,
-} from "../../charts/analytics/AnalyticsData";
-import { DropdownToggle, DropdownMenu, UncontrolledDropdown, DropdownItem } from "reactstrap";
-import { Icon, DataTableHead, DataTableRow, DataTableItem } from "../../../Component";
-import { WPCharts } from "../../charts/analytics/AnalyticsCharts";
+} from '../../charts/analytics/AnalyticsData'
+import {
+  DropdownToggle,
+  DropdownMenu,
+  UncontrolledDropdown,
+  DropdownItem,
+} from 'reactstrap'
+import {
+  Icon,
+  DataTableHead,
+  DataTableRow,
+  DataTableItem,
+} from '../../../Component'
+import { WPCharts } from '../../charts/analytics/AnalyticsCharts'
 
 const TrafficChannel = () => {
-  const [dd, setdd] = useState("30");
-  const [trafficData, setTrafficData] = useState(trafficChannelData);
+  const [dd, setdd] = useState('30')
+  const [trafficData, setTrafficData] = useState(trafficChannelData)
 
   useEffect(() => {
-    if (dd === "30") {
-      setTrafficData(trafficChannelDataSet3);
-    } else if (dd === "15") {
-      setTrafficData(trafficChannelDataSet4);
+    if (dd === '30') {
+      setTrafficData(trafficChannelDataSet3)
+    } else if (dd === '15') {
+      setTrafficData(trafficChannelDataSet4)
     } else {
-      setTrafficData(trafficChannelDataSet2);
+      setTrafficData(trafficChannelDataSet2)
     }
-  }, [dd]);
+  }, [dd])
 
   return (
     <React.Fragment>
@@ -38,34 +48,34 @@ const TrafficChannel = () => {
               </DropdownToggle>
               <DropdownMenu right className="dropdown-menu-xs">
                 <ul className="link-list-opt no-bdr">
-                  <li className={dd === "7" ? "active" : ""}>
+                  <li className={dd === '7' ? 'active' : ''}>
                     <DropdownItem
                       href="#dropdownitem"
                       onClick={(e) => {
-                        e.preventDefault();
-                        setdd("7");
+                        e.preventDefault()
+                        setdd('7')
                       }}
                     >
                       <span>7 Days</span>
                     </DropdownItem>
                   </li>
-                  <li className={dd === "15" ? "active" : ""}>
+                  <li className={dd === '15' ? 'active' : ''}>
                     <DropdownItem
                       href="#dropdownitem"
                       onClick={(e) => {
-                        e.preventDefault();
-                        setdd("15");
+                        e.preventDefault()
+                        setdd('15')
                       }}
                     >
                       <span>15 Days</span>
                     </DropdownItem>
                   </li>
-                  <li className={dd === "30" ? "active" : ""}>
+                  <li className={dd === '30' ? 'active' : ''}>
                     <DropdownItem
                       href="#dropdownitem"
                       onClick={(e) => {
-                        e.preventDefault();
-                        setdd("30");
+                        e.preventDefault()
+                        setdd('30')
                       }}
                     >
                       <span>30 Days</span>
@@ -113,7 +123,7 @@ const TrafficChannel = () => {
               </DataTableRow>
               <DataTableRow className="nk-tb-change">
                 <span className="tb-sub">
-                  <span>{item.change}%</span>{" "}
+                  <span>{item.change}%</span>{' '}
                   <span className={`change ${item.changeDifference}`}>
                     <Icon name={`arrow-long-${item.changeDifference}`}></Icon>
                   </span>
@@ -125,10 +135,10 @@ const TrafficChannel = () => {
                 </div>
               </DataTableRow>
             </DataTableItem>
-          );
+          )
         })}
       </div>
     </React.Fragment>
-  );
-};
-export default TrafficChannel;
+  )
+}
+export default TrafficChannel

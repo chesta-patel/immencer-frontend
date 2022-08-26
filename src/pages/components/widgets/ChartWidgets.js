@@ -1,14 +1,14 @@
-import React from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
-import ActiveUser from "../../../components/partials/analytics/active-user/ActiveUser";
-import OrderOverview from "../../../components/partials/crypto/order-overview/OrderOverview";
-import UserActivity from "../../../components/partials/crypto/user-activity/UserActivity";
-import SalesOverview from "../../../components/partials/default/sales-overview/SalesOverview";
-import AudienceOverview from "../../../components/partials/analytics/audience-overview/AudienceOverview";
-import TrafficChannel from "../../../components/partials/analytics/traffic-channel/Traffic";
-import TrafficDougnut from "../../../components/partials/analytics/traffic-dougnut/TrafficDoughnut";
-import SessionDevice from "../../../components/partials/analytics/session-devices/SessionDevice";
+import React from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
+import ActiveUser from '../../../components/partials/analytics/active-user/ActiveUser'
+import OrderOverview from '../../../components/partials/crypto/order-overview/OrderOverview'
+import UserActivity from '../../../components/partials/crypto/user-activity/UserActivity'
+import SalesOverview from '../../../components/partials/default/sales-overview/SalesOverview'
+import AudienceOverview from '../../../components/partials/analytics/audience-overview/AudienceOverview'
+import TrafficChannel from '../../../components/partials/analytics/traffic-channel/Traffic'
+import TrafficDougnut from '../../../components/partials/analytics/traffic-dougnut/TrafficDoughnut'
+import SessionDevice from '../../../components/partials/analytics/session-devices/SessionDevice'
 import {
   Block,
   BlockHead,
@@ -18,8 +18,8 @@ import {
   PreviewCard,
   CodeBlock,
   PreviewAltCard,
-} from "../../../components/Component";
-import { Card, Col, Row } from "reactstrap";
+} from '../../../components/Component'
+import { Card, Col, Row } from 'reactstrap'
 
 const ChartWidgets = () => {
   return (
@@ -41,7 +41,10 @@ const ChartWidgets = () => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Single Bar Chart</BlockTitle>
-              <p>A bar chart provides a way of showing data values represented as vertical bars.</p>
+              <p>
+                A bar chart provides a way of showing data values represented as
+                vertical bars.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -117,7 +120,10 @@ const ActiveUser = () => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Multiple Bar Chart</BlockTitle>
-              <p>A bar chart provides a way of comparison of multiple data sets side by side.</p>
+              <p>
+                A bar chart provides a way of comparison of multiple data sets
+                side by side.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -245,7 +251,10 @@ export default OrderOverview;
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Stacked Bar Chart</BlockTitle>
-              <p>A bar chart provides a way of comparison of multiple data with stacked view.</p>
+              <p>
+                A bar chart provides a way of comparison of multiple data with
+                stacked view.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -493,8 +502,9 @@ export default SalesOverview;
             <BlockHeadContent>
               <BlockTitle tag="h5">Solid and Dotted Line Chart</BlockTitle>
               <p>
-                A line chart is a way of plotting data points on a line. Often, it is used to show trend data, or the
-                comparison of two data sets.
+                A line chart is a way of plotting data points on a line. Often,
+                it is used to show trend data, or the comparison of two data
+                sets.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -750,8 +760,8 @@ const TrafficChannel = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Doughnut Charts</BlockTitle>
               <p>
-                Doughnut charts are probably the most commonly used charts. It use to show relational proportions
-                between data.
+                Doughnut charts are probably the most commonly used charts. It
+                use to show relational proportions between data.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -873,8 +883,8 @@ const TrafficDougnut = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Doughnut Charts with icons</BlockTitle>
               <p>
-                Doughnut charts are probably the most commonly used charts. It use to show relational proportions
-                between data.
+                Doughnut charts are probably the most commonly used charts. It
+                use to show relational proportions between data.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -986,7 +996,7 @@ const SessionDevice = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ChartWidgets;
+export default ChartWidgets

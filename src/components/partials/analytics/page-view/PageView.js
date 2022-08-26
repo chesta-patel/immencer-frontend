@@ -1,22 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { pagePerUserData, pagePerUserDataSet2, pagePerUserDataSet3 } from "../../charts/analytics/AnalyticsData";
-import { DataTableRow, DataTableHead, DataTableItem } from "../../../table/DataTable";
-import { DropdownToggle, DropdownMenu, UncontrolledDropdown, DropdownItem } from "reactstrap";
+import React, { useEffect, useState } from 'react'
+import {
+  pagePerUserData,
+  pagePerUserDataSet2,
+  pagePerUserDataSet3,
+} from '../../charts/analytics/AnalyticsData'
+import {
+  DataTableRow,
+  DataTableHead,
+  DataTableItem,
+} from '../../../table/DataTable'
+import {
+  DropdownToggle,
+  DropdownMenu,
+  UncontrolledDropdown,
+  DropdownItem,
+} from 'reactstrap'
 
 const PageViewer = () => {
-  const [pageViewer, setPageViewer] = useState("30");
-  const [data, setData] = useState(pagePerUserData);
+  const [pageViewer, setPageViewer] = useState('30')
+  const [data, setData] = useState(pagePerUserData)
   useEffect(() => {
-    let newData;
-    if (pageViewer === "7") {
-      newData = pagePerUserDataSet2;
-    } else if (pageViewer === "15") {
-      newData = pagePerUserDataSet3;
+    let newData
+    if (pageViewer === '7') {
+      newData = pagePerUserDataSet2
+    } else if (pageViewer === '15') {
+      newData = pagePerUserDataSet3
     } else {
-      newData = pagePerUserData;
+      newData = pagePerUserData
     }
-    setData(newData);
-  }, [pageViewer]);
+    setData(newData)
+  }, [pageViewer])
   return (
     <React.Fragment>
       <div className="card-inner mb-n2">
@@ -30,37 +43,37 @@ const PageViewer = () => {
             </DropdownToggle>
             <DropdownMenu right className=" dropdown-menu-xs">
               <ul className="link-list-opt no-bdr">
-                <li className={pageViewer === "7" ? "active" : ""}>
+                <li className={pageViewer === '7' ? 'active' : ''}>
                   <DropdownItem
                     tag="a"
                     href="#dropdownitem"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setPageViewer("7");
+                      e.preventDefault()
+                      setPageViewer('7')
                     }}
                   >
                     <span>7 Days</span>
                   </DropdownItem>
                 </li>
-                <li className={pageViewer === "15" ? "active" : ""}>
+                <li className={pageViewer === '15' ? 'active' : ''}>
                   <DropdownItem
                     tag="a"
                     href="#dropdownitem"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setPageViewer("15");
+                      e.preventDefault()
+                      setPageViewer('15')
                     }}
                   >
                     <span>15 Days</span>
                   </DropdownItem>
                 </li>
-                <li className={pageViewer === "30" ? "active" : ""}>
+                <li className={pageViewer === '30' ? 'active' : ''}>
                   <DropdownItem
                     tag="a"
                     href="#dropdownitem"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setPageViewer("30");
+                      e.preventDefault()
+                      setPageViewer('30')
                     }}
                   >
                     <span>30 Days</span>
@@ -94,10 +107,10 @@ const PageViewer = () => {
                 </span>
               </DataTableRow>
             </DataTableItem>
-          );
+          )
         })}
       </div>
     </React.Fragment>
-  );
-};
-export default PageViewer;
+  )
+}
+export default PageViewer

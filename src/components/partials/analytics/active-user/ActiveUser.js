@@ -1,6 +1,6 @@
-import React from "react";
-import { Icon, TooltipComponent } from "../../../Component";
-import { ActiveUserBarChart } from "../../charts/analytics/AnalyticsCharts";
+import React from 'react'
+import { Icon, TooltipComponent } from '../../../Component'
+import { ActiveUserBarChart } from '../../charts/analytics/AnalyticsCharts'
 
 const ActiveUser = () => {
   return (
@@ -53,6 +53,6 @@ const ActiveUser = () => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
-export default ActiveUser;
+  )
+}
+export default ActiveUser

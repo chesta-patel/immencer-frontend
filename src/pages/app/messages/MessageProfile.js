@@ -1,34 +1,54 @@
-import React from "react";
-import SimpleBar from "simplebar-react";
-import { Row, Col, UncontrolledDropdown, DropdownToggle, DropdownMenu, Card } from "reactstrap";
-import { findUpper } from "../../../utils/Utils";
-import { Icon, UserAvatar, LinkList, LinkItem } from "../../../components/Component";
+import React from 'react'
+import SimpleBar from 'simplebar-react'
+import {
+  Row,
+  Col,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  Card,
+} from 'reactstrap'
+import { findUpper } from '../../../utils/Utils'
+import {
+  Icon,
+  UserAvatar,
+  LinkList,
+  LinkItem,
+} from '../../../components/Component'
 
 const MessageProfileSidebar = ({ sidebar, profile }) => {
   return (
-    <SimpleBar className={`nk-msg-profile ${sidebar ? "visible" : ""}`}>
+    <SimpleBar className={`nk-msg-profile ${sidebar ? 'visible' : ''}`}>
       <Card>
         <div className="card-inner-group">
           <div className="card-inner">
             <div className="user-card user-card-s2 mb-2">
-              <UserAvatar className="md" theme={profile.theme} image={profile.image} text={findUpper(profile.name)} />
+              <UserAvatar
+                className="md"
+                theme={profile.theme}
+                image={profile.image}
+                text={findUpper(profile.name)}
+              />
               <div className="user-info">
                 <h5>{profile.name}</h5>
                 <span className="sub-text">Customer</span>
               </div>
               <UncontrolledDropdown className="user-card-menu dropdown">
-                <DropdownToggle tag="a" className="btn btn-icon btn-sm btn-trigger dropdown-toggle">
+                <DropdownToggle
+                  tag="a"
+                  className="btn btn-icon btn-sm btn-trigger dropdown-toggle"
+                >
                   <Icon name="more-h"></Icon>
                 </DropdownToggle>
                 <DropdownMenu right>
                   <LinkList opt className="no-bdr">
-                    <LinkItem link={"/user-details-regular/1"} icon="eye">
+                    <LinkItem link={'/user-details-regular/1'} icon="eye">
                       View Profile
                     </LinkItem>
-                    <LinkItem link={""} tag="a" icon="na">
+                    <LinkItem link={''} tag="a" icon="na">
                       Block From System
                     </LinkItem>
-                    <LinkItem link={""} tag="a" icon="repeat">
+                    <LinkItem link={''} tag="a" icon="repeat">
                       View Orders
                     </LinkItem>
                   </LinkList>
@@ -91,13 +111,21 @@ const MessageProfileSidebar = ({ sidebar, profile }) => {
                 </Col>
                 <Col xs={6}>
                   <span className="sub-text">Status:</span>
-                  <span className={`lead-text text-${profile.closed ? "danger" : "success"}`}>
-                    {profile.closed ? "Closed" : "Open"}
+                  <span
+                    className={`lead-text text-${
+                      profile.closed ? 'danger' : 'success'
+                    }`}
+                  >
+                    {profile.closed ? 'Closed' : 'Open'}
                   </span>
                 </Col>
                 <Col xs={6}>
                   <span className="sub-text">Last Reply:</span>
-                  <span>{profile.reply.length === 0 ? "None" : profile.reply[profile.reply.length - 1].name}</span>
+                  <span>
+                    {profile.reply.length === 0
+                      ? 'None'
+                      : profile.reply[profile.reply.length - 1].name}
+                  </span>
                 </Col>
               </Row>
             </div>
@@ -119,7 +147,7 @@ const MessageProfileSidebar = ({ sidebar, profile }) => {
         </div>
       </Card>
     </SimpleBar>
-  );
-};
+  )
+}
 
-export default MessageProfileSidebar;
+export default MessageProfileSidebar

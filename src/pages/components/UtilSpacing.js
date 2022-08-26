@@ -1,8 +1,19 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, PreviewTable, CodeBlock } from "../../components/preview/Preview";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import {
+  PreviewCard,
+  PreviewTable,
+  CodeBlock,
+} from '../../components/preview/Preview'
 
 const SpacingPage = ({ ...props }) => {
   return (
@@ -19,8 +30,9 @@ const SpacingPage = ({ ...props }) => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                A wide range of shorthand responsive margin and padding utility classNames to modify an element’s
-                appearance. Mostly use for cards, buttons, or any other element.
+                A wide range of shorthand responsive margin and padding utility
+                classNames to modify an element’s appearance. Mostly use for
+                cards, buttons, or any other element.
               </p>
             </BlockDes>
           </BlockHeadContent>
@@ -31,7 +43,8 @@ const SpacingPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Size Reference</BlockTitle>
               <p>
-                This will guide you how much space used in <code>{"{size}"}</code>.
+                This will guide you how much space used in{' '}
+                <code>{'{size}'}</code>.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -46,7 +59,7 @@ const SpacingPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>{"{size}"}</code>
+                  <code>{'{size}'}</code>
                 </td>
                 <td>
                   0<br />
@@ -70,12 +83,15 @@ const SpacingPage = ({ ...props }) => {
                   <br />
                   <code>2.75rem</code> as <code className="code-tag">44px</code>
                   <br />
-                  <code>28px</code> as <code className="code-tag">gutter</code> size
+                  <code>28px</code> as <code className="code-tag">gutter</code>{' '}
+                  size
                 </td>
               </tr>
               <tr>
                 <td colSpan="3">
-                  <em className="fs-13px">Note: Base font size is 16px and 1rem equal to 16px</em>
+                  <em className="fs-13px">
+                    Note: Base font size is 16px and 1rem equal to 16px
+                  </em>
                 </td>
               </tr>
             </tbody>
@@ -110,51 +126,56 @@ const SpacingPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.m-{"{size}"}</code>
+                  <code>.m-{'{size}'}</code>
                 </td>
                 <td>0 | 1 | 2 | 3 | 4 | 5 | gs | auto</td>
-                <td className="text-soft">Apply margin around to the element</td>
+                <td className="text-soft">
+                  Apply margin around to the element
+                </td>
               </tr>
               <tr>
                 <td>
-                  <code>.ml-{"{size}"}</code>
+                  <code>.ml-{'{size}'}</code>
                   <br />
-                  <code>.mr-{"{size}"}</code>
+                  <code>.mr-{'{size}'}</code>
                   <br />
-                  <code>.mt-{"{size}"}</code>
+                  <code>.mt-{'{size}'}</code>
                   <br />
-                  <code>.mb-{"{size}"}</code>
+                  <code>.mb-{'{size}'}</code>
                 </td>
                 <td>0 | 1 | 2 | 3 | 4 | 5 | gs | auto</td>
-                <td className="text-soft">Apply margin on specific side of the element</td>
+                <td className="text-soft">
+                  Apply margin on specific side of the element
+                </td>
               </tr>
               <tr>
                 <td>
                   <code>
-                    .m-{"{screen}"}-{"{size}"}
+                    .m-{'{screen}'}-{'{size}'}
                   </code>
                 </td>
                 <td>0 | 1 | 2 | 3 | 4 | 5 | gs | auto</td>
                 <td className="text-soft">
-                  Use <code>{"{screen}"}</code> as <code>sm | md | lg | xl</code>
+                  Use <code>{'{screen}'}</code> as{' '}
+                  <code>sm | md | lg | xl</code>
                 </td>
               </tr>
               <tr>
                 <td>
                   <code>
-                    .ml-{"{screen}"}-{"{size}"}
+                    .ml-{'{screen}'}-{'{size}'}
                   </code>
                   <br />
                   <code>
-                    .mr-{"{screen}"}-{"{size}"}
+                    .mr-{'{screen}'}-{'{size}'}
                   </code>
                   <br />
                   <code>
-                    .mt-{"{screen}"}-{"{size}"}
+                    .mt-{'{screen}'}-{'{size}'}
                   </code>
                   <br />
                   <code>
-                    .mb-{"{screen}"}-{"{size}"}
+                    .mb-{'{screen}'}-{'{size}'}
                   </code>
                 </td>
                 <td>0 | 1 | 2 | 3 | 4 | 5 | gs | auto</td>
@@ -163,9 +184,10 @@ const SpacingPage = ({ ...props }) => {
               <tr>
                 <td colSpan="3">
                   <em className="fs-13px">
-                    <code>{"{screen}"}</code> related with breakpoint and apply from the <code>{"{screen}"}</code> you
-                    have use. For example, <code>.m-sm-2</code> sets margin on <code>sm</code> screen and continue to
-                    above screens.
+                    <code>{'{screen}'}</code> related with breakpoint and apply
+                    from the <code>{'{screen}'}</code> you have use. For
+                    example, <code>.m-sm-2</code> sets margin on <code>sm</code>{' '}
+                    screen and continue to above screens.
                   </em>
                 </td>
               </tr>
@@ -182,7 +204,10 @@ const SpacingPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Set Padding</BlockTitle>
-              <p>These utility classNames allow to set inside padding to an element.</p>
+              <p>
+                These utility classNames allow to set inside padding to an
+                element.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -218,51 +243,55 @@ const SpacingPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.p-{"{size}"}</code>
+                  <code>.p-{'{size}'}</code>
                 </td>
                 <td>0 | 1 | 2 | 3 | 4 | 5 | gs | auto</td>
-                <td className="text-soft">Apply padding around to the element</td>
+                <td className="text-soft">
+                  Apply padding around to the element
+                </td>
               </tr>
               <tr>
                 <td>
-                  <code>.pl-{"{size}"}</code>
+                  <code>.pl-{'{size}'}</code>
                   <br />
-                  <code>.pr-{"{size}"}</code>
+                  <code>.pr-{'{size}'}</code>
                   <br />
-                  <code>.pt-{"{size}"}</code>
+                  <code>.pt-{'{size}'}</code>
                   <br />
-                  <code>.pb-{"{size}"}</code>
+                  <code>.pb-{'{size}'}</code>
                 </td>
                 <td>0 | 1 | 2 | 3 | 4 | 5 | gs | auto</td>
-                <td className="text-soft">Apply padding on specific side of the element</td>
+                <td className="text-soft">
+                  Apply padding on specific side of the element
+                </td>
               </tr>
               <tr>
                 <td>
                   <code>
-                    .p-{"{screen}"}-{"{size}"}
+                    .p-{'{screen}'}-{'{size}'}
                   </code>
                 </td>
                 <td>0 | 1 | 2 | 3 | 4 | 5 | gs | auto</td>
                 <td className="text-soft">
-                  Use <code>{"{screen}"}</code> as <code>sm, md, lg, xl</code>
+                  Use <code>{'{screen}'}</code> as <code>sm, md, lg, xl</code>
                 </td>
               </tr>
               <tr>
                 <td>
                   <code>
-                    .pl-{"{screen}"}-{"{size}"}
+                    .pl-{'{screen}'}-{'{size}'}
                   </code>
                   <br />
                   <code>
-                    .pr-{"{screen}"}-{"{size}"}
+                    .pr-{'{screen}'}-{'{size}'}
                   </code>
                   <br />
                   <code>
-                    .pt-{"{screen}"}-{"{size}"}
+                    .pt-{'{screen}'}-{'{size}'}
                   </code>
                   <br />
                   <code>
-                    .pb-{"{screen}"}-{"{size}"}
+                    .pb-{'{screen}'}-{'{size}'}
                   </code>
                 </td>
                 <td>0 | 1 | 2 | 3 | 4 | 5 | gs | auto</td>
@@ -271,9 +300,10 @@ const SpacingPage = ({ ...props }) => {
               <tr>
                 <td colSpan="3">
                   <em className="fs-13px">
-                    <code>{"{screen}"}</code> related with breakpoint and will apply from the <code>{"{screen}"}</code>{" "}
-                    to above. For example, <code>.m-sm-2</code> sets padding on <code>sm</code> screen and continue to
-                    above screens.
+                    <code>{'{screen}'}</code> related with breakpoint and will
+                    apply from the <code>{'{screen}'}</code> to above. For
+                    example, <code>.m-sm-2</code> sets padding on{' '}
+                    <code>sm</code> screen and continue to above screens.
                   </em>
                 </td>
               </tr>
@@ -290,7 +320,10 @@ const SpacingPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Gaps classNames</BlockTitle>
-              <p>The gap classNames allow to set specific gap between to section or block.</p>
+              <p>
+                The gap classNames allow to set specific gap between to section
+                or block.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewTable>
@@ -307,7 +340,8 @@ const SpacingPage = ({ ...props }) => {
                   <code>.gap</code>
                 </td>
                 <td>
-                  <code>28px</code> as <code className="code-tag">gutter</code> size
+                  <code>28px</code> as <code className="code-tag">gutter</code>{' '}
+                  size
                 </td>
                 <td></td>
               </tr>
@@ -349,10 +383,11 @@ const SpacingPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.gap-{"{num}"}px</code>
+                  <code>.gap-{'{num}'}px</code>
                 </td>
                 <td>
-                  <code>[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]</code> use as <code>{"{num}"}</code> value
+                  <code>[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]</code> use as{' '}
+                  <code>{'{num}'}</code> value
                 </td>
                 <td>
                   <span className="fs-11px text-soft">Fixed in pixel</span>
@@ -360,14 +395,15 @@ const SpacingPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.gap-{"{size}"}</code>
+                  <code>.gap-{'{size}'}</code>
                 </td>
                 <td>
-                  <code>[0, 1, 2, 3, 4, 5] </code> as <code>{"{size}"}</code> value
+                  <code>[0, 1, 2, 3, 4, 5] </code> as <code>{'{size}'}</code>{' '}
+                  value
                 </td>
                 <td>
                   <span className="fs-11px text-soft">
-                    <code>{"{size}"}</code> is related to Size reference.
+                    <code>{'{size}'}</code> is related to Size reference.
                   </span>
                 </td>
               </tr>
@@ -381,7 +417,7 @@ const SpacingPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default SpacingPage;
+export default SpacingPage

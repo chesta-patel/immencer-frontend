@@ -1,5 +1,5 @@
-import React from "react";
-import Head from "../../layout/head/Head";
+import React from 'react'
+import Head from '../../layout/head/Head'
 import {
   BlockBetween,
   BlockDes,
@@ -9,7 +9,7 @@ import {
   Icon,
   LoginLogTable,
   Button,
-} from "../../components/Component";
+} from '../../components/Component'
 
 const UserProfileActivityPage = ({ sm, updateSm }) => {
   return (
@@ -21,7 +21,7 @@ const UserProfileActivityPage = ({ sm, updateSm }) => {
             <BlockTitle tag="h4">Login Activity</BlockTitle>
             <BlockDes>
               <p>
-                Here is your last 20 login activities log.{" "}
+                Here is your last 20 login activities log.{' '}
                 <span className="text-soft">
                   <Icon name="info" />
                 </span>
@@ -30,7 +30,9 @@ const UserProfileActivityPage = ({ sm, updateSm }) => {
           </BlockHeadContent>
           <BlockHeadContent className="align-self-start d-lg-none">
             <Button
-              className={`toggle btn btn-icon btn-trigger mt-n1 ${sm ? "active" : ""}`}
+              className={`toggle btn btn-icon btn-trigger mt-n1 ${
+                sm ? 'active' : ''
+              }`}
               onClick={() => updateSm(!sm)}
             >
               <Icon name="menu-alt-r"></Icon>
@@ -40,6 +42,6 @@ const UserProfileActivityPage = ({ sm, updateSm }) => {
       </BlockHead>
       <LoginLogTable />
     </React.Fragment>
-  );
-};
-export default UserProfileActivityPage;
+  )
+}
+export default UserProfileActivityPage

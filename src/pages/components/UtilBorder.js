@@ -1,8 +1,19 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, PreviewTable, CodeBlock } from "../../components/preview/Preview";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import {
+  PreviewCard,
+  PreviewTable,
+  CodeBlock,
+} from '../../components/preview/Preview'
 
 const BorderPage = ({ ...props }) => {
   return (
@@ -18,7 +29,10 @@ const BorderPage = ({ ...props }) => {
               Border Utility
             </BlockTitle>
             <BlockDes>
-              <p className="lead">Use border utilities to quickly style the border and border-radius of an element.</p>
+              <p className="lead">
+                Use border utilities to quickly style the border and
+                border-radius of an element.
+              </p>
             </BlockDes>
           </BlockHeadContent>
         </BlockHead>
@@ -27,7 +41,10 @@ const BorderPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Additive Border</BlockTitle>
-              <p>You can add border to any side of an element with border utilities classes.</p>
+              <p>
+                You can add border to any side of an element with border
+                utilities classes.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -55,7 +72,7 @@ const BorderPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.border-{"{top|bottom|left|right}"}</code>
+                  <code>.border-{'{top|bottom|left|right}'}</code>
                 </td>
                 <td>Add border in relavent side</td>
               </tr>
@@ -68,7 +85,10 @@ const BorderPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Subtractive Border</BlockTitle>
-              <p>You can remove border to a single side of an element with below border utilities classes.</p>
+              <p>
+                You can remove border to a single side of an element with below
+                border utilities classes.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -96,7 +116,7 @@ const BorderPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.border-{"{top|bottom|left|right}"}-0</code>
+                  <code>.border-{'{top|bottom|left|right}'}-0</code>
                 </td>
                 <td>Remove border from specific side of an element</td>
               </tr>
@@ -109,7 +129,10 @@ const BorderPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Border Color</BlockTitle>
-              <p>Change the border color using utilities built on our theme colors.</p>
+              <p>
+                Change the border color using utilities built on our theme
+                colors.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -136,9 +159,12 @@ const BorderPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.border-{"{value}"}</code>
+                  <code>.border-{'{value}'}</code>
                 </td>
-                <td>primary | secondary | success | warning | danger | info | dark | gray | light | white </td>
+                <td>
+                  primary | secondary | success | warning | danger | info | dark
+                  | gray | light | white{' '}
+                </td>
               </tr>
             </tbody>
           </PreviewTable>
@@ -180,7 +206,7 @@ const BorderPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.rounded-{"{top|bottom|left|right}"}</code>
+                  <code>.rounded-{'{top|bottom|left|right}'}</code>
                 </td>
                 <td>Apply rounded on specific corner of an element</td>
               </tr>
@@ -204,7 +230,7 @@ const BorderPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.rounded-{"{sm|lg}"}</code>
+                  <code>.rounded-{'{sm|lg}'}</code>
                 </td>
                 <td>Apply small and large rounded corner of an element</td>
               </tr>
@@ -214,7 +240,7 @@ const BorderPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default BorderPage;
+export default BorderPage

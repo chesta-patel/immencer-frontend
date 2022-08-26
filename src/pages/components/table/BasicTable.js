@@ -1,6 +1,6 @@
-import React from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
+import React from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
 import {
   Table,
   Block,
@@ -11,8 +11,8 @@ import {
   BackTo,
   PreviewCard,
   CodeBlock,
-} from "../../../components/Component";
-import { basicData } from "./TableData";
+} from '../../../components/Component'
+import { basicData } from './TableData'
 
 const BasicTable = () => {
   return (
@@ -29,9 +29,11 @@ const BasicTable = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Examples for opt-in styling of tables with Bootstrap. Just add the base className{" "}
-                <code className="code-class">.table</code> to any <code className="code-tag">&lt;table&gt;</code> tag,
-                then extend with custom styles or our various included modifier classNames.
+                Examples for opt-in styling of tables with Bootstrap. Just add
+                the base className <code className="code-class">.table</code> to
+                any <code className="code-tag">&lt;table&gt;</code> tag, then
+                extend with custom styles or our various included modifier
+                classNames.
               </p>
             </BlockDes>
           </BlockHeadContent>
@@ -42,8 +44,9 @@ const BasicTable = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Table Default</BlockTitle>
               <p>
-                Using the most basic table markup, here’s how <code className="code-class">.table</code> based tables
-                look by default.
+                Using the most basic table markup, here’s how{' '}
+                <code className="code-class">.table</code> based tables look by
+                default.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -89,9 +92,11 @@ const BasicTable = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Table Head Options</BlockTitle>
               <p>
-                Similar to others table, use the modifier classNames <code className="code-class">.thead-light</code> or{" "}
-                <code className="code-class">.thead-dark</code> to make <code className="code-tag">&lt;thead&gt;</code>{" "}
-                appear light or dark.
+                Similar to others table, use the modifier classNames{' '}
+                <code className="code-class">.thead-light</code> or{' '}
+                <code className="code-class">.thead-dark</code> to make{' '}
+                <code className="code-tag">&lt;thead&gt;</code> appear light or
+                dark.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -175,8 +180,9 @@ const BasicTable = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Table Striped Rows</BlockTitle>
               <p>
-                Use <code className="code-class">.table-stripped</code> className in{" "}
-                <code className="code-tag">&lt;table&gt;</code> tag to make zebra stripping on table row.
+                Use <code className="code-class">.table-stripped</code>{' '}
+                className in <code className="code-tag">&lt;table&gt;</code> tag
+                to make zebra stripping on table row.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -222,8 +228,9 @@ const BasicTable = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Bordered Table</BlockTitle>
               <p>
-                Use <code className="code-class">.table-bordered</code> className in{" "}
-                <code className="code-tag">&lt;table&gt;</code> tag to make every cell bordered.
+                Use <code className="code-class">.table-bordered</code>{' '}
+                className in <code className="code-tag">&lt;table&gt;</code> tag
+                to make every cell bordered.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -232,7 +239,7 @@ const BasicTable = () => {
               <thead>
                 <tr>
                   {basicData.header.map((item, idx) => {
-                    return <th key={idx}>{item}</th>;
+                    return <th key={idx}>{item}</th>
                   })}
                 </tr>
               </thead>
@@ -244,7 +251,7 @@ const BasicTable = () => {
                       <td>{item.first}</td>
                       <td>{item.last}</td>
                     </tr>
-                  );
+                  )
                 })}
               </tbody>
             </table>
@@ -288,8 +295,9 @@ const BasicTable = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Borderless Table</BlockTitle>
               <p>
-                Use <code className="code-class">.table-borderless</code> className in{" "}
-                <code className="code-tag">&lt;table&gt;</code> tag to remove every cell border.
+                Use <code className="code-class">.table-borderless</code>{' '}
+                className in <code className="code-tag">&lt;table&gt;</code> tag
+                to remove every cell border.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -335,8 +343,9 @@ const BasicTable = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Table Hoverable Row</BlockTitle>
               <p>
-                Use <code className="code-class">.table-hover</code> className in{" "}
-                <code className="code-tag">&lt;table&gt;</code> to enable a hover state on table rows.
+                Use <code className="code-class">.table-hover</code> className
+                in <code className="code-tag">&lt;table&gt;</code> to enable a
+                hover state on table rows.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -382,7 +391,8 @@ const BasicTable = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Small Table</BlockTitle>
               <p>
-                Add <code className="code-class">.table-sm</code> to get more small table.
+                Add <code className="code-class">.table-sm</code> to get more
+                small table.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -428,11 +438,16 @@ const BasicTable = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Responsive Table</BlockTitle>
               <p>
-                Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across
-                all viewports by wrapping a <code className="code-class">.table</code> with{" "}
-                <code className="code-class">.table-responsive</code>. Or, pick a maximum breakpoint with which to have
-                a responsive table up to by using{" "}
-                <code className="code-class">.table-responsive{"-sm|-md|-lg|-xl"}</code>.
+                Responsive tables allow tables to be scrolled horizontally with
+                ease. Make any table responsive across all viewports by wrapping
+                a <code className="code-class">.table</code> with{' '}
+                <code className="code-class">.table-responsive</code>. Or, pick
+                a maximum breakpoint with which to have a responsive table up to
+                by using{' '}
+                <code className="code-class">
+                  .table-responsive{'-sm|-md|-lg|-xl'}
+                </code>
+                .
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -474,6 +489,6 @@ const BasicTable = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
-export default BasicTable;
+  )
+}
+export default BasicTable

@@ -1,9 +1,14 @@
-import React, { useContext } from "react";
-import { DropdownToggle, DropdownMenu, UncontrolledDropdown, DropdownItem } from "reactstrap";
-import { Link } from "react-router-dom";
-import { Icon, UserAvatar } from "../../../components/Component";
-import { findUpper } from "../../../utils/Utils";
-import { ChatContext } from "./ChatContext";
+import React, { useContext } from 'react'
+import {
+  DropdownToggle,
+  DropdownMenu,
+  UncontrolledDropdown,
+  DropdownItem,
+} from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { Icon, UserAvatar } from '../../../components/Component'
+import { findUpper } from '../../../utils/Utils'
+import { ChatContext } from './ChatContext'
 
 export const MeChat = ({ item, chat, onRemoveMessage }) => {
   return (
@@ -13,8 +18,10 @@ export const MeChat = ({ item, chat, onRemoveMessage }) => {
           {item.chat.map((msg, idx) => {
             return (
               <div className="chat-bubble" key={idx}>
-                {msg === "deleted" ? (
-                  <div className="chat-msg border bg-white text-muted">Message has been deleted</div>
+                {msg === 'deleted' ? (
+                  <div className="chat-msg border bg-white text-muted">
+                    Message has been deleted
+                  </div>
                 ) : (
                   <React.Fragment>
                     <div className={`chat-msg bg-${chat.chatTheme}`}>{msg}</div>
@@ -23,8 +30,8 @@ export const MeChat = ({ item, chat, onRemoveMessage }) => {
                         <a
                           href="#delete"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onRemoveMessage(idx, item.id);
+                            ev.preventDefault()
+                            onRemoveMessage(idx, item.id)
                           }}
                           className="btn btn-icon btn-sm btn-trigger"
                         >
@@ -35,7 +42,7 @@ export const MeChat = ({ item, chat, onRemoveMessage }) => {
                   </React.Fragment>
                 )}
               </div>
-            );
+            )
           })}
         </div>
         <ul className="chat-meta">
@@ -44,16 +51,20 @@ export const MeChat = ({ item, chat, onRemoveMessage }) => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const YouChat = ({ item, chat }) => {
   return (
     <div className="chat is-you">
       <div className="chat-avatar">
         {chat.group ? (
-          <UserAvatar image={item.user.image} theme={item.user.theme} text={findUpper(item.user.name)}>
-            {" "}
+          <UserAvatar
+            image={item.user.image}
+            theme={item.user.theme}
+            text={findUpper(item.user.name)}
+          >
+            {' '}
             {chat.active === true ? (
               <span className="status dot dot-lg dot-success"></span>
             ) : (
@@ -61,8 +72,12 @@ export const YouChat = ({ item, chat }) => {
             )}
           </UserAvatar>
         ) : (
-          <UserAvatar image={chat.image} theme={chat.theme} text={findUpper(chat.name)}>
-            {" "}
+          <UserAvatar
+            image={chat.image}
+            theme={chat.theme}
+            text={findUpper(chat.name)}
+          >
+            {' '}
             {chat.active === true ? (
               <span className="status dot dot-lg dot-success"></span>
             ) : (
@@ -78,7 +93,7 @@ export const YouChat = ({ item, chat }) => {
               <div className="chat-bubble" key={idx}>
                 <div className="chat-msg">{msg}</div>
               </div>
-            );
+            )
           })}
         </div>
         <ul className="chat-meta">
@@ -87,8 +102,8 @@ export const YouChat = ({ item, chat }) => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const MetaChat = ({ item }) => {
   return (
@@ -97,27 +112,32 @@ export const MetaChat = ({ item }) => {
         <span>{item}</span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export const ChatItem = ({ item, chatItemClick, setSelectedId, selectedId }) => {
-  const { deleteConvo, propAction } = useContext(ChatContext);
+export const ChatItem = ({
+  item,
+  chatItemClick,
+  setSelectedId,
+  selectedId,
+}) => {
+  const { deleteConvo, propAction } = useContext(ChatContext)
 
   const checkBeforeDelete = (id) => {
-    deleteConvo(id);
+    deleteConvo(id)
     if (selectedId === id) {
-      setSelectedId(null);
+      setSelectedId(null)
     }
-  };
+  }
 
   return (
-    <li className={`chat-item ${item.unread ? "is-unread" : ""}`}>
+    <li className={`chat-item ${item.unread ? 'is-unread' : ''}`}>
       <a
         className="chat-link"
         href="#chat-link"
         onClick={(ev) => {
-          ev.preventDefault();
-          chatItemClick(item.id);
+          ev.preventDefault()
+          chatItemClick(item.id)
         }}
       >
         {item.group === true ? (
@@ -131,28 +151,46 @@ export const ChatItem = ({ item, chatItemClick, setSelectedId, selectedId }) => 
                   image={user.image}
                   className="chat-media"
                 ></UserAvatar>
-              );
+              )
             })}
-            <span className={"status dot dot-lg dot-success"}></span>
+            <span className={'status dot dot-lg dot-success'}></span>
           </div>
         ) : (
-          <UserAvatar theme={item.theme} text={findUpper(item.name)} image={item.image} className="chat-media">
-            <span className={`status dot dot-lg dot-${item.active === true ? "success" : "gray"}`}></span>
+          <UserAvatar
+            theme={item.theme}
+            text={findUpper(item.name)}
+            image={item.image}
+            className="chat-media"
+          >
+            <span
+              className={`status dot dot-lg dot-${
+                item.active === true ? 'success' : 'gray'
+              }`}
+            ></span>
           </UserAvatar>
         )}
         <div className="chat-info">
           <div className="chat-from">
-            <div className="name">{item.nickname ? item.nickname : item.name}</div>
+            <div className="name">
+              {item.nickname ? item.nickname : item.name}
+            </div>
             <span className="time">{item.date}</span>
           </div>
           <div className="chat-context">
             <div className="text">
-              <p>{item.convo.length !== 0 && item.convo[item.convo.length - 1].chat.at(-1)}</p>
+              <p>
+                {item.convo.length !== 0 &&
+                  item.convo[item.convo.length - 1].chat.at(-1)}
+              </p>
             </div>
             <div className="status delivered">
               <Icon
                 name={`${
-                  item.delivered === true ? "check-circle-fill" : item.delivered === "sent" ? "check-circle" : ""
+                  item.delivered === true
+                    ? 'check-circle-fill'
+                    : item.delivered === 'sent'
+                    ? 'check-circle'
+                    : ''
                 }`}
               ></Icon>
             </div>
@@ -161,7 +199,10 @@ export const ChatItem = ({ item, chatItemClick, setSelectedId, selectedId }) => 
       </a>
       <div className="chat-actions">
         <UncontrolledDropdown>
-          <DropdownToggle tag="a" className="btn btn-icon btn-sm btn-trigger dropdown-toggle">
+          <DropdownToggle
+            tag="a"
+            className="btn btn-icon btn-sm btn-trigger dropdown-toggle"
+          >
             <Icon name="more-h"></Icon>
           </DropdownToggle>
           <DropdownMenu right>
@@ -171,31 +212,31 @@ export const ChatItem = ({ item, chatItemClick, setSelectedId, selectedId }) => 
                   tag="a"
                   href="#delete"
                   onClick={(ev) => {
-                    ev.preventDefault();
+                    ev.preventDefault()
                   }}
                 >
                   Delete
                 </DropdownItem>
               </li>
-              <li onClick={() => propAction(item.id, "unread")}>
+              <li onClick={() => propAction(item.id, 'unread')}>
                 <DropdownItem
                   tag="a"
                   href="#unread"
-                  className={item.unread ? "disabled" : ""}
+                  className={item.unread ? 'disabled' : ''}
                   onClick={(ev) => {
-                    ev.preventDefault();
+                    ev.preventDefault()
                   }}
                 >
                   Mark as Unread
                 </DropdownItem>
               </li>
-              <li onClick={() => propAction(item.id, "archive")}>
+              <li onClick={() => propAction(item.id, 'archive')}>
                 <DropdownItem
                   tag="a"
                   href="#archive"
-                  className={item.archive ? "disabled" : ""}
+                  className={item.archive ? 'disabled' : ''}
                   onClick={(ev) => {
-                    ev.preventDefault();
+                    ev.preventDefault()
                   }}
                 >
                   Archive Message
@@ -206,36 +247,44 @@ export const ChatItem = ({ item, chatItemClick, setSelectedId, selectedId }) => 
         </UncontrolledDropdown>
       </div>
     </li>
-  );
-};
+  )
+}
 
 export const ContactItem = ({ item, setTab, setSelectedId }) => {
   return (
     <ul className="contacts-list">
       <li>
-        <h6 className="title overline-title-alt">{item.contacts.length > 0 && item.title}</h6>
+        <h6 className="title overline-title-alt">
+          {item.contacts.length > 0 && item.title}
+        </h6>
       </li>
       {item.contacts.map((contact, idx) => {
         return (
           <li
             key={idx}
             onClick={() => {
-              setTab("Chats");
-              setSelectedId(contact.id);
+              setTab('Chats')
+              setSelectedId(contact.id)
             }}
           >
             <div className="user-card">
               <a href="#card" onClick={(ev) => ev.preventDefault()}>
-                <UserAvatar text={findUpper(contact.name)} theme={contact.theme} image={contact.image}></UserAvatar>
+                <UserAvatar
+                  text={findUpper(contact.name)}
+                  theme={contact.theme}
+                  image={contact.image}
+                ></UserAvatar>
                 <div className="user-name">{contact.name}</div>
               </a>
               <div className="user-actions">
-                <Link to={`${process.env.PUBLIC_URL}/app-chat`}>Start Chat</Link>
+                <Link to={`${process.env.PUBLIC_URL}/app-chat`}>
+                  Start Chat
+                </Link>
               </div>
             </div>
           </li>
-        );
+        )
       })}
     </ul>
-  );
-};
+  )
+}

@@ -1,23 +1,26 @@
-import React from "react";
-import { DropdownToggle, DropdownMenu, UncontrolledDropdown } from "reactstrap";
+import React from 'react'
+import { DropdownToggle, DropdownMenu, UncontrolledDropdown } from 'reactstrap'
 
-import Icon from "../../../../components/icon/Icon";
-import data from "./NotificationData";
+import Icon from '../../../../components/icon/Icon'
+import data from './NotificationData'
 
 const NotificationItem = (props) => {
-  const { icon, iconStyle, text, time, id } = props;
+  const { icon, iconStyle, text, time, id } = props
   return (
     <div className="nk-notification-item" key={id} id={id}>
       <div className="nk-notification-icon">
-        <Icon name={icon} className={[`icon-circle ${iconStyle ? " " + iconStyle : ""}`]} />
+        <Icon
+          name={icon}
+          className={[`icon-circle ${iconStyle ? ' ' + iconStyle : ''}`]}
+        />
       </div>
       <div className="nk-notification-content">
         <div className="nk-notification-text">{text}</div>
         <div className="nk-notification-time">{time}</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const Notification = () => {
   return (
@@ -46,7 +49,7 @@ const Notification = () => {
                   text={item.text}
                   time={item.time}
                 />
-              );
+              )
             })}
           </div>
         </div>
@@ -57,7 +60,7 @@ const Notification = () => {
         </div>
       </DropdownMenu>
     </UncontrolledDropdown>
-  );
-};
+  )
+}
 
-export default Notification;
+export default Notification

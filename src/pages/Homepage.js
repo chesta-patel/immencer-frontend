@@ -1,16 +1,22 @@
-import React, { useState } from "react";
-import Head from "../layout/head/Head";
-import Content from "../layout/content/Content";
-import SaleRevenue from "../components/partials/default/sale-revenue/SaleRevenue";
-import ActiveSubscription from "../components/partials/default/active-subscription/ActiveSubscription";
-import AvgSubscription from "../components/partials/default/avg-subscription/AvgSubscription";
-import SalesOverview from "../components/partials/default/sales-overview/SalesOverview";
-import TransactionTable from "../components/partials/default/transaction/Transaction";
-import RecentActivity from "../components/partials/default/recent-activity/Activity";
-import NewsUsers from "../components/partials/default/new-users/User";
-import Support from "../components/partials/default/support-request/Support";
-import Notifications from "../components/partials/default/notification/Notification";
-import { DropdownToggle, DropdownMenu, Card, UncontrolledDropdown, DropdownItem } from "reactstrap";
+import React, { useState } from 'react'
+import Head from '../layout/head/Head'
+import Content from '../layout/content/Content'
+import SaleRevenue from '../components/partials/default/sale-revenue/SaleRevenue'
+import ActiveSubscription from '../components/partials/default/active-subscription/ActiveSubscription'
+import AvgSubscription from '../components/partials/default/avg-subscription/AvgSubscription'
+import SalesOverview from '../components/partials/default/sales-overview/SalesOverview'
+import TransactionTable from '../components/partials/default/transaction/Transaction'
+import RecentActivity from '../components/partials/default/recent-activity/Activity'
+import NewsUsers from '../components/partials/default/new-users/User'
+import Support from '../components/partials/default/support-request/Support'
+import Notifications from '../components/partials/default/notification/Notification'
+import {
+  DropdownToggle,
+  DropdownMenu,
+  Card,
+  UncontrolledDropdown,
+  DropdownItem,
+} from 'reactstrap'
 import {
   Block,
   BlockDes,
@@ -24,10 +30,10 @@ import {
   PreviewCard,
   PreviewAltCard,
   BlockBetween,
-} from "../components/Component";
+} from '../components/Component'
 
 const Homepage = () => {
-  const [sm, updateSm] = useState(false);
+  const [sm, updateSm] = useState(false)
   return (
     <React.Fragment>
       <Head title="Homepage"></Head>
@@ -45,19 +51,31 @@ const Homepage = () => {
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
                 <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${sm ? "active" : ""}`}
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                    sm ? 'active' : ''
+                  }`}
                   onClick={() => updateSm(!sm)}
                 >
                   <Icon name="more-v" />
                 </Button>
-                <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
                   <ul className="nk-block-tools g-3">
                     <li>
                       <UncontrolledDropdown>
-                        <DropdownToggle tag="a" className="dropdown-toggle btn btn-white btn-dim btn-outline-light">
-                          <Icon className="d-none d-sm-inline" name="calender-date" />
+                        <DropdownToggle
+                          tag="a"
+                          className="dropdown-toggle btn btn-white btn-dim btn-outline-light"
+                        >
+                          <Icon
+                            className="d-none d-sm-inline"
+                            name="calender-date"
+                          />
                           <span>
-                            <span className="d-none d-md-inline">Last</span> 30 Days
+                            <span className="d-none d-md-inline">Last</span> 30
+                            Days
                           </span>
                           <Icon className="dd-indc" name="chevron-right" />
                         </DropdownToggle>
@@ -67,7 +85,7 @@ const Homepage = () => {
                               <DropdownItem
                                 tag="a"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                                 href="#!"
                               >
@@ -78,7 +96,7 @@ const Homepage = () => {
                               <DropdownItem
                                 tag="a"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                                 href="#dropdownitem"
                               >
@@ -89,7 +107,7 @@ const Homepage = () => {
                               <DropdownItem
                                 tag="a"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                                 href="#dropdownitem"
                               >
@@ -171,6 +189,6 @@ const Homepage = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
-export default Homepage;
+  )
+}
+export default Homepage

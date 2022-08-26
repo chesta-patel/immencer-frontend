@@ -1,7 +1,7 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import SlideA from "../../images/slides/slide-a.jpg";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import SlideA from '../../images/slides/slide-a.jpg'
 
 import {
   Row,
@@ -16,9 +16,16 @@ import {
   CardSubtitle,
   CardLink,
   Button,
-} from "reactstrap";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, CodeBlock } from "../../components/preview/Preview";
+} from 'reactstrap'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import { PreviewCard, CodeBlock } from '../../components/preview/Preview'
 
 const CardsPage = ({ ...props }) => {
   return (
@@ -35,17 +42,23 @@ const CardsPage = ({ ...props }) => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Cards provide a flexible and extensible content container with multiple variants and options. To use it,
-                import it such as{" "}
+                Cards provide a flexible and extensible content container with
+                multiple variants and options. To use it, import it such as{' '}
                 <code>
-                  import{" "}
-                  {`{Card, CardHeader, CardFooter, CardImg, CardText, CardBody, CardTitle, CardSubtitle, CardLink}`}{" "}
+                  import{' '}
+                  {`{Card, CardHeader, CardFooter, CardImg, CardText, CardBody, CardTitle, CardSubtitle, CardLink}`}{' '}
                   from "reactstrap"
                 </code>
-                . Visit the{" "}
-                <a href={"https://deploy-preview-2356--reactstrap.netlify.app/components/card"} target="_blank" rel="noreferrer">
+                . Visit the{' '}
+                <a
+                  href={
+                    'https://deploy-preview-2356--reactstrap.netlify.app/components/card'
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Reactstrap
-                </a>{" "}
+                </a>{' '}
                 library for detailed instructions.
               </p>
             </BlockDes>
@@ -57,8 +70,8 @@ const CardsPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Basic Examples</BlockTitle>
               <p>
-                Cards are built with as little markup and styles as possible, but still manage to deliver a ton of
-                control and customization.
+                Cards are built with as little markup and styles as possible,
+                but still manage to deliver a ton of control and customization.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -70,7 +83,8 @@ const CardsPage = ({ ...props }) => {
                   <CardBody className="card-inner">
                     <CardTitle tag="h5">Card with stretched link</CardTitle>
                     <CardText>
-                      Some quick example text to build on the card title and make up the bulk of the card"s content.
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card"s content.
                     </CardText>
                     <Button color="primary">Go somewhere</Button>
                   </CardBody>
@@ -97,10 +111,13 @@ const CardsPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Titles, text, and links</BlockTitle>
               <p>
-                Card titles are used by adding <code>CardTitle</code> as a <code className="code-tag">child props</code>{" "}
-                inside <code>Card </code> <br />
-                In the same way, links are added and placed next to each other by adding <code>CardLink</code> as a{" "}
-                <code className="code-tag">child props</code> inside <code>Card</code>.
+                Card titles are used by adding <code>CardTitle</code> as a{' '}
+                <code className="code-tag">child props</code> inside{' '}
+                <code>Card </code> <br />
+                In the same way, links are added and placed next to each other
+                by adding <code>CardLink</code> as a{' '}
+                <code className="code-tag">child props</code> inside{' '}
+                <code>Card</code>.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -114,12 +131,13 @@ const CardsPage = ({ ...props }) => {
                       Card subtitle
                     </CardSubtitle>
                     <CardText>
-                      Some quick example text to build on the card title and make up the bulk of the card"s content.
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card"s content.
                     </CardText>
                     <CardLink
                       href="#link"
                       onClick={(ev) => {
-                        ev.preventDefault();
+                        ev.preventDefault()
                       }}
                     >
                       Card Link
@@ -127,7 +145,7 @@ const CardsPage = ({ ...props }) => {
                     <CardLink
                       href="#link"
                       onClick={(ev) => {
-                        ev.preventDefault();
+                        ev.preventDefault()
                       }}
                     >
                       Another Link
@@ -165,10 +183,15 @@ const CardsPage = ({ ...props }) => {
             <Row>
               <Col lg="4">
                 <Card className="card-bordered">
-                  <CardHeader className="border-bottom">Featured Title</CardHeader>
+                  <CardHeader className="border-bottom">
+                    Featured Title
+                  </CardHeader>
                   <CardBody className="card-inner">
                     <CardTitle tag="h5">Special title treatment</CardTitle>
-                    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                    <CardText>
+                      With supporting text below as a natural lead-in to
+                      additional content.
+                    </CardText>
                     <Button color="primary">Go somewhere</Button>
                   </CardBody>
                   <CardFooter className="border-top">2 days ago</CardFooter>
@@ -176,10 +199,15 @@ const CardsPage = ({ ...props }) => {
               </Col>
               <Col lg="4">
                 <Card className="card-bordered">
-                  <CardHeader className="border-bottom">Featured Title</CardHeader>
+                  <CardHeader className="border-bottom">
+                    Featured Title
+                  </CardHeader>
                   <CardBody className="card-inner">
                     <CardTitle tag="h5">Special title treatment</CardTitle>
-                    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                    <CardText>
+                      With supporting text below as a natural lead-in to
+                      additional content.
+                    </CardText>
                     <Button color="primary">Go somewhere</Button>
                   </CardBody>
                 </Card>
@@ -207,9 +235,13 @@ const CardsPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h4">Card Styles</BlockTitle>
-              <p>Cards include various options for customizing their backgrounds, borders, and color.</p>
               <p>
-                Use <a href="/utlities/color">colors utilities</a> to change the appearance of a card.
+                Cards include various options for customizing their backgrounds,
+                borders, and color.
+              </p>
+              <p>
+                Use <a href="/utlities/color">colors utilities</a> to change the
+                appearance of a card.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -221,7 +253,8 @@ const CardsPage = ({ ...props }) => {
                   <CardBody className="card-inner">
                     <CardTitle tag="h5">Primary card title</CardTitle>
                     <CardText>
-                      Some quick example text to build on the card title and make up the bulk of the card"s content.
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card"s content.
                     </CardText>
                   </CardBody>
                 </Card>
@@ -232,7 +265,8 @@ const CardsPage = ({ ...props }) => {
                   <CardBody className="card-inner">
                     <CardTitle tag="h5">Secondary card title</CardTitle>
                     <CardText>
-                      Some quick example text to build on the card title and make up the bulk of the card"s content.
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card"s content.
                     </CardText>
                   </CardBody>
                 </Card>
@@ -243,7 +277,8 @@ const CardsPage = ({ ...props }) => {
                   <CardBody className="card-inner">
                     <CardTitle tag="h5">Dark card title</CardTitle>
                     <CardText>
-                      Some quick example text to build on the card title and make up the bulk of the card"s content.
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card"s content.
                     </CardText>
                   </CardBody>
                 </Card>
@@ -254,7 +289,8 @@ const CardsPage = ({ ...props }) => {
                   <CardBody className="card-inner">
                     <CardTitle tag="h5">Light card title</CardTitle>
                     <CardText>
-                      Some quick example text to build on the card title and make up the bulk of the card"s content.
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card"s content.
                     </CardText>
                   </CardBody>
                 </Card>
@@ -276,7 +312,7 @@ const CardsPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default CardsPage;
+export default CardsPage

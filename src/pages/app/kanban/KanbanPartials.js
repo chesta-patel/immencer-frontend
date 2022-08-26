@@ -1,37 +1,52 @@
-import React, { useState } from "react";
-import { Draggable, Droppable } from "react-beautiful-dnd";
-import { Badge, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Modal, UncontrolledDropdown } from "reactstrap";
-import { Icon, UserAvatar } from "../../../components/Component";
-import { findUpper } from "../../../utils/Utils";
-import { KanbanTaskForm, KanbanBoardForm } from "./KanbanForms";
+import React, { useState } from 'react'
+import { Draggable, Droppable } from 'react-beautiful-dnd'
+import {
+  Badge,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Modal,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import { Icon, UserAvatar } from '../../../components/Component'
+import { findUpper } from '../../../utils/Utils'
+import { KanbanTaskForm, KanbanBoardForm } from './KanbanForms'
 
 export const KanbanCard = ({ data, setData, card, index, column }) => {
-  const [open, setOpen] = useState(false);
-  const [taskModal, setTaskModal] = useState(false);
+  const [open, setOpen] = useState(false)
+  const [taskModal, setTaskModal] = useState(false)
 
   const toggleOpen = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   const toggleTaskModal = () => {
-    setTaskModal(!taskModal);
-  };
+    setTaskModal(!taskModal)
+  }
 
   const deleteTask = (id) => {
-    let defaultData = data;
-    delete defaultData.task[id];
+    let defaultData = data
+    delete defaultData.task[id]
 
-    defaultData.columns[column.id].tasks = defaultData.columns[column.id].tasks.filter((item) => item !== id);
+    defaultData.columns[column.id].tasks = defaultData.columns[
+      column.id
+    ].tasks.filter((item) => item !== id)
 
-    setData({ ...defaultData });
-  };
+    setData({ ...defaultData })
+  }
 
-  const { id, title, desc, meta } = card;
+  const { id, title, desc, meta } = card
   return (
     <React.Fragment>
       <Draggable draggableId={id} key={id} index={index}>
         {(provided) => (
-          <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="mt-2">
+          <div
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            className="mt-2"
+          >
             <div className="kanban-item">
               <div className="kanban-item-title">
                 <h6 className="title">{title}</h6>
@@ -44,7 +59,12 @@ export const KanbanCard = ({ data, setData, card, index, column }) => {
                   >
                     <div className="user-avatar-group">
                       {meta.users.map((user, index) => (
-                        <UserAvatar key={index} className="xs" theme={user.theme} text={user.value[0]}></UserAvatar>
+                        <UserAvatar
+                          key={index}
+                          className="xs"
+                          theme={user.theme}
+                          text={user.value[0]}
+                        ></UserAvatar>
                       ))}
                     </div>
                   </DropdownToggle>
@@ -53,7 +73,11 @@ export const KanbanCard = ({ data, setData, card, index, column }) => {
                       {meta.users.map((user, index) => (
                         <li key={index}>
                           <div className="user-card" onClick={toggleOpen}>
-                            <UserAvatar className="sm" theme={user.theme} text={findUpper(user.value)}></UserAvatar>
+                            <UserAvatar
+                              className="sm"
+                              theme={user.theme}
+                              text={findUpper(user.value)}
+                            ></UserAvatar>
                             <div className="user-name">
                               <span className="tb-lead">{user.value}</span>
                             </div>
@@ -82,7 +106,7 @@ export const KanbanCard = ({ data, setData, card, index, column }) => {
                       <span>{meta.date}</span>
                     </li>
                   ) : (
-                    <li className={Number(meta.due) < 5 ? "text-danger" : ""}>
+                    <li className={Number(meta.due) < 5 ? 'text-danger' : ''}>
                       <Icon name="calendar"></Icon>
                       <span>{meta.due}d Due</span>
                     </li>
@@ -109,8 +133,8 @@ export const KanbanCard = ({ data, setData, card, index, column }) => {
                             tag="a"
                             href="#item"
                             onClick={(ev) => {
-                              ev.preventDefault();
-                              toggleTaskModal();
+                              ev.preventDefault()
+                              toggleTaskModal()
                             }}
                           >
                             <Icon name="edit"></Icon>
@@ -122,8 +146,8 @@ export const KanbanCard = ({ data, setData, card, index, column }) => {
                             tag="a"
                             href="#item"
                             onClick={(ev) => {
-                              ev.preventDefault();
-                              deleteTask(card.id);
+                              ev.preventDefault()
+                              deleteTask(card.id)
                             }}
                           >
                             <Icon name="trash"></Icon>
@@ -140,60 +164,86 @@ export const KanbanCard = ({ data, setData, card, index, column }) => {
         )}
       </Draggable>
       <Modal size="lg" isOpen={taskModal} toggle={toggleTaskModal}>
-        <KanbanTaskForm toggle={toggleTaskModal} data={data} setData={setData} editTask={card} taskToBoard={column} />
+        <KanbanTaskForm
+          toggle={toggleTaskModal}
+          data={data}
+          setData={setData}
+          editTask={card}
+          taskToBoard={column}
+        />
       </Modal>
     </React.Fragment>
-  );
-};
+  )
+}
 
 export const KanbanCardList = ({ data, setData, tasks, column }) => {
   return tasks.length > 0 ? (
     tasks.map((task, index) => {
-      const card = data.task[task];
-      return <KanbanCard card={card} data={data} setData={setData} key={card.id} index={index} column={column} />;
+      const card = data.task[task]
+      return (
+        <KanbanCard
+          card={card}
+          data={data}
+          setData={setData}
+          key={card.id}
+          index={index}
+          column={column}
+        />
+      )
     })
   ) : (
     <div className="kanban-drag"></div>
-  );
-};
+  )
+}
 
 export const KanbanColumn = ({ data, setData, column, index }) => {
-  const [open, setOpen] = useState(false);
-  const [editModal, setEditModal] = useState(false);
+  const [open, setOpen] = useState(false)
+  const [editModal, setEditModal] = useState(false)
 
   const toggleModal = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   const toggleEditModal = () => {
-    setEditModal(!editModal);
-  };
+    setEditModal(!editModal)
+  }
 
   const deleteBoard = (item) => {
-    let defaultData = data;
-    delete defaultData.columns[item.id];
-    defaultData.columnOrder = defaultData.columnOrder.filter((el) => el !== item.id);
+    let defaultData = data
+    delete defaultData.columns[item.id]
+    defaultData.columnOrder = defaultData.columnOrder.filter(
+      (el) => el !== item.id
+    )
 
-    setData({ ...defaultData });
-  };
+    setData({ ...defaultData })
+  }
 
   const emptyList = (item) => {
-    let defaultData = data;
-    defaultData.columns[item.id].tasks = [];
+    let defaultData = data
+    defaultData.columns[item.id].tasks = []
 
-    setData({ ...defaultData });
-  };
+    setData({ ...defaultData })
+  }
 
   return (
     <React.Fragment>
       <Draggable draggableId={column.id} key={column.id} index={index}>
         {(provided) => (
-          <div className="kanban-board" ref={provided.innerRef} {...provided.draggableProps}>
-            <div className={`kanban-board-header kanban-${column.theme}`} {...provided.dragHandleProps}>
+          <div
+            className="kanban-board"
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+          >
+            <div
+              className={`kanban-board-header kanban-${column.theme}`}
+              {...provided.dragHandleProps}
+            >
               <div className="kanban-title-board">
                 <div className="kanban-title-content">
                   <h6 className="title">{column.text}</h6>
-                  <span className="badge badge-pill badge-outline-light text-dark">{column.tasks.length}</span>
+                  <span className="badge badge-pill badge-outline-light text-dark">
+                    {column.tasks.length}
+                  </span>
                 </div>
                 <div className="kanban-title-content">
                   <UncontrolledDropdown>
@@ -212,8 +262,8 @@ export const KanbanColumn = ({ data, setData, column, index }) => {
                             tag="a"
                             href="#item"
                             onClick={(ev) => {
-                              ev.preventDefault();
-                              toggleEditModal();
+                              ev.preventDefault()
+                              toggleEditModal()
                             }}
                           >
                             <Icon name="edit"></Icon>
@@ -225,8 +275,8 @@ export const KanbanColumn = ({ data, setData, column, index }) => {
                             tag="a"
                             href="#item"
                             onClick={(ev) => {
-                              ev.preventDefault();
-                              deleteBoard(column);
+                              ev.preventDefault()
+                              deleteBoard(column)
                             }}
                           >
                             <Icon name="trash"></Icon>
@@ -238,8 +288,8 @@ export const KanbanColumn = ({ data, setData, column, index }) => {
                             tag="a"
                             href="#item"
                             onClick={(ev) => {
-                              ev.preventDefault();
-                              emptyList(column);
+                              ev.preventDefault()
+                              emptyList(column)
                             }}
                           >
                             <Icon name="trash-empty"></Icon>
@@ -251,8 +301,8 @@ export const KanbanColumn = ({ data, setData, column, index }) => {
                             tag="a"
                             href="#item"
                             onClick={(ev) => {
-                              ev.preventDefault();
-                              toggleModal();
+                              ev.preventDefault()
+                              toggleModal()
                             }}
                           >
                             <Icon name="plus-sm"></Icon>
@@ -267,11 +317,25 @@ export const KanbanColumn = ({ data, setData, column, index }) => {
             </div>
             <Droppable droppableId={column.id} type="task">
               {(provided) => (
-                <div className="kanban-drag" {...provided.droppableProps} ref={provided.innerRef}>
-                  <KanbanCardList data={data} setData={setData} tasks={column.tasks} column={column} />
-                  <button className="kanban-add-task mt-2 btn btn-block" onClick={toggleModal}>
+                <div
+                  className="kanban-drag"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  <KanbanCardList
+                    data={data}
+                    setData={setData}
+                    tasks={column.tasks}
+                    column={column}
+                  />
+                  <button
+                    className="kanban-add-task mt-2 btn btn-block"
+                    onClick={toggleModal}
+                  >
                     <Icon name="plus-sm"></Icon>
-                    <span>{column.tasks.length > 0 ? "Add another " : "Add "} task</span>
+                    <span>
+                      {column.tasks.length > 0 ? 'Add another ' : 'Add '} task
+                    </span>
                   </button>
                   {provided.placeholder}
                 </div>
@@ -281,12 +345,22 @@ export const KanbanColumn = ({ data, setData, column, index }) => {
         )}
       </Draggable>
       <Modal size="lg" isOpen={open} toggle={toggleModal}>
-        <KanbanTaskForm toggle={toggleModal} data={data} setData={setData} taskToBoard={column} />
+        <KanbanTaskForm
+          toggle={toggleModal}
+          data={data}
+          setData={setData}
+          taskToBoard={column}
+        />
       </Modal>
 
       <Modal size="lg" isOpen={editModal} toggle={toggleEditModal}>
-        <KanbanBoardForm toggle={toggleEditModal} data={data} setData={setData} editBoard={column} />
+        <KanbanBoardForm
+          toggle={toggleEditModal}
+          data={data}
+          setData={setData}
+          editBoard={column}
+        />
       </Modal>
     </React.Fragment>
-  );
-};
+  )
+}

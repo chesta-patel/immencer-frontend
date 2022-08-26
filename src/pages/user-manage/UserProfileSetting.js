@@ -1,6 +1,6 @@
-import React from "react";
-import Head from "../../layout/head/Head";
-import { Card } from "reactstrap";
+import React from 'react'
+import Head from '../../layout/head/Head'
+import { Card } from 'reactstrap'
 import {
   Block,
   BlockBetween,
@@ -11,7 +11,7 @@ import {
   Icon,
   InputSwitch,
   Button,
-} from "../../components/Component";
+} from '../../components/Component'
 
 const UserProfileSettingPage = ({ sm, updateSm }) => {
   return (
@@ -28,7 +28,9 @@ const UserProfileSettingPage = ({ sm, updateSm }) => {
           </BlockHeadContent>
           <BlockHeadContent className="align-self-start d-lg-none">
             <Button
-              className={`toggle btn btn-icon btn-trigger mt-n1 ${sm ? "active" : ""}`}
+              className={`toggle btn btn-icon btn-trigger mt-n1 ${
+                sm ? 'active' : ''
+              }`}
               onClick={() => updateSm(!sm)}
             >
               <Icon name="menu-alt-r"></Icon>
@@ -44,7 +46,10 @@ const UserProfileSettingPage = ({ sm, updateSm }) => {
               <div className="between-center flex-wrap flex-md-nowrap g-3">
                 <div className="nk-block-text">
                   <h6>Save my Activity Logs</h6>
-                  <p>You can save your all activity logs including unusual activity detected.</p>
+                  <p>
+                    You can save your all activity logs including unusual
+                    activity detected.
+                  </p>
                 </div>
                 <div className="nk-block-actions">
                   <ul className="align-center gx-3">
@@ -81,11 +86,14 @@ const UserProfileSettingPage = ({ sm, updateSm }) => {
               <div className="between-center flex-wrap flex-md-nowrap g-3">
                 <div className="nk-block-text">
                   <h6>
-                    2 Factor Auth &nbsp; <span className="badge badge-success ml-0">Enabled</span>
+                    2 Factor Auth &nbsp;{' '}
+                    <span className="badge badge-success ml-0">Enabled</span>
                   </h6>
                   <p>
-                    Secure your account with 2FA security. When it is activated you will need to enter not only your
-                    password, but also a special code using app. You will receive this code via mobile application.{" "}
+                    Secure your account with 2FA security. When it is activated
+                    you will need to enter not only your password, but also a
+                    special code using app. You will receive this code via
+                    mobile application.{' '}
                   </p>
                 </div>
                 <div className="nk-block-actions">
@@ -97,6 +105,6 @@ const UserProfileSettingPage = ({ sm, updateSm }) => {
         </Card>
       </Block>
     </React.Fragment>
-  );
-};
-export default UserProfileSettingPage;
+  )
+}
+export default UserProfileSettingPage

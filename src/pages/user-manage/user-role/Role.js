@@ -43,8 +43,16 @@ import { UserContext } from '../UserContext'
 import { Link } from 'react-router-dom'
 import { bulkActionOptions } from '../../../utils/Utils'
 import { userrolecolum, formfield } from './Rolejson'
+import { cloneDeep } from 'lodash'
+
+const initialState = {}
+formfield.forEach((formFields) => {
+  initialState[`${formFields.name}`] = ''
+})
 
 const Role = ({ ...props }) => {
+  const [Fdata, setFdata] = useState({ ...initialState })
+  const [validate, setValidate] = useState(false)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -68,6 +76,7 @@ const Role = ({ ...props }) => {
   const [modal, setModal] = useState({
     edit: false,
     add: false,
+    shaw: false,
   })
   const onFormCancel = () => {
     setModal({ edit: false, add: false })
@@ -87,25 +96,10 @@ const Role = ({ ...props }) => {
     })
   }
   // submit function to add a new item
-  const onFormSubmit = (submitData) => {
-    const { name, email, balance, phone } = submitData
-    let submittedData = {
-      id: data.length + 1,
-      avatarBg: 'purple',
-      name: name,
-      role: 'Customer',
-      email: email,
-      balance: balance,
-      phone: phone,
-      emailStatus: 'success',
-      kycStatus: 'alert',
-      lastLogin: '10 Feb 2020',
-      status: formData.status,
-      country: 'Bangladesh',
-    }
-    setData([submittedData, ...data])
+  const onFormSubmit = (e) => {
     resetForm()
-    setModal({ edit: false }, { add: false })
+    setValidate(true)
+    e.preventDefault()
   }
 
   // function which selects all the items
@@ -579,7 +573,7 @@ const Role = ({ ...props }) => {
                 </DataTableRow>
                 {userrolecolum.map((colum, id) => (
                   <DataTableRow size={colum.size} key={id}>
-                    <span className={colum.className}>{colum.name}</span>
+                    <span className={colum.class_name}>{colum.name}</span>
                   </DataTableRow>
                 ))}
               </DataTableHead>
@@ -664,33 +658,22 @@ const Role = ({ ...props }) => {
                   className="row gy-4"
                   onSubmit={handleSubmit(onFormSubmit)}
                 >
-                  {formfield.map((fieldname, id) => {
-                    if (fieldname.type !== 'text') {
+                  {formfield.map((formFields, id) => {
+                    if (formFields.type !== 'text') {
                       return (
                         <Col md="6">
                           <FormGroup>
-                            <label className={fieldname.label_class}>
-                              {fieldname.label_name}
+                            <label className={formFields.label_class}>
+                              {formFields.label_name}
                             </label>
                             <div className="form-control-wrap">
                               <RSelect
-                                options={fieldname.option}
+                                options={formFields.option}
                                 defaultValue={{
-                                  value: fieldname.option?.[0]?.value,
-                                  label: fieldname.option?.[0]?.label,
+                                  value: formFields.option?.[0]?.value,
+                                  label: formFields.option?.[0]?.label,
                                 }}
-                                onChange={(e) =>
-                                  setFormData({ ...formData, status: e.value })
-                                }
-                                ref={register({
-                                  required: 'Please Select Status',
-                                })}
                               />
-                              {errors.status && (
-                                <span className="invalid">
-                                  {errors.status.message}
-                                </span>
-                              )}
                             </div>
                           </FormGroup>
                         </Col>
@@ -699,24 +682,27 @@ const Role = ({ ...props }) => {
                       return (
                         <Col md="6">
                           <FormGroup>
-                            <label className={fieldname.label_class}>
-                              {fieldname.label_name}
+                            <label className={formFields.label_class}>
+                              {formFields.label_name}
                             </label>
                             <input
-                              className={fieldname.input_class}
-                              type={fieldname.type}
-                              name={fieldname.name}
-                              defaultValue={formData.title}
-                              placeholder={fieldname.placeholder}
-                              ref={register({
-                                required: 'This field is required',
-                              })}
+                              className={formFields.input_class}
+                              type={formFields.type}
+                              name={formFields.name}
+                              placeholder={formFields.placeholder}
+                              value={Fdata[`${formFields.name}`]}
+                              onChange={(e) => {
+                                const oldState = cloneDeep(Fdata)
+                                oldState[`${formFields.name}`] = e.target.value
+                                setFdata({ ...oldState })
+                                setValidate(oldState)
+                              }}
                             />
-                            {errors.title && (
-                              <span className="invalid">
-                                {errors.title.message}
-                              </span>
-                            )}
+                            {formFields.required &&
+                              !Fdata[`${formFields.name}`] &&
+                              validate && (
+                                <p className="invalid">{formFields.required}</p>
+                              )}
                           </FormGroup>
                         </Col>
                       )

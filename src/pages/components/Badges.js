@@ -1,11 +1,22 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
 
-import { Badge } from "reactstrap";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, PreviewTable, CodeBlock } from "../../components/preview/Preview";
-import { OverlineTitle } from "../../components/text/Text";
+import { Badge } from 'reactstrap'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import {
+  PreviewCard,
+  PreviewTable,
+  CodeBlock,
+} from '../../components/preview/Preview'
+import { OverlineTitle } from '../../components/text/Text'
 
 const BadgesPage = () => {
   return (
@@ -22,11 +33,18 @@ const BadgesPage = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Documentation and examples for badges, our small count and labeling component. To use it, import it such
-                as <code>import {`{Badge}`} from "reactstrap"</code>. Visit the{" "}
-                <a href={"https://deploy-preview-2356--reactstrap.netlify.app/components/badge"} target="_blank" rel="noreferrer">
+                Documentation and examples for badges, our small count and
+                labeling component. To use it, import it such as{' '}
+                <code>import {`{Badge}`} from "reactstrap"</code>. Visit the{' '}
+                <a
+                  href={
+                    'https://deploy-preview-2356--reactstrap.netlify.app/components/badge'
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Reactstrap
-                </a>{" "}
+                </a>{' '}
                 library for detailed instructions.
               </p>
             </BlockDes>
@@ -37,7 +55,10 @@ const BadgesPage = () => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Example with Variations</BlockTitle>
-              <p>Add any of the below mentioned modifier props to change the appearance of a badge.</p>
+              <p>
+                Add any of the below mentioned modifier props to change the
+                appearance of a badge.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -216,19 +237,22 @@ const BadgesPage = () => {
             <tbody>
               <tr>
                 <td>
-                  <code>color={"{state}"}</code>
+                  <code>color={'{state}'}</code>
                 </td>
                 <td>
-                  Use <code>{"{state}"}</code> as{" "}
-                  <code>primary, secondary, success, info, warning, danger, dark, gray, light</code>
+                  Use <code>{'{state}'}</code> as{' '}
+                  <code>
+                    primary, secondary, success, info, warning, danger, dark,
+                    gray, light
+                  </code>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <code>color={"`outline-{state}`"}</code>
+                  <code>color={'`outline-{state}`'}</code>
                 </td>
                 <td>
-                  Same as above <code>{"{state}"}</code>
+                  Same as above <code>{'{state}'}</code>
                 </td>
               </tr>
               <tr>
@@ -237,14 +261,19 @@ const BadgesPage = () => {
                 </td>
                 <td>
                   <span>
-                    Use with <code>Badge</code> component to get rounded badge style.
+                    Use with <code>Badge</code> component to get rounded badge
+                    style.
                   </span>
                 </td>
               </tr>
             </tbody>
           </PreviewTable>
-          <CodeBlock language="jsx">&lt;Badge color=&quot;primary&quot;&gt;Primary&lt;/Badge&gt;</CodeBlock>
-          <CodeBlock language="jsx">&lt;Badge pill color=&quot;primary&quot;&gt;Primary&lt;/Badge&gt;</CodeBlock>
+          <CodeBlock language="jsx">
+            &lt;Badge color=&quot;primary&quot;&gt;Primary&lt;/Badge&gt;
+          </CodeBlock>
+          <CodeBlock language="jsx">
+            &lt;Badge pill color=&quot;primary&quot;&gt;Primary&lt;/Badge&gt;
+          </CodeBlock>
         </Block>
 
         <Block size="lg">
@@ -252,7 +281,8 @@ const BadgesPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Dot Style</BlockTitle>
               <p>
-                Use the <code>.badge-dot</code> modifier className to make dot style badges.
+                Use the <code>.badge-dot</code> modifier className to make dot
+                style badges.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -313,7 +343,8 @@ const BadgesPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Dim/Pale Style</BlockTitle>
               <p>
-                Use the <code>.badge-dim</code> modifier className to make soft light / pale color badges.
+                Use the <code>.badge-dim</code> modifier className to make soft
+                light / pale color badges.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -527,7 +558,10 @@ const BadgesPage = () => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Example with Variations</BlockTitle>
-              <p>Add any of the below mentioned modifier classNames to change the appearance of a badge.</p>
+              <p>
+                Add any of the below mentioned modifier classNames to change the
+                appearance of a badge.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -600,10 +634,10 @@ const BadgesPage = () => {
             <tbody>
               <tr>
                 <td>
-                  <code>.badge-{"{size}"}</code>
+                  <code>.badge-{'{size}'}</code>
                 </td>
                 <td>
-                  Use <code>{"{size}"}</code> as <code>sm, md, lg, xl</code>
+                  Use <code>{'{size}'}</code> as <code>sm, md, lg, xl</code>
                 </td>
               </tr>
             </tbody>
@@ -613,7 +647,7 @@ const BadgesPage = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default BadgesPage;
+export default BadgesPage

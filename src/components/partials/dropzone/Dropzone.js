@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const DropzoneContainer = (props) => {
   const {
@@ -7,11 +7,11 @@ const DropzoneContainer = (props) => {
     submitButton,
     files,
     extra: { maxFiles },
-  } = props;
+  } = props
   return (
     <div
       //className="dropzone upload-zone small bg-lighter my-2 dz-clickable"
-      style={{ overflow: "hidden" }}
+      style={{ overflow: 'hidden' }}
     >
       {previews}
 
@@ -19,7 +19,7 @@ const DropzoneContainer = (props) => {
 
       {files.length > 0 && submitButton}
     </div>
-  );
-};
+  )
+}
 
-export default DropzoneContainer;
+export default DropzoneContainer

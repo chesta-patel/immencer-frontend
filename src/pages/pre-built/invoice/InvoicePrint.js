@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import LogoDark from "../../../images/logo-dark2x.png";
-import { Button, Icon, Block } from "../../../components/Component";
-import { invoiceData } from "./Invoice";
+import React, { useState, useEffect } from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import LogoDark from '../../../images/logo-dark2x.png'
+import { Button, Icon, Block } from '../../../components/Component'
+import { invoiceData } from './Invoice'
 
 const InvoicePrint = ({ match }) => {
-  const [data] = useState(invoiceData);
-  const [user, setUser] = useState();
+  const [data] = useState(invoiceData)
+  const [user, setUser] = useState()
 
   useEffect(() => {
-    setTimeout(() => window.print(), 500);
-  }, []);
+    setTimeout(() => window.print(), 500)
+  }, [])
 
   useEffect(() => {
-    const id = match.params.id;
-    if (id !== undefined || null || "") {
-      let spUser = data.find((item) => item.id === Number(id));
-      setUser(spUser);
+    const id = match.params.id
+    if (id !== undefined || null || '') {
+      let spUser = data.find((item) => item.id === Number(id))
+      setUser(spUser)
     } else {
-      setUser(data[0]);
+      setUser(data[0])
     }
-  }, [match.params.id, data]);
+  }, [match.params.id, data])
 
   return (
     <body className="bg-white">
@@ -74,7 +74,7 @@ const InvoicePrint = ({ match }) => {
                         <span>Invoice ID</span>:<span>{user.orderId}</span>
                       </li>
                       <li className="invoice-date">
-                        <span>Date</span>:<span>{user.date.split(",")[0]}</span>
+                        <span>Date</span>:<span>{user.date.split(',')[0]}</span>
                       </li>
                     </ul>
                   </div>
@@ -95,7 +95,10 @@ const InvoicePrint = ({ match }) => {
                       <tbody>
                         <tr>
                           <td>24108054</td>
-                          <td>Dashlite - Conceptual App Dashboard - Regular License</td>
+                          <td>
+                            Dashlite - Conceptual App Dashboard - Regular
+                            License
+                          </td>
                           <td>${user.invoiceItem1}</td>
                           <td>1</td>
                           <td>${user.invoiceItem1}</td>
@@ -132,7 +135,7 @@ const InvoicePrint = ({ match }) => {
                               Number(user.invoiceItem2) +
                               Number(user.invoiceItem3) +
                               Number(user.invoiceItem4) +
-                              ".00"}
+                              '.00'}
                           </td>
                         </tr>
                         <tr>
@@ -153,7 +156,8 @@ const InvoicePrint = ({ match }) => {
                       </tfoot>
                     </table>
                     <div className="nk-notes ff-italic fs-12px text-soft">
-                      Invoice was created on a computer and is valid without the signature and seal.
+                      Invoice was created on a computer and is valid without the
+                      signature and seal.
                     </div>
                   </div>
                 </div>
@@ -163,7 +167,7 @@ const InvoicePrint = ({ match }) => {
         </Content>
       )}
     </body>
-  );
-};
+  )
+}
 
-export default InvoicePrint;
+export default InvoicePrint

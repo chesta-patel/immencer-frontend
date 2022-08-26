@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Bar } from "react-chartjs-2";
+import React, { useState, useEffect } from 'react'
+import { Bar } from 'react-chartjs-2'
 import {
   planPurchase,
   planPurchaseSet2,
@@ -8,7 +8,7 @@ import {
   totalBalance,
   totalDeposit,
   totalWithdraw,
-} from "./InvestData";
+} from './InvestData'
 
 export const DepositBarChart = () => {
   return (
@@ -22,11 +22,11 @@ export const DepositBarChart = () => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 11,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 4,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 10,
           bodySpacing: 3,
           yPadding: 8,
@@ -51,8 +51,8 @@ export const DepositBarChart = () => {
         },
       }}
     ></Bar>
-  );
-};
+  )
+}
 
 export const BalanceBarChart = () => {
   return (
@@ -66,11 +66,11 @@ export const BalanceBarChart = () => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 11,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 4,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 10,
           bodySpacing: 3,
           yPadding: 8,
@@ -95,8 +95,8 @@ export const BalanceBarChart = () => {
         },
       }}
     ></Bar>
-  );
-};
+  )
+}
 
 export const WithdrawBarChart = () => {
   return (
@@ -110,11 +110,11 @@ export const WithdrawBarChart = () => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 11,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 4,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 10,
           bodySpacing: 3,
           yPadding: 8,
@@ -139,22 +139,22 @@ export const WithdrawBarChart = () => {
         },
       }}
     ></Bar>
-  );
-};
+  )
+}
 
 export const PurchasePlanChart = ({ set }) => {
-  const [data, setData] = useState(planPurchase);
+  const [data, setData] = useState(planPurchase)
   useEffect(() => {
-    let object;
-    if (set === "7") {
-      object = planPurchaseSet2;
-    } else if (set === "15") {
-      object = planPurchaseSet3;
+    let object
+    if (set === '7') {
+      object = planPurchaseSet2
+    } else if (set === '15') {
+      object = planPurchaseSet3
     } else {
-      object = planPurchaseSet4;
+      object = planPurchaseSet4
     }
-    setData(object);
-  }, [set]);
+    setData(object)
+  }, [set])
 
   return (
     <Bar
@@ -167,11 +167,11 @@ export const PurchasePlanChart = ({ set }) => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 11,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 4,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 10,
           bodySpacing: 3,
           yPadding: 8,
@@ -196,5 +196,5 @@ export const PurchasePlanChart = ({ set }) => {
         },
       }}
     ></Bar>
-  );
-};
+  )
+}

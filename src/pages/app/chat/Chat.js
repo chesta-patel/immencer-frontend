@@ -1,92 +1,103 @@
-import React, { useEffect, useState, useContext } from "react";
-import Head from "../../../layout/head/Head";
-import ContentAlt from "../../../layout/content/ContentAlt";
-import AppContact from "./contact/Contact";
-import ChatBody from "./ChatBody";
-import User from "../../../images/avatar/b-sm.jpg";
-import { Button, Icon, UserAvatar } from "../../../components/Component";
-import { DropdownMenu, DropdownToggle, UncontrolledDropdown, DropdownItem } from "reactstrap";
-import { chatData } from "./ChatData";
-import { ChatContext } from "./ChatContext";
-import { Link } from "react-router-dom";
-import { ChannelAsideBody, ChatAsideBody } from "./ChatAsideBody";
+import React, { useEffect, useState, useContext } from 'react'
+import Head from '../../../layout/head/Head'
+import ContentAlt from '../../../layout/content/ContentAlt'
+import AppContact from './contact/Contact'
+import ChatBody from './ChatBody'
+import User from '../../../images/avatar/b-sm.jpg'
+import { Button, Icon, UserAvatar } from '../../../components/Component'
+import {
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+  DropdownItem,
+} from 'reactstrap'
+import { chatData } from './ChatData'
+import { ChatContext } from './ChatContext'
+import { Link } from 'react-router-dom'
+import { ChannelAsideBody, ChatAsideBody } from './ChatAsideBody'
 
 const Chat = () => {
-  const [mainTab, setMainTab] = useState("Chats");
-  const [selectedId, setSelectedId] = useState(1);
-  const [filterTab, setFilterTab] = useState("messages");
-  const [filteredChatList, setFilteredChatList] = useState([]);
-  const [filterText, setFilterText] = useState("");
-  const [favState, setFavState] = useState(false);
-  const [favFilter, setFavFilter] = useState([]);
-  const [favFilterText, setFavFilterText] = useState("");
-  const [mobileView, setMobileView] = useState(false);
+  const [mainTab, setMainTab] = useState('Chats')
+  const [selectedId, setSelectedId] = useState(1)
+  const [filterTab, setFilterTab] = useState('messages')
+  const [filteredChatList, setFilteredChatList] = useState([])
+  const [filterText, setFilterText] = useState('')
+  const [favState, setFavState] = useState(false)
+  const [favFilter, setFavFilter] = useState([])
+  const [favFilterText, setFavFilterText] = useState('')
+  const [mobileView, setMobileView] = useState(false)
 
-  const { chatState, fav } = useContext(ChatContext);
+  const { chatState, fav } = useContext(ChatContext)
 
-  const [chat, setChat] = chatState;
-  const [favData] = fav;
+  const [chat, setChat] = chatState
+  const [favData] = fav
 
   // Filtering users by search
   useEffect(() => {
-    if (filterText !== "") {
+    if (filterText !== '') {
       const filteredObject = chatData.filter((item) => {
-        return item.name.toLowerCase().includes(filterText.toLowerCase());
-      });
-      setFilteredChatList([...filteredObject]);
+        return item.name.toLowerCase().includes(filterText.toLowerCase())
+      })
+      setFilteredChatList([...filteredObject])
     } else {
-      setFilteredChatList([...chatData]);
+      setFilteredChatList([...chatData])
     }
-  }, [filterText, setFilteredChatList]);
+  }, [filterText, setFilteredChatList])
 
   // Filtering favourite users by search
   useEffect(() => {
-    if (favFilterText !== "") {
+    if (favFilterText !== '') {
       const filteredObject = favData.filter((item) => {
-        return item.name.toLowerCase().includes(favFilterText.toLowerCase()) && item.fav === false;
-      });
-      setFavFilter([...filteredObject]);
+        return (
+          item.name.toLowerCase().includes(favFilterText.toLowerCase()) &&
+          item.fav === false
+        )
+      })
+      setFavFilter([...filteredObject])
     } else {
-      setFavFilter([]);
+      setFavFilter([])
     }
-  }, [favFilterText, favData]);
+  }, [favFilterText, favData])
 
   const onInputChange = (e) => {
-    setFilterText(e.target.value);
-  };
+    setFilterText(e.target.value)
+  }
 
   const favInputSearchChange = (e) => {
-    setFavFilterText(e.target.value);
-  };
+    setFavFilterText(e.target.value)
+  }
 
   const onFilterClick = (prop) => {
-    setFilterTab(prop);
-  };
+    setFilterTab(prop)
+  }
 
   const chatItemClick = (id) => {
-    let data = chat;
-    const index = data.findIndex((item) => item.id === id);
-    const dataSet = data.find((item) => item.id === id);
+    let data = chat
+    const index = data.findIndex((item) => item.id === id)
+    const dataSet = data.find((item) => item.id === id)
     if (dataSet.unread === true) {
-      data[index].unread = false;
-      setChat([...data]);
+      data[index].unread = false
+      setChat([...data])
     }
-    setSelectedId(id);
+    setSelectedId(id)
     if (window.innerWidth < 860) {
-      setMobileView(true);
+      setMobileView(true)
     }
-  };
+  }
 
   return (
     <React.Fragment>
       <Head title="Chat / Messenger"></Head>
       <ContentAlt>
         <div className="nk-chat">
-          <div className={`nk-chat-aside ${mobileView ? "has-aside" : ""}`}>
+          <div className={`nk-chat-aside ${mobileView ? 'has-aside' : ''}`}>
             <div className="nk-chat-aside-head">
               <div className="nk-chat-aside-user">
                 <UncontrolledDropdown>
-                  <DropdownToggle tag="a" className="dropdown-toggle dropdown-indicator">
+                  <DropdownToggle
+                    tag="a"
+                    className="dropdown-toggle dropdown-indicator"
+                  >
                     <UserAvatar image={User}></UserAvatar>
                     <div className="title">{mainTab}</div>
                   </DropdownToggle>
@@ -97,11 +108,15 @@ const Chat = () => {
                           tag="a"
                           href="#contact"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            setMainTab(mainTab === "Chats" ? "Contact" : "Chats");
+                            ev.preventDefault()
+                            setMainTab(
+                              mainTab === 'Chats' ? 'Contact' : 'Chats'
+                            )
                           }}
                         >
-                          <span>{mainTab === "Chats" ? "Contact" : "Chats"}</span>
+                          <span>
+                            {mainTab === 'Chats' ? 'Contact' : 'Chats'}
+                          </span>
                         </DropdownItem>
                       </li>
                       <li>
@@ -109,11 +124,23 @@ const Chat = () => {
                           tag="a"
                           href="#contact"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            setMainTab(mainTab === "Chats" ? "Channel" : mainTab === "Channel" ? "Contact" : "Channel");
+                            ev.preventDefault()
+                            setMainTab(
+                              mainTab === 'Chats'
+                                ? 'Channel'
+                                : mainTab === 'Channel'
+                                ? 'Contact'
+                                : 'Channel'
+                            )
                           }}
                         >
-                          <span>{mainTab === "Chats" ? "Channel" : mainTab === "Channel" ? "Contact" : "Channel"}</span>
+                          <span>
+                            {mainTab === 'Chats'
+                              ? 'Channel'
+                              : mainTab === 'Channel'
+                              ? 'Contact'
+                              : 'Channel'}
+                          </span>
                         </DropdownItem>
                       </li>
                     </ul>
@@ -121,11 +148,14 @@ const Chat = () => {
                 </UncontrolledDropdown>
               </div>
               <ul className="nk-chat-aside-tools g-2">
-                {mainTab === "Chats" || mainTab === "Channel" ? (
+                {mainTab === 'Chats' || mainTab === 'Channel' ? (
                   <React.Fragment>
                     <li>
                       <UncontrolledDropdown>
-                        <DropdownToggle tag="a" className="btn btn-round btn-icon btn-light dropdown-toggle">
+                        <DropdownToggle
+                          tag="a"
+                          className="btn btn-round btn-icon btn-light dropdown-toggle"
+                        >
                           <Icon name="setting-alt-fill"></Icon>
                         </DropdownToggle>
                         <DropdownMenu right>
@@ -135,7 +165,7 @@ const Chat = () => {
                                 tag="a"
                                 href="#dropdown"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Settings</span>
@@ -143,56 +173,60 @@ const Chat = () => {
                             </li>
                             <li className="divider"></li>
                             <li
-                              onClick={() => onFilterClick("messages")}
-                              className={filterTab === "messages" ? "active" : ""}
+                              onClick={() => onFilterClick('messages')}
+                              className={
+                                filterTab === 'messages' ? 'active' : ''
+                              }
                             >
                               <DropdownItem
                                 tag="a"
                                 href="#dropdown"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Messages</span>
                               </DropdownItem>
                             </li>
                             <li
-                              onClick={() => onFilterClick("archive")}
-                              className={filterTab === "archive" ? "active" : ""}
+                              onClick={() => onFilterClick('archive')}
+                              className={
+                                filterTab === 'archive' ? 'active' : ''
+                              }
                             >
                               <DropdownItem
                                 tag="a"
                                 href="#dropdown"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Archives Chats</span>
                               </DropdownItem>
                             </li>
                             <li
-                              onClick={() => onFilterClick("unread")}
-                              className={filterTab === "unread" ? "active" : ""}
+                              onClick={() => onFilterClick('unread')}
+                              className={filterTab === 'unread' ? 'active' : ''}
                             >
                               <DropdownItem
                                 tag="a"
                                 href="#dropdown"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Unread Chats</span>
                               </DropdownItem>
                             </li>
                             <li
-                              onClick={() => onFilterClick("group")}
-                              className={filterTab === "group" ? "active" : ""}
+                              onClick={() => onFilterClick('group')}
+                              className={filterTab === 'group' ? 'active' : ''}
                             >
                               <DropdownItem
                                 tag="a"
                                 href="#dropdown"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Group Chats</span>
@@ -217,7 +251,7 @@ const Chat = () => {
                 )}
               </ul>
             </div>
-            {mainTab === "Chats" ? (
+            {mainTab === 'Chats' ? (
               <ChatAsideBody
                 onInputChange={onInputChange}
                 filteredChatList={filteredChatList}
@@ -232,7 +266,7 @@ const Chat = () => {
                 chatItemClick={chatItemClick}
                 filterTab={filterTab}
               />
-            ) : mainTab === "Channel" ? (
+            ) : mainTab === 'Channel' ? (
               <ChannelAsideBody
                 filteredChatList={filteredChatList}
                 onInputChange={onInputChange}
@@ -257,11 +291,18 @@ const Chat = () => {
             <div className="nk-chat-body">
               <div className="nk-chat-blank">
                 <div className="nk-chat-blank-icon">
-                  <Icon name="chat" className="icon-circle icon-circle-xxl bg-white"></Icon>
+                  <Icon
+                    name="chat"
+                    className="icon-circle icon-circle-xxl bg-white"
+                  ></Icon>
                 </div>
                 <div className="nk-chat-blank-btn">
                   <Link to={`${process.env.PUBLIC_URL}/app-chat`}>
-                    <Button color="primary" disabled={mainTab === "Contact"} onClick={() => setMainTab("Contact")}>
+                    <Button
+                      color="primary"
+                      disabled={mainTab === 'Contact'}
+                      onClick={() => setMainTab('Contact')}
+                    >
                       Start Chat
                     </Button>
                   </Link>
@@ -272,7 +313,7 @@ const Chat = () => {
         </div>
       </ContentAlt>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Chat;
+export default Chat

@@ -1,7 +1,7 @@
-import React from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import { Badge, Button } from "reactstrap";
+import React from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import { Badge, Button } from 'reactstrap'
 import {
   BlockBetween,
   BlockDes,
@@ -11,9 +11,9 @@ import {
   BlockTitle,
   Col,
   Row,
-} from "../../../components/Component";
-import { Card } from "reactstrap";
-import { pricingTableDataV1, pricingTableDataV2 } from "./PricingTableData";
+} from '../../../components/Component'
+import { Card } from 'reactstrap'
+import { pricingTableDataV1, pricingTableDataV2 } from './PricingTableData'
 
 const PricingTable = () => {
   return (
@@ -36,7 +36,11 @@ const PricingTable = () => {
             {pricingTableDataV1.map((item) => {
               return (
                 <Col md={6} xxl={3} key={item.id}>
-                  <Card className={`card-bordered pricing ${item.tags ? "recommend" : ""}`}>
+                  <Card
+                    className={`card-bordered pricing ${
+                      item.tags ? 'recommend' : ''
+                    }`}
+                  >
                     {item.tags && (
                       <Badge color="primary" className="pricing-badge">
                         Recommend
@@ -63,18 +67,19 @@ const PricingTable = () => {
                     <div className="pricing-body">
                       <ul className="pricing-features">
                         <li>
-                          <span className="w-50">Min Deposit</span> -{" "}
+                          <span className="w-50">Min Deposit</span> -{' '}
                           <span className="ml-auto">${item.minDeposit}</span>
                         </li>
                         <li>
-                          <span className="w-50">Max Deposit</span> -{" "}
+                          <span className="w-50">Max Deposit</span> -{' '}
                           <span className="ml-auto">${item.maxDeposit}</span>
                         </li>
                         <li>
-                          <span className="w-50">Deposit Return</span> - <span className="ml-auto">{item.return}</span>
+                          <span className="w-50">Deposit Return</span> -{' '}
+                          <span className="ml-auto">{item.return}</span>
                         </li>
                         <li>
-                          <span className="w-50">Total Return</span> -{" "}
+                          <span className="w-50">Total Return</span> -{' '}
                           <span className="ml-auto">{item.totalReturn}%</span>
                         </li>
                       </ul>
@@ -86,7 +91,7 @@ const PricingTable = () => {
                     </div>
                   </Card>
                 </Col>
-              );
+              )
             })}
           </Row>
         </Block>
@@ -97,7 +102,9 @@ const PricingTable = () => {
               <BlockContent>
                 <BlockTitle>Pricing Table V2</BlockTitle>
                 <BlockDes className="text-soft">
-                  <p>Choose your pricing plan and start enjoying our service.</p>
+                  <p>
+                    Choose your pricing plan and start enjoying our service.
+                  </p>
                 </BlockDes>
               </BlockContent>
             </BlockBetween>
@@ -106,7 +113,11 @@ const PricingTable = () => {
             {pricingTableDataV2.map((item) => {
               return (
                 <Col md={6} xxl={3} key={item.id}>
-                  <Card className={`card-bordered pricing text-center ${item.tags ? "recommend" : ""}`}>
+                  <Card
+                    className={`card-bordered pricing text-center ${
+                      item.tags ? 'recommend' : ''
+                    }`}
+                  >
                     {item.tags && (
                       <Badge color="primary" className="pricing-badge">
                         Recommend
@@ -124,7 +135,9 @@ const PricingTable = () => {
                         <div className="amount">
                           ${item.amount} <span>/yr</span>
                         </div>
-                        <span className="bill">{item.userNumber} User, Billed Yearly</span>
+                        <span className="bill">
+                          {item.userNumber} User, Billed Yearly
+                        </span>
                       </div>
                       <div className="pricing-action">
                         <Button color="primary">Select Plan</Button>
@@ -132,13 +145,13 @@ const PricingTable = () => {
                     </div>
                   </Card>
                 </Col>
-              );
+              )
             })}
           </Row>
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default PricingTable;
+export default PricingTable

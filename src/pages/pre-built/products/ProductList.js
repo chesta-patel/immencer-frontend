@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
-import ProductH from "../../../images/product/h.png";
-import Dropzone from "react-dropzone";
-import SimpleBar from "simplebar-react";
+import React, { useState, useEffect } from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
+import ProductH from '../../../images/product/h.png'
+import Dropzone from 'react-dropzone'
+import SimpleBar from 'simplebar-react'
 import {
   Block,
   BlockHead,
@@ -20,80 +20,87 @@ import {
   DataTableRow,
   DataTableItem,
   PaginationComponent,
-} from "../../../components/Component";
-import { Card, DropdownItem, UncontrolledDropdown, DropdownMenu, DropdownToggle, Badge } from "reactstrap";
-import { productData, categoryOptions } from "./ProductData";
-import { useForm } from "react-hook-form";
-import { Modal, ModalBody } from "reactstrap";
-import { RSelect } from "../../../components/Component";
+} from '../../../components/Component'
+import {
+  Card,
+  DropdownItem,
+  UncontrolledDropdown,
+  DropdownMenu,
+  DropdownToggle,
+  Badge,
+} from 'reactstrap'
+import { productData, categoryOptions } from './ProductData'
+import { useForm } from 'react-hook-form'
+import { Modal, ModalBody } from 'reactstrap'
+import { RSelect } from '../../../components/Component'
 
 const ProductList = () => {
-  const [data, setData] = useState(productData);
-  const [sm, updateSm] = useState(false);
+  const [data, setData] = useState(productData)
+  const [sm, updateSm] = useState(false)
   const [formData, setFormData] = useState({
-    name: "",
+    name: '',
     img: null,
-    sku: "",
+    sku: '',
     price: 0,
     stock: 0,
     category: [],
     fav: false,
     check: false,
-  });
-  const [editId, setEditedId] = useState();
+  })
+  const [editId, setEditedId] = useState()
   const [view, setView] = useState({
     edit: false,
     add: false,
     details: false,
-  });
-  const [onSearchText, setSearchText] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage] = useState(7);
-  const [files, setFiles] = useState([]);
+  })
+  const [onSearchText, setSearchText] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemPerPage] = useState(7)
+  const [files, setFiles] = useState([])
 
   // Changing state value when searching name
   useEffect(() => {
-    if (onSearchText !== "") {
+    if (onSearchText !== '') {
       const filteredObject = productData.filter((item) => {
-        return item.sku.toLowerCase().includes(onSearchText.toLowerCase());
-      });
-      setData([...filteredObject]);
+        return item.sku.toLowerCase().includes(onSearchText.toLowerCase())
+      })
+      setData([...filteredObject])
     } else {
-      setData([...productData]);
+      setData([...productData])
     }
-  }, [onSearchText]);
+  }, [onSearchText])
 
   // OnChange function to get the input data
   const onInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   // category change
   const onCategoryChange = (value) => {
-    setFormData({ ...formData, category: value });
-  };
+    setFormData({ ...formData, category: value })
+  }
 
   // function to close the form modal
   const onFormCancel = () => {
-    setView({ edit: false, add: false, details: false });
-    resetForm();
-  };
+    setView({ edit: false, add: false, details: false })
+    resetForm()
+  }
 
   const resetForm = () => {
     setFormData({
-      name: "",
+      name: '',
       img: null,
-      sku: "",
-      price: "",
+      sku: '',
+      price: '',
       stock: 0,
       category: [],
       fav: false,
       check: false,
-    });
-  };
+    })
+  }
 
   const onFormSubmit = (form) => {
-    const { title, price, sku, stock } = form;
+    const { title, price, sku, stock } = form
     let submittedData = {
       id: data.length + 1,
       name: title,
@@ -104,17 +111,17 @@ const ProductList = () => {
       category: formData.category,
       fav: false,
       check: false,
-    };
-    setData([submittedData, ...data]);
-    setView({ open: false });
-    setFiles([]);
-    resetForm();
-  };
+    }
+    setData([submittedData, ...data])
+    setView({ open: false })
+    setFiles([])
+    resetForm()
+  }
 
   const onEditSubmit = () => {
-    let submittedData;
-    let newItems = data;
-    let index = newItems.findIndex((item) => item.id === editId);
+    let submittedData
+    let newItems = data
+    let index = newItems.findIndex((item) => item.id === editId)
 
     newItems.forEach((item) => {
       if (item.id === editId) {
@@ -128,14 +135,14 @@ const ProductList = () => {
           category: formData.category,
           fav: false,
           check: false,
-        };
+        }
       }
-    });
-    newItems[index] = submittedData;
+    })
+    newItems[index] = submittedData
     //setData(newItems);
-    resetForm();
-    setView({ edit: false, add: false });
-  };
+    resetForm()
+    setView({ edit: false, add: false })
+  }
 
   // function that loads the want to editted data
   const onEditClick = (id) => {
@@ -150,59 +157,59 @@ const ProductList = () => {
           category: item.category,
           fav: false,
           check: false,
-        });
+        })
       }
-    });
-    setEditedId(id);
-    setFiles([]);
-    setView({ add: false, edit: true });
-  };
+    })
+    setEditedId(id)
+    setFiles([])
+    setView({ add: false, edit: true })
+  }
 
   // selects all the products
   const selectorCheck = (e) => {
-    let newData;
+    let newData
     newData = data.map((item) => {
-      item.check = e.currentTarget.checked;
-      return item;
-    });
-    setData([...newData]);
-  };
+      item.check = e.currentTarget.checked
+      return item
+    })
+    setData([...newData])
+  }
 
   // selects one product
   const onSelectChange = (e, id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].check = e.currentTarget.checked;
-    setData([...newData]);
-  };
+    let newData = data
+    let index = newData.findIndex((item) => item.id === id)
+    newData[index].check = e.currentTarget.checked
+    setData([...newData])
+  }
 
   // onChange function for searching name
   const onFilterChange = (e) => {
-    setSearchText(e.target.value);
-  };
+    setSearchText(e.target.value)
+  }
 
   // function to delete a product
   const deleteProduct = (id) => {
-    let defaultData = data;
-    defaultData = defaultData.filter((item) => item.id !== id);
-    setData([...defaultData]);
-  };
+    let defaultData = data
+    defaultData = defaultData.filter((item) => item.id !== id)
+    setData([...defaultData])
+  }
 
   // function to delete the seletected item
   const selectorDeleteProduct = () => {
-    let newData;
-    newData = data.filter((item) => item.check !== true);
-    setData([...newData]);
-  };
+    let newData
+    newData = data.filter((item) => item.check !== true)
+    setData([...newData])
+  }
 
   // toggle function to view product details
   const toggle = (type) => {
     setView({
-      edit: type === "edit" ? true : false,
-      add: type === "add" ? true : false,
-      details: type === "details" ? true : false,
-    });
-  };
+      edit: type === 'edit' ? true : false,
+      add: type === 'add' ? true : false,
+      details: type === 'details' ? true : false,
+    })
+  }
 
   // handles ondrop function of dropzone
   const handleDropChange = (acceptedFiles) => {
@@ -212,18 +219,18 @@ const ProductList = () => {
           preview: URL.createObjectURL(file),
         })
       )
-    );
-  };
+    )
+  }
 
   // Get current list, pagination
-  const indexOfLastItem = currentPage * itemPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemPerPage
+  const indexOfFirstItem = indexOfLastItem - itemPerPage
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
 
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   return (
     <React.Fragment>
@@ -240,13 +247,16 @@ const ProductList = () => {
                   href="#more"
                   className="btn btn-icon btn-trigger toggle-expand mr-n1"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    updateSm(!sm);
+                    ev.preventDefault()
+                    updateSm(!sm)
                   }}
                 >
                   <Icon name="more-v"></Icon>
                 </a>
-                <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
                   <ul className="nk-block-tools g-3">
                     <li>
                       <div className="form-control-wrap">
@@ -273,17 +283,29 @@ const ProductList = () => {
                         <DropdownMenu right>
                           <ul className="link-list-opt no-bdr">
                             <li>
-                              <DropdownItem tag="a" href="#dropdownitem" onClick={(ev) => ev.preventDefault()}>
+                              <DropdownItem
+                                tag="a"
+                                href="#dropdownitem"
+                                onClick={(ev) => ev.preventDefault()}
+                              >
                                 <span>New Items</span>
                               </DropdownItem>
                             </li>
                             <li>
-                              <DropdownItem tag="a" href="#dropdownitem" onClick={(ev) => ev.preventDefault()}>
+                              <DropdownItem
+                                tag="a"
+                                href="#dropdownitem"
+                                onClick={(ev) => ev.preventDefault()}
+                              >
                                 <span>Featured</span>
                               </DropdownItem>
                             </li>
                             <li>
-                              <DropdownItem tag="a" href="#dropdownitem" onClick={(ev) => ev.preventDefault()}>
+                              <DropdownItem
+                                tag="a"
+                                href="#dropdownitem"
+                                onClick={(ev) => ev.preventDefault()}
+                              >
                                 <span>Out of Stock</span>
                               </DropdownItem>
                             </li>
@@ -296,7 +318,7 @@ const ProductList = () => {
                         className="toggle btn-icon d-md-none"
                         color="primary"
                         onClick={() => {
-                          toggle("add");
+                          toggle('add')
                         }}
                       >
                         <Icon name="plus"></Icon>
@@ -305,7 +327,7 @@ const ProductList = () => {
                         className="toggle d-none d-md-inline-flex"
                         color="primary"
                         onClick={() => {
-                          toggle("add");
+                          toggle('add')
                         }}
                       >
                         <Icon name="plus"></Icon>
@@ -332,7 +354,10 @@ const ProductList = () => {
                           id="uid_1"
                           onChange={(e) => selectorCheck(e)}
                         />
-                        <label className="custom-control-label" htmlFor="uid_1"></label>
+                        <label
+                          className="custom-control-label"
+                          htmlFor="uid_1"
+                        ></label>
                       </div>
                     </DataTableRow>
                     <DataTableRow size="sm">
@@ -368,7 +393,11 @@ const ProductList = () => {
                             <DropdownMenu right>
                               <ul className="link-list-opt no-bdr">
                                 <li>
-                                  <DropdownItem tag="a" href="#edit" onClick={(ev) => ev.preventDefault()}>
+                                  <DropdownItem
+                                    tag="a"
+                                    href="#edit"
+                                    onClick={(ev) => ev.preventDefault()}
+                                  >
                                     <Icon name="edit"></Icon>
                                     <span>Edit Selected</span>
                                   </DropdownItem>
@@ -378,8 +407,8 @@ const ProductList = () => {
                                     tag="a"
                                     href="#remove"
                                     onClick={(ev) => {
-                                      ev.preventDefault();
-                                      selectorDeleteProduct();
+                                      ev.preventDefault()
+                                      selectorDeleteProduct()
                                     }}
                                   >
                                     <Icon name="trash"></Icon>
@@ -387,13 +416,21 @@ const ProductList = () => {
                                   </DropdownItem>
                                 </li>
                                 <li>
-                                  <DropdownItem tag="a" href="#stock" onClick={(ev) => ev.preventDefault()}>
+                                  <DropdownItem
+                                    tag="a"
+                                    href="#stock"
+                                    onClick={(ev) => ev.preventDefault()}
+                                  >
                                     <Icon name="bar-c"></Icon>
                                     <span>Update Stock</span>
                                   </DropdownItem>
                                 </li>
                                 <li>
-                                  <DropdownItem tag="a" href="#price" onClick={(ev) => ev.preventDefault()}>
+                                  <DropdownItem
+                                    tag="a"
+                                    href="#price"
+                                    onClick={(ev) => ev.preventDefault()}
+                                  >
                                     <Icon name="invest"></Icon>
                                     <span>Update Price</span>
                                   </DropdownItem>
@@ -415,16 +452,23 @@ const ProductList = () => {
                                   type="checkbox"
                                   className="custom-control-input form-control"
                                   defaultChecked={item.check}
-                                  id={item.id + "uid1"}
+                                  id={item.id + 'uid1'}
                                   key={Math.random()}
                                   onChange={(e) => onSelectChange(e, item.id)}
                                 />
-                                <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
+                                <label
+                                  className="custom-control-label"
+                                  htmlFor={item.id + 'uid1'}
+                                ></label>
                               </div>
                             </DataTableRow>
                             <DataTableRow size="sm">
                               <span className="tb-product">
-                                <img src={item.img ? item.img : ProductH} alt="product" className="thumb" />
+                                <img
+                                  src={item.img ? item.img : ProductH}
+                                  alt="product"
+                                  className="thumb"
+                                />
                                 <span className="title">{item.name}</span>
                               </span>
                             </DataTableRow>
@@ -440,9 +484,12 @@ const ProductList = () => {
                             <DataTableRow size="md">
                               <span className="tb-sub">
                                 {item.category.map((cat) => {
-                                  if (item.category[cat] + 1 === null || undefined) {
-                                    return cat.label;
-                                  } else return cat.label + ", ";
+                                  if (
+                                    item.category[cat] + 1 === null ||
+                                    undefined
+                                  ) {
+                                    return cat.label
+                                  } else return cat.label + ', '
                                 })}
                               </span>
                             </DataTableRow>
@@ -450,11 +497,17 @@ const ProductList = () => {
                               <div className="asterisk tb-asterisk">
                                 <a
                                   href="#asterisk"
-                                  className={item.fav ? "active" : ""}
+                                  className={item.fav ? 'active' : ''}
                                   onClick={(ev) => ev.preventDefault()}
                                 >
-                                  <Icon name="star" className="asterisk-off"></Icon>
-                                  <Icon name="star-fill" className="asterisk-on"></Icon>
+                                  <Icon
+                                    name="star"
+                                    className="asterisk-off"
+                                  ></Icon>
+                                  <Icon
+                                    name="star-fill"
+                                    className="asterisk-on"
+                                  ></Icon>
                                 </a>
                               </div>
                             </DataTableRow>
@@ -477,9 +530,9 @@ const ProductList = () => {
                                             tag="a"
                                             href="#edit"
                                             onClick={(ev) => {
-                                              ev.preventDefault();
-                                              onEditClick(item.id);
-                                              toggle("edit");
+                                              ev.preventDefault()
+                                              onEditClick(item.id)
+                                              toggle('edit')
                                             }}
                                           >
                                             <Icon name="edit"></Icon>
@@ -491,9 +544,9 @@ const ProductList = () => {
                                             tag="a"
                                             href="#view"
                                             onClick={(ev) => {
-                                              ev.preventDefault();
-                                              onEditClick(item.id);
-                                              toggle("details");
+                                              ev.preventDefault()
+                                              onEditClick(item.id)
+                                              toggle('details')
                                             }}
                                           >
                                             <Icon name="eye"></Icon>
@@ -505,8 +558,8 @@ const ProductList = () => {
                                             tag="a"
                                             href="#remove"
                                             onClick={(ev) => {
-                                              ev.preventDefault();
-                                              deleteProduct(item.id);
+                                              ev.preventDefault()
+                                              deleteProduct(item.id)
                                             }}
                                           >
                                             <Icon name="trash"></Icon>
@@ -520,7 +573,7 @@ const ProductList = () => {
                               </ul>
                             </DataTableRow>
                           </DataTableItem>
-                        );
+                        )
                       })
                     : null}
                 </DataTableBody>
@@ -543,15 +596,20 @@ const ProductList = () => {
           </Card>
         </Block>
 
-        <Modal isOpen={view.edit} toggle={() => onFormCancel()} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={view.edit}
+          toggle={() => onFormCancel()}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a href="#cancel" className="close">
-              {" "}
+              {' '}
               <Icon
                 name="cross-sm"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  onFormCancel();
+                  ev.preventDefault()
+                  onFormCancel()
                 }}
               ></Icon>
             </a>
@@ -572,11 +630,15 @@ const ProductList = () => {
                             name="name"
                             onChange={(e) => onInputChange(e)}
                             ref={register({
-                              required: "This field is required",
+                              required: 'This field is required',
                             })}
                             defaultValue={formData.name}
                           />
-                          {errors.title && <span className="invalid">{errors.title.message}</span>}
+                          {errors.title && (
+                            <span className="invalid">
+                              {errors.title.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </Col>
@@ -589,11 +651,15 @@ const ProductList = () => {
                           <input
                             type="number"
                             name="price"
-                            ref={register({ required: "This is required" })}
+                            ref={register({ required: 'This is required' })}
                             className="form-control"
                             defaultValue={formData.price}
                           />
-                          {errors.price && <span className="invalid">{errors.price.message}</span>}
+                          {errors.price && (
+                            <span className="invalid">
+                              {errors.price.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </Col>
@@ -607,10 +673,14 @@ const ProductList = () => {
                             type="number"
                             className="form-control"
                             name="salePrice"
-                            ref={register({ required: "This is required" })}
+                            ref={register({ required: 'This is required' })}
                             defaultValue={formData.price}
                           />
-                          {errors.salePrice && <span className="invalid">{errors.salePrice.message}</span>}
+                          {errors.salePrice && (
+                            <span className="invalid">
+                              {errors.salePrice.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </Col>
@@ -624,10 +694,14 @@ const ProductList = () => {
                             type="number"
                             className="form-control"
                             name="stock"
-                            ref={register({ required: "This is required" })}
+                            ref={register({ required: 'This is required' })}
                             defaultValue={formData.stock}
                           />
-                          {errors.stock && <span className="invalid">{errors.stock.message}</span>}
+                          {errors.stock && (
+                            <span className="invalid">
+                              {errors.stock.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </Col>
@@ -641,10 +715,14 @@ const ProductList = () => {
                             type="text"
                             className="form-control"
                             name="sku"
-                            ref={register({ required: "This is required" })}
+                            ref={register({ required: 'This is required' })}
                             defaultValue={formData.sku}
                           />
-                          {errors.sku && <span className="invalid">{errors.sku.message}</span>}
+                          {errors.sku && (
+                            <span className="invalid">
+                              {errors.sku.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </Col>
@@ -661,7 +739,11 @@ const ProductList = () => {
                             onChange={onCategoryChange}
                             //ref={register({ required: "This is required" })}
                           />
-                          {errors.category && <span className="invalid">{errors.category.message}</span>}
+                          {errors.category && (
+                            <span className="invalid">
+                              {errors.category.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </Col>
@@ -676,7 +758,11 @@ const ProductList = () => {
                       </div>
                     </Col>
                     <Col size="6">
-                      <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}>
+                      <Dropzone
+                        onDrop={(acceptedFiles) =>
+                          handleDropChange(acceptedFiles)
+                        }
+                      >
                         {({ getRootProps, getInputProps }) => (
                           <section>
                             <div
@@ -684,7 +770,12 @@ const ProductList = () => {
                               className="dropzone upload-zone small bg-lighter my-2 dz-clickable"
                             >
                               <input {...getInputProps()} />
-                              {files.length === 0 && <p>Drag 'n' drop some files here, or click to select files</p>}
+                              {files.length === 0 && (
+                                <p>
+                                  Drag 'n' drop some files here, or click to
+                                  select files
+                                </p>
+                              )}
                               {files.map((file) => (
                                 <div
                                   key={file.name}
@@ -714,15 +805,20 @@ const ProductList = () => {
           </ModalBody>
         </Modal>
 
-        <Modal isOpen={view.details} toggle={() => onFormCancel()} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={view.details}
+          toggle={() => onFormCancel()}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a href="#cancel" className="close">
-              {" "}
+              {' '}
               <Icon
                 name="cross-sm"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  onFormCancel();
+                  ev.preventDefault()
+                  onFormCancel()
                 }}
               ></Icon>
             </a>
@@ -763,7 +859,7 @@ const ProductList = () => {
 
         <SimpleBar
           className={`nk-add-product toggle-slide toggle-slide-right toggle-screen-any ${
-            view.add ? "content-active" : ""
+            view.add ? 'content-active' : ''
           }`}
         >
           <BlockHead>
@@ -789,11 +885,13 @@ const ProductList = () => {
                         name="title"
                         onChange={(e) => onInputChange(e)}
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                         defaultValue={formData.name}
                       />
-                      {errors.title && <span className="invalid">{errors.title.message}</span>}
+                      {errors.title && (
+                        <span className="invalid">{errors.title.message}</span>
+                      )}
                     </div>
                   </div>
                 </Col>
@@ -806,12 +904,14 @@ const ProductList = () => {
                       <input
                         type="number"
                         name="price"
-                        ref={register({ required: "This is required" })}
+                        ref={register({ required: 'This is required' })}
                         onChange={(e) => onInputChange(e)}
                         className="form-control"
                         defaultValue={formData.price}
                       />
-                      {errors.price && <span className="invalid">{errors.price.message}</span>}
+                      {errors.price && (
+                        <span className="invalid">{errors.price.message}</span>
+                      )}
                     </div>
                   </div>
                 </Col>
@@ -826,10 +926,14 @@ const ProductList = () => {
                         className="form-control"
                         name="salePrice"
                         onChange={(e) => onInputChange(e)}
-                        ref={register({ required: "This is required" })}
+                        ref={register({ required: 'This is required' })}
                         defaultValue={formData.price}
                       />
-                      {errors.salePrice && <span className="invalid">{errors.salePrice.message}</span>}
+                      {errors.salePrice && (
+                        <span className="invalid">
+                          {errors.salePrice.message}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </Col>
@@ -844,10 +948,12 @@ const ProductList = () => {
                         className="form-control"
                         name="stock"
                         onChange={(e) => onInputChange(e)}
-                        ref={register({ required: "This is required" })}
+                        ref={register({ required: 'This is required' })}
                         defaultValue={formData.stock}
                       />
-                      {errors.stock && <span className="invalid">{errors.stock.message}</span>}
+                      {errors.stock && (
+                        <span className="invalid">{errors.stock.message}</span>
+                      )}
                     </div>
                   </div>
                 </Col>
@@ -862,10 +968,12 @@ const ProductList = () => {
                         className="form-control"
                         name="sku"
                         onChange={(e) => onInputChange(e)}
-                        ref={register({ required: "This is required" })}
+                        ref={register({ required: 'This is required' })}
                         defaultValue={formData.sku}
                       />
-                      {errors.sku && <span className="invalid">{errors.sku.message}</span>}
+                      {errors.sku && (
+                        <span className="invalid">{errors.sku.message}</span>
+                      )}
                     </div>
                   </div>
                 </Col>
@@ -882,17 +990,31 @@ const ProductList = () => {
                         onChange={onCategoryChange}
                         //ref={register({ required: "This is required" })}
                       />
-                      {errors.category && <span className="invalid">{errors.category.message}</span>}
+                      {errors.category && (
+                        <span className="invalid">
+                          {errors.category.message}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </Col>
                 <Col size="12">
-                  <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}>
+                  <Dropzone
+                    onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}
+                  >
                     {({ getRootProps, getInputProps }) => (
                       <section>
-                        <div {...getRootProps()} className="dropzone upload-zone small bg-lighter my-2 dz-clickable">
+                        <div
+                          {...getRootProps()}
+                          className="dropzone upload-zone small bg-lighter my-2 dz-clickable"
+                        >
                           <input {...getInputProps()} />
-                          {files.length === 0 && <p>Drag 'n' drop some files here, or click to select files</p>}
+                          {files.length === 0 && (
+                            <p>
+                              Drag 'n' drop some files here, or click to select
+                              files
+                            </p>
+                          )}
                           {files.map((file) => (
                             <div
                               key={file.name}
@@ -923,7 +1045,7 @@ const ProductList = () => {
         {view.add && <div className="toggle-overlay" onClick={toggle}></div>}
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ProductList;
+export default ProductList

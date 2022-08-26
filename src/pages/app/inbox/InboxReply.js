@@ -1,17 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { Icon, UserAvatar, TooltipComponent } from "../../../components/Component";
-import { findUpper } from "../../../utils/Utils";
-import { contacts } from "./InboxData";
+import React, { useEffect, useState } from 'react'
+import {
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import {
+  Icon,
+  UserAvatar,
+  TooltipComponent,
+} from '../../../components/Component'
+import { findUpper } from '../../../utils/Utils'
+import { contacts } from './InboxData'
 
 const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState()
   //const [collapse, setCollapse] = useState(false);
 
   useEffect(() => {
-    let defaultUser = contacts.find((item) => item.id === reply.userId);
-    setUser(defaultUser);
-  }, [reply]);
+    let defaultUser = contacts.find((item) => item.id === reply.userId)
+    setUser(defaultUser)
+  }, [reply])
 
   // const toggleCollapse = () => {
   //   //setCollapse(!collapse);
@@ -19,12 +28,12 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
 
   const downloadAttachments = (attachments) => {
     attachments.forEach((at) => {
-      var link = document.createElement("a");
-      link.download = at.fileName;
-      link.href = "";
-      link.click();
-    });
-  };
+      var link = document.createElement('a')
+      link.download = at.fileName
+      link.href = ''
+      link.click()
+    })
+  }
 
   return (
     <div className="nk-ibx-reply-item nk-reply-item">
@@ -32,10 +41,16 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
         <React.Fragment>
           <div className={`nk-reply-header nk-ibx-reply-header`}>
             <div className="nk-reply-desc">
-              <UserAvatar className="nk-reply-avatar" text={findUpper(user.name)} theme={user.theme} image={user.img} />
+              <UserAvatar
+                className="nk-reply-avatar"
+                text={findUpper(user.name)}
+                theme={user.theme}
+                image={user.img}
+              />
               <div className="nk-reply-info">
                 <div className="nk-reply-author lead-text">
-                  {user.name} <span className="date d-sm-none">{reply.date}</span>
+                  {user.name}{' '}
+                  <span className="date d-sm-none">{reply.date}</span>
                 </div>
                 <UncontrolledDropdown className="nk-reply-msg-info">
                   <DropdownToggle
@@ -44,12 +59,15 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
                     href="#toggle"
                     onClick={(ev) => ev.preventDefault()}
                   >
-                    to {reply.to.user ? contacts.find((item) => item.id === reply.to.user).name : reply.to.mail}
+                    to{' '}
+                    {reply.to.user
+                      ? contacts.find((item) => item.id === reply.to.user).name
+                      : reply.to.mail}
                   </DropdownToggle>
                   <DropdownMenu className="dropdown-menu-md">
                     <ul className="nk-reply-msg-meta">
                       <li>
-                        <span className="label">from:</span>{" "}
+                        <span className="label">from:</span>{' '}
                         <span className="info">
                           <a href="#item" onClick={(ev) => ev.preventDefault()}>
                             {user.mail}
@@ -57,18 +75,25 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
                         </span>
                       </li>
                       <li>
-                        <span className="label">to:</span>{" "}
+                        <span className="label">to:</span>{' '}
                         <span className="info">
                           <a href="#item" onClick={(ev) => ev.preventDefault()}>
-                            {reply.to.user ? contacts.find((item) => item.id === reply.to.user).mail : reply.to.mail}
+                            {reply.to.user
+                              ? contacts.find(
+                                  (item) => item.id === reply.to.user
+                                ).mail
+                              : reply.to.mail}
                           </a>
                         </span>
                       </li>
                       {reply.to.bcc && (
                         <li>
-                          <span className="label">bcc:</span>{" "}
+                          <span className="label">bcc:</span>{' '}
                           <span className="info">
-                            <a href="#item" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              href="#item"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               {reply.to.bcc}
                             </a>
                           </span>
@@ -76,16 +101,19 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
                       )}
                       {reply.to.cc && (
                         <li>
-                          <span className="label">cc:</span>{" "}
+                          <span className="label">cc:</span>{' '}
                           <span className="info">
-                            <a href="#item" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              href="#item"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               {reply.to.cc}
                             </a>
                           </span>
                         </li>
                       )}
                       <li>
-                        <span className="label">mailed-by:</span>{" "}
+                        <span className="label">mailed-by:</span>{' '}
                         <span className="info">
                           <a href="#item" onClick={(ev) => ev.preventDefault()}>
                             {user.mail}
@@ -96,8 +124,9 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
                   </DropdownMenu>
                 </UncontrolledDropdown>
                 <div className="nk-reply-msg-excerpt">
-                  I am facing problem as i can not select currency on buy order page. Can you guys let me know what i am
-                  doing doing wrong? Please check attached files.
+                  I am facing problem as i can not select currency on buy order
+                  page. Can you guys let me know what i am doing doing wrong?
+                  Please check attached files.
                 </div>
               </div>
             </div>
@@ -137,8 +166,8 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
                           tag="a"
                           href="#item"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            replyTo(user.mail);
+                            ev.preventDefault()
+                            replyTo(user.mail)
                           }}
                         >
                           <Icon name="reply-fill"></Icon>
@@ -150,8 +179,8 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
                           tag="a"
                           href="#item"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            forwardTo();
+                            ev.preventDefault()
+                            forwardTo()
                           }}
                         >
                           <Icon name="forward-arrow-fill"></Icon>
@@ -163,8 +192,8 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
                           tag="a"
                           href="#item"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            deleteMessage(reply.replyId);
+                            ev.preventDefault()
+                            deleteMessage(reply.replyId)
                           }}
                         >
                           <Icon name="trash-fill"></Icon>
@@ -187,8 +216,16 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
               <div className="attach-files">
                 <ul className="attach-list">
                   {reply.attachment.map((att, index) => (
-                    <li className="attach-item" key={index} onClick={() => downloadAttachments([att])}>
-                      <a className="download" href="#item" onClick={(ev) => ev.preventDefault()}>
+                    <li
+                      className="attach-item"
+                      key={index}
+                      onClick={() => downloadAttachments([att])}
+                    >
+                      <a
+                        className="download"
+                        href="#item"
+                        onClick={(ev) => ev.preventDefault()}
+                      >
                         <Icon name="img"></Icon>
                         <span>{att.fileName}</span>
                       </a>
@@ -196,13 +233,15 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
                   ))}
                 </ul>
                 <div className="attach-foot">
-                  <span className="attach-info">{reply.attachment.length} files attached</span>
+                  <span className="attach-info">
+                    {reply.attachment.length} files attached
+                  </span>
                   <a
                     className="attach-download link"
                     href="#item"
                     onClick={(ev) => {
-                      ev.preventDefault();
-                      downloadAttachments(reply.attachment);
+                      ev.preventDefault()
+                      downloadAttachments(reply.attachment)
                     }}
                   >
                     <Icon name="download"></Icon>
@@ -215,7 +254,7 @@ const InboxReplyItem = ({ reply, replyTo, forwardTo, deleteMessage }) => {
         </React.Fragment>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default InboxReplyItem;
+export default InboxReplyItem

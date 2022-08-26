@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Head from "../../layout/head/Head";
-import DatePicker from "react-datepicker";
-import { Modal, ModalBody, FormGroup } from "reactstrap";
+import React, { useEffect, useState } from 'react'
+import Head from '../../layout/head/Head'
+import DatePicker from 'react-datepicker'
+import { Modal, ModalBody, FormGroup } from 'reactstrap'
 import {
   Block,
   BlockBetween,
@@ -14,40 +14,40 @@ import {
   Col,
   Button,
   RSelect,
-} from "../../components/Component";
-import { countryOptions, userData } from "./UserData";
-import { getDateStructured } from "../../utils/Utils";
+} from '../../components/Component'
+import { countryOptions, userData } from './UserData'
+import { getDateStructured } from '../../utils/Utils'
 
 const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
-  const [modalTab, setModalTab] = useState("1");
-  const [userInfo, setUserInfo] = useState(userData[0]);
+  const [modalTab, setModalTab] = useState('1')
+  const [userInfo, setUserInfo] = useState(userData[0])
   const [formData, setFormData] = useState({
-    name: "Abu Bin Ishtiak",
-    displayName: "Ishtiak",
-    phone: "818474958",
-    dob: "1980-08-10",
-    address: "2337 Kildeer Drive",
-    address2: "",
-    state: "Kentucky",
-    country: "Canada",
-  });
-  const [modal, setModal] = useState(false);
+    name: 'Abu Bin Ishtiak',
+    displayName: 'Ishtiak',
+    phone: '818474958',
+    dob: '1980-08-10',
+    address: '2337 Kildeer Drive',
+    address2: '',
+    state: 'Kentucky',
+    country: 'Canada',
+  })
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
-    setProfileName(formData.name);
-  }, [formData, setProfileName]);
+    setProfileName(formData.name)
+  }, [formData, setProfileName])
 
   const onInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   const submitForm = () => {
     let submitData = {
       ...formData,
-    };
-    setUserInfo(submitData);
-    setModal(false);
-  };
+    }
+    setUserInfo(submitData)
+    setModal(false)
+  }
 
   return (
     <React.Fragment>
@@ -57,12 +57,17 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
           <BlockHeadContent>
             <BlockTitle tag="h4">Personal Information</BlockTitle>
             <BlockDes>
-              <p>Basic info, like your name and address, that you use on Nio Platform.</p>
+              <p>
+                Basic info, like your name and address, that you use on Nio
+                Platform.
+              </p>
             </BlockDes>
           </BlockHeadContent>
           <BlockHeadContent className="align-self-start d-lg-none">
             <Button
-              className={`toggle btn btn-icon btn-trigger mt-n1 ${sm ? "active" : ""}`}
+              className={`toggle btn btn-icon btn-trigger mt-n1 ${
+                sm ? 'active' : ''
+              }`}
               onClick={() => updateSm(!sm)}
             >
               <Icon name="menu-alt-r"></Icon>
@@ -160,7 +165,7 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
               <a
                 href="#language"
                 onClick={(ev) => {
-                  ev.preventDefault();
+                  ev.preventDefault()
                 }}
                 className="link link-primary"
               >
@@ -177,7 +182,7 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
               <a
                 href="#link"
                 onClick={(ev) => {
-                  ev.preventDefault();
+                  ev.preventDefault()
                 }}
                 className="link link-primary"
               >
@@ -194,7 +199,7 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
               <a
                 href="#link"
                 onClick={(ev) => {
-                  ev.preventDefault();
+                  ev.preventDefault()
                 }}
                 className="link link-primary"
               >
@@ -205,13 +210,18 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
         </div>
       </Block>
 
-      <Modal isOpen={modal} className="modal-dialog-centered" size="lg" toggle={() => setModal(false)}>
+      <Modal
+        isOpen={modal}
+        className="modal-dialog-centered"
+        size="lg"
+        toggle={() => setModal(false)}
+      >
         <ModalBody>
           <a
             href="#dropdownitem"
             onClick={(ev) => {
-              ev.preventDefault();
-              setModal(false);
+              ev.preventDefault()
+              setModal(false)
             }}
             className="close"
           >
@@ -222,10 +232,10 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
             <ul className="nk-nav nav nav-tabs">
               <li className="nav-item">
                 <a
-                  className={`nav-link ${modalTab === "1" && "active"}`}
+                  className={`nav-link ${modalTab === '1' && 'active'}`}
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setModalTab("1");
+                    ev.preventDefault()
+                    setModalTab('1')
                   }}
                   href="#personal"
                 >
@@ -234,10 +244,10 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
               </li>
               <li className="nav-item">
                 <a
-                  className={`nav-link ${modalTab === "2" && "active"}`}
+                  className={`nav-link ${modalTab === '2' && 'active'}`}
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setModalTab("2");
+                    ev.preventDefault()
+                    setModalTab('2')
                   }}
                   href="#address"
                 >
@@ -246,7 +256,10 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
               </li>
             </ul>
             <div className="tab-content">
-              <div className={`tab-pane ${modalTab === "1" ? "active" : ""}`} id="personal">
+              <div
+                className={`tab-pane ${modalTab === '1' ? 'active' : ''}`}
+                id="personal"
+              >
                 <Row className="gy-4">
                   <Col md="6">
                     <FormGroup>
@@ -304,16 +317,28 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
                       <DatePicker
                         selected={new Date(formData.dob)}
                         className="form-control"
-                        onChange={(date) => setFormData({ ...formData, dob: getDateStructured(date) })}
+                        onChange={(date) =>
+                          setFormData({
+                            ...formData,
+                            dob: getDateStructured(date),
+                          })
+                        }
                         maxDate={new Date()}
                       />
                     </FormGroup>
                   </Col>
                   <Col size="12">
                     <div className="custom-control custom-switch">
-                      <input type="checkbox" className="custom-control-input form-control" id="latest-sale" />
-                      <label className="custom-control-label" htmlFor="latest-sale">
-                        Use full name to display{" "}
+                      <input
+                        type="checkbox"
+                        className="custom-control-input form-control"
+                        id="latest-sale"
+                      />
+                      <label
+                        className="custom-control-label"
+                        htmlFor="latest-sale"
+                      >
+                        Use full name to display{' '}
                       </label>
                     </div>
                   </Col>
@@ -324,8 +349,8 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
                           color="primary"
                           size="lg"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            submitForm();
+                            ev.preventDefault()
+                            submitForm()
                           }}
                         >
                           Update Profile
@@ -335,8 +360,8 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
                         <a
                           href="#dropdownitem"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            setModal(false);
+                            ev.preventDefault()
+                            setModal(false)
                           }}
                           className="link link-light"
                         >
@@ -347,7 +372,10 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
                   </Col>
                 </Row>
               </div>
-              <div className={`tab-pane ${modalTab === "2" ? "active" : ""}`} id="address">
+              <div
+                className={`tab-pane ${modalTab === '2' ? 'active' : ''}`}
+                id="address"
+              >
                 <Row className="gy-4">
                   <Col md="6">
                     <FormGroup>
@@ -408,14 +436,20 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
                             label: formData.country,
                           },
                         ]}
-                        onChange={(e) => setFormData({ ...formData, country: e.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, country: e.value })
+                        }
                       />
                     </FormGroup>
                   </Col>
                   <Col size="12">
                     <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                       <li>
-                        <Button color="primary" size="lg" onClick={() => submitForm()}>
+                        <Button
+                          color="primary"
+                          size="lg"
+                          onClick={() => submitForm()}
+                        >
                           Update Address
                         </Button>
                       </li>
@@ -423,8 +457,8 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
                         <a
                           href="#dropdownitem"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            setModal(false);
+                            ev.preventDefault()
+                            setModal(false)
                           }}
                           className="link link-light"
                         >
@@ -440,6 +474,6 @@ const UserProfileRegularPage = ({ sm, updateSm, setProfileName }) => {
         </ModalBody>
       </Modal>
     </React.Fragment>
-  );
-};
-export default UserProfileRegularPage;
+  )
+}
+export default UserProfileRegularPage

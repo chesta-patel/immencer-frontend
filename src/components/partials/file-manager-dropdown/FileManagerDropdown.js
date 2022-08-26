@@ -1,38 +1,44 @@
-import React, { useContext, useState } from "react";
-import CreateFolder from "../../../pages/app/file-manager/modals/CreateFolder";
-import Details from "../../../pages/app/file-manager/modals/Details";
-import Share from "../../../pages/app/file-manager/modals/Share";
-import Copy from "../../../pages/app/file-manager/modals/Copy";
-import Move from "../../../pages/app/file-manager/modals/Move";
-import { Icon } from "../../Component";
-import { FileManagerContext } from "../../../pages/app/file-manager/FileManagerContext";
-import { DropdownItem, DropdownMenu, DropdownToggle, Modal, UncontrolledDropdown } from "reactstrap";
+import React, { useContext, useState } from 'react'
+import CreateFolder from '../../../pages/app/file-manager/modals/CreateFolder'
+import Details from '../../../pages/app/file-manager/modals/Details'
+import Share from '../../../pages/app/file-manager/modals/Share'
+import Copy from '../../../pages/app/file-manager/modals/Copy'
+import Move from '../../../pages/app/file-manager/modals/Move'
+import { Icon } from '../../Component'
+import { FileManagerContext } from '../../../pages/app/file-manager/FileManagerContext'
+import {
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Modal,
+  UncontrolledDropdown,
+} from 'reactstrap'
 
 const FileManagerDropdown = ({ file }) => {
-  const { deleteFolder, downloadFile } = useContext(FileManagerContext);
+  const { deleteFolder, downloadFile } = useContext(FileManagerContext)
 
-  const [detailModal, setDetailModal] = useState(false);
-  const [shareModal, setShareModal] = useState(false);
-  const [copyModal, setCopyModal] = useState(false);
-  const [moveModal, setMoveModal] = useState(false);
-  const [createModal, setCreateModal] = useState(false);
+  const [detailModal, setDetailModal] = useState(false)
+  const [shareModal, setShareModal] = useState(false)
+  const [copyModal, setCopyModal] = useState(false)
+  const [moveModal, setMoveModal] = useState(false)
+  const [createModal, setCreateModal] = useState(false)
 
   const toggleCreateModal = () => {
-    setCreateModal(!createModal);
-  };
+    setCreateModal(!createModal)
+  }
 
   const toggleDetailModal = () => {
-    setDetailModal(!detailModal);
-  };
+    setDetailModal(!detailModal)
+  }
   const toggleShareModal = () => {
-    setShareModal(!shareModal);
-  };
+    setShareModal(!shareModal)
+  }
   const toggleCopyModal = () => {
-    setCopyModal(!copyModal);
-  };
+    setCopyModal(!copyModal)
+  }
   const toggleMoveModal = () => {
-    setMoveModal(!moveModal);
-  };
+    setMoveModal(!moveModal)
+  }
 
   return (
     <div className="nk-file-actions">
@@ -51,8 +57,8 @@ const FileManagerDropdown = ({ file }) => {
               <DropdownItem
                 tag="a"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setDetailModal(true);
+                  ev.preventDefault()
+                  setDetailModal(true)
                 }}
                 href="#item"
               >
@@ -64,8 +70,8 @@ const FileManagerDropdown = ({ file }) => {
               <DropdownItem
                 tag="a"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setShareModal(true);
+                  ev.preventDefault()
+                  setShareModal(true)
                 }}
                 href="#item"
               >
@@ -77,8 +83,8 @@ const FileManagerDropdown = ({ file }) => {
               <DropdownItem
                 tag="a"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setCopyModal(true);
+                  ev.preventDefault()
+                  setCopyModal(true)
                 }}
                 href="#item"
               >
@@ -90,8 +96,8 @@ const FileManagerDropdown = ({ file }) => {
               <DropdownItem
                 tag="a"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setMoveModal(true);
+                  ev.preventDefault()
+                  setMoveModal(true)
                 }}
                 href="#item"
               >
@@ -103,8 +109,8 @@ const FileManagerDropdown = ({ file }) => {
               <DropdownItem
                 tag="a"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  downloadFile(file);
+                  ev.preventDefault()
+                  downloadFile(file)
                 }}
                 href="#item"
                 className="file-dl-toast"
@@ -117,8 +123,8 @@ const FileManagerDropdown = ({ file }) => {
               <DropdownItem
                 tag="a"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  deleteFolder(file.id);
+                  ev.preventDefault()
+                  deleteFolder(file.id)
                 }}
                 href="#item"
               >
@@ -131,7 +137,11 @@ const FileManagerDropdown = ({ file }) => {
       </UncontrolledDropdown>
 
       <Modal isOpen={detailModal} size="md" toggle={toggleDetailModal}>
-        <Details file={file} toggle={toggleDetailModal} toggleShare={toggleShareModal} />
+        <Details
+          file={file}
+          toggle={toggleDetailModal}
+          toggleShare={toggleShareModal}
+        />
       </Modal>
 
       <Modal isOpen={shareModal} size="md" toggle={toggleShareModal}>
@@ -139,18 +149,26 @@ const FileManagerDropdown = ({ file }) => {
       </Modal>
 
       <Modal isOpen={copyModal} size="md" toggle={toggleCopyModal}>
-        <Copy file={file} toggle={toggleCopyModal} toggleCreateModal={toggleCreateModal} />
+        <Copy
+          file={file}
+          toggle={toggleCopyModal}
+          toggleCreateModal={toggleCreateModal}
+        />
       </Modal>
 
       <Modal isOpen={moveModal} size="md" toggle={toggleMoveModal}>
-        <Move file={file} toggle={toggleMoveModal} toggleCreateModal={toggleCreateModal} />
+        <Move
+          file={file}
+          toggle={toggleMoveModal}
+          toggleCreateModal={toggleCreateModal}
+        />
       </Modal>
 
       <Modal isOpen={createModal} size="md" toggle={toggleCreateModal}>
         <CreateFolder toggle={toggleCreateModal} />
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default FileManagerDropdown;
+export default FileManagerDropdown

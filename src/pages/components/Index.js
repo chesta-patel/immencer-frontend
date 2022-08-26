@@ -1,6 +1,6 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
 import {
   Block,
   BlockHead,
@@ -11,8 +11,8 @@ import {
   BlockTitle,
   BlockDes,
   Icon,
-} from "../../components/Component";
-import { Link } from "react-router-dom";
+} from '../../components/Component'
+import { Link } from 'react-router-dom'
 
 const ComponentsPage = ({ ...props }) => {
   return (
@@ -29,8 +29,9 @@ const ComponentsPage = ({ ...props }) => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                <strong>DashLite</strong> includes all the necessary components and elements with utility classes that
-                helps you to create your web apps or application faster.
+                <strong>DashLite</strong> includes all the necessary components
+                and elements with utility classes that helps you to create your
+                web apps or application faster.
               </p>
             </BlockDes>
           </BlockHeadContent>
@@ -38,7 +39,10 @@ const ComponentsPage = ({ ...props }) => {
         <Block size="lg">
           <Row className="g-gs">
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/alerts`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/alerts`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
@@ -51,11 +55,14 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/accordions`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/accordions`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
@@ -68,16 +75,21 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/badges`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/badges`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
                       <h6 className="title">Badges</h6>
-                      <p>Examples for badges, use as small count &amp; labeling.</p>
+                      <p>
+                        Examples for badges, use as small count &amp; labeling.
+                      </p>
                     </div>
                     <div className="g">
                       <span className="btn btn-icon btn-trigger mr-n1">
@@ -85,16 +97,21 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/buttons`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/buttons`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
                       <h6 className="title">Buttons</h6>
-                      <p>Button styles for actions in forms, dialogs, and more.</p>{" "}
+                      <p>
+                        Button styles for actions in forms, dialogs, and more.
+                      </p>{' '}
                     </div>
                     <div className="g">
                       <span className="btn btn-icon btn-trigger mr-n1">
@@ -102,16 +119,21 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/button-group`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/button-group`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
                       <h6 className="title">Button Group</h6>
-                      <p>With the button group make a series of buttons together.</p>
+                      <p>
+                        With the button group make a series of buttons together.
+                      </p>
                     </div>
                     <div className="g">
                       <span className="btn btn-icon btn-trigger mr-n1">
@@ -119,16 +141,22 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/cards`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/cards`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
                       <h6 className="title">Cards</h6>
-                      <p>Cards provides flexible &amp; extensible content with variants.</p>
+                      <p>
+                        Cards provides flexible &amp; extensible content with
+                        variants.
+                      </p>
                     </div>
                     <div className="g">
                       <span className="btn btn-icon btn-trigger mr-n1">
@@ -136,11 +164,14 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/dropdowns`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/dropdowns`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
@@ -153,17 +184,22 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
 
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/modals`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/modals`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
                       <h6 className="title">Modals</h6>
-                      <p>Examples of modal or lightbox style for any content.</p>
+                      <p>
+                        Examples of modal or lightbox style for any content.
+                      </p>
                     </div>
                     <div className="g">
                       <span className="btn btn-icon btn-trigger mr-n1">
@@ -171,16 +207,21 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/pagination`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/pagination`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
                       <h6 className="title">Pagination</h6>
-                      <p>Examples of pagination to indicate a multiple pages.</p>
+                      <p>
+                        Examples of pagination to indicate a multiple pages.
+                      </p>
                     </div>
                     <div className="g">
                       <span className="btn btn-icon btn-trigger mr-n1">
@@ -188,11 +229,14 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/spinner`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/spinner`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
@@ -205,11 +249,14 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/tabs`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/tabs`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
@@ -222,16 +269,21 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/toast`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/toast`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
                       <h6 className="title">Toast</h6>
-                      <p>Examples of push notifications using bootstrap toast.</p>
+                      <p>
+                        Examples of push notifications using bootstrap toast.
+                      </p>
                     </div>
                     <div className="g">
                       <span className="btn btn-icon btn-trigger mr-n1">
@@ -239,16 +291,21 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/table-basic`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/table-basic`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
                       <h6 className="title">Basic Tables</h6>
-                      <p>Examples for opt-in styling of tables with variants.</p>
+                      <p>
+                        Examples for opt-in styling of tables with variants.
+                      </p>
                     </div>
                     <div className="g">
                       <span className="btn btn-icon btn-trigger mr-n1">
@@ -256,11 +313,14 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/table-special`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/table-special`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
@@ -273,11 +333,14 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/form-elements`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/form-elements`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
@@ -290,11 +353,14 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/components/form-layouts`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/components/form-layouts`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
@@ -307,7 +373,7 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
@@ -327,16 +393,21 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={6}>
-              <Link to={`${process.env.PUBLIC_URL}/charts/chartjs`} className="card card-bordered text-soft">
+              <Link
+                to={`${process.env.PUBLIC_URL}/charts/chartjs`}
+                className="card card-bordered text-soft"
+              >
                 <div className="card-inner">
                   <div className="align-center justify-between">
                     <div className="g">
                       <h6 className="title">Chart Js</h6>
-                      <p>Visualize &amp; present your data using ChartJs plugin.</p>
+                      <p>
+                        Visualize &amp; present your data using ChartJs plugin.
+                      </p>
                     </div>
                     <div className="g">
                       <span className="btn btn-icon btn-trigger mr-n1">
@@ -344,7 +415,7 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </Link>
             </Col>
             <Col lg={12}>
@@ -355,47 +426,74 @@ const ComponentsPage = ({ ...props }) => {
                       <h6 className="title">Utilities</h6>
                       <ul className="gx-3 gy-1 align-center flex-wrap">
                         <li>
-                          <Link tag="a" to={`${process.env.PUBLIC_URL}/components/util-border`}>
+                          <Link
+                            tag="a"
+                            to={`${process.env.PUBLIC_URL}/components/util-border`}
+                          >
                             Border
                           </Link>
                         </li>
                         <li>
-                          <Link tag="a" to={`${process.env.PUBLIC_URL}/components/util-colors`}>
+                          <Link
+                            tag="a"
+                            to={`${process.env.PUBLIC_URL}/components/util-colors`}
+                          >
                             Colors
                           </Link>
                         </li>
                         <li>
-                          <Link tag="a" to={`${process.env.PUBLIC_URL}/components/util-display`}>
+                          <Link
+                            tag="a"
+                            to={`${process.env.PUBLIC_URL}/components/util-display`}
+                          >
                             Display
                           </Link>
                         </li>
                         <li>
-                          <Link tag="a" to={`${process.env.PUBLIC_URL}/components/util-embeded`}>
+                          <Link
+                            tag="a"
+                            to={`${process.env.PUBLIC_URL}/components/util-embeded`}
+                          >
                             Embeded
                           </Link>
                         </li>
                         <li>
-                          <Link tag="a" to={`${process.env.PUBLIC_URL}/components/util-flex`}>
+                          <Link
+                            tag="a"
+                            to={`${process.env.PUBLIC_URL}/components/util-flex`}
+                          >
                             Flex
                           </Link>
                         </li>
                         <li>
-                          <Link tag="a" to={`${process.env.PUBLIC_URL}/components/util-text`}>
+                          <Link
+                            tag="a"
+                            to={`${process.env.PUBLIC_URL}/components/util-text`}
+                          >
                             Text
                           </Link>
                         </li>
                         <li>
-                          <Link tag="a" to={`${process.env.PUBLIC_URL}/components/util-sizing`}>
+                          <Link
+                            tag="a"
+                            to={`${process.env.PUBLIC_URL}/components/util-sizing`}
+                          >
                             Sizing
                           </Link>
                         </li>
                         <li>
-                          <Link tag="a" to={`${process.env.PUBLIC_URL}/components/util-spacing`}>
+                          <Link
+                            tag="a"
+                            to={`${process.env.PUBLIC_URL}/components/util-spacing`}
+                          >
                             Spacing
                           </Link>
                         </li>
                         <li>
-                          <Link tag="a" to={`${process.env.PUBLIC_URL}/components/util-others`}>
+                          <Link
+                            tag="a"
+                            to={`${process.env.PUBLIC_URL}/components/util-others`}
+                          >
                             Others
                           </Link>
                         </li>
@@ -407,14 +505,14 @@ const ComponentsPage = ({ ...props }) => {
                       </span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>{' '}
               </div>
             </Col>
           </Row>
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ComponentsPage;
+export default ComponentsPage

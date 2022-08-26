@@ -1,12 +1,19 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import Icon from "../../components/icon/Icon";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import Icon from '../../components/icon/Icon'
 
-import { Row, Col, Button } from "reactstrap";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, CodeBlock } from "../../components/preview/Preview";
-import { OverlineTitle } from "../../components/text/Text";
+import { Row, Col, Button } from 'reactstrap'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import { PreviewCard, CodeBlock } from '../../components/preview/Preview'
+import { OverlineTitle } from '../../components/text/Text'
 
 const ButtonsPage = ({ ...props }) => {
   return (
@@ -23,12 +30,19 @@ const ButtonsPage = ({ ...props }) => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Documentation and examples of button styles for actions in forms, dialogs and more with support for
-                multiple sizes, states, and more. To use it, import it such as{" "}
-                <code>import {`{Button}`} from "reactstrap"</code>. Visit the{" "}
-                <a href={"https://deploy-preview-2356--reactstrap.netlify.app/components/buttons"} target="_blank" rel="noreferrer">
+                Documentation and examples of button styles for actions in
+                forms, dialogs and more with support for multiple sizes, states,
+                and more. To use it, import it such as{' '}
+                <code>import {`{Button}`} from "reactstrap"</code>. Visit the{' '}
+                <a
+                  href={
+                    'https://deploy-preview-2356--reactstrap.netlify.app/components/buttons'
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Reactstrap
-                </a>{" "}
+                </a>{' '}
                 library for detailed instructions.
               </p>
             </BlockDes>
@@ -40,8 +54,9 @@ const ButtonsPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Example with Variations</BlockTitle>
               <p>
-                Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few
-                extras thrown in for more control.
+                Bootstrap includes several predefined button styles, each
+                serving its own semantic purpose, with a few extras thrown in
+                for more control.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -97,7 +112,9 @@ const ButtonsPage = ({ ...props }) => {
               </Col>
             </Row>
           </PreviewCard>
-          <CodeBlock language="jsx">&lt;Button color=&quot;primary&quot;&gt;Primary&lt;/Button&gt;</CodeBlock>
+          <CodeBlock language="jsx">
+            &lt;Button color=&quot;primary&quot;&gt;Primary&lt;/Button&gt;
+          </CodeBlock>
           <PreviewCard>
             <Row className="g-4">
               <Col xs="6" md="3">
@@ -235,7 +252,10 @@ const ButtonsPage = ({ ...props }) => {
               </Col>
             </Row>
           </PreviewCard>
-          <CodeBlock language="jsx">&lt;Button outline color=&quot;primary&quot;&gt;Primary&lt;/Button&gt;</CodeBlock>
+          <CodeBlock language="jsx">
+            &lt;Button outline
+            color=&quot;primary&quot;&gt;Primary&lt;/Button&gt;
+          </CodeBlock>
           <PreviewCard>
             <Row className="g-4">
               <Col xs="6" md="3">
@@ -340,7 +360,8 @@ const ButtonsPage = ({ ...props }) => {
             </ul>
           </PreviewCard>
           <CodeBlock language="jsx">
-            &lt;Button color=&quot;primary&quot; size=&quot;xl&quot;&gt;Primary&lt;/Button&gt;
+            &lt;Button color=&quot;primary&quot;
+            size=&quot;xl&quot;&gt;Primary&lt;/Button&gt;
           </CodeBlock>
           <PreviewCard>
             <ul className="preview-btn-list preview-btn-list-fw">
@@ -379,7 +400,8 @@ const ButtonsPage = ({ ...props }) => {
             </ul>
           </PreviewCard>
           <CodeBlock language="jsx">
-            &lt;Button color=&quot;primary&quot; size=&quot;xl&quot;&gt;Primary&lt;/Button&gt;
+            &lt;Button color=&quot;primary&quot;
+            size=&quot;xl&quot;&gt;Primary&lt;/Button&gt;
           </CodeBlock>
           <PreviewCard>
             <ul className="preview-btn-list preview-btn-list-fw">
@@ -495,7 +517,11 @@ const ButtonsPage = ({ ...props }) => {
               </li>
               <li className="preview-btn-item">
                 <OverlineTitle className="preview-title">lg</OverlineTitle>
-                <Button className="btn-round btn-icon" color="primary" size="lg">
+                <Button
+                  className="btn-round btn-icon"
+                  color="primary"
+                  size="lg"
+                >
                   <Icon name="play" />
                 </Button>
               </li>
@@ -507,7 +533,11 @@ const ButtonsPage = ({ ...props }) => {
               </li>
               <li className="preview-btn-item">
                 <OverlineTitle className="preview-title">sm</OverlineTitle>
-                <Button className="btn-round btn-icon" color="primary" size="sm">
+                <Button
+                  className="btn-round btn-icon"
+                  color="primary"
+                  size="sm"
+                >
                   <Icon name="play" />
                 </Button>
               </li>
@@ -521,7 +551,7 @@ const ButtonsPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ButtonsPage;
+export default ButtonsPage

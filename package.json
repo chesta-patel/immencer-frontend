@@ -60,7 +60,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --config .prettierrc 'src/*/[.ts,.js,.css,.scss,.jsx,.json]' --write"
+    "format": "prettier --config .prettierrc --write \"./**/*.{js,jsx,json,css,scss}\""
   },
   "eslintConfig": {
     "extends": [

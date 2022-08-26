@@ -1,8 +1,19 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, PreviewTable, CodeBlock } from "../../components/preview/Preview";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import {
+  PreviewCard,
+  PreviewTable,
+  CodeBlock,
+} from '../../components/preview/Preview'
 
 const SizingPage = ({ ...props }) => {
   return (
@@ -18,7 +29,10 @@ const SizingPage = ({ ...props }) => {
               Sizing
             </BlockTitle>
             <BlockDes>
-              <p className="lead">Easily make an element as wide or as tall with our width and height utilities.</p>
+              <p className="lead">
+                Easily make an element as wide or as tall with our width and
+                height utilities.
+              </p>
             </BlockDes>
           </BlockHeadContent>
         </BlockHead>
@@ -27,7 +41,10 @@ const SizingPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Set a Width</BlockTitle>
-              <p>These utility classNames allow to set width of an element instantly.</p>
+              <p>
+                These utility classNames allow to set width of an element
+                instantly.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -48,9 +65,11 @@ const SizingPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.w-{"{value}"}</code>
+                  <code>.w-{'{value}'}</code>
                 </td>
-                <td>15 | 20 | 25 | 30 | ... | 85 | 90 | 95 | 100 (step of 5)</td>
+                <td>
+                  15 | 20 | 25 | 30 | ... | 85 | 90 | 95 | 100 (step of 5)
+                </td>
               </tr>
             </tbody>
           </PreviewTable>
@@ -64,14 +83,15 @@ const SizingPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.wide-{"{value}"}</code>
+                  <code>.wide-{'{value}'}</code>
                 </td>
                 <td>xs | sm | md | lg | xl</td>
               </tr>
               <tr>
                 <td colSpan="2">
                   <em className="fs-13px">
-                    These classNames mostly used with <code>.container</code> to specific width on any larger screens.
+                    These classNames mostly used with <code>.container</code> to
+                    specific width on any larger screens.
                   </em>
                 </td>
               </tr>
@@ -87,16 +107,17 @@ const SizingPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.w-{"{value}"}</code>
+                  <code>.w-{'{value}'}</code>
                 </td>
                 <td>
-                  80px | 90px | 100px | 110px | 120px | 125px | 130px | 140px | 150px | 175px | 200px | 220px | 225px |
-                  250px | 300px | 350px | 400px | 550px
+                  80px | 90px | 100px | 110px | 120px | 125px | 130px | 140px |
+                  150px | 175px | 200px | 220px | 225px | 250px | 300px | 350px
+                  | 400px | 550px
                 </td>
               </tr>
               <tr>
                 <td>
-                  <code>.w-max-{"{value}"}</code>
+                  <code>.w-max-{'{value}'}</code>
                 </td>
                 <td>
                   <span className="text-soft">Same as above</span>
@@ -104,7 +125,7 @@ const SizingPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.w-min-{"{value}"}</code>
+                  <code>.w-min-{'{value}'}</code>
                 </td>
                 <td>
                   <span className="text-soft">Same as above</span>
@@ -123,7 +144,7 @@ const SizingPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.w-{"{value}"}</code>
+                  <code>.w-{'{value}'}</code>
                 </td>
                 <td>auto | 100</td>
                 <td>
@@ -134,7 +155,7 @@ const SizingPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.w-max-{"{value}"}</code>
+                  <code>.w-max-{'{value}'}</code>
                 </td>
                 <td>auto | 100</td>
                 <td>
@@ -145,7 +166,7 @@ const SizingPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.w-min-{"{value}"}</code>
+                  <code>.w-min-{'{value}'}</code>
                 </td>
                 <td>auto | 100</td>
                 <td>
@@ -173,7 +194,10 @@ const SizingPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Set a Height</BlockTitle>
-              <p>These utility classNames allow to set width of an element instantly.</p>
+              <p>
+                These utility classNames allow to set width of an element
+                instantly.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -194,7 +218,7 @@ const SizingPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.h-{"{value}"}</code>
+                  <code>.h-{'{value}'}</code>
                 </td>
                 <td>25 | 50 | 75 | 100 | auto</td>
               </tr>
@@ -218,16 +242,17 @@ const SizingPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.h-{"{value}"}</code>
+                  <code>.h-{'{value}'}</code>
                 </td>
                 <td>
-                  100px | 150px | 175px | 200px | 225px | 250px | 275px | 300px | 325px | 350px | 375px | 400px | 425px
-                  | 450px | 475px | 500px
+                  100px | 150px | 175px | 200px | 225px | 250px | 275px | 300px
+                  | 325px | 350px | 375px | 400px | 425px | 450px | 475px |
+                  500px
                 </td>
               </tr>
               <tr>
                 <td>
-                  <code>.h-max-{"{value}"}</code>
+                  <code>.h-max-{'{value}'}</code>
                 </td>
                 <td>
                   <span className="text-soft">Same as above</span>
@@ -235,7 +260,7 @@ const SizingPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.h-min-{"{value}"}</code>
+                  <code>.h-min-{'{value}'}</code>
                 </td>
                 <td>
                   <span className="text-soft">Same as above</span>
@@ -249,7 +274,10 @@ const SizingPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Relative to the viewport</BlockTitle>
-              <p>You can also use utilities to set the width and height relative to the viewport.</p>
+              <p>
+                You can also use utilities to set the width and height relative
+                to the viewport.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewTable>
@@ -290,7 +318,7 @@ const SizingPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default SizingPage;
+export default SizingPage

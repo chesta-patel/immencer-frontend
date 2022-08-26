@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import DualListBox from "react-dual-listbox";
-import { Icon } from "../Component";
+import React, { useEffect, useState } from 'react'
+import DualListBox from 'react-dual-listbox'
+import { Icon } from '../Component'
 
 const buttonText = {
   moveLeft: <span className="dual-listbox__button">Remove</span>,
@@ -11,7 +11,7 @@ const buttonText = {
   moveUp: <span className="fa fa-chevron-up" />,
   moveTop: <span className="fa fa-double-angle-up" />,
   moveBottom: <span className="fa fa-double-angle-down" />,
-};
+}
 
 const buttonIcon = {
   moveLeft: (
@@ -38,32 +38,36 @@ const buttonIcon = {
   moveUp: <span className="fa fa-chevron-up" />,
   moveTop: <span className="fa fa-double-angle-up" />,
   moveBottom: <span className="fa fa-double-angle-down" />,
-};
+}
 
 const ReactDualList = ({ options, icon, canFilter, preSelected }) => {
-  const [data, setData] = useState(options);
-  const [filterText, setFilterText] = useState("");
-  const [selected, setSelected] = useState(preSelected ? preSelected : []);
+  const [data, setData] = useState(options)
+  const [filterText, setFilterText] = useState('')
+  const [selected, setSelected] = useState(preSelected ? preSelected : [])
   const onListChange = (selected) => {
-    setSelected(selected);
-  };
+    setSelected(selected)
+  }
 
   // Filtering users by search
   useEffect(() => {
-    if (filterText !== "") {
+    if (filterText !== '') {
       const filteredObject = options.filter((item) => {
-        return item.label.toLowerCase().includes(filterText.toLowerCase());
-      });
-      setData([...filteredObject]);
+        return item.label.toLowerCase().includes(filterText.toLowerCase())
+      })
+      setData([...filteredObject])
     } else {
-      setData([...options]);
+      setData([...options])
     }
-  }, [filterText, options]);
+  }, [filterText, options])
 
   return (
     <div className="dual-listbox">
       {canFilter && (
-        <input className="dual-listbox__search" placeholder="Search" onChange={(e) => setFilterText(e.target.value)} />
+        <input
+          className="dual-listbox__search"
+          placeholder="Search"
+          onChange={(e) => setFilterText(e.target.value)}
+        />
       )}
       <DualListBox
         options={data}
@@ -73,7 +77,7 @@ const ReactDualList = ({ options, icon, canFilter, preSelected }) => {
         showHeaderLabels={true}
       ></DualListBox>
     </div>
-  );
-};
+  )
+}
 
-export default ReactDualList;
+export default ReactDualList

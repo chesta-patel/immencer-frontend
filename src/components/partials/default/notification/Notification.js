@@ -1,7 +1,7 @@
-import React from "react";
-import Icon from "../../../icon/Icon";
-import { notificationData } from "./NotificationData";
-import { CardTitle } from "reactstrap";
+import React from 'react'
+import Icon from '../../../icon/Icon'
+import { notificationData } from './NotificationData'
+import { CardTitle } from 'reactstrap'
 
 const Notifications = () => {
   return (
@@ -16,7 +16,7 @@ const Notifications = () => {
               href="#viewall"
               className="link"
               onClick={(ev) => {
-                ev.preventDefault();
+                ev.preventDefault()
               }}
             >
               View All
@@ -31,7 +31,11 @@ const Notifications = () => {
             {notificationData.map((item) => {
               return (
                 <li className="timeline-item" key={item.id}>
-                  <div className={`timeline-status ${item.fill} ${item.outline ? "is-outline" : ""}`}></div>
+                  <div
+                    className={`timeline-status ${item.fill} ${
+                      item.outline ? 'is-outline' : ''
+                    }`}
+                  ></div>
                   <div className="timeline-date">
                     {item.date} <Icon name="alarm-alt"></Icon>
                   </div>
@@ -43,12 +47,12 @@ const Notifications = () => {
                     </div>
                   </div>
                 </li>
-              );
+              )
             })}
           </ul>
         </div>
       </div>
     </React.Fragment>
-  );
-};
-export default Notifications;
+  )
+}
+export default Notifications

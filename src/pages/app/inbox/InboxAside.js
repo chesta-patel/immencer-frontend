@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import SimpleBar from "simplebar-react";
-import Select from "react-select";
-import InboxForm from "./InboxForm";
-import { useForm } from "react-hook-form";
-import { Icon, UserAvatar, Button, LinkItem, LinkList } from "../../../components/Component";
-import { findUpper } from "../../../utils/Utils";
-import { colourOptions } from "./InboxData";
-import { ColorOptions } from "../../../components/partials/color-select-menu/ColorMenu";
+import React, { useState } from 'react'
+import SimpleBar from 'simplebar-react'
+import Select from 'react-select'
+import InboxForm from './InboxForm'
+import { useForm } from 'react-hook-form'
+import {
+  Icon,
+  UserAvatar,
+  Button,
+  LinkItem,
+  LinkList,
+} from '../../../components/Component'
+import { findUpper } from '../../../utils/Utils'
+import { colourOptions } from './InboxData'
+import { ColorOptions } from '../../../components/partials/color-select-menu/ColorMenu'
 import {
   DropdownItem,
   DropdownMenu,
@@ -16,7 +22,7 @@ import {
   ModalBody,
   Col,
   FormGroup,
-} from "reactstrap";
+} from 'reactstrap'
 
 const InboxAside = ({
   navData,
@@ -33,101 +39,116 @@ const InboxAside = ({
   setFilterLabel,
   setMessageView,
 }) => {
-  const [composeModal, setComposeModal] = useState(false);
-  const [composeMail, setComposeMail] = useState("");
-  const [labelModal, setLabelModal] = useState(false);
+  const [composeModal, setComposeModal] = useState(false)
+  const [composeMail, setComposeMail] = useState('')
+  const [labelModal, setLabelModal] = useState(false)
   const [labelEditModal, setLabelEditModal] = useState({
     toggle: false,
     value: {
       editId: 0,
-      label: "",
-      theme: "",
+      label: '',
+      theme: '',
     },
-  });
-  const [contactModal, setContactModal] = useState(false);
-  const [theme, changeTheme] = useState(colourOptions[0].value);
+  })
+  const [contactModal, setContactModal] = useState(false)
+  const [theme, changeTheme] = useState(colourOptions[0].value)
 
   const getTabDataNum = (tab) => {
-    if (tab !== "All Mails" && tab !== "Trash" && tab !== "Archive" && tab !== "Draft") {
+    if (
+      tab !== 'All Mails' &&
+      tab !== 'Trash' &&
+      tab !== 'Archive' &&
+      tab !== 'Draft'
+    ) {
       let defaultData = data.filter(
         (item) =>
           item.message.meta[tab.toLowerCase()] === true &&
           item.message.meta.trash !== true &&
           item.message.meta.archive !== true &&
           item.message.meta.unread !== true
-      );
-      return defaultData.length;
-    } else if (tab === "Draft") {
+      )
+      return defaultData.length
+    } else if (tab === 'Draft') {
       let defaultData = data.filter(
         (item) =>
-          item.message.meta.draft === true && item.message.meta.trash !== true && item.message.meta.archive !== true
-      );
-      return defaultData.length;
-    } else if (tab === "Archive") {
-      let defaultData = data.filter((item) => item.message.meta.archive === true);
-      return defaultData.length;
-    } else if (tab === "Trash") {
-      let defaultData = data.filter((item) => item.message.meta.trash === true);
-      return defaultData.length;
+          item.message.meta.draft === true &&
+          item.message.meta.trash !== true &&
+          item.message.meta.archive !== true
+      )
+      return defaultData.length
+    } else if (tab === 'Archive') {
+      let defaultData = data.filter(
+        (item) => item.message.meta.archive === true
+      )
+      return defaultData.length
+    } else if (tab === 'Trash') {
+      let defaultData = data.filter((item) => item.message.meta.trash === true)
+      return defaultData.length
     } else {
-      return data.length;
+      return data.length
     }
-  };
+  }
 
   const onLabelFormSubmit = (data) => {
     let dataObject = {
       id: labels.length + 1,
       text: data.label,
       color: theme,
-    };
-    setLabels([dataObject, ...labels]);
-    setLabelModal(false);
-    changeTheme(colourOptions[0].value);
-  };
+    }
+    setLabels([dataObject, ...labels])
+    setLabelModal(false)
+    changeTheme(colourOptions[0].value)
+  }
 
   const onLabelEditFormSubmit = (data) => {
     let dataObject = {
       id: labels.length + 1,
       text: data.label,
       color: theme,
-    };
-    let defaultData = labels;
-    let foundData = defaultData.findIndex((item) => item.id === labelEditModal.value.editId);
-    defaultData[foundData] = dataObject;
-    setLabels([...defaultData]);
-    setLabelEditModal({ ...labelEditModal, toggle: false });
-    changeTheme(colourOptions[0].value);
-  };
+    }
+    let defaultData = labels
+    let foundData = defaultData.findIndex(
+      (item) => item.id === labelEditModal.value.editId
+    )
+    defaultData[foundData] = dataObject
+    setLabels([...defaultData])
+    setLabelEditModal({ ...labelEditModal, toggle: false })
+    changeTheme(colourOptions[0].value)
+  }
 
   const onContactFormSubmit = (data) => {
     let dataObject = {
       id: contact.length + 1,
       name: data.name,
-      theme: "primary",
+      theme: 'primary',
       designation: data.designation,
       mail: data.mail,
-    };
-    setContact([dataObject, ...contact]);
-    setContactModal(false);
-  };
+    }
+    setContact([dataObject, ...contact])
+    setContactModal(false)
+  }
 
   const deleteLabel = (id) => {
-    let defaultVal = labels.filter((item) => item.id !== id);
-    setLabels(defaultVal);
-  };
+    let defaultVal = labels.filter((item) => item.id !== id)
+    setLabels(defaultVal)
+  }
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   return (
-    <div className={`nk-ibx-aside toggle-screen-lg ${aside ? "content-active" : ""}`}>
+    <div
+      className={`nk-ibx-aside toggle-screen-lg ${
+        aside ? 'content-active' : ''
+      }`}
+    >
       <div className="nk-ibx-head">
         <h5 className="mb-0">NioMail</h5>
         <a
           href="#toggle"
           onClick={(ev) => {
-            ev.preventDefault();
-            setComposeMail("");
-            setComposeModal(true);
+            ev.preventDefault()
+            setComposeMail('')
+            setComposeModal(true)
           }}
           className="link link-primary"
         >
@@ -138,21 +159,28 @@ const InboxAside = ({
         <React.Fragment>
           <ul className="nk-ibx-menu">
             {navData.map((item) => (
-              <li className={currentTab === item.name ? "active" : ""} key={item.name}>
+              <li
+                className={currentTab === item.name ? 'active' : ''}
+                key={item.name}
+              >
                 <a
                   className="nk-ibx-menu-item"
                   href="#menu-item"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setCurrentTab(item.name);
-                    setAside(false);
-                    setMessageView(false);
+                    ev.preventDefault()
+                    setCurrentTab(item.name)
+                    setAside(false)
+                    setMessageView(false)
                   }}
                 >
                   <Icon name={item.icon}></Icon>
                   <span className="nk-ibx-menu-text">{item.name}</span>
                   {item.badge && (
-                    <span className={`badge badge-pill badge-${item.badge.theme}`}>{getTabDataNum(item.name)}</span>
+                    <span
+                      className={`badge badge-pill badge-${item.badge.theme}`}
+                    >
+                      {getTabDataNum(item.name)}
+                    </span>
                   )}
                 </a>
               </li>
@@ -164,8 +192,8 @@ const InboxAside = ({
               className="link"
               href="#add"
               onClick={(ev) => {
-                ev.preventDefault();
-                setLabelModal(true);
+                ev.preventDefault()
+                setLabelModal(true)
               }}
             >
               <Icon name="plus-c"></Icon>
@@ -177,11 +205,13 @@ const InboxAside = ({
                 <a
                   href="#select"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setFilterLabel(item.text);
+                    ev.preventDefault()
+                    setFilterLabel(item.text)
                   }}
                 >
-                  <span className={`nk-ibx-label-dot dot dot-xl dot-label bg-${item.color}`}></span>
+                  <span
+                    className={`nk-ibx-label-dot dot dot-xl dot-label bg-${item.color}`}
+                  ></span>
                   <span className="nk-ibx-label-text">{item.text}</span>
                 </a>
                 <UncontrolledDropdown>
@@ -200,11 +230,15 @@ const InboxAside = ({
                           tag="a"
                           href="#item"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                             setLabelEditModal({
                               toggle: true,
-                              value: { label: item.text, theme: item.color, editId: item.id },
-                            });
+                              value: {
+                                label: item.text,
+                                theme: item.color,
+                                editId: item.id,
+                              },
+                            })
                           }}
                         >
                           <span>Edit Label</span>
@@ -215,8 +249,8 @@ const InboxAside = ({
                           tag="a"
                           href="#item"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            deleteLabel(item.id);
+                            ev.preventDefault()
+                            deleteLabel(item.id)
                           }}
                         >
                           <span>Remove Label</span>
@@ -226,17 +260,29 @@ const InboxAside = ({
                     </ul>
                     <ul className="link-check">
                       <li>
-                        <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                        <DropdownItem
+                          tag="a"
+                          href="#item"
+                          onClick={(ev) => ev.preventDefault()}
+                        >
                           Show if unread
                         </DropdownItem>
                       </li>
                       <li className="active">
-                        <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                        <DropdownItem
+                          tag="a"
+                          href="#item"
+                          onClick={(ev) => ev.preventDefault()}
+                        >
                           Show
                         </DropdownItem>
                       </li>
                       <li>
-                        <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                        <DropdownItem
+                          tag="a"
+                          href="#item"
+                          onClick={(ev) => ev.preventDefault()}
+                        >
                           Hide
                         </DropdownItem>
                       </li>
@@ -252,8 +298,8 @@ const InboxAside = ({
               className="link"
               href="#add"
               onClick={(ev) => {
-                ev.preventDefault();
-                setContactModal(true);
+                ev.preventDefault()
+                setContactModal(true)
               }}
             >
               <Icon name="plus-c"></Icon>
@@ -264,10 +310,16 @@ const InboxAside = ({
               <li key={item.id}>
                 <a href="#item" onClick={(ev) => ev.preventDefault()}>
                   <div className="user-card">
-                    <UserAvatar text={findUpper(item.name)} theme={item.theme} image={item.img}></UserAvatar>
+                    <UserAvatar
+                      text={findUpper(item.name)}
+                      theme={item.theme}
+                      image={item.img}
+                    ></UserAvatar>
                     <div className="user-info">
                       <span className="lead-text">{item.name}</span>
-                      <span className="sub-text">{item.designation ? item.designation : item.mail}</span>
+                      <span className="sub-text">
+                        {item.designation ? item.designation : item.mail}
+                      </span>
                     </div>
                   </div>
                 </a>
@@ -282,21 +334,23 @@ const InboxAside = ({
                   </DropdownToggle>
                   <DropdownMenu right className="dropdown-menu-xs">
                     <LinkList opt className="link-list-opt no-bdr">
-                      <LinkItem link={"/user-details-regular/1"}>View Profile</LinkItem>
+                      <LinkItem link={'/user-details-regular/1'}>
+                        View Profile
+                      </LinkItem>
                       <li>
                         <DropdownItem
                           tag="a"
                           href="#item"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            setComposeMail(item.mail);
-                            setComposeModal(true);
+                            ev.preventDefault()
+                            setComposeMail(item.mail)
+                            setComposeModal(true)
                           }}
                         >
                           <span>Send Email</span>
                         </DropdownItem>
                       </li>
-                      <LinkItem link={"/app-chat"}>Start Chat</LinkItem>
+                      <LinkItem link={'/app-chat'}>Start Chat</LinkItem>
                     </LinkList>
                   </DropdownMenu>
                 </UncontrolledDropdown>
@@ -311,7 +365,7 @@ const InboxAside = ({
               </span>
             </div>
             <div className="progress progress-md bg-light">
-              <div className="progress-bar" style={{ width: "5%" }}></div>
+              <div className="progress-bar" style={{ width: '5%' }}></div>
             </div>
           </div>
         </React.Fragment>
@@ -322,15 +376,15 @@ const InboxAside = ({
         toggleModal={setComposeModal}
         composeMail={composeMail}
         composeState={composeModal}
-        draftData={{ subject: "", message: "" }}
+        draftData={{ subject: '', message: '' }}
       />
       <Modal isOpen={labelModal} toggle={() => setLabelModal(false)}>
         <ModalBody>
           <a
             href="#cancel"
             onClick={(ev) => {
-              ev.preventDefault();
-              setLabelModal(false);
+              ev.preventDefault()
+              setLabelModal(false)
             }}
             className="close"
           >
@@ -339,7 +393,10 @@ const InboxAside = ({
           <div className="p-2">
             <h5 className="title">Add Label</h5>
             <div className="mt-4">
-              <form className="row gy-4" onSubmit={handleSubmit(onLabelFormSubmit)}>
+              <form
+                className="row gy-4"
+                onSubmit={handleSubmit(onLabelFormSubmit)}
+              >
                 <Col className="col-12">
                   <FormGroup>
                     <label className="form-label">Label Text</label>
@@ -349,9 +406,11 @@ const InboxAside = ({
                       //defaultValue={formData.title}
                       // onChange={(e) => onInputChange(e)}
                       className="form-control"
-                      ref={register({ required: "This field is required" })}
+                      ref={register({ required: 'This field is required' })}
                     />
-                    {errors.label && <span className="invalid">{errors.label.message}</span>}
+                    {errors.label && (
+                      <span className="invalid">{errors.label.message}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col className="col-12">
@@ -379,8 +438,8 @@ const InboxAside = ({
                     <li>
                       <Button
                         onClick={(ev) => {
-                          ev.preventDefault();
-                          setLabelModal(false);
+                          ev.preventDefault()
+                          setLabelModal(false)
                         }}
                         className="link link-light"
                       >
@@ -394,13 +453,16 @@ const InboxAside = ({
           </div>
         </ModalBody>
       </Modal>
-      <Modal isOpen={labelEditModal.toggle} toggle={() => setLabelEditModal({ ...labelEditModal, toggle: false })}>
+      <Modal
+        isOpen={labelEditModal.toggle}
+        toggle={() => setLabelEditModal({ ...labelEditModal, toggle: false })}
+      >
         <ModalBody>
           <a
             href="#cancel"
             onClick={(ev) => {
-              ev.preventDefault();
-              setLabelEditModal({ ...labelEditModal, toggle: false });
+              ev.preventDefault()
+              setLabelEditModal({ ...labelEditModal, toggle: false })
             }}
             className="close"
           >
@@ -409,7 +471,10 @@ const InboxAside = ({
           <div className="p-2">
             <h5 className="title">Edit Label</h5>
             <div className="mt-4">
-              <form className="row gy-4" onSubmit={handleSubmit(onLabelEditFormSubmit)}>
+              <form
+                className="row gy-4"
+                onSubmit={handleSubmit(onLabelEditFormSubmit)}
+              >
                 <Col className="col-12">
                   <FormGroup>
                     <label className="form-label">Label Text</label>
@@ -421,13 +486,18 @@ const InboxAside = ({
                       onChange={(e) =>
                         setLabelEditModal({
                           ...labelEditModal,
-                          value: { ...labelEditModal.value, label: e.target.value },
+                          value: {
+                            ...labelEditModal.value,
+                            label: e.target.value,
+                          },
                         })
                       }
                       className="form-control"
-                      ref={register({ required: "This field is required" })}
+                      ref={register({ required: 'This field is required' })}
                     />
-                    {errors.label && <span className="invalid">{errors.label.message}</span>}
+                    {errors.label && (
+                      <span className="invalid">{errors.label.message}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col className="col-12">
@@ -438,7 +508,9 @@ const InboxAside = ({
                         className="react-select-container"
                         classNamePrefix="react-select"
                         formatOptionLabel={ColorOptions}
-                        defaultValue={colourOptions.find((item) => item.value === labelEditModal.value.theme)}
+                        defaultValue={colourOptions.find(
+                          (item) => item.value === labelEditModal.value.theme
+                        )}
                         options={colourOptions}
                         onChange={(e) => changeTheme(e.value)}
                       />
@@ -455,8 +527,8 @@ const InboxAside = ({
                     <li>
                       <Button
                         onClick={(ev) => {
-                          ev.preventDefault();
-                          setLabelEditModal(false);
+                          ev.preventDefault()
+                          setLabelEditModal(false)
                         }}
                         className="link link-light"
                       >
@@ -475,8 +547,8 @@ const InboxAside = ({
           <a
             href="#cancel"
             onClick={(ev) => {
-              ev.preventDefault();
-              setContactModal(false);
+              ev.preventDefault()
+              setContactModal(false)
             }}
             className="close"
           >
@@ -485,7 +557,10 @@ const InboxAside = ({
           <div className="p-2">
             <h5 className="title">Add Contact</h5>
             <div className="mt-4">
-              <form className="row gy-4" onSubmit={handleSubmit(onContactFormSubmit)}>
+              <form
+                className="row gy-4"
+                onSubmit={handleSubmit(onContactFormSubmit)}
+              >
                 <Col className="col-12">
                   <FormGroup>
                     <label className="form-label">Name</label>
@@ -495,9 +570,11 @@ const InboxAside = ({
                       //defaultValue={formData.title}
                       // onChange={(e) => onInputChange(e)}
                       className="form-control"
-                      ref={register({ required: "This field is required" })}
+                      ref={register({ required: 'This field is required' })}
                     />
-                    {errors.name && <span className="invalid">{errors.name.message}</span>}
+                    {errors.name && (
+                      <span className="invalid">{errors.name.message}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col className="col-12">
@@ -509,9 +586,13 @@ const InboxAside = ({
                       //defaultValue={formData.title}
                       // onChange={(e) => onInputChange(e)}
                       className="form-control"
-                      ref={register({ required: "This field is required" })}
+                      ref={register({ required: 'This field is required' })}
                     />
-                    {errors.designation && <span className="invalid">{errors.designation.message}</span>}
+                    {errors.designation && (
+                      <span className="invalid">
+                        {errors.designation.message}
+                      </span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col className="col-12">
@@ -527,14 +608,14 @@ const InboxAside = ({
                         required: true,
                         pattern: {
                           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                          message: "Invalid email address",
+                          message: 'Invalid email address',
                         },
                       })}
                     />
-                    {errors.mail && errors.mail.type === "required" && (
+                    {errors.mail && errors.mail.type === 'required' && (
                       <span className="invalid">This is required</span>
                     )}
-                    {errors.mail && errors.mail.type === "pattern" && (
+                    {errors.mail && errors.mail.type === 'pattern' && (
                       <span className="invalid">{errors.mail.message}</span>
                     )}
                   </FormGroup>
@@ -549,8 +630,8 @@ const InboxAside = ({
                     <li>
                       <Button
                         onClick={(ev) => {
-                          ev.preventDefault();
-                          setContactModal(false);
+                          ev.preventDefault()
+                          setContactModal(false)
                         }}
                         className="link link-light"
                       >
@@ -565,7 +646,7 @@ const InboxAside = ({
         </ModalBody>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default InboxAside;
+export default InboxAside

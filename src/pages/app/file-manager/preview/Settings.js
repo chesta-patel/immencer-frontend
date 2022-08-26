@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import ProfileUpdate from "../modals/ProfileUpdate";
+import React, { useContext, useState } from 'react'
+import ProfileUpdate from '../modals/ProfileUpdate'
 import {
   Block,
   BlockBetween,
@@ -8,29 +8,34 @@ import {
   BlockTitle,
   Icon,
   UserAvatar,
-} from "../../../../components/Component";
-import { Modal } from "reactstrap";
-import { findUpper } from "../../../../utils/Utils";
-import { FileManagerContext } from "../FileManagerContext";
-import { pricingTableDataV2, selectDateFormat, selectLanguageOptions, selectTimezoneFormat } from "../Data";
-import { Link } from "react-router-dom";
+} from '../../../../components/Component'
+import { Modal } from 'reactstrap'
+import { findUpper } from '../../../../utils/Utils'
+import { FileManagerContext } from '../FileManagerContext'
+import {
+  pricingTableDataV2,
+  selectDateFormat,
+  selectLanguageOptions,
+  selectTimezoneFormat,
+} from '../Data'
+import { Link } from 'react-router-dom'
 
 const SettingsPreview = ({ toggleScreenLg }) => {
-  const { planData } = useContext(FileManagerContext);
-  const [plan] = planData;
+  const { planData } = useContext(FileManagerContext)
+  const [plan] = planData
 
-  const [tabs, setTab] = useState("General");
-  const [modal, setModal] = useState(false);
+  const [tabs, setTab] = useState('General')
+  const [modal, setModal] = useState(false)
   const [formData, setFormData] = useState({
-    name: "Abu Bin Ishtiak",
-    displayName: "Ishtiak",
-    email: "user@immence.in",
-    phone: "",
-    dob: "1980-08-10",
+    name: 'Abu Bin Ishtiak',
+    displayName: 'Ishtiak',
+    email: 'user@immence.in',
+    phone: '',
+    dob: '1980-08-10',
     language: selectLanguageOptions[0].value,
     dateFormat: selectDateFormat[0].value,
     timezone: selectTimezoneFormat[0].value,
-  });
+  })
   return (
     <React.Fragment>
       <BlockHead size="md">
@@ -44,8 +49,8 @@ const SettingsPreview = ({ toggleScreenLg }) => {
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleScreenLg();
+                    ev.preventDefault()
+                    toggleScreenLg()
                   }}
                   className="btn btn-trigger btn-icon toggle"
                 >
@@ -58,49 +63,65 @@ const SettingsPreview = ({ toggleScreenLg }) => {
       </BlockHead>
 
       <ul className="nk-nav nav nav-tabs">
-        <li className={`nav-item ${tabs === "General" ? "active current-page" : ""}`}>
+        <li
+          className={`nav-item ${
+            tabs === 'General' ? 'active current-page' : ''
+          }`}
+        >
           <a
             className="nav-link"
             href="#tabs"
             onClick={(ev) => {
-              ev.preventDefault();
-              setTab("General");
+              ev.preventDefault()
+              setTab('General')
             }}
           >
             General
           </a>
         </li>
-        <li className={`nav-item ${tabs === "Security" ? "active current-page" : ""}`}>
+        <li
+          className={`nav-item ${
+            tabs === 'Security' ? 'active current-page' : ''
+          }`}
+        >
           <a
             className="nav-link"
             href="#tabs"
             onClick={(ev) => {
-              ev.preventDefault();
-              setTab("Security");
+              ev.preventDefault()
+              setTab('Security')
             }}
           >
             Security
           </a>
         </li>
-        <li className={`nav-item ${tabs === "Billings" ? "active current-page" : ""}`}>
+        <li
+          className={`nav-item ${
+            tabs === 'Billings' ? 'active current-page' : ''
+          }`}
+        >
           <a
             className="nav-link"
             href="#tabs"
             onClick={(ev) => {
-              ev.preventDefault();
-              setTab("Billings");
+              ev.preventDefault()
+              setTab('Billings')
             }}
           >
             Billings
           </a>
         </li>
-        <li className={`nav-item ${tabs === "Notifications" ? "active current-page" : ""}`}>
+        <li
+          className={`nav-item ${
+            tabs === 'Notifications' ? 'active current-page' : ''
+          }`}
+        >
           <a
             className="nav-link"
             href="#tabs"
             onClick={(ev) => {
-              ev.preventDefault();
-              setTab("Notifications");
+              ev.preventDefault()
+              setTab('Notifications')
             }}
           >
             Notifications
@@ -111,7 +132,11 @@ const SettingsPreview = ({ toggleScreenLg }) => {
       <Block size="xs" className="pt-0">
         <div className="user-card user-card-md py-md-5 py-4">
           <UserAvatar size="md" text={findUpper(formData.name)}>
-            <a href="#edit" onClick={(ev) => ev.preventDefault()} className="edit edit-upload">
+            <a
+              href="#edit"
+              onClick={(ev) => ev.preventDefault()}
+              className="edit edit-upload"
+            >
               <Icon name="img"></Icon>
             </a>
           </UserAvatar>
@@ -121,8 +146,8 @@ const SettingsPreview = ({ toggleScreenLg }) => {
               <a
                 href="#edit"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setModal(true);
+                  ev.preventDefault()
+                  setModal(true)
                 }}
                 className="edit"
               >
@@ -134,8 +159,8 @@ const SettingsPreview = ({ toggleScreenLg }) => {
               <a
                 href="#edit"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setModal(true);
+                  ev.preventDefault()
+                  setModal(true)
                 }}
                 className="edit"
               >
@@ -154,18 +179,26 @@ const SettingsPreview = ({ toggleScreenLg }) => {
                 <Icon name="hard-drive"></Icon> <span>{plan} plan</span>
               </div>
               <div className="user-plan-status">
-                12.47 GB / {pricingTableDataV2.find((item) => item.title === plan).memory}.00 GB
+                12.47 GB /{' '}
+                {pricingTableDataV2.find((item) => item.title === plan).memory}
+                .00 GB
               </div>
             </div>
             <div className="user-plan-actions">
               <ul className="btn-toolbar align-center g-4">
                 <li className="order-2 order-sm-1">
-                  <Link to={`${process.env.PUBLIC_URL}/app-file-manager/pricing`} className="link link-primary">
+                  <Link
+                    to={`${process.env.PUBLIC_URL}/app-file-manager/pricing`}
+                    className="link link-primary"
+                  >
                     See all plans
                   </Link>
                 </li>
                 <li className="order-1 order-sm-2">
-                  <Link to={`${process.env.PUBLIC_URL}/app-file-manager/pricing`} className="btn btn-sm btn-primary">
+                  <Link
+                    to={`${process.env.PUBLIC_URL}/app-file-manager/pricing`}
+                    className="btn btn-sm btn-primary"
+                  >
                     Upgrade
                   </Link>
                 </li>
@@ -175,7 +208,13 @@ const SettingsPreview = ({ toggleScreenLg }) => {
               <div className="progress progress-md bg-light">
                 <div
                   className="progress-bar"
-                  style={{ width: `${1200 / pricingTableDataV2.find((item) => item.title === plan).memory}%` }}
+                  style={{
+                    width: `${
+                      1200 /
+                      pricingTableDataV2.find((item) => item.title === plan)
+                        .memory
+                    }%`,
+                  }}
                 ></div>
               </div>
             </div>
@@ -194,8 +233,8 @@ const SettingsPreview = ({ toggleScreenLg }) => {
               <a
                 href="#edit"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setModal(true);
+                  ev.preventDefault()
+                  setModal(true)
                 }}
                 className="link link-primary"
               >
@@ -212,8 +251,8 @@ const SettingsPreview = ({ toggleScreenLg }) => {
               <a
                 href="#edit"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setModal(true);
+                  ev.preventDefault()
+                  setModal(true)
                 }}
                 className="link link-primary"
               >
@@ -230,8 +269,8 @@ const SettingsPreview = ({ toggleScreenLg }) => {
               <a
                 href="#edit"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setModal(true);
+                  ev.preventDefault()
+                  setModal(true)
                 }}
                 className="link link-primary"
               >
@@ -253,8 +292,8 @@ const SettingsPreview = ({ toggleScreenLg }) => {
               <a
                 href="#edit"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setModal(true);
+                  ev.preventDefault()
+                  setModal(true)
                 }}
                 className="link link-primary"
               >
@@ -271,8 +310,8 @@ const SettingsPreview = ({ toggleScreenLg }) => {
               <a
                 href="#edit"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setModal(true);
+                  ev.preventDefault()
+                  setModal(true)
                 }}
                 className="link link-primary"
               >
@@ -289,8 +328,8 @@ const SettingsPreview = ({ toggleScreenLg }) => {
               <a
                 href="#edit"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  setModal(true);
+                  ev.preventDefault()
+                  setModal(true)
                 }}
                 className="link link-primary"
               >
@@ -301,11 +340,20 @@ const SettingsPreview = ({ toggleScreenLg }) => {
         </div>
       </Block>
 
-      <Modal isOpen={modal} className="modal-dialog-centered" size="lg" toggle={() => setModal(false)}>
-        <ProfileUpdate formData={formData} setFormData={setFormData} setModal={setModal}></ProfileUpdate>
+      <Modal
+        isOpen={modal}
+        className="modal-dialog-centered"
+        size="lg"
+        toggle={() => setModal(false)}
+      >
+        <ProfileUpdate
+          formData={formData}
+          setFormData={setFormData}
+          setModal={setModal}
+        ></ProfileUpdate>
       </Modal>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default SettingsPreview;
+export default SettingsPreview

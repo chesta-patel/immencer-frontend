@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import Content from "../layout/content/Content";
-import Head from "../layout/head/Head";
-import InvestOverview from "../components/partials/invest/invest-overview/InvestOverview";
-import InvestPlan from "../components/partials/invest/invest-plan/InvestPlan";
-import RecentInvest from "../components/partials/invest/recent-investment/RecentInvest";
-import RecentActivity from "../components/partials/default/recent-activity/Activity";
-import Notifications from "../components/partials/default/notification/Notification";
-import { DropdownToggle, DropdownMenu, Card, UncontrolledDropdown, DropdownItem } from "reactstrap";
+import React, { useState } from 'react'
+import Content from '../layout/content/Content'
+import Head from '../layout/head/Head'
+import InvestOverview from '../components/partials/invest/invest-overview/InvestOverview'
+import InvestPlan from '../components/partials/invest/invest-plan/InvestPlan'
+import RecentInvest from '../components/partials/invest/recent-investment/RecentInvest'
+import RecentActivity from '../components/partials/default/recent-activity/Activity'
+import Notifications from '../components/partials/default/notification/Notification'
+import {
+  DropdownToggle,
+  DropdownMenu,
+  Card,
+  UncontrolledDropdown,
+  DropdownItem,
+} from 'reactstrap'
 import {
   Block,
   BlockDes,
@@ -20,11 +26,15 @@ import {
   Col,
   PreviewAltCard,
   TooltipComponent,
-} from "../components/Component";
-import { BalanceBarChart, DepositBarChart, WithdrawBarChart } from "../components/partials/charts/invest/InvestChart";
+} from '../components/Component'
+import {
+  BalanceBarChart,
+  DepositBarChart,
+  WithdrawBarChart,
+} from '../components/partials/charts/invest/InvestChart'
 
 const InvestHomePage = () => {
-  const [sm, updateSm] = useState(false);
+  const [sm, updateSm] = useState(false)
   return (
     <React.Fragment>
       <Head title="Invest Dashboard" />
@@ -40,28 +50,44 @@ const InvestHomePage = () => {
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
                 <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${sm ? "active" : ""}`}
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                    sm ? 'active' : ''
+                  }`}
                   onClick={() => updateSm(!sm)}
                 >
                   <Icon name="more-v"></Icon>
                 </Button>
-                <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
                   <ul className="nk-block-tools g-3">
                     <li>
-                      <Button color="primary" outline className="btn-dim btn-white">
+                      <Button
+                        color="primary"
+                        outline
+                        className="btn-dim btn-white"
+                      >
                         <Icon name="download-cloud"></Icon>
                         <span>Export</span>
                       </Button>
                     </li>
                     <li>
-                      <Button color="primary" outline className="btn-dim btn-white">
+                      <Button
+                        color="primary"
+                        outline
+                        className="btn-dim btn-white"
+                      >
                         <Icon name="reports"></Icon>
                         <span>Reports</span>
                       </Button>
                     </li>
                     <li className="nk-block-tools-opt">
                       <UncontrolledDropdown>
-                        <DropdownToggle color="transparent" className="dropdown-toggle btn btn-icon btn-primary">
+                        <DropdownToggle
+                          color="transparent"
+                          className="dropdown-toggle btn btn-icon btn-primary"
+                        >
                           <Icon name="plus"></Icon>
                         </DropdownToggle>
                         <DropdownMenu right>
@@ -70,7 +96,7 @@ const InvestHomePage = () => {
                               <DropdownItem
                                 href="#adduser"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <Icon name="user-add-fill"></Icon>
@@ -81,7 +107,7 @@ const InvestHomePage = () => {
                               <DropdownItem
                                 href="#addorder"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <Icon name="coin-alt-fill"></Icon>
@@ -92,7 +118,7 @@ const InvestHomePage = () => {
                               <DropdownItem
                                 href="#addpage"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <Icon name="note-add-fill-c"></Icon>
@@ -141,13 +167,15 @@ const InvestHomePage = () => {
                     <div className="invest-data-history">
                       <div className="title">This Month</div>
                       <span className="amount">
-                        2,940.59 <span className="currency currency-usd"> USD</span>
+                        2,940.59{' '}
+                        <span className="currency currency-usd"> USD</span>
                       </span>
                     </div>
                     <div className="invest-data-history">
                       <div className="title">This Week</div>
                       <span className="amount">
-                        1,259.28 <span className="currency currency-usd"> USD</span>
+                        1,259.28{' '}
+                        <span className="currency currency-usd"> USD</span>
                       </span>
                     </div>
                   </div>
@@ -187,13 +215,15 @@ const InvestHomePage = () => {
                     <div className="invest-data-history">
                       <div className="title">This Month</div>
                       <div className="amount">
-                        2,940.59 <span className="currency currency-usd">USD</span>
+                        2,940.59{' '}
+                        <span className="currency currency-usd">USD</span>
                       </div>
                     </div>
                     <div className="invest-data-history">
                       <div className="title">This Week</div>
                       <div className="amount">
-                        1,259.28 <span className="currency currency-usd">USD</span>
+                        1,259.28{' '}
+                        <span className="currency currency-usd">USD</span>
                       </div>
                     </div>
                   </div>
@@ -230,13 +260,15 @@ const InvestHomePage = () => {
                     <div className="invest-data-history">
                       <div className="title">This Month</div>
                       <div className="amount">
-                        2,940.59 <span className="currency currency-usd">USD</span>
+                        2,940.59{' '}
+                        <span className="currency currency-usd">USD</span>
                       </div>
                     </div>
                     <div className="invest-data-history">
                       <div className="title">This Week</div>
                       <div className="amount">
-                        1,259.28 <span className="currency currency-usd">USD</span>
+                        1,259.28{' '}
+                        <span className="currency currency-usd">USD</span>
                       </div>
                     </div>
                   </div>
@@ -276,7 +308,7 @@ const InvestHomePage = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default InvestHomePage;
+export default InvestHomePage

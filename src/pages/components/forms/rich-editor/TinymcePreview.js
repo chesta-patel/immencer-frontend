@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import Head from "../../../../layout/head/Head";
-import Content from "../../../../layout/content/Content";
-import { Editor } from "@tinymce/tinymce-react";
+import React, { useRef } from 'react'
+import Head from '../../../../layout/head/Head'
+import Content from '../../../../layout/content/Content'
+import { Editor } from '@tinymce/tinymce-react'
 import {
   Block,
   BlockHead,
@@ -11,10 +11,10 @@ import {
   BackTo,
   PreviewCard,
   CodeBlock,
-} from "../../../../components/Component";
+} from '../../../../components/Component'
 
 const TinymcePreview = () => {
-  const editorRef = useRef(null);
+  const editorRef = useRef(null)
 
   return (
     <React.Fragment>
@@ -30,10 +30,14 @@ const TinymcePreview = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Using the{" "}
-                <a href="https://www.tiny.cloud/" target="_blank" rel="noreferrer">
+                Using the{' '}
+                <a
+                  href="https://www.tiny.cloud/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Tinymce
-                </a>{" "}
+                </a>{' '}
                 plugin, you can simply make some awesome rich text editor.
               </p>
             </BlockDes>
@@ -50,21 +54,21 @@ const TinymcePreview = () => {
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
-            {" "}
+            {' '}
             <Editor
               onInit={(evt, editor) => (editorRef.current = editor)}
               initialValue="<p>This is the initial content of the editor.</p>"
               init={{
-                menubar: "file edit view format",
+                menubar: 'file edit view format',
                 plugins: [
-                  "advlist autolink lists link image charmap print preview anchor",
-                  "searchreplace visualblocks code fullscreen",
-                  "insertdatetime media table paste code",
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code',
                 ],
                 toolbar:
-                  "undo redo | formatselect | " +
-                  "bold italic | alignleft aligncenter " +
-                  "alignright alignjustify | outdent indent",
+                  'undo redo | formatselect | ' +
+                  'bold italic | alignleft aligncenter ' +
+                  'alignright alignjustify | outdent indent',
               }}
             />
           </PreviewCard>
@@ -94,16 +98,16 @@ const TinymcePreview = () => {
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
-            {" "}
+            {' '}
             <Editor
               onInit={(evt, editor) => (editorRef.current = editor)}
               initialValue="<p>This is the initial content of the editor.</p>"
               init={{
-                menubar: "file edit view format",
+                menubar: 'file edit view format',
                 plugins: [
-                  "advlist autolink lists link image charmap print preview anchor",
-                  "searchreplace visualblocks code fullscreen",
-                  "insertdatetime media table paste code",
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code',
                 ],
                 toolbar: false,
               }}
@@ -132,21 +136,21 @@ const TinymcePreview = () => {
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
-            {" "}
+            {' '}
             <Editor
               onInit={(evt, editor) => (editorRef.current = editor)}
               initialValue="<p>This is the initial content of the editor.</p>"
               init={{
                 menubar: false,
                 plugins: [
-                  "advlist autolink lists link image charmap print preview anchor",
-                  "searchreplace visualblocks code fullscreen",
-                  "insertdatetime media table paste code",
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code',
                 ],
                 toolbar:
-                  "undo redo | formatselect | " +
-                  "bold italic | alignleft aligncenter " +
-                  "alignright alignjustify | outdent indent",
+                  'undo redo | formatselect | ' +
+                  'bold italic | alignleft aligncenter ' +
+                  'alignright alignjustify | outdent indent',
               }}
             />
           </PreviewCard>
@@ -169,7 +173,7 @@ const TinymcePreview = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default TinymcePreview;
+export default TinymcePreview

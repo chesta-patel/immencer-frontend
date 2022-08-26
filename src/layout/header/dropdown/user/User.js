@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import UserAvatar from "../../../../components/user/UserAvatar";
-import { DropdownToggle, DropdownMenu, Dropdown } from "reactstrap";
-import { Icon } from "../../../../components/Component";
-import { LinkList, LinkItem } from "../../../../components/links/Links";
+import React, { useState } from 'react'
+import UserAvatar from '../../../../components/user/UserAvatar'
+import { DropdownToggle, DropdownMenu, Dropdown } from 'reactstrap'
+import { Icon } from '../../../../components/Component'
+import { LinkList, LinkItem } from '../../../../components/links/Links'
 
 const User = () => {
-  const [open, setOpen] = useState(false);
-  const toggle = () => setOpen((prevState) => !prevState);
+  const [open, setOpen] = useState(false)
+  const toggle = () => setOpen((prevState) => !prevState)
 
   const handleSignout = () => {
-    localStorage.removeItem("accessToken");
-  };
+    localStorage.removeItem('accessToken')
+  }
 
   return (
     <Dropdown isOpen={open} className="user-dropdown" toggle={toggle}>
@@ -19,7 +19,7 @@ const User = () => {
         href="#toggle"
         className="dropdown-toggle"
         onClick={(ev) => {
-          ev.preventDefault();
+          ev.preventDefault()
         }}
       >
         <div className="user-toggle">
@@ -44,20 +44,35 @@ const User = () => {
         </div>
         <div className="dropdown-inner">
           <LinkList>
-            <LinkItem link="/user-profile-regular" icon="user-alt" onClick={toggle}>
+            <LinkItem
+              link="/user-profile-regular"
+              icon="user-alt"
+              onClick={toggle}
+            >
               View Profile
             </LinkItem>
-            <LinkItem link="/user-profile-setting" icon="setting-alt" onClick={toggle}>
+            <LinkItem
+              link="/user-profile-setting"
+              icon="setting-alt"
+              onClick={toggle}
+            >
               Account Setting
             </LinkItem>
-            <LinkItem link="/user-profile-activity" icon="activity-alt" onClick={toggle}>
+            <LinkItem
+              link="/user-profile-activity"
+              icon="activity-alt"
+              onClick={toggle}
+            >
               Login Activity
             </LinkItem>
           </LinkList>
         </div>
         <div className="dropdown-inner">
           <LinkList>
-            <a href={`${process.env.PUBLIC_URL}/auth-login`} onClick={handleSignout}>
+            <a
+              href={`${process.env.PUBLIC_URL}/auth-login`}
+              onClick={handleSignout}
+            >
               <Icon name="signout"></Icon>
               <span>Sign Out</span>
             </a>
@@ -65,7 +80,7 @@ const User = () => {
         </div>
       </DropdownMenu>
     </Dropdown>
-  );
-};
+  )
+}
 
-export default User;
+export default User

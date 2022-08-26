@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Bar, HorizontalBar, Line } from "react-chartjs-2";
+import React, { useEffect, useState } from 'react'
+import { Bar, HorizontalBar, Line } from 'react-chartjs-2'
 import {
   saleRevenue,
   activeSubscription,
@@ -15,7 +15,7 @@ import {
   userActivitySet2,
   userActivitySet3,
   userActivitySet4,
-} from "./Data";
+} from './Data'
 
 export const BarChart = ({ sales }) => {
   return (
@@ -40,11 +40,11 @@ export const BarChart = ({ sales }) => {
         },
         maintainAspectRatio: false,
         tooltips: {
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 11,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 4,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 10,
           bodySpacing: 3,
           yPadding: 8,
@@ -54,8 +54,8 @@ export const BarChart = ({ sales }) => {
         },
       }}
     />
-  );
-};
+  )
+}
 
 export const LineChart = () => {
   return (
@@ -71,17 +71,19 @@ export const LineChart = () => {
           enabled: true,
           callbacks: {
             title: function (tooltipItem, data) {
-              return data["labels"][tooltipItem[0]["index"]];
+              return data['labels'][tooltipItem[0]['index']]
             },
             label: function (tooltipItem, data) {
-              return data.datasets[tooltipItem.datasetIndex]["data"][tooltipItem["index"]];
+              return data.datasets[tooltipItem.datasetIndex]['data'][
+                tooltipItem['index']
+              ]
             },
           },
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -96,9 +98,9 @@ export const LineChart = () => {
               ticks: {
                 beginAtZero: true,
                 fontSize: 11,
-                fontColor: "#9eaecf",
+                fontColor: '#9eaecf',
                 callback: function (value, index, values) {
-                  return "$ " + value;
+                  return '$ ' + value
                 },
                 padding: 10,
                 min: 100,
@@ -114,38 +116,38 @@ export const LineChart = () => {
               display: true,
               ticks: {
                 fontSize: 9,
-                fontColor: "#9eaecf",
-                source: "auto",
+                fontColor: '#9eaecf',
+                source: 'auto',
                 padding: 10,
               },
               gridLines: {
-                color: "transparent",
+                color: 'transparent',
                 tickMarkLength: 0,
-                zeroLineColor: "transparent",
+                zeroLineColor: 'transparent',
               },
             },
           ],
         },
       }}
     />
-  );
-};
+  )
+}
 
 export const DoubleBar = ({ state }) => {
-  let object;
+  let object
   const setData = (state) => {
     switch (state) {
-      case "set2":
-        object = orderOverviewSet2;
-        break;
-      case "set3":
-        object = orderOverviewSet3;
-        break;
+      case 'set2':
+        object = orderOverviewSet2
+        break
+      case 'set3':
+        object = orderOverviewSet3
+        break
       default:
-        object = orderOverviewSet1;
+        object = orderOverviewSet1
     }
-    return object;
-  };
+    return object
+  }
   return (
     <Bar
       className="chartjs-render-monitor"
@@ -156,17 +158,17 @@ export const DoubleBar = ({ state }) => {
           labels: {
             boxWidth: 30,
             padding: 20,
-            fontColor: "#6783b8",
+            fontColor: '#6783b8',
           },
         },
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -181,10 +183,10 @@ export const DoubleBar = ({ state }) => {
               ticks: {
                 beginAtZero: true,
                 fontSize: 11,
-                fontColor: "#9eaecf",
+                fontColor: '#9eaecf',
                 padding: 10,
                 callback: function (value, index, values) {
-                  return "$ " + value;
+                  return '$ ' + value
                 },
                 min: 100,
                 max: 5000,
@@ -200,37 +202,37 @@ export const DoubleBar = ({ state }) => {
               display: true,
               ticks: {
                 fontSize: 9,
-                fontColor: "#9eaecf",
-                source: "auto",
+                fontColor: '#9eaecf',
+                source: 'auto',
                 padding: 10,
                 stepSize: 2400,
               },
               gridLines: {
-                color: "transparent",
+                color: 'transparent',
                 tickMarkLength: 0,
-                zeroLineColor: "transparent",
+                zeroLineColor: 'transparent',
               },
             },
           ],
         },
       }}
     />
-  );
-};
+  )
+}
 
 export const HorizontalBarChart = ({ state }) => {
-  const [data, setData] = useState(coinOverview);
+  const [data, setData] = useState(coinOverview)
   useEffect(() => {
-    let object;
-    if (state === "day") {
-      object = coinOverviewSet3;
-    } else if (state === "month") {
-      object = coinOverviewSet2;
+    let object
+    if (state === 'day') {
+      object = coinOverviewSet3
+    } else if (state === 'month') {
+      object = coinOverviewSet2
     } else {
-      object = coinOverviewSet1;
+      object = coinOverviewSet1
     }
-    setData(object);
-  }, [state]);
+    setData(object)
+  }, [state])
   return (
     <HorizontalBar
       data={data}
@@ -241,18 +243,18 @@ export const HorizontalBarChart = ({ state }) => {
           labels: {
             boxWidth: 30,
             padding: 20,
-            fontColor: "#6783b8",
+            fontColor: '#6783b8',
           },
         },
-        indexAxis: "y",
+        indexAxis: 'y',
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -280,36 +282,36 @@ export const HorizontalBarChart = ({ state }) => {
               stacked: true,
               ticks: {
                 fontSize: 9,
-                fontColor: "#9eaecf",
-                source: "auto",
+                fontColor: '#9eaecf',
+                source: 'auto',
                 padding: 0,
               },
               gridLines: {
-                color: "transparent",
+                color: 'transparent',
                 tickMarkLength: 0,
-                zeroLineColor: "transparent",
+                zeroLineColor: 'transparent',
               },
             },
           ],
         },
       }}
     />
-  );
-};
+  )
+}
 
 export const StackedBarChart = ({ state }) => {
-  const [data, setData] = useState(userActivity);
+  const [data, setData] = useState(userActivity)
   useEffect(() => {
-    let object;
-    if (state === "day") {
-      object = userActivitySet2;
-    } else if (state === "month") {
-      object = userActivitySet3;
+    let object
+    if (state === 'day') {
+      object = userActivitySet2
+    } else if (state === 'month') {
+      object = userActivitySet3
     } else {
-      object = userActivitySet4;
+      object = userActivitySet4
     }
-    setData(object);
-  }, [state]);
+    setData(object)
+  }, [state])
   return (
     <Bar
       className="usera-activity-chart"
@@ -321,11 +323,11 @@ export const StackedBarChart = ({ state }) => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -352,5 +354,5 @@ export const StackedBarChart = ({ state }) => {
         },
       }}
     />
-  );
-};
+  )
+}

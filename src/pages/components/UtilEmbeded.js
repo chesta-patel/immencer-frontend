@@ -1,8 +1,19 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, PreviewTable, CodeBlock } from "../../components/preview/Preview";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import {
+  PreviewCard,
+  PreviewTable,
+  CodeBlock,
+} from '../../components/preview/Preview'
 
 const EmbededPage = ({ ...props }) => {
   return (
@@ -19,8 +30,9 @@ const EmbededPage = ({ ...props }) => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Create responsive video or slideshow embeds based on the width of the parent by creating an intrinsic
-                ratio that scales on any device.
+                Create responsive video or slideshow embeds based on the width
+                of the parent by creating an intrinsic ratio that scales on any
+                device.
               </p>
             </BlockDes>
           </BlockHeadContent>
@@ -31,9 +43,11 @@ const EmbededPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Example</BlockTitle>
               <p>
-                Wrap any embed like an <code>&lt;iframe&gt;</code> in a parent element with{" "}
-                <code>.embed-responsive</code> and an aspect ratio. <br />
-                The <code>.embed-responsive-item</code> isn’t strictly required, but we encourage it.
+                Wrap any embed like an <code>&lt;iframe&gt;</code> in a parent
+                element with <code>.embed-responsive</code> and an aspect ratio.{' '}
+                <br />
+                The <code>.embed-responsive-item</code> isn’t strictly required,
+                but we encourage it.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -63,8 +77,8 @@ const EmbededPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Aspect Ratios</BlockTitle>
               <p>
-                Aspect ratios can be customized with modifier classNames. By default the following ratio classNames are
-                available.
+                Aspect ratios can be customized with modifier classNames. By
+                default the following ratio classNames are available.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -78,7 +92,7 @@ const EmbededPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.embed-responsive-{"{value}"}</code>
+                  <code>.embed-responsive-{'{value}'}</code>
                 </td>
                 <td>21by9 | 16by9 | 4by3 | 1by1</td>
               </tr>
@@ -88,7 +102,7 @@ const EmbededPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default EmbededPage;
+export default EmbededPage

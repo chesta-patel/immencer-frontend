@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
+import React, { useState } from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
 import {
   Block,
   BlockHead,
@@ -12,14 +12,21 @@ import {
   CodeBlock,
   Button,
   Icon,
-} from "../../../components/Component";
-import { Row, Col, DropdownToggle, DropdownMenu, DropdownItem, UncontrolledButtonDropdown } from "reactstrap";
+} from '../../../components/Component'
+import {
+  Row,
+  Col,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledButtonDropdown,
+} from 'reactstrap'
 
 const InputGroup = () => {
-  const [defaultFiles, setDefaultFiles] = useState("");
-  const [defaultFiles2, setDefaultFiles2] = useState("");
-  const [defaultFiles3, setDefaultFiles3] = useState("");
-  const [defaultFiles4, setDefaultFiles4] = useState("");
+  const [defaultFiles, setDefaultFiles] = useState('')
+  const [defaultFiles2, setDefaultFiles2] = useState('')
+  const [defaultFiles3, setDefaultFiles3] = useState('')
+  const [defaultFiles4, setDefaultFiles4] = useState('')
 
   return (
     <React.Fragment>
@@ -35,8 +42,9 @@ const InputGroup = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Examples and usage guidelines for input group. Extend form controls by adding text, buttons, or button
-                groups on either side of text inputs, custom selects, and custom file inputs.
+                Examples and usage guidelines for input group. Extend form
+                controls by adding text, buttons, or button groups on either
+                side of text inputs, custom selects, and custom file inputs.
               </p>
             </BlockDes>
           </BlockHeadContent>
@@ -47,9 +55,11 @@ const InputGroup = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Basic Example</BlockTitle>
               <p>
-                Place one add-on or button on either side of an input. You may also place one on both sides of an input.
-                We do not support multiple form-controls in a single input group and{" "}
-                <code className="code-tag">{`<label>`}</code>s must come outside the input group.
+                Place one add-on or button on either side of an input. You may
+                also place one on both sides of an input. We do not support
+                multiple form-controls in a single input group and{' '}
+                <code className="code-tag">{`<label>`}</code>s must come outside
+                the input group.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -63,14 +73,24 @@ const InputGroup = () => {
                         @
                       </span>
                     </div>
-                    <input type="text" className="form-control" placeholder="Username" required="" />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Username"
+                      required=""
+                    />
                   </div>
                 </div>
               </Col>
               <Col className="col-12">
                 <div className="form-control-wrap">
                   <div className="input-group">
-                    <input type="text" className="form-control" placeholder="Recipient's username" required="" />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Recipient's username"
+                      required=""
+                    />
                     <div className="input-group-append">
                       <span className="input-group-text" id="basic-addon2">
                         @example.com
@@ -143,8 +163,9 @@ const InputGroup = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Sizing</BlockTitle>
               <p>
-                Add the relative form sizing classes to the .input-group itself and contents within will automatically
-                resize—no need for repeating the form control size classes on each element.
+                Add the relative form sizing classes to the .input-group itself
+                and contents within will automatically resize—no need for
+                repeating the form control size classes on each element.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -154,7 +175,10 @@ const InputGroup = () => {
                 <div className="form-control-wrap">
                   <div className="input-group input-group-sm">
                     <div className="input-group-prepend">
-                      <span className="input-group-text" id="inputGroup-sizing-sm">
+                      <span
+                        className="input-group-text"
+                        id="inputGroup-sizing-sm"
+                      >
                         Small
                       </span>
                     </div>
@@ -166,7 +190,10 @@ const InputGroup = () => {
                 <div className="form-control-wrap">
                   <div className="input-group input-group">
                     <div className="input-group-prepend">
-                      <span className="input-group-text" id="inputGroup-sizing-md">
+                      <span
+                        className="input-group-text"
+                        id="inputGroup-sizing-md"
+                      >
                         Default
                       </span>
                     </div>
@@ -178,7 +205,10 @@ const InputGroup = () => {
                 <div className="form-control-wrap">
                   <div className="input-group input-group-lg">
                     <div className="input-group-prepend">
-                      <span className="input-group-text" id="inputGroup-sizing-lg">
+                      <span
+                        className="input-group-text"
+                        id="inputGroup-sizing-lg"
+                      >
                         Large
                       </span>
                     </div>
@@ -207,7 +237,10 @@ const InputGroup = () => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Checkbox and Radios</BlockTitle>
-              <p>Place any checkbox or radio option within an input group’s addon instead of text.</p>
+              <p>
+                Place any checkbox or radio option within an input group’s addon
+                instead of text.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -257,8 +290,9 @@ const InputGroup = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Multiple inputs</BlockTitle>
               <p>
-                While multiple <code>{`<input>`}</code>s are supported visually, validation styles are only available
-                for input groups with a single <code>{`<input>`}</code>.
+                While multiple <code>{`<input>`}</code>s are supported visually,
+                validation styles are only available for input groups with a
+                single <code>{`<input>`}</code>.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -268,7 +302,9 @@ const InputGroup = () => {
                 <div className="form-control-wrap">
                   <div className="input-group">
                     <div className="input-group-prepend">
-                      <span className="input-group-text">First and last name</span>
+                      <span className="input-group-text">
+                        First and last name
+                      </span>
                     </div>
                     <input type="text" className="form-control" />
                     <input type="text" className="form-control" />
@@ -294,7 +330,10 @@ const InputGroup = () => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Multiple addons</BlockTitle>
-              <p>Multiple add-ons are supported and can be mixed with checkbox and radio input versions.</p>
+              <p>
+                Multiple add-ons are supported and can be mixed with checkbox
+                and radio input versions.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -358,7 +397,11 @@ const InputGroup = () => {
               <Col className="col-12">
                 <div className="form-control-wrap">
                   <div className="input-group">
-                    <input type="text" className="form-control" placeholder="Recipients username" />
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Recipients username"
+                    />
                     <div className="input-group-append">
                       <Button outline color="primary" className="btn-dim">
                         Button
@@ -390,7 +433,12 @@ const InputGroup = () => {
                       <Button outline color="primary" className="btn-dim">
                         Button
                       </Button>
-                      <Button outline color="primary" className="btn-dim" placeholder="Recipients username">
+                      <Button
+                        outline
+                        color="primary"
+                        className="btn-dim"
+                        placeholder="Recipients username"
+                      >
                         Button
                       </Button>
                     </div>
@@ -429,25 +477,37 @@ const InputGroup = () => {
                 <div className="form-control-wrap">
                   <div className="input-group">
                     <UncontrolledButtonDropdown className="input-group-prepend">
-                      <DropdownToggle tag="button" className="btn btn-outline-primary btn-dim dropdown-toggle">
+                      <DropdownToggle
+                        tag="button"
+                        className="btn btn-outline-primary btn-dim dropdown-toggle"
+                      >
                         <span>Dropdown</span>
                         <Icon name="chevron-down" className="mx-n1"></Icon>
                       </DropdownToggle>
                       <DropdownMenu>
                         <ul className="link-list-opt no-bdr">
                           <li>
-                            <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Action Settings
                             </DropdownItem>
                           </li>
                           <li>
-                            <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Push Notification
                             </DropdownItem>
                           </li>
                           <li className="divider"></li>
                           <li>
-                            <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Login Activity
                             </DropdownItem>
                           </li>
@@ -463,25 +523,37 @@ const InputGroup = () => {
                   <div className="input-group">
                     <input type="text" className="form-control" />
                     <UncontrolledButtonDropdown className="input-group-append">
-                      <DropdownToggle tag="button" className="btn btn-outline-primary btn-dim dropdown-toggle">
+                      <DropdownToggle
+                        tag="button"
+                        className="btn btn-outline-primary btn-dim dropdown-toggle"
+                      >
                         <span>Dropdown</span>
                         <Icon name="chevron-down" className="mx-n1"></Icon>
                       </DropdownToggle>
                       <DropdownMenu>
                         <ul className="link-list-opt no-bdr">
                           <li>
-                            <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Action Settings
                             </DropdownItem>
                           </li>
                           <li>
-                            <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Push Notification
                             </DropdownItem>
                           </li>
                           <li className="divider"></li>
                           <li>
-                            <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Login Activity
                             </DropdownItem>
                           </li>
@@ -552,18 +624,30 @@ const InputGroup = () => {
                       <DropdownMenu>
                         <ul className="link-list-opt no-bdr">
                           <li>
-                            <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              href="#item"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Action Settings
                             </DropdownItem>
                           </li>
                           <li>
-                            <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              href="#item"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Push Notification
                             </DropdownItem>
                           </li>
                           <li className="divider"></li>
                           <li>
-                            <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              href="#item"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Login Activity
                             </DropdownItem>
                           </li>
@@ -591,18 +675,27 @@ const InputGroup = () => {
                       <DropdownMenu>
                         <ul className="link-list-opt no-bdr">
                           <li>
-                            <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Action Settings
                             </DropdownItem>
                           </li>
                           <li>
-                            <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Push Notification
                             </DropdownItem>
                           </li>
                           <li className="divider"></li>
                           <li>
-                            <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()}>
+                            <DropdownItem
+                              tag="a"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Login Activity
                             </DropdownItem>
                           </li>
@@ -663,7 +756,10 @@ const InputGroup = () => {
                 <div className="form-control-wrap">
                   <div className="input-group">
                     <div className="input-group-prepend">
-                      <label className="input-group-text" htmlFor="inputGroupSelect01">
+                      <label
+                        className="input-group-text"
+                        htmlFor="inputGroupSelect01"
+                      >
                         Options
                       </label>
                     </div>
@@ -686,7 +782,10 @@ const InputGroup = () => {
                       <option value="3">Three</option>
                     </select>
                     <div className="input-group-append">
-                      <label className="input-group-text" htmlFor="inputGroupSelect02">
+                      <label
+                        className="input-group-text"
+                        htmlFor="inputGroupSelect02"
+                      >
                         Options
                       </label>
                     </div>
@@ -756,8 +855,8 @@ const InputGroup = () => {
               <BlockTitle tag="h5">Custom file input</BlockTitle>
               <BlockDes>
                 <p>
-                  Input groups include support for custom file inputs. Browser default versions of these are not
-                  supported.
+                  Input groups include support for custom file inputs. Browser
+                  default versions of these are not supported.
                 </p>
               </BlockDes>
             </BlockHeadContent>
@@ -775,10 +874,15 @@ const InputGroup = () => {
                         type="file"
                         className="custom-file-input"
                         id="inputGroupFile01"
-                        onChange={(e) => setDefaultFiles(e.target.files[0].name)}
+                        onChange={(e) =>
+                          setDefaultFiles(e.target.files[0].name)
+                        }
                       />
-                      <label className="custom-file-label" htmlFor="inputGroupFile01">
-                        {defaultFiles === "" ? "Choose files" : defaultFiles}
+                      <label
+                        className="custom-file-label"
+                        htmlFor="inputGroupFile01"
+                      >
+                        {defaultFiles === '' ? 'Choose files' : defaultFiles}
                       </label>
                     </div>
                   </div>
@@ -792,10 +896,15 @@ const InputGroup = () => {
                         type="file"
                         className="custom-file-input"
                         id="inputGroupFile02"
-                        onChange={(e) => setDefaultFiles2(e.target.files[0].name)}
+                        onChange={(e) =>
+                          setDefaultFiles2(e.target.files[0].name)
+                        }
                       />
-                      <label className="custom-file-label" htmlFor="inputGroupFile02">
-                        {defaultFiles2 === "" ? "Choose files" : defaultFiles2}
+                      <label
+                        className="custom-file-label"
+                        htmlFor="inputGroupFile02"
+                      >
+                        {defaultFiles2 === '' ? 'Choose files' : defaultFiles2}
                       </label>
                     </div>
                     <div className="input-group-append">
@@ -817,10 +926,15 @@ const InputGroup = () => {
                         type="file"
                         className="custom-file-input"
                         id="inputGroupFile03"
-                        onChange={(e) => setDefaultFiles3(e.target.files[0].name)}
+                        onChange={(e) =>
+                          setDefaultFiles3(e.target.files[0].name)
+                        }
                       />
-                      <label className="custom-file-label" htmlFor="inputGroupFile03">
-                        {defaultFiles3 === "" ? "Choose files" : defaultFiles3}
+                      <label
+                        className="custom-file-label"
+                        htmlFor="inputGroupFile03"
+                      >
+                        {defaultFiles3 === '' ? 'Choose files' : defaultFiles3}
                       </label>
                     </div>
                   </div>
@@ -834,10 +948,15 @@ const InputGroup = () => {
                         type="file"
                         className="custom-file-input"
                         id="inputGroupFile04"
-                        onChange={(e) => setDefaultFiles4(e.target.files[0].name)}
+                        onChange={(e) =>
+                          setDefaultFiles4(e.target.files[0].name)
+                        }
                       />
-                      <label className="custom-file-label" htmlFor="inputGroupFile04">
-                        {defaultFiles4 === "" ? "Choose files" : defaultFiles4}
+                      <label
+                        className="custom-file-label"
+                        htmlFor="inputGroupFile04"
+                      >
+                        {defaultFiles4 === '' ? 'Choose files' : defaultFiles4}
                       </label>
                     </div>
                     <div className="input-group-append">
@@ -871,7 +990,7 @@ const InputGroup = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default InputGroup;
+export default InputGroup

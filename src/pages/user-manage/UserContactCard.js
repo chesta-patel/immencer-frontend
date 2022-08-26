@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import React, { useContext, useState } from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
 import {
   DropdownMenu,
   DropdownToggle,
@@ -10,7 +10,7 @@ import {
   Modal,
   ModalBody,
   DropdownItem,
-} from "reactstrap";
+} from 'reactstrap'
 import {
   Block,
   BlockBetween,
@@ -24,65 +24,65 @@ import {
   UserAvatar,
   Button,
   PreviewAltCard,
-} from "../../components/Component";
-import { Link } from "react-router-dom";
-import { userData } from "./UserData";
-import { findUpper } from "../../utils/Utils";
-import { useForm } from "react-hook-form";
-import { UserContext } from "./UserContext";
+} from '../../components/Component'
+import { Link } from 'react-router-dom'
+import { userData } from './UserData'
+import { findUpper } from '../../utils/Utils'
+import { useForm } from 'react-hook-form'
+import { UserContext } from './UserContext'
 
 const UserContactCardPage = () => {
-  const { contextData } = useContext(UserContext);
-  const [data, setData] = contextData;
+  const { contextData } = useContext(UserContext)
+  const [data, setData] = contextData
 
-  const [editId, setEditedId] = useState();
-  const [smOption, setSmOption] = useState(false);
+  const [editId, setEditedId] = useState()
+  const [smOption, setSmOption] = useState(false)
   const [formData, setFormData] = useState({
-    name: "",
-    designation: "",
-    projects: "",
-    performed: "",
-    tasks: "",
-  });
+    name: '',
+    designation: '',
+    projects: '',
+    performed: '',
+    tasks: '',
+  })
   const [modal, setModal] = useState({
     add: false,
     edit: false,
-  });
+  })
 
   // function to reset the form
   const resetForm = () => {
     setFormData({
-      name: "",
-      designation: "",
-      projects: "",
-      performed: "",
-      tasks: "",
-    });
-  };
+      name: '',
+      designation: '',
+      projects: '',
+      performed: '',
+      tasks: '',
+    })
+  }
 
   // submit function to add a new item
   const onFormSubmit = (formData) => {
-    const { name, designation, projects, performed, tasks } = formData;
+    const { name, designation, projects, performed, tasks } = formData
     let submittedData = {
       id: data.length + 1,
-      avatarBg: "success",
+      avatarBg: 'success',
       name: name,
-      status: "Active",
+      status: 'Active',
       designation: designation,
       projects: projects,
       performed: performed,
       tasks: tasks,
-    };
-    setData([submittedData, ...data]);
-    resetForm();
-    setModal({ add: false });
-  };
+    }
+    setData([submittedData, ...data])
+    resetForm()
+    setModal({ add: false })
+  }
 
   // submit function to update a new item
   const onEditSubmit = (formData) => {
-    const { name, designation, projects, performed, tasks } = formData;
-    let submittedData;
-    let newitems = data;
+    const { name, designation, projects, performed, tasks } = formData
+    let submittedData
+    let newitems = data
     newitems.forEach((item) => {
       if (item.id === editId) {
         submittedData = {
@@ -90,26 +90,26 @@ const UserContactCardPage = () => {
           id: item.id,
           avatarBg: item.avatarBg,
           name: name,
-          status: "Active",
+          status: 'Active',
           email: item.email,
           designation: designation,
           projects: projects,
           performed: performed,
           tasks: tasks,
-        };
+        }
       }
-    });
-    let index = newitems.findIndex((item) => item.id === editId);
-    newitems[index] = submittedData;
-    setData(newitems);
-    setModal({ edit: false });
-  };
+    })
+    let index = newitems.findIndex((item) => item.id === editId)
+    newitems[index] = submittedData
+    setData(newitems)
+    setModal({ edit: false })
+  }
 
   // function to close the form modal
   const onFormCancel = () => {
-    setModal({ edit: false, add: false });
-    resetForm();
-  };
+    setModal({ edit: false, add: false })
+    resetForm()
+  }
 
   // function that loads the want to editted data
   const onEditClick = (id) => {
@@ -121,22 +121,22 @@ const UserContactCardPage = () => {
           projects: item.projects,
           performed: item.performed,
           tasks: item.tasks,
-        });
-        setModal({ edit: true, add: false });
-        setEditedId(id);
+        })
+        setModal({ edit: true, add: false })
+        setEditedId(id)
       }
-    });
-  };
+    })
+  }
 
   // function to change to suspend property for an item
   const suspendUser = (id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].status = "Suspend";
-    setData([...newData]);
-  };
+    let newData = data
+    let index = newData.findIndex((item) => item.id === id)
+    newData[index].status = 'Suspend'
+    setData([...newData])
+  }
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   return (
     <React.Fragment>
@@ -155,14 +155,17 @@ const UserContactCardPage = () => {
                 <a
                   href="#toggle"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setSmOption(!smOption);
+                    ev.preventDefault()
+                    setSmOption(!smOption)
                   }}
                   className="btn btn-icon btn-trigger toggle-expand mr-n1"
                 >
                   <Icon name="menu-alt-r"></Icon>
                 </a>
-                <div className="toggle-expand-content" style={{ display: smOption ? "block" : "none" }}>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: smOption ? 'block' : 'none' }}
+                >
                   <ul className="nk-block-tools g-3">
                     <li>
                       <Button color="light" outline className="btn-white">
@@ -171,7 +174,11 @@ const UserContactCardPage = () => {
                       </Button>
                     </li>
                     <li className="nk-block-tools-opt">
-                      <Button color="primary" className="btn-icon" onClick={() => setModal({ add: true })}>
+                      <Button
+                        color="primary"
+                        className="btn-icon"
+                        onClick={() => setModal({ add: true })}
+                      >
                         <Icon name="plus"></Icon>
                       </Button>
                     </li>
@@ -191,22 +198,29 @@ const UserContactCardPage = () => {
                     <div className="team">
                       <div
                         className={`team-status ${
-                          item.status === "Active"
-                            ? "bg-success text-white"
-                            : item.status === "Pending"
-                            ? "bg-warning text-white"
-                            : "bg-danger text-white"
+                          item.status === 'Active'
+                            ? 'bg-success text-white'
+                            : item.status === 'Pending'
+                            ? 'bg-warning text-white'
+                            : 'bg-danger text-white'
                         } `}
                       >
                         <Icon
                           name={`${
-                            item.status === "Active" ? "check-thick" : item.status === "Pending" ? "clock" : "na"
+                            item.status === 'Active'
+                              ? 'check-thick'
+                              : item.status === 'Pending'
+                              ? 'clock'
+                              : 'na'
                           }`}
                         ></Icon>
                       </div>
                       <div className="team-options">
                         <UncontrolledDropdown>
-                          <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+                          <DropdownToggle
+                            tag="a"
+                            className="dropdown-toggle btn btn-icon btn-trigger"
+                          >
                             <Icon name="more-h"></Icon>
                           </DropdownToggle>
                           <DropdownMenu right>
@@ -216,14 +230,14 @@ const UserContactCardPage = () => {
                                   tag="a"
                                   href="#edit"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
+                                    ev.preventDefault()
                                   }}
                                 >
                                   <Icon name="edit"></Icon>
                                   <span>Edit</span>
                                 </DropdownItem>
                               </li>
-                              {item.status !== "Suspend" && (
+                              {item.status !== 'Suspend' && (
                                 <React.Fragment>
                                   <li className="divider"></li>
                                   <li onClick={() => suspendUser(item.id)}>
@@ -231,7 +245,7 @@ const UserContactCardPage = () => {
                                       tag="a"
                                       href="#suspend"
                                       onClick={(ev) => {
-                                        ev.preventDefault();
+                                        ev.preventDefault()
                                       }}
                                     >
                                       <Icon name="na"></Icon>
@@ -245,12 +259,19 @@ const UserContactCardPage = () => {
                         </UncontrolledDropdown>
                       </div>
                       <div className="user-card user-card-s2">
-                        <UserAvatar theme={item.avatarBg} className="md" text={findUpper(item.name)} image={item.image}>
+                        <UserAvatar
+                          theme={item.avatarBg}
+                          className="md"
+                          text={findUpper(item.name)}
+                          image={item.image}
+                        >
                           <div className="status dot dot-lg dot-success"></div>
                         </UserAvatar>
                         <div className="user-info">
                           <h6>{item.name}</h6>
-                          <span className="sub-text">@{item.name.split(" ")[0].toLowerCase()}</span>
+                          <span className="sub-text">
+                            @{item.name.split(' ')[0].toLowerCase()}
+                          </span>
                         </div>
                       </div>
                       <div className="team-details">
@@ -271,8 +292,14 @@ const UserContactCardPage = () => {
                         </li>
                       </ul>
                       <div className="team-view">
-                        <Link to={`${process.env.PUBLIC_URL}/user-details-regular/${item.id}`}>
-                          <Button outline color="light" className="btn-round w-150px">
+                        <Link
+                          to={`${process.env.PUBLIC_URL}/user-details-regular/${item.id}`}
+                        >
+                          <Button
+                            outline
+                            color="light"
+                            className="btn-round w-150px"
+                          >
                             <span>View Profile</span>
                           </Button>
                         </Link>
@@ -280,7 +307,7 @@ const UserContactCardPage = () => {
                     </div>
                   </PreviewAltCard>
                 </Col>
-              );
+              )
             })}
           </Row>
         </Block>
@@ -304,7 +331,10 @@ const UserContactCardPage = () => {
                     <div className="team">
                       <div className="team-options">
                         <UncontrolledDropdown>
-                          <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+                          <DropdownToggle
+                            tag="a"
+                            className="dropdown-toggle btn btn-icon btn-trigger"
+                          >
                             <Icon name="more-h"></Icon>
                           </DropdownToggle>
                           <DropdownMenu right>
@@ -314,7 +344,7 @@ const UserContactCardPage = () => {
                                   tag="a"
                                   href="#edit"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
+                                    ev.preventDefault()
                                   }}
                                 >
                                   <Icon name="edit"></Icon>
@@ -326,7 +356,7 @@ const UserContactCardPage = () => {
                                 <DropdownItem
                                   href="#suspend"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
+                                    ev.preventDefault()
                                   }}
                                 >
                                   <Icon name="na"></Icon>
@@ -338,12 +368,19 @@ const UserContactCardPage = () => {
                         </UncontrolledDropdown>
                       </div>
                       <div className="user-card user-card-s2">
-                        <UserAvatar theme={item.avatarBg} className="lg" text={findUpper(item.name)} image={item.image}>
+                        <UserAvatar
+                          theme={item.avatarBg}
+                          className="lg"
+                          text={findUpper(item.name)}
+                          image={item.image}
+                        >
                           <div className="status dot dot-lg dot-success"></div>
                         </UserAvatar>
                         <div className="user-info">
                           <h6>{item.name}</h6>
-                          <span className="sub-text">@{item.name.split(" ")[0].toLowerCase()}</span>
+                          <span className="sub-text">
+                            @{item.name.split(' ')[0].toLowerCase()}
+                          </span>
                         </div>
                       </div>
                       <div className="team-details">
@@ -364,7 +401,9 @@ const UserContactCardPage = () => {
                         </li>
                       </ul>
                       <div className="team-view">
-                        <Link to={`${process.env.PUBLIC_URL}/user-details-regular/${item.id}`}>
+                        <Link
+                          to={`${process.env.PUBLIC_URL}/user-details-regular/${item.id}`}
+                        >
                           <Button color="primary" className="btn-block btn-dim">
                             <span>View Profile</span>
                           </Button>
@@ -373,18 +412,23 @@ const UserContactCardPage = () => {
                     </div>
                   </PreviewAltCard>
                 </Col>
-              );
+              )
             })}
           </Row>
         </Block>
 
-        <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={modal.add}
+          toggle={() => setModal({ add: false })}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a
               href="#cancel"
               onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
+                ev.preventDefault()
+                onFormCancel()
               }}
               className="close"
             >
@@ -393,19 +437,24 @@ const UserContactCardPage = () => {
             <div className="p-2">
               <h5 className="title">Add User</h5>
               <div className="mt-4">
-                <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
+                <Form
+                  className="row gy-4"
+                  onSubmit={handleSubmit(onFormSubmit)}
+                >
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Name</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="text"
                         name="name"
                         defaultValue={formData.name}
                         placeholder="Enter name"
                       />
-                      {errors.name && <span className="invalid">{errors.name.message}</span>}
+                      {errors.name && (
+                        <span className="invalid">{errors.name.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -413,13 +462,17 @@ const UserContactCardPage = () => {
                       <label className="form-label"> Designation </label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="text"
                         name="designation"
                         defaultValue={formData.designation}
                         placeholder="Enter Designation"
                       />
-                      {errors.designation && <span className="invalid">{errors.designation.message}</span>}
+                      {errors.designation && (
+                        <span className="invalid">
+                          {errors.designation.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="4">
@@ -427,12 +480,16 @@ const UserContactCardPage = () => {
                       <label className="form-label">Projects</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="number"
                         name="projects"
                         defaultValue={formData.projects}
                       />
-                      {errors.projects && <span className="invalid">{errors.projects.message}</span>}
+                      {errors.projects && (
+                        <span className="invalid">
+                          {errors.projects.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="4">
@@ -440,12 +497,16 @@ const UserContactCardPage = () => {
                       <label className="form-label">Performed</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="number"
                         name="performed"
                         defaultValue={formData.performed}
                       />
-                      {errors.performed && <span className="invalid">{errors.performed.message}</span>}
+                      {errors.performed && (
+                        <span className="invalid">
+                          {errors.performed.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="4">
@@ -453,12 +514,14 @@ const UserContactCardPage = () => {
                       <label className="form-label">Tasks</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="number"
                         name="tasks"
                         defaultValue={formData.tasks}
                       />
-                      {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}
+                      {errors.tasks && (
+                        <span className="invalid">{errors.tasks.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col size="12">
@@ -471,8 +534,8 @@ const UserContactCardPage = () => {
                       <li>
                         <Button
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
+                            ev.preventDefault()
+                            onFormCancel()
                           }}
                           className="link link-light"
                         >
@@ -486,13 +549,18 @@ const UserContactCardPage = () => {
             </div>
           </ModalBody>
         </Modal>
-        <Modal isOpen={modal.edit} toggle={() => setModal({ edit: false })} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={modal.edit}
+          toggle={() => setModal({ edit: false })}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a
               href="#cancel"
               onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
+                ev.preventDefault()
+                onFormCancel()
               }}
               className="close"
             >
@@ -501,19 +569,25 @@ const UserContactCardPage = () => {
             <div className="p-2">
               <h5 className="title">Update User</h5>
               <div className="mt-4">
-                <Form className="row gy-4" onSubmit={handleSubmit(onEditSubmit)} noValidate>
+                <Form
+                  className="row gy-4"
+                  onSubmit={handleSubmit(onEditSubmit)}
+                  noValidate
+                >
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Name</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="text"
                         name="name"
                         defaultValue={formData.name}
                         placeholder="Enter name"
                       />
-                      {errors.name && <span className="invalid">{errors.name.message}</span>}
+                      {errors.name && (
+                        <span className="invalid">{errors.name.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -521,13 +595,17 @@ const UserContactCardPage = () => {
                       <label className="form-label"> Designation </label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="text"
                         name="designation"
                         defaultValue={formData.designation}
                         placeholder="Enter Designation"
                       />
-                      {errors.designation && <span className="invalid">{errors.designation.message}</span>}
+                      {errors.designation && (
+                        <span className="invalid">
+                          {errors.designation.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="4">
@@ -535,12 +613,16 @@ const UserContactCardPage = () => {
                       <label className="form-label">Projects</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="number"
                         name="projects"
                         defaultValue={formData.projects}
                       />
-                      {errors.projects && <span className="invalid">{errors.projects.message}</span>}
+                      {errors.projects && (
+                        <span className="invalid">
+                          {errors.projects.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="4">
@@ -548,13 +630,17 @@ const UserContactCardPage = () => {
                       <label className="form-label">Performed</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="number"
                         name="performed"
                         max={100}
                         defaultValue={Number(formData.performed)}
                       />
-                      {errors.performed && <span className="invalid">{errors.performed.message}</span>}
+                      {errors.performed && (
+                        <span className="invalid">
+                          {errors.performed.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="4">
@@ -562,12 +648,14 @@ const UserContactCardPage = () => {
                       <label className="form-label">Tasks</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="number"
                         name="tasks"
                         defaultValue={formData.tasks}
                       />
-                      {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}
+                      {errors.tasks && (
+                        <span className="invalid">{errors.tasks.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col size="12">
@@ -581,8 +669,8 @@ const UserContactCardPage = () => {
                         <Button
                           href="#cancel"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
+                            ev.preventDefault()
+                            onFormCancel()
                           }}
                           className="link link-light"
                         >
@@ -598,6 +686,6 @@ const UserContactCardPage = () => {
         </Modal>
       </Content>
     </React.Fragment>
-  );
-};
-export default UserContactCardPage;
+  )
+}
+export default UserContactCardPage

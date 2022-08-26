@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
-import DatePicker from "react-datepicker";
+import React, { useState } from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
+import DatePicker from 'react-datepicker'
 import {
   DropdownMenu,
   DropdownToggle,
@@ -12,7 +12,7 @@ import {
   Modal,
   DropdownItem,
   Form,
-} from "reactstrap";
+} from 'reactstrap'
 import {
   Block,
   BlockHead,
@@ -31,63 +31,68 @@ import {
   DataTableRow,
   DataTableItem,
   RSelect,
-} from "../../../components/Component";
-import { projectData, teamList } from "./ProjectData";
-import { findUpper, setDeadline, setDeadlineDays, calcPercentage } from "../../../utils/Utils";
-import { useForm } from "react-hook-form";
+} from '../../../components/Component'
+import { projectData, teamList } from './ProjectData'
+import {
+  findUpper,
+  setDeadline,
+  setDeadlineDays,
+  calcPercentage,
+} from '../../../utils/Utils'
+import { useForm } from 'react-hook-form'
 
 export const ProjectListPage = () => {
-  const [sm, updateSm] = useState(false);
+  const [sm, updateSm] = useState(false)
   const [modal, setModal] = useState({
     edit: false,
     add: false,
-  });
-  const [editId, setEditedId] = useState();
-  const [data, setData] = useState(projectData);
+  })
+  const [editId, setEditedId] = useState()
+  const [data, setData] = useState(projectData)
   const [formData, setFormData] = useState({
-    title: "",
-    subtitle: "",
-    description: "",
-    lead: "",
+    title: '',
+    subtitle: '',
+    description: '',
+    lead: '',
     tasks: 0,
     team: [],
     totalTask: 0,
     date: new Date(),
-  });
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage] = useState(7);
+  })
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemPerPage] = useState(7)
 
   // OnChange function to get the input data
   const onInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   // function to reset the form
   const resetForm = () => {
     setFormData({
-      title: "",
-      subtitle: "",
-      description: "",
-      lead: "",
+      title: '',
+      subtitle: '',
+      description: '',
+      lead: '',
       tasks: 0,
       totalTask: 0,
       team: [],
       date: new Date(),
-    });
-  };
+    })
+  }
 
   // function to close the form modal
   const onFormCancel = () => {
-    setModal({ edit: false, add: false });
-    resetForm();
-  };
+    setModal({ edit: false, add: false })
+    resetForm()
+  }
 
   // submit function to add a new item
   const onFormSubmit = (sData) => {
-    const { title, subtitle, description, tasks, totalTask } = sData;
+    const { title, subtitle, description, tasks, totalTask } = sData
     let submittedData = {
       id: data.length + 1,
-      avatarClass: "pink",
+      avatarClass: 'pink',
       title: title,
       subtitle: subtitle,
       desc: description,
@@ -96,17 +101,17 @@ export const ProjectListPage = () => {
       tasks: tasks,
       totalTask: totalTask,
       deadline: new Date(`${formData.date}`), // Format ** mm/dd/yyyy
-    };
-    setData((data) => [submittedData, ...data]);
-    resetForm();
-    setModal({ add: false });
-  };
+    }
+    setData((data) => [submittedData, ...data])
+    resetForm()
+    setModal({ add: false })
+  }
 
   // submit function to update a new item
   const onEditSubmit = (sData) => {
-    const { title, subtitle, description, tasks, totalTask } = sData;
-    let submittedData;
-    let newitems = data;
+    const { title, subtitle, description, tasks, totalTask } = sData
+    let submittedData
+    let newitems = data
     newitems.forEach((item) => {
       if (item.id === editId) {
         submittedData = {
@@ -120,14 +125,14 @@ export const ProjectListPage = () => {
           totalTask: totalTask,
           deadline: new Date(`${formData.date}`), // Format ** mm/dd/yyyy
           team: formData.team,
-        };
+        }
       }
-    });
-    let index = newitems.findIndex((item) => item.id === editId);
-    newitems[index] = submittedData;
-    resetForm();
-    setModal({ edit: false });
-  };
+    })
+    let index = newitems.findIndex((item) => item.id === editId)
+    newitems[index] = submittedData
+    resetForm()
+    setModal({ edit: false })
+  }
 
   // function that loads the want to editted data
   const onEditClick = (id) => {
@@ -142,65 +147,65 @@ export const ProjectListPage = () => {
           tasks: item.tasks,
           totalTask: item.totalTask,
           date: item.deadline,
-        });
-        setModal({ edit: true }, { add: false });
-        setEditedId(id);
+        })
+        setModal({ edit: true }, { add: false })
+        setEditedId(id)
       }
-    });
-  };
+    })
+  }
 
   // function to change the complete a project property
   const completeProject = (id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].deadline = setDeadline(0);
-    setData([...newData]);
-  };
+    let newData = data
+    let index = newData.findIndex((item) => item.id === id)
+    newData[index].deadline = setDeadline(0)
+    setData([...newData])
+  }
 
   // function to change the check property of an item
   const selectorCheck = (e) => {
-    let newData;
+    let newData
     newData = data.map((item) => {
-      item.checked = e.currentTarget.checked;
-      return item;
-    });
-    setData([...newData]);
-  };
+      item.checked = e.currentTarget.checked
+      return item
+    })
+    setData([...newData])
+  }
 
   // function to change the complete property of an item
   const selectorCompleteProject = () => {
-    let newData;
+    let newData
     newData = data.map((item) => {
-      if (item.checked === true) item.deadline = setDeadline(0);
-      return item;
-    });
-    setData([...newData]);
-  };
+      if (item.checked === true) item.deadline = setDeadline(0)
+      return item
+    })
+    setData([...newData])
+  }
 
   // function to delete the seletected item
   const selectorDeleteProject = () => {
-    let newData;
-    newData = data.filter((item) => item.checked !== true);
-    setData([...newData]);
-  };
+    let newData
+    newData = data.filter((item) => item.checked !== true)
+    setData([...newData])
+  }
 
   // function to change the check property of selected item
   const onSelectChange = (e, id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].checked = e.currentTarget.checked;
-    setData([...newData]);
-  };
+    let newData = data
+    let index = newData.findIndex((item) => item.id === id)
+    newData[index].checked = e.currentTarget.checked
+    setData([...newData])
+  }
 
   // Get current list, pagination
-  const indexOfLastItem = currentPage * itemPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemPerPage
+  const indexOfFirstItem = indexOfLastItem - itemPerPage
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
 
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   return (
     <React.Fragment>
@@ -210,22 +215,35 @@ export const ProjectListPage = () => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle page> Projects</BlockTitle>
-              <BlockDes className="text-soft">You have total {data.length} projects</BlockDes>
+              <BlockDes className="text-soft">
+                You have total {data.length} projects
+              </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
                 <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${sm ? "active" : ""}`}
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                    sm ? 'active' : ''
+                  }`}
                   onClick={() => updateSm(!sm)}
                 >
                   <Icon name="menu-alt-r"></Icon>
                 </Button>
-                <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
                   <ul className="nk-block-tools g-3">
                     <li>
                       <UncontrolledDropdown>
-                        <DropdownToggle tag="a" className="dropdown-toggle btn btn-white btn-dim btn-outline-light">
-                          <Icon name="filter-alt" className="d-none d-sm-inline"></Icon>
+                        <DropdownToggle
+                          tag="a"
+                          className="dropdown-toggle btn btn-white btn-dim btn-outline-light"
+                        >
+                          <Icon
+                            name="filter-alt"
+                            className="d-none d-sm-inline"
+                          ></Icon>
                           <span>Filtered By</span>
                           <Icon name="chevron-right" className="dd-indc"></Icon>
                         </DropdownToggle>
@@ -236,7 +254,7 @@ export const ProjectListPage = () => {
                                 tag="a"
                                 href="#dropdownitem"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Open</span>
@@ -247,7 +265,7 @@ export const ProjectListPage = () => {
                                 tag="a"
                                 href="#dropdownitem"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Closed</span>
@@ -258,7 +276,7 @@ export const ProjectListPage = () => {
                                 tag="a"
                                 href="#dropdownitem"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Onhold</span>
@@ -268,7 +286,10 @@ export const ProjectListPage = () => {
                         </DropdownMenu>
                       </UncontrolledDropdown>
                     </li>
-                    <li className="nk-block-tools-opt" onClick={() => setModal({ add: true })}>
+                    <li
+                      className="nk-block-tools-opt"
+                      onClick={() => setModal({ add: true })}
+                    >
                       <Button color="primary">
                         <Icon name="plus"></Icon>
                         <span>Add Project</span>
@@ -292,7 +313,10 @@ export const ProjectListPage = () => {
                       id="pid-all"
                       onChange={(e) => selectorCheck(e)}
                     />
-                    <label className="custom-control-label" htmlFor="pid-all"></label>
+                    <label
+                      className="custom-control-label"
+                      htmlFor="pid-all"
+                    ></label>
                   </div>
                 </DataTableRow>
                 <DataTableRow>
@@ -318,7 +342,10 @@ export const ProjectListPage = () => {
                 </DataTableRow>
                 <DataTableRow className="nk-tb-col-tools text-right">
                   <UncontrolledDropdown>
-                    <DropdownToggle tag="a" className="btn btn-xs btn-trigger btn-icon dropdown-toggle mr-n1">
+                    <DropdownToggle
+                      tag="a"
+                      className="btn btn-xs btn-trigger btn-icon dropdown-toggle mr-n1"
+                    >
                       <Icon name="more-h"></Icon>
                     </DropdownToggle>
                     <DropdownMenu right>
@@ -328,7 +355,7 @@ export const ProjectListPage = () => {
                             tag="a"
                             href="#markasdone"
                             onClick={(ev) => {
-                              ev.preventDefault();
+                              ev.preventDefault()
                             }}
                           >
                             <Icon name="check-round-cut"></Icon>
@@ -340,7 +367,7 @@ export const ProjectListPage = () => {
                             tag="a"
                             href="#remove"
                             onClick={(ev) => {
-                              ev.preventDefault();
+                              ev.preventDefault()
                             }}
                           >
                             <Icon name="trash"></Icon>
@@ -354,7 +381,7 @@ export const ProjectListPage = () => {
               </DataTableHead>
               {currentItems.length > 0
                 ? currentItems.map((item) => {
-                    var days = setDeadlineDays(item.deadline);
+                    var days = setDeadlineDays(item.deadline)
                     return (
                       <DataTableItem key={item.id}>
                         <DataTableRow className="nk-tb-col-check">
@@ -363,22 +390,29 @@ export const ProjectListPage = () => {
                               type="checkbox"
                               className="custom-control-input form-control"
                               defaultChecked={item.checked}
-                              id={item.id + "pid-all"}
+                              id={item.id + 'pid-all'}
                               key={Math.random()}
                               onChange={(e) => onSelectChange(e, item.id)}
                             />
-                            <label className="custom-control-label" htmlFor={item.id + "pid-all"}></label>
+                            <label
+                              className="custom-control-label"
+                              htmlFor={item.id + 'pid-all'}
+                            ></label>
                           </div>
                         </DataTableRow>
                         <DataTableRow>
                           <a
                             href="#title"
                             onClick={(ev) => {
-                              ev.preventDefault();
+                              ev.preventDefault()
                             }}
                             className="project-title"
                           >
-                            <UserAvatar className="sq" theme={item.avatarClass} text={findUpper(item.title)} />
+                            <UserAvatar
+                              className="sq"
+                              theme={item.avatarClass}
+                              text={findUpper(item.title)}
+                            />
                             <div className="project-info">
                               <h6 className="title">{item.title}</h6>
                             </div>
@@ -402,26 +436,37 @@ export const ProjectListPage = () => {
                                     image={member.image}
                                   />
                                 </li>
-                              );
+                              )
                             })}
                             {item.team.length > 2 && (
                               <li>
-                                <UserAvatar theme="light" className="sm" text={`+${item.team.length - 2}`} />
+                                <UserAvatar
+                                  theme="light"
+                                  className="sm"
+                                  text={`+${item.team.length - 2}`}
+                                />
                               </li>
                             )}
                           </ul>
                         </DataTableRow>
                         <DataTableRow size="xxl">
-                          <span>{days === 0 ? "Closed" : "Open"}</span>
+                          <span>{days === 0 ? 'Closed' : 'Open'}</span>
                         </DataTableRow>
                         <DataTableRow size="md">
                           <div className="project-list-progress">
                             <Progress
                               className="progress-pill progress-md bg-light"
-                              value={days === 0 ? 100 : calcPercentage(item.totalTask, item.tasks)}
+                              value={
+                                days === 0
+                                  ? 100
+                                  : calcPercentage(item.totalTask, item.tasks)
+                              }
                             ></Progress>
                             <div className="project-progress-percent">
-                              {days === 0 ? 100 : calcPercentage(item.totalTask, item.tasks)}%
+                              {days === 0
+                                ? 100
+                                : calcPercentage(item.totalTask, item.tasks)}
+                              %
                             </div>
                           </div>
                         </DataTableRow>
@@ -429,23 +474,32 @@ export const ProjectListPage = () => {
                           <span
                             className={`badge badge-dim badge-${
                               days > 10
-                                ? "light"
+                                ? 'light'
                                 : days <= 10 && days >= 2
-                                ? "warning"
+                                ? 'warning'
                                 : days === 1
-                                ? "danger"
-                                : days <= 0 && "success"
+                                ? 'danger'
+                                : days <= 0 && 'success'
                             }`}
                           >
                             <Icon name="clock"></Icon>
-                            <span>{days <= 0 ? "Done" : days === 1 ? "Due Tomorrow" : days + " Days Left"}</span>
+                            <span>
+                              {days <= 0
+                                ? 'Done'
+                                : days === 1
+                                ? 'Due Tomorrow'
+                                : days + ' Days Left'}
+                            </span>
                           </span>
                         </DataTableRow>
                         <DataTableRow className="nk-tb-col-tools text-right">
                           <ul className="nk-tb-actions gx-1">
                             <li>
                               <UncontrolledDropdown>
-                                <DropdownToggle tag="a" className="text-soft dropdown-toggle btn btn-icon btn-trigger">
+                                <DropdownToggle
+                                  tag="a"
+                                  className="text-soft dropdown-toggle btn btn-icon btn-trigger"
+                                >
                                   <Icon name="more-h"></Icon>
                                 </DropdownToggle>
                                 <DropdownMenu right>
@@ -455,7 +509,7 @@ export const ProjectListPage = () => {
                                         tag="a"
                                         href="#edit"
                                         onClick={(ev) => {
-                                          ev.preventDefault();
+                                          ev.preventDefault()
                                         }}
                                       >
                                         <Icon name="edit"></Icon>
@@ -463,12 +517,14 @@ export const ProjectListPage = () => {
                                       </DropdownItem>
                                     </li>
                                     {days !== 0 && (
-                                      <li onClick={() => completeProject(item.id)}>
+                                      <li
+                                        onClick={() => completeProject(item.id)}
+                                      >
                                         <DropdownItem
                                           tag="a"
                                           href="#markasdone"
                                           onClick={(ev) => {
-                                            ev.preventDefault();
+                                            ev.preventDefault()
                                           }}
                                         >
                                           <Icon name="check-round-cut"></Icon>
@@ -483,7 +539,7 @@ export const ProjectListPage = () => {
                           </ul>
                         </DataTableRow>
                       </DataTableItem>
-                    );
+                    )
                   })
                 : null}
             </DataTableBody>
@@ -504,13 +560,18 @@ export const ProjectListPage = () => {
           </DataTable>
         </Block>
 
-        <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={modal.add}
+          toggle={() => setModal({ add: false })}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a
               href="#cancel"
               onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
+                ev.preventDefault()
+                onFormCancel()
               }}
               className="close"
             >
@@ -519,7 +580,10 @@ export const ProjectListPage = () => {
             <div className="p-2">
               <h5 className="title">Add Project</h5>
               <div className="mt-4">
-                <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
+                <Form
+                  className="row gy-4"
+                  onSubmit={handleSubmit(onFormSubmit)}
+                >
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Title</label>
@@ -531,10 +595,12 @@ export const ProjectListPage = () => {
                         onChange={(e) => onInputChange(e)}
                         className="form-control"
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                       />
-                      {errors.title && <span className="invalid">{errors.title.message}</span>}
+                      {errors.title && (
+                        <span className="invalid">{errors.title.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -548,10 +614,14 @@ export const ProjectListPage = () => {
                         onChange={(e) => onInputChange(e)}
                         className="form-control"
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                       />
-                      {errors.subtitle && <span className="invalid">{errors.subtitle.message}</span>}
+                      {errors.subtitle && (
+                        <span className="invalid">
+                          {errors.subtitle.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col size="12">
@@ -564,10 +634,14 @@ export const ProjectListPage = () => {
                         onChange={(e) => onInputChange(e)}
                         className="form-control-xl form-control no-resize"
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                       />
-                      {errors.description && <span className="invalid">{errors.description.message}</span>}
+                      {errors.description && (
+                        <span className="invalid">
+                          {errors.description.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -580,10 +654,12 @@ export const ProjectListPage = () => {
                         onChange={(e) => onInputChange(e)}
                         className="form-control"
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                       />
-                      {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}
+                      {errors.tasks && (
+                        <span className="invalid">{errors.tasks.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -596,10 +672,14 @@ export const ProjectListPage = () => {
                         onChange={(e) => onInputChange(e)}
                         className="form-control"
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                       />
-                      {errors.totalTask && <span className="invalid">{errors.totalTask.message}</span>}
+                      {errors.totalTask && (
+                        <span className="invalid">
+                          {errors.totalTask.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -608,7 +688,9 @@ export const ProjectListPage = () => {
                       <DatePicker
                         selected={formData.date}
                         className="form-control"
-                        onChange={(date) => setFormData({ ...formData, date: date })}
+                        onChange={(date) =>
+                          setFormData({ ...formData, date: date })
+                        }
                         minDate={new Date()}
                       />
                     </FormGroup>
@@ -616,13 +698,22 @@ export const ProjectListPage = () => {
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Team Members</label>
-                      <RSelect options={teamList} isMulti onChange={(e) => setFormData({ ...formData, team: e })} />
+                      <RSelect
+                        options={teamList}
+                        isMulti
+                        onChange={(e) => setFormData({ ...formData, team: e })}
+                      />
                     </FormGroup>
                   </Col>
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Lead</label>
-                      <RSelect options={formData.team} onChange={(e) => setFormData({ ...formData, lead: e.value })} />
+                      <RSelect
+                        options={formData.team}
+                        onChange={(e) =>
+                          setFormData({ ...formData, lead: e.value })
+                        }
+                      />
                     </FormGroup>
                   </Col>
                   <Col size="12">
@@ -635,8 +726,8 @@ export const ProjectListPage = () => {
                       <li>
                         <Button
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
+                            ev.preventDefault()
+                            onFormCancel()
                           }}
                           className="link link-light"
                         >
@@ -651,13 +742,18 @@ export const ProjectListPage = () => {
           </ModalBody>
         </Modal>
 
-        <Modal isOpen={modal.edit} toggle={() => setModal({ edit: false })} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={modal.edit}
+          toggle={() => setModal({ edit: false })}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a
               href="#cancel"
               onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
+                ev.preventDefault()
+                onFormCancel()
               }}
               className="close"
             >
@@ -666,7 +762,10 @@ export const ProjectListPage = () => {
             <div className="p-2">
               <h5 className="title">Update Project</h5>
               <div className="mt-4">
-                <Form className="row gy-4" onSubmit={handleSubmit(onEditSubmit)}>
+                <Form
+                  className="row gy-4"
+                  onSubmit={handleSubmit(onEditSubmit)}
+                >
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Title</label>
@@ -677,11 +776,13 @@ export const ProjectListPage = () => {
                         placeholder="Enter Title"
                         onChange={(e) => onInputChange(e)}
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                         className="form-control"
                       />
-                      {errors.title && <span className="invalid">{errors.title.message}</span>}
+                      {errors.title && (
+                        <span className="invalid">{errors.title.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -694,11 +795,15 @@ export const ProjectListPage = () => {
                         placeholder="Enter client Name"
                         onChange={(e) => onInputChange(e)}
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                         className="form-control"
                       />
-                      {errors.subtitle && <span className="invalid">{errors.subtitle.message}</span>}
+                      {errors.subtitle && (
+                        <span className="invalid">
+                          {errors.subtitle.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col size="12">
@@ -710,11 +815,15 @@ export const ProjectListPage = () => {
                         placeholder="Your description"
                         onChange={(e) => onInputChange(e)}
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                         className="form-control no-resize"
                       />
-                      {errors.description && <span className="invalid">{errors.description.message}</span>}
+                      {errors.description && (
+                        <span className="invalid">
+                          {errors.description.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -725,12 +834,14 @@ export const ProjectListPage = () => {
                         name="tasks"
                         onChange={(e) => onInputChange(e)}
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                         defaultValue={formData.tasks}
                         className="form-control"
                       />
-                      {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}
+                      {errors.tasks && (
+                        <span className="invalid">{errors.tasks.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -743,11 +854,15 @@ export const ProjectListPage = () => {
                         defaultValue={formData.totalTask}
                         onChange={(e) => onInputChange(e)}
                         ref={register({
-                          required: "This field is required",
+                          required: 'This field is required',
                         })}
                         className="form-control"
                       />
-                      {errors.totalTask && <span className="invalid">{errors.totalTask.message}</span>}
+                      {errors.totalTask && (
+                        <span className="invalid">
+                          {errors.totalTask.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -756,7 +871,9 @@ export const ProjectListPage = () => {
                       <DatePicker
                         selected={formData.date}
                         className="form-control"
-                        onChange={(date) => setFormData({ ...formData, date: date })}
+                        onChange={(date) =>
+                          setFormData({ ...formData, date: date })
+                        }
                         minDate={new Date()}
                       />
                     </FormGroup>
@@ -777,8 +894,12 @@ export const ProjectListPage = () => {
                       <label className="form-label">Lead</label>
                       <RSelect
                         options={formData.team}
-                        defaultValue={[{ value: formData.lead, label: formData.lead }]}
-                        onChange={(e) => setFormData({ ...formData, lead: e.value })}
+                        defaultValue={[
+                          { value: formData.lead, label: formData.lead },
+                        ]}
+                        onChange={(e) =>
+                          setFormData({ ...formData, lead: e.value })
+                        }
                       />
                     </FormGroup>
                   </Col>
@@ -792,8 +913,8 @@ export const ProjectListPage = () => {
                       <li>
                         <Button
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
+                            ev.preventDefault()
+                            onFormCancel()
                           }}
                           className="link link-light"
                         >
@@ -809,7 +930,7 @@ export const ProjectListPage = () => {
         </Modal>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ProjectListPage;
+export default ProjectListPage

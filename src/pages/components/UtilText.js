@@ -1,8 +1,15 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewTable, CodeBlock } from "../../components/preview/Preview";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import { PreviewTable, CodeBlock } from '../../components/preview/Preview'
 
 const TextPage = ({ ...props }) => {
   return (
@@ -19,8 +26,9 @@ const TextPage = ({ ...props }) => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Dashlite includes several predefined button styles, each serving its own semantic purpose, with a few
-                extras thrown in for more control.
+                Dashlite includes several predefined button styles, each serving
+                its own semantic purpose, with a few extras thrown in for more
+                control.
               </p>
             </BlockDes>
           </BlockHeadContent>
@@ -30,7 +38,10 @@ const TextPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Text alignment</BlockTitle>
-              <p>Easily realign text to components with text alignment classNames.</p>
+              <p>
+                Easily realign text to components with text alignment
+                classNames.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewTable>
@@ -44,10 +55,10 @@ const TextPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.text-{"{value}"}</code>
+                  <code>.text-{'{value}'}</code>
                   <br />
                   <code>
-                    .text-{"{screen}"}-{"{value}"}
+                    .text-{'{screen}'}-{'{value}'}
                   </code>
                 </td>
                 <td>left | right | justify | center</td>
@@ -59,10 +70,12 @@ const TextPage = ({ ...props }) => {
               <tr>
                 <td colSpan="3">
                   <em className="fs-13px">
-                    Use <code>{"{screen}"}</code> as <code>sm, md, lg, xl, xxl</code>. Please note,{" "}
-                    <code>{"{screen}"}</code> related with breakpoint and will apply from the <code>{"{screen}"}</code>{" "}
-                    to above. For example, <code>.m-sm-2</code> sets padding on <code>sm</code> screen and continue to
-                    above screens.
+                    Use <code>{'{screen}'}</code> as{' '}
+                    <code>sm, md, lg, xl, xxl</code>. Please note,{' '}
+                    <code>{'{screen}'}</code> related with breakpoint and will
+                    apply from the <code>{'{screen}'}</code> to above. For
+                    example, <code>.m-sm-2</code> sets padding on{' '}
+                    <code>sm</code> screen and continue to above screens.
                   </em>
                 </td>
               </tr>
@@ -75,7 +88,10 @@ const TextPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Text transform</BlockTitle>
-              <p>Transform text in components with text capitalization classNames.</p>
+              <p>
+                Transform text in components with text capitalization
+                classNames.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewTable>
@@ -126,7 +142,7 @@ const TextPage = ({ ...props }) => {
             <tbody>
               <tr>
                 <td>
-                  <code>.fs-{"{value}"}px</code>
+                  <code>.fs-{'{value}'}px</code>
                 </td>
                 <td>9 | 10 | 11 | 12 | 13 | 14 | 15 | 16</td>
               </tr>
@@ -139,7 +155,10 @@ const TextPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Font Family &amp; Style</BlockTitle>
-              <p>Quickly change the weight (boldness) of text or italicize text or font family.</p>
+              <p>
+                Quickly change the weight (boldness) of text or italicize text
+                or font family.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewTable>
@@ -223,7 +242,9 @@ const TextPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Additional classNames</BlockTitle>
-              <p>Here is few more classNames that will helps you style the text.</p>
+              <p>
+                Here is few more classNames that will helps you style the text.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewTable>
@@ -248,11 +269,11 @@ const TextPage = ({ ...props }) => {
                 </td>
                 <td>
                   <p className="text-muted">
-                    Muted text with a{" "}
+                    Muted text with a{' '}
                     <a
                       href="#link"
                       onClick={(ev) => {
-                        ev.preventDefault();
+                        ev.preventDefault()
                       }}
                       className="text-reset"
                     >
@@ -266,7 +287,9 @@ const TextPage = ({ ...props }) => {
                   <code>.text-decoration-none</code>
                 </td>
                 <td>
-                  <p className="text-decoration-none">Remove a text decoration</p>
+                  <p className="text-decoration-none">
+                    Remove a text decoration
+                  </p>
                 </td>
               </tr>
               <tr>
@@ -274,7 +297,9 @@ const TextPage = ({ ...props }) => {
                   <code>.text-ellipsis</code>
                 </td>
                 <td>
-                  <p className="text-ellipsis w-150px">Ellipsis text &amp; auto dot end</p>
+                  <p className="text-ellipsis w-150px">
+                    Ellipsis text &amp; auto dot end
+                  </p>
                 </td>
               </tr>
               <tr>
@@ -309,7 +334,7 @@ const TextPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default TextPage;
+export default TextPage

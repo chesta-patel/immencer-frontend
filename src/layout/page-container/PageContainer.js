@@ -1,18 +1,18 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react'
 
 const PageContainer = ({ ...props }) => {
   const [themeState] = useState({
-    main: "default",
-    sidebar: "dark",
-    header: "white",
-    skin: "light",
-  });
+    main: 'default',
+    sidebar: 'dark',
+    header: 'white',
+    skin: 'light',
+  })
 
   useEffect(() => {
     document.body.className = `nk-body bg-lighter npc-default has-sidebar no-touch nk-nio-theme ${
-      themeState.skin === "dark" ? "dark-mode" : ""
+      themeState.skin === 'dark' ? 'dark-mode' : ''
     }`
-  },[themeState.skin])
+  }, [themeState.skin])
 
   return (
     <React.Fragment>
@@ -22,6 +22,6 @@ const PageContainer = ({ ...props }) => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
-export default PageContainer;
+  )
+}
+export default PageContainer

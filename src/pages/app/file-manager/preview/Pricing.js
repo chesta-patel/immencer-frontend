@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Card, Button, Badge } from "reactstrap";
+import React, { useContext } from 'react'
+import { Card, Button, Badge } from 'reactstrap'
 import {
   Block,
   BlockHead,
@@ -9,13 +9,13 @@ import {
   Icon,
   Row,
   Col,
-} from "../../../../components/Component";
-import { pricingTableDataV2 } from "../Data";
-import { FileManagerContext } from "../FileManagerContext";
+} from '../../../../components/Component'
+import { pricingTableDataV2 } from '../Data'
+import { FileManagerContext } from '../FileManagerContext'
 
 const Pricing = ({ toggleScreenLg }) => {
-  const { planData } = useContext(FileManagerContext);
-  const [plan, setPlan] = planData;
+  const { planData } = useContext(FileManagerContext)
+  const [plan, setPlan] = planData
 
   return (
     <React.Fragment>
@@ -30,8 +30,8 @@ const Pricing = ({ toggleScreenLg }) => {
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleScreenLg();
+                    ev.preventDefault()
+                    toggleScreenLg()
                   }}
                   className="btn btn-trigger btn-icon toggle"
                 >
@@ -49,9 +49,9 @@ const Pricing = ({ toggleScreenLg }) => {
             return (
               <Col md={6} xxl={3} key={item.id}>
                 <Card
-                  className={`card-bordered pricing text-center ${item.tags ? "recommend" : ""} ${
-                    plan === item.title ? "border-primary" : ""
-                  }`}
+                  className={`card-bordered pricing text-center ${
+                    item.tags ? 'recommend' : ''
+                  } ${plan === item.title ? 'border-primary' : ''}`}
                 >
                   {plan === item.title && (
                     <Badge color="primary" className="pricing-badge">
@@ -70,13 +70,18 @@ const Pricing = ({ toggleScreenLg }) => {
                       <div className="amount">
                         ${item.amount} <span>/yr</span>
                       </div>
-                      <span className="bill">{item.userNumber} User, Billed Yearly</span>
+                      <span className="bill">
+                        {item.userNumber} User, Billed Yearly
+                      </span>
                     </div>
                     <div className="pricing-action">
                       {plan === item.title ? (
                         <Button color="primary">Plan Selected</Button>
                       ) : (
-                        <Button color="light" onClick={() => setPlan(item.title)}>
+                        <Button
+                          color="light"
+                          onClick={() => setPlan(item.title)}
+                        >
                           Choose Plan
                         </Button>
                       )}
@@ -84,12 +89,12 @@ const Pricing = ({ toggleScreenLg }) => {
                   </div>
                 </Card>
               </Col>
-            );
+            )
           })}
         </Row>
       </Block>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Pricing;
+export default Pricing

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import { Card, Modal, ModalBody } from "reactstrap";
+import React, { useContext, useEffect, useState } from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import { Card, Modal, ModalBody } from 'reactstrap'
 import {
   Button,
   Block,
@@ -16,58 +16,65 @@ import {
   OverlineTitle,
   Sidebar,
   UserAvatar,
-} from "../../components/Component";
-import { useHistory } from "react-router";
-import { currentTime, findUpper, monthNames, todaysDate } from "../../utils/Utils";
-import { UserContext } from "./UserContext";
-import { notes } from "./UserData";
+} from '../../components/Component'
+import { useHistory } from 'react-router'
+import {
+  currentTime,
+  findUpper,
+  monthNames,
+  todaysDate,
+} from '../../utils/Utils'
+import { UserContext } from './UserContext'
+import { notes } from './UserData'
 
 const UserDetailsPage = ({ match }) => {
-  const { contextData } = useContext(UserContext);
-  const [data] = contextData;
+  const { contextData } = useContext(UserContext)
+  const [data] = contextData
 
-  const [sideBar, setSidebar] = useState(false);
-  const [user, setUser] = useState();
-  const [noteData, setNoteData] = useState(notes);
-  const [addNoteModal, setAddNoteModal] = useState(false);
-  const [addNoteText, setAddNoteText] = useState("");
-  const history = useHistory();
+  const [sideBar, setSidebar] = useState(false)
+  const [user, setUser] = useState()
+  const [noteData, setNoteData] = useState(notes)
+  const [addNoteModal, setAddNoteModal] = useState(false)
+  const [addNoteText, setAddNoteText] = useState('')
+  const history = useHistory()
 
   // grabs the id of the url and loads the corresponding data
   useEffect(() => {
-    const id = match.params.id;
-    if (id !== undefined || null || "") {
-      let spUser = data.find((item) => item.id === Number(id));
-      setUser(spUser);
+    const id = match.params.id
+    if (id !== undefined || null || '') {
+      let spUser = data.find((item) => item.id === Number(id))
+      setUser(spUser)
     } else {
-      setUser(data[0]);
+      setUser(data[0])
     }
-  }, [match.params.id, data]);
+  }, [match.params.id, data])
 
   // function to toggle sidebar
   const toggle = () => {
-    setSidebar(!sideBar);
-  };
+    setSidebar(!sideBar)
+  }
 
   // delete a note
   const deleteNote = (id) => {
-    let defaultNote = noteData;
-    defaultNote = defaultNote.filter((item) => item.id !== id);
-    setNoteData(defaultNote);
-  };
+    let defaultNote = noteData
+    defaultNote = defaultNote.filter((item) => item.id !== id)
+    setNoteData(defaultNote)
+  }
 
   const submitNote = () => {
     let submitData = {
       id: Math.random(),
       text: addNoteText,
-      date: `${monthNames[todaysDate.getMonth()]} ${todaysDate.getDate()}, ${todaysDate.getFullYear()}`,
+      date: `${
+        monthNames[todaysDate.getMonth()]
+      } ${todaysDate.getDate()}, ${todaysDate.getFullYear()}`,
       time: `${currentTime()}`,
-      company: "Softnio",
-    };
-    setNoteData([...noteData, submitData]);
-    setAddNoteModal(false);
-    setAddNoteText("");
-  };
+      company: 'Softnio',
+    }
+    setNoteData([...noteData, submitData])
+    setAddNoteModal(false)
+    setAddNoteText('')
+  }
 
   return (
     <React.Fragment>
@@ -78,7 +85,8 @@ const UserDetailsPage = ({ match }) => {
             <BlockBetween>
               <BlockHeadContent>
                 <BlockTitle tag="h3" page>
-                  Users / <strong className="text-primary small">{user.name}</strong>
+                  Users /{' '}
+                  <strong className="text-primary small">{user.name}</strong>
                 </BlockTitle>
                 <BlockDes className="text-soft">
                   <ul className="list-inline">
@@ -86,7 +94,10 @@ const UserDetailsPage = ({ match }) => {
                       User ID: <span className="text-base">UD003054</span>
                     </li>
                     <li>
-                      Last Login: <span className="text-base">{user.lastLogin} 01:02 PM</span>
+                      Last Login:{' '}
+                      <span className="text-base">
+                        {user.lastLogin} 01:02 PM
+                      </span>
                     </li>
                   </ul>
                 </BlockDes>
@@ -104,8 +115,8 @@ const UserDetailsPage = ({ match }) => {
                 <a
                   href="#back"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    history.goBack();
+                    ev.preventDefault()
+                    history.goBack()
                   }}
                   className="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"
                 >
@@ -125,7 +136,7 @@ const UserDetailsPage = ({ match }) => {
                         className="nav-link active"
                         href="#personal"
                         onClick={(ev) => {
-                          ev.preventDefault();
+                          ev.preventDefault()
                         }}
                       >
                         <Icon name="user-circle"></Icon>
@@ -137,7 +148,7 @@ const UserDetailsPage = ({ match }) => {
                         className="nav-link disabled"
                         href="#transactions"
                         onClick={(ev) => {
-                          ev.preventDefault();
+                          ev.preventDefault()
                         }}
                       >
                         <Icon name="repeat"></Icon>
@@ -149,7 +160,7 @@ const UserDetailsPage = ({ match }) => {
                         className="nav-link disabled"
                         href="#documents"
                         onClick={(ev) => {
-                          ev.preventDefault();
+                          ev.preventDefault()
                         }}
                       >
                         <Icon name="file-text"></Icon>
@@ -161,7 +172,7 @@ const UserDetailsPage = ({ match }) => {
                         className="nav-link disabled"
                         href="#notifications"
                         onClick={(ev) => {
-                          ev.preventDefault();
+                          ev.preventDefault()
                         }}
                       >
                         <Icon name="bell"></Icon>
@@ -173,7 +184,7 @@ const UserDetailsPage = ({ match }) => {
                         className="nav-link disabled"
                         href="#activities"
                         onClick={(ev) => {
-                          ev.preventDefault();
+                          ev.preventDefault()
                         }}
                       >
                         <Icon name="activity"></Icon>
@@ -181,7 +192,12 @@ const UserDetailsPage = ({ match }) => {
                       </a>
                     </li>
                     <li className="nav-item nav-item-trigger d-xxl-none">
-                      <Button className={`toggle btn-icon btn-trigger ${sideBar && "active"}`} onClick={toggle}>
+                      <Button
+                        className={`toggle btn-icon btn-trigger ${
+                          sideBar && 'active'
+                        }`}
+                        onClick={toggle}
+                      >
                         <Icon name="user-list-fill"></Icon>
                       </Button>
                     </li>
@@ -191,7 +207,10 @@ const UserDetailsPage = ({ match }) => {
                     <Block>
                       <BlockHead>
                         <BlockTitle tag="h5">Personal Information</BlockTitle>
-                        <p>Basic info, like your name and address, that you use on Nio Platform.</p>
+                        <p>
+                          Basic info, like your name and address, that you use
+                          on Nio Platform.
+                        </p>
                       </BlockHead>
                       <div className="profile-ud-list">
                         <div className="profile-ud-item">
@@ -203,31 +222,45 @@ const UserDetailsPage = ({ match }) => {
                         <div className="profile-ud-item">
                           <div className="profile-ud wider">
                             <span className="profile-ud-label">Full Name</span>
-                            <span className="profile-ud-value">{user.name}</span>
+                            <span className="profile-ud-value">
+                              {user.name}
+                            </span>
                           </div>
                         </div>
                         <div className="profile-ud-item">
                           <div className="profile-ud wider">
-                            <span className="profile-ud-label">Date of Birth</span>
+                            <span className="profile-ud-label">
+                              Date of Birth
+                            </span>
                             <span className="profile-ud-value">{user.dob}</span>
                           </div>
                         </div>
                         <div className="profile-ud-item">
                           <div className="profile-ud wider">
                             <span className="profile-ud-label">Surname</span>
-                            <span className="profile-ud-value">{user.name.split(" ")[1]}</span>
+                            <span className="profile-ud-value">
+                              {user.name.split(' ')[1]}
+                            </span>
                           </div>
                         </div>
                         <div className="profile-ud-item">
                           <div className="profile-ud wider">
-                            <span className="profile-ud-label">Mobile Number</span>
-                            <span className="profile-ud-value">{user.phone}</span>
+                            <span className="profile-ud-label">
+                              Mobile Number
+                            </span>
+                            <span className="profile-ud-value">
+                              {user.phone}
+                            </span>
                           </div>
                         </div>
                         <div className="profile-ud-item">
                           <div className="profile-ud wider">
-                            <span className="profile-ud-label">Email Address</span>
-                            <span className="profile-ud-value">{user.email}</span>
+                            <span className="profile-ud-label">
+                              Email Address
+                            </span>
+                            <span className="profile-ud-value">
+                              {user.email}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -235,15 +268,22 @@ const UserDetailsPage = ({ match }) => {
 
                     <Block>
                       <BlockHead className="nk-block-head-line">
-                        <BlockTitle tag="h6" className="overline-title text-base">
+                        <BlockTitle
+                          tag="h6"
+                          className="overline-title text-base"
+                        >
                           Additional Information
                         </BlockTitle>
                       </BlockHead>
                       <div className="profile-ud-list">
                         <div className="profile-ud-item">
                           <div className="profile-ud wider">
-                            <span className="profile-ud-label">Joining Date</span>
-                            <span className="profile-ud-value">08-16-2018 09:04PM</span>
+                            <span className="profile-ud-label">
+                              Joining Date
+                            </span>
+                            <span className="profile-ud-value">
+                              08-16-2018 09:04PM
+                            </span>
                           </div>
                         </div>
                         <div className="profile-ud-item">
@@ -255,13 +295,19 @@ const UserDetailsPage = ({ match }) => {
                         <div className="profile-ud-item">
                           <div className="profile-ud wider">
                             <span className="profile-ud-label">Country</span>
-                            <span className="profile-ud-value">{user.country}</span>
+                            <span className="profile-ud-value">
+                              {user.country}
+                            </span>
                           </div>
                         </div>
                         <div className="profile-ud-item">
                           <div className="profile-ud wider">
-                            <span className="profile-ud-label">Nationality</span>
-                            <span className="profile-ud-value">{user.country}</span>
+                            <span className="profile-ud-label">
+                              Nationality
+                            </span>
+                            <span className="profile-ud-value">
+                              {user.country}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -276,8 +322,8 @@ const UserDetailsPage = ({ match }) => {
                           <a
                             href="#addnote"
                             onClick={(ev) => {
-                              ev.preventDefault();
-                              setAddNoteModal(true);
+                              ev.preventDefault()
+                              setAddNoteModal(true)
                             }}
                             className="link link-sm"
                           >
@@ -293,7 +339,8 @@ const UserDetailsPage = ({ match }) => {
                             </div>
                             <div className="bq-note-meta">
                               <span className="bq-note-added">
-                                Added on <span className="date">{item.date}</span> at{" "}
+                                Added on{' '}
+                                <span className="date">{item.date}</span> at{' '}
                                 <span className="time">{item.time} PM</span>
                               </span>
                               <span className="bq-note-sep sep">|</span>
@@ -303,8 +350,8 @@ const UserDetailsPage = ({ match }) => {
                               <a
                                 href="#deletenote"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
-                                  deleteNote(item.id);
+                                  ev.preventDefault()
+                                  deleteNote(item.id)
                                 }}
                                 className="link link-sm link-danger"
                               >
@@ -328,9 +375,9 @@ const UserDetailsPage = ({ match }) => {
                     <a
                       href="#cancel"
                       onClick={(ev) => {
-                        ev.preventDefault();
-                        setAddNoteModal(false);
-                        setAddNoteText("");
+                        ev.preventDefault()
+                        setAddNoteModal(false)
+                        setAddNoteText('')
                       }}
                       className="close"
                     >
@@ -347,12 +394,20 @@ const UserDetailsPage = ({ match }) => {
                       </div>
                       <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                         <li>
-                          <Button color="primary" size="md" type="submit" onClick={submitNote}>
+                          <Button
+                            color="primary"
+                            size="md"
+                            type="submit"
+                            onClick={submitNote}
+                          >
                             Add Note
                           </Button>
                         </li>
                         <li>
-                          <Button onClick={() => setAddNoteModal(false)} className="link link-light">
+                          <Button
+                            onClick={() => setAddNoteModal(false)}
+                            className="link link-light"
+                          >
                             Cancel
                           </Button>
                         </li>
@@ -364,9 +419,15 @@ const UserDetailsPage = ({ match }) => {
                 <Sidebar toggleState={sideBar}>
                   <div className="card-inner">
                     <div className="user-card user-card-s2 mt-5 mt-xxl-0">
-                      <UserAvatar className="lg" theme="primary" text={findUpper(user.name)} />
+                      <UserAvatar
+                        className="lg"
+                        theme="primary"
+                        text={findUpper(user.name)}
+                      />
                       <div className="user-info">
-                        <div className="badge badge-outline-light badge-pill ucap">{user.role}</div>
+                        <div className="badge badge-outline-light badge-pill ucap">
+                          {user.role}
+                        </div>
                         <h5>{user.name}</h5>
                         <span className="sub-text">{user.email}</span>
                       </div>
@@ -378,7 +439,7 @@ const UserDetailsPage = ({ match }) => {
                         <Button
                           href="#tool"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                           className="btn-trigger btn-icon"
                         >
@@ -389,7 +450,7 @@ const UserDetailsPage = ({ match }) => {
                         <Button
                           href="#mail"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                           className="btn-trigger btn-icon"
                         >
@@ -400,7 +461,7 @@ const UserDetailsPage = ({ match }) => {
                         <Button
                           href="#download"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                           className="btn-trigger btn-icon"
                         >
@@ -411,7 +472,7 @@ const UserDetailsPage = ({ match }) => {
                         <Button
                           href="#bookmark"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                           className="btn-trigger btn-icon"
                         >
@@ -422,7 +483,7 @@ const UserDetailsPage = ({ match }) => {
                         <Button
                           href="#cancel"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                           className="btn-trigger btn-icon text-danger"
                         >
@@ -438,10 +499,15 @@ const UserDetailsPage = ({ match }) => {
                         <div className="profile-balance-sub">
                           <div className="profile-balance-amount">
                             <div className="number">
-                              2,500.00 <small className="currency currency-usd">USD</small>
+                              2,500.00{' '}
+                              <small className="currency currency-usd">
+                                USD
+                              </small>
                             </div>
                           </div>
-                          <div className="profile-balance-subtitle">Invested Amount</div>
+                          <div className="profile-balance-subtitle">
+                            Invested Amount
+                          </div>
                         </div>
                         <div className="profile-balance-sub">
                           <span className="profile-balance-plus text-soft">
@@ -450,7 +516,9 @@ const UserDetailsPage = ({ match }) => {
                           <div className="profile-balance-amount">
                             <div className="number">1,643.76</div>
                           </div>
-                          <div className="profile-balance-subtitle">Profit Earned</div>
+                          <div className="profile-balance-subtitle">
+                            Profit Earned
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -492,13 +560,13 @@ const UserDetailsPage = ({ match }) => {
                         <span className="sub-text">KYC Status:</span>
                         <span
                           className={`lead-text text-${
-                            user.kycStatus === "success"
-                              ? "success"
-                              : user.kycStatus === "pending"
-                              ? "info"
-                              : user.kycStatus === "warning"
-                              ? "warning"
-                              : "secondary"
+                            user.kycStatus === 'success'
+                              ? 'success'
+                              : user.kycStatus === 'pending'
+                              ? 'info'
+                              : user.kycStatus === 'warning'
+                              ? 'warning'
+                              : 'secondary'
                           }`}
                         >
                           {user.kycStatus.toUpperCase()}
@@ -521,7 +589,7 @@ const UserDetailsPage = ({ match }) => {
                           size="xs"
                           className="btn-dim"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                         >
                           investor
@@ -531,7 +599,7 @@ const UserDetailsPage = ({ match }) => {
                           size="xs"
                           className="btn-icon btn-dim"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                         >
                           <Icon className="ni-cross"></Icon>
@@ -543,7 +611,7 @@ const UserDetailsPage = ({ match }) => {
                           size="xs"
                           className="btn-dim"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                         >
                           support
@@ -553,7 +621,7 @@ const UserDetailsPage = ({ match }) => {
                           size="xs"
                           className="btn-icon btn-dim"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                         >
                           <Icon className="ni-cross"></Icon>
@@ -565,7 +633,7 @@ const UserDetailsPage = ({ match }) => {
                           size="xs"
                           className="btn-dim"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                         >
                           another tag
@@ -575,7 +643,7 @@ const UserDetailsPage = ({ match }) => {
                           size="xs"
                           className="btn-icon btn-dim"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                         >
                           <Icon className="ni-cross"></Icon>
@@ -584,13 +652,18 @@ const UserDetailsPage = ({ match }) => {
                     </ul>
                   </div>
                 </Sidebar>
-                {sideBar && <div className="toggle-overlay" onClick={() => toggle()}></div>}
+                {sideBar && (
+                  <div
+                    className="toggle-overlay"
+                    onClick={() => toggle()}
+                  ></div>
+                )}
               </div>
             </Card>
           </Block>
         </Content>
       )}
     </React.Fragment>
-  );
-};
-export default UserDetailsPage;
+  )
+}
+export default UserDetailsPage

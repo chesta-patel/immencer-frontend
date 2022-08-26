@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import ProductVideo from "../../../images/product/video-a.jpg";
-import ModalVideo from "react-modal-video";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import Slider from "react-slick";
+import React, { useState, useEffect, useRef, useContext } from 'react'
+import ProductVideo from '../../../images/product/video-a.jpg'
+import ModalVideo from 'react-modal-video'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import Slider from 'react-slick'
 import {
   BlockBetween,
   BlockDes,
@@ -15,14 +15,17 @@ import {
   Row,
   Icon,
   Block,
-} from "../../../components/Component";
-import { Badge, Card } from "reactstrap";
-import { ProductContext } from "./ProductContext";
-import { Link } from "react-router-dom";
-import { SlickArrowLeft, SlickArrowRight } from "../../../components/partials/slick/SlickComponents";
+} from '../../../components/Component'
+import { Badge, Card } from 'reactstrap'
+import { ProductContext } from './ProductContext'
+import { Link } from 'react-router-dom'
+import {
+  SlickArrowLeft,
+  SlickArrowRight,
+} from '../../../components/partials/slick/SlickComponents'
 
 const sliderSettings = {
-  className: "slider-init row",
+  className: 'slider-init row',
   slidesToShow: 2,
   centerMode: false,
   slidesToScroll: 1,
@@ -35,7 +38,7 @@ const sliderSettings = {
     { breakpoint: 992, settings: { slidesToShow: 2 } },
     { breakpoint: 576, settings: { slidesToShow: 1 } },
   ],
-};
+}
 
 const sliderSettingsDefault = {
   slidesToShow: 3,
@@ -50,63 +53,63 @@ const sliderSettingsDefault = {
   arrows: false,
   swipeToSlide: true,
   focusOnSelect: true,
-  className: "slider-init slider-nav",
-};
+  className: 'slider-init slider-nav',
+}
 
 const ProductDetails = ({ match }) => {
-  const { contextData } = useContext(ProductContext);
+  const { contextData } = useContext(ProductContext)
 
-  const [data] = contextData;
+  const [data] = contextData
 
-  const [sliderData, setSliderData] = useState([]);
-  const [currentSlide, setCurrentSlide] = useState({});
-  const [colorSector, setColorSelector] = useState(1);
-  const [sizeSelector, setSizeSelector] = useState(1);
-  const [counter, setCounter] = useState(1);
-  const [videoOpen, setVideoOpen] = useState(false);
-  const [nav1, setNav1] = useState(null);
-  const [nav2, setNav2] = useState(null);
+  const [sliderData, setSliderData] = useState([])
+  const [currentSlide, setCurrentSlide] = useState({})
+  const [colorSector, setColorSelector] = useState(1)
+  const [sizeSelector, setSizeSelector] = useState(1)
+  const [counter, setCounter] = useState(1)
+  const [videoOpen, setVideoOpen] = useState(false)
+  const [nav1, setNav1] = useState(null)
+  const [nav2, setNav2] = useState(null)
 
   // increases quantity number
   const increaseCounter = () => {
-    setCounter((prevState) => prevState + 1);
-  };
+    setCounter((prevState) => prevState + 1)
+  }
 
   // decreases quantity number
   const decreaseCounter = () => {
     if (counter !== 0) {
-      setCounter((prevState) => prevState - 1);
+      setCounter((prevState) => prevState - 1)
     }
-  };
+  }
 
   // changes slides
   const slideChange = (index) => {
-    var product = sliderData.slider.find((item) => item.id === index);
-    setCurrentSlide(product);
-  };
+    var product = sliderData.slider.find((item) => item.id === index)
+    setCurrentSlide(product)
+  }
 
-  const slider1 = useRef(null);
-  const slider2 = useRef(null);
+  const slider1 = useRef(null)
+  const slider2 = useRef(null)
 
   useEffect(() => {
-    setNav1(slider1.current);
-    setNav2(slider2.current);
-  }, []);
+    setNav1(slider1.current)
+    setNav2(slider2.current)
+  }, [])
 
   // grabs the id of the url and loads the corresponding data
   useEffect(() => {
-    const id = match.params.id;
-    if (id !== undefined || null || "") {
-      let product = data.find((item) => item.id === Number(id));
+    const id = match.params.id
+    if (id !== undefined || null || '') {
+      let product = data.find((item) => item.id === Number(id))
       if (product) {
-        setSliderData(product);
-        setCurrentSlide(product.slider[0]);
+        setSliderData(product)
+        setCurrentSlide(product.slider[0])
       }
     } else {
-      setSliderData(data[0]);
-      setCurrentSlide(data[0].slider[0]);
+      setSliderData(data[0])
+      setCurrentSlide(data[0].slider[0])
     }
-  }, [match.params.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [match.params.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <React.Fragment>
@@ -123,13 +126,21 @@ const ProductDetails = ({ match }) => {
               </BlockHeadContent>
               <BlockHeadContent>
                 <Link to={`${process.env.PUBLIC_URL}/product-card`}>
-                  <Button color="light" outline className="bg-white d-none d-sm-inline-flex">
+                  <Button
+                    color="light"
+                    outline
+                    className="bg-white d-none d-sm-inline-flex"
+                  >
                     <Icon name="arrow-left"></Icon>
                     <span>Back</span>
                   </Button>
                 </Link>
                 <Link to={`${process.env.PUBLIC_URL}/product-card`}>
-                  <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">
+                  <Button
+                    color="light"
+                    outline
+                    className="btn-icon bg-white d-inline-flex d-sm-none"
+                  >
                     <Icon name="arrow-left"></Icon>
                   </Button>
                 </Link>
@@ -154,8 +165,15 @@ const ProductDetails = ({ match }) => {
                         className="slider-init"
                         prevArrow
                       >
-                        <div className="slider-item rounded" key={currentSlide.id}>
-                          <img src={currentSlide.img} className="w-100" alt="" />
+                        <div
+                          className="slider-item rounded"
+                          key={currentSlide.id}
+                        >
+                          <img
+                            src={currentSlide.img}
+                            className="w-100"
+                            alt=""
+                          />
                         </div>
                       </Slider>
                       <Slider
@@ -168,14 +186,18 @@ const ProductDetails = ({ match }) => {
                         {sliderData.slider.map((item) => {
                           return (
                             <div
-                              className={`slider-item ${currentSlide.id === item.id ? "slick-current" : ""}`}
+                              className={`slider-item ${
+                                currentSlide.id === item.id
+                                  ? 'slick-current'
+                                  : ''
+                              }`}
                               key={item.id}
                             >
                               <div className="thumb">
                                 <img src={item.img} alt="" />
                               </div>
                             </div>
-                          );
+                          )
                         })}
                       </Slider>
                     </div>
@@ -183,9 +205,12 @@ const ProductDetails = ({ match }) => {
                   <Col lg={6}>
                     <div className="product-info mt-5 mr-xxl-5">
                       <h4 className="product-price text-primary">
-                        ${sliderData.newPrice}{" "}
+                        ${sliderData.newPrice}{' '}
                         <small className="text-muted fs-14px">
-                          ${sliderData.prevPrice === null ? "0.00" : sliderData.prevPrice}
+                          $
+                          {sliderData.prevPrice === null
+                            ? '0.00'
+                            : sliderData.prevPrice}
                         </small>
                       </h4>
                       <h2 className="product-title">{sliderData.title}</h2>
@@ -211,19 +236,27 @@ const ProductDetails = ({ match }) => {
                       </div>
                       <div className="product-excrept text-soft">
                         <p className="lead">
-                          I must explain to you how all this mistaken idea of denoun cing ple praising pain was born and
-                          I will give you a complete account of the system, and expound the actual teaching.
+                          I must explain to you how all this mistaken idea of
+                          denoun cing ple praising pain was born and I will give
+                          you a complete account of the system, and expound the
+                          actual teaching.
                         </p>
                       </div>
                       <div className="product-meta">
                         <ul className="d-flex g-3 gx-5">
                           <li>
                             <div className="fs-14px text-muted">Type</div>
-                            <div className="fs-16px fw-bold text-secondary">{sliderData.type}</div>
+                            <div className="fs-16px fw-bold text-secondary">
+                              {sliderData.type}
+                            </div>
                           </li>
                           <li>
-                            <div className="fs-14px text-muted">Model Number</div>
-                            <div className="fs-16px fw-bold text-secondary">Forerunner 290XT</div>
+                            <div className="fs-14px text-muted">
+                              Model Number
+                            </div>
+                            <div className="fs-16px fw-bold text-secondary">
+                              Forerunner 290XT
+                            </div>
                           </li>
                         </ul>
                       </div>
@@ -242,7 +275,7 @@ const ProductDetails = ({ match }) => {
                               />
                               <label
                                 className="custom-control-label dot dot-xl"
-                                style={{ background: "#754c24" }}
+                                style={{ background: '#754c24' }}
                                 htmlFor="productColor1"
                               ></label>
                             </div>
@@ -259,7 +292,7 @@ const ProductDetails = ({ match }) => {
                               />
                               <label
                                 className="custom-control-label dot dot-xl"
-                                style={{ background: "#636363" }}
+                                style={{ background: '#636363' }}
                                 htmlFor="productColor2"
                               ></label>
                             </div>
@@ -276,7 +309,7 @@ const ProductDetails = ({ match }) => {
                               />
                               <label
                                 className="custom-control-label dot dot-xl"
-                                style={{ background: "#ba6ed4" }}
+                                style={{ background: '#ba6ed4' }}
                                 htmlFor="productColor3"
                               ></label>
                             </div>
@@ -293,7 +326,7 @@ const ProductDetails = ({ match }) => {
                               />
                               <label
                                 className="custom-control-label dot dot-xl"
-                                style={{ background: "#ff87a3" }}
+                                style={{ background: '#ff87a3' }}
                                 htmlFor="productColor4"
                               ></label>
                             </div>
@@ -314,7 +347,10 @@ const ProductDetails = ({ match }) => {
                                 onChange={() => setSizeSelector(1)}
                                 checked={sizeSelector === 1 ? true : false}
                               />
-                              <label className="custom-control-label" htmlFor="sizeCheck1">
+                              <label
+                                className="custom-control-label"
+                                htmlFor="sizeCheck1"
+                              >
                                 XS
                               </label>
                             </div>
@@ -329,7 +365,10 @@ const ProductDetails = ({ match }) => {
                                 onChange={() => setSizeSelector(2)}
                                 checked={sizeSelector === 2 ? true : false}
                               />
-                              <label className="custom-control-label" htmlFor="sizeCheck2">
+                              <label
+                                className="custom-control-label"
+                                htmlFor="sizeCheck2"
+                              >
                                 SM
                               </label>
                             </div>
@@ -344,7 +383,10 @@ const ProductDetails = ({ match }) => {
                                 onChange={() => setSizeSelector(3)}
                                 checked={sizeSelector === 3 ? true : false}
                               />
-                              <label className="custom-control-label" htmlFor="sizeCheck3">
+                              <label
+                                className="custom-control-label"
+                                htmlFor="sizeCheck3"
+                              >
                                 L
                               </label>
                             </div>
@@ -359,7 +401,10 @@ const ProductDetails = ({ match }) => {
                                 onChange={() => setSizeSelector(4)}
                                 checked={sizeSelector === 4 ? true : false}
                               />
-                              <label className="custom-control-label" htmlFor="sizeCheck4">
+                              <label
+                                className="custom-control-label"
+                                htmlFor="sizeCheck4"
+                              >
                                 XL
                               </label>
                             </div>
@@ -383,7 +428,9 @@ const ProductDetails = ({ match }) => {
                                 type="number"
                                 className="form-control number-spinner"
                                 value={counter}
-                                onChange={(e) => setCounter(Number(e.target.value))}
+                                onChange={(e) =>
+                                  setCounter(Number(e.target.value))
+                                }
                               />
                               <Button
                                 color="light"
@@ -414,7 +461,11 @@ const ProductDetails = ({ match }) => {
                 <Row className="g-gs flex-lg-row-reverse pt-5">
                   <Col lg={5}>
                     <div className="video">
-                      <img className="video-poster w-100" src={ProductVideo} alt="" />
+                      <img
+                        className="video-poster w-100"
+                        src={ProductVideo}
+                        alt=""
+                      />
                       <ModalVideo
                         channel="youtube"
                         autoplay
@@ -426,8 +477,8 @@ const ProductDetails = ({ match }) => {
                         className="video-play popup-video"
                         href="#video"
                         onClick={(ev) => {
-                          ev.preventDefault();
-                          setVideoOpen(true);
+                          ev.preventDefault()
+                          setVideoOpen(true)
                         }}
                       >
                         <Icon name="play"></Icon>
@@ -439,10 +490,13 @@ const ProductDetails = ({ match }) => {
                     <div className="product-details entry mr-xxl-3">
                       <h3>Product details of Comfy cushions</h3>
                       <p>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                        beatae vitae dicta sunt explicabo. Neque porro quisquam est, qui dolorem consectetur, adipisci
-                        velit.Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem
+                        aperiam, eaque ipsa quae ab illo inventore veritatis et
+                        quasi architecto beatae vitae dicta sunt explicabo.
+                        Neque porro quisquam est, qui dolorem consectetur,
+                        adipisci velit.Nam libero tempore, cum soluta nobis est
+                        eligendi optio cumque nihil impedit quo minus.
                       </p>
                       <ul className="list list-sm list-checked">
                         <li>Meets and/or exceeds performance standards.</li>
@@ -450,18 +504,25 @@ const ProductDetails = ({ match }) => {
                         <li>Made of bonded teather and poiyurethane.</li>
                         <li>Metal frame.</li>
                         <li>Anatomically shaped cork-latex</li>
-                        <li>As attractively priced as you look attractive in one</li>
+                        <li>
+                          As attractively priced as you look attractive in one
+                        </li>
                       </ul>
                       <p>
-                        Unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.
+                        Unde omnis iste natus error sit voluptatem accusantium
+                        doloremque laudantium, totam rem aperiam, eaque ipsa
+                        quae ab illo inventore veritatis et quasi architecto
+                        beatae.
                       </p>
                       <h3>The best seats in the house</h3>
                       <p>
-                        I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
-                        born and I will give you a complete account of the system, and expound the actual teachings.
-                        Unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                        eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.
+                        I must explain to you how all this mistaken idea of
+                        denouncing pleasure and praising pain was born and I
+                        will give you a complete account of the system, and
+                        expound the actual teachings. Unde omnis iste natus
+                        error sit voluptatem accusantium doloremque laudantium,
+                        totam rem aperiam, eaque ipsa quae ab illo inventore
+                        veritatis et quasi architecto beatae.
                       </p>
                     </div>
                   </Col>
@@ -484,7 +545,9 @@ const ProductDetails = ({ match }) => {
                   <Col key={item.id}>
                     <Card className="card-bordered product-card mr-3 ml-3">
                       <div className="product-thumb">
-                        <Link to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}>
+                        <Link
+                          to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}
+                        >
                           <img className="card-img-top" src={item.img} alt="" />
                         </Link>
                         <ul className="product-badges">
@@ -501,12 +564,18 @@ const ProductDetails = ({ match }) => {
                         </ul>
                         <ul className="product-actions">
                           <li>
-                            <a href="#cart" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              href="#cart"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               <Icon name="cart"></Icon>
                             </a>
                           </li>
                           <li>
-                            <a href="#heart" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              href="#heart"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               <Icon name="heart"></Icon>
                             </a>
                           </li>
@@ -515,28 +584,38 @@ const ProductDetails = ({ match }) => {
                       <div className="card-inner text-center">
                         <ul className="product-tags">
                           <li>
-                            <a href="#product" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              href="#product"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               {item.name}
                             </a>
                           </li>
                         </ul>
                         <h5 className="product-title">
-                          <Link to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}>{item.title}</Link>
+                          <Link
+                            to={`${process.env.PUBLIC_URL}/product-details/${item.id}`}
+                          >
+                            {item.title}
+                          </Link>
                         </h5>
                         <div className="product-price text-primary h5">
-                          <small className="text-muted del fs-13px">${item.prevPrice}</small> ${item.newPrice}
+                          <small className="text-muted del fs-13px">
+                            ${item.prevPrice}
+                          </small>{' '}
+                          ${item.newPrice}
                         </div>
                       </div>
                     </Card>
                   </Col>
-                );
+                )
               })}
             </Slider>
           </Block>
         </Content>
       )}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ProductDetails;
+export default ProductDetails

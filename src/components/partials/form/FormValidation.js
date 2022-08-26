@@ -1,16 +1,16 @@
-import React from "react";
-import classNames from "classnames";
-import { Row, Col, FormGroup, Label, Form } from "reactstrap";
-import { useForm } from "react-hook-form";
-import { Button } from "../../../components/Component";
+import React from 'react'
+import classNames from 'classnames'
+import { Row, Col, FormGroup, Label, Form } from 'reactstrap'
+import { useForm } from 'react-hook-form'
+import { Button } from '../../../components/Component'
 
 const FormValidationComponent = ({ alter, id }) => {
-  const { errors, register, handleSubmit } = useForm();
-  const onFormSubmit = (e) => {};
+  const { errors, register, handleSubmit } = useForm()
+  const onFormSubmit = (e) => {}
   const formClass = classNames({
-    "form-validate": true,
-    "is-alter": alter,
-  });
+    'form-validate': true,
+    'is-alter': alter,
+  })
 
   return (
     <React.Fragment>
@@ -29,7 +29,9 @@ const FormValidationComponent = ({ alter, id }) => {
                   name="fullname"
                   className="form-control"
                 />
-                {errors.fullname && <span className="invalid">This field is required</span>}
+                {errors.fullname && (
+                  <span className="invalid">This field is required</span>
+                )}
               </div>
             </FormGroup>
           </Col>
@@ -44,7 +46,7 @@ const FormValidationComponent = ({ alter, id }) => {
                     required: true,
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
+                      message: 'Invalid email address',
                     },
                   })}
                   type="email"
@@ -52,8 +54,10 @@ const FormValidationComponent = ({ alter, id }) => {
                   name="email"
                   className="form-control"
                 />
-                {errors.email && errors.email.type === "required" && <span className="invalid">This is required</span>}
-                {errors.email && errors.email.type === "pattern" && (
+                {errors.email && errors.email.type === 'required' && (
+                  <span className="invalid">This is required</span>
+                )}
+                {errors.email && errors.email.type === 'pattern' && (
                   <span className="invalid">{errors.email.message}</span>
                 )}
               </div>
@@ -72,7 +76,9 @@ const FormValidationComponent = ({ alter, id }) => {
                   name="subject"
                   className="form-control"
                 />
-                {errors.subject && <span className="invalid">This field is required</span>}
+                {errors.subject && (
+                  <span className="invalid">This field is required</span>
+                )}
               </div>
             </FormGroup>
           </Col>
@@ -97,7 +103,9 @@ const FormValidationComponent = ({ alter, id }) => {
                     <option value="fv-tq">Tachnical Question</option>
                     <option value="fv-ab">Account &amp; Billing</option>
                   </select>
-                  {errors.topics && <span className="invalid">This field is required</span>}
+                  {errors.topics && (
+                    <span className="invalid">This field is required</span>
+                  )}
                 </div>
               </div>
             </FormGroup>
@@ -118,7 +126,9 @@ const FormValidationComponent = ({ alter, id }) => {
                   name="message"
                   placeholder="Write your message"
                 />
-                {errors.message && <span className="invalid">This field is required</span>}
+                {errors.message && (
+                  <span className="invalid">This field is required</span>
+                )}
               </div>
             </FormGroup>
           </Col>
@@ -134,11 +144,14 @@ const FormValidationComponent = ({ alter, id }) => {
                       })}
                       type="checkbox"
                       className="form-control custom-control-input"
-                      id={id + " fv-com-email"}
+                      id={id + ' fv-com-email'}
                       name="com"
                       value="email"
                     />
-                    <Label className="custom-control-label" htmlFor={id + " fv-com-email"}>
+                    <Label
+                      className="custom-control-label"
+                      htmlFor={id + ' fv-com-email'}
+                    >
                       Email
                     </Label>
                     {errors.com && (
@@ -153,11 +166,14 @@ const FormValidationComponent = ({ alter, id }) => {
                     <input
                       type="checkbox"
                       className="form-control custom-control-input"
-                      id={id + " fv-com-sms"}
+                      id={id + ' fv-com-sms'}
                       name="com"
                       value="sms"
                     />
-                    <Label className="custom-control-label" htmlFor={id + " fv-com-sms"}>
+                    <Label
+                      className="custom-control-label"
+                      htmlFor={id + ' fv-com-sms'}
+                    >
                       SMS
                     </Label>
                   </div>
@@ -167,13 +183,16 @@ const FormValidationComponent = ({ alter, id }) => {
                     <input
                       type="checkbox"
                       className="custom-control-input"
-                      id={id + " fv-com-phone"}
+                      id={id + ' fv-com-phone'}
                       name="com"
                       value="phone"
                     />
-                    <Label className="custom-control-label" htmlFor={id + " fv-com-phone"}>
-                      {" "}
-                      Phone{" "}
+                    <Label
+                      className="custom-control-label"
+                      htmlFor={id + ' fv-com-phone'}
+                    >
+                      {' '}
+                      Phone{' '}
                     </Label>
                   </div>
                 </li>
@@ -190,6 +209,6 @@ const FormValidationComponent = ({ alter, id }) => {
         </Row>
       </Form>
     </React.Fragment>
-  );
-};
-export default FormValidationComponent;
+  )
+}
+export default FormValidationComponent

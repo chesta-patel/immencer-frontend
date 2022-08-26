@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import DatePicker from "react-datepicker";
+import React, { useState, useEffect } from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import DatePicker from 'react-datepicker'
 import {
   UncontrolledDropdown,
   DropdownMenu,
@@ -13,7 +13,7 @@ import {
   DropdownItem,
   Form,
   Badge,
-} from "reactstrap";
+} from 'reactstrap'
 import {
   Button,
   Block,
@@ -27,113 +27,117 @@ import {
   PaginationComponent,
   Row,
   RSelect,
-} from "../../../components/Component";
-import { statusOptions, transData } from "./TransData";
-import { dateFormatterAlt } from "../../../utils/Utils";
-import { useForm } from "react-hook-form";
+} from '../../../components/Component'
+import { statusOptions, transData } from './TransData'
+import { dateFormatterAlt } from '../../../utils/Utils'
+import { useForm } from 'react-hook-form'
 
 const TransListBasic = () => {
-  const [onSearch, setonSearch] = useState(true);
-  const [onSearchText, setSearchText] = useState("");
+  const [onSearch, setonSearch] = useState(true)
+  const [onSearchText, setSearchText] = useState('')
   const [modal, setModal] = useState({
     add: false,
-  });
-  const [viewModal, setViewModal] = useState(false);
-  const [detail, setDetail] = useState({});
-  const [data, setData] = useState(transData);
+  })
+  const [viewModal, setViewModal] = useState(false)
+  const [detail, setDetail] = useState({})
+  const [data, setData] = useState(transData)
   const [formData, setFormData] = useState({
-    bill: "",
+    bill: '',
     issue: new Date(),
     due: new Date(),
-    total: "",
-    status: "",
-    ref: "",
-  });
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage, setItemPerPage] = useState(10);
-  const [sort, setSortState] = useState("");
+    total: '',
+    status: '',
+    ref: '',
+  })
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemPerPage, setItemPerPage] = useState(10)
+  const [sort, setSortState] = useState('')
 
   const sortingFunc = (params) => {
-    let defaultData = data;
-    if (params === "asc") {
-      let sortedData = [...defaultData].sort((a, b) => parseFloat(a.ref) - parseFloat(b.ref));
-      setData([...sortedData]);
-    } else if (params === "dsc") {
-      let sortedData = [...defaultData].sort((a, b) => parseFloat(b.ref) - parseFloat(a.ref));
-      setData([...sortedData]);
+    let defaultData = data
+    if (params === 'asc') {
+      let sortedData = [...defaultData].sort(
+        (a, b) => parseFloat(a.ref) - parseFloat(b.ref)
+      )
+      setData([...sortedData])
+    } else if (params === 'dsc') {
+      let sortedData = [...defaultData].sort(
+        (a, b) => parseFloat(b.ref) - parseFloat(a.ref)
+      )
+      setData([...sortedData])
     }
-  };
+  }
 
   // Changing state value when searching name
   useEffect(() => {
-    if (onSearchText !== "") {
+    if (onSearchText !== '') {
       const filteredObject = transData.filter((item) => {
-        return item.bill.toLowerCase().includes(onSearchText.toLowerCase());
-      });
-      setData([...filteredObject]);
+        return item.bill.toLowerCase().includes(onSearchText.toLowerCase())
+      })
+      setData([...filteredObject])
     } else {
-      setData([...transData]);
+      setData([...transData])
     }
-  }, [onSearchText]);
+  }, [onSearchText])
 
   // onChange function for searching name
   const onFilterChange = (e) => {
-    setSearchText(e.target.value);
-  };
+    setSearchText(e.target.value)
+  }
 
   // function to reset the form
   const resetForm = () => {
     setFormData({
-      bill: "",
+      bill: '',
       issue: new Date(),
       due: new Date(),
-      total: "",
-      status: "",
-    });
-  };
+      total: '',
+      status: '',
+    })
+  }
 
   // function to close the form modal
   const onFormCancel = () => {
-    setModal({ add: false });
-    resetForm();
-  };
+    setModal({ add: false })
+    resetForm()
+  }
 
   // submit function to add a new item
   const onFormSubmit = (submitData) => {
-    const { bill, total } = submitData;
+    const { bill, total } = submitData
     let submittedData = {
       id: data.length + 1,
       ref: 4970 + data.length,
       bill: bill,
       issue: dateFormatterAlt(formData.issue, true),
       due: dateFormatterAlt(formData.due, true),
-      total: total + ".00",
+      total: total + '.00',
       status: formData.status,
-    };
-    setData([submittedData, ...data]);
+    }
+    setData([submittedData, ...data])
 
-    resetForm();
-    setModal({ add: false });
-  };
+    resetForm()
+    setModal({ add: false })
+  }
 
   // function to load detail data
   const loadDetail = (id) => {
-    let index = data.findIndex((item) => item.id === id);
-    setDetail(data[index]);
-  };
+    let index = data.findIndex((item) => item.id === id)
+    setDetail(data[index])
+  }
 
   // function to toggle the search option
-  const toggle = () => setonSearch(!onSearch);
+  const toggle = () => setonSearch(!onSearch)
 
   // Get current list, pagination
-  const indexOfLastItem = currentPage * itemPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemPerPage
+  const indexOfFirstItem = indexOfLastItem - itemPerPage
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
 
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   return (
     <React.Fragment>
@@ -150,7 +154,11 @@ const TransListBasic = () => {
             <BlockHeadContent>
               <ul className="nk-block-tools g-3">
                 <li>
-                  <Button color="primary" className="btn-icon" onClick={() => setModal({ add: true })}>
+                  <Button
+                    color="primary"
+                    className="btn-icon"
+                    onClick={() => setModal({ add: true })}
+                  >
                     <Icon name="plus"></Icon>
                   </Button>
                 </li>
@@ -170,14 +178,20 @@ const TransListBasic = () => {
                   <div className="card-tools mr-n1">
                     <ul className="btn-toolbar">
                       <li>
-                        <Button onClick={toggle} className="btn-icon search-toggle toggle-search">
+                        <Button
+                          onClick={toggle}
+                          className="btn-icon search-toggle toggle-search"
+                        >
                           <Icon name="search"></Icon>
                         </Button>
                       </li>
                       <li className="btn-toolbar-sep"></li>
                       <li>
                         <UncontrolledDropdown>
-                          <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+                          <DropdownToggle
+                            tag="a"
+                            className="dropdown-toggle btn btn-icon btn-trigger"
+                          >
                             <Icon name="setting"></Icon>
                           </DropdownToggle>
                           <DropdownMenu right>
@@ -185,25 +199,29 @@ const TransListBasic = () => {
                               <li>
                                 <span>Show</span>
                               </li>
-                              <li className={itemPerPage === 10 ? "active" : ""}>
+                              <li
+                                className={itemPerPage === 10 ? 'active' : ''}
+                              >
                                 <DropdownItem
                                   tag="a"
                                   href="#dropdownitem"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
-                                    setItemPerPage(10);
+                                    ev.preventDefault()
+                                    setItemPerPage(10)
                                   }}
                                 >
                                   10
                                 </DropdownItem>
                               </li>
-                              <li className={itemPerPage === 15 ? "active" : ""}>
+                              <li
+                                className={itemPerPage === 15 ? 'active' : ''}
+                              >
                                 <DropdownItem
                                   tag="a"
                                   href="#dropdownitem"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
-                                    setItemPerPage(15);
+                                    ev.preventDefault()
+                                    setItemPerPage(15)
                                   }}
                                 >
                                   15
@@ -214,27 +232,27 @@ const TransListBasic = () => {
                               <li>
                                 <span>Order</span>
                               </li>
-                              <li className={sort === "dsc" ? "active" : ""}>
+                              <li className={sort === 'dsc' ? 'active' : ''}>
                                 <DropdownItem
                                   tag="a"
                                   href="#dropdownitem"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
-                                    setSortState("dsc");
-                                    sortingFunc("dsc");
+                                    ev.preventDefault()
+                                    setSortState('dsc')
+                                    sortingFunc('dsc')
                                   }}
                                 >
                                   DESC
                                 </DropdownItem>
                               </li>
-                              <li className={sort === "asc" ? "active" : ""}>
+                              <li className={sort === 'asc' ? 'active' : ''}>
                                 <DropdownItem
                                   tag="a"
                                   href="#dropdownitem"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
-                                    setSortState("asc");
-                                    sortingFunc("asc");
+                                    ev.preventDefault()
+                                    setSortState('asc')
+                                    sortingFunc('asc')
                                   }}
                                 >
                                   ASC
@@ -246,13 +264,17 @@ const TransListBasic = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className={`card-search search-wrap ${!onSearch ? "active" : ""}`}>
+                  <div
+                    className={`card-search search-wrap ${
+                      !onSearch ? 'active' : ''
+                    }`}
+                  >
                     <div className="search-content">
                       <Button
                         className="search-back btn-icon toggle-search"
                         onClick={() => {
-                          setSearchText("");
-                          toggle();
+                          setSearchText('')
+                          toggle()
                         }}
                       >
                         <Icon name="arrow-left"></Icon>
@@ -292,7 +314,9 @@ const TransListBasic = () => {
                       </th>
                       <th className="tb-tnx-amount is-alt">
                         <span className="tb-tnx-total">Total</span>
-                        <span className="tb-tnx-status d-none d-md-inline-block">Status</span>
+                        <span className="tb-tnx-status d-none d-md-inline-block">
+                          Status
+                        </span>
                       </th>
                       <th className="tb-tnx-action">
                         <span>&nbsp;</span>
@@ -308,7 +332,7 @@ const TransListBasic = () => {
                                 <a
                                   href="#ref"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
+                                    ev.preventDefault()
                                   }}
                                 >
                                   <span>{item.ref}</span>
@@ -330,7 +354,11 @@ const TransListBasic = () => {
                                 <div className="tb-tnx-status">
                                   <span
                                     className={`badge badge-dot badge-${
-                                      item.status === "Paid" ? "success" : item.status === "Due" ? "warning" : "danger"
+                                      item.status === 'Paid'
+                                        ? 'success'
+                                        : item.status === 'Due'
+                                        ? 'warning'
+                                        : 'danger'
                                     }`}
                                   >
                                     {item.status}
@@ -349,15 +377,15 @@ const TransListBasic = () => {
                                     <ul className="link-list-plain">
                                       <li
                                         onClick={() => {
-                                          loadDetail(item.id);
-                                          setViewModal(true);
+                                          loadDetail(item.id)
+                                          setViewModal(true)
                                         }}
                                       >
                                         <DropdownItem
                                           tag="a"
                                           href="#view"
                                           onClick={(ev) => {
-                                            ev.preventDefault();
+                                            ev.preventDefault()
                                           }}
                                         >
                                           View
@@ -368,7 +396,7 @@ const TransListBasic = () => {
                                           tag="a"
                                           href="#print"
                                           onClick={(ev) => {
-                                            ev.preventDefault();
+                                            ev.preventDefault()
                                           }}
                                         >
                                           Print
@@ -379,7 +407,7 @@ const TransListBasic = () => {
                                 </UncontrolledDropdown>
                               </td>
                             </tr>
-                          );
+                          )
                         })
                       : null}
                   </tbody>
@@ -404,13 +432,18 @@ const TransListBasic = () => {
           </Card>
         </Block>
 
-        <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={modal.add}
+          toggle={() => setModal({ add: false })}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a
               href="#cancel"
               onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
+                ev.preventDefault()
+                onFormCancel()
               }}
               className="close"
             >
@@ -419,19 +452,24 @@ const TransListBasic = () => {
             <div className="p-2">
               <h5 className="title">Add Bill</h5>
               <div className="mt-4">
-                <Form className="row gy-4 mt-4" onSubmit={handleSubmit(onFormSubmit)}>
+                <Form
+                  className="row gy-4 mt-4"
+                  onSubmit={handleSubmit(onFormSubmit)}
+                >
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Bill</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="text"
                         name="bill"
                         defaultValue={formData.bill}
                         placeholder="Enter bill"
                       />
-                      {errors.bill && <span className="invalid">{errors.bill.message}</span>}
+                      {errors.bill && (
+                        <span className="invalid">{errors.bill.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -439,12 +477,14 @@ const TransListBasic = () => {
                       <label className="form-label">Total</label>
                       <input
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         type="number"
                         name="total"
                         defaultValue={formData.total}
                       />
-                      {errors.total && <span className="invalid">{errors.total.message}</span>}
+                      {errors.total && (
+                        <span className="invalid">{errors.total.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -453,7 +493,9 @@ const TransListBasic = () => {
                       <DatePicker
                         selected={formData.issue}
                         className="form-control"
-                        onChange={(date) => setFormData({ ...formData, issue: date })}
+                        onChange={(date) =>
+                          setFormData({ ...formData, issue: date })
+                        }
                         minDate={new Date()}
                       />
                     </FormGroup>
@@ -464,7 +506,9 @@ const TransListBasic = () => {
                       <DatePicker
                         selected={formData.due}
                         className="form-control"
-                        onChange={(date) => setFormData({ ...formData, due: date })}
+                        onChange={(date) =>
+                          setFormData({ ...formData, due: date })
+                        }
                         minDate={new Date()}
                       />
                     </FormGroup>
@@ -475,8 +519,10 @@ const TransListBasic = () => {
                       <div className="form-control-wrap">
                         <RSelect
                           options={statusOptions}
-                          defaultValue={{ value: "Paid", label: "Paid" }}
-                          onChange={(e) => setFormData({ ...formData, status: e.value })}
+                          defaultValue={{ value: 'Paid', label: 'Paid' }}
+                          onChange={(e) =>
+                            setFormData({ ...formData, status: e.value })
+                          }
                         />
                       </div>
                     </FormGroup>
@@ -492,8 +538,8 @@ const TransListBasic = () => {
                         <a
                           href="#cancel"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
+                            ev.preventDefault()
+                            onFormCancel()
                           }}
                           className="link link-light"
                         >
@@ -508,13 +554,18 @@ const TransListBasic = () => {
           </ModalBody>
         </Modal>
 
-        <Modal isOpen={viewModal} toggle={() => setViewModal(false)} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={viewModal}
+          toggle={() => setViewModal(false)}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a
               href="#cancel"
               onClick={(ev) => {
-                ev.preventDefault();
-                setViewModal(false);
+                ev.preventDefault()
+                setViewModal(false)
               }}
               className="close"
             >
@@ -522,7 +573,8 @@ const TransListBasic = () => {
             </a>
             <div className="nk-modal-head">
               <h4 className="nk-modal-title title">
-                Transaction <small className="text-primary">#{detail.ref}</small>
+                Transaction{' '}
+                <small className="text-primary">#{detail.ref}</small>
               </h4>
             </div>
             <div className="nk-tnx-details mt-sm-3">
@@ -542,7 +594,13 @@ const TransListBasic = () => {
                 <Col lg={6}>
                   <span className="sub-text">Status</span>
                   <Badge
-                    color={detail.status === "Paid" ? "success" : detail.status === "Due" ? "warning" : "danger"}
+                    color={
+                      detail.status === 'Paid'
+                        ? 'success'
+                        : detail.status === 'Due'
+                        ? 'warning'
+                        : 'danger'
+                    }
                     size="md"
                   >
                     {detail.status}
@@ -562,7 +620,7 @@ const TransListBasic = () => {
         </Modal>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default TransListBasic;
+export default TransListBasic

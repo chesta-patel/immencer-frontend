@@ -1,53 +1,66 @@
-import React, { useEffect, useState } from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import listPlugin from "@fullcalendar/list";
-import bootstrapPlugin from "@fullcalendar/bootstrap";
-import DatePicker from "react-datepicker";
-import { Popover, PopoverHeader, PopoverBody, ModalHeader, Modal, ModalBody, FormGroup, Button } from "reactstrap";
-import { useForm } from "react-hook-form";
-import { Col, Row, RSelect } from "../../Component";
-import { setDateForPicker } from "../../../utils/Utils";
-import { eventOptions, returnDate } from "./CalenderData";
+import React, { useEffect, useState } from 'react'
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import listPlugin from '@fullcalendar/list'
+import bootstrapPlugin from '@fullcalendar/bootstrap'
+import DatePicker from 'react-datepicker'
+import {
+  Popover,
+  PopoverHeader,
+  PopoverBody,
+  ModalHeader,
+  Modal,
+  ModalBody,
+  FormGroup,
+  Button,
+} from 'reactstrap'
+import { useForm } from 'react-hook-form'
+import { Col, Row, RSelect } from '../../Component'
+import { setDateForPicker } from '../../../utils/Utils'
+import { eventOptions, returnDate } from './CalenderData'
 
 const EventView = (event) => {
-  const [mouseEnter, setMouseEnter] = useState(false);
-  const { title, extendedProps, publicId } = event.event.event._def;
+  const [mouseEnter, setMouseEnter] = useState(false)
+  const { title, extendedProps, publicId } = event.event.event._def
   return (
     <React.Fragment>
-      <div id={publicId} onMouseEnter={() => setMouseEnter(true)} onMouseLeave={() => setMouseEnter(false)}>
+      <div
+        id={publicId}
+        onMouseEnter={() => setMouseEnter(true)}
+        onMouseLeave={() => setMouseEnter(false)}
+      >
         {title}
-      </div>{" "}
+      </div>{' '}
       <Popover placement="bottom" isOpen={mouseEnter} target={publicId}>
         <PopoverHeader>{title}</PopoverHeader>
         <PopoverBody>{extendedProps.description}</PopoverBody>
       </Popover>
     </React.Fragment>
-  );
-};
+  )
+}
 
 const CalenderApp = ({ events, onDelete, onEdit }) => {
-  const [modalState, updateModal] = useState(false);
-  const [mockEvents, updateEvents] = useState(events);
-  const [event, updateEvent] = useState({});
-  const [theme, settheme] = useState();
-  const [edit, updateEditModal] = useState(false);
+  const [modalState, updateModal] = useState(false)
+  const [mockEvents, updateEvents] = useState(events)
+  const [event, updateEvent] = useState({})
+  const [theme, settheme] = useState()
+  const [edit, updateEditModal] = useState(false)
   const [dates, setDates] = useState({
     startDate: new Date(),
     startTime: new Date(),
     endTime: new Date(),
     endDate: new Date(),
-  });
+  })
 
   useEffect(() => {
-    updateEvents(events);
-  }, [events]);
+    updateEvents(events)
+  }, [events])
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   const handleFormSubmit = (formData) => {
-    let newEvent = {};
+    let newEvent = {}
     newEvent = {
       id: event.id,
       className: theme.value,
@@ -56,26 +69,26 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
       start: event.start,
       end: event.end,
       description: formData.description,
-    };
-    onEdit(newEvent);
-    settheme("");
-    toggleEdit();
-  };
+    }
+    onEdit(newEvent)
+    settheme('')
+    toggleEdit()
+  }
 
   const toggle = () => {
-    updateModal(!modalState);
-  };
+    updateModal(!modalState)
+  }
 
   const toggleEdit = () => {
-    updateEditModal(!edit);
-  };
+    updateEditModal(!edit)
+  }
 
   const handleEventClick = (info) => {
-    const event = events.find((item) => item.id === info.event._def.publicId);
-    updateEvent(event);
-    settheme(event.type);
-    toggle();
-  };
+    const event = events.find((item) => item.id === info.event._def.publicId)
+    updateEvent(event)
+    settheme(event.type)
+    toggle()
+  }
 
   return (
     <React.Fragment>
@@ -85,9 +98,9 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
         eventClick={(info) => handleEventClick(info)}
         initialView="dayGridMonth"
         headerToolbar={{
-          left: "title prev,next",
+          left: 'title prev,next',
           center: null,
-          right: "today dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+          right: 'today dayGridMonth,timeGridWeek,timeGridDay,listWeek',
         }}
         themeSystem="bootstrap"
         height={800}
@@ -122,8 +135,8 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
               <Button
                 color="primary"
                 onClick={() => {
-                  toggle();
-                  toggleEdit();
+                  toggle()
+                  toggleEdit()
                 }}
               >
                 Edit Event
@@ -134,8 +147,8 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
                 color="danger"
                 className="btn-dim"
                 onClick={() => {
-                  toggle();
-                  onDelete(event && event.id);
+                  toggle()
+                  onDelete(event && event.id)
                 }}
               >
                 Delete
@@ -147,7 +160,10 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
       <Modal isOpen={edit} toggle={toggleEdit} className="modal-md">
         <ModalHeader toggle={toggleEdit}>Edit Event</ModalHeader>
         <ModalBody>
-          <form className="form-validate is-alter" onSubmit={handleSubmit(handleFormSubmit)}>
+          <form
+            className="form-validate is-alter"
+            onSubmit={handleSubmit(handleFormSubmit)}
+          >
             <Row className="gx-4 gy-3">
               <Col size="12">
                 <FormGroup>
@@ -163,7 +179,9 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
                       ref={register({ required: true })}
                       defaultValue={event.title}
                     />
-                    {errors.title && <p className="invalid">This field is required</p>}
+                    {errors.title && (
+                      <p className="invalid">This field is required</p>
+                    )}
                   </div>
                 </FormGroup>
               </Col>
@@ -175,7 +193,12 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
                       <div className="form-control-wrap">
                         <DatePicker
                           selected={new Date(event.start)}
-                          onChange={(date) => updateEvent({ ...event, start: setDateForPicker(date) })}
+                          onChange={(date) =>
+                            updateEvent({
+                              ...event,
+                              start: setDateForPicker(date),
+                            })
+                          }
                           className="form-control date-picker"
                         />
                       </div>
@@ -184,7 +207,9 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
                       <div className="form-control-wrap has-timepicker">
                         <DatePicker
                           selected={dates.startTime}
-                          onChange={(date) => setDates({ ...dates, startTime: date })}
+                          onChange={(date) =>
+                            setDates({ ...dates, startTime: date })
+                          }
                           showTimeSelect
                           showTimeSelectOnly
                           timeIntervals={15}
@@ -205,7 +230,12 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
                       <div className="form-control-wrap">
                         <DatePicker
                           selected={new Date(event.end)}
-                          onChange={(date) => updateEvent({ ...event, end: setDateForPicker(date) })}
+                          onChange={(date) =>
+                            updateEvent({
+                              ...event,
+                              end: setDateForPicker(date),
+                            })
+                          }
                           className="form-control date-picker"
                         />
                       </div>
@@ -214,7 +244,9 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
                       <div className="form-control-wrap has-timepicker">
                         <DatePicker
                           selected={dates.endTime}
-                          onChange={(date) => setDates({ ...dates, endTime: date })}
+                          onChange={(date) =>
+                            setDates({ ...dates, endTime: date })
+                          }
                           showTimeSelect
                           showTimeSelectOnly
                           timeIntervals={15}
@@ -240,7 +272,9 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
                       ref={register({ required: true })}
                       defaultValue={event.description}
                     ></textarea>
-                    {errors.description && <p className="invalid">This field is required</p>}
+                    {errors.description && (
+                      <p className="invalid">This field is required</p>
+                    )}
                   </div>
                 </FormGroup>
               </Col>
@@ -265,7 +299,11 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
                     </Button>
                   </li>
                   <li>
-                    <Button color="danger" className="btn-dim" onClick={toggleEdit}>
+                    <Button
+                      color="danger"
+                      className="btn-dim"
+                      onClick={toggleEdit}
+                    >
                       Discard
                     </Button>
                   </li>
@@ -276,7 +314,7 @@ const CalenderApp = ({ events, onDelete, onEdit }) => {
         </ModalBody>
       </Modal>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default CalenderApp;
+export default CalenderApp

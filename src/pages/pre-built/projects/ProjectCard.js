@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
-import DatePicker from "react-datepicker";
+import React, { useState } from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
+import DatePicker from 'react-datepicker'
 import {
   Block,
   BlockHead,
@@ -17,9 +17,14 @@ import {
   Col,
   PaginationComponent,
   RSelect,
-} from "../../../components/Component";
-import { projectData, teamList } from "./ProjectData";
-import { findUpper, setDeadline, setDeadlineDays, calcPercentage } from "../../../utils/Utils";
+} from '../../../components/Component'
+import { projectData, teamList } from './ProjectData'
+import {
+  findUpper,
+  setDeadline,
+  setDeadlineDays,
+  calcPercentage,
+} from '../../../utils/Utils'
 import {
   DropdownMenu,
   DropdownToggle,
@@ -30,61 +35,61 @@ import {
   Progress,
   DropdownItem,
   Form,
-} from "reactstrap";
-import { useForm } from "react-hook-form";
+} from 'reactstrap'
+import { useForm } from 'react-hook-form'
 
 const ProjectCardPage = () => {
-  const [sm, updateSm] = useState(false);
+  const [sm, updateSm] = useState(false)
   const [modal, setModal] = useState({
     add: false,
     edit: false,
-  });
-  const [editId, setEditedId] = useState();
-  const [data, setData] = useState(projectData);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage] = useState(8);
+  })
+  const [editId, setEditedId] = useState()
+  const [data, setData] = useState(projectData)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemPerPage] = useState(8)
   const [formData, setFormData] = useState({
-    title: "",
-    subtitle: "",
-    description: "",
-    lead: "",
+    title: '',
+    subtitle: '',
+    description: '',
+    lead: '',
     tasks: 0,
     team: [],
     totalTask: 0,
     date: new Date(),
-  });
+  })
 
   // OnChange function to get the input data
   const onInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   // function to reset the form
   const resetForm = () => {
     setFormData({
-      title: "",
-      subtitle: "",
-      description: "",
-      lead: "",
+      title: '',
+      subtitle: '',
+      description: '',
+      lead: '',
       tasks: 0,
       totalTask: 0,
       team: [],
       date: new Date(),
-    });
-  };
+    })
+  }
 
   // function to close the modal
   const onFormCancel = () => {
-    setModal({ add: false }, { edit: false });
-    resetForm();
-  };
+    setModal({ add: false }, { edit: false })
+    resetForm()
+  }
 
   // submit function to add a new item
   const onFormSubmit = (sData) => {
-    const { title, subtitle, description, tasks, totalTask } = sData;
+    const { title, subtitle, description, tasks, totalTask } = sData
     let submittedData = {
       id: data.length + 1,
-      avatarClass: "pink",
+      avatarClass: 'pink',
       title: title,
       subtitle: subtitle,
       desc: description,
@@ -93,17 +98,17 @@ const ProjectCardPage = () => {
       tasks: tasks,
       totalTask: totalTask,
       deadline: new Date(`${formData.date}`), // Format ** mm/dd/yyyy
-    };
-    setData((data) => [submittedData, ...data]);
-    resetForm();
-    setModal({ add: false });
-  };
+    }
+    setData((data) => [submittedData, ...data])
+    resetForm()
+    setModal({ add: false })
+  }
 
   // submit function to update a new item
   const onEditSubmit = (sData) => {
-    const { title, subtitle, description, tasks, totalTask } = sData;
-    let submittedData;
-    let newitems = data;
+    const { title, subtitle, description, tasks, totalTask } = sData
+    let submittedData
+    let newitems = data
     newitems.forEach((item) => {
       if (item.id === editId) {
         submittedData = {
@@ -117,14 +122,14 @@ const ProjectCardPage = () => {
           totalTask: totalTask,
           deadline: new Date(`${formData.date}`), // Format ** mm/dd/yyyy
           team: formData.team,
-        };
+        }
       }
-    });
-    let index = newitems.findIndex((item) => item.id === editId);
-    newitems[index] = submittedData;
-    setModal({ edit: false });
-    resetForm();
-  };
+    })
+    let index = newitems.findIndex((item) => item.id === editId)
+    newitems[index] = submittedData
+    setModal({ edit: false })
+    resetForm()
+  }
 
   // function that loads the want to editted data
   const onEditClick = (id) => {
@@ -139,30 +144,30 @@ const ProjectCardPage = () => {
           tasks: item.tasks,
           totalTask: item.totalTask,
           date: item.deadline,
-        });
-        setModal({ edit: true }, { add: false });
-        setEditedId(id);
+        })
+        setModal({ edit: true }, { add: false })
+        setEditedId(id)
       }
-    });
-  };
+    })
+  }
 
   // function to change the complete a project property
   const completeProject = (id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].deadline = setDeadline(0);
-    setData([...newData]);
-  };
+    let newData = data
+    let index = newData.findIndex((item) => item.id === id)
+    newData[index].deadline = setDeadline(0)
+    setData([...newData])
+  }
 
   // Get current list, pagination
-  const indexOfLastItem = currentPage * itemPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemPerPage
+  const indexOfFirstItem = indexOfLastItem - itemPerPage
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
 
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   return (
     <React.Fragment>
@@ -172,22 +177,35 @@ const ProjectCardPage = () => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle page> Projects</BlockTitle>
-              <BlockDes className="text-soft">You have total {data.length} projects</BlockDes>
+              <BlockDes className="text-soft">
+                You have total {data.length} projects
+              </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
                 <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${sm ? "active" : ""}`}
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                    sm ? 'active' : ''
+                  }`}
                   onClick={() => updateSm(!sm)}
                 >
                   <Icon name="menu-alt-r"></Icon>
                 </Button>
-                <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
                   <ul className="nk-block-tools g-3">
                     <li>
                       <UncontrolledDropdown>
-                        <DropdownToggle tag="a" className="dropdown-toggle btn btn-white btn-dim btn-outline-light">
-                          <Icon name="filter-alt" className="d-none d-sm-inline"></Icon>
+                        <DropdownToggle
+                          tag="a"
+                          className="dropdown-toggle btn btn-white btn-dim btn-outline-light"
+                        >
+                          <Icon
+                            name="filter-alt"
+                            className="d-none d-sm-inline"
+                          ></Icon>
                           <span>Filtered By</span>
                           <Icon name="chevron-right" className="dd-indc"></Icon>
                         </DropdownToggle>
@@ -198,7 +216,7 @@ const ProjectCardPage = () => {
                                 tag="a"
                                 href="#dropdownitem"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Open</span>
@@ -209,7 +227,7 @@ const ProjectCardPage = () => {
                                 tag="a"
                                 href="#dropdownitem"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>Closed</span>
@@ -220,7 +238,7 @@ const ProjectCardPage = () => {
                                 tag="a"
                                 href="#dropdownitem"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
+                                  ev.preventDefault()
                                 }}
                               >
                                 <span>OnGoing</span>
@@ -230,7 +248,10 @@ const ProjectCardPage = () => {
                         </DropdownMenu>
                       </UncontrolledDropdown>
                     </li>
-                    <li className="nk-block-tools-opt" onClick={() => setModal({ add: true })}>
+                    <li
+                      className="nk-block-tools-opt"
+                      onClick={() => setModal({ add: true })}
+                    >
                       <Button color="primary">
                         <Icon name="plus"></Icon>
                         <span>Add Project</span>
@@ -247,7 +268,7 @@ const ProjectCardPage = () => {
           <Row className="g-gs">
             {currentItems &&
               currentItems.map((item, idx) => {
-                var days = setDeadlineDays(item.deadline);
+                var days = setDeadlineDays(item.deadline)
                 return (
                   <Col sm="6" lg="4" xxl="3" key={item.id}>
                     <ProjectCard>
@@ -255,11 +276,15 @@ const ProjectCardPage = () => {
                         <a
                           href="#title"
                           onClick={(ev) => {
-                            ev.preventDefault();
+                            ev.preventDefault()
                           }}
                           className="project-title"
                         >
-                          <UserAvatar className="sq" theme={item.avatarClass} text={findUpper(item.title)} />
+                          <UserAvatar
+                            className="sq"
+                            theme={item.avatarClass}
+                            text={findUpper(item.title)}
+                          />
                           <div className="project-info">
                             <h6 className="title">{item.title}</h6>
                             <span className="sub-text">{item.subtitle}</span>
@@ -279,7 +304,7 @@ const ProjectCardPage = () => {
                                   tag="a"
                                   href="#edit"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
+                                    ev.preventDefault()
                                   }}
                                 >
                                   <Icon name="edit"></Icon>
@@ -292,7 +317,7 @@ const ProjectCardPage = () => {
                                     tag="a"
                                     href="#markasdone"
                                     onClick={(ev) => {
-                                      ev.preventDefault();
+                                      ev.preventDefault()
                                     }}
                                   >
                                     <Icon name="check-round-cut"></Icon>
@@ -305,7 +330,9 @@ const ProjectCardPage = () => {
                         </UncontrolledDropdown>
                       </div>
                       <div className="project-details">
-                        {item.desc.length > 90 ? item.desc.substring(0, 89) + "... " : item.desc}
+                        {item.desc.length > 90
+                          ? item.desc.substring(0, 89) + '... '
+                          : item.desc}
                       </div>
                       <div className="project-progress">
                         <div className="project-progress-details">
@@ -314,12 +341,19 @@ const ProjectCardPage = () => {
                             <span>{item.tasks} Tasks</span>
                           </div>
                           <div className="project-progress-percent">
-                            {days === 0 ? 100 : calcPercentage(item.totalTask, item.tasks)}%
+                            {days === 0
+                              ? 100
+                              : calcPercentage(item.totalTask, item.tasks)}
+                            %
                           </div>
                         </div>
                         <Progress
                           className="progress-pill progress-md bg-light"
-                          value={days === 0 ? 100 : calcPercentage(item.totalTask, item.tasks)}
+                          value={
+                            days === 0
+                              ? 100
+                              : calcPercentage(item.totalTask, item.tasks)
+                          }
                         ></Progress>
                       </div>
                       <div className="project-meta">
@@ -334,32 +368,42 @@ const ProjectCardPage = () => {
                                   image={item.image}
                                 />
                               </li>
-                            );
+                            )
                           })}
                           {item.team.length > 2 && (
                             <li>
-                              <UserAvatar theme="light" className="sm" text={`+${item.team.length - 2}`} />
+                              <UserAvatar
+                                theme="light"
+                                className="sm"
+                                text={`+${item.team.length - 2}`}
+                              />
                             </li>
                           )}
                         </ul>
                         <span
                           className={`badge badge-dim badge-${
                             days > 10
-                              ? "light"
+                              ? 'light'
                               : days <= 10 && days >= 2
-                              ? "warning"
+                              ? 'warning'
                               : days === 1
-                              ? "danger"
-                              : days <= 0 && "success"
+                              ? 'danger'
+                              : days <= 0 && 'success'
                           }`}
                         >
                           <Icon name="clock"></Icon>
-                          <span>{days <= 0 ? "Done" : days === 1 ? "Due Tomorrow" : days + " Days Left"}</span>
+                          <span>
+                            {days <= 0
+                              ? 'Done'
+                              : days === 1
+                              ? 'Due Tomorrow'
+                              : days + ' Days Left'}
+                          </span>
                         </span>
                       </div>
                     </ProjectCard>
                   </Col>
-                );
+                )
               })}
           </Row>
           <div className="mt-3">
@@ -372,13 +416,18 @@ const ProjectCardPage = () => {
           </div>
         </Block>
 
-        <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={modal.add}
+          toggle={() => setModal({ add: false })}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a
               href="#cancel"
               onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
+                ev.preventDefault()
+                onFormCancel()
               }}
               className="close"
             >
@@ -387,7 +436,10 @@ const ProjectCardPage = () => {
             <div className="p-2">
               <h5 className="title">Add Project</h5>
               <div className="mt-4">
-                <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
+                <Form
+                  className="row gy-4"
+                  onSubmit={handleSubmit(onFormSubmit)}
+                >
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Title</label>
@@ -398,9 +450,11 @@ const ProjectCardPage = () => {
                         placeholder="Enter Title"
                         onChange={(e) => onInputChange(e)}
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                       />
-                      {errors.title && <span className="invalid">{errors.title.message}</span>}
+                      {errors.title && (
+                        <span className="invalid">{errors.title.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -413,9 +467,13 @@ const ProjectCardPage = () => {
                         placeholder="Enter client name"
                         onChange={(e) => onInputChange(e)}
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                       />
-                      {errors.subtitle && <span className="invalid">{errors.subtitle.message}</span>}
+                      {errors.subtitle && (
+                        <span className="invalid">
+                          {errors.subtitle.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col size="12">
@@ -427,9 +485,13 @@ const ProjectCardPage = () => {
                         placeholder="Your description"
                         onChange={(e) => onInputChange(e)}
                         className="form-control-xl form-control no-resize"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                       />
-                      {errors.description && <span className="invalid">{errors.description.message}</span>}
+                      {errors.description && (
+                        <span className="invalid">
+                          {errors.description.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -440,9 +502,11 @@ const ProjectCardPage = () => {
                         name="tasks"
                         onChange={(e) => onInputChange(e)}
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                       />
-                      {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}
+                      {errors.tasks && (
+                        <span className="invalid">{errors.tasks.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -453,9 +517,13 @@ const ProjectCardPage = () => {
                         name="totalTask"
                         onChange={(e) => onInputChange(e)}
                         className="form-control"
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                       />
-                      {errors.totalTask && <span className="invalid">{errors.totalTask.message}</span>}
+                      {errors.totalTask && (
+                        <span className="invalid">
+                          {errors.totalTask.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -464,7 +532,9 @@ const ProjectCardPage = () => {
                       <DatePicker
                         selected={formData.date}
                         className="form-control"
-                        onChange={(date) => setFormData({ ...formData, date: date })}
+                        onChange={(date) =>
+                          setFormData({ ...formData, date: date })
+                        }
                         minDate={new Date()}
                       />
                     </FormGroup>
@@ -472,13 +542,22 @@ const ProjectCardPage = () => {
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Team Members</label>
-                      <RSelect options={teamList} isMulti onChange={(e) => setFormData({ ...formData, team: e })} />
+                      <RSelect
+                        options={teamList}
+                        isMulti
+                        onChange={(e) => setFormData({ ...formData, team: e })}
+                      />
                     </FormGroup>
                   </Col>
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Lead</label>
-                      <RSelect options={formData.team} onChange={(e) => setFormData({ ...formData, lead: e.value })} />
+                      <RSelect
+                        options={formData.team}
+                        onChange={(e) =>
+                          setFormData({ ...formData, lead: e.value })
+                        }
+                      />
                     </FormGroup>
                   </Col>
                   <Col size="12">
@@ -491,8 +570,8 @@ const ProjectCardPage = () => {
                       <li>
                         <Button
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
+                            ev.preventDefault()
+                            onFormCancel()
                           }}
                           className="link link-light"
                         >
@@ -506,13 +585,18 @@ const ProjectCardPage = () => {
             </div>
           </ModalBody>
         </Modal>
-        <Modal isOpen={modal.edit} toggle={() => setModal({ edit: false })} className="modal-dialog-centered" size="lg">
+        <Modal
+          isOpen={modal.edit}
+          toggle={() => setModal({ edit: false })}
+          className="modal-dialog-centered"
+          size="lg"
+        >
           <ModalBody>
             <a
               href="#cancel"
               onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
+                ev.preventDefault()
+                onFormCancel()
               }}
               className="close"
             >
@@ -521,7 +605,10 @@ const ProjectCardPage = () => {
             <div className="p-2">
               <h5 className="title">Update Project</h5>
               <div className="mt-4">
-                <Form className="row gy-4" onSubmit={handleSubmit(onEditSubmit)}>
+                <Form
+                  className="row gy-4"
+                  onSubmit={handleSubmit(onEditSubmit)}
+                >
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Title</label>
@@ -531,10 +618,12 @@ const ProjectCardPage = () => {
                         defaultValue={formData.title}
                         placeholder="Enter Title"
                         onChange={(e) => onInputChange(e)}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         className="form-control"
                       />
-                      {errors.title && <span className="invalid">{errors.title.message}</span>}
+                      {errors.title && (
+                        <span className="invalid">{errors.title.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -546,10 +635,14 @@ const ProjectCardPage = () => {
                         defaultValue={formData.subtitle}
                         placeholder="Enter client name"
                         onChange={(e) => onInputChange(e)}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         className="form-control"
                       />
-                      {errors.subtitle && <span className="invalid">{errors.subtitle.message}</span>}
+                      {errors.subtitle && (
+                        <span className="invalid">
+                          {errors.subtitle.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col size="12">
@@ -560,10 +653,14 @@ const ProjectCardPage = () => {
                         defaultValue={formData.description}
                         placeholder="Your description"
                         onChange={(e) => onInputChange(e)}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         className="form-control no-resize"
                       />
-                      {errors.description && <span className="invalid">{errors.description.message}</span>}
+                      {errors.description && (
+                        <span className="invalid">
+                          {errors.description.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -574,10 +671,12 @@ const ProjectCardPage = () => {
                         name="tasks"
                         defaultValue={formData.tasks}
                         onChange={(e) => onInputChange(e)}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         className="form-control"
                       />
-                      {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}
+                      {errors.tasks && (
+                        <span className="invalid">{errors.tasks.message}</span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -588,10 +687,14 @@ const ProjectCardPage = () => {
                         name="totalTask"
                         defaultValue={formData.totalTask}
                         onChange={(e) => onInputChange(e)}
-                        ref={register({ required: "This field is required" })}
+                        ref={register({ required: 'This field is required' })}
                         className="form-control"
                       />
-                      {errors.totalTask && <span className="invalid">{errors.totalTask.message}</span>}
+                      {errors.totalTask && (
+                        <span className="invalid">
+                          {errors.totalTask.message}
+                        </span>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -600,7 +703,9 @@ const ProjectCardPage = () => {
                       <DatePicker
                         selected={formData.date}
                         className="form-control"
-                        onChange={(date) => setFormData({ ...formData, date: date })}
+                        onChange={(date) =>
+                          setFormData({ ...formData, date: date })
+                        }
                         minDate={new Date()}
                       />
                     </FormGroup>
@@ -621,8 +726,12 @@ const ProjectCardPage = () => {
                       <label className="form-label">Lead</label>
                       <RSelect
                         options={formData.team}
-                        defaultValue={[{ value: formData.lead, label: formData.lead }]}
-                        onChange={(e) => setFormData({ ...formData, lead: e.value })}
+                        defaultValue={[
+                          { value: formData.lead, label: formData.lead },
+                        ]}
+                        onChange={(e) =>
+                          setFormData({ ...formData, lead: e.value })
+                        }
                       />
                     </FormGroup>
                   </Col>
@@ -636,8 +745,8 @@ const ProjectCardPage = () => {
                       <li>
                         <Button
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
+                            ev.preventDefault()
+                            onFormCancel()
                           }}
                           className="link link-light"
                         >
@@ -653,6 +762,6 @@ const ProjectCardPage = () => {
         </Modal>
       </Content>
     </React.Fragment>
-  );
-};
-export default ProjectCardPage;
+  )
+}
+export default ProjectCardPage

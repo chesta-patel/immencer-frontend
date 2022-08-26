@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Files from "./Files";
-import { folderList } from "../Data";
+import React, { useEffect, useState } from 'react'
+import Files from './Files'
+import { folderList } from '../Data'
 
 const SpecificFolder = ({
   match,
@@ -14,8 +14,8 @@ const SpecificFolder = ({
   toggleScreenLg,
 }) => {
   const returnFolder = (id) => {
-    return folderList.find((item) => item.id === id);
-  };
+    return folderList.find((item) => item.id === id)
+  }
 
   return (
     <React.Fragment>
@@ -32,7 +32,7 @@ const SpecificFolder = ({
         />
       )}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default SpecificFolder;
+export default SpecificFolder

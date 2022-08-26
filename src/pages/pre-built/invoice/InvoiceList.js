@@ -1,7 +1,14 @@
-import React, { useState, useEffect } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import { UncontrolledDropdown, DropdownMenu, DropdownToggle, Card, Badge, DropdownItem } from "reactstrap";
+import React, { useState, useEffect } from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import {
+  UncontrolledDropdown,
+  DropdownMenu,
+  DropdownToggle,
+  Card,
+  Badge,
+  DropdownItem,
+} from 'reactstrap'
 import {
   Button,
   Block,
@@ -12,57 +19,61 @@ import {
   BlockTitle,
   Icon,
   PaginationComponent,
-} from "../../../components/Component";
-import { Link } from "react-router-dom";
-import { invoiceData } from "./Invoice";
+} from '../../../components/Component'
+import { Link } from 'react-router-dom'
+import { invoiceData } from './Invoice'
 
 const InvoiceList = () => {
-  const [data, setData] = useState(invoiceData);
-  const [onSearch, setonSearch] = useState(true);
-  const [onSearchText, setSearchText] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage, setItemPerPage] = useState(10);
-  const [sort, setSortState] = useState("asc");
+  const [data, setData] = useState(invoiceData)
+  const [onSearch, setonSearch] = useState(true)
+  const [onSearchText, setSearchText] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemPerPage, setItemPerPage] = useState(10)
+  const [sort, setSortState] = useState('asc')
 
   // Sorting data
   const sortFunc = () => {
-    let defaultData = data;
-    if (sort === "dsc") {
-      let sortedData = defaultData.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
-      setData([...sortedData]);
-    } else if (sort === "asc") {
-      let sortedData = defaultData.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
-      setData([...sortedData]);
+    let defaultData = data
+    if (sort === 'dsc') {
+      let sortedData = defaultData.sort(
+        (a, b) => parseFloat(a.id) - parseFloat(b.id)
+      )
+      setData([...sortedData])
+    } else if (sort === 'asc') {
+      let sortedData = defaultData.sort(
+        (a, b) => parseFloat(b.id) - parseFloat(a.id)
+      )
+      setData([...sortedData])
     }
-  };
+  }
 
   // Changing state value when searching name
   useEffect(() => {
-    if (onSearchText !== "") {
+    if (onSearchText !== '') {
       const filteredObject = invoiceData.filter((item) => {
-        return item.orderId.toLowerCase().includes(onSearchText.toLowerCase());
-      });
-      setData([...filteredObject]);
+        return item.orderId.toLowerCase().includes(onSearchText.toLowerCase())
+      })
+      setData([...filteredObject])
     } else {
-      setData([...invoiceData]);
+      setData([...invoiceData])
     }
-  }, [onSearchText]);
+  }, [onSearchText])
 
   // onChange function for searching name
   const onFilterChange = (e) => {
-    setSearchText(e.target.value);
-  };
+    setSearchText(e.target.value)
+  }
 
   // Get current list, pagination
-  const indexOfLastItem = currentPage * itemPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemPerPage
+  const indexOfFirstItem = indexOfLastItem - itemPerPage
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
 
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   // function to toggle the search option
-  const toggle = () => setonSearch(!onSearch);
+  const toggle = () => setonSearch(!onSearch)
 
   return (
     <React.Fragment>
@@ -99,14 +110,20 @@ const InvoiceList = () => {
                   <div className="card-tools mr-n1">
                     <ul className="btn-toolbar">
                       <li>
-                        <Button onClick={toggle} className="btn-icon search-toggle toggle-search">
+                        <Button
+                          onClick={toggle}
+                          className="btn-icon search-toggle toggle-search"
+                        >
                           <Icon name="search"></Icon>
                         </Button>
                       </li>
                       <li className="btn-toolbar-sep"></li>
                       <li>
                         <UncontrolledDropdown>
-                          <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+                          <DropdownToggle
+                            tag="a"
+                            className="dropdown-toggle btn btn-icon btn-trigger"
+                          >
                             <Icon name="setting"></Icon>
                           </DropdownToggle>
                           <DropdownMenu right>
@@ -114,25 +131,29 @@ const InvoiceList = () => {
                               <li>
                                 <span>Show</span>
                               </li>
-                              <li className={itemPerPage === 10 ? "active" : ""}>
+                              <li
+                                className={itemPerPage === 10 ? 'active' : ''}
+                              >
                                 <DropdownItem
                                   tag="a"
                                   href="#dropdownitem"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
-                                    setItemPerPage(10);
+                                    ev.preventDefault()
+                                    setItemPerPage(10)
                                   }}
                                 >
                                   10
                                 </DropdownItem>
                               </li>
-                              <li className={itemPerPage === 15 ? "active" : ""}>
+                              <li
+                                className={itemPerPage === 15 ? 'active' : ''}
+                              >
                                 <DropdownItem
                                   tag="a"
                                   href="#dropdownitem"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
-                                    setItemPerPage(15);
+                                    ev.preventDefault()
+                                    setItemPerPage(15)
                                   }}
                                 >
                                   15
@@ -143,27 +164,27 @@ const InvoiceList = () => {
                               <li>
                                 <span>Order</span>
                               </li>
-                              <li className={sort === "dsc" ? "active" : ""}>
+                              <li className={sort === 'dsc' ? 'active' : ''}>
                                 <DropdownItem
                                   tag="a"
                                   href="#dropdownitem"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
-                                    setSortState("dsc");
-                                    sortFunc("dsc");
+                                    ev.preventDefault()
+                                    setSortState('dsc')
+                                    sortFunc('dsc')
                                   }}
                                 >
                                   DESC
                                 </DropdownItem>
                               </li>
-                              <li className={sort === "asc" ? "active" : ""}>
+                              <li className={sort === 'asc' ? 'active' : ''}>
                                 <DropdownItem
                                   tag="a"
                                   href="#dropdownitem"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
-                                    setSortState("asc");
-                                    sortFunc("asc");
+                                    ev.preventDefault()
+                                    setSortState('asc')
+                                    sortFunc('asc')
                                   }}
                                 >
                                   ASC
@@ -175,13 +196,17 @@ const InvoiceList = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className={`card-search search-wrap ${!onSearch ? "active" : ""}`}>
+                  <div
+                    className={`card-search search-wrap ${
+                      !onSearch ? 'active' : ''
+                    }`}
+                  >
                     <div className="search-content">
                       <Button
                         className="search-back btn-icon toggle-search"
                         onClick={() => {
-                          setSearchText("");
-                          toggle();
+                          setSearchText('')
+                          toggle()
                         }}
                       >
                         <Icon name="arrow-left"></Icon>
@@ -206,11 +231,15 @@ const InvoiceList = () => {
                     <tr className="tb-odr-item">
                       <th className="tb-odr-info">
                         <span className="tb-odr-id">Order ID</span>
-                        <span className="tb-odr-date d-none d-md-inline-block">Date</span>
+                        <span className="tb-odr-date d-none d-md-inline-block">
+                          Date
+                        </span>
                       </th>
                       <th className="tb-odr-amount">
                         <span className="tb-odr-total">Amount</span>
-                        <span className="tb-odr-status d-none d-md-inline-block">Status</span>
+                        <span className="tb-odr-status d-none d-md-inline-block">
+                          Status
+                        </span>
                       </th>
                       <th className="tb-odr-action">&nbsp;</th>
                     </tr>
@@ -222,7 +251,9 @@ const InvoiceList = () => {
                             <tr className="tb-odr-item" key={item.id}>
                               <td className="tb-odr-info">
                                 <span className="tb-odr-id">
-                                  <Link to={`${process.env.PUBLIC_URL}/invoice-details/${item.id}`}>
+                                  <Link
+                                    to={`${process.env.PUBLIC_URL}/invoice-details/${item.id}`}
+                                  >
                                     #{item.orderId}
                                   </Link>
                                 </span>
@@ -230,16 +261,18 @@ const InvoiceList = () => {
                               </td>
                               <td className="tb-odr-amount">
                                 <span className="tb-odr-total">
-                                  <span className="amount">${item.totalAmount}</span>
+                                  <span className="amount">
+                                    ${item.totalAmount}
+                                  </span>
                                 </span>
                                 <span className="tb-odr-status">
                                   <Badge
                                     color={
-                                      item.status === "Complete"
-                                        ? "success"
-                                        : item.status === "Pending"
-                                        ? "warning"
-                                        : "danger"
+                                      item.status === 'Complete'
+                                        ? 'success'
+                                        : item.status === 'Pending'
+                                        ? 'warning'
+                                        : 'danger'
                                     }
                                     className="badge-dot"
                                   >
@@ -249,25 +282,40 @@ const InvoiceList = () => {
                               </td>
                               <td className="tb-odr-action">
                                 <div className="tb-odr-btns d-none d-sm-inline">
-                                  <Link to={`${process.env.PUBLIC_URL}/invoice-print/${item.id}`} target="_blank">
-                                    <Button color="primary" size="sm" className="btn-icon btn-white btn-dim">
+                                  <Link
+                                    to={`${process.env.PUBLIC_URL}/invoice-print/${item.id}`}
+                                    target="_blank"
+                                  >
+                                    <Button
+                                      color="primary"
+                                      size="sm"
+                                      className="btn-icon btn-white btn-dim"
+                                    >
                                       <Icon name="printer-fill"></Icon>
                                     </Button>
                                   </Link>
-                                  <Link to={`${process.env.PUBLIC_URL}/invoice-details/${item.id}`}>
-                                    <Button color="primary" size="sm" className="btn btn-dim">
+                                  <Link
+                                    to={`${process.env.PUBLIC_URL}/invoice-details/${item.id}`}
+                                  >
+                                    <Button
+                                      color="primary"
+                                      size="sm"
+                                      className="btn btn-dim"
+                                    >
                                       View
                                     </Button>
                                   </Link>
                                 </div>
-                                <Link to={`${process.env.PUBLIC_URL}/invoice-details/${item.id}`}>
+                                <Link
+                                  to={`${process.env.PUBLIC_URL}/invoice-details/${item.id}`}
+                                >
                                   <Button className="btn-pd-auto d-sm-none">
                                     <Icon name="chevron-right"></Icon>
                                   </Button>
                                 </Link>
                               </td>
                             </tr>
-                          );
+                          )
                         })
                       : null}
                   </tbody>
@@ -293,6 +341,6 @@ const InvoiceList = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
-export default InvoiceList;
+  )
+}
+export default InvoiceList

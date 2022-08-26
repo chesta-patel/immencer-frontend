@@ -1,8 +1,8 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import User from "../../images/avatar/b-sm.jpg";
-import User2 from "../../images/avatar/c-sm.jpg";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import User from '../../images/avatar/b-sm.jpg'
+import User2 from '../../images/avatar/c-sm.jpg'
 import {
   UserAvatar,
   Block,
@@ -16,8 +16,8 @@ import {
   CodeBlock,
   OverlineTitle,
   UserGroup,
-} from "../../components/Component";
-import { Col, Row } from "reactstrap";
+} from '../../components/Component'
+import { Col, Row } from 'reactstrap'
 
 const Avatar = () => {
   return (
@@ -43,15 +43,17 @@ const Avatar = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Example with Variations</BlockTitle>
               <p>
-                Add any of the below props to the <code>UserAvatar</code> components to change the appearance of a
-                avatar.
+                Add any of the below props to the <code>UserAvatar</code>{' '}
+                components to change the appearance of a avatar.
               </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
             <Row className="g-4">
               <Col md="3">
-                <OverlineTitle className="preview-title">Default Style's</OverlineTitle>
+                <OverlineTitle className="preview-title">
+                  Default Style's
+                </OverlineTitle>
                 <ul className="preview-list g-2">
                   <li className="preview-item">
                     <UserAvatar theme="primary" text="AB"></UserAvatar>
@@ -65,7 +67,9 @@ const Avatar = () => {
                 </ul>
               </Col>
               <Col md="3">
-                <OverlineTitle className="preview-title">Status Style's</OverlineTitle>
+                <OverlineTitle className="preview-title">
+                  Status Style's
+                </OverlineTitle>
                 <ul className="preview-list g-2">
                   <li className="preview-item">
                     <UserAvatar theme="primary" text="AB">
@@ -85,21 +89,37 @@ const Avatar = () => {
                 </ul>
               </Col>
               <Col md="3">
-                <OverlineTitle className="preview-title">Square Style's</OverlineTitle>
+                <OverlineTitle className="preview-title">
+                  Square Style's
+                </OverlineTitle>
                 <ul className="preview-list g-2">
                   <li className="preview-item">
-                    <UserAvatar theme="primary" text="AB" className="sq"></UserAvatar>
+                    <UserAvatar
+                      theme="primary"
+                      text="AB"
+                      className="sq"
+                    ></UserAvatar>
                   </li>
                   <li className="preview-item">
-                    <UserAvatar theme="success" icon="user-alt" className="sq"></UserAvatar>
+                    <UserAvatar
+                      theme="success"
+                      icon="user-alt"
+                      className="sq"
+                    ></UserAvatar>
                   </li>
                   <li className="preview-item">
-                    <UserAvatar theme="primary" image={User} className="sq"></UserAvatar>
+                    <UserAvatar
+                      theme="primary"
+                      image={User}
+                      className="sq"
+                    ></UserAvatar>
                   </li>
                 </ul>
               </Col>
               <Col md="3">
-                <OverlineTitle className="preview-title">Square Style's</OverlineTitle>
+                <OverlineTitle className="preview-title">
+                  Square Style's
+                </OverlineTitle>
                 <ul className="preview-list g-2">
                   <li className="preview-item">
                     <UserAvatar theme="primary" text="AB" className="sq">
@@ -119,7 +139,9 @@ const Avatar = () => {
                 </ul>
               </Col>
               <Col md="3">
-                <OverlineTitle className="preview-title">Group Style's</OverlineTitle>
+                <OverlineTitle className="preview-title">
+                  Group Style's
+                </OverlineTitle>
                 <ul className="preview-list g-2">
                   <li className="preview-item">
                     <UserGroup>
@@ -142,7 +164,9 @@ const Avatar = () => {
                 </ul>
               </Col>
               <Col md="3">
-                <OverlineTitle className="preview-title">Group Style's v2</OverlineTitle>
+                <OverlineTitle className="preview-title">
+                  Group Style's v2
+                </OverlineTitle>
                 <ul className="preview-list g-2">
                   <li className="preview-item">
                     <div className="user-avatar user-avatar-multiple">
@@ -214,8 +238,9 @@ const Avatar = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Example with Color Variations</BlockTitle>
               <p>
-                Add any of the below colors to <code>theme</code> props to the <code>UserAvatar</code> component to
-                change the appearence of a avatar.
+                Add any of the below colors to <code>theme</code> props to the{' '}
+                <code>UserAvatar</code> component to change the appearence of a
+                avatar.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -342,10 +367,11 @@ const Avatar = () => {
                   <code>theme={`"color"`}</code>
                 </td>
                 <td>
-                  Use <code>{`"color"`}</code> as{" "}
+                  Use <code>{`"color"`}</code> as{' '}
                   <code>
-                    primary, secondary, warning, danger, success, info, azure, blue, pink, indigo, dark, gray, orange,
-                    teal, purple, lighter
+                    primary, secondary, warning, danger, success, info, azure,
+                    blue, pink, indigo, dark, gray, orange, teal, purple,
+                    lighter
                   </code>
                 </td>
               </tr>
@@ -354,12 +380,13 @@ const Avatar = () => {
                   <code>theme={`"color-dim"`}</code>
                 </td>
                 <td>
-                  Use <code>{`"color"`}</code> as{" "}
+                  Use <code>{`"color"`}</code> as{' '}
                   <code>
-                    primary, secondary, warning, danger, success, info, azure, blue, pink, indigo, dark, gray, orange,
-                    teal, purple, light
-                  </code>{" "}
-                  <br /> Use <code>light</code> without <code>-dim</code> postfix
+                    primary, secondary, warning, danger, success, info, azure,
+                    blue, pink, indigo, dark, gray, orange, teal, purple, light
+                  </code>{' '}
+                  <br /> Use <code>light</code> without <code>-dim</code>{' '}
+                  postfix
                 </td>
               </tr>
             </tbody>
@@ -371,8 +398,9 @@ const Avatar = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Example with Size</BlockTitle>
               <p>
-                Add any of the below sizes to <code>className</code> props to the <code>UserAvatar</code> component to
-                change the appearence of a avatar.
+                Add any of the below sizes to <code>className</code> props to
+                the <code>UserAvatar</code> component to change the appearence
+                of a avatar.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -382,7 +410,11 @@ const Avatar = () => {
                 <OverlineTitle>Rounded Avatars</OverlineTitle>
                 <ul className="preview-list g-2">
                   <li className="preview-item">
-                    <UserAvatar text="AB" color="primary" className="xl"></UserAvatar>
+                    <UserAvatar
+                      text="AB"
+                      color="primary"
+                      className="xl"
+                    ></UserAvatar>
                   </li>
                   <li className="preview-item">
                     <UserAvatar text="AB" color="primary" className="lg">
@@ -390,16 +422,28 @@ const Avatar = () => {
                     </UserAvatar>
                   </li>
                   <li className="preview-item">
-                    <UserAvatar image={User} color="primary" className="md"></UserAvatar>
+                    <UserAvatar
+                      image={User}
+                      color="primary"
+                      className="md"
+                    ></UserAvatar>
                   </li>
                   <li className="preview-item">
                     <UserAvatar text="AB" color="primary"></UserAvatar>
                   </li>
                   <li className="preview-item">
-                    <UserAvatar text="AB" color="primary" className="sm"></UserAvatar>
+                    <UserAvatar
+                      text="AB"
+                      color="primary"
+                      className="sm"
+                    ></UserAvatar>
                   </li>
                   <li className="preview-item">
-                    <UserAvatar text="A" color="primary" className="xs"></UserAvatar>
+                    <UserAvatar
+                      text="A"
+                      color="primary"
+                      className="xs"
+                    ></UserAvatar>
                   </li>
                 </ul>
               </Col>
@@ -407,7 +451,11 @@ const Avatar = () => {
                 <OverlineTitle>Squared Avatars</OverlineTitle>
                 <ul className="preview-list g-2">
                   <li className="preview-item">
-                    <UserAvatar text="AB" color="primary" className="xl sq"></UserAvatar>
+                    <UserAvatar
+                      text="AB"
+                      color="primary"
+                      className="xl sq"
+                    ></UserAvatar>
                   </li>
                   <li className="preview-item">
                     <UserAvatar text="AB" color="primary" className="lg sq">
@@ -415,16 +463,28 @@ const Avatar = () => {
                     </UserAvatar>
                   </li>
                   <li className="preview-item">
-                    <UserAvatar image={User} color="primary" className="md sq"></UserAvatar>
+                    <UserAvatar
+                      image={User}
+                      color="primary"
+                      className="md sq"
+                    ></UserAvatar>
                   </li>
                   <li className="preview-item">
                     <UserAvatar text="AB" color="primary"></UserAvatar>
                   </li>
                   <li className="preview-item">
-                    <UserAvatar text="AB" color="primary" className="sm sq"></UserAvatar>
+                    <UserAvatar
+                      text="AB"
+                      color="primary"
+                      className="sm sq"
+                    ></UserAvatar>
                   </li>
                   <li className="preview-item">
-                    <UserAvatar text="A" color="primary" className="xs sq"></UserAvatar>
+                    <UserAvatar
+                      text="A"
+                      color="primary"
+                      className="xs sq"
+                    ></UserAvatar>
                   </li>
                 </ul>
               </Col>
@@ -443,7 +503,7 @@ const Avatar = () => {
                   <code>className="size"</code>
                 </td>
                 <td>
-                  Use <code>{"size"}</code> as <code>xl, lg, md, sm, xs</code>
+                  Use <code>{'size'}</code> as <code>xl, lg, md, sm, xs</code>
                 </td>
               </tr>
             </tbody>
@@ -464,8 +524,12 @@ const Avatar = () => {
                 <div className="user-toggle">
                   <UserAvatar icon="user-alt" theme="primary"></UserAvatar>
                   <div className="user-info">
-                    <div className="user-status text-primary">Administrator</div>
-                    <div className="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                    <div className="user-status text-primary">
+                      Administrator
+                    </div>
+                    <div className="user-name dropdown-indicator">
+                      Abu Bin Ishityak
+                    </div>
                   </div>
                 </div>
               </Col>
@@ -482,7 +546,11 @@ const Avatar = () => {
               <Col md="4" sm="6">
                 <OverlineTitle>User Card 2</OverlineTitle>
                 <div className="user-card">
-                  <UserAvatar text="AB" theme="purple" className="sm"></UserAvatar>
+                  <UserAvatar
+                    text="AB"
+                    theme="purple"
+                    className="sm"
+                  ></UserAvatar>
                   <div className="user-name">
                     <span className="tb-lead">Abu Bin Ishtiyak</span>
                   </div>
@@ -524,7 +592,7 @@ const Avatar = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Avatar;
+export default Avatar

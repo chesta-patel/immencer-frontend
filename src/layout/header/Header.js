@@ -1,19 +1,19 @@
-import React from "react";
-import classNames from "classnames";
-import Toggle from "../sidebar/Toggle";
-import Logo from "../logo/Logo";
-import News from "../news/News";
-import User from "./dropdown/user/User";
-import Notification from "./dropdown/notification/Notification";
+import React from 'react'
+import classNames from 'classnames'
+import Toggle from '../sidebar/Toggle'
+import Logo from '../logo/Logo'
+import News from '../news/News'
+import User from './dropdown/user/User'
+import Notification from './dropdown/notification/Notification'
 
 const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
   const headerClass = classNames({
-    "nk-header": true,
-    "nk-header-fixed": fixed,
-    [`is-light`]: theme === "white",
-    [`is-${theme}`]: theme !== "white" && theme !== "light",
+    'nk-header': true,
+    'nk-header-fixed': fixed,
+    [`is-light`]: theme === 'white',
+    [`is-${theme}`]: theme !== 'white' && theme !== 'light',
     [`${className}`]: className,
-  });
+  })
   return (
     <div className={headerClass}>
       <div className="container-fluid">
@@ -33,10 +33,16 @@ const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
           </div>
           <div className="nk-header-tools">
             <ul className="nk-quick-nav">
-              <li className="user-dropdown"  onClick={() => setVisibility(false)}>
+              <li
+                className="user-dropdown"
+                onClick={() => setVisibility(false)}
+              >
                 <User />
               </li>
-              <li className="notification-dropdown mr-n1"  onClick={() => setVisibility(false)}>
+              <li
+                className="notification-dropdown mr-n1"
+                onClick={() => setVisibility(false)}
+              >
                 <Notification />
               </li>
             </ul>
@@ -44,6 +50,6 @@ const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
         </div>
       </div>
     </div>
-  );
-};
-export default Header;
+  )
+}
+export default Header

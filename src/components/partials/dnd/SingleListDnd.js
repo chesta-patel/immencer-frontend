@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { dndDataSet1 } from "./Data";
+import React, { useState } from 'react'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { dndDataSet1 } from './Data'
 
 const SingleListDnd = () => {
-  const [dndSet1, setDndSet1] = useState(dndDataSet1);
+  const [dndSet1, setDndSet1] = useState(dndDataSet1)
 
   const handleOnDragEnd = (result) => {
-    const { destination } = result;
+    const { destination } = result
     // dropped outside the list
     if (!destination) {
-      return;
+      return
     } else {
-      const items = Array.from(dndSet1);
-      const [reorderedItem] = items.splice(result.source.index, 1);
-      items.splice(result.destination.index, 0, reorderedItem);
+      const items = Array.from(dndSet1)
+      const [reorderedItem] = items.splice(result.source.index, 1)
+      items.splice(result.destination.index, 0, reorderedItem)
 
-      setDndSet1(items);
+      setDndSet1(items)
     }
-  };
+  }
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="droppable1">
@@ -44,6 +44,6 @@ const SingleListDnd = () => {
         )}
       </Droppable>
     </DragDropContext>
-  );
-};
-export default SingleListDnd;
+  )
+}
+export default SingleListDnd

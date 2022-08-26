@@ -1,9 +1,14 @@
-import React from "react";
-import UserAvatar from "../../user/UserAvatar";
-import Icon from "../../icon/Icon";
-import { DropdownMenu, DropdownToggle, UncontrolledDropdown, Progress } from "reactstrap";
-import { PreviewCard } from "../../Component";
-import { setDeadlineDays } from "../../../utils/Utils";
+import React from 'react'
+import UserAvatar from '../../user/UserAvatar'
+import Icon from '../../icon/Icon'
+import {
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+  Progress,
+} from 'reactstrap'
+import { PreviewCard } from '../../Component'
+import { setDeadlineDays } from '../../../utils/Utils'
 
 export const ProjectCard = ({ ...props }) => {
   return (
@@ -12,8 +17,8 @@ export const ProjectCard = ({ ...props }) => {
         <div className="project">{props.children}</div>
       </PreviewCard>
     </React.Fragment>
-  );
-};
+  )
+}
 
 export const ProjectHead = ({ color, initial, title, subtitle }) => {
   return (
@@ -21,7 +26,7 @@ export const ProjectHead = ({ color, initial, title, subtitle }) => {
       <a
         href="#title"
         onClick={(ev) => {
-          ev.preventDefault();
+          ev.preventDefault()
         }}
         className="project-title"
       >
@@ -41,7 +46,7 @@ export const ProjectHead = ({ color, initial, title, subtitle }) => {
               <a
                 href="#view"
                 onClick={(ev) => {
-                  ev.preventDefault();
+                  ev.preventDefault()
                 }}
               >
                 <Icon name="eye"></Icon>
@@ -52,7 +57,7 @@ export const ProjectHead = ({ color, initial, title, subtitle }) => {
               <a
                 href="#edit"
                 onClick={(ev) => {
-                  ev.preventDefault();
+                  ev.preventDefault()
                 }}
               >
                 <Icon name="edit"></Icon>
@@ -63,7 +68,7 @@ export const ProjectHead = ({ color, initial, title, subtitle }) => {
               <a
                 href="#markasdone"
                 onClick={(ev) => {
-                  ev.preventDefault();
+                  ev.preventDefault()
                 }}
               >
                 <Icon name="check-round-cut"></Icon>
@@ -74,11 +79,11 @@ export const ProjectHead = ({ color, initial, title, subtitle }) => {
         </DropdownMenu>
       </UncontrolledDropdown>
     </div>
-  );
-};
+  )
+}
 
 export const ProjectBody = ({ desc, task, percentage, team, date }) => {
-  var days = setDeadlineDays(date);
+  var days = setDeadlineDays(date)
   return (
     <React.Fragment>
       <div className="project-details">{desc}</div>
@@ -97,25 +102,46 @@ export const ProjectBody = ({ desc, task, percentage, team, date }) => {
           {team.slice(0, 2).map((item) => {
             return (
               <li>
-                <UserAvatar size="sm" text={item.text} theme={item.theme} image={item.image} />
+                <UserAvatar
+                  size="sm"
+                  text={item.text}
+                  theme={item.theme}
+                  image={item.image}
+                />
               </li>
-            );
+            )
           })}
           {team.length > 2 && (
             <li>
-              <UserAvatar theme="light" size="sm" text={`+${team.length - 2}`} />
+              <UserAvatar
+                theme="light"
+                size="sm"
+                text={`+${team.length - 2}`}
+              />
             </li>
           )}
         </ul>
         <span
           className={`badge badge-dim badge-${
-            days > 10 ? "light" : days <= 10 && days >= 2 ? "warning" : days === 1 ? "danger" : days === 0 && "success"
+            days > 10
+              ? 'light'
+              : days <= 10 && days >= 2
+              ? 'warning'
+              : days === 1
+              ? 'danger'
+              : days === 0 && 'success'
           }`}
         >
           <Icon name="clock"></Icon>
-          <span>{days === 0 ? "Done" : days === 1 ? "Due Tomorrow" : days + " Days Left"}</span>
+          <span>
+            {days === 0
+              ? 'Done'
+              : days === 1
+              ? 'Due Tomorrow'
+              : days + ' Days Left'}
+          </span>
         </span>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}

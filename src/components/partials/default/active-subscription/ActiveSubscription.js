@@ -1,7 +1,7 @@
-import React from "react";
-import { CardTitle } from "reactstrap";
-import { Icon, TooltipComponent } from "../../../Component";
-import { BarChart } from "../../charts/default/Charts";
+import React from 'react'
+import { CardTitle } from 'reactstrap'
+import { Icon, TooltipComponent } from '../../../Component'
+import { BarChart } from '../../charts/default/Charts'
 
 const ActiveSubscription = () => {
   return (
@@ -36,6 +36,6 @@ const ActiveSubscription = () => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
-export default ActiveSubscription;
+  )
+}
+export default ActiveSubscription

@@ -1,7 +1,10 @@
-import React from "react";
-import Head from "../../../../layout/head/Head";
-import Content from "../../../../layout/content/Content";
-import { QuillComponent, QuillComponentMinimal } from "../../../../components/partials/rich-editor/QuillComponent";
+import React from 'react'
+import Head from '../../../../layout/head/Head'
+import Content from '../../../../layout/content/Content'
+import {
+  QuillComponent,
+  QuillComponentMinimal,
+} from '../../../../components/partials/rich-editor/QuillComponent'
 import {
   Block,
   BlockHead,
@@ -11,7 +14,7 @@ import {
   BackTo,
   PreviewCard,
   CodeBlock,
-} from "../../../../components/Component";
+} from '../../../../components/Component'
 
 const QuillPreview = () => {
   return (
@@ -28,10 +31,14 @@ const QuillPreview = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Using the{" "}
-                <a href="https://www.npmjs.com/package/react-quilljs" rel="noreferrer" target="_blank">
+                Using the{' '}
+                <a
+                  href="https://www.npmjs.com/package/react-quilljs"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   React Quilljs
-                </a>{" "}
+                </a>{' '}
                 plugin, you can simply make some awesome rich text editor.
               </p>
             </BlockDes>
@@ -111,7 +118,7 @@ const QuillPreview = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default QuillPreview;
+export default QuillPreview

@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { Icon, UserAvatar } from "../../../components/Component";
-import SimpleBar from "simplebar-react";
-import { Input, Button } from "reactstrap";
-import { ChatItem, ContactItem } from "./ChatPartials";
-import { findUpper } from "../../../utils/Utils";
-import { chatData } from "./ChatData";
-import { ChatContext } from "./ChatContext";
+import React, { useContext } from 'react'
+import { Icon, UserAvatar } from '../../../components/Component'
+import SimpleBar from 'simplebar-react'
+import { Input, Button } from 'reactstrap'
+import { ChatItem, ContactItem } from './ChatPartials'
+import { findUpper } from '../../../utils/Utils'
+import { chatData } from './ChatData'
+import { ChatContext } from './ChatContext'
 
 export const ChatAsideBody = ({
   onInputChange,
@@ -20,9 +20,9 @@ export const ChatAsideBody = ({
   chatItemClick,
   filteredChatList,
 }) => {
-  const { fav, favAction } = useContext(ChatContext);
-  const [favData] = fav;
-  const defaultChat = filteredChatList.filter((item) => item.group !== true);
+  const { fav, favAction } = useContext(ChatContext)
+  const [favData] = fav
+  const defaultChat = filteredChatList.filter((item) => item.group !== true)
 
   return (
     <SimpleBar className="nk-chat-aside-body">
@@ -53,7 +53,7 @@ export const ChatAsideBody = ({
               className="btn-icon btn-white btn-round"
               onClick={() => setFavState(!favState)}
             >
-              <Icon name={favState ? "cross" : "plus"}></Icon>
+              <Icon name={favState ? 'cross' : 'plus'}></Icon>
             </Button>
           </li>
           {favData.map((user, idx) => {
@@ -61,13 +61,21 @@ export const ChatAsideBody = ({
               user.fav === true && (
                 <li key={idx} onClick={() => setSelectedId(user.id)}>
                   <a href="#dropdown" onClick={(ev) => ev.preventDefault()}>
-                    <UserAvatar image={user.image} theme={user.theme} text={findUpper(user.name)}>
-                      <span className={`status dot dot-lg dot-${user.active === true ? "success" : "gray"}`}></span>
+                    <UserAvatar
+                      image={user.image}
+                      theme={user.theme}
+                      text={findUpper(user.name)}
+                    >
+                      <span
+                        className={`status dot dot-lg dot-${
+                          user.active === true ? 'success' : 'gray'
+                        }`}
+                      ></span>
                     </UserAvatar>
                   </a>
                 </li>
               )
-            );
+            )
           })}
         </ul>
       </div>
@@ -100,7 +108,10 @@ export const ChatAsideBody = ({
                       contact.fav === false && (
                         <li key={idx} onClick={() => favAction(contact.id)}>
                           <div className="user-card">
-                            <a href="#card" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              href="#card"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               <UserAvatar
                                 text={findUpper(contact.name)}
                                 theme={contact.theme}
@@ -109,14 +120,17 @@ export const ChatAsideBody = ({
                               <div className="user-name">{contact.name}</div>
                             </a>
                             <div className="user-actions">
-                              <a href="#add-fav" onClick={(ev) => ev.preventDefault()}>
+                              <a
+                                href="#add-fav"
+                                onClick={(ev) => ev.preventDefault()}
+                              >
                                 Add to favourite
                               </a>
                             </div>
                           </div>
                         </li>
                       )
-                    );
+                    )
                   })
                 )
               ) : (
@@ -134,14 +148,17 @@ export const ChatAsideBody = ({
                             <div className="user-name">{contact.name}</div>
                           </a>
                           <div className="user-actions">
-                            <a href="#start-chat" onClick={(ev) => ev.preventDefault()}>
+                            <a
+                              href="#start-chat"
+                              onClick={(ev) => ev.preventDefault()}
+                            >
                               Start Chat
                             </a>
                           </div>
                         </div>
                       </li>
                     )
-                  );
+                  )
                 })
               )}
             </ul>
@@ -153,7 +170,7 @@ export const ChatAsideBody = ({
         <ul className="chat-list">
           {defaultChat.length !== 0 ? (
             filteredChatList.map((item, idx) => {
-              if (filterTab === "messages") {
+              if (filterTab === 'messages') {
                 return (
                   item.convo.length > 0 &&
                   !item.group &&
@@ -166,8 +183,8 @@ export const ChatAsideBody = ({
                       chatItemClick={chatItemClick}
                     ></ChatItem>
                   )
-                );
-              } else if (filterTab === "archive") {
+                )
+              } else if (filterTab === 'archive') {
                 return (
                   item.convo.length > 0 &&
                   item.archive &&
@@ -180,8 +197,8 @@ export const ChatAsideBody = ({
                       chatItemClick={chatItemClick}
                     ></ChatItem>
                   )
-                );
-              } else if (filterTab === "unread") {
+                )
+              } else if (filterTab === 'unread') {
                 return (
                   item.convo.length > 0 &&
                   item.unread &&
@@ -194,7 +211,7 @@ export const ChatAsideBody = ({
                       chatItemClick={chatItemClick}
                     ></ChatItem>
                   )
-                );
+                )
               } else {
                 return (
                   item.convo.length > 0 &&
@@ -208,7 +225,7 @@ export const ChatAsideBody = ({
                       chatItemClick={chatItemClick}
                     ></ChatItem>
                   )
-                );
+                )
               }
             })
           ) : (
@@ -217,8 +234,8 @@ export const ChatAsideBody = ({
         </ul>
       </div>
     </SimpleBar>
-  );
-};
+  )
+}
 
 export const ChannelAsideBody = ({
   filteredChatList,
@@ -229,7 +246,7 @@ export const ChannelAsideBody = ({
   filterTab,
   chatItemClick,
 }) => {
-  const defaultChat = filteredChatList.filter((item) => item.group === true);
+  const defaultChat = filteredChatList.filter((item) => item.group === true)
   return (
     <SimpleBar className="nk-chat-aside-body">
       <div className="nk-chat-aside-search">
@@ -257,20 +274,20 @@ export const ChannelAsideBody = ({
                 <li
                   key={idx}
                   onClick={() => {
-                    setSelectedId(item.id);
-                    if (window.innerWidth < 860) setMobileView(true);
+                    setSelectedId(item.id)
+                    if (window.innerWidth < 860) setMobileView(true)
                   }}
                 >
                   <a
                     href="#name"
                     onClick={(ev) => ev.preventDefault()}
-                    className={selectedId === item.id ? "active" : ""}
+                    className={selectedId === item.id ? 'active' : ''}
                   >
                     # {item.name}
                   </a>
                 </li>
               )
-            );
+            )
           })}
         </ul>
       </div>
@@ -279,7 +296,7 @@ export const ChannelAsideBody = ({
         <ul className="chat-list">
           {defaultChat.length !== 0 ? (
             filteredChatList.map((item, idx) => {
-              if (filterTab === "messages") {
+              if (filterTab === 'messages') {
                 return (
                   item.convo.length > 0 &&
                   item.group &&
@@ -293,8 +310,8 @@ export const ChannelAsideBody = ({
                       chatItemClick={chatItemClick}
                     ></ChatItem>
                   )
-                );
-              } else if (filterTab === "archive") {
+                )
+              } else if (filterTab === 'archive') {
                 return (
                   item.convo.length > 0 &&
                   !item.channel &&
@@ -308,8 +325,8 @@ export const ChannelAsideBody = ({
                       chatItemClick={chatItemClick}
                     ></ChatItem>
                   )
-                );
-              } else if (filterTab === "unread") {
+                )
+              } else if (filterTab === 'unread') {
                 return (
                   item.convo.length > 0 &&
                   !item.channel &&
@@ -323,7 +340,7 @@ export const ChannelAsideBody = ({
                       chatItemClick={chatItemClick}
                     ></ChatItem>
                   )
-                );
+                )
               } else {
                 return (
                   item.convo.length > 0 &&
@@ -337,7 +354,7 @@ export const ChannelAsideBody = ({
                       chatItemClick={chatItemClick}
                     ></ChatItem>
                   )
-                );
+                )
               }
             })
           ) : (
@@ -346,10 +363,16 @@ export const ChannelAsideBody = ({
         </ul>
       </div>
     </SimpleBar>
-  );
-};
+  )
+}
 
-export const ContactAsideBody = (onInputChange, filterData, filterText, contactData, setSelectedId) => {
+export const ContactAsideBody = (
+  onInputChange,
+  filterData,
+  filterText,
+  contactData,
+  setSelectedId
+) => {
   return (
     <SimpleBar className="nk-chat-aside-body">
       <div className="nk-chat-aside-search">
@@ -374,7 +397,7 @@ export const ContactAsideBody = (onInputChange, filterData, filterText, contactD
             <div className="ml-5">No user</div>
           ) : (
             contactData.map((item, idx) => {
-              return <ContactItem key={idx} item={item}></ContactItem>;
+              return <ContactItem key={idx} item={item}></ContactItem>
             })
           )
         ) : (
@@ -393,18 +416,21 @@ export const ContactAsideBody = (onInputChange, filterData, filterText, contactD
                         <div className="user-name">{contact.name}</div>
                       </a>
                       <div className="user-actions">
-                        <a href="#start-chat" onClick={(ev) => ev.preventDefault()}>
+                        <a
+                          href="#start-chat"
+                          onClick={(ev) => ev.preventDefault()}
+                        >
                           Start Chat
                         </a>
                       </div>
                     </div>
                   </li>
                 </React.Fragment>
-              );
+              )
             })}
           </ul>
         )}
       </div>
     </SimpleBar>
-  );
-};
+  )
+}

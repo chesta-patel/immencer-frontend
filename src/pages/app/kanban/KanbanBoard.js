@@ -1,39 +1,42 @@
-import React from "react";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { KanbanColumn } from "./KanbanPartials";
+import React from 'react'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+import { KanbanColumn } from './KanbanPartials'
 
 const KanbanBoard = ({ columns, setColumns }) => {
   const handleOnDragEnd = (result) => {
-    const { source, destination, draggableId, type } = result;
+    const { source, destination, draggableId, type } = result
     // dropped outside the list
     if (!destination) {
-      return;
+      return
     }
-    if (destination.droppableId === source.droppableId && destination.index === source.index) {
-      return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return
     }
 
-    if (type === "column") {
-      const newColumnOrder = Array.from(columns.columnOrder);
-      newColumnOrder.splice(source.index, 1);
-      newColumnOrder.splice(destination.index, 0, draggableId);
+    if (type === 'column') {
+      const newColumnOrder = Array.from(columns.columnOrder)
+      newColumnOrder.splice(source.index, 1)
+      newColumnOrder.splice(destination.index, 0, draggableId)
 
       const newState = {
         ...columns,
         columnOrder: newColumnOrder,
-      };
-      setColumns(newState);
-      return;
+      }
+      setColumns(newState)
+      return
     }
 
-    const home = columns.columns[source.droppableId];
-    const foreign = columns.columns[destination.droppableId];
+    const home = columns.columns[source.droppableId]
+    const foreign = columns.columns[destination.droppableId]
 
     // check for same column
     if (home === foreign) {
-      const items = Array.from(home.tasks);
-      items.splice(source.index, 1);
-      items.splice(destination.index, 0, draggableId);
+      const items = Array.from(home.tasks)
+      items.splice(source.index, 1)
+      items.splice(destination.index, 0, draggableId)
 
       const newState = {
         ...columns,
@@ -44,25 +47,25 @@ const KanbanBoard = ({ columns, setColumns }) => {
             tasks: items,
           },
         },
-      };
+      }
 
-      setColumns(newState);
-      return;
+      setColumns(newState)
+      return
     } else {
       // moving from one list to another
-      const items = Array.from(home.tasks);
-      items.splice(source.index, 1);
+      const items = Array.from(home.tasks)
+      items.splice(source.index, 1)
       const newHome = {
         ...home,
         tasks: items,
-      };
+      }
 
-      const foreigntasks = Array.from(foreign.tasks);
-      foreigntasks.splice(destination.index, 0, draggableId);
+      const foreigntasks = Array.from(foreign.tasks)
+      foreigntasks.splice(destination.index, 0, draggableId)
       const newForeign = {
         ...foreign,
         tasks: foreigntasks,
-      };
+      }
 
       const newState = {
         ...columns,
@@ -71,10 +74,10 @@ const KanbanBoard = ({ columns, setColumns }) => {
           [newHome.id]: newHome,
           [newForeign.id]: newForeign,
         },
-      };
-      setColumns(newState);
+      }
+      setColumns(newState)
     }
-  };
+  }
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -88,15 +91,23 @@ const KanbanBoard = ({ columns, setColumns }) => {
             ref={provided.innerRef}
           >
             {columns.columnOrder.map((columnId, index) => {
-              const column = columns.columns[columnId];
-              return <KanbanColumn data={columns} setData={setColumns} column={column} key={index} index={index} />;
+              const column = columns.columns[columnId]
+              return (
+                <KanbanColumn
+                  data={columns}
+                  setData={setColumns}
+                  column={column}
+                  key={index}
+                  index={index}
+                />
+              )
             })}
             {provided.placeholder}
           </div>
         )}
       </Droppable>
     </DragDropContext>
-  );
-};
+  )
+}
 
-export default KanbanBoard;
+export default KanbanBoard

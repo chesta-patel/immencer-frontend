@@ -1,50 +1,63 @@
-import React, { useState } from "react";
-import Icon from "../../../icon/Icon";
-import { UncontrolledDropdown, CardTitle, DropdownMenu, DropdownItem, DropdownToggle } from "reactstrap";
-import { DoubleBar } from "../../charts/default/Charts";
-import { Row, Col } from "../../../grid/Grid";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import Icon from '../../../icon/Icon'
+import {
+  UncontrolledDropdown,
+  CardTitle,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle,
+} from 'reactstrap'
+import { DoubleBar } from '../../charts/default/Charts'
+import { Row, Col } from '../../../grid/Grid'
+import { Link } from 'react-router-dom'
 
 const OrderOverview = () => {
-  const [orderOverview, setOverview] = useState("");
+  const [orderOverview, setOverview] = useState('')
   return (
     <React.Fragment>
       <div className="card-title-group align-start mb-3">
         <CardTitle className="card-title">
           <h6 className="title">Orders Overview</h6>
           <p>
-            In last {orderOverview === "set2" ? "30" : "15"} days buy and sells overview.{" "}
-            <Link to={`${process.env.PUBLIC_URL}/invoice-list`} className="link link-sm">
+            In last {orderOverview === 'set2' ? '30' : '15'} days buy and sells
+            overview.{' '}
+            <Link
+              to={`${process.env.PUBLIC_URL}/invoice-list`}
+              className="link link-sm"
+            >
               Detailed Stats
             </Link>
           </p>
         </CardTitle>
         <div className="card-tools mt-n1 mr-n1">
           <UncontrolledDropdown>
-            <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+            <DropdownToggle
+              tag="a"
+              className="dropdown-toggle btn btn-icon btn-trigger"
+            >
               <Icon name="more-h"></Icon>
             </DropdownToggle>
             <DropdownMenu right>
               <ul className="link-list-opt no-bdr">
-                <li className={orderOverview === "" ? "active" : ""}>
+                <li className={orderOverview === '' ? 'active' : ''}>
                   <DropdownItem
                     tag="a"
                     href="#dropdownitem"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setOverview("");
+                      e.preventDefault()
+                      setOverview('')
                     }}
                   >
                     <span>15 Days</span>
                   </DropdownItem>
                 </li>
-                <li className={orderOverview === "set2" ? "active" : ""}>
+                <li className={orderOverview === 'set2' ? 'active' : ''}>
                   <DropdownItem
                     tag="a"
                     href="#dropdownitem"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setOverview("set2");
+                      e.preventDefault()
+                      setOverview('set2')
                     }}
                   >
                     <span>30 Days</span>
@@ -67,12 +80,13 @@ const OrderOverview = () => {
               <Col xxl="12" sm="6">
                 <div className="nk-order-ovwg-data buy">
                   <div className="amount">
-                    {orderOverview === "set2" ? "12,495" : "8,051"} <small className="currenct currency-usd">USD</small>
+                    {orderOverview === 'set2' ? '12,495' : '8,051'}{' '}
+                    <small className="currenct currency-usd">USD</small>
                   </div>
                   <div className="info">
-                    Last {orderOverview === "set2" ? "30" : "15"} days{" "}
+                    Last {orderOverview === 'set2' ? '30' : '15'} days{' '}
                     <strong>
-                      {orderOverview === "set2" ? "39,000" : "14,050"}{" "}
+                      {orderOverview === 'set2' ? '39,000' : '14,050'}{' '}
                       <span className="currenct currency-usd">USD</span>
                     </strong>
                   </div>
@@ -84,13 +98,13 @@ const OrderOverview = () => {
               <Col xxl="12" sm="6">
                 <div className="nk-order-ovwg-data sell">
                   <div className="amount">
-                    {orderOverview === "set2" ? "18,920" : "10,820"}{" "}
+                    {orderOverview === 'set2' ? '18,920' : '10,820'}{' '}
                     <small className="currenct currency-usd">USD</small>
                   </div>
                   <div className="info">
-                    Last {orderOverview === "set2" ? "30" : "15"} days{" "}
+                    Last {orderOverview === 'set2' ? '30' : '15'} days{' '}
                     <strong>
-                      {orderOverview === "set2" ? "39,258" : "18,365"}{" "}
+                      {orderOverview === 'set2' ? '39,258' : '18,365'}{' '}
                       <span className="currenct currency-usd">USD</span>
                     </strong>
                   </div>
@@ -104,6 +118,6 @@ const OrderOverview = () => {
         </Row>
       </div>
     </React.Fragment>
-  );
-};
-export default OrderOverview;
+  )
+}
+export default OrderOverview

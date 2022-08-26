@@ -1,10 +1,17 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, CodeBlock } from "../../components/preview/Preview";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import { PreviewCard, CodeBlock } from '../../components/preview/Preview'
 
-import Accordion from "../../components/partials/accordian/Preview";
+import Accordion from '../../components/partials/accordian/Preview'
 
 const AccordionsPage = () => {
   return (
@@ -21,8 +28,9 @@ const AccordionsPage = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Toggle the visibility of content across your project with a few classes and Bootstrap collapse
-                JavaScript plugins. The collapse plugin is used to show &amp; hide content.
+                Toggle the visibility of content across your project with a few
+                classes and Bootstrap collapse JavaScript plugins. The collapse
+                plugin is used to show &amp; hide content.
               </p>
             </BlockDes>
           </BlockHeadContent>
@@ -33,8 +41,9 @@ const AccordionsPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Default Style</BlockTitle>
               <p>
-                Using default collapse behavior to create an accordion. To properly achieve the accordion style, be sure
-                to use <code>.accordion</code> as a wrapper className.
+                Using default collapse behavior to create an accordion. To
+                properly achieve the accordion style, be sure to use{' '}
+                <code>.accordion</code> as a wrapper className.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -186,7 +195,8 @@ const AccordionsPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Accordion Style2</BlockTitle>
               <p>
-                Add the className <code>.accordion-s2</code> with <code>.accordion</code> to get this accordion style.
+                Add the className <code>.accordion-s2</code> with{' '}
+                <code>.accordion</code> to get this accordion style.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -336,7 +346,8 @@ const AccordionsPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Accordion Style3</BlockTitle>
               <p>
-                Add the className <code>.accordion-s3</code> with <code>.accordion</code> to get this accordion style.
+                Add the className <code>.accordion-s3</code> with{' '}
+                <code>.accordion</code> to get this accordion style.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -482,7 +493,7 @@ const AccordionsPage = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default AccordionsPage;
+export default AccordionsPage

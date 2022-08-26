@@ -1,7 +1,7 @@
-import React from "react";
-import { CardTitle } from "reactstrap";
-import { Icon, TooltipComponent } from "../../../Component";
-import { BarChart } from "../../charts/default/Charts";
+import React from 'react'
+import { CardTitle } from 'reactstrap'
+import { Icon, TooltipComponent } from '../../../Component'
+import { BarChart } from '../../charts/default/Charts'
 
 const SaleRevenue = () => {
   return (
@@ -25,7 +25,7 @@ const SaleRevenue = () => {
         <div className="nk-sale-data-group flex-md-nowrap g-4">
           <div className="nk-sale-data">
             <span className="amount">
-              14,299.59{" "}
+              14,299.59{' '}
               <span className="change down text-danger">
                 <Icon name="arrow-long-down" />
                 16.93%
@@ -35,7 +35,7 @@ const SaleRevenue = () => {
           </div>
           <div className="nk-sale-data">
             <span className="amount">
-              7,299.59{" "}
+              7,299.59{' '}
               <span className="change up text-success">
                 <Icon name="arrow-long-up" />
                 4.26%
@@ -49,6 +49,6 @@ const SaleRevenue = () => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
-export default SaleRevenue;
+  )
+}
+export default SaleRevenue

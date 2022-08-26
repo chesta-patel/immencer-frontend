@@ -1,7 +1,7 @@
-import React from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import FormValidationComponent from "../../../components/partials/form/FormValidation";
+import React from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import FormValidationComponent from '../../../components/partials/form/FormValidation'
 import {
   Block,
   BlockDes,
@@ -10,7 +10,7 @@ import {
   BlockHeadContent,
   BlockTitle,
   BackTo,
-} from "../../../components/Component";
+} from '../../../components/Component'
 
 const FormValidation = () => {
   return (
@@ -27,11 +27,16 @@ const FormValidation = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                With validation using the react-hook-form package, you can simply add validation on clientside before
-                submit form. Look up the{" "}
-                <a target="_blank" rel="noreferrer" href="https://react-hook-form.com/">
+                With validation using the react-hook-form package, you can
+                simply add validation on clientside before submit form. Look up
+                the{' '}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://react-hook-form.com/"
+                >
                   documentation
-                </a>{" "}
+                </a>{' '}
                 for further details
               </p>
             </BlockDes>
@@ -67,6 +72,6 @@ const FormValidation = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
-export default FormValidation;
+  )
+}
+export default FormValidation

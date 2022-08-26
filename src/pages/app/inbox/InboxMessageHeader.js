@@ -1,6 +1,12 @@
-import React, { useState } from "react";
-import { Icon, TooltipComponent } from "../../../components/Component";
-import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem, UncontrolledTooltip } from "reactstrap";
+import React, { useState } from 'react'
+import { Icon, TooltipComponent } from '../../../components/Component'
+import {
+  UncontrolledDropdown,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+  UncontrolledTooltip,
+} from 'reactstrap'
 
 const InboxMessageHeader = ({
   msgId,
@@ -15,7 +21,7 @@ const InboxMessageHeader = ({
   setMailData,
 }) => {
   //const [searchText, setSearchText] = useState("");
-  const [searchToggle, setSearchToggle] = useState(false);
+  const [searchToggle, setSearchToggle] = useState(false)
 
   // const onSearchChange = (e) => {
   //   let value = e.target.value;
@@ -23,43 +29,47 @@ const InboxMessageHeader = ({
   // };
 
   const toggleSearch = () => {
-    setSearchToggle(!searchToggle);
-  };
+    setSearchToggle(!searchToggle)
+  }
 
   const nextMessage = () => {
     if (msgId === 12) {
-      setMailId(1);
+      setMailId(1)
     } else {
-      setMailId(msgId + 1);
+      setMailId(msgId + 1)
     }
-  };
+  }
 
   const prevMessage = () => {
     if (msgId !== 1) {
-      setMailId(msgId - 1);
+      setMailId(msgId - 1)
     } else {
-      setMailId(12);
+      setMailId(12)
     }
-  };
+  }
 
   const changeTagsOnCheck = (checked, label) => {
-    let defaultData = mailData;
-    let defaultTags = mailData.message.meta.tags;
+    let defaultData = mailData
+    let defaultTags = mailData.message.meta.tags
     if (checked) {
-      defaultTags.push(label);
+      defaultTags.push(label)
     } else {
-      defaultTags = defaultTags.filter((item) => item.text !== label.text);
-      mailData.message.meta.tags = defaultTags;
+      defaultTags = defaultTags.filter((item) => item.text !== label.text)
+      mailData.message.meta.tags = defaultTags
     }
-    setMailData({ ...defaultData });
-  };
+    setMailData({ ...defaultData })
+  }
 
   return (
     <div className="nk-ibx-head">
       <div className="nk-ibx-head-actions">
         <ul className="nk-ibx-head-tools g-1">
           <li className="ml-n2" onClick={() => toggleMessageView()}>
-            <a href="#item" onClick={(ev) => ev.preventDefault()} className="btn btn-icon btn-trigger nk-ibx-hide">
+            <a
+              href="#item"
+              onClick={(ev) => ev.preventDefault()}
+              className="btn btn-icon btn-trigger nk-ibx-hide"
+            >
               <Icon name="arrow-left"></Icon>
             </a>
           </li>
@@ -103,14 +113,20 @@ const InboxMessageHeader = ({
                 id="dropdownToggleLabel"
               >
                 <Icon name="label"></Icon>
-                <UncontrolledTooltip autohide={false} placement="top" target="dropdownToggleLabel">
+                <UncontrolledTooltip
+                  autohide={false}
+                  placement="top"
+                  target="dropdownToggleLabel"
+                >
                   Label
                 </UncontrolledTooltip>
               </DropdownToggle>
               <DropdownMenu>
                 <ul className="link-tidy no-bdr sm">
                   {outerLabels.map((labelItem, index) => {
-                    let findLabel = localLabel.find((item) => item.text === labelItem.text);
+                    let findLabel = localLabel.find(
+                      (item) => item.text === labelItem.text
+                    )
                     return (
                       <li key={index}>
                         <div className="custom-control custom-control-sm custom-checkbox">
@@ -119,15 +135,22 @@ const InboxMessageHeader = ({
                             className="custom-control-input"
                             checked={findLabel ? true : false}
                             id={`check-${labelItem.text}`}
-                            onChange={(e) => changeTagsOnCheck(e.target.checked, labelItem)}
+                            onChange={(e) =>
+                              changeTagsOnCheck(e.target.checked, labelItem)
+                            }
                           />
-                          <label className="custom-control-label" htmlFor={`check-${labelItem.text}`}>
-                            <div className={`dot dot-md dot-${labelItem.color} mr-1`}></div>
+                          <label
+                            className="custom-control-label"
+                            htmlFor={`check-${labelItem.text}`}
+                          >
+                            <div
+                              className={`dot dot-md dot-${labelItem.color} mr-1`}
+                            ></div>
                             {labelItem.text}
                           </label>
                         </div>
                       </li>
-                    );
+                    )
                   })}
                 </ul>
               </DropdownMenu>
@@ -146,19 +169,31 @@ const InboxMessageHeader = ({
               <DropdownMenu>
                 <ul className="link-list-opt no-bdr">
                   <li>
-                    <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                    <DropdownItem
+                      tag="a"
+                      href="#item"
+                      onClick={(ev) => ev.preventDefault()}
+                    >
                       <Icon name="eye"></Icon>
                       <span>Move to</span>
                     </DropdownItem>
                   </li>
                   <li>
-                    <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                    <DropdownItem
+                      tag="a"
+                      href="#item"
+                      onClick={(ev) => ev.preventDefault()}
+                    >
                       <Icon name="trash"></Icon>
                       <span>Delete</span>
                     </DropdownItem>
                   </li>
                   <li>
-                    <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                    <DropdownItem
+                      tag="a"
+                      href="#item"
+                      onClick={(ev) => ev.preventDefault()}
+                    >
                       <Icon name="archived"></Icon>
                       <span>Archive</span>
                     </DropdownItem>
@@ -195,8 +230,8 @@ const InboxMessageHeader = ({
             <a
               href="#item"
               onClick={(ev) => {
-                ev.preventDefault();
-                toggleSearch();
+                ev.preventDefault()
+                toggleSearch()
               }}
               className="btn btn-trigger btn-icon search-toggle toggle-search"
             >
@@ -205,13 +240,13 @@ const InboxMessageHeader = ({
           </li>
         </ul>
       </div>
-      <div className={`search-wrap ${searchToggle ? "active" : ""}`}>
+      <div className={`search-wrap ${searchToggle ? 'active' : ''}`}>
         <div className="search-content">
           <a
             href="#item"
             onClick={(ev) => {
-              ev.preventDefault();
-              toggleSearch();
+              ev.preventDefault()
+              toggleSearch()
             }}
             className="search-back btn btn-icon toggle-search"
           >
@@ -229,7 +264,7 @@ const InboxMessageHeader = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default InboxMessageHeader;
+export default InboxMessageHeader

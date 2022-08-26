@@ -1,17 +1,23 @@
-import React, { useContext, useState } from "react";
-import Share from "../../../../../pages/app/file-manager/modals/Share";
-import { Icon } from "../../../../../components/Component";
-import { Link } from "react-router-dom";
-import { DropdownItem, DropdownMenu, Modal, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { FileManagerContext } from "../../FileManagerContext";
+import React, { useContext, useState } from 'react'
+import Share from '../../../../../pages/app/file-manager/modals/Share'
+import { Icon } from '../../../../../components/Component'
+import { Link } from 'react-router-dom'
+import {
+  DropdownItem,
+  DropdownMenu,
+  Modal,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import { FileManagerContext } from '../../FileManagerContext'
 
 const Incoming = ({ data, setData }) => {
-  const { removeShare } = useContext(FileManagerContext);
-  const [shareModal, setShareModal] = useState(false);
+  const { removeShare } = useContext(FileManagerContext)
+  const [shareModal, setShareModal] = useState(false)
 
   const toggleShareModal = () => {
-    setShareModal(!shareModal);
-  };
+    setShareModal(!shareModal)
+  }
 
   return (
     <div className="nk-files nk-files-view-list">
@@ -41,7 +47,11 @@ const Incoming = ({ data, setData }) => {
                   <DropdownMenu right>
                     <ul className="link-list-opt no-bdr">
                       <li>
-                        <DropdownItem tag="a" onClick={(ev) => ev.preventDefault()} href="#item">
+                        <DropdownItem
+                          tag="a"
+                          onClick={(ev) => ev.preventDefault()}
+                          href="#item"
+                        >
                           <Icon name="share"></Icon>
                           <span>Share</span>
                         </DropdownItem>
@@ -83,15 +93,24 @@ const Incoming = ({ data, setData }) => {
                     <div className="nk-file-info">
                       <div className="nk-file-title">
                         <div className="custom-control custom-control-sm custom-checkbox notext">
-                          <input type="checkbox" className="custom-control-input" id={`folder-${item.id}`} />
-                          <label className="custom-control-label" htmlFor={`folder-${item.id}`}></label>
+                          <input
+                            type="checkbox"
+                            className="custom-control-input"
+                            id={`folder-${item.id}`}
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor={`folder-${item.id}`}
+                          ></label>
                         </div>
                         <div className="nk-file-icon">
-                          <span className="nk-file-icon-type">{item.meta.svg}</span>
+                          <span className="nk-file-icon-type">
+                            {item.meta.svg}
+                          </span>
                         </div>
                         <div className="nk-file-name">
                           <div className="nk-file-name-text">
-                            {item.meta.type === "folder" ? (
+                            {item.meta.type === 'folder' ? (
                               <Link
                                 to={`${process.env.PUBLIC_URL}/app-file-manager/folder/${item.id}`}
                                 className="title"
@@ -99,7 +118,11 @@ const Incoming = ({ data, setData }) => {
                                 {item.meta.name}
                               </Link>
                             ) : (
-                              <a href="#link" onClick={(ev) => ev.preventDefault()} className="title">
+                              <a
+                                href="#link"
+                                onClick={(ev) => ev.preventDefault()}
+                                className="title"
+                              >
                                 {item.meta.name}
                               </a>
                             )}
@@ -112,7 +135,9 @@ const Incoming = ({ data, setData }) => {
                         {item.meta.date}, {item.meta.time}
                       </div>
                     </div>
-                    <div className="nk-file-members">{item.meta.members[0].user}</div>
+                    <div className="nk-file-members">
+                      {item.meta.members[0].user}
+                    </div>
                     <div className="nk-file-actions">
                       <UncontrolledDropdown>
                         <DropdownToggle
@@ -129,8 +154,8 @@ const Incoming = ({ data, setData }) => {
                               <DropdownItem
                                 tag="a"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
-                                  toggleShareModal();
+                                  ev.preventDefault()
+                                  toggleShareModal()
                                 }}
                                 href="#item"
                               >
@@ -153,8 +178,8 @@ const Incoming = ({ data, setData }) => {
                               <DropdownItem
                                 tag="a"
                                 onClick={(ev) => {
-                                  ev.preventDefault();
-                                  removeShare(item.id, "incoming");
+                                  ev.preventDefault()
+                                  removeShare(item.id, 'incoming')
                                 }}
                                 href="#item"
                                 className="link-danger"
@@ -168,7 +193,11 @@ const Incoming = ({ data, setData }) => {
                       </UncontrolledDropdown>
                     </div>
                   </div>
-                  <Modal isOpen={shareModal} size="md" toggle={toggleShareModal}>
+                  <Modal
+                    isOpen={shareModal}
+                    size="md"
+                    toggle={toggleShareModal}
+                  >
                     <Share file={item} toggle={toggleShareModal} />
                   </Modal>
                 </React.Fragment>
@@ -179,7 +208,7 @@ const Incoming = ({ data, setData }) => {
         <div>No files or folders available</div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Incoming;
+export default Incoming

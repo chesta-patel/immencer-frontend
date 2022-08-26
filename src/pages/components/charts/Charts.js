@@ -1,6 +1,6 @@
-import React from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
+import React from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
 import {
   Block,
   BackTo,
@@ -16,7 +16,7 @@ import {
   PieChartExample,
   DoughnutExample,
   PolarExample,
-} from "../../../components/Component";
+} from '../../../components/Component'
 import {
   barChartData,
   barChartMultiple,
@@ -26,7 +26,7 @@ import {
   straightLineChart,
   doughnutChartData,
   polarChartData,
-} from "./ChartData";
+} from './ChartData'
 
 const ChartPage = () => {
   return (
@@ -43,12 +43,14 @@ const ChartPage = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                <a href="https://www.chartjs.org/">ChartJs</a> is a very simple and flexible JavaScript charting for
-                designers & developers. You can visualize your data in different ways. We present some of examples for
-                you.
+                <a href="https://www.chartjs.org/">ChartJs</a> is a very simple
+                and flexible JavaScript charting for designers & developers. You
+                can visualize your data in different ways. We present some of
+                examples for you.
               </p>
               <p>
-                Also can fine more details from <a href="https://www.chartjs.org/">here</a>.
+                Also can fine more details from{' '}
+                <a href="https://www.chartjs.org/">here</a>.
               </p>
             </BlockDes>
           </BlockHeadContent>
@@ -60,8 +62,9 @@ const ChartPage = () => {
               <BlockTitle tag="h4">Solid Line Chart</BlockTitle>
               <BlockDes>
                 <p>
-                  A line chart is a way of plotting data points on a line. Often, it is used to show trend data, or the
-                  comparison of two data sets.
+                  A line chart is a way of plotting data points on a line.
+                  Often, it is used to show trend data, or the comparison of two
+                  data sets.
                 </p>
               </BlockDes>
             </BlockHeadContent>
@@ -78,7 +81,10 @@ const ChartPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Filled Line Chart</BlockTitle>
               <BlockDes>
-                <p>Alternatively, you can use line chart with some background to display more visually.</p>
+                <p>
+                  Alternatively, you can use line chart with some background to
+                  display more visually.
+                </p>
               </BlockDes>
             </BlockHeadContent>
           </BlockHead>
@@ -111,7 +117,10 @@ const ChartPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Bar Chart - Single</BlockTitle>
               <BlockDes>
-                <p>A bar chart provides a way of showing data values represented as vertical bars.</p>
+                <p>
+                  A bar chart provides a way of showing data values represented
+                  as vertical bars.
+                </p>
               </BlockDes>
             </BlockHeadContent>
           </BlockHead>
@@ -127,7 +136,10 @@ const ChartPage = () => {
             <BlockHeadContent>
               <BlockTitle tag="h4">Bar Chart - Multiple </BlockTitle>
               <BlockDes>
-                <p>A bar chart provides a way of comparison of multiple data sets side by side or with stacked view.</p>
+                <p>
+                  A bar chart provides a way of comparison of multiple data sets
+                  side by side or with stacked view.
+                </p>
               </BlockDes>
             </BlockHeadContent>
           </BlockHead>
@@ -161,8 +173,8 @@ const ChartPage = () => {
               <BlockTitle tag="h4">Pie & Doughnut Charts</BlockTitle>
               <BlockDes>
                 <p>
-                  Pie and doughnut charts are probably the most commonly used charts. It use to show relational
-                  proportions between data.
+                  Pie and doughnut charts are probably the most commonly used
+                  charts. It use to show relational proportions between data.
                 </p>
               </BlockDes>
             </BlockHeadContent>
@@ -202,6 +214,6 @@ const ChartPage = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
-export default ChartPage;
+  )
+}
+export default ChartPage

@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from "react";
-import Tags from "@yaireo/tagify/dist/react.tagify";
-import { formTemplates } from "./InboxData";
-import { Icon, Button, TooltipComponent } from "../../../components/Component";
-import { Modal, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { getDateStructured, currentTime } from "../../../utils/Utils";
+import React, { useEffect, useState } from 'react'
+import Tags from '@yaireo/tagify/dist/react.tagify'
+import { formTemplates } from './InboxData'
+import { Icon, Button, TooltipComponent } from '../../../components/Component'
+import {
+  Modal,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import { getDateStructured, currentTime } from '../../../utils/Utils'
 
 const tagifySettings = {
-  blacklist: ["xxx", "yyy", "zzz"],
+  blacklist: ['xxx', 'yyy', 'zzz'],
   maxTags: 6,
-  backspace: "edit",
+  backspace: 'edit',
   addTagOnBlur: false,
-  placeholder: "",
+  placeholder: '',
   dropdown: {
     enabled: 0, // shows suggestions dropdown
   },
-};
+}
 
 const InboxForm = ({
   mailData,
@@ -27,35 +33,35 @@ const InboxForm = ({
   composeMail,
   draftData,
 }) => {
-  const [inboxText, setInboxText] = useState();
-  const [inboxSubject, setInboxSubject] = useState();
-  const [templateList, setTemplateList] = useState(formTemplates);
-  const [attachmentList, setAttachmentList] = useState([]);
-  const [tagifyOptions, setTagifyOptions] = useState([composeMail]);
+  const [inboxText, setInboxText] = useState()
+  const [inboxSubject, setInboxSubject] = useState()
+  const [templateList, setTemplateList] = useState(formTemplates)
+  const [attachmentList, setAttachmentList] = useState([])
+  const [tagifyOptions, setTagifyOptions] = useState([composeMail])
   const [ccTagify, setCCTagify] = useState({
     toggle: false,
-    value: [""],
-  });
+    value: [''],
+  })
   const [bccTagify, setBCCTagify] = useState({
     toggle: false,
-    value: [""],
-  });
+    value: [''],
+  })
 
   useEffect(() => {
-    setInboxSubject(draftData.subject);
-    setInboxText(draftData.message);
-  }, [draftData]);
+    setInboxSubject(draftData.subject)
+    setInboxText(draftData.message)
+  }, [draftData])
 
   useEffect(() => {
     if (draftData.mail) {
-      setTagifyOptions([draftData.mail]);
+      setTagifyOptions([draftData.mail])
     } else {
-      setTagifyOptions([composeMail]);
+      setTagifyOptions([composeMail])
     }
-  }, [composeMail]);
+  }, [composeMail])
 
   const addMailFunc = (type) => {
-    let defaultData = mailData;
+    let defaultData = mailData
     let dataModal = {
       id: mailData.length + 1,
       userId: 1,
@@ -70,7 +76,9 @@ const InboxForm = ({
             replyId: `rep_${Math.random()}`,
             userId: 1,
             to: {
-              mail: tagifyOptions[0].value ? tagifyOptions[0].value : tagifyOptions[0],
+              mail: tagifyOptions[0].value
+                ? tagifyOptions[0].value
+                : tagifyOptions[0],
               bcc: bccTagify.value[0].value,
               cc: ccTagify.value[0].value,
             },
@@ -81,30 +89,30 @@ const InboxForm = ({
           },
         ],
       },
-    };
-    setInboxText("");
-    setInboxSubject("");
-    setAttachmentList([]);
-    if (editOnOpen) {
-      let item = defaultData.findIndex((item) => item.id === currentItem.id);
-      defaultData[item].message.meta.trash = true;
-      defaultData[item].message.meta.archive = false;
     }
-    setMailData([...defaultData, dataModal]);
-    toggleModal(false);
-  };
+    setInboxText('')
+    setInboxSubject('')
+    setAttachmentList([])
+    if (editOnOpen) {
+      let item = defaultData.findIndex((item) => item.id === currentItem.id)
+      defaultData[item].message.meta.trash = true
+      defaultData[item].message.meta.archive = false
+    }
+    setMailData([...defaultData, dataModal])
+    toggleModal(false)
+  }
 
   const sendInbox = () => {
-    if (tagifyOptions[0] !== "") {
-      addMailFunc("sent");
+    if (tagifyOptions[0] !== '') {
+      addMailFunc('sent')
     }
-  };
+  }
 
   const addToDraft = () => {
-    if (inboxSubject !== "" || inboxText !== "") {
+    if (inboxSubject !== '' || inboxText !== '') {
       if (editOnOpen) {
-        let defaultData = mailData;
-        let findIndex = defaultData.findIndex((el) => el.id === currentItem.id);
+        let defaultData = mailData
+        let findIndex = defaultData.findIndex((el) => el.id === currentItem.id)
         let dataModal = {
           id: currentItem.id,
           userId: 1,
@@ -119,7 +127,9 @@ const InboxForm = ({
                 replyId: `rep_${Math.random()}`,
                 userId: 1,
                 to: {
-                  mail: tagifyOptions[0].value ? tagifyOptions[0].value : tagifyOptions[0],
+                  mail: tagifyOptions[0].value
+                    ? tagifyOptions[0].value
+                    : tagifyOptions[0],
                   bcc: bccTagify.value[0].value,
                   cc: ccTagify.value[0].value,
                 },
@@ -129,111 +139,121 @@ const InboxForm = ({
               },
             ],
           },
-        };
-        defaultData[findIndex] = dataModal;
-        setMailData([...defaultData]);
+        }
+        defaultData[findIndex] = dataModal
+        setMailData([...defaultData])
       } else {
-        addMailFunc("draft");
+        addMailFunc('draft')
       }
     }
-  };
+  }
 
   const onTagifyChange = (e) => {
-    if (e.detail.value !== "") {
-      let arrayVal = JSON.parse(e.detail.value);
-      setTagifyOptions(arrayVal);
+    if (e.detail.value !== '') {
+      let arrayVal = JSON.parse(e.detail.value)
+      setTagifyOptions(arrayVal)
     } else {
-      setTagifyOptions([""]);
+      setTagifyOptions([''])
     }
-  };
+  }
 
   const onCcChange = (e) => {
-    if (e.detail.value !== "") {
-      let arrayVal = JSON.parse(e.detail.value);
-      setCCTagify({ toggle: true, value: arrayVal });
+    if (e.detail.value !== '') {
+      let arrayVal = JSON.parse(e.detail.value)
+      setCCTagify({ toggle: true, value: arrayVal })
     } else {
-      setCCTagify({ toggle: true, value: [""] });
+      setCCTagify({ toggle: true, value: [''] })
     }
-  };
+  }
 
   const onBccChange = (e) => {
-    if (e.detail.value !== "") {
-      let arrayVal = JSON.parse(e.detail.value);
-      setBCCTagify({ toggle: true, value: arrayVal });
+    if (e.detail.value !== '') {
+      let arrayVal = JSON.parse(e.detail.value)
+      setBCCTagify({ toggle: true, value: arrayVal })
     } else {
-      setBCCTagify({ toggle: true, value: [""] });
+      setBCCTagify({ toggle: true, value: [''] })
     }
-  };
+  }
 
   const saveTemplate = () => {
-    if (inboxText !== "") {
-      let defaultList = templateList;
+    if (inboxText !== '') {
+      let defaultList = templateList
       let newObject = {
         id: defaultList.length + 1,
         text: inboxText,
-      };
-      setTemplateList([...defaultList, newObject]);
-      setInboxText("");
+      }
+      setTemplateList([...defaultList, newObject])
+      setInboxText('')
     }
-  };
+  }
 
   const onAttachmentClick = () => {
-    const inputEl = document.getElementById("attachmentInput");
-    inputEl.click();
-    inputEl.onchange = onAttachmentChange;
-  };
+    const inputEl = document.getElementById('attachmentInput')
+    inputEl.click()
+    inputEl.onchange = onAttachmentChange
+  }
 
   const onAttachmentChange = (ev) => {
     if (ev.target.files.length > 0) {
-      setAttachmentList([...attachmentList, { fileName: ev.target.files[0].name }]);
+      setAttachmentList([
+        ...attachmentList,
+        { fileName: ev.target.files[0].name },
+      ])
     }
-  };
+  }
 
   const onImageClick = () => {
-    const inputEl = document.getElementById("imageInput");
-    inputEl.click();
-    inputEl.onchange = onImageChange;
-  };
+    const inputEl = document.getElementById('imageInput')
+    inputEl.click()
+    inputEl.onchange = onImageChange
+  }
 
   const onImageChange = (ev) => {
     if (
       ev.target.files.length > 0 &&
-      (ev.target.files[0].type === "image/jpeg" ||
-        ev.target.files[0].type === "image/png" ||
-        ev.target.files[0].type === "image/jpg")
+      (ev.target.files[0].type === 'image/jpeg' ||
+        ev.target.files[0].type === 'image/png' ||
+        ev.target.files[0].type === 'image/jpg')
     ) {
-      setAttachmentList([...attachmentList, { fileName: ev.target.files[0].name }]);
+      setAttachmentList([
+        ...attachmentList,
+        { fileName: ev.target.files[0].name },
+      ])
     }
-  };
+  }
 
   const removeAttachment = (text) => {
-    let defaultData = attachmentList;
-    defaultData = defaultData.filter((item) => item.fileName !== text);
-    setAttachmentList([...defaultData]);
-  };
+    let defaultData = attachmentList
+    defaultData = defaultData.filter((item) => item.fileName !== text)
+    setAttachmentList([...defaultData])
+  }
 
   const onDeleteClick = () => {
     if (editOnOpen) {
-      deleteInbox(currentItem.id);
+      deleteInbox(currentItem.id)
     }
-    toggleModal();
-  };
+    toggleModal()
+  }
 
   const settings = {
     ...tagifySettings,
     addTagOnBlur: true,
-  };
+  }
 
   return (
-    <Modal isOpen={composeState} className="modal-lg" toggle={() => toggleModal()}>
+    <Modal
+      isOpen={composeState}
+      className="modal-lg"
+      toggle={() => toggleModal()}
+    >
       <div className="modal-header">
         <h6 className="modal-title">Compose Message</h6>
         <a
           href="#cancel"
           onClick={(ev) => {
-            ev.preventDefault();
-            addToDraft();
-            toggleModal();
+            ev.preventDefault()
+            addToDraft()
+            toggleModal()
           }}
           className="close"
         >
@@ -256,7 +276,11 @@ const InboxForm = ({
                   showDropdown={false}
                 />
               </div>
-              <div className={`nk-reply-form-input nk-reply-form-input-cc ${ccTagify.toggle ? "expanded" : ""}`}>
+              <div
+                className={`nk-reply-form-input nk-reply-form-input-cc ${
+                  ccTagify.toggle ? 'expanded' : ''
+                }`}
+              >
                 <label className="label">Cc</label>
                 <Tags
                   className="input-mail"
@@ -270,14 +294,18 @@ const InboxForm = ({
                   className="toggle-opt active"
                   href="#item"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setCCTagify({ ...ccTagify, toggle: !ccTagify.toggle });
+                    ev.preventDefault()
+                    setCCTagify({ ...ccTagify, toggle: !ccTagify.toggle })
                   }}
                 >
                   <Icon name="cross"></Icon>
                 </a>
               </div>
-              <div className={`nk-reply-form-input nk-reply-form-input-bcc ${bccTagify.toggle ? "expanded" : ""}`}>
+              <div
+                className={`nk-reply-form-input nk-reply-form-input-bcc ${
+                  bccTagify.toggle ? 'expanded' : ''
+                }`}
+              >
                 <label className="label">Bcc</label>
                 <Tags
                   className="input-mail"
@@ -291,8 +319,8 @@ const InboxForm = ({
                   className="toggle-opt active"
                   href="#item"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setBCCTagify({ ...bccTagify, toggle: !bccTagify.toggle });
+                    ev.preventDefault()
+                    setBCCTagify({ ...bccTagify, toggle: !bccTagify.toggle })
                   }}
                 >
                   <Icon name="cross"></Icon>
@@ -305,8 +333,8 @@ const InboxForm = ({
                   className="toggle-opt"
                   href="#item"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setCCTagify({ ...ccTagify, toggle: !ccTagify.toggle });
+                    ev.preventDefault()
+                    setCCTagify({ ...ccTagify, toggle: !ccTagify.toggle })
                   }}
                 >
                   CC
@@ -317,8 +345,8 @@ const InboxForm = ({
                   className="toggle-opt"
                   href="#item"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setBCCTagify({ ...bccTagify, toggle: !bccTagify.toggle });
+                    ev.preventDefault()
+                    setBCCTagify({ ...bccTagify, toggle: !bccTagify.toggle })
                   }}
                 >
                   BCC
@@ -348,14 +376,17 @@ const InboxForm = ({
         </div>
         <div className="nk-reply-form-attachment">
           {attachmentList.map((item, key) => (
-            <div key={key} className="nk-reply-form-attachment-list p-1 align-center justify-between m-2 d-flex">
+            <div
+              key={key}
+              className="nk-reply-form-attachment-list p-1 align-center justify-between m-2 d-flex"
+            >
               <span>{item.fileName}</span>
               <a
                 className="toggle-opt"
                 href="remove"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  removeAttachment(item.fileName);
+                  ev.preventDefault()
+                  removeAttachment(item.fileName)
                 }}
               >
                 <Icon name="cross"></Icon>
@@ -391,8 +422,8 @@ const InboxForm = ({
                           href="#item"
                           tag="a"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            setInboxText(inboxText + item.text);
+                            ev.preventDefault()
+                            setInboxText(inboxText + item.text)
                           }}
                         >
                           <span>{item.text}</span>
@@ -401,7 +432,11 @@ const InboxForm = ({
                     ))}
                     <li className="divider"></li>
                     <li onClick={() => saveTemplate()}>
-                      <DropdownItem tag="a" href="#item" onClick={(ev) => ev.preventDefault()}>
+                      <DropdownItem
+                        tag="a"
+                        href="#item"
+                        onClick={(ev) => ev.preventDefault()}
+                      >
                         <Icon name="file-plus"></Icon>
                         <span>Save as Template</span>
                       </DropdownItem>
@@ -419,7 +454,11 @@ const InboxForm = ({
                 direction="top"
                 text="Upload Attachment"
               />
-              <input type="file" id="attachmentInput" style={{ display: "none" }}></input>
+              <input
+                type="file"
+                id="attachmentInput"
+                style={{ display: 'none' }}
+              ></input>
             </li>
             <li onClick={() => onImageClick()}>
               <TooltipComponent
@@ -431,7 +470,12 @@ const InboxForm = ({
                 text="Upload Images"
               />
             </li>
-            <input type="file" id="imageInput" accept=".png, .jpg, .jpeg" style={{ display: "none" }}></input>
+            <input
+              type="file"
+              id="imageInput"
+              accept=".png, .jpg, .jpeg"
+              style={{ display: 'none' }}
+            ></input>
           </ul>
           <ul className="nk-reply-form-actions g-1">
             <li onClick={() => onDeleteClick()}>
@@ -448,7 +492,7 @@ const InboxForm = ({
         </div>
       </div>
     </Modal>
-  );
-};
+  )
+}
 
-export default InboxForm;
+export default InboxForm

@@ -1,8 +1,15 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewTable, CodeBlock } from "../../components/preview/Preview";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import { PreviewTable, CodeBlock } from '../../components/preview/Preview'
 
 const OthersPage = ({ ...props }) => {
   return (
@@ -18,7 +25,10 @@ const OthersPage = ({ ...props }) => {
               Other Utility Classes
             </BlockTitle>
             <BlockDes>
-              <p className="lead">Here is some other utility classes that use to quickly style an element.</p>
+              <p className="lead">
+                Here is some other utility classes that use to quickly style an
+                element.
+              </p>
             </BlockDes>
           </BlockHeadContent>
         </BlockHead>
@@ -28,7 +38,8 @@ const OthersPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Gaps ClassNames</BlockTitle>
               <p>
-                The <code>.gap</code> utility classNames allow to set specific gap between to section or block.
+                The <code>.gap</code> utility classNames allow to set specific
+                gap between to section or block.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -46,7 +57,8 @@ const OthersPage = ({ ...props }) => {
                   <code>.gap</code>
                 </td>
                 <td>
-                  <code>28px</code> as <code className="code-tag">gutter</code> size
+                  <code>28px</code> as <code className="code-tag">gutter</code>{' '}
+                  size
                 </td>
                 <td></td>
               </tr>
@@ -88,10 +100,11 @@ const OthersPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.gap-{"{num}"}px</code>
+                  <code>.gap-{'{num}'}px</code>
                 </td>
                 <td>
-                  <code>[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]</code> use as <code>{"{num}"}</code> value
+                  <code>[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]</code> use as{' '}
+                  <code>{'{num}'}</code> value
                 </td>
                 <td>
                   <span className="fs-11px text-soft">Fixed in pixel</span>
@@ -99,14 +112,15 @@ const OthersPage = ({ ...props }) => {
               </tr>
               <tr>
                 <td>
-                  <code>.gap-{"{size}"}</code>
+                  <code>.gap-{'{size}'}</code>
                 </td>
                 <td>
-                  <code>[0, 1, 2, 3, 4, 5] </code> as <code>{"{size}"}</code> value
+                  <code>[0, 1, 2, 3, 4, 5] </code> as <code>{'{size}'}</code>{' '}
+                  value
                 </td>
                 <td>
                   <span className="fs-11px text-soft">
-                    <code>{"{size}"}</code> is related to Size reference.
+                    <code>{'{size}'}</code> is related to Size reference.
                   </span>
                 </td>
               </tr>
@@ -116,7 +130,7 @@ const OthersPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default OthersPage;
+export default OthersPage

@@ -1,1041 +1,1041 @@
 export const iconData = [
-  { "icon-name": "centos" },
-  { "icon-name": "covid" },
-  { "icon-name": "fedora" },
-  { "icon-name": "hot-fill" },
-  { "icon-name": "hot" },
-  { "icon-name": "linux-server" },
-  { "icon-name": "linux" },
-  { "icon-name": "note-add-fill" },
-  { "icon-name": "repeat-fill" },
-  { "icon-name": "tranx-fill" },
-  { "icon-name": "ubuntu" },
-  { "icon-name": "virus" },
-  { "icon-name": "b-chrome" },
-  { "icon-name": "b-edge" },
-  { "icon-name": "b-firefox" },
-  { "icon-name": "b-ie" },
-  { "icon-name": "b-opera" },
-  { "icon-name": "b-safari" },
-  { "icon-name": "b-si" },
-  { "icon-name": "b-uc" },
-  { "icon-name": "brick-fill" },
-  { "icon-name": "brick" },
-  { "icon-name": "col-3s" },
-  { "icon-name": "col-4s" },
-  { "icon-name": "col-2s" },
-  { "icon-name": "comments" },
-  { "icon-name": "dot-sq" },
-  { "icon-name": "dot" },
-  { "icon-name": "footer" },
-  { "icon-name": "header" },
-  { "icon-name": "heading" },
-  { "icon-name": "layout-alt-fill" },
-  { "icon-name": "layout-alt" },
-  { "icon-name": "layout-fill1" },
-  { "icon-name": "layout1" },
-  { "icon-name": "list-index-fill" },
-  { "icon-name": "list-index" },
-  { "icon-name": "list-thumb-alt-fill" },
-  { "icon-name": "list-thumb-alt" },
-  { "icon-name": "list-thumb-fill" },
-  { "icon-name": "list-thumb" },
-  { "icon-name": "masonry-fill" },
-  { "icon-name": "masonry" },
-  { "icon-name": "menu-circled" },
-  { "icon-name": "menu-squared" },
-  { "icon-name": "notice" },
-  { "icon-name": "pen2" },
-  { "icon-name": "propert-blank" },
-  { "icon-name": "property-add" },
-  { "icon-name": "property-alt" },
-  { "icon-name": "property-remove" },
-  { "icon-name": "property" },
-  { "icon-name": "puzzle-fill" },
-  { "icon-name": "puzzle" },
-  { "icon-name": "quote-left" },
-  { "icon-name": "quote-right" },
-  { "icon-name": "row-mix" },
-  { "icon-name": "row-view1" },
-  { "icon-name": "sidebar-r" },
-  { "icon-name": "text2" },
-  { "icon-name": "tile-thumb-fill" },
-  { "icon-name": "tile-thumb" },
-  { "icon-name": "view-col-fill" },
-  { "icon-name": "view-col-sq" },
-  { "icon-name": "view-col" },
-  { "icon-name": "view-col2" },
-  { "icon-name": "view-col3" },
-  { "icon-name": "view-cols-fill" },
-  { "icon-name": "view-cols-sq" },
-  { "icon-name": "view-cols" },
-  { "icon-name": "view-grid-fill" },
-  { "icon-name": "view-grid-sq" },
-  { "icon-name": "view-grid-wd" },
-  { "icon-name": "view-grid" },
-  { "icon-name": "view-grid2-wd" },
-  { "icon-name": "view-grid3-wd" },
-  { "icon-name": "view-group-fill" },
-  { "icon-name": "view-group-wd" },
-  { "icon-name": "view-list-fill" },
-  { "icon-name": "view-list-sq" },
-  { "icon-name": "view-list-wd" },
-  { "icon-name": "view-list" },
-  { "icon-name": "view-panel-fill" },
-  { "icon-name": "view-panel-sq" },
-  { "icon-name": "view-panel" },
-  { "icon-name": "view-row-fill" },
-  { "icon-name": "view-row-sq" },
-  { "icon-name": "view-row-wd" },
-  { "icon-name": "view-row" },
-  { "icon-name": "view-x1" },
-  { "icon-name": "view-x2" },
-  { "icon-name": "view-x3" },
-  { "icon-name": "view-x4" },
-  { "icon-name": "view-x5" },
-  { "icon-name": "view-x6" },
-  { "icon-name": "view-x7" },
-  { "icon-name": "dashlite" },
-  { "icon-name": "dashlite-circle" },
-  { "icon-name": "dashlite-alt" },
-  { "icon-name": "master-card" },
-  { "icon-name": "paypal" },
-  { "icon-name": "visa-alt" },
-  { "icon-name": "coin-eur" },
-  { "icon-name": "coin-gbp" },
-  { "icon-name": "sign-ada-alt" },
-  { "icon-name": "sign-bch-alt" },
-  { "icon-name": "sign-bgp-alt" },
-  { "icon-name": "sign-bnb-alt" },
-  { "icon-name": "sign-brl-alt" },
-  { "icon-name": "sign-btc-alt" },
-  { "icon-name": "sign-cc-alt" },
-  { "icon-name": "sign-cc-alt2" },
-  { "icon-name": "sign-chf-alt" },
-  { "icon-name": "sign-cny-alt" },
-  { "icon-name": "sign-czk-alt" },
-  { "icon-name": "sign-dash-alt" },
-  { "icon-name": "sign-dkk-alt" },
-  { "icon-name": "sign-eos-alt" },
-  { "icon-name": "sign-eth-alt" },
-  { "icon-name": "sign-eur-alt2" },
-  { "icon-name": "sign-euro-alt" },
-  { "icon-name": "sign-gbp-alt2" },
-  { "icon-name": "sign-hkd-alt" },
-  { "icon-name": "sign-idr-alt" },
-  { "icon-name": "sign-inr-alt" },
-  { "icon-name": "sign-jpy-alt" },
-  { "icon-name": "sign-kr-alt" },
-  { "icon-name": "sign-ltc-alt" },
-  { "icon-name": "sign-ltc" },
-  { "icon-name": "sign-mxn-alt" },
-  { "icon-name": "sign-mxr-alt" },
-  { "icon-name": "sign-myr-alt" },
-  { "icon-name": "sign-paypal-alt" },
-  { "icon-name": "sign-paypal-full" },
-  { "icon-name": "sign-php-alt" },
-  { "icon-name": "sign-pln-alt" },
-  { "icon-name": "sign-rub-alt" },
-  { "icon-name": "sign-sek-alt" },
-  { "icon-name": "sign-sgd-alt" },
-  { "icon-name": "sign-kobo-alt" },
-  { "icon-name": "sign-steem-alt" },
-  { "icon-name": "sign-steller-alt" },
-  { "icon-name": "sign-stripe-fulll" },
-  { "icon-name": "sign-thb-alt" },
-  { "icon-name": "sign-trx-alt" },
-  { "icon-name": "sign-try-alt" },
-  { "icon-name": "sign-usd-alt" },
-  { "icon-name": "sign-usd-alt2" },
-  { "icon-name": "sign-usdc-alt" },
-  { "icon-name": "sign-usdt-alt" },
-  { "icon-name": "sign-visa-alt" },
-  { "icon-name": "sign-vnd-alt" },
-  { "icon-name": "sign-waves-alt" },
-  { "icon-name": "sign-xem-alt" },
-  { "icon-name": "sign-xrp-new-alt" },
-  { "icon-name": "sign-xrp-old-alt" },
-  { "icon-name": "sign-zcash-alt" },
-  { "icon-name": "chevron-left" },
-  { "icon-name": "chevron-right" },
-  { "icon-name": "chevron-up" },
-  { "icon-name": "chevron-down" },
-  { "icon-name": "chevron-left-round" },
-  { "icon-name": "chevron-right-round" },
-  { "icon-name": "chevron-up-round" },
-  { "icon-name": "chevron-down-round" },
-  { "icon-name": "chevron-left-round-fill" },
-  { "icon-name": "chevron-right-round-fill" },
-  { "icon-name": "chevron-up-round-fill" },
-  { "icon-name": "chevron-down-round-fill" },
-  { "icon-name": "chevron-left-c" },
-  { "icon-name": "chevron-right-c" },
-  { "icon-name": "chevron-up-c" },
-  { "icon-name": "chevron-down-c" },
-  { "icon-name": "chevron-left-fill-c" },
-  { "icon-name": "chevron-right-fill-c" },
-  { "icon-name": "chevron-up-fill-c" },
-  { "icon-name": "chevron-down-fill-c" },
-  { "icon-name": "chevron-left-circle" },
-  { "icon-name": "chevron-right-circle" },
-  { "icon-name": "chevron-up-circle" },
-  { "icon-name": "chevron-down-circle" },
-  { "icon-name": "chevron-left-circle-fill" },
-  { "icon-name": "chevron-right-circle-fill" },
-  { "icon-name": "chevron-up-circle-fill" },
-  { "icon-name": "chevron-down-circle-fill" },
-  { "icon-name": "caret-left" },
-  { "icon-name": "caret-right" },
-  { "icon-name": "caret-up" },
-  { "icon-name": "caret-down" },
-  { "icon-name": "caret-left-fill" },
-  { "icon-name": "caret-right-fill" },
-  { "icon-name": "caret-up-fill" },
-  { "icon-name": "caret-down-fill" },
-  { "icon-name": "sort" },
-  { "icon-name": "sort-up" },
-  { "icon-name": "sort-down" },
-  { "icon-name": "sort-fill" },
-  { "icon-name": "sort-up-fill" },
-  { "icon-name": "sort-down-fill" },
-  { "icon-name": "sort-v" },
-  { "icon-name": "swap-v" },
-  { "icon-name": "swap" },
-  { "icon-name": "arrow-left-round" },
-  { "icon-name": "arrow-right-round" },
-  { "icon-name": "arrow-up-round" },
-  { "icon-name": "arrow-down-round" },
-  { "icon-name": "arrow-left-round-fill" },
-  { "icon-name": "arrow-right-round-fill" },
-  { "icon-name": "arrow-up-round-fill" },
-  { "icon-name": "arrow-down-round-fill" },
-  { "icon-name": "arrow-left-c" },
-  { "icon-name": "arrow-right-c" },
-  { "icon-name": "arrow-up-c" },
-  { "icon-name": "arrow-down-c" },
-  { "icon-name": "arrow-left-fill-c" },
-  { "icon-name": "arrow-right-fill-c" },
-  { "icon-name": "arrow-up-fill-c" },
-  { "icon-name": "arrow-down-fill-c" },
-  { "icon-name": "arrow-left-circle" },
-  { "icon-name": "arrow-right-circle" },
-  { "icon-name": "arrow-up-circle" },
-  { "icon-name": "arrow-down-circle" },
-  { "icon-name": "arrow-left-circle-fill" },
-  { "icon-name": "arrow-up-circle-fill" },
-  { "icon-name": "arrow-down-circle-fill" },
-  { "icon-name": "arrow-right-circle-fill" },
-  { "icon-name": "chevrons-left" },
-  { "icon-name": "chevrons-right" },
-  { "icon-name": "chevrons-up" },
-  { "icon-name": "chevrons-down" },
-  { "icon-name": "first" },
-  { "icon-name": "last" },
-  { "icon-name": "back-ios" },
-  { "icon-name": "forward-ios" },
-  { "icon-name": "upword-ios" },
-  { "icon-name": "downward-ios" },
-  { "icon-name": "back-alt" },
-  { "icon-name": "forward-alt" },
-  { "icon-name": "upword-alt" },
-  { "icon-name": "downward-alt" },
-  { "icon-name": "back-alt-fill" },
-  { "icon-name": "forward-alt-fill" },
-  { "icon-name": "upword-alt-fill" },
-  { "icon-name": "downward-alt-fill" },
-  { "icon-name": "arrow-long-left" },
-  { "icon-name": "arrow-long-right" },
-  { "icon-name": "arrow-long-up" },
-  { "icon-name": "arrow-long-down" },
-  { "icon-name": "arrow-left" },
-  { "icon-name": "arrow-right" },
-  { "icon-name": "arrow-up" },
-  { "icon-name": "arrow-down" },
-  { "icon-name": "arrow-up-left" },
-  { "icon-name": "arrow-up-right" },
-  { "icon-name": "arrow-down-left" },
-  { "icon-name": "arrow-down-right" },
-  { "icon-name": "arrow-to-left" },
-  { "icon-name": "arrow-to-right" },
-  { "icon-name": "arrow-to-up" },
-  { "icon-name": "arrow-to-down" },
-  { "icon-name": "arrow-from-left" },
-  { "icon-name": "arrow-from-right" },
-  { "icon-name": "arrow-from-up" },
-  { "icon-name": "arrow-from-down" },
-  { "icon-name": "curve-down-left" },
-  { "icon-name": "curve-up-right" },
-  { "icon-name": "curve-up-left" },
-  { "icon-name": "curve-down-right" },
-  { "icon-name": "curve-left-up" },
-  { "icon-name": "curve-right-up" },
-  { "icon-name": "curve-left-down" },
-  { "icon-name": "curve-right-down" },
-  { "icon-name": "back-arrow" },
-  { "icon-name": "forward-arrow" },
-  { "icon-name": "back-arrow-fill" },
-  { "icon-name": "forward-arrow-fill" },
-  { "icon-name": "navigate" },
-  { "icon-name": "navigate-up" },
-  { "icon-name": "navigate-fill" },
-  { "icon-name": "navigate-up-fill" },
-  { "icon-name": "send" },
-  { "icon-name": "send-alt" },
-  { "icon-name": "unfold-less" },
-  { "icon-name": "unfold-more" },
-  { "icon-name": "exchange-v" },
-  { "icon-name": "exchange" },
-  { "icon-name": "expand" },
-  { "icon-name": "shrink" },
-  { "icon-name": "focus" },
-  { "icon-name": "maximize" },
-  { "icon-name": "minimize" },
-  { "icon-name": "maximize-alt" },
-  { "icon-name": "minimize-alt" },
-  { "icon-name": "shuffle" },
-  { "icon-name": "cross-sm" },
-  { "icon-name": "cross" },
-  { "icon-name": "cross-round" },
-  { "icon-name": "cross-circle" },
-  { "icon-name": "cross-c" },
-  { "icon-name": "cross-round-fill" },
-  { "icon-name": "cross-circle-fill" },
-  { "icon-name": "cross-fill-c" },
-  { "icon-name": "na" },
-  { "icon-name": "check" },
-  { "icon-name": "check-thick" },
-  { "icon-name": "done" },
-  { "icon-name": "check-round" },
-  { "icon-name": "check-circle" },
-  { "icon-name": "check-c" },
-  { "icon-name": "check-round-fill" },
-  { "icon-name": "check-circle-fill" },
-  { "icon-name": "check-fill-c" },
-  { "icon-name": "check-circle-cut" },
-  { "icon-name": "check-round-cut" },
-  { "icon-name": "bullet" },
-  { "icon-name": "circle" },
-  { "icon-name": "square" },
-  { "icon-name": "square-c" },
-  { "icon-name": "bullet-fill" },
-  { "icon-name": "circle-fill" },
-  { "icon-name": "square-fill" },
-  { "icon-name": "square-fill-c" },
-  { "icon-name": "plus-sm" },
-  { "icon-name": "minus-sm" },
-  { "icon-name": "plus" },
-  { "icon-name": "minus" },
-  { "icon-name": "plus-round" },
-  { "icon-name": "minus-round" },
-  { "icon-name": "plus-circle" },
-  { "icon-name": "minus-circle" },
-  { "icon-name": "plus-c" },
-  { "icon-name": "minus-c" },
-  { "icon-name": "plus-round-fill" },
-  { "icon-name": "plus-circle-fill" },
-  { "icon-name": "minus-round-fill" },
-  { "icon-name": "minus-circle-fill" },
-  { "icon-name": "plus-fill-c" },
-  { "icon-name": "minus-fill-c" },
-  { "icon-name": "plus-medi" },
-  { "icon-name": "plus-medi-fill" },
-  { "icon-name": "equal-sm" },
-  { "icon-name": "equal" },
-  { "icon-name": "calc" },
-  { "icon-name": "search" },
-  { "icon-name": "zoom-out" },
-  { "icon-name": "zoom-in" },
-  { "icon-name": "play" },
-  { "icon-name": "play-fill" },
-  { "icon-name": "play-circle" },
-  { "icon-name": "play-circle-fill" },
-  { "icon-name": "pause" },
-  { "icon-name": "pause-fill" },
-  { "icon-name": "pause-circle" },
-  { "icon-name": "pause-circle-fill" },
-  { "icon-name": "stop" },
-  { "icon-name": "stop-fill" },
-  { "icon-name": "stop-circle" },
-  { "icon-name": "stop-circle-fill" },
-  { "icon-name": "rewind" },
-  { "icon-name": "forward" },
-  { "icon-name": "rewind-fill" },
-  { "icon-name": "forward-fill" },
-  { "icon-name": "step-back" },
-  { "icon-name": "step-forward" },
-  { "icon-name": "vol-off" },
-  { "icon-name": "vol-no" },
-  { "icon-name": "vol-half" },
-  { "icon-name": "vol" },
-  { "icon-name": "mic" },
-  { "icon-name": "mic-off" },
-  { "icon-name": "video" },
-  { "icon-name": "video-off" },
-  { "icon-name": "video-fill" },
-  { "icon-name": "loader" },
-  { "icon-name": "power" },
-  { "icon-name": "signout" },
-  { "icon-name": "signin" },
-  { "icon-name": "upload" },
-  { "icon-name": "download" },
-  { "icon-name": "alert-circle" },
-  { "icon-name": "alert" },
-  { "icon-name": "caution" },
-  { "icon-name": "report" },
-  { "icon-name": "alert-c" },
-  { "icon-name": "alert-circle-fill" },
-  { "icon-name": "alert-fill" },
-  { "icon-name": "caution-fill" },
-  { "icon-name": "report-fill" },
-  { "icon-name": "alert-fill-c" },
-  { "icon-name": "info-i" },
-  { "icon-name": "info" },
-  { "icon-name": "info-fill" },
-  { "icon-name": "help" },
-  { "icon-name": "help-fill" },
-  { "icon-name": "archived" },
-  { "icon-name": "archive" },
-  { "icon-name": "unarchive" },
-  { "icon-name": "archived-fill" },
-  { "icon-name": "archive-fill" },
-  { "icon-name": "unarchive-fill" },
-  { "icon-name": "bag" },
-  { "icon-name": "bag-fill" },
-  { "icon-name": "bell" },
-  { "icon-name": "bell-off" },
-  { "icon-name": "bell-fill" },
-  { "icon-name": "bell-off-fill" },
-  { "icon-name": "wifi" },
-  { "icon-name": "wifi-off" },
-  { "icon-name": "live" },
-  { "icon-name": "signal" },
-  { "icon-name": "bluetooth" },
-  { "icon-name": "blank-alt" },
-  { "icon-name": "blank" },
-  { "icon-name": "blankf-fill" },
-  { "icon-name": "block-over" },
-  { "icon-name": "book-read" },
-  { "icon-name": "book" },
-  { "icon-name": "book-fill" },
-  { "icon-name": "bulb-fill" },
-  { "icon-name": "bulb" },
-  { "icon-name": "calendar-alt-fill" },
-  { "icon-name": "calendar-alt" },
-  { "icon-name": "calendar-booking-fill" },
-  { "icon-name": "calendar-booking" },
-  { "icon-name": "calendar-check-fill" },
-  { "icon-name": "calendar-check" },
-  { "icon-name": "calendar-fill" },
-  { "icon-name": "calendar" },
-  { "icon-name": "calender-date-fill" },
-  { "icon-name": "calender-date" },
-  { "icon-name": "call" },
-  { "icon-name": "call-alt" },
-  { "icon-name": "call-alt-fill" },
-  { "icon-name": "call-fill" },
-  { "icon-name": "camera-fill" },
-  { "icon-name": "camera" },
-  { "icon-name": "capsule" },
-  { "icon-name": "capsule-fill" },
-  { "icon-name": "cards" },
-  { "icon-name": "cards-fill" },
-  { "icon-name": "cart" },
-  { "icon-name": "cart-fill" },
-  { "icon-name": "cc" },
-  { "icon-name": "cc-alt" },
-  { "icon-name": "cc-alt2" },
-  { "icon-name": "cc-secure" },
-  { "icon-name": "cc-new" },
-  { "icon-name": "cc-off" },
-  { "icon-name": "cc-fill" },
-  { "icon-name": "cc-alt-fill" },
-  { "icon-name": "cc-alt2-fill" },
-  { "icon-name": "cc-secure-fill" },
-  { "icon-name": "msg-circle" },
-  { "icon-name": "chat-circle" },
-  { "icon-name": "msg" },
-  { "icon-name": "chat" },
-  { "icon-name": "question-alt" },
-  { "icon-name": "question" },
-  { "icon-name": "msg-circle-fill" },
-  { "icon-name": "chat-circle-fill" },
-  { "icon-name": "msg-fill" },
-  { "icon-name": "chat-fill" },
-  { "icon-name": "clip-h" },
-  { "icon-name": "clip-v" },
-  { "icon-name": "clip" },
-  { "icon-name": "link-alt" },
-  { "icon-name": "unlink" },
-  { "icon-name": "unlink-alt" },
-  { "icon-name": "link-h" },
-  { "icon-name": "link-v" },
-  { "icon-name": "link" },
-  { "icon-name": "clipboard" },
-  { "icon-name": "clipboad-check" },
-  { "icon-name": "clipboard-fill" },
-  { "icon-name": "clipboad-check-fill" },
-  { "icon-name": "clock" },
-  { "icon-name": "clock-fill" },
-  { "icon-name": "cloud" },
-  { "icon-name": "upload-cloud" },
-  { "icon-name": "download-cloud" },
-  { "icon-name": "cloud-fill" },
-  { "icon-name": "contact" },
-  { "icon-name": "contact-fill" },
-  { "icon-name": "coffee" },
-  { "icon-name": "coffee-fill" },
-  { "icon-name": "box-view" },
-  { "icon-name": "col-view" },
-  { "icon-name": "sidebar" },
-  { "icon-name": "layout" },
-  { "icon-name": "table-view" },
-  { "icon-name": "layout2" },
-  { "icon-name": "row-view" },
-  { "icon-name": "dot-box" },
-  { "icon-name": "layout-fill" },
-  { "icon-name": "box-view-fill" },
-  { "icon-name": "sidebar-fill" },
-  { "icon-name": "table-view-fill" },
-  { "icon-name": "dot-box-fill" },
-  { "icon-name": "template" },
-  { "icon-name": "browser" },
-  { "icon-name": "toolbar" },
-  { "icon-name": "browser-fill" },
-  { "icon-name": "toolbar-fill" },
-  { "icon-name": "template-fill" },
-  { "icon-name": "box" },
-  { "icon-name": "package" },
-  { "icon-name": "layer" },
-  { "icon-name": "layers" },
-  { "icon-name": "panel" },
-  { "icon-name": "server" },
-  { "icon-name": "layer-fill" },
-  { "icon-name": "layers-fill" },
-  { "icon-name": "package-fill" },
-  { "icon-name": "panel-fill" },
-  { "icon-name": "server-fill" },
-  { "icon-name": "color-palette" },
-  { "icon-name": "color-palette-fill" },
-  { "icon-name": "copy" },
-  { "icon-name": "copy-fill" },
-  { "icon-name": "crop-alt" },
-  { "icon-name": "crop" },
-  { "icon-name": "target" },
-  { "icon-name": "crosshair" },
-  { "icon-name": "crosshair-fill" },
-  { "icon-name": "db-fill" },
-  { "icon-name": "db" },
-  { "icon-name": "hard-drive" },
-  { "icon-name": "cpu" },
-  { "icon-name": "disk" },
-  { "icon-name": "pen" },
-  { "icon-name": "edit-alt" },
-  { "icon-name": "pen-fill" },
-  { "icon-name": "edit-alt-fill" },
-  { "icon-name": "pen-alt-fill" },
-  { "icon-name": "edit-fill" },
-  { "icon-name": "edit" },
-  { "icon-name": "external-alt" },
-  { "icon-name": "external" },
-  { "icon-name": "eye-alt" },
-  { "icon-name": "eye-alt-fill" },
-  { "icon-name": "eye" },
-  { "icon-name": "eye-fill" },
-  { "icon-name": "eye-off" },
-  { "icon-name": "eye-off-fill" },
-  { "icon-name": "file" },
-  { "icon-name": "file-minus" },
-  { "icon-name": "file-plus" },
-  { "icon-name": "file-remove" },
-  { "icon-name": "file-check" },
-  { "icon-name": "file-code" },
-  { "icon-name": "file-docs" },
-  { "icon-name": "file-img" },
-  { "icon-name": "file-doc" },
-  { "icon-name": "file-pdf" },
-  { "icon-name": "file-xls" },
-  { "icon-name": "file-zip" },
-  { "icon-name": "file-download" },
-  { "icon-name": "file-text" },
-  { "icon-name": "files" },
-  { "icon-name": "file-fill" },
-  { "icon-name": "file-minus-fill" },
-  { "icon-name": "file-plus-fill" },
-  { "icon-name": "file-remove-fill" },
-  { "icon-name": "file-check-fill" },
-  { "icon-name": "file-text-fill" },
-  { "icon-name": "files-fill" },
-  { "icon-name": "folder" },
-  { "icon-name": "folder-minus" },
-  { "icon-name": "folder-plus" },
-  { "icon-name": "folder-remove" },
-  { "icon-name": "folder-check" },
-  { "icon-name": "folder-list" },
-  { "icon-name": "folders" },
-  { "icon-name": "folder-fill" },
-  { "icon-name": "folders-fill" },
-  { "icon-name": "filter-alt" },
-  { "icon-name": "sort-line" },
-  { "icon-name": "filter-fill" },
-  { "icon-name": "filter" },
-  { "icon-name": "flag" },
-  { "icon-name": "flag-fill" },
-  { "icon-name": "notify" },
-  { "icon-name": "dashboard" },
-  { "icon-name": "dashboard-fill" },
-  { "icon-name": "grid-sq" },
-  { "icon-name": "grid" },
-  { "icon-name": "grid-c" },
-  { "icon-name": "grid-alt" },
-  { "icon-name": "grid-plus" },
-  { "icon-name": "grid-add-c" },
-  { "icon-name": "grid-fill" },
-  { "icon-name": "grid-fill-c" },
-  { "icon-name": "grid-alt-fill" },
-  { "icon-name": "grid-plus-fill" },
-  { "icon-name": "grid-add-fill-c" },
-  { "icon-name": "grid-box-alt-fill" },
-  { "icon-name": "grid-box-alt" },
-  { "icon-name": "grid-box" },
-  { "icon-name": "grid-box-fill" },
-  { "icon-name": "grid-line" },
-  { "icon-name": "menu-alt-left" },
-  { "icon-name": "menu-alt-r" },
-  { "icon-name": "menu-alt" },
-  { "icon-name": "menu-center" },
-  { "icon-name": "menu-left" },
-  { "icon-name": "menu-right" },
-  { "icon-name": "menu" },
-  { "icon-name": "trend-up" },
-  { "icon-name": "trend-down" },
-  { "icon-name": "line-chart-down" },
-  { "icon-name": "line-chart-up" },
-  { "icon-name": "line-chart" },
-  { "icon-name": "bar-chart" },
-  { "icon-name": "bar-chart-alt" },
-  { "icon-name": "chart-up" },
-  { "icon-name": "chart-down" },
-  { "icon-name": "growth" },
-  { "icon-name": "growth-fill" },
-  { "icon-name": "bar-chart-fill" },
-  { "icon-name": "bar-c" },
-  { "icon-name": "bar-fill-c" },
-  { "icon-name": "pie" },
-  { "icon-name": "pie-alt" },
-  { "icon-name": "pie-fill" },
-  { "icon-name": "activity" },
-  { "icon-name": "activity-alt" },
-  { "icon-name": "activity-round" },
-  { "icon-name": "activity-round-fill" },
-  { "icon-name": "meter" },
-  { "icon-name": "speed" },
-  { "icon-name": "happy" },
-  { "icon-name": "sad" },
-  { "icon-name": "meh" },
-  { "icon-name": "happyf-fill" },
-  { "icon-name": "sad-fill" },
-  { "icon-name": "meh-fill" },
-  { "icon-name": "home" },
-  { "icon-name": "home-alt" },
-  { "icon-name": "home-fill" },
-  { "icon-name": "img" },
-  { "icon-name": "img-fill" },
-  { "icon-name": "inbox" },
-  { "icon-name": "inbox-in" },
-  { "icon-name": "inbox-out" },
-  { "icon-name": "inbox-fill" },
-  { "icon-name": "inbox-in-fill" },
-  { "icon-name": "inbox-out-fill" },
-  { "icon-name": "link-group" },
-  { "icon-name": "lock" },
-  { "icon-name": "lock-alt" },
-  { "icon-name": "lock-fill" },
-  { "icon-name": "lock-alt-fill" },
-  { "icon-name": "unlock" },
-  { "icon-name": "unlock-fill" },
-  { "icon-name": "mail" },
-  { "icon-name": "emails" },
-  { "icon-name": "mail-fill" },
-  { "icon-name": "emails-fill" },
-  { "icon-name": "map-pin" },
-  { "icon-name": "location" },
-  { "icon-name": "map" },
-  { "icon-name": "map-pin-fill" },
-  { "icon-name": "list" },
-  { "icon-name": "list-ol" },
-  { "icon-name": "align-center" },
-  { "icon-name": "align-justify" },
-  { "icon-name": "align-left" },
-  { "icon-name": "align-right" },
-  { "icon-name": "list-check" },
-  { "icon-name": "list-round" },
-  { "icon-name": "card-view" },
-  { "icon-name": "list-fill" },
-  { "icon-name": "save" },
-  { "icon-name": "save-fill" },
-  { "icon-name": "move" },
-  { "icon-name": "scissor" },
-  { "icon-name": "text" },
-  { "icon-name": "text-a" },
-  { "icon-name": "bold" },
-  { "icon-name": "italic" },
-  { "icon-name": "underline" },
-  { "icon-name": "percent" },
-  { "icon-name": "at" },
-  { "icon-name": "hash" },
-  { "icon-name": "code" },
-  { "icon-name": "code-download" },
-  { "icon-name": "terminal" },
-  { "icon-name": "cmd" },
-  { "icon-name": "sun" },
-  { "icon-name": "sun-fill" },
-  { "icon-name": "moon-fill" },
-  { "icon-name": "moon" },
-  { "icon-name": "light" },
-  { "icon-name": "light-fill" },
-  { "icon-name": "more-v" },
-  { "icon-name": "more-h" },
-  { "icon-name": "more-h-alt" },
-  { "icon-name": "more-v-alt" },
-  { "icon-name": "music" },
-  { "icon-name": "movie" },
-  { "icon-name": "offer" },
-  { "icon-name": "offer-fill" },
-  { "icon-name": "opt-alt" },
-  { "icon-name": "opt" },
-  { "icon-name": "opt-dot-alt" },
-  { "icon-name": "opt-dot" },
-  { "icon-name": "opt-dot-fill" },
-  { "icon-name": "opt-alt-fill" },
-  { "icon-name": "user-alt" },
-  { "icon-name": "user-alt-fill" },
-  { "icon-name": "user" },
-  { "icon-name": "users" },
-  { "icon-name": "user-add" },
-  { "icon-name": "user-remove" },
-  { "icon-name": "user-check" },
-  { "icon-name": "user-cross" },
-  { "icon-name": "account-setting" },
-  { "icon-name": "account-setting-alt" },
-  { "icon-name": "user-list" },
-  { "icon-name": "user-fill" },
-  { "icon-name": "users-fill" },
-  { "icon-name": "user-add-fill" },
-  { "icon-name": "user-remove-fill" },
-  { "icon-name": "user-check-fill" },
-  { "icon-name": "user-cross-fill" },
-  { "icon-name": "account-setting-fill" },
-  { "icon-name": "user-list-fill" },
-  { "icon-name": "user-circle" },
-  { "icon-name": "user-circle-fill" },
-  { "icon-name": "user-c" },
-  { "icon-name": "user-fill-c" },
-  { "icon-name": "user-round" },
-  { "icon-name": "printer" },
-  { "icon-name": "printer-fill" },
-  { "icon-name": "laptop" },
-  { "icon-name": "monitor" },
-  { "icon-name": "tablet" },
-  { "icon-name": "mobile" },
-  { "icon-name": "undo" },
-  { "icon-name": "redo" },
-  { "icon-name": "reload-alt" },
-  { "icon-name": "reload" },
-  { "icon-name": "regen-alt" },
-  { "icon-name": "regen" },
-  { "icon-name": "invest" },
-  { "icon-name": "histroy" },
-  { "icon-name": "update" },
-  { "icon-name": "repeat" },
-  { "icon-name": "repeat-v" },
-  { "icon-name": "tranx" },
-  { "icon-name": "reply-all" },
-  { "icon-name": "reply" },
-  { "icon-name": "reply-fill" },
-  { "icon-name": "reply-all-fill" },
-  { "icon-name": "notes" },
-  { "icon-name": "note-add" },
-  { "icon-name": "notes-alt" },
-  { "icon-name": "article" },
-  { "icon-name": "text-rich" },
-  { "icon-name": "todo" },
-  { "icon-name": "report-profit" },
-  { "icon-name": "reports-alt" },
-  { "icon-name": "reports" },
-  { "icon-name": "task" },
-  { "icon-name": "note-add-c" },
-  { "icon-name": "task-c" },
-  { "icon-name": "todo-fill" },
-  { "icon-name": "note-add-fill-c" },
-  { "icon-name": "task-fill-c" },
-  { "icon-name": "scan-fill" },
-  { "icon-name": "scan" },
-  { "icon-name": "qr" },
-  { "icon-name": "money" },
-  { "icon-name": "coins" },
-  { "icon-name": "coin" },
-  { "icon-name": "coin-alt" },
-  { "icon-name": "coin-alt-fill" },
-  { "icon-name": "setting-alt-fill" },
-  { "icon-name": "setting-alt" },
-  { "icon-name": "setting-fill" },
-  { "icon-name": "setting" },
-  { "icon-name": "share-alt" },
-  { "icon-name": "share-fill" },
-  { "icon-name": "share" },
-  { "icon-name": "network" },
-  { "icon-name": "rss" },
-  { "icon-name": "shield" },
-  { "icon-name": "shield-star" },
-  { "icon-name": "shield-check" },
-  { "icon-name": "shield-alert" },
-  { "icon-name": "shield-off" },
-  { "icon-name": "security" },
-  { "icon-name": "policy" },
-  { "icon-name": "shield-alert-fill" },
-  { "icon-name": "shield-check-fill" },
-  { "icon-name": "shield-fill" },
-  { "icon-name": "shield-half" },
-  { "icon-name": "shield-star-fill" },
-  { "icon-name": "policy-fill" },
-  { "icon-name": "spark" },
-  { "icon-name": "spark-off" },
-  { "icon-name": "spark-fill" },
-  { "icon-name": "spark-off-fill" },
-  { "icon-name": "wallet" },
-  { "icon-name": "wallet-alt" },
-  { "icon-name": "wallet-in" },
-  { "icon-name": "wallet-out" },
-  { "icon-name": "wallet-saving" },
-  { "icon-name": "wallet-fill" },
-  { "icon-name": "star" },
-  { "icon-name": "star-half" },
-  { "icon-name": "star-half-fill" },
-  { "icon-name": "star-fill" },
-  { "icon-name": "star-round" },
-  { "icon-name": "heart" },
-  { "icon-name": "heart-fill" },
-  { "icon-name": "swap-alt-fill" },
-  { "icon-name": "swap-alt" },
-  { "icon-name": "thumbs-down" },
-  { "icon-name": "thumbs-up" },
-  { "icon-name": "tag" },
-  { "icon-name": "tag-alt" },
-  { "icon-name": "tags" },
-  { "icon-name": "tag-fill" },
-  { "icon-name": "tag-alt-fill" },
-  { "icon-name": "tags-fill" },
-  { "icon-name": "bookmark" },
-  { "icon-name": "bookmark-fill" },
-  { "icon-name": "label" },
-  { "icon-name": "label-fill" },
-  { "icon-name": "piority" },
-  { "icon-name": "piority-fill" },
-  { "icon-name": "label-alt" },
-  { "icon-name": "label-alt-fill" },
-  { "icon-name": "ticket-alt" },
-  { "icon-name": "ticket" },
-  { "icon-name": "ticket-minus" },
-  { "icon-name": "ticket-plus" },
-  { "icon-name": "ticket-alt-fill" },
-  { "icon-name": "ticket-fill" },
-  { "icon-name": "ticket-minus-fill" },
-  { "icon-name": "ticket-plus-fill" },
-  { "icon-name": "toggle-off" },
-  { "icon-name": "toggle-on" },
-  { "icon-name": "trash-alt" },
-  { "icon-name": "trash-empty" },
-  { "icon-name": "trash" },
-  { "icon-name": "trash-fill" },
-  { "icon-name": "trash-empty-fill" },
-  { "icon-name": "delete-fill" },
-  { "icon-name": "delete" },
-  { "icon-name": "alarm-alt" },
-  { "icon-name": "alarm" },
-  { "icon-name": "bugs" },
-  { "icon-name": "building" },
-  { "icon-name": "building-fill" },
-  { "icon-name": "headphone" },
-  { "icon-name": "headphone-fill" },
-  { "icon-name": "aperture" },
-  { "icon-name": "help-alt" },
-  { "icon-name": "award" },
-  { "icon-name": "briefcase" },
-  { "icon-name": "gift" },
-  { "icon-name": "globe" },
-  { "icon-name": "umbrela" },
-  { "icon-name": "truck" },
-  { "icon-name": "sign-usd" },
-  { "icon-name": "sign-dollar" },
-  { "icon-name": "sign-mxn" },
-  { "icon-name": "sign-sgd" },
-  { "icon-name": "sign-euro" },
-  { "icon-name": "sign-eur" },
-  { "icon-name": "sign-gbp" },
-  { "icon-name": "sign-pound" },
-  { "icon-name": "sign-thb" },
-  { "icon-name": "sign-inr" },
-  { "icon-name": "sign-jpy" },
-  { "icon-name": "sign-yen" },
-  { "icon-name": "sign-cny" },
-  { "icon-name": "sign-kobo" },
-  { "icon-name": "sign-chf" },
-  { "icon-name": "sign-vnd" },
-  { "icon-name": "sign-php" },
-  { "icon-name": "sign-brl" },
-  { "icon-name": "sign-idr" },
-  { "icon-name": "sign-czk" },
-  { "icon-name": "sign-hkd" },
-  { "icon-name": "sign-kr" },
-  { "icon-name": "sign-dkk" },
-  { "icon-name": "sign-nok" },
-  { "icon-name": "sign-sek" },
-  { "icon-name": "sign-rub" },
-  { "icon-name": "sign-myr" },
-  { "icon-name": "sign-pln" },
-  { "icon-name": "sign-try" },
-  { "icon-name": "sign-waves" },
-  { "icon-name": "waves" },
-  { "icon-name": "sign-trx" },
-  { "icon-name": "tron" },
-  { "icon-name": "sign-xem" },
-  { "icon-name": "nem" },
-  { "icon-name": "sign-mxr" },
-  { "icon-name": "monero" },
-  { "icon-name": "sign-usdc" },
-  { "icon-name": "sign-steller" },
-  { "icon-name": "sign-steem" },
-  { "icon-name": "sign-usdt" },
-  { "icon-name": "tether" },
-  { "icon-name": "sign-btc" },
-  { "icon-name": "bitcoin" },
-  { "icon-name": "sign-bch" },
-  { "icon-name": "bitcoin-cash" },
-  { "icon-name": "sign-bnb" },
-  { "icon-name": "binance" },
-  { "icon-name": "sign-ada" },
-  { "icon-name": "sign-zcash" },
-  { "icon-name": "sign-eth" },
-  { "icon-name": "ethereum" },
-  { "icon-name": "sign-dash" },
-  { "icon-name": "dash" },
-  { "icon-name": "sign-xrp-old" },
-  { "icon-name": "ripple-old" },
-  { "icon-name": "sign-eos" },
-  { "icon-name": "eos" },
-  { "icon-name": "sign-xrp" },
-  { "icon-name": "ripple" },
-  { "icon-name": "american-express" },
-  { "icon-name": "jcb" },
-  { "icon-name": "cc-jcb" },
-  { "icon-name": "mc" },
-  { "icon-name": "cc-mc" },
-  { "icon-name": "discover" },
-  { "icon-name": "cc-discover" },
-  { "icon-name": "visa" },
-  { "icon-name": "cc-visa" },
-  { "icon-name": "cc-paypal" },
-  { "icon-name": "cc-stripe" },
-  { "icon-name": "amazon-pay" },
-  { "icon-name": "amazon-pay-fill" },
-  { "icon-name": "google-pay" },
-  { "icon-name": "google-pay-fill" },
-  { "icon-name": "apple-pay" },
-  { "icon-name": "apple-pay-fill" },
-  { "icon-name": "angular" },
-  { "icon-name": "react" },
-  { "icon-name": "laravel" },
-  { "icon-name": "html5" },
-  { "icon-name": "css3-fill" },
-  { "icon-name": "css3" },
-  { "icon-name": "js" },
-  { "icon-name": "php" },
-  { "icon-name": "python" },
-  { "icon-name": "bootstrap" },
-  { "icon-name": "ebay" },
-  { "icon-name": "google-wallet" },
-  { "icon-name": "google-drive" },
-  { "icon-name": "google-play-store" },
-  { "icon-name": "android" },
-  { "icon-name": "blogger-fill" },
-  { "icon-name": "blogger" },
-  { "icon-name": "hangout" },
-  { "icon-name": "apple-store" },
-  { "icon-name": "apple-store-ios" },
-  { "icon-name": "stripe" },
-  { "icon-name": "apple" },
-  { "icon-name": "microsoft" },
-  { "icon-name": "windows" },
-  { "icon-name": "amazon" },
-  { "icon-name": "paypal-alt" },
-  { "icon-name": "airbnb" },
-  { "icon-name": "adobe" },
-  { "icon-name": "mailchimp" },
-  { "icon-name": "dropbox" },
-  { "icon-name": "digital-ocean" },
-  { "icon-name": "slack" },
-  { "icon-name": "slack-hash" },
-  { "icon-name": "stack-overflow" },
-  { "icon-name": "soundcloud" },
-  { "icon-name": "blackberry" },
-  { "icon-name": "spotify" },
-  { "icon-name": "kickstarter" },
-  { "icon-name": "houzz" },
-  { "icon-name": "vine" },
-  { "icon-name": "yelp" },
-  { "icon-name": "yoast" },
-  { "icon-name": "envato" },
-  { "icon-name": "wordpress" },
-  { "icon-name": "wp" },
-  { "icon-name": "wordpress-fill" },
-  { "icon-name": "elementor" },
-  { "icon-name": "joomla" },
-  { "icon-name": "megento" },
-  { "icon-name": "git" },
-  { "icon-name": "github" },
-  { "icon-name": "github-round" },
-  { "icon-name": "github-circle" },
-  { "icon-name": "dribbble" },
-  { "icon-name": "dribbble-round" },
-  { "icon-name": "behance" },
-  { "icon-name": "behance-fill" },
-  { "icon-name": "flickr" },
-  { "icon-name": "flickr-round" },
-  { "icon-name": "medium" },
-  { "icon-name": "medium-round" },
-  { "icon-name": "reddit" },
-  { "icon-name": "reddit-round" },
-  { "icon-name": "reddit-circle" },
-  { "icon-name": "google" },
-  { "icon-name": "facebook-f" },
-  { "icon-name": "facebook-fill" },
-  { "icon-name": "facebook-circle" },
-  { "icon-name": "instagram" },
-  { "icon-name": "instagram-round" },
-  { "icon-name": "linkedin" },
-  { "icon-name": "linkedin-round" },
-  { "icon-name": "twitter" },
-  { "icon-name": "twitter-round" },
-  { "icon-name": "pinterest" },
-  { "icon-name": "pinterest-round" },
-  { "icon-name": "pinterest-circle" },
-  { "icon-name": "tumblr" },
-  { "icon-name": "tumblr-round" },
-  { "icon-name": "skype" },
-  { "icon-name": "viber" },
-  { "icon-name": "whatsapp" },
-  { "icon-name": "whatsapp-round" },
-  { "icon-name": "snapchat" },
-  { "icon-name": "snapchat-fill" },
-  { "icon-name": "telegram" },
-  { "icon-name": "telegram-circle" },
-  { "icon-name": "youtube-line" },
-  { "icon-name": "youtube" },
-  { "icon-name": "youtube-fill" },
-  { "icon-name": "youtube-round" },
-  { "icon-name": "vimeo" },
-  { "icon-name": "vimeo-fill" },
-];
+  { 'icon-name': 'centos' },
+  { 'icon-name': 'covid' },
+  { 'icon-name': 'fedora' },
+  { 'icon-name': 'hot-fill' },
+  { 'icon-name': 'hot' },
+  { 'icon-name': 'linux-server' },
+  { 'icon-name': 'linux' },
+  { 'icon-name': 'note-add-fill' },
+  { 'icon-name': 'repeat-fill' },
+  { 'icon-name': 'tranx-fill' },
+  { 'icon-name': 'ubuntu' },
+  { 'icon-name': 'virus' },
+  { 'icon-name': 'b-chrome' },
+  { 'icon-name': 'b-edge' },
+  { 'icon-name': 'b-firefox' },
+  { 'icon-name': 'b-ie' },
+  { 'icon-name': 'b-opera' },
+  { 'icon-name': 'b-safari' },
+  { 'icon-name': 'b-si' },
+  { 'icon-name': 'b-uc' },
+  { 'icon-name': 'brick-fill' },
+  { 'icon-name': 'brick' },
+  { 'icon-name': 'col-3s' },
+  { 'icon-name': 'col-4s' },
+  { 'icon-name': 'col-2s' },
+  { 'icon-name': 'comments' },
+  { 'icon-name': 'dot-sq' },
+  { 'icon-name': 'dot' },
+  { 'icon-name': 'footer' },
+  { 'icon-name': 'header' },
+  { 'icon-name': 'heading' },
+  { 'icon-name': 'layout-alt-fill' },
+  { 'icon-name': 'layout-alt' },
+  { 'icon-name': 'layout-fill1' },
+  { 'icon-name': 'layout1' },
+  { 'icon-name': 'list-index-fill' },
+  { 'icon-name': 'list-index' },
+  { 'icon-name': 'list-thumb-alt-fill' },
+  { 'icon-name': 'list-thumb-alt' },
+  { 'icon-name': 'list-thumb-fill' },
+  { 'icon-name': 'list-thumb' },
+  { 'icon-name': 'masonry-fill' },
+  { 'icon-name': 'masonry' },
+  { 'icon-name': 'menu-circled' },
+  { 'icon-name': 'menu-squared' },
+  { 'icon-name': 'notice' },
+  { 'icon-name': 'pen2' },
+  { 'icon-name': 'propert-blank' },
+  { 'icon-name': 'property-add' },
+  { 'icon-name': 'property-alt' },
+  { 'icon-name': 'property-remove' },
+  { 'icon-name': 'property' },
+  { 'icon-name': 'puzzle-fill' },
+  { 'icon-name': 'puzzle' },
+  { 'icon-name': 'quote-left' },
+  { 'icon-name': 'quote-right' },
+  { 'icon-name': 'row-mix' },
+  { 'icon-name': 'row-view1' },
+  { 'icon-name': 'sidebar-r' },
+  { 'icon-name': 'text2' },
+  { 'icon-name': 'tile-thumb-fill' },
+  { 'icon-name': 'tile-thumb' },
+  { 'icon-name': 'view-col-fill' },
+  { 'icon-name': 'view-col-sq' },
+  { 'icon-name': 'view-col' },
+  { 'icon-name': 'view-col2' },
+  { 'icon-name': 'view-col3' },
+  { 'icon-name': 'view-cols-fill' },
+  { 'icon-name': 'view-cols-sq' },
+  { 'icon-name': 'view-cols' },
+  { 'icon-name': 'view-grid-fill' },
+  { 'icon-name': 'view-grid-sq' },
+  { 'icon-name': 'view-grid-wd' },
+  { 'icon-name': 'view-grid' },
+  { 'icon-name': 'view-grid2-wd' },
+  { 'icon-name': 'view-grid3-wd' },
+  { 'icon-name': 'view-group-fill' },
+  { 'icon-name': 'view-group-wd' },
+  { 'icon-name': 'view-list-fill' },
+  { 'icon-name': 'view-list-sq' },
+  { 'icon-name': 'view-list-wd' },
+  { 'icon-name': 'view-list' },
+  { 'icon-name': 'view-panel-fill' },
+  { 'icon-name': 'view-panel-sq' },
+  { 'icon-name': 'view-panel' },
+  { 'icon-name': 'view-row-fill' },
+  { 'icon-name': 'view-row-sq' },
+  { 'icon-name': 'view-row-wd' },
+  { 'icon-name': 'view-row' },
+  { 'icon-name': 'view-x1' },
+  { 'icon-name': 'view-x2' },
+  { 'icon-name': 'view-x3' },
+  { 'icon-name': 'view-x4' },
+  { 'icon-name': 'view-x5' },
+  { 'icon-name': 'view-x6' },
+  { 'icon-name': 'view-x7' },
+  { 'icon-name': 'dashlite' },
+  { 'icon-name': 'dashlite-circle' },
+  { 'icon-name': 'dashlite-alt' },
+  { 'icon-name': 'master-card' },
+  { 'icon-name': 'paypal' },
+  { 'icon-name': 'visa-alt' },
+  { 'icon-name': 'coin-eur' },
+  { 'icon-name': 'coin-gbp' },
+  { 'icon-name': 'sign-ada-alt' },
+  { 'icon-name': 'sign-bch-alt' },
+  { 'icon-name': 'sign-bgp-alt' },
+  { 'icon-name': 'sign-bnb-alt' },
+  { 'icon-name': 'sign-brl-alt' },
+  { 'icon-name': 'sign-btc-alt' },
+  { 'icon-name': 'sign-cc-alt' },
+  { 'icon-name': 'sign-cc-alt2' },
+  { 'icon-name': 'sign-chf-alt' },
+  { 'icon-name': 'sign-cny-alt' },
+  { 'icon-name': 'sign-czk-alt' },
+  { 'icon-name': 'sign-dash-alt' },
+  { 'icon-name': 'sign-dkk-alt' },
+  { 'icon-name': 'sign-eos-alt' },
+  { 'icon-name': 'sign-eth-alt' },
+  { 'icon-name': 'sign-eur-alt2' },
+  { 'icon-name': 'sign-euro-alt' },
+  { 'icon-name': 'sign-gbp-alt2' },
+  { 'icon-name': 'sign-hkd-alt' },
+  { 'icon-name': 'sign-idr-alt' },
+  { 'icon-name': 'sign-inr-alt' },
+  { 'icon-name': 'sign-jpy-alt' },
+  { 'icon-name': 'sign-kr-alt' },
+  { 'icon-name': 'sign-ltc-alt' },
+  { 'icon-name': 'sign-ltc' },
+  { 'icon-name': 'sign-mxn-alt' },
+  { 'icon-name': 'sign-mxr-alt' },
+  { 'icon-name': 'sign-myr-alt' },
+  { 'icon-name': 'sign-paypal-alt' },
+  { 'icon-name': 'sign-paypal-full' },
+  { 'icon-name': 'sign-php-alt' },
+  { 'icon-name': 'sign-pln-alt' },
+  { 'icon-name': 'sign-rub-alt' },
+  { 'icon-name': 'sign-sek-alt' },
+  { 'icon-name': 'sign-sgd-alt' },
+  { 'icon-name': 'sign-kobo-alt' },
+  { 'icon-name': 'sign-steem-alt' },
+  { 'icon-name': 'sign-steller-alt' },
+  { 'icon-name': 'sign-stripe-fulll' },
+  { 'icon-name': 'sign-thb-alt' },
+  { 'icon-name': 'sign-trx-alt' },
+  { 'icon-name': 'sign-try-alt' },
+  { 'icon-name': 'sign-usd-alt' },
+  { 'icon-name': 'sign-usd-alt2' },
+  { 'icon-name': 'sign-usdc-alt' },
+  { 'icon-name': 'sign-usdt-alt' },
+  { 'icon-name': 'sign-visa-alt' },
+  { 'icon-name': 'sign-vnd-alt' },
+  { 'icon-name': 'sign-waves-alt' },
+  { 'icon-name': 'sign-xem-alt' },
+  { 'icon-name': 'sign-xrp-new-alt' },
+  { 'icon-name': 'sign-xrp-old-alt' },
+  { 'icon-name': 'sign-zcash-alt' },
+  { 'icon-name': 'chevron-left' },
+  { 'icon-name': 'chevron-right' },
+  { 'icon-name': 'chevron-up' },
+  { 'icon-name': 'chevron-down' },
+  { 'icon-name': 'chevron-left-round' },
+  { 'icon-name': 'chevron-right-round' },
+  { 'icon-name': 'chevron-up-round' },
+  { 'icon-name': 'chevron-down-round' },
+  { 'icon-name': 'chevron-left-round-fill' },
+  { 'icon-name': 'chevron-right-round-fill' },
+  { 'icon-name': 'chevron-up-round-fill' },
+  { 'icon-name': 'chevron-down-round-fill' },
+  { 'icon-name': 'chevron-left-c' },
+  { 'icon-name': 'chevron-right-c' },
+  { 'icon-name': 'chevron-up-c' },
+  { 'icon-name': 'chevron-down-c' },
+  { 'icon-name': 'chevron-left-fill-c' },
+  { 'icon-name': 'chevron-right-fill-c' },
+  { 'icon-name': 'chevron-up-fill-c' },
+  { 'icon-name': 'chevron-down-fill-c' },
+  { 'icon-name': 'chevron-left-circle' },
+  { 'icon-name': 'chevron-right-circle' },
+  { 'icon-name': 'chevron-up-circle' },
+  { 'icon-name': 'chevron-down-circle' },
+  { 'icon-name': 'chevron-left-circle-fill' },
+  { 'icon-name': 'chevron-right-circle-fill' },
+  { 'icon-name': 'chevron-up-circle-fill' },
+  { 'icon-name': 'chevron-down-circle-fill' },
+  { 'icon-name': 'caret-left' },
+  { 'icon-name': 'caret-right' },
+  { 'icon-name': 'caret-up' },
+  { 'icon-name': 'caret-down' },
+  { 'icon-name': 'caret-left-fill' },
+  { 'icon-name': 'caret-right-fill' },
+  { 'icon-name': 'caret-up-fill' },
+  { 'icon-name': 'caret-down-fill' },
+  { 'icon-name': 'sort' },
+  { 'icon-name': 'sort-up' },
+  { 'icon-name': 'sort-down' },
+  { 'icon-name': 'sort-fill' },
+  { 'icon-name': 'sort-up-fill' },
+  { 'icon-name': 'sort-down-fill' },
+  { 'icon-name': 'sort-v' },
+  { 'icon-name': 'swap-v' },
+  { 'icon-name': 'swap' },
+  { 'icon-name': 'arrow-left-round' },
+  { 'icon-name': 'arrow-right-round' },
+  { 'icon-name': 'arrow-up-round' },
+  { 'icon-name': 'arrow-down-round' },
+  { 'icon-name': 'arrow-left-round-fill' },
+  { 'icon-name': 'arrow-right-round-fill' },
+  { 'icon-name': 'arrow-up-round-fill' },
+  { 'icon-name': 'arrow-down-round-fill' },
+  { 'icon-name': 'arrow-left-c' },
+  { 'icon-name': 'arrow-right-c' },
+  { 'icon-name': 'arrow-up-c' },
+  { 'icon-name': 'arrow-down-c' },
+  { 'icon-name': 'arrow-left-fill-c' },
+  { 'icon-name': 'arrow-right-fill-c' },
+  { 'icon-name': 'arrow-up-fill-c' },
+  { 'icon-name': 'arrow-down-fill-c' },
+  { 'icon-name': 'arrow-left-circle' },
+  { 'icon-name': 'arrow-right-circle' },
+  { 'icon-name': 'arrow-up-circle' },
+  { 'icon-name': 'arrow-down-circle' },
+  { 'icon-name': 'arrow-left-circle-fill' },
+  { 'icon-name': 'arrow-up-circle-fill' },
+  { 'icon-name': 'arrow-down-circle-fill' },
+  { 'icon-name': 'arrow-right-circle-fill' },
+  { 'icon-name': 'chevrons-left' },
+  { 'icon-name': 'chevrons-right' },
+  { 'icon-name': 'chevrons-up' },
+  { 'icon-name': 'chevrons-down' },
+  { 'icon-name': 'first' },
+  { 'icon-name': 'last' },
+  { 'icon-name': 'back-ios' },
+  { 'icon-name': 'forward-ios' },
+  { 'icon-name': 'upword-ios' },
+  { 'icon-name': 'downward-ios' },
+  { 'icon-name': 'back-alt' },
+  { 'icon-name': 'forward-alt' },
+  { 'icon-name': 'upword-alt' },
+  { 'icon-name': 'downward-alt' },
+  { 'icon-name': 'back-alt-fill' },
+  { 'icon-name': 'forward-alt-fill' },
+  { 'icon-name': 'upword-alt-fill' },
+  { 'icon-name': 'downward-alt-fill' },
+  { 'icon-name': 'arrow-long-left' },
+  { 'icon-name': 'arrow-long-right' },
+  { 'icon-name': 'arrow-long-up' },
+  { 'icon-name': 'arrow-long-down' },
+  { 'icon-name': 'arrow-left' },
+  { 'icon-name': 'arrow-right' },
+  { 'icon-name': 'arrow-up' },
+  { 'icon-name': 'arrow-down' },
+  { 'icon-name': 'arrow-up-left' },
+  { 'icon-name': 'arrow-up-right' },
+  { 'icon-name': 'arrow-down-left' },
+  { 'icon-name': 'arrow-down-right' },
+  { 'icon-name': 'arrow-to-left' },
+  { 'icon-name': 'arrow-to-right' },
+  { 'icon-name': 'arrow-to-up' },
+  { 'icon-name': 'arrow-to-down' },
+  { 'icon-name': 'arrow-from-left' },
+  { 'icon-name': 'arrow-from-right' },
+  { 'icon-name': 'arrow-from-up' },
+  { 'icon-name': 'arrow-from-down' },
+  { 'icon-name': 'curve-down-left' },
+  { 'icon-name': 'curve-up-right' },
+  { 'icon-name': 'curve-up-left' },
+  { 'icon-name': 'curve-down-right' },
+  { 'icon-name': 'curve-left-up' },
+  { 'icon-name': 'curve-right-up' },
+  { 'icon-name': 'curve-left-down' },
+  { 'icon-name': 'curve-right-down' },
+  { 'icon-name': 'back-arrow' },
+  { 'icon-name': 'forward-arrow' },
+  { 'icon-name': 'back-arrow-fill' },
+  { 'icon-name': 'forward-arrow-fill' },
+  { 'icon-name': 'navigate' },
+  { 'icon-name': 'navigate-up' },
+  { 'icon-name': 'navigate-fill' },
+  { 'icon-name': 'navigate-up-fill' },
+  { 'icon-name': 'send' },
+  { 'icon-name': 'send-alt' },
+  { 'icon-name': 'unfold-less' },
+  { 'icon-name': 'unfold-more' },
+  { 'icon-name': 'exchange-v' },
+  { 'icon-name': 'exchange' },
+  { 'icon-name': 'expand' },
+  { 'icon-name': 'shrink' },
+  { 'icon-name': 'focus' },
+  { 'icon-name': 'maximize' },
+  { 'icon-name': 'minimize' },
+  { 'icon-name': 'maximize-alt' },
+  { 'icon-name': 'minimize-alt' },
+  { 'icon-name': 'shuffle' },
+  { 'icon-name': 'cross-sm' },
+  { 'icon-name': 'cross' },
+  { 'icon-name': 'cross-round' },
+  { 'icon-name': 'cross-circle' },
+  { 'icon-name': 'cross-c' },
+  { 'icon-name': 'cross-round-fill' },
+  { 'icon-name': 'cross-circle-fill' },
+  { 'icon-name': 'cross-fill-c' },
+  { 'icon-name': 'na' },
+  { 'icon-name': 'check' },
+  { 'icon-name': 'check-thick' },
+  { 'icon-name': 'done' },
+  { 'icon-name': 'check-round' },
+  { 'icon-name': 'check-circle' },
+  { 'icon-name': 'check-c' },
+  { 'icon-name': 'check-round-fill' },
+  { 'icon-name': 'check-circle-fill' },
+  { 'icon-name': 'check-fill-c' },
+  { 'icon-name': 'check-circle-cut' },
+  { 'icon-name': 'check-round-cut' },
+  { 'icon-name': 'bullet' },
+  { 'icon-name': 'circle' },
+  { 'icon-name': 'square' },
+  { 'icon-name': 'square-c' },
+  { 'icon-name': 'bullet-fill' },
+  { 'icon-name': 'circle-fill' },
+  { 'icon-name': 'square-fill' },
+  { 'icon-name': 'square-fill-c' },
+  { 'icon-name': 'plus-sm' },
+  { 'icon-name': 'minus-sm' },
+  { 'icon-name': 'plus' },
+  { 'icon-name': 'minus' },
+  { 'icon-name': 'plus-round' },
+  { 'icon-name': 'minus-round' },
+  { 'icon-name': 'plus-circle' },
+  { 'icon-name': 'minus-circle' },
+  { 'icon-name': 'plus-c' },
+  { 'icon-name': 'minus-c' },
+  { 'icon-name': 'plus-round-fill' },
+  { 'icon-name': 'plus-circle-fill' },
+  { 'icon-name': 'minus-round-fill' },
+  { 'icon-name': 'minus-circle-fill' },
+  { 'icon-name': 'plus-fill-c' },
+  { 'icon-name': 'minus-fill-c' },
+  { 'icon-name': 'plus-medi' },
+  { 'icon-name': 'plus-medi-fill' },
+  { 'icon-name': 'equal-sm' },
+  { 'icon-name': 'equal' },
+  { 'icon-name': 'calc' },
+  { 'icon-name': 'search' },
+  { 'icon-name': 'zoom-out' },
+  { 'icon-name': 'zoom-in' },
+  { 'icon-name': 'play' },
+  { 'icon-name': 'play-fill' },
+  { 'icon-name': 'play-circle' },
+  { 'icon-name': 'play-circle-fill' },
+  { 'icon-name': 'pause' },
+  { 'icon-name': 'pause-fill' },
+  { 'icon-name': 'pause-circle' },
+  { 'icon-name': 'pause-circle-fill' },
+  { 'icon-name': 'stop' },
+  { 'icon-name': 'stop-fill' },
+  { 'icon-name': 'stop-circle' },
+  { 'icon-name': 'stop-circle-fill' },
+  { 'icon-name': 'rewind' },
+  { 'icon-name': 'forward' },
+  { 'icon-name': 'rewind-fill' },
+  { 'icon-name': 'forward-fill' },
+  { 'icon-name': 'step-back' },
+  { 'icon-name': 'step-forward' },
+  { 'icon-name': 'vol-off' },
+  { 'icon-name': 'vol-no' },
+  { 'icon-name': 'vol-half' },
+  { 'icon-name': 'vol' },
+  { 'icon-name': 'mic' },
+  { 'icon-name': 'mic-off' },
+  { 'icon-name': 'video' },
+  { 'icon-name': 'video-off' },
+  { 'icon-name': 'video-fill' },
+  { 'icon-name': 'loader' },
+  { 'icon-name': 'power' },
+  { 'icon-name': 'signout' },
+  { 'icon-name': 'signin' },
+  { 'icon-name': 'upload' },
+  { 'icon-name': 'download' },
+  { 'icon-name': 'alert-circle' },
+  { 'icon-name': 'alert' },
+  { 'icon-name': 'caution' },
+  { 'icon-name': 'report' },
+  { 'icon-name': 'alert-c' },
+  { 'icon-name': 'alert-circle-fill' },
+  { 'icon-name': 'alert-fill' },
+  { 'icon-name': 'caution-fill' },
+  { 'icon-name': 'report-fill' },
+  { 'icon-name': 'alert-fill-c' },
+  { 'icon-name': 'info-i' },
+  { 'icon-name': 'info' },
+  { 'icon-name': 'info-fill' },
+  { 'icon-name': 'help' },
+  { 'icon-name': 'help-fill' },
+  { 'icon-name': 'archived' },
+  { 'icon-name': 'archive' },
+  { 'icon-name': 'unarchive' },
+  { 'icon-name': 'archived-fill' },
+  { 'icon-name': 'archive-fill' },
+  { 'icon-name': 'unarchive-fill' },
+  { 'icon-name': 'bag' },
+  { 'icon-name': 'bag-fill' },
+  { 'icon-name': 'bell' },
+  { 'icon-name': 'bell-off' },
+  { 'icon-name': 'bell-fill' },
+  { 'icon-name': 'bell-off-fill' },
+  { 'icon-name': 'wifi' },
+  { 'icon-name': 'wifi-off' },
+  { 'icon-name': 'live' },
+  { 'icon-name': 'signal' },
+  { 'icon-name': 'bluetooth' },
+  { 'icon-name': 'blank-alt' },
+  { 'icon-name': 'blank' },
+  { 'icon-name': 'blankf-fill' },
+  { 'icon-name': 'block-over' },
+  { 'icon-name': 'book-read' },
+  { 'icon-name': 'book' },
+  { 'icon-name': 'book-fill' },
+  { 'icon-name': 'bulb-fill' },
+  { 'icon-name': 'bulb' },
+  { 'icon-name': 'calendar-alt-fill' },
+  { 'icon-name': 'calendar-alt' },
+  { 'icon-name': 'calendar-booking-fill' },
+  { 'icon-name': 'calendar-booking' },
+  { 'icon-name': 'calendar-check-fill' },
+  { 'icon-name': 'calendar-check' },
+  { 'icon-name': 'calendar-fill' },
+  { 'icon-name': 'calendar' },
+  { 'icon-name': 'calender-date-fill' },
+  { 'icon-name': 'calender-date' },
+  { 'icon-name': 'call' },
+  { 'icon-name': 'call-alt' },
+  { 'icon-name': 'call-alt-fill' },
+  { 'icon-name': 'call-fill' },
+  { 'icon-name': 'camera-fill' },
+  { 'icon-name': 'camera' },
+  { 'icon-name': 'capsule' },
+  { 'icon-name': 'capsule-fill' },
+  { 'icon-name': 'cards' },
+  { 'icon-name': 'cards-fill' },
+  { 'icon-name': 'cart' },
+  { 'icon-name': 'cart-fill' },
+  { 'icon-name': 'cc' },
+  { 'icon-name': 'cc-alt' },
+  { 'icon-name': 'cc-alt2' },
+  { 'icon-name': 'cc-secure' },
+  { 'icon-name': 'cc-new' },
+  { 'icon-name': 'cc-off' },
+  { 'icon-name': 'cc-fill' },
+  { 'icon-name': 'cc-alt-fill' },
+  { 'icon-name': 'cc-alt2-fill' },
+  { 'icon-name': 'cc-secure-fill' },
+  { 'icon-name': 'msg-circle' },
+  { 'icon-name': 'chat-circle' },
+  { 'icon-name': 'msg' },
+  { 'icon-name': 'chat' },
+  { 'icon-name': 'question-alt' },
+  { 'icon-name': 'question' },
+  { 'icon-name': 'msg-circle-fill' },
+  { 'icon-name': 'chat-circle-fill' },
+  { 'icon-name': 'msg-fill' },
+  { 'icon-name': 'chat-fill' },
+  { 'icon-name': 'clip-h' },
+  { 'icon-name': 'clip-v' },
+  { 'icon-name': 'clip' },
+  { 'icon-name': 'link-alt' },
+  { 'icon-name': 'unlink' },
+  { 'icon-name': 'unlink-alt' },
+  { 'icon-name': 'link-h' },
+  { 'icon-name': 'link-v' },
+  { 'icon-name': 'link' },
+  { 'icon-name': 'clipboard' },
+  { 'icon-name': 'clipboad-check' },
+  { 'icon-name': 'clipboard-fill' },
+  { 'icon-name': 'clipboad-check-fill' },
+  { 'icon-name': 'clock' },
+  { 'icon-name': 'clock-fill' },
+  { 'icon-name': 'cloud' },
+  { 'icon-name': 'upload-cloud' },
+  { 'icon-name': 'download-cloud' },
+  { 'icon-name': 'cloud-fill' },
+  { 'icon-name': 'contact' },
+  { 'icon-name': 'contact-fill' },
+  { 'icon-name': 'coffee' },
+  { 'icon-name': 'coffee-fill' },
+  { 'icon-name': 'box-view' },
+  { 'icon-name': 'col-view' },
+  { 'icon-name': 'sidebar' },
+  { 'icon-name': 'layout' },
+  { 'icon-name': 'table-view' },
+  { 'icon-name': 'layout2' },
+  { 'icon-name': 'row-view' },
+  { 'icon-name': 'dot-box' },
+  { 'icon-name': 'layout-fill' },
+  { 'icon-name': 'box-view-fill' },
+  { 'icon-name': 'sidebar-fill' },
+  { 'icon-name': 'table-view-fill' },
+  { 'icon-name': 'dot-box-fill' },
+  { 'icon-name': 'template' },
+  { 'icon-name': 'browser' },
+  { 'icon-name': 'toolbar' },
+  { 'icon-name': 'browser-fill' },
+  { 'icon-name': 'toolbar-fill' },
+  { 'icon-name': 'template-fill' },
+  { 'icon-name': 'box' },
+  { 'icon-name': 'package' },
+  { 'icon-name': 'layer' },
+  { 'icon-name': 'layers' },
+  { 'icon-name': 'panel' },
+  { 'icon-name': 'server' },
+  { 'icon-name': 'layer-fill' },
+  { 'icon-name': 'layers-fill' },
+  { 'icon-name': 'package-fill' },
+  { 'icon-name': 'panel-fill' },
+  { 'icon-name': 'server-fill' },
+  { 'icon-name': 'color-palette' },
+  { 'icon-name': 'color-palette-fill' },
+  { 'icon-name': 'copy' },
+  { 'icon-name': 'copy-fill' },
+  { 'icon-name': 'crop-alt' },
+  { 'icon-name': 'crop' },
+  { 'icon-name': 'target' },
+  { 'icon-name': 'crosshair' },
+  { 'icon-name': 'crosshair-fill' },
+  { 'icon-name': 'db-fill' },
+  { 'icon-name': 'db' },
+  { 'icon-name': 'hard-drive' },
+  { 'icon-name': 'cpu' },
+  { 'icon-name': 'disk' },
+  { 'icon-name': 'pen' },
+  { 'icon-name': 'edit-alt' },
+  { 'icon-name': 'pen-fill' },
+  { 'icon-name': 'edit-alt-fill' },
+  { 'icon-name': 'pen-alt-fill' },
+  { 'icon-name': 'edit-fill' },
+  { 'icon-name': 'edit' },
+  { 'icon-name': 'external-alt' },
+  { 'icon-name': 'external' },
+  { 'icon-name': 'eye-alt' },
+  { 'icon-name': 'eye-alt-fill' },
+  { 'icon-name': 'eye' },
+  { 'icon-name': 'eye-fill' },
+  { 'icon-name': 'eye-off' },
+  { 'icon-name': 'eye-off-fill' },
+  { 'icon-name': 'file' },
+  { 'icon-name': 'file-minus' },
+  { 'icon-name': 'file-plus' },
+  { 'icon-name': 'file-remove' },
+  { 'icon-name': 'file-check' },
+  { 'icon-name': 'file-code' },
+  { 'icon-name': 'file-docs' },
+  { 'icon-name': 'file-img' },
+  { 'icon-name': 'file-doc' },
+  { 'icon-name': 'file-pdf' },
+  { 'icon-name': 'file-xls' },
+  { 'icon-name': 'file-zip' },
+  { 'icon-name': 'file-download' },
+  { 'icon-name': 'file-text' },
+  { 'icon-name': 'files' },
+  { 'icon-name': 'file-fill' },
+  { 'icon-name': 'file-minus-fill' },
+  { 'icon-name': 'file-plus-fill' },
+  { 'icon-name': 'file-remove-fill' },
+  { 'icon-name': 'file-check-fill' },
+  { 'icon-name': 'file-text-fill' },
+  { 'icon-name': 'files-fill' },
+  { 'icon-name': 'folder' },
+  { 'icon-name': 'folder-minus' },
+  { 'icon-name': 'folder-plus' },
+  { 'icon-name': 'folder-remove' },
+  { 'icon-name': 'folder-check' },
+  { 'icon-name': 'folder-list' },
+  { 'icon-name': 'folders' },
+  { 'icon-name': 'folder-fill' },
+  { 'icon-name': 'folders-fill' },
+  { 'icon-name': 'filter-alt' },
+  { 'icon-name': 'sort-line' },
+  { 'icon-name': 'filter-fill' },
+  { 'icon-name': 'filter' },
+  { 'icon-name': 'flag' },
+  { 'icon-name': 'flag-fill' },
+  { 'icon-name': 'notify' },
+  { 'icon-name': 'dashboard' },
+  { 'icon-name': 'dashboard-fill' },
+  { 'icon-name': 'grid-sq' },
+  { 'icon-name': 'grid' },
+  { 'icon-name': 'grid-c' },
+  { 'icon-name': 'grid-alt' },
+  { 'icon-name': 'grid-plus' },
+  { 'icon-name': 'grid-add-c' },
+  { 'icon-name': 'grid-fill' },
+  { 'icon-name': 'grid-fill-c' },
+  { 'icon-name': 'grid-alt-fill' },
+  { 'icon-name': 'grid-plus-fill' },
+  { 'icon-name': 'grid-add-fill-c' },
+  { 'icon-name': 'grid-box-alt-fill' },
+  { 'icon-name': 'grid-box-alt' },
+  { 'icon-name': 'grid-box' },
+  { 'icon-name': 'grid-box-fill' },
+  { 'icon-name': 'grid-line' },
+  { 'icon-name': 'menu-alt-left' },
+  { 'icon-name': 'menu-alt-r' },
+  { 'icon-name': 'menu-alt' },
+  { 'icon-name': 'menu-center' },
+  { 'icon-name': 'menu-left' },
+  { 'icon-name': 'menu-right' },
+  { 'icon-name': 'menu' },
+  { 'icon-name': 'trend-up' },
+  { 'icon-name': 'trend-down' },
+  { 'icon-name': 'line-chart-down' },
+  { 'icon-name': 'line-chart-up' },
+  { 'icon-name': 'line-chart' },
+  { 'icon-name': 'bar-chart' },
+  { 'icon-name': 'bar-chart-alt' },
+  { 'icon-name': 'chart-up' },
+  { 'icon-name': 'chart-down' },
+  { 'icon-name': 'growth' },
+  { 'icon-name': 'growth-fill' },
+  { 'icon-name': 'bar-chart-fill' },
+  { 'icon-name': 'bar-c' },
+  { 'icon-name': 'bar-fill-c' },
+  { 'icon-name': 'pie' },
+  { 'icon-name': 'pie-alt' },
+  { 'icon-name': 'pie-fill' },
+  { 'icon-name': 'activity' },
+  { 'icon-name': 'activity-alt' },
+  { 'icon-name': 'activity-round' },
+  { 'icon-name': 'activity-round-fill' },
+  { 'icon-name': 'meter' },
+  { 'icon-name': 'speed' },
+  { 'icon-name': 'happy' },
+  { 'icon-name': 'sad' },
+  { 'icon-name': 'meh' },
+  { 'icon-name': 'happyf-fill' },
+  { 'icon-name': 'sad-fill' },
+  { 'icon-name': 'meh-fill' },
+  { 'icon-name': 'home' },
+  { 'icon-name': 'home-alt' },
+  { 'icon-name': 'home-fill' },
+  { 'icon-name': 'img' },
+  { 'icon-name': 'img-fill' },
+  { 'icon-name': 'inbox' },
+  { 'icon-name': 'inbox-in' },
+  { 'icon-name': 'inbox-out' },
+  { 'icon-name': 'inbox-fill' },
+  { 'icon-name': 'inbox-in-fill' },
+  { 'icon-name': 'inbox-out-fill' },
+  { 'icon-name': 'link-group' },
+  { 'icon-name': 'lock' },
+  { 'icon-name': 'lock-alt' },
+  { 'icon-name': 'lock-fill' },
+  { 'icon-name': 'lock-alt-fill' },
+  { 'icon-name': 'unlock' },
+  { 'icon-name': 'unlock-fill' },
+  { 'icon-name': 'mail' },
+  { 'icon-name': 'emails' },
+  { 'icon-name': 'mail-fill' },
+  { 'icon-name': 'emails-fill' },
+  { 'icon-name': 'map-pin' },
+  { 'icon-name': 'location' },
+  { 'icon-name': 'map' },
+  { 'icon-name': 'map-pin-fill' },
+  { 'icon-name': 'list' },
+  { 'icon-name': 'list-ol' },
+  { 'icon-name': 'align-center' },
+  { 'icon-name': 'align-justify' },
+  { 'icon-name': 'align-left' },
+  { 'icon-name': 'align-right' },
+  { 'icon-name': 'list-check' },
+  { 'icon-name': 'list-round' },
+  { 'icon-name': 'card-view' },
+  { 'icon-name': 'list-fill' },
+  { 'icon-name': 'save' },
+  { 'icon-name': 'save-fill' },
+  { 'icon-name': 'move' },
+  { 'icon-name': 'scissor' },
+  { 'icon-name': 'text' },
+  { 'icon-name': 'text-a' },
+  { 'icon-name': 'bold' },
+  { 'icon-name': 'italic' },
+  { 'icon-name': 'underline' },
+  { 'icon-name': 'percent' },
+  { 'icon-name': 'at' },
+  { 'icon-name': 'hash' },
+  { 'icon-name': 'code' },
+  { 'icon-name': 'code-download' },
+  { 'icon-name': 'terminal' },
+  { 'icon-name': 'cmd' },
+  { 'icon-name': 'sun' },
+  { 'icon-name': 'sun-fill' },
+  { 'icon-name': 'moon-fill' },
+  { 'icon-name': 'moon' },
+  { 'icon-name': 'light' },
+  { 'icon-name': 'light-fill' },
+  { 'icon-name': 'more-v' },
+  { 'icon-name': 'more-h' },
+  { 'icon-name': 'more-h-alt' },
+  { 'icon-name': 'more-v-alt' },
+  { 'icon-name': 'music' },
+  { 'icon-name': 'movie' },
+  { 'icon-name': 'offer' },
+  { 'icon-name': 'offer-fill' },
+  { 'icon-name': 'opt-alt' },
+  { 'icon-name': 'opt' },
+  { 'icon-name': 'opt-dot-alt' },
+  { 'icon-name': 'opt-dot' },
+  { 'icon-name': 'opt-dot-fill' },
+  { 'icon-name': 'opt-alt-fill' },
+  { 'icon-name': 'user-alt' },
+  { 'icon-name': 'user-alt-fill' },
+  { 'icon-name': 'user' },
+  { 'icon-name': 'users' },
+  { 'icon-name': 'user-add' },
+  { 'icon-name': 'user-remove' },
+  { 'icon-name': 'user-check' },
+  { 'icon-name': 'user-cross' },
+  { 'icon-name': 'account-setting' },
+  { 'icon-name': 'account-setting-alt' },
+  { 'icon-name': 'user-list' },
+  { 'icon-name': 'user-fill' },
+  { 'icon-name': 'users-fill' },
+  { 'icon-name': 'user-add-fill' },
+  { 'icon-name': 'user-remove-fill' },
+  { 'icon-name': 'user-check-fill' },
+  { 'icon-name': 'user-cross-fill' },
+  { 'icon-name': 'account-setting-fill' },
+  { 'icon-name': 'user-list-fill' },
+  { 'icon-name': 'user-circle' },
+  { 'icon-name': 'user-circle-fill' },
+  { 'icon-name': 'user-c' },
+  { 'icon-name': 'user-fill-c' },
+  { 'icon-name': 'user-round' },
+  { 'icon-name': 'printer' },
+  { 'icon-name': 'printer-fill' },
+  { 'icon-name': 'laptop' },
+  { 'icon-name': 'monitor' },
+  { 'icon-name': 'tablet' },
+  { 'icon-name': 'mobile' },
+  { 'icon-name': 'undo' },
+  { 'icon-name': 'redo' },
+  { 'icon-name': 'reload-alt' },
+  { 'icon-name': 'reload' },
+  { 'icon-name': 'regen-alt' },
+  { 'icon-name': 'regen' },
+  { 'icon-name': 'invest' },
+  { 'icon-name': 'histroy' },
+  { 'icon-name': 'update' },
+  { 'icon-name': 'repeat' },
+  { 'icon-name': 'repeat-v' },
+  { 'icon-name': 'tranx' },
+  { 'icon-name': 'reply-all' },
+  { 'icon-name': 'reply' },
+  { 'icon-name': 'reply-fill' },
+  { 'icon-name': 'reply-all-fill' },
+  { 'icon-name': 'notes' },
+  { 'icon-name': 'note-add' },
+  { 'icon-name': 'notes-alt' },
+  { 'icon-name': 'article' },
+  { 'icon-name': 'text-rich' },
+  { 'icon-name': 'todo' },
+  { 'icon-name': 'report-profit' },
+  { 'icon-name': 'reports-alt' },
+  { 'icon-name': 'reports' },
+  { 'icon-name': 'task' },
+  { 'icon-name': 'note-add-c' },
+  { 'icon-name': 'task-c' },
+  { 'icon-name': 'todo-fill' },
+  { 'icon-name': 'note-add-fill-c' },
+  { 'icon-name': 'task-fill-c' },
+  { 'icon-name': 'scan-fill' },
+  { 'icon-name': 'scan' },
+  { 'icon-name': 'qr' },
+  { 'icon-name': 'money' },
+  { 'icon-name': 'coins' },
+  { 'icon-name': 'coin' },
+  { 'icon-name': 'coin-alt' },
+  { 'icon-name': 'coin-alt-fill' },
+  { 'icon-name': 'setting-alt-fill' },
+  { 'icon-name': 'setting-alt' },
+  { 'icon-name': 'setting-fill' },
+  { 'icon-name': 'setting' },
+  { 'icon-name': 'share-alt' },
+  { 'icon-name': 'share-fill' },
+  { 'icon-name': 'share' },
+  { 'icon-name': 'network' },
+  { 'icon-name': 'rss' },
+  { 'icon-name': 'shield' },
+  { 'icon-name': 'shield-star' },
+  { 'icon-name': 'shield-check' },
+  { 'icon-name': 'shield-alert' },
+  { 'icon-name': 'shield-off' },
+  { 'icon-name': 'security' },
+  { 'icon-name': 'policy' },
+  { 'icon-name': 'shield-alert-fill' },
+  { 'icon-name': 'shield-check-fill' },
+  { 'icon-name': 'shield-fill' },
+  { 'icon-name': 'shield-half' },
+  { 'icon-name': 'shield-star-fill' },
+  { 'icon-name': 'policy-fill' },
+  { 'icon-name': 'spark' },
+  { 'icon-name': 'spark-off' },
+  { 'icon-name': 'spark-fill' },
+  { 'icon-name': 'spark-off-fill' },
+  { 'icon-name': 'wallet' },
+  { 'icon-name': 'wallet-alt' },
+  { 'icon-name': 'wallet-in' },
+  { 'icon-name': 'wallet-out' },
+  { 'icon-name': 'wallet-saving' },
+  { 'icon-name': 'wallet-fill' },
+  { 'icon-name': 'star' },
+  { 'icon-name': 'star-half' },
+  { 'icon-name': 'star-half-fill' },
+  { 'icon-name': 'star-fill' },
+  { 'icon-name': 'star-round' },
+  { 'icon-name': 'heart' },
+  { 'icon-name': 'heart-fill' },
+  { 'icon-name': 'swap-alt-fill' },
+  { 'icon-name': 'swap-alt' },
+  { 'icon-name': 'thumbs-down' },
+  { 'icon-name': 'thumbs-up' },
+  { 'icon-name': 'tag' },
+  { 'icon-name': 'tag-alt' },
+  { 'icon-name': 'tags' },
+  { 'icon-name': 'tag-fill' },
+  { 'icon-name': 'tag-alt-fill' },
+  { 'icon-name': 'tags-fill' },
+  { 'icon-name': 'bookmark' },
+  { 'icon-name': 'bookmark-fill' },
+  { 'icon-name': 'label' },
+  { 'icon-name': 'label-fill' },
+  { 'icon-name': 'piority' },
+  { 'icon-name': 'piority-fill' },
+  { 'icon-name': 'label-alt' },
+  { 'icon-name': 'label-alt-fill' },
+  { 'icon-name': 'ticket-alt' },
+  { 'icon-name': 'ticket' },
+  { 'icon-name': 'ticket-minus' },
+  { 'icon-name': 'ticket-plus' },
+  { 'icon-name': 'ticket-alt-fill' },
+  { 'icon-name': 'ticket-fill' },
+  { 'icon-name': 'ticket-minus-fill' },
+  { 'icon-name': 'ticket-plus-fill' },
+  { 'icon-name': 'toggle-off' },
+  { 'icon-name': 'toggle-on' },
+  { 'icon-name': 'trash-alt' },
+  { 'icon-name': 'trash-empty' },
+  { 'icon-name': 'trash' },
+  { 'icon-name': 'trash-fill' },
+  { 'icon-name': 'trash-empty-fill' },
+  { 'icon-name': 'delete-fill' },
+  { 'icon-name': 'delete' },
+  { 'icon-name': 'alarm-alt' },
+  { 'icon-name': 'alarm' },
+  { 'icon-name': 'bugs' },
+  { 'icon-name': 'building' },
+  { 'icon-name': 'building-fill' },
+  { 'icon-name': 'headphone' },
+  { 'icon-name': 'headphone-fill' },
+  { 'icon-name': 'aperture' },
+  { 'icon-name': 'help-alt' },
+  { 'icon-name': 'award' },
+  { 'icon-name': 'briefcase' },
+  { 'icon-name': 'gift' },
+  { 'icon-name': 'globe' },
+  { 'icon-name': 'umbrela' },
+  { 'icon-name': 'truck' },
+  { 'icon-name': 'sign-usd' },
+  { 'icon-name': 'sign-dollar' },
+  { 'icon-name': 'sign-mxn' },
+  { 'icon-name': 'sign-sgd' },
+  { 'icon-name': 'sign-euro' },
+  { 'icon-name': 'sign-eur' },
+  { 'icon-name': 'sign-gbp' },
+  { 'icon-name': 'sign-pound' },
+  { 'icon-name': 'sign-thb' },
+  { 'icon-name': 'sign-inr' },
+  { 'icon-name': 'sign-jpy' },
+  { 'icon-name': 'sign-yen' },
+  { 'icon-name': 'sign-cny' },
+  { 'icon-name': 'sign-kobo' },
+  { 'icon-name': 'sign-chf' },
+  { 'icon-name': 'sign-vnd' },
+  { 'icon-name': 'sign-php' },
+  { 'icon-name': 'sign-brl' },
+  { 'icon-name': 'sign-idr' },
+  { 'icon-name': 'sign-czk' },
+  { 'icon-name': 'sign-hkd' },
+  { 'icon-name': 'sign-kr' },
+  { 'icon-name': 'sign-dkk' },
+  { 'icon-name': 'sign-nok' },
+  { 'icon-name': 'sign-sek' },
+  { 'icon-name': 'sign-rub' },
+  { 'icon-name': 'sign-myr' },
+  { 'icon-name': 'sign-pln' },
+  { 'icon-name': 'sign-try' },
+  { 'icon-name': 'sign-waves' },
+  { 'icon-name': 'waves' },
+  { 'icon-name': 'sign-trx' },
+  { 'icon-name': 'tron' },
+  { 'icon-name': 'sign-xem' },
+  { 'icon-name': 'nem' },
+  { 'icon-name': 'sign-mxr' },
+  { 'icon-name': 'monero' },
+  { 'icon-name': 'sign-usdc' },
+  { 'icon-name': 'sign-steller' },
+  { 'icon-name': 'sign-steem' },
+  { 'icon-name': 'sign-usdt' },
+  { 'icon-name': 'tether' },
+  { 'icon-name': 'sign-btc' },
+  { 'icon-name': 'bitcoin' },
+  { 'icon-name': 'sign-bch' },
+  { 'icon-name': 'bitcoin-cash' },
+  { 'icon-name': 'sign-bnb' },
+  { 'icon-name': 'binance' },
+  { 'icon-name': 'sign-ada' },
+  { 'icon-name': 'sign-zcash' },
+  { 'icon-name': 'sign-eth' },
+  { 'icon-name': 'ethereum' },
+  { 'icon-name': 'sign-dash' },
+  { 'icon-name': 'dash' },
+  { 'icon-name': 'sign-xrp-old' },
+  { 'icon-name': 'ripple-old' },
+  { 'icon-name': 'sign-eos' },
+  { 'icon-name': 'eos' },
+  { 'icon-name': 'sign-xrp' },
+  { 'icon-name': 'ripple' },
+  { 'icon-name': 'american-express' },
+  { 'icon-name': 'jcb' },
+  { 'icon-name': 'cc-jcb' },
+  { 'icon-name': 'mc' },
+  { 'icon-name': 'cc-mc' },
+  { 'icon-name': 'discover' },
+  { 'icon-name': 'cc-discover' },
+  { 'icon-name': 'visa' },
+  { 'icon-name': 'cc-visa' },
+  { 'icon-name': 'cc-paypal' },
+  { 'icon-name': 'cc-stripe' },
+  { 'icon-name': 'amazon-pay' },
+  { 'icon-name': 'amazon-pay-fill' },
+  { 'icon-name': 'google-pay' },
+  { 'icon-name': 'google-pay-fill' },
+  { 'icon-name': 'apple-pay' },
+  { 'icon-name': 'apple-pay-fill' },
+  { 'icon-name': 'angular' },
+  { 'icon-name': 'react' },
+  { 'icon-name': 'laravel' },
+  { 'icon-name': 'html5' },
+  { 'icon-name': 'css3-fill' },
+  { 'icon-name': 'css3' },
+  { 'icon-name': 'js' },
+  { 'icon-name': 'php' },
+  { 'icon-name': 'python' },
+  { 'icon-name': 'bootstrap' },
+  { 'icon-name': 'ebay' },
+  { 'icon-name': 'google-wallet' },
+  { 'icon-name': 'google-drive' },
+  { 'icon-name': 'google-play-store' },
+  { 'icon-name': 'android' },
+  { 'icon-name': 'blogger-fill' },
+  { 'icon-name': 'blogger' },
+  { 'icon-name': 'hangout' },
+  { 'icon-name': 'apple-store' },
+  { 'icon-name': 'apple-store-ios' },
+  { 'icon-name': 'stripe' },
+  { 'icon-name': 'apple' },
+  { 'icon-name': 'microsoft' },
+  { 'icon-name': 'windows' },
+  { 'icon-name': 'amazon' },
+  { 'icon-name': 'paypal-alt' },
+  { 'icon-name': 'airbnb' },
+  { 'icon-name': 'adobe' },
+  { 'icon-name': 'mailchimp' },
+  { 'icon-name': 'dropbox' },
+  { 'icon-name': 'digital-ocean' },
+  { 'icon-name': 'slack' },
+  { 'icon-name': 'slack-hash' },
+  { 'icon-name': 'stack-overflow' },
+  { 'icon-name': 'soundcloud' },
+  { 'icon-name': 'blackberry' },
+  { 'icon-name': 'spotify' },
+  { 'icon-name': 'kickstarter' },
+  { 'icon-name': 'houzz' },
+  { 'icon-name': 'vine' },
+  { 'icon-name': 'yelp' },
+  { 'icon-name': 'yoast' },
+  { 'icon-name': 'envato' },
+  { 'icon-name': 'wordpress' },
+  { 'icon-name': 'wp' },
+  { 'icon-name': 'wordpress-fill' },
+  { 'icon-name': 'elementor' },
+  { 'icon-name': 'joomla' },
+  { 'icon-name': 'megento' },
+  { 'icon-name': 'git' },
+  { 'icon-name': 'github' },
+  { 'icon-name': 'github-round' },
+  { 'icon-name': 'github-circle' },
+  { 'icon-name': 'dribbble' },
+  { 'icon-name': 'dribbble-round' },
+  { 'icon-name': 'behance' },
+  { 'icon-name': 'behance-fill' },
+  { 'icon-name': 'flickr' },
+  { 'icon-name': 'flickr-round' },
+  { 'icon-name': 'medium' },
+  { 'icon-name': 'medium-round' },
+  { 'icon-name': 'reddit' },
+  { 'icon-name': 'reddit-round' },
+  { 'icon-name': 'reddit-circle' },
+  { 'icon-name': 'google' },
+  { 'icon-name': 'facebook-f' },
+  { 'icon-name': 'facebook-fill' },
+  { 'icon-name': 'facebook-circle' },
+  { 'icon-name': 'instagram' },
+  { 'icon-name': 'instagram-round' },
+  { 'icon-name': 'linkedin' },
+  { 'icon-name': 'linkedin-round' },
+  { 'icon-name': 'twitter' },
+  { 'icon-name': 'twitter-round' },
+  { 'icon-name': 'pinterest' },
+  { 'icon-name': 'pinterest-round' },
+  { 'icon-name': 'pinterest-circle' },
+  { 'icon-name': 'tumblr' },
+  { 'icon-name': 'tumblr-round' },
+  { 'icon-name': 'skype' },
+  { 'icon-name': 'viber' },
+  { 'icon-name': 'whatsapp' },
+  { 'icon-name': 'whatsapp-round' },
+  { 'icon-name': 'snapchat' },
+  { 'icon-name': 'snapchat-fill' },
+  { 'icon-name': 'telegram' },
+  { 'icon-name': 'telegram-circle' },
+  { 'icon-name': 'youtube-line' },
+  { 'icon-name': 'youtube' },
+  { 'icon-name': 'youtube-fill' },
+  { 'icon-name': 'youtube-round' },
+  { 'icon-name': 'vimeo' },
+  { 'icon-name': 'vimeo-fill' },
+]
 
 export const svgData = [
   {
@@ -1126,7 +1126,7 @@ export const svgData = [
         <path fill="none" d="M17.32 11.6H28.32V22.6H17.32z"></path>
       </svg>
     ),
-    name: "Account Secure",
+    name: 'Account Secure',
   },
   {
     svg: (
@@ -1227,7 +1227,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Bills",
+    name: 'Bills',
   },
   {
     svg: (
@@ -1277,7 +1277,15 @@ export const svgData = [
           strokeWidth="2"
           d="M17 50L36 50"
         ></path>
-        <rect width="15" height="8" x="16" y="31" fill="#c4cefe" rx="1" ry="1"></rect>
+        <rect
+          width="15"
+          height="8"
+          x="16"
+          y="31"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
         <path
           fill="#fff"
           stroke="#6576ff"
@@ -1286,7 +1294,10 @@ export const svgData = [
           strokeWidth="2"
           d="M76.79 72.87L32.22 86.73a6 6 0 01-7.47-4L17 57.71a6 6 0 014-7.51l44.52-13.86a6 6 0 017.48 4l7.73 25.06a6 6 0 01-3.94 7.47z"
         ></path>
-        <path fill="#6576ff" d="M75.27 47.3L19.28 64.71 17.14 57.76 73.12 40.35 75.27 47.3z"></path>
+        <path
+          fill="#6576ff"
+          d="M75.27 47.3L19.28 64.71 17.14 57.76 73.12 40.35 75.27 47.3z"
+        ></path>
         <path
           fill="#c4cefe"
           d="M30 77.65l-1.9-6.79a1 1 0 01.69-1.23l4.59-1.3a1 1 0 011.23.7l1.9 6.78a1 1 0 01-.67 1.19l-4.59 1.3a1 1 0 01-1.25-.65zM41.23 74.48l-1.9-6.78a1 1 0 01.67-1.23l4.58-1.3a1 1 0 011.23.69l1.9 6.78a1 1 0 01-.71 1.24l-4.58 1.29a1 1 0 01-1.19-.69zM52.43 71.32l-1.9-6.79a1 1 0 01.69-1.23l4.59-1.3a1 1 0 011.19.7l1.9 6.78a1 1 0 01-.69 1.23L53.66 72a1 1 0 01-1.23-.68z"
@@ -1302,7 +1313,13 @@ export const svgData = [
           rx="16.04"
           ry="16.1"
         ></ellipse>
-        <ellipse cx="55.46" cy="19.1" fill="#e3e7fe" rx="12.11" ry="12.16"></ellipse>
+        <ellipse
+          cx="55.46"
+          cy="19.1"
+          fill="#e3e7fe"
+          rx="12.11"
+          ry="12.16"
+        ></ellipse>
         <text
           fill="#6576ff"
           fontFamily="Nunito-Black, Nunito Black"
@@ -1313,7 +1330,7 @@ export const svgData = [
         </text>
       </svg>
     ),
-    name: "Card Credit",
+    name: 'Card Credit',
   },
   {
     svg: (
@@ -1375,15 +1392,87 @@ export const svgData = [
           strokeWidth="2"
           d="M11 32.5H24V41.5H11z"
         ></path>
-        <rect width="2" height="5" x="10" y="47.5" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="2" height="5" x="16" y="47.5" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="2" height="5" x="23" y="47.5" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="2" height="5" x="30" y="47.5" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="2" height="5" x="37" y="47.5" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="2" height="5" x="43" y="47.5" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="2" height="5" x="50" y="47.5" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="2" height="5" x="57" y="47.5" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="2" height="5" x="64" y="47.5" fill="#c4cefe" rx="1" ry="1"></rect>
+        <rect
+          width="2"
+          height="5"
+          x="10"
+          y="47.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="2"
+          height="5"
+          x="16"
+          y="47.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="2"
+          height="5"
+          x="23"
+          y="47.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="2"
+          height="5"
+          x="30"
+          y="47.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="2"
+          height="5"
+          x="37"
+          y="47.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="2"
+          height="5"
+          x="43"
+          y="47.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="2"
+          height="5"
+          x="50"
+          y="47.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="2"
+          height="5"
+          x="57"
+          y="47.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="2"
+          height="5"
+          x="64"
+          y="47.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
         <path fill="#c4cefe" d="M65 32.5H69V38.5H65z"></path>
         <path fill="#c4cefe" d="M58 32.5H62V38.5H58z"></path>
         <path fill="#c4cefe" d="M51 32.5H55V38.5H51z"></path>
@@ -1413,7 +1502,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Card Debit",
+    name: 'Card Debit',
   },
   {
     svg: (
@@ -1534,10 +1623,13 @@ export const svgData = [
           d="M68.33 59h9.34A1.3 1.3 0 0179 60.27v4.46A1.3 1.3 0 0177.67 66h-9.34A1.3 1.3 0 0167 64.73v-4.46A1.3 1.3 0 0168.33 59z"
         ></path>
         <ellipse cx="73" cy="61.74" fill="#fff" rx="1.11" ry="1.12"></ellipse>
-        <path fill="#fff" d="M72.5 62.38h1v1.5a.5.5 0 01-.5.5.5.5 0 01-.5-.5v-1.5z"></path>
+        <path
+          fill="#fff"
+          d="M72.5 62.38h1v1.5a.5.5 0 01-.5.5.5.5 0 01-.5-.5v-1.5z"
+        ></path>
       </svg>
     ),
-    name: "Card Secure",
+    name: 'Card Secure',
   },
   {
     svg: (
@@ -1555,8 +1647,18 @@ export const svgData = [
           fill="#eff1ff"
           d="M71 37v-3.4a1.6 1.6 0 00-1.6-1.6H54.6a1.6 1.6 0 00-1.6 1.6v14.79A1.61 1.61 0 0054.61 50H69.4a1.6 1.6 0 001.6-1.6V37z"
         ></path>
-        <path fill="none" stroke="#6576ff" strokeWidth="1.5" d="M60 42L60 45"></path>
-        <path fill="none" stroke="#6576ff" strokeWidth="1.5" d="M58 46L56 46"></path>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeWidth="1.5"
+          d="M60 42L60 45"
+        ></path>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeWidth="1.5"
+          d="M58 46L56 46"
+        ></path>
         <path
           fill="none"
           stroke="#6576ff"
@@ -1581,8 +1683,16 @@ export const svgData = [
           strokeWidth="1.5"
           d="M64 42H68V46H64z"
         ></path>
-        <path fill="none" stroke="#6576ff" strokeWidth="1.5" d="M58 42L56 42 56 44"></path>
-        <path fill="#e3e7fe" d="M76 62H46v-9h30a2 2 0 012 2v5a2 2 0 01-2 2z"></path>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeWidth="1.5"
+          d="M58 42L56 42 56 44"
+        ></path>
+        <path
+          fill="#e3e7fe"
+          d="M76 62H46v-9h30a2 2 0 012 2v5a2 2 0 01-2 2z"
+        ></path>
         <circle
           cx="70"
           cy="28"
@@ -1695,7 +1805,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Code Scan",
+    name: 'Code Scan',
   },
   {
     svg: (
@@ -1713,7 +1823,10 @@ export const svgData = [
           rx="7"
           ry="7"
         ></rect>
-        <path fill="#b3c2ff" d="M12 23h56a6 6 0 016 6v6H6v-6a6 6 0 016-6z"></path>
+        <path
+          fill="#b3c2ff"
+          d="M12 23h56a6 6 0 016 6v6H6v-6a6 6 0 016-6z"
+        ></path>
         <path
           fill="none"
           stroke="#6576ff"
@@ -1735,7 +1848,10 @@ export const svgData = [
           rx="7"
           ry="7"
         ></rect>
-        <path fill="#e3e7fe" d="M22 9h56a6 6 0 016 6v6H16v-6a6 6 0 016-6z"></path>
+        <path
+          fill="#e3e7fe"
+          d="M22 9h56a6 6 0 016 6v6H16v-6a6 6 0 016-6z"
+        ></path>
         <path
           fill="none"
           stroke="#6576ff"
@@ -1786,7 +1902,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Codes",
+    name: 'Codes',
   },
   {
     svg: (
@@ -1847,10 +1963,42 @@ export const svgData = [
           strokeWidth="2"
         ></circle>
         <path fill="#eff1ff" d="M7.5 25H35.5V60H7.5z"></path>
-        <rect width="4" height="6" x="10.5" y="40" fill="#c4cefe" rx="2" ry="2"></rect>
-        <rect width="4" height="6" x="16.5" y="40" fill="#c4cefe" rx="2" ry="2"></rect>
-        <rect width="4" height="6" x="22.5" y="40" fill="#c4cefe" rx="2" ry="2"></rect>
-        <rect width="4" height="6" x="28.5" y="40" fill="#c4cefe" rx="2" ry="2"></rect>
+        <rect
+          width="4"
+          height="6"
+          x="10.5"
+          y="40"
+          fill="#c4cefe"
+          rx="2"
+          ry="2"
+        ></rect>
+        <rect
+          width="4"
+          height="6"
+          x="16.5"
+          y="40"
+          fill="#c4cefe"
+          rx="2"
+          ry="2"
+        ></rect>
+        <rect
+          width="4"
+          height="6"
+          x="22.5"
+          y="40"
+          fill="#c4cefe"
+          rx="2"
+          ry="2"
+        ></rect>
+        <rect
+          width="4"
+          height="6"
+          x="28.5"
+          y="40"
+          fill="#c4cefe"
+          rx="2"
+          ry="2"
+        ></rect>
         <rect
           width="36"
           height="62"
@@ -1907,10 +2055,42 @@ export const svgData = [
           strokeWidth="2"
         ></circle>
         <path fill="#eff1ff" d="M54.5 25H82.5V60H54.5z"></path>
-        <rect width="4" height="6" x="57.5" y="39" fill="#c4cefe" rx="2" ry="2"></rect>
-        <rect width="4" height="6" x="63.5" y="39" fill="#c4cefe" rx="2" ry="2"></rect>
-        <rect width="4" height="6" x="69.5" y="39" fill="#c4cefe" rx="2" ry="2"></rect>
-        <rect width="4" height="6" x="75.5" y="39" fill="#c4cefe" rx="2" ry="2"></rect>
+        <rect
+          width="4"
+          height="6"
+          x="57.5"
+          y="39"
+          fill="#c4cefe"
+          rx="2"
+          ry="2"
+        ></rect>
+        <rect
+          width="4"
+          height="6"
+          x="63.5"
+          y="39"
+          fill="#c4cefe"
+          rx="2"
+          ry="2"
+        ></rect>
+        <rect
+          width="4"
+          height="6"
+          x="69.5"
+          y="39"
+          fill="#c4cefe"
+          rx="2"
+          ry="2"
+        ></rect>
+        <rect
+          width="4"
+          height="6"
+          x="75.5"
+          y="39"
+          fill="#c4cefe"
+          rx="2"
+          ry="2"
+        ></rect>
         <ellipse
           cx="45.51"
           cy="44"
@@ -1937,7 +2117,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Connect Secure",
+    name: 'Connect Secure',
   },
   {
     svg: (
@@ -2072,7 +2252,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Customize",
+    name: 'Customize',
   },
   {
     svg: (
@@ -2193,16 +2373,31 @@ export const svgData = [
           strokeWidth="2"
           d="M14.69 76.66L14.69 76.66"
         ></path>
-        <path fill="none" stroke="#6576ff" strokeLinecap="round" strokeLinejoin="round" d="M13.5 49.5L16.5 49.5"></path>
-        <path fill="none" stroke="#6576ff" strokeLinecap="round" strokeLinejoin="round" d="M3.5 73.5L26.5 73.5"></path>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M13.5 49.5L16.5 49.5"
+        ></path>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3.5 73.5L26.5 73.5"
+        ></path>
       </svg>
     ),
-    name: "Devices",
+    name: 'Devices',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90">
-        <path fill="#fff" d="M64.77 26.89L34.1 48 4.5 26.89 32.84 7.4a2.26 2.26 0 012.53 0z"></path>
+        <path
+          fill="#fff"
+          d="M64.77 26.89L34.1 48 4.5 26.89 32.84 7.4a2.26 2.26 0 012.53 0z"
+        ></path>
         <path
           fill="#fff"
           stroke="#6576ff"
@@ -2355,7 +2550,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Emails",
+    name: 'Emails',
   },
   {
     svg: (
@@ -2447,7 +2642,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "File Doc",
+    name: 'File Doc',
   },
   {
     svg: (
@@ -2523,7 +2718,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "File Excel",
+    name: 'File Excel',
   },
   {
     svg: (
@@ -2593,7 +2788,7 @@ export const svgData = [
         ></circle>
       </svg>
     ),
-    name: "File Media",
+    name: 'File Media',
   },
   {
     svg: (
@@ -2633,7 +2828,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "File PDF",
+    name: 'File PDF',
   },
   {
     svg: (
@@ -2709,7 +2904,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "File Word",
+    name: 'File Word',
   },
   {
     svg: (
@@ -2757,7 +2952,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "File ZIP",
+    name: 'File ZIP',
   },
   {
     svg: (
@@ -2860,7 +3055,7 @@ export const svgData = [
         </text>
       </svg>
     ),
-    name: "Invoice",
+    name: 'Invoice',
   },
   {
     svg: (
@@ -2907,7 +3102,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Loop",
+    name: 'Loop',
   },
   {
     svg: (
@@ -2932,7 +3127,10 @@ export const svgData = [
           strokeWidth="2"
           rx="2"
         ></rect>
-        <path fill="#e3e7fe" d="M26.5 13h44v58a2 2 0 01-2 2h-40a2 2 0 01-2-2V13z"></path>
+        <path
+          fill="#e3e7fe"
+          d="M26.5 13h44v58a2 2 0 01-2 2h-40a2 2 0 01-2-2V13z"
+        ></path>
         <rect
           width="48"
           height="14"
@@ -2969,8 +3167,17 @@ export const svgData = [
           d="M20 70v-2.53a3.5 3.5 0 017 0V70"
         ></path>
         <circle cx="23.5" cy="73.23" r="1.5" fill="#fff"></circle>
-        <path fill="#fff" d="M22.5 74.23h2v1.24a.76.76 0 01-.76.76h-.47a.76.76 0 01-.76-.76v-1.24h-.01z"></path>
-        <g fill="none" stroke="#6576ff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
+        <path
+          fill="#fff"
+          d="M22.5 74.23h2v1.24a.76.76 0 01-.76.76h-.47a.76.76 0 01-.76-.76v-1.24h-.01z"
+        ></path>
+        <g
+          fill="none"
+          stroke="#6576ff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+        >
           <path d="M48.5 69.5v5M50.5 70.79l-4 2.52M50.5 73.31l-4-2.52M57.17 69.5v5M59.17 70.79l-4 2.52M59.17 73.31l-4-2.52M65.83 69.5v5M67.83 70.79l-4 2.52M67.83 73.31l-4-2.52M74.5 69.5v5M76.5 70.79l-4 2.52M76.5 73.31l-4-2.52"></path>
         </g>
         <path fill="#fff" d="M30.5 36h34v5h-34zM30.5 43.75h34v5h-34z"></path>
@@ -2985,7 +3192,7 @@ export const svgData = [
         <circle cx="48.5" cy="23.5" r="7.5" fill="#c4cefe"></circle>
       </svg>
     ),
-    name: "Password Secure",
+    name: 'Password Secure',
   },
   {
     svg: (
@@ -3029,7 +3236,13 @@ export const svgData = [
           rx="7"
           ry="7"
         ></rect>
-        <path fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2" d="M15 29L75 29"></path>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+          d="M15 29L75 29"
+        ></path>
         <circle cx="53" cy="23" r="2" fill="#c4cefe"></circle>
         <circle cx="60" cy="23" r="2" fill="#c4cefe"></circle>
         <circle cx="67" cy="23" r="2" fill="#c4cefe"></circle>
@@ -3114,7 +3327,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Profile",
+    name: 'Profile',
   },
   {
     svg: (
@@ -3145,7 +3358,15 @@ export const svgData = [
           strokeLinejoin="round"
           strokeWidth="2"
         ></circle>
-        <rect width="16" height="8" x="34" y="33.5" fill="#c4cefe" rx="1" ry="1"></rect>
+        <rect
+          width="16"
+          height="8"
+          x="34"
+          y="33.5"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
         <path
           fill="none"
           stroke="#c4cefe"
@@ -3204,7 +3425,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Recheck",
+    name: 'Recheck',
   },
   {
     svg: (
@@ -3246,7 +3467,14 @@ export const svgData = [
           strokeWidth="2"
           d="M42 77L58 77"
         ></path>
-        <circle cx="38" cy="77" r="0.5" fill="#c4cefe" stroke="#c4cefe" strokeMiterlimit="10"></circle>
+        <circle
+          cx="38"
+          cy="77"
+          r="0.5"
+          fill="#c4cefe"
+          stroke="#c4cefe"
+          strokeMiterlimit="10"
+        ></circle>
         <path
           fill="none"
           stroke="#c4cefe"
@@ -3255,7 +3483,14 @@ export const svgData = [
           strokeWidth="2"
           d="M42 72L58 72"
         ></path>
-        <circle cx="38" cy="72" r="0.5" fill="#c4cefe" stroke="#c4cefe" strokeMiterlimit="10"></circle>
+        <circle
+          cx="38"
+          cy="72"
+          r="0.5"
+          fill="#c4cefe"
+          stroke="#c4cefe"
+          strokeMiterlimit="10"
+        ></circle>
         <path
           fill="none"
           stroke="#c4cefe"
@@ -3264,7 +3499,14 @@ export const svgData = [
           strokeWidth="2"
           d="M42 66L58 66"
         ></path>
-        <circle cx="38" cy="66" r="0.5" fill="#c4cefe" stroke="#c4cefe" strokeMiterlimit="10"></circle>
+        <circle
+          cx="38"
+          cy="66"
+          r="0.5"
+          fill="#c4cefe"
+          stroke="#c4cefe"
+          strokeMiterlimit="10"
+        ></circle>
         <path
           fill="#e3e7fe"
           stroke="#6576ff"
@@ -3299,7 +3541,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Reports",
+    name: 'Reports',
   },
   {
     svg: (
@@ -3359,7 +3601,15 @@ export const svgData = [
           strokeWidth="2"
           d="M58 66L58 74"
         ></path>
-        <rect width="50" height="34" x="25" y="24" fill="#eff1ff" rx="3" ry="3"></rect>
+        <rect
+          width="50"
+          height="34"
+          x="25"
+          y="24"
+          fill="#eff1ff"
+          rx="3"
+          ry="3"
+        ></rect>
         <path
           fill="none"
           stroke="#6576ff"
@@ -3466,7 +3716,7 @@ export const svgData = [
         ></circle>
       </svg>
     ),
-    name: "Settings",
+    name: 'Settings',
   },
   {
     svg: (
@@ -3512,7 +3762,7 @@ export const svgData = [
         </text>
       </svg>
     ),
-    name: "Support",
+    name: 'Support',
   },
   {
     svg: (
@@ -3593,7 +3843,10 @@ export const svgData = [
           fill="#6576ff"
           d="M67 40h9a9.59 9.59 0 008 8.32s.89 19-17 27.68c-17.88-8.72-17-27.68-17-27.68A9.59 9.59 0 0058 40z"
         ></path>
-        <path fill="#fff" d="M67 72.51c-14.88-7.16-14.14-22.69-14.14-22.69A7.94 7.94 0 0059.52 43H67z"></path>
+        <path
+          fill="#fff"
+          d="M67 72.51c-14.88-7.16-14.14-22.69-14.14-22.69A7.94 7.94 0 0059.52 43H67z"
+        ></path>
         <path fill="#fff" d="M62 61.77a11.05 11.05 0 0112 0V65H62z"></path>
         <circle cx="68.5" cy="54.5" r="3.5" fill="#fff"></circle>
         <path
@@ -3602,7 +3855,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Support Account",
+    name: 'Support Account',
   },
   {
     svg: (
@@ -3620,18 +3873,78 @@ export const svgData = [
           fill="#fff"
           d="M61.87 71a6.83 6.83 0 01.39-2.55 6.71 6.71 0 011.51-2.09 11.82 11.82 0 001.44-1.61 2.92 2.92 0 00.47-1.59 2.47 2.47 0 00-.55-1.72 2 2 0 00-1.58-.6 2.22 2.22 0 00-1.61.59 2 2 0 00-.61 1.57H58.5a4.39 4.39 0 011.4-3.37 5.27 5.27 0 013.65-1.24 5.09 5.09 0 013.64 1.23 4.48 4.48 0 011.31 3.43 5.69 5.69 0 01-1.77 3.86l-1.43 1.46a4.08 4.08 0 00-.79 2.63zm-.3 3.17A1.6 1.6 0 0162 73a1.69 1.69 0 013 1.17 1.65 1.65 0 01-.44 1.17 1.67 1.67 0 01-1.26.46 1.62 1.62 0 01-1.3-.46 1.65 1.65 0 01-.43-1.17z"
         ></path>
-        <circle cx="17" cy="21.5" r="4.5" fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2"></circle>
-        <path fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2" d="M28.5 20L36.5 20"></path>
-        <path fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2" d="M28.5 24L43.5 24"></path>
-        <circle cx="17" cy="39.5" r="4.5" fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2"></circle>
-        <path fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2" d="M28.5 37L36.5 37"></path>
-        <path fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2" d="M28.5 42L43.5 42"></path>
-        <circle cx="17" cy="56.5" r="4.5" fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2"></circle>
-        <path fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2" d="M28.5 54L36.5 54"></path>
-        <path fill="none" stroke="#6576ff" strokeMiterlimit="10" strokeWidth="2" d="M28.5 59L43.5 59"></path>
+        <circle
+          cx="17"
+          cy="21.5"
+          r="4.5"
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+        ></circle>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+          d="M28.5 20L36.5 20"
+        ></path>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+          d="M28.5 24L43.5 24"
+        ></path>
+        <circle
+          cx="17"
+          cy="39.5"
+          r="4.5"
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+        ></circle>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+          d="M28.5 37L36.5 37"
+        ></path>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+          d="M28.5 42L43.5 42"
+        ></path>
+        <circle
+          cx="17"
+          cy="56.5"
+          r="4.5"
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+        ></circle>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+          d="M28.5 54L36.5 54"
+        ></path>
+        <path
+          fill="none"
+          stroke="#6576ff"
+          strokeMiterlimit="10"
+          strokeWidth="2"
+          d="M28.5 59L43.5 59"
+        ></path>
       </svg>
     ),
-    name: "Support General",
+    name: 'Support General',
   },
   {
     svg: (
@@ -3644,11 +3957,22 @@ export const svgData = [
           strokeWidth="2"
           d="M29 74H11a7 7 0 01-7-7V17a7 7 0 017-7h50a7 7 0 017 7v13"
         ></path>
-        <path fill="#e3e7fe" d="M11 11h50a6 6 0 016 6v4H5v-4a6 6 0 016-6z"></path>
+        <path
+          fill="#e3e7fe"
+          d="M11 11h50a6 6 0 016 6v4H5v-4a6 6 0 016-6z"
+        ></path>
         <circle cx="11" cy="16" r="2" fill="#6576ff"></circle>
         <circle cx="17" cy="16" r="2" fill="#6576ff"></circle>
         <circle cx="23" cy="16" r="2" fill="#6576ff"></circle>
-        <rect width="19" height="19" x="11" y="27" fill="#c4cefe" rx="1" ry="1"></rect>
+        <rect
+          width="19"
+          height="19"
+          x="11"
+          y="27"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
         <path
           fill="#c4cefe"
           d="M33.8 53.79c.33-.43.16-.79-.39-.79H12a1 1 0 00-1 1v10a1 1 0 001 1h19a1 1 0 001-1v-4.81a10.81 10.81 0 01.23-2z"
@@ -3699,14 +4023,22 @@ export const svgData = [
           rx="5"
           ry="5"
         ></rect>
-        <rect width="12" height="9" x="41" y="60" fill="#c4cefe" rx="1" ry="1"></rect>
+        <rect
+          width="12"
+          height="9"
+          x="41"
+          y="60"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
         <path
           fill="#6576ff"
           d="M84.74 53.51L66.48 35.25a4.31 4.31 0 00-6.09 0l-9.13 9.13a4.31 4.31 0 000 6.09l18.26 18.26a4.31 4.31 0 006.09 0l9.13-9.13a4.31 4.31 0 000-6.09zm-15-5.89L67 50.3a2.15 2.15 0 01-3 0l-4.76-4.76a2.16 2.16 0 010-3l2.67-2.67a2.16 2.16 0 013 0l4.76 4.76a2.15 2.15 0 01.05 2.99z"
         ></path>
       </svg>
     ),
-    name: "Support Payment",
+    name: 'Support Payment',
   },
   {
     svg: (
@@ -3724,7 +4056,10 @@ export const svgData = [
           rx="7"
           ry="7"
         ></rect>
-        <path fill="#e3e7fe" d="M10 13.49h50a6 6 0 016 6v3.9H4v-3.9a6 6 0 016-6z"></path>
+        <path
+          fill="#e3e7fe"
+          d="M10 13.49h50a6 6 0 016 6v3.9H4v-3.9a6 6 0 016-6z"
+        ></path>
         <path fill="#6576ff" d="M3 23.39H67V25.37H3z"></path>
         <path
           fill="#fff"
@@ -3733,19 +4068,40 @@ export const svgData = [
           strokeWidth="2"
           d="M65.37 31.31h11.44A12.24 12.24 0 0087 42s1.12 24.31-21.63 35.5C42.62 66.31 43.75 42 43.75 42a12.23 12.23 0 0010.18-10.69z"
         ></path>
-        <path fill="#e3e7fe" d="M66 72.62c19-9.05 18.1-28.71 18.1-28.71s-7.47-.94-8.52-8.64H66z"></path>
-        <path fill="#010863" d="M56 46.16L55 46.16 55 42.2 59 42.2 59 43.2 56 43.2 56 46.16z"></path>
-        <path fill="#010863" d="M59 65.97L55 65.97 55 62.01 56 62.01 56 64.98 59 64.98 59 65.97z"></path>
-        <path fill="#010863" d="M78 65.97L74 65.97 74 64.98 77 64.98 77 62.01 78 62.01 78 65.97z"></path>
-        <path fill="#010863" d="M78 46.16L77 46.16 77 43.2 74 43.2 74 42.2 78 42.2 78 46.16z"></path>
+        <path
+          fill="#e3e7fe"
+          d="M66 72.62c19-9.05 18.1-28.71 18.1-28.71s-7.47-.94-8.52-8.64H66z"
+        ></path>
+        <path
+          fill="#010863"
+          d="M56 46.16L55 46.16 55 42.2 59 42.2 59 43.2 56 43.2 56 46.16z"
+        ></path>
+        <path
+          fill="#010863"
+          d="M59 65.97L55 65.97 55 62.01 56 62.01 56 64.98 59 64.98 59 65.97z"
+        ></path>
+        <path
+          fill="#010863"
+          d="M78 65.97L74 65.97 74 64.98 77 64.98 77 62.01 78 62.01 78 65.97z"
+        ></path>
+        <path
+          fill="#010863"
+          d="M78 46.16L77 46.16 77 43.2 74 43.2 74 42.2 78 42.2 78 46.16z"
+        ></path>
         <path
           fill="#6576ff"
           d="M70 51.12h-8v-2.26a3.74 3.74 0 013.17-3.57c2.56-.46 4.83 1.28 4.83 3.49zm-7-1h6v-1.56a2.78 2.78 0 00-2-2.63 3 3 0 00-4 2.64z"
         ></path>
-        <path fill="#e5effe" d="M58 57.28v-7.15h16v7.37c0 4.62-4.65 8.26-9.86 7.17A7.63 7.63 0 0158 57.28z"></path>
+        <path
+          fill="#e5effe"
+          d="M58 57.28v-7.15h16v7.37c0 4.62-4.65 8.26-9.86 7.17A7.63 7.63 0 0158 57.28z"
+        ></path>
         <path fill="#6576ff" d="M59 51.12v6.7A7 7 0 0073 58v-6.88z"></path>
         <ellipse cx="66" cy="55.08" fill="#fff" rx="2" ry="1.98"></ellipse>
-        <path fill="#fff" d="M68.91 62.01L63.84 62.01 65.18 56.07 67.57 56.07 68.91 62.01z"></path>
+        <path
+          fill="#fff"
+          d="M68.91 62.01L63.84 62.01 65.18 56.07 67.57 56.07 68.91 62.01z"
+        ></path>
         <path
           fill="#6576ff"
           d="M72 51.12H60v-2.46a5.41 5.41 0 014.06-5.14c4.13-1.14 7.94 1.54 7.94 5zm-11-1h10v-1.63A4.69 4.69 0 0067.08 44c-3.23-.6-6.08 1.58-6.08 4.33z"
@@ -3788,7 +4144,7 @@ export const svgData = [
         ></rect>
       </svg>
     ),
-    name: "Support Secure",
+    name: 'Support Secure',
   },
   {
     svg: (
@@ -3851,9 +4207,33 @@ export const svgData = [
           strokeWidth="2"
           d="M70 33L72 33"
         ></path>
-        <rect width="56" height="7" x="19" y="40" fill="#eff1ff" rx="2" ry="2"></rect>
-        <rect width="24" height="8" x="20" y="51" fill="#eff1ff" rx="2" ry="2"></rect>
-        <rect width="7" height="8" x="48" y="51" fill="#eff1ff" rx="2" ry="2"></rect>
+        <rect
+          width="56"
+          height="7"
+          x="19"
+          y="40"
+          fill="#eff1ff"
+          rx="2"
+          ry="2"
+        ></rect>
+        <rect
+          width="24"
+          height="8"
+          x="20"
+          y="51"
+          fill="#eff1ff"
+          rx="2"
+          ry="2"
+        ></rect>
+        <rect
+          width="7"
+          height="8"
+          x="48"
+          y="51"
+          fill="#eff1ff"
+          rx="2"
+          ry="2"
+        ></rect>
         <ellipse
           cx="69"
           cy="61.98"
@@ -3900,12 +4280,15 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "sync",
+    name: 'sync',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90">
-        <path fill="#e3e7fe" d="M81.8 22.23a2.89 2.89 0 112.89-2.89 2.89 2.89 0 01-2.89 2.89"></path>
+        <path
+          fill="#e3e7fe"
+          d="M81.8 22.23a2.89 2.89 0 112.89-2.89 2.89 2.89 0 01-2.89 2.89"
+        ></path>
         <circle
           cx="72.42"
           cy="73.31"
@@ -3921,14 +4304,38 @@ export const svgData = [
         ></path>
         <path fill="#e3e7fe" d="M6.01 13.19H11.98V15.18H6.01z"></path>
         <path fill="#e3e7fe" d="M8 11.2H9.99V17.169999999999998H8z"></path>
-        <path fill="#e3e7fe" d="M74.3 34.88L68.3 26.12 66.35 15.69 47.16 34.88 74.3 34.88z"></path>
-        <path fill="#e3e7fe" d="M42.54 6.45L33.78 12.44 23.34 14.39 42.54 33.59 42.54 6.45z"></path>
-        <path fill="#e3e7fe" d="M14.16 37.73L20.15 46.49 22.11 56.92 41.3 37.73 14.16 37.73z"></path>
-        <path fill="#e3e7fe" d="M23.34 58.64L33.78 60.59 42.54 66.59 42.54 39.44 23.34 58.64z"></path>
-        <path fill="#e3e7fe" d="M22.11 15.69L20.15 26.12 14.16 34.88 41.3 34.88 22.11 15.69z"></path>
-        <path fill="#e3e7fe" d="M74.3 37.87L47.16 37.87 66.35 57.06 68.3 46.62 74.3 37.87z"></path>
-        <path fill="#e3e7fe" d="M45.52 66.59L54.28 60.59 64.72 58.64 45.52 39.44 45.52 66.59z"></path>
-        <path fill="#e3e7fe" d="M64.72 14.39L54.28 12.44 45.52 6.45 45.52 33.59 64.72 14.39z"></path>
+        <path
+          fill="#e3e7fe"
+          d="M74.3 34.88L68.3 26.12 66.35 15.69 47.16 34.88 74.3 34.88z"
+        ></path>
+        <path
+          fill="#e3e7fe"
+          d="M42.54 6.45L33.78 12.44 23.34 14.39 42.54 33.59 42.54 6.45z"
+        ></path>
+        <path
+          fill="#e3e7fe"
+          d="M14.16 37.73L20.15 46.49 22.11 56.92 41.3 37.73 14.16 37.73z"
+        ></path>
+        <path
+          fill="#e3e7fe"
+          d="M23.34 58.64L33.78 60.59 42.54 66.59 42.54 39.44 23.34 58.64z"
+        ></path>
+        <path
+          fill="#e3e7fe"
+          d="M22.11 15.69L20.15 26.12 14.16 34.88 41.3 34.88 22.11 15.69z"
+        ></path>
+        <path
+          fill="#e3e7fe"
+          d="M74.3 37.87L47.16 37.87 66.35 57.06 68.3 46.62 74.3 37.87z"
+        ></path>
+        <path
+          fill="#e3e7fe"
+          d="M45.52 66.59L54.28 60.59 64.72 58.64 45.52 39.44 45.52 66.59z"
+        ></path>
+        <path
+          fill="#e3e7fe"
+          d="M64.72 14.39L54.28 12.44 45.52 6.45 45.52 33.59 64.72 14.39z"
+        ></path>
         <path
           fill="#e3e7fe"
           d="M53.84 62.75L44.03 69.48 34.22 62.75 30.6 62.75 30.6 85.64 34.22 85.64 44.03 78.91 53.84 85.64 57.47 85.64 57.47 62.75 53.84 62.75z"
@@ -3955,7 +4362,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Plan 1",
+    name: 'Plan 1',
   },
   {
     svg: (
@@ -3973,7 +4380,11 @@ export const svgData = [
         <circle cx="83.58" cy="67.84" r="1.84" fill="#e3e7fe"></circle>
         <circle cx="12.04" cy="84.67" r="1.84" fill="#e3e7fe"></circle>
         <path fill="#e3e7fe" d="M3 47.84H9.120000000000001V49.59H3z"></path>
-        <path fill="#e3e7fe" d="M3 47.84H9.120000000000001V49.59H3z" transform="rotate(90 6.06 48.72)"></path>
+        <path
+          fill="#e3e7fe"
+          d="M3 47.84H9.120000000000001V49.59H3z"
+          transform="rotate(90 6.06 48.72)"
+        ></path>
         <circle cx="45.76" cy="64.92" r="19.82" fill="#fff"></circle>
         <circle
           cx="45.76"
@@ -4024,7 +4435,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Plan 2",
+    name: 'Plan 2',
   },
   {
     svg: (
@@ -4041,7 +4452,11 @@ export const svgData = [
         <circle cx="79.41" cy="68.42" r="2.87" fill="#e3e7fe"></circle>
         <circle cx="14.98" cy="82.08" r="1.72" fill="#e3e7fe"></circle>
         <path fill="#e3e7fe" d="M5 34.77H11.879999999999999V37.06H5z"></path>
-        <path fill="#e3e7fe" d="M5 34.77H11.879999999999999V37.06H5z" transform="rotate(90 8.445 35.915)"></path>
+        <path
+          fill="#e3e7fe"
+          d="M5 34.77H11.879999999999999V37.06H5z"
+          transform="rotate(90 8.445 35.915)"
+        ></path>
         <path
           fill="#6576ff"
           d="M39.21 4.22L42.89 5.55 45.92 3.33 45.97 7.18 49.17 9.48 45.52 10.53 44.47 14.18 42.16 10.98 38.31 10.94 40.54 7.91 39.21 4.22z"
@@ -4091,7 +4506,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Plan 3",
+    name: 'Plan 3',
   },
   {
     svg: (
@@ -4104,15 +4519,87 @@ export const svgData = [
           fill="#c4cefe"
           d="M29.73 103.29L74.66 96a3.41 3.41 0 002.84-3.94L65.4 22.95a3.5 3.5 0 00-4-2.82l-44.96 7.28a3.41 3.41 0 00-2.84 3.94l12.1 69.11a3.52 3.52 0 004.03 2.83z"
         ></path>
-        <rect width="66" height="88" x="22" y="17.9" fill="#6576ff" rx="3" ry="3"></rect>
-        <rect width="48" height="10" x="31" y="85.9" fill="#fff" rx="1.5" ry="1.5"></rect>
-        <rect width="48" height="5" x="31" y="27.9" fill="#e3e7fe" rx="1" ry="1"></rect>
-        <rect width="23" height="3" x="31" y="37.9" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="20" height="3" x="59" y="37.9" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="23" height="3" x="31" y="45.9" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="20" height="3" x="59" y="45.9" fill="#c4cefe" rx="1" ry="1"></rect>
-        <rect width="48" height="3" x="31" y="52.9" fill="#e3e7fe" rx="1" ry="1"></rect>
-        <rect width="23" height="3" x="31" y="60.9" fill="#c4cefe" rx="1" ry="1"></rect>
+        <rect
+          width="66"
+          height="88"
+          x="22"
+          y="17.9"
+          fill="#6576ff"
+          rx="3"
+          ry="3"
+        ></rect>
+        <rect
+          width="48"
+          height="10"
+          x="31"
+          y="85.9"
+          fill="#fff"
+          rx="1.5"
+          ry="1.5"
+        ></rect>
+        <rect
+          width="48"
+          height="5"
+          x="31"
+          y="27.9"
+          fill="#e3e7fe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="23"
+          height="3"
+          x="31"
+          y="37.9"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="20"
+          height="3"
+          x="59"
+          y="37.9"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="23"
+          height="3"
+          x="31"
+          y="45.9"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="20"
+          height="3"
+          x="59"
+          y="45.9"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="48"
+          height="3"
+          x="31"
+          y="52.9"
+          fill="#e3e7fe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="23"
+          height="3"
+          x="31"
+          y="60.9"
+          fill="#c4cefe"
+          rx="1"
+          ry="1"
+        ></rect>
         <path
           fill="#9cabff"
           d="M94.5 113.9a.5.5 0 01-.5-.5v-1.5h-1.5a.5.5 0 010-1H94v-1.5a.5.5 0 011 0v1.5h1.5a.5.5 0 010 1H95v1.5a.5.5 0 01-.5.5zM12.5 82.9a.5.5 0 01-.5-.5v-1.5h-1.5a.5.5 0 010-1H12v-1.5a.5.5 0 011 0v1.5h1.5a.5.5 0 010 1H13v1.5a.5.5 0 01-.5.5zM3 10.9a3 3 0 113-3 3 3 0 01-3 3zm0-5a2 2 0 102 2 2 2 0 00-2-2zM109.5 68.9a4.5 4.5 0 114.5-4.5 4.51 4.51 0 01-4.5 4.5zm0-8a3.5 3.5 0 103.5 3.5 3.5 3.5 0 00-3.5-3.5z"
@@ -4127,7 +4614,7 @@ export const svgData = [
         ></path>
       </svg>
     ),
-    name: "Doc Checked",
+    name: 'Doc Checked',
   },
   {
     svg: (
@@ -4136,12 +4623,60 @@ export const svgData = [
           fill="#f6faff"
           d="M8.916 93.745C-.318 78.153-2.164 57.569 2.382 39.578 7.155 20.69 19.045 8.451 35.162 3.32 46.609-.324 58.716-.669 70.456.845 84.683 2.68 99.57 7.694 108.892 20.408c10.03 13.679 12.071 34.71 10.747 52.054-1.173 15.359-7.441 27.489-19.231 34.494-10.689 6.351-22.92 8.733-34.715 10.331-16.181 2.192-34.195-.336-47.6-12.281a47.243 47.243 0 01-9.177-11.261z"
         ></path>
-        <rect width="84" height="50" x="18" y="32" fill="#fff" rx="4" ry="4"></rect>
-        <rect width="20" height="12" x="26" y="44" fill="#e5effe" rx="1" ry="1"></rect>
-        <rect width="20" height="12" x="50" y="44" fill="#e5effe" rx="1" ry="1"></rect>
-        <rect width="20" height="12" x="74" y="44" fill="#e5effe" rx="1" ry="1"></rect>
-        <rect width="20" height="12" x="38" y="60" fill="#e5effe" rx="1" ry="1"></rect>
-        <rect width="20" height="12" x="62" y="60" fill="#e5effe" rx="1" ry="1"></rect>
+        <rect
+          width="84"
+          height="50"
+          x="18"
+          y="32"
+          fill="#fff"
+          rx="4"
+          ry="4"
+        ></rect>
+        <rect
+          width="20"
+          height="12"
+          x="26"
+          y="44"
+          fill="#e5effe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="20"
+          height="12"
+          x="50"
+          y="44"
+          fill="#e5effe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="20"
+          height="12"
+          x="74"
+          y="44"
+          fill="#e5effe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="20"
+          height="12"
+          x="38"
+          y="60"
+          fill="#e5effe"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="20"
+          height="12"
+          x="62"
+          y="60"
+          fill="#e5effe"
+          rx="1"
+          ry="1"
+        ></rect>
         <path
           fill="#798bff"
           d="M98 31H22a5.006 5.006 0 00-5 5v42a5.006 5.006 0 005 5h30v8h-7a2 2 0 00-2 2v4a2 2 0 002 2h28a2 2 0 002-2v-4a2 2 0 00-2-2h-7v-8h32a5.006 5.006 0 005-5V36a5.006 5.006 0 00-5-5zM73 93v4H45v-4zm-9-2H54v-8h10zm37-13a3 3 0 01-3 3H22a3 3 0 01-3-3V36a3 3 0 013-3h76a3 3 0 013 3z"
@@ -4181,17 +4716,55 @@ export const svgData = [
           strokeWidth="2"
           d="M40 32L50 32"
         ></path>
-        <path fill="none" stroke="#9cabff" strokeLinecap="round" strokeLinejoin="round" d="M30.5 87.5L30.5 91.5"></path>
-        <path fill="none" stroke="#9cabff" strokeLinecap="round" strokeLinejoin="round" d="M28.5 89.5L32.5 89.5"></path>
-        <path fill="none" stroke="#9cabff" strokeLinecap="round" strokeLinejoin="round" d="M79.5 22.5L79.5 26.5"></path>
-        <path fill="none" stroke="#9cabff" strokeLinecap="round" strokeLinejoin="round" d="M77.5 24.5L81.5 24.5"></path>
-        <circle cx="90.5" cy="97.5" r="3" fill="none" stroke="#9cabff" strokeMiterlimit="10"></circle>
-        <circle cx="24" cy="23" r="2.5" fill="none" stroke="#9cabff" strokeMiterlimit="10"></circle>
+        <path
+          fill="none"
+          stroke="#9cabff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M30.5 87.5L30.5 91.5"
+        ></path>
+        <path
+          fill="none"
+          stroke="#9cabff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M28.5 89.5L32.5 89.5"
+        ></path>
+        <path
+          fill="none"
+          stroke="#9cabff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M79.5 22.5L79.5 26.5"
+        ></path>
+        <path
+          fill="none"
+          stroke="#9cabff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M77.5 24.5L81.5 24.5"
+        ></path>
+        <circle
+          cx="90.5"
+          cy="97.5"
+          r="3"
+          fill="none"
+          stroke="#9cabff"
+          strokeMiterlimit="10"
+        ></circle>
+        <circle
+          cx="24"
+          cy="23"
+          r="2.5"
+          fill="none"
+          stroke="#9cabff"
+          strokeMiterlimit="10"
+        ></circle>
       </svg>
     ),
-    name: "Help/Support",
+    name: 'Help/Support',
   },
-];
+]
 
 export const fileManagerIconData = [
   {
@@ -4205,175 +4778,307 @@ export const fileManagerIconData = [
           fill="#8AA3FF"
           d="M59.8 61H12.2C8.8 61 6 58 6 54.4V17.6C6 14 8.8 11 12.2 11h18.5c1.7 0 3.3 1 4.1 2.6L38 24h21.8c3.4 0 6.2 2.4 6.2 6v24.4c0 3.6-2.8 6.6-6.2 6.6z"
         ></path>
-        <path fill="#798BFF" d="M7.7 59c2.2 2.4 4.7 2 6.3 2h45c1.1 0 3.2.1 5.3-2H7.7z"></path>
+        <path
+          fill="#798BFF"
+          d="M7.7 59c2.2 2.4 4.7 2 6.3 2h45c1.1 0 3.2.1 5.3-2H7.7z"
+        ></path>
       </svg>
     ),
-    name: "Folder",
+    name: 'Folder',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <rect width="28" height="15" x="32" y="16" fill="#6c87fe" rx="2.5" ry="2.5"></rect>
+        <rect
+          width="28"
+          height="15"
+          x="32"
+          y="16"
+          fill="#6c87fe"
+          rx="2.5"
+          ry="2.5"
+        ></rect>
         <path
           fill="#8aa3ff"
           d="M59.778 61H12.222A6.421 6.421 0 016 54.396V17.604A6.421 6.421 0 0112.222 11h18.476a4.671 4.671 0 014.113 2.564L38 24h21.778A5.91 5.91 0 0166 30v24.396A6.421 6.421 0 0159.778 61z"
         ></path>
-        <path fill="#798bff" d="M8.015 59c2.169 2.383 4.698 2.016 6.195 2h44.57a6.277 6.277 0 005.207-2z"></path>
+        <path
+          fill="#798bff"
+          d="M8.015 59c2.169 2.383 4.698 2.016 6.195 2h44.57a6.277 6.277 0 005.207-2z"
+        ></path>
         <path
           fill="#4b66bc"
           d="M42.223 40H41.5v-2.556a5.5 5.5 0 00-11 0V40h-.723A2.801 2.801 0 0027 42.818v6.364A2.801 2.801 0 0029.777 52h12.446A2.801 2.801 0 0045 49.182v-6.364A2.801 2.801 0 0042.223 40zM36 48a2 2 0 112-2 2.002 2.002 0 01-2 2zm3.5-8h-7v-2.556a3.5 3.5 0 017 0z"
         ></path>
       </svg>
     ),
-    name: "Folder Secure",
+    name: 'Folder Secure',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <rect width="28" height="15" x="32" y="16" fill="#6c87fe" rx="2.5" ry="2.5"></rect>
+        <rect
+          width="28"
+          height="15"
+          x="32"
+          y="16"
+          fill="#6c87fe"
+          rx="2.5"
+          ry="2.5"
+        ></rect>
         <path
           fill="#8aa3ff"
           d="M59.778 61H12.222A6.421 6.421 0 016 54.396V17.604A6.421 6.421 0 0112.222 11h18.476a4.671 4.671 0 014.113 2.564L38 24h21.778A5.91 5.91 0 0166 30v24.396A6.421 6.421 0 0159.778 61z"
         ></path>
-        <path fill="#798bff" d="M7.745 58.98C9.935 61.387 12.488 61.017 14 61h45a6.337 6.337 0 005.256-2.02z"></path>
+        <path
+          fill="#798bff"
+          d="M7.745 58.98C9.935 61.387 12.488 61.017 14 61h45a6.337 6.337 0 005.256-2.02z"
+        ></path>
         <path
           fill="#4b66bc"
           d="M29.63 37.36a3.024 3.024 0 01-.86-2.39A4.375 4.375 0 0132.997 31h.008a4.36 4.36 0 014.22 3.912 3.053 3.053 0 01-.855 2.448 4.416 4.416 0 01-3.139 1.17c-.077 0-.153-.002-.23-.005a4.519 4.519 0 01-3.37-1.165zm13.837 2.755a1 1 0 10-.934 1.77c.72.38 1.466 2.126 1.467 4.39V48a1 1 0 002 0v-1.726c-.001-2.93-.995-5.347-2.533-6.159zm-3.302-2.718c-.144.084-.29.168-.432.254a1 1 0 00.522 1.854.989.989 0 00.52-.147c.129-.078.26-.154.392-.23a4.231 4.231 0 002.146-2.124.984.984 0 00.031-.104 3.841 3.841 0 00-2.844-4.365 1 1 0 00-.492 1.94 1.877 1.877 0 011.4 1.909 2.835 2.835 0 01-1.243 1.013zM36.5 41h-7c-2.523 0-4.5 2.782-4.5 6.333V48.5a.836.836 0 00.059.291.973.973 0 00.35.495C26.466 50.281 29.462 51 33 51s6.535-.719 7.59-1.714a.973.973 0 00.35-.495.836.836 0 00.06-.291v-1.167C41 43.783 39.023 41 36.5 41z"
         ></path>
       </svg>
     ),
-    name: "Folder Shared",
+    name: 'Folder Shared',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <rect width="28" height="15" x="32" y="16" fill="#f29611" rx="2.5" ry="2.5"></rect>
+        <rect
+          width="28"
+          height="15"
+          x="32"
+          y="16"
+          fill="#f29611"
+          rx="2.5"
+          ry="2.5"
+        ></rect>
         <path
           fill="#ffb32c"
           d="M59.778 61H12.222A6.421 6.421 0 016 54.396V17.604A6.421 6.421 0 0112.222 11h18.476a4.671 4.671 0 014.113 2.564L38 24h21.778A5.91 5.91 0 0166 30v24.396A6.421 6.421 0 0159.778 61z"
         ></path>
-        <path fill="#f2a222" d="M8.015 59c2.169 2.383 4.698 2.016 6.195 2h44.57a6.277 6.277 0 005.207-2z"></path>
+        <path
+          fill="#f2a222"
+          d="M8.015 59c2.169 2.383 4.698 2.016 6.195 2h44.57a6.277 6.277 0 005.207-2z"
+        ></path>
       </svg>
     ),
-    name: "Folder Alt",
+    name: 'Folder Alt',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <rect width="28" height="15" x="32" y="16" fill="#f29611" rx="2.5" ry="2.5"></rect>
+        <rect
+          width="28"
+          height="15"
+          x="32"
+          y="16"
+          fill="#f29611"
+          rx="2.5"
+          ry="2.5"
+        ></rect>
         <path
           fill="#ffb32c"
           d="M59.778 61H12.222A6.421 6.421 0 016 54.396V17.604A6.421 6.421 0 0112.222 11h18.476a4.671 4.671 0 014.113 2.564L38 24h21.778A5.91 5.91 0 0166 30v24.396A6.421 6.421 0 0159.778 61z"
         ></path>
-        <path fill="#f2a222" d="M8.015 59c2.169 2.383 4.698 2.016 6.195 2h44.57a6.277 6.277 0 005.207-2z"></path>
+        <path
+          fill="#f2a222"
+          d="M8.015 59c2.169 2.383 4.698 2.016 6.195 2h44.57a6.277 6.277 0 005.207-2z"
+        ></path>
         <path
           fill="#c67424"
           d="M42.223 40H41.5v-2.556a5.5 5.5 0 00-11 0V40h-.723A2.801 2.801 0 0027 42.818v6.364A2.801 2.801 0 0029.777 52h12.446A2.801 2.801 0 0045 49.182v-6.364A2.801 2.801 0 0042.223 40zM36 48a2 2 0 112-2 2.002 2.002 0 01-2 2zm3.5-8h-7v-2.556a3.5 3.5 0 017 0z"
         ></path>
       </svg>
     ),
-    name: "Folder Secure Alt",
+    name: 'Folder Secure Alt',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <rect width="28" height="15" x="32" y="16" fill="#f29611" rx="2.5" ry="2.5"></rect>
+        <rect
+          width="28"
+          height="15"
+          x="32"
+          y="16"
+          fill="#f29611"
+          rx="2.5"
+          ry="2.5"
+        ></rect>
         <path
           fill="#ffb32c"
           d="M59.778 61H12.222A6.421 6.421 0 016 54.396V17.604A6.421 6.421 0 0112.222 11h18.476a4.671 4.671 0 014.113 2.564L38 24h21.778A5.91 5.91 0 0166 30v24.396A6.421 6.421 0 0159.778 61z"
         ></path>
-        <path fill="#f2a222" d="M8.015 59c2.169 2.383 4.698 2.016 6.195 2h44.57a6.277 6.277 0 005.207-2z"></path>
+        <path
+          fill="#f2a222"
+          d="M8.015 59c2.169 2.383 4.698 2.016 6.195 2h44.57a6.277 6.277 0 005.207-2z"
+        ></path>
         <path
           fill="#c67424"
           d="M29.63 37.36a3.024 3.024 0 01-.86-2.39A4.375 4.375 0 0132.997 31h.008a4.36 4.36 0 014.22 3.912 3.053 3.053 0 01-.855 2.448 4.416 4.416 0 01-3.139 1.17c-.077 0-.153-.002-.23-.005a4.519 4.519 0 01-3.37-1.165zm13.837 2.74a1 1 0 10-.934 1.77c.72.38 1.466 2.126 1.467 4.39v1.726a1 1 0 002 0V46.26c-.001-2.93-.995-5.348-2.533-6.16zm-3.302-2.718c-.144.084-.29.168-.432.255a1 1 0 00.522 1.853.989.989 0 00.52-.147c.129-.078.26-.154.392-.23a4.231 4.231 0 002.146-2.124.984.984 0 00.031-.104A3.841 3.841 0 0040.5 32.52a1 1 0 10-.492 1.94 1.877 1.877 0 011.4 1.909 2.835 2.835 0 01-1.243 1.013zM36.5 41h-7c-2.523 0-4.5 2.782-4.5 6.333V48.5a.836.836 0 00.059.291.973.973 0 00.35.495C26.466 50.281 29.462 51 33 51s6.535-.719 7.59-1.714a.973.973 0 00.35-.495.836.836 0 00.06-.291v-1.167C41 43.783 39.023 41 36.5 41z"
         ></path>
       </svg>
     ),
-    name: "Folder Shared Alt",
+    name: 'Folder Shared Alt',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <path fill="#0089ff" d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"></path>
-        <path fill="#9bd5f9" d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"></path>
+        <path
+          fill="#0089ff"
+          d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"
+        ></path>
+        <path
+          fill="#9bd5f9"
+          d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"
+        ></path>
         <path
           fill="#fff"
           d="M44.709 39.72a2.007 2.007 0 01-.672-1.13 13.652 13.652 0 01-.177-2.588 20.143 20.143 0 00-.141-2.699 2.831 2.831 0 00-.568-1.365 2.392 2.392 0 00-1.104-.77 4.722 4.722 0 00-1.48-.168h-.583v1.636h.323a2.236 2.236 0 011.328.276 1.395 1.395 0 01.412.974q.052.396.052 2.428a7.437 7.437 0 00.49 3.183 3.521 3.521 0 001.688 1.516 3.246 3.246 0 00-1.417 1.078 4.133 4.133 0 00-.667 1.85q-.094.698-.094 3.303a2.866 2.866 0 01-.354 1.755 1.951 1.951 0 01-1.438.391h-.323v1.636h.584a5.15 5.15 0 001.292-.115 2.326 2.326 0 001.589-1.328 4.334 4.334 0 00.349-1.412q.052-.552.062-2.292a12.642 12.642 0 01.177-2.454 2.007 2.007 0 01.672-1.13 2.078 2.078 0 011.308-.438V40.16a2.078 2.078 0 01-1.308-.438zM30.146 39.94a3.95 3.95 0 00.64-1.72 30.109 30.109 0 00.115-3.448 2.842 2.842 0 01.354-1.745 1.951 1.951 0 011.438-.39h.323V31h-.583a5.635 5.635 0 00-1.292.104 2.315 2.315 0 00-1.59 1.334 4.366 4.366 0 00-.348 1.406q-.052.553-.063 2.293a12.753 12.753 0 01-.177 2.458 1.982 1.982 0 01-.672 1.13 2.096 2.096 0 01-1.308.433v1.698a2.078 2.078 0 011.308.438 2.009 2.009 0 01.672 1.136 13.753 13.753 0 01.177 2.594 20.138 20.138 0 00.141 2.699 2.797 2.797 0 00.568 1.36 2.477 2.477 0 001.104.776 4.712 4.712 0 001.48.167h.584V49.39h-.323a2.203 2.203 0 01-1.329-.281 1.464 1.464 0 01-.422-.99q-.041-.386-.042-2.418a7.392 7.392 0 00-.515-3.224 3.179 3.179 0 00-1.662-1.464 3.813 3.813 0 001.422-1.073z"
         ></path>
       </svg>
     ),
-    name: "File Code",
+    name: 'File Code',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <path fill="#599def" d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"></path>
-        <path fill="#c2e1ff" d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"></path>
-        <rect width="18" height="2" x="27" y="31" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="18" height="2" x="27" y="36" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="18" height="2" x="27" y="41" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="12" height="2" x="27" y="46" fill="#fff" rx="1" ry="1"></rect>
+        <path
+          fill="#599def"
+          d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"
+        ></path>
+        <path
+          fill="#c2e1ff"
+          d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"
+        ></path>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="31"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="36"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="41"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="12"
+          height="2"
+          x="27"
+          y="46"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
       </svg>
     ),
-    name: "File Doc",
+    name: 'File Doc',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <path fill="#755de0" d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"></path>
+        <path
+          fill="#755de0"
+          d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"
+        ></path>
         <path
           fill="#fff"
           d="M27.222 43H44.71s2.325-.281.735-1.897l-5.603-5.498s-1.512-1.792-3.336.793L33.56 40.47a.689.689 0 01-1.019.048l-1.9-1.639s-1.329-1.587-2.475 0c-.656.908-2.026 2.849-2.026 2.849S25.427 43 27.222 43z"
         ></path>
-        <path fill="#b5b3ff" d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"></path>
+        <path
+          fill="#b5b3ff"
+          d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"
+        ></path>
       </svg>
     ),
-    name: "File Media",
+    name: 'File Media',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <path fill="#f74141" d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"></path>
-        <path fill="#ffa9a9" d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"></path>
+        <path
+          fill="#f74141"
+          d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"
+        ></path>
+        <path
+          fill="#ffa9a9"
+          d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"
+        ></path>
         <path
           fill="#fff"
           d="M46 46.5v-13a3.504 3.504 0 00-3.5-3.5h-13a3.504 3.504 0 00-3.5 3.5v13a3.504 3.504 0 003.5 3.5h13a3.504 3.504 0 003.5-3.5zM40 45v3h-3v-3zm-3-2v-6h7v6zm0-8v-3h3v3zm-2-3v3h-3v-3zm0 5v6h-7v-6zm0 8v3h-3v-3zm7.5 3H42v-3h2v1.5a1.502 1.502 0 01-1.5 1.5zM44 33.5V35h-2v-3h.5a1.502 1.502 0 011.5 1.5zM29.5 32h.5v3h-2v-1.5a1.502 1.502 0 011.5-1.5zM28 46.5V45h2v3h-.5a1.502 1.502 0 01-1.5-1.5z"
         ></path>
       </svg>
     ),
-    name: "File Movie",
+    name: 'File Movie',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <path fill="#5a5aff" d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"></path>
-        <path fill="#b8b8ff" d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"></path>
+        <path
+          fill="#5a5aff"
+          d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"
+        ></path>
+        <path
+          fill="#b8b8ff"
+          d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"
+        ></path>
         <path
           fill="#f3f3f3"
           d="M44.647 30.237a1.006 1.006 0 00-.811-.223l-12 2A1 1 0 0031 33v9.556A3.954 3.954 0 0029 42a4 4 0 104 4V33.847l10-1.666v8.375A3.954 3.954 0 0041 40a4 4 0 104 4V31a.999.999 0 00-.353-.763zM29 48a2 2 0 112-2 2.002 2.002 0 01-2 2zm12-2a2 2 0 112-2 2.002 2.002 0 01-2 2z"
         ></path>
       </svg>
     ),
-    name: "File Music",
+    name: 'File Music',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <path fill="#f26b6b" d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"></path>
-        <path fill="#f4c9c9" d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"></path>
+        <path
+          fill="#f26b6b"
+          d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"
+        ></path>
+        <path
+          fill="#f4c9c9"
+          d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"
+        ></path>
         <path
           fill="#fff"
           d="M46.334 44.538a4.326 4.326 0 00-2.528-1.429 22.436 22.436 0 00-4.561-.383 19.356 19.356 0 01-3.425-4.772 56.508 56.508 0 001.375-6.086 2.339 2.339 0 00-.462-1.845 1.943 1.943 0 00-1.516-.753h-.001a1.685 1.685 0 00-1.39.697c-1.149 1.526-.363 5.219-.194 5.946a12.612 12.612 0 00.724 2.147 33.322 33.322 0 01-2.49 6.106 20.347 20.347 0 00-5.979 3.44 2.568 2.568 0 00-.886 1.827 1.802 1.802 0 00.634 1.306 2.061 2.061 0 001.395.531 2.244 2.244 0 001.459-.546 20.068 20.068 0 004.29-5.357 20.838 20.838 0 015.938-1.186 33.75 33.75 0 004.243 3.605 2.64 2.64 0 003.416-.236 2.08 2.08 0 00-.042-3.012zM27.62 49.623a.834.834 0 01-1.084.042.42.42 0 01-.167-.27c-.002-.066.027-.315.44-.736a18.038 18.038 0 013.762-2.368 17.26 17.26 0 01-2.95 3.332zm7.283-18.775a.343.343 0 01.315-.151.6.6 0 01.465.239.853.853 0 01.168.672c-.164.92-.424 2.38-.852 4.117l-.037-.151c-.356-1.523-.609-3.996-.059-4.726zm-1.179 12.703a34.973 34.973 0 001.52-3.767 21.248 21.248 0 002.224 3.05 21.857 21.857 0 00-3.744.717zm11.706 2.97a1.308 1.308 0 01-1.695.088 33.203 33.203 0 01-3.004-2.43 20.968 20.968 0 012.835.334 2.97 2.97 0 011.74.965c.533.633.296.87.123 1.043z"
         ></path>
       </svg>
     ),
-    name: "File PDF",
+    name: 'File PDF',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <path fill="#f25168" d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"></path>
-        <path fill="#ff9fb6" d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"></path>
+        <path
+          fill="#f25168"
+          d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"
+        ></path>
+        <path
+          fill="#ff9fb6"
+          d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"
+        ></path>
         <path
           fill="#fff"
           d="M44.14 46H27.86A1.86 1.86 0 0126 44.14v-9.28A1.86 1.86 0 0127.86 33h16.28A1.86 1.86 0 0146 34.86v9.28A1.86 1.86 0 0144.14 46zm-14.995-2h13.71A1.145 1.145 0 0044 42.855v-6.71A1.145 1.145 0 0042.855 35h-13.71A1.145 1.145 0 0028 36.145v6.71A1.145 1.145 0 0029.145 44z"
@@ -4388,44 +5093,144 @@ export const fileManagerIconData = [
         ></path>
       </svg>
     ),
-    name: "File PPT",
+    name: 'File PPT',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <path fill="#36c684" d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"></path>
-        <path fill="#95e5bd" d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"></path>
+        <path
+          fill="#36c684"
+          d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"
+        ></path>
+        <path
+          fill="#95e5bd"
+          d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"
+        ></path>
         <path
           fill="#fff"
           d="M42 31H30a3.003 3.003 0 00-3 3v11a3.003 3.003 0 003 3h12a3.003 3.003 0 003-3V34a3.003 3.003 0 00-3-3zm-13 7h6v3h-6zm8 0h6v3h-6zm6-4v2h-6v-3h5a1.001 1.001 0 011 1zm-13-1h5v3h-6v-2a1.001 1.001 0 011-1zm-1 12v-2h6v3h-5a1.001 1.001 0 01-1-1zm13 1h-5v-3h6v2a1.001 1.001 0 01-1 1z"
         ></path>
       </svg>
     ),
-    name: "File Sheet",
+    name: 'File Sheet',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <path fill="#7e95c4" d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"></path>
-        <path fill="#b7ccea" d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"></path>
-        <rect width="18" height="2" x="27" y="31" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="18" height="2" x="27" y="35" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="18" height="2" x="27" y="39" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="14" height="2" x="27" y="43" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="8" height="2" x="27" y="47" fill="#fff" rx="1" ry="1"></rect>
+        <path
+          fill="#7e95c4"
+          d="M50 61H22a6 6 0 01-6-6V22l9-11h25a6 6 0 016 6v38a6 6 0 01-6 6z"
+        ></path>
+        <path
+          fill="#b7ccea"
+          d="M25 20.556A1.444 1.444 0 0123.556 22H16l9-11z"
+        ></path>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="31"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="35"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="39"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="14"
+          height="2"
+          x="27"
+          y="43"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="27"
+          y="47"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
       </svg>
     ),
-    name: "File Text",
+    name: 'File Text',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <rect width="40" height="44" x="16" y="14" fill="#7e95c4" rx="6" ry="6"></rect>
-        <rect width="8" height="2" x="32" y="17" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="8" height="2" x="32" y="22" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="8" height="2" x="32" y="27" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="8" height="2" x="32" y="32" fill="#fff" rx="1" ry="1"></rect>
-        <rect width="8" height="2" x="32" y="37" fill="#fff" rx="1" ry="1"></rect>
+        <rect
+          width="40"
+          height="44"
+          x="16"
+          y="14"
+          fill="#7e95c4"
+          rx="6"
+          ry="6"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="32"
+          y="17"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="32"
+          y="22"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="32"
+          y="27"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="32"
+          y="32"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="32"
+          y="37"
+          fill="#fff"
+          rx="1"
+          ry="1"
+        ></rect>
         <path fill="#fff" d="M35 14h2v29a1 1 0 01-1 1 1 1 0 01-1-1V14z"></path>
         <path
           fill="#fff"
@@ -4433,7 +5238,7 @@ export const fileManagerIconData = [
         ></path>
       </svg>
     ),
-    name: "File Zip",
+    name: 'File Zip',
   },
   {
     svg: (
@@ -4446,14 +5251,17 @@ export const fileManagerIconData = [
           fill="#b7d0ea"
           d="M54 22.111h-9.818a3.303 3.303 0 01-3.273-3.333V11s1.841.208 6.955 4.583C52.84 20.097 54 22.111 54 22.111z"
         ></path>
-        <path fill="#c4dbf2" d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"></path>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"
+        ></path>
         <path
           fill="#0089ff"
           d="M44.709 39.72a2.007 2.007 0 01-.672-1.13 13.652 13.652 0 01-.177-2.588 20.143 20.143 0 00-.141-2.699 2.831 2.831 0 00-.568-1.365 2.392 2.392 0 00-1.104-.77 4.722 4.722 0 00-1.48-.168h-.583v1.636h.323a2.236 2.236 0 011.328.276 1.395 1.395 0 01.412.974q.052.396.052 2.428a7.437 7.437 0 00.49 3.183 3.521 3.521 0 001.688 1.516 3.246 3.246 0 00-1.417 1.078 4.133 4.133 0 00-.667 1.85q-.094.698-.094 3.303a2.866 2.866 0 01-.354 1.755 1.951 1.951 0 01-1.438.391h-.323v1.636h.584a5.15 5.15 0 001.292-.115 2.326 2.326 0 001.589-1.328 4.334 4.334 0 00.349-1.412q.052-.552.062-2.292a12.642 12.642 0 01.177-2.454 2.007 2.007 0 01.672-1.13 2.078 2.078 0 011.308-.438V40.16a2.078 2.078 0 01-1.308-.438zM30.146 39.94a3.95 3.95 0 00.64-1.72 30.109 30.109 0 00.115-3.448 2.842 2.842 0 01.354-1.745 1.951 1.951 0 011.438-.39h.323V31h-.583a5.635 5.635 0 00-1.292.104 2.315 2.315 0 00-1.59 1.334 4.366 4.366 0 00-.348 1.406q-.052.553-.063 2.293a12.753 12.753 0 01-.177 2.458 1.982 1.982 0 01-.672 1.13 2.096 2.096 0 01-1.308.433v1.698a2.078 2.078 0 011.308.438 2.009 2.009 0 01.672 1.136 13.753 13.753 0 01.177 2.594 20.138 20.138 0 00.141 2.699 2.797 2.797 0 00.568 1.36 2.477 2.477 0 001.104.776 4.712 4.712 0 001.48.167h.584V49.39h-.323a2.203 2.203 0 01-1.329-.281 1.464 1.464 0 01-.422-.99q-.041-.386-.042-2.418a7.392 7.392 0 00-.515-3.224 3.179 3.179 0 00-1.662-1.464 3.813 3.813 0 001.422-1.073z"
         ></path>
       </svg>
     ),
-    name: "File Code Alt",
+    name: 'File Code Alt',
   },
   {
     svg: (
@@ -4466,14 +5274,49 @@ export const fileManagerIconData = [
           fill="#b7d0ea"
           d="M54 22.111h-9.818a3.303 3.303 0 01-3.273-3.333V11s1.841.208 6.955 4.583C52.84 20.097 54 22.111 54 22.111z"
         ></path>
-        <path fill="#c4dbf2" d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"></path>
-        <rect width="18" height="2" x="27" y="31" fill="#599def" rx="1" ry="1"></rect>
-        <rect width="18" height="2" x="27" y="36" fill="#599def" rx="1" ry="1"></rect>
-        <rect width="18" height="2" x="27" y="41" fill="#599def" rx="1" ry="1"></rect>
-        <rect width="12" height="2" x="27" y="46" fill="#599def" rx="1" ry="1"></rect>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"
+        ></path>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="31"
+          fill="#599def"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="36"
+          fill="#599def"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="41"
+          fill="#599def"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="12"
+          height="2"
+          x="27"
+          y="46"
+          fill="#599def"
+          rx="1"
+          ry="1"
+        ></rect>
       </svg>
     ),
-    name: "File Doc Alt",
+    name: 'File Doc Alt',
   },
   {
     svg: (
@@ -4486,14 +5329,17 @@ export const fileManagerIconData = [
           fill="#b7d0ea"
           d="M54 22.111h-9.818a3.303 3.303 0 01-3.273-3.333V11s1.841.208 6.955 4.583C52.84 20.097 54 22.111 54 22.111z"
         ></path>
-        <path fill="#c4dbf2" d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"></path>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"
+        ></path>
         <path
           fill="#755de0"
           d="M27.222 43H44.71s2.325-.281.735-1.897l-5.603-5.498s-1.512-1.792-3.336.793L33.56 40.47a.689.689 0 01-1.019.048l-1.9-1.639s-1.329-1.587-2.475 0c-.656.908-2.026 2.849-2.026 2.849S25.427 43 27.222 43z"
         ></path>
       </svg>
     ),
-    name: "File Media Alt",
+    name: 'File Media Alt',
   },
   {
     svg: (
@@ -4506,14 +5352,17 @@ export const fileManagerIconData = [
           fill="#b7d0ea"
           d="M54 22.111h-9.818a3.303 3.303 0 01-3.273-3.333V11s1.841.208 6.955 4.583C52.84 20.097 54 22.111 54 22.111z"
         ></path>
-        <path fill="#c4dbf2" d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"></path>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"
+        ></path>
         <path
           fill="#f74141"
           d="M46 46.5v-13a3.504 3.504 0 00-3.5-3.5h-13a3.504 3.504 0 00-3.5 3.5v13a3.504 3.504 0 003.5 3.5h13a3.504 3.504 0 003.5-3.5zM40 45v3h-3v-3zm-3-2v-6h7v6zm0-8v-3h3v3zm-2-3v3h-3v-3zm0 5v6h-7v-6zm0 8v3h-3v-3zm7.5 3H42v-3h2v1.5a1.502 1.502 0 01-1.5 1.5zM44 33.5V35h-2v-3h.5a1.502 1.502 0 011.5 1.5zM29.5 32h.5v3h-2v-1.5a1.502 1.502 0 011.5-1.5zM28 46.5V45h2v3h-.5a1.502 1.502 0 01-1.5-1.5z"
         ></path>
       </svg>
     ),
-    name: "File Movie Alt",
+    name: 'File Movie Alt',
   },
   {
     svg: (
@@ -4526,14 +5375,17 @@ export const fileManagerIconData = [
           fill="#b7d0ea"
           d="M54 22.111h-9.818a3.303 3.303 0 01-3.273-3.333V11s1.841.208 6.955 4.583C52.84 20.097 54 22.111 54 22.111z"
         ></path>
-        <path fill="#c4dbf2" d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"></path>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"
+        ></path>
         <path
           fill="#5a5aff"
           d="M45.647 30.737a1.006 1.006 0 00-.811-.223l-12 2A1 1 0 0032 33.5v9.556a3.923 3.923 0 00-3.711-.17 3.863 3.863 0 00-2.082 2.313 4.025 4.025 0 005.37 4.997A3.977 3.977 0 0034 46.451V34.347l10-1.666v8.375a3.923 3.923 0 00-3.711-.17 3.863 3.863 0 00-2.082 2.313 4.025 4.025 0 005.37 4.997A3.977 3.977 0 0046 44.451V31.5a.999.999 0 00-.353-.763z"
         ></path>
       </svg>
     ),
-    name: "File Music Alt",
+    name: 'File Music Alt',
   },
   {
     svg: (
@@ -4546,14 +5398,17 @@ export const fileManagerIconData = [
           fill="#b7d0ea"
           d="M54 22.111h-9.818a3.303 3.303 0 01-3.273-3.333V11s1.841.208 6.955 4.583C52.84 20.097 54 22.111 54 22.111z"
         ></path>
-        <path fill="#c4dbf2" d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"></path>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"
+        ></path>
         <path
           fill="#f26b6b"
           d="M46.334 44.538a4.326 4.326 0 00-2.528-1.429 22.436 22.436 0 00-4.561-.383 19.356 19.356 0 01-3.425-4.772 56.508 56.508 0 001.375-6.086 2.339 2.339 0 00-.462-1.845 1.943 1.943 0 00-1.516-.753h-.001a1.685 1.685 0 00-1.39.697c-1.149 1.526-.363 5.219-.194 5.946a12.612 12.612 0 00.724 2.147 33.322 33.322 0 01-2.49 6.106 20.347 20.347 0 00-5.979 3.44 2.568 2.568 0 00-.886 1.827 1.802 1.802 0 00.634 1.306 2.061 2.061 0 001.395.531 2.244 2.244 0 001.459-.546 20.068 20.068 0 004.29-5.357 20.838 20.838 0 015.938-1.186 33.75 33.75 0 004.243 3.605 2.64 2.64 0 003.416-.236 2.08 2.08 0 00-.042-3.012zM27.62 49.623a.834.834 0 01-1.084.042.42.42 0 01-.167-.27c-.002-.066.027-.315.44-.736a18.038 18.038 0 013.762-2.368 17.26 17.26 0 01-2.95 3.332zm7.283-18.775a.343.343 0 01.315-.151.6.6 0 01.465.239.853.853 0 01.168.672c-.164.92-.424 2.38-.852 4.117l-.037-.151c-.356-1.523-.609-3.996-.059-4.726zm-1.179 12.703a34.973 34.973 0 001.52-3.767 21.248 21.248 0 002.224 3.05 21.857 21.857 0 00-3.744.717zm11.706 2.97a1.308 1.308 0 01-1.695.088 33.203 33.203 0 01-3.004-2.43 20.968 20.968 0 012.835.334 2.97 2.97 0 011.74.965c.533.633.296.87.123 1.043z"
         ></path>
       </svg>
     ),
-    name: "File PDF Alt",
+    name: 'File PDF Alt',
   },
   {
     svg: (
@@ -4566,7 +5421,10 @@ export const fileManagerIconData = [
           fill="#b7d0ea"
           d="M54 22.111h-9.818a3.303 3.303 0 01-3.273-3.333V11s1.841.208 6.955 4.583C52.84 20.097 54 22.111 54 22.111z"
         ></path>
-        <path fill="#c4dbf2" d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"></path>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"
+        ></path>
         <path
           fill="#f25168"
           d="M44.14 46H27.86A1.86 1.86 0 0126 44.14v-9.28A1.86 1.86 0 0127.86 33h16.28A1.86 1.86 0 0146 34.86v9.28A1.86 1.86 0 0144.14 46zm-14.995-2h13.71A1.145 1.145 0 0044 42.855v-6.71A1.145 1.145 0 0042.855 35h-13.71A1.145 1.145 0 0028 36.145v6.71A1.145 1.145 0 0029.145 44z"
@@ -4581,7 +5439,7 @@ export const fileManagerIconData = [
         ></path>
       </svg>
     ),
-    name: "File PPT Alt",
+    name: 'File PPT Alt',
   },
   {
     svg: (
@@ -4594,14 +5452,17 @@ export const fileManagerIconData = [
           fill="#b7d0ea"
           d="M54 22.111h-9.818a3.303 3.303 0 01-3.273-3.333V11s1.841.208 6.955 4.583C52.84 20.097 54 22.111 54 22.111z"
         ></path>
-        <path fill="#c4dbf2" d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"></path>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"
+        ></path>
         <path
           fill="#36c684"
           d="M42 31H30a3.003 3.003 0 00-3 3v11a3.003 3.003 0 003 3h12a3.003 3.003 0 003-3V34a3.003 3.003 0 00-3-3zm-13 7h6v3h-6zm8 0h6v3h-6zm6-4v2h-6v-3h5a1.001 1.001 0 011 1zm-13-1h5v3h-6v-2a1.001 1.001 0 011-1zm-1 12v-2h6v3h-5a1.001 1.001 0 01-1-1zm13 1h-5v-3h6v2a1.001 1.001 0 01-1 1z"
         ></path>
       </svg>
     ),
-    name: "File Sheet Alt",
+    name: 'File Sheet Alt',
   },
   {
     svg: (
@@ -4614,32 +5475,121 @@ export const fileManagerIconData = [
           fill="#b7d0ea"
           d="M54 22.111h-9.818a3.303 3.303 0 01-3.273-3.333V11s1.841.208 6.955 4.583C52.84 20.097 54 22.111 54 22.111z"
         ></path>
-        <path fill="#c4dbf2" d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"></path>
-        <rect width="18" height="2" x="27" y="31" fill="#7e95c4" rx="1" ry="1"></rect>
-        <rect width="18" height="2" x="27" y="35" fill="#7e95c4" rx="1" ry="1"></rect>
-        <rect width="18" height="2" x="27" y="39" fill="#7e95c4" rx="1" ry="1"></rect>
-        <rect width="14" height="2" x="27" y="43" fill="#7e95c4" rx="1" ry="1"></rect>
-        <rect width="8" height="2" x="27" y="47" fill="#7e95c4" rx="1" ry="1"></rect>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 59A4.984 4.984 0 0023 61h26a4.984 4.984 0 003.97-2z"
+        ></path>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="31"
+          fill="#7e95c4"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="35"
+          fill="#7e95c4"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="18"
+          height="2"
+          x="27"
+          y="39"
+          fill="#7e95c4"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="14"
+          height="2"
+          x="27"
+          y="43"
+          fill="#7e95c4"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="27"
+          y="47"
+          fill="#7e95c4"
+          rx="1"
+          ry="1"
+        ></rect>
       </svg>
     ),
-    name: "File Text Alt",
+    name: 'File Text Alt',
   },
   {
     svg: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-        <rect width="36" height="40" x="18" y="16" fill="#e3edfc" rx="5" ry="5"></rect>
-        <path fill="#c4dbf2" d="M19.03 54A4.984 4.984 0 0023 56h26a4.984 4.984 0 003.97-2z"></path>
-        <rect width="8" height="2" x="32" y="20" fill="#7e95c4" rx="1" ry="1"></rect>
-        <rect width="8" height="2" x="32" y="25" fill="#7e95c4" rx="1" ry="1"></rect>
-        <rect width="8" height="2" x="32" y="30" fill="#7e95c4" rx="1" ry="1"></rect>
-        <rect width="8" height="2" x="32" y="35" fill="#7e95c4" rx="1" ry="1"></rect>
-        <path fill="#7e95c4" d="M35 16.06h2V41a1 1 0 01-1 1 1 1 0 01-1-1V16.06z"></path>
+        <rect
+          width="36"
+          height="40"
+          x="18"
+          y="16"
+          fill="#e3edfc"
+          rx="5"
+          ry="5"
+        ></rect>
+        <path
+          fill="#c4dbf2"
+          d="M19.03 54A4.984 4.984 0 0023 56h26a4.984 4.984 0 003.97-2z"
+        ></path>
+        <rect
+          width="8"
+          height="2"
+          x="32"
+          y="20"
+          fill="#7e95c4"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="32"
+          y="25"
+          fill="#7e95c4"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="32"
+          y="30"
+          fill="#7e95c4"
+          rx="1"
+          ry="1"
+        ></rect>
+        <rect
+          width="8"
+          height="2"
+          x="32"
+          y="35"
+          fill="#7e95c4"
+          rx="1"
+          ry="1"
+        ></rect>
+        <path
+          fill="#7e95c4"
+          d="M35 16.06h2V41a1 1 0 01-1 1 1 1 0 01-1-1V16.06z"
+        ></path>
         <path
           fill="#7e95c4"
           d="M38.002 40h-4.004A1.998 1.998 0 0032 41.998v2.004A1.998 1.998 0 0033.998 46h4.004A1.998 1.998 0 0040 44.002v-2.004A1.998 1.998 0 0038.002 40zm-.005 4H34v-2h4z"
         ></path>
       </svg>
     ),
-    name: "File Zip Alt",
+    name: 'File Zip Alt',
   },
-];
+]

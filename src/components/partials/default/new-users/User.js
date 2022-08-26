@@ -1,15 +1,24 @@
-import React from "react";
-import UserAvatar from "../../../user/UserAvatar";
-import Icon from "../../../icon/Icon";
-import { newUserData } from "./UserData";
-import { DropdownMenu, DropdownToggle, UncontrolledDropdown, CardTitle, DropdownItem } from "reactstrap";
-import { Link } from "react-router-dom";
+import React from 'react'
+import UserAvatar from '../../../user/UserAvatar'
+import Icon from '../../../icon/Icon'
+import { newUserData } from './UserData'
+import {
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+  CardTitle,
+  DropdownItem,
+} from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 const NewsUsers = () => {
   const DropdownTrans = () => {
     return (
       <UncontrolledDropdown>
-        <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger mr-n1">
+        <DropdownToggle
+          tag="a"
+          className="dropdown-toggle btn btn-icon btn-trigger mr-n1"
+        >
           <Icon name="more-h"></Icon>
         </DropdownToggle>
         <DropdownMenu right>
@@ -19,7 +28,7 @@ const NewsUsers = () => {
                 tag="a"
                 href="#dropdownitem"
                 onClick={(ev) => {
-                  ev.preventDefault();
+                  ev.preventDefault()
                 }}
               >
                 <Icon name="setting"></Icon>
@@ -31,7 +40,7 @@ const NewsUsers = () => {
                 tag="a"
                 href="#dropdownitem"
                 onClick={(ev) => {
-                  ev.preventDefault();
+                  ev.preventDefault()
                 }}
               >
                 <Icon name="notify"></Icon>
@@ -41,8 +50,8 @@ const NewsUsers = () => {
           </ul>
         </DropdownMenu>
       </UncontrolledDropdown>
-    );
-  };
+    )
+  }
   return (
     <div className="card-inner-group">
       <div className="card-inner">
@@ -51,7 +60,10 @@ const NewsUsers = () => {
             <h6 className="title">New Users</h6>
           </CardTitle>
           <div className="card-tools">
-            <Link to={`${process.env.PUBLIC_URL}/user-list-regular`} className="link">
+            <Link
+              to={`${process.env.PUBLIC_URL}/user-list-regular`}
+              className="link"
+            >
               View All
             </Link>
           </div>
@@ -71,9 +83,9 @@ const NewsUsers = () => {
               </div>
             </div>
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
-export default NewsUsers;
+  )
+}
+export default NewsUsers

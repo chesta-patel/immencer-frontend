@@ -1,7 +1,7 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
-import { Link } from "react-router-dom";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
+import { Link } from 'react-router-dom'
 import {
   Block,
   BlockHead,
@@ -12,8 +12,8 @@ import {
   PreviewTable,
   CodeBlock,
   PreviewCard,
-} from "../../components/Component";
-import { Row, Col } from "reactstrap";
+} from '../../components/Component'
+import { Row, Col } from 'reactstrap'
 
 const Typography = () => {
   return (
@@ -30,9 +30,12 @@ const Typography = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                These examples for typography, including global settings, headings, body text, lists, and more. When
-                more control is needed, check out the{" "}
-                <Link to={`${process.env.PUBLIC_URL}/components/util-text`}>textual utility classes.</Link>
+                These examples for typography, including global settings,
+                headings, body text, lists, and more. When more control is
+                needed, check out the{' '}
+                <Link to={`${process.env.PUBLIC_URL}/components/util-text`}>
+                  textual utility classes.
+                </Link>
               </p>
             </BlockDes>
           </BlockHeadContent>
@@ -42,8 +45,9 @@ const Typography = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Headings</BlockTitle>
               <p>
-                All JSX headings, <code className="code-tag">{`<h1>`}</code> through{" "}
-                <code className="code-tag">{`<h6>`}</code>, are available
+                All JSX headings, <code className="code-tag">{`<h1>`}</code>{' '}
+                through <code className="code-tag">{`<h6>`}</code>, are
+                available
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -132,16 +136,20 @@ const Typography = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Customize headings</BlockTitle>
               <p>
-                Use the <Link to={`${process.env.PUBLIC_URL}/components/util-text`}>text utitlity classes</Link> to
-                customize the heading text further.
+                Use the{' '}
+                <Link to={`${process.env.PUBLIC_URL}/components/util-text`}>
+                  text utitlity classes
+                </Link>{' '}
+                to customize the heading text further.
               </p>
             </BlockHeadContent>
           </BlockHead>
 
           <PreviewCard>
             <h3 className="ff-base fw-medium">
-              {" "}
-              Fancy display heading <small className="text-soft">With faded secondary text</small>
+              {' '}
+              Fancy display heading{' '}
+              <small className="text-soft">With faded secondary text</small>
             </h3>
           </PreviewCard>
 
@@ -155,9 +163,16 @@ const Typography = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Inline Element & Text Style</BlockTitle>
               <p>
-                Change text alignment, transform, style, weight, and color with our{" "}
-                <Link to={`${process.env.PUBLIC_URL}/components/util-text`}>text utitlity classes</Link> and{" "}
-                <Link to={`${process.env.PUBLIC_URL}/components/util-colors`}>color utilities</Link>.
+                Change text alignment, transform, style, weight, and color with
+                our{' '}
+                <Link to={`${process.env.PUBLIC_URL}/components/util-text`}>
+                  text utitlity classes
+                </Link>{' '}
+                and{' '}
+                <Link to={`${process.env.PUBLIC_URL}/components/util-colors`}>
+                  color utilities
+                </Link>
+                .
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -186,7 +201,9 @@ const Typography = () => {
                 </td>
                 <td>
                   <p>
-                    <del>This line of text is meant to be treated as deleted text.</del>
+                    <del>
+                      This line of text is meant to be treated as deleted text.
+                    </del>
                   </p>
                 </td>
               </tr>
@@ -196,7 +213,10 @@ const Typography = () => {
                 </td>
                 <td>
                   <p>
-                    <s>This line of text is meant to be treated as no longer accurate.</s>
+                    <s>
+                      This line of text is meant to be treated as no longer
+                      accurate.
+                    </s>
                   </p>
                 </td>
               </tr>
@@ -206,7 +226,10 @@ const Typography = () => {
                 </td>
                 <td>
                   <p>
-                    <ins>This line of text is meant to be treated as an addition to the document.</ins>
+                    <ins>
+                      This line of text is meant to be treated as an addition to
+                      the document.
+                    </ins>
                   </p>
                 </td>
               </tr>
@@ -226,7 +249,9 @@ const Typography = () => {
                 </td>
                 <td>
                   <p>
-                    <small>This line of text is meant to be treated as fine print.</small>
+                    <small>
+                      This line of text is meant to be treated as fine print.
+                    </small>
                   </p>
                 </td>
               </tr>
@@ -266,7 +291,9 @@ const Typography = () => {
                 </td>
                 <td>
                   <p>
-                    Abbreviations have a <abbr title="hello">default underline</abbr> and gain a help cursor
+                    Abbreviations have a{' '}
+                    <abbr title="hello">default underline</abbr> and gain a help
+                    cursor
                   </p>
                 </td>
               </tr>
@@ -275,7 +302,9 @@ const Typography = () => {
                   <code>.lead</code>
                 </td>
                 <td>
-                  <p className="lead">This line of text is meant to lead text to stand out.</p>
+                  <p className="lead">
+                    This line of text is meant to lead text to stand out.
+                  </p>
                 </td>
               </tr>
             </tbody>
@@ -292,15 +321,16 @@ const Typography = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Blockquotes</BlockTitle>
               <p>
-                For quoting blocks of content from another source within your document. Use .blockquote in{" "}
-                {`<blockquote>`}.
+                For quoting blocks of content from another source within your
+                document. Use .blockquote in {`<blockquote>`}.
               </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
             <blockquote className="blockquote text-center">
               <p className="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                posuere erat a ante.
               </p>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>
@@ -310,7 +340,8 @@ const Typography = () => {
           <PreviewCard>
             <blockquote className="blockquote text-left">
               <p className="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                posuere erat a ante.
               </p>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>
@@ -331,9 +362,10 @@ const Typography = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Lists - Style</BlockTitle>
               <p>
-                Use <code>.list</code> class with <code className="code-tag">{`<ul>`}</code> element to style basic
-                listing. Also your can use <code>.list-checked</code> with <code>.list</code> class for different style
-                as below.
+                Use <code>.list</code> class with{' '}
+                <code className="code-tag">{`<ul>`}</code> element to style
+                basic listing. Also your can use <code>.list-checked</code> with{' '}
+                <code>.list</code> class for different style as below.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -344,7 +376,7 @@ const Typography = () => {
                   <li>Lorem ipsum dolor sit amet</li>
                   <li>Consectetur adipiscing elit</li>
                   <li>
-                    Nulla volutpat aliquam velit{" "}
+                    Nulla volutpat aliquam velit{' '}
                     <ul>
                       <li>Phasellus iaculis nequeep</li>
                       <li>Ac tristique libero volutpat at</li>
@@ -359,7 +391,7 @@ const Typography = () => {
                   <li>Lorem ipsum dolor sit amet</li>
                   <li>Consectetur adipiscing elit</li>
                   <li>
-                    Nulla volutpat aliquam velit{" "}
+                    Nulla volutpat aliquam velit{' '}
                     <ul>
                       <li>Phasellus iaculis nequeep</li>
                       <li>Ac tristique libero volutpat at</li>
@@ -389,7 +421,8 @@ const Typography = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Lists - UnStyle</BlockTitle>
               <p>
-                Use <code>.list</code> class with <code className="code-tag">{`<ul>`}</code> element to unstyle.
+                Use <code>.list</code> class with{' '}
+                <code className="code-tag">{`<ul>`}</code> element to unstyle.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -398,7 +431,7 @@ const Typography = () => {
               <li>Lorem ipsum dolor sit amet</li>
               <li>Consectetur adipiscing elit</li>
               <li>
-                Nulla volutpat aliquam velit{" "}
+                Nulla volutpat aliquam velit{' '}
                 <ul>
                   <li>Phasellus iaculis nequeep</li>
                   <li>Ac tristique libero volutpat at</li>
@@ -424,8 +457,10 @@ const Typography = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Lists - Inline</BlockTitle>
               <p>
-                Remove a list’s bullets and apply some light <code className="code-fnc">margin</code> with a combination
-                of two classes, <code>.list-inline</code> and <code>.list-inline-item</code>.
+                Remove a list’s bullets and apply some light{' '}
+                <code className="code-fnc">margin</code> with a combination of
+                two classes, <code>.list-inline</code> and{' '}
+                <code>.list-inline-item</code>.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -452,14 +487,16 @@ const Typography = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Description list alignment</BlockTitle>
               <p>
-                Align terms and descriptions horizontally by using the{" "}
+                Align terms and descriptions horizontally by using the{' '}
                 <a
-                  href={"https://deploy-preview-2356--reactstrap.netlify.app/components/layout"}
+                  href={
+                    'https://deploy-preview-2356--reactstrap.netlify.app/components/layout'
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >
                   Reactstrap's
-                </a>{" "}
+                </a>{' '}
                 predefined components.
               </p>
             </BlockHeadContent>
@@ -469,12 +506,17 @@ const Typography = () => {
               <Col sm="3" className="fw-bold">
                 Description lists
               </Col>
-              <Col sm="9">A description list is perfect for defining terms.</Col>
+              <Col sm="9">
+                A description list is perfect for defining terms.
+              </Col>
               <Col sm="3" className="fw-bold">
                 Euismod
               </Col>
               <Col sm="9">
-                <p>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</p>{" "}
+                <p>
+                  Vestibulum id ligula porta felis euismod semper eget lacinia
+                  odio sem nec elit.
+                </p>{' '}
                 <p>Donec id elit non mi porta gravida at eget metus.</p>
               </Col>
               <Col sm="3" className="fw-bold">
@@ -485,8 +527,8 @@ const Typography = () => {
                 Truncated term is truncated
               </Col>
               <Col sm="9">
-                Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit
-                amet risus.
+                Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh, ut fermentum massa justo sit amet risus.
               </Col>
               <Col sm="3" className="fw-bold">
                 Nesting
@@ -496,7 +538,10 @@ const Typography = () => {
                   <Col sm="4" className="fw-bold">
                     Nested definition list
                   </Col>
-                  <Col sm="8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</Col>
+                  <Col sm="8">
+                    Aenean posuere, tortor sed cursus feugiat, nunc augue
+                    blandit nunc.
+                  </Col>
                 </Row>
               </Col>
             </Row>
@@ -532,7 +577,7 @@ const Typography = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Typography;
+export default Typography

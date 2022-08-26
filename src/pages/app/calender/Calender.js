@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import CalenderApp from "../../../components/partials/calender/Calender";
-import DatePicker from "react-datepicker";
-import { Modal, ModalBody, FormGroup, ModalHeader, Button } from "reactstrap";
+import React, { useState } from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import CalenderApp from '../../../components/partials/calender/Calender'
+import DatePicker from 'react-datepicker'
+import { Modal, ModalBody, FormGroup, ModalHeader, Button } from 'reactstrap'
 import {
   Block,
   BlockBetween,
@@ -15,55 +15,58 @@ import {
   PreviewAltCard,
   Row,
   RSelect,
-} from "../../../components/Component";
-import { eventOptions, events } from "../../../components/partials/calender/CalenderData";
-import { useForm } from "react-hook-form";
-import { setDateForPicker } from "../../../utils/Utils";
+} from '../../../components/Component'
+import {
+  eventOptions,
+  events,
+} from '../../../components/partials/calender/CalenderData'
+import { useForm } from 'react-hook-form'
+import { setDateForPicker } from '../../../utils/Utils'
 
 const Calender = () => {
-  const [modal, setModal] = useState(false);
-  const [mockEvents, updateEvent] = useState(events);
+  const [modal, setModal] = useState(false)
+  const [mockEvents, updateEvent] = useState(events)
   const [dates, setDates] = useState({
     startDate: new Date(),
     startTime: new Date(),
     endTime: new Date(),
     endDate: new Date(),
-  });
-  const [theme, settheme] = useState("");
+  })
+  const [theme, settheme] = useState('')
   const toggle = () => {
-    setModal(!modal);
-  };
-  const { errors, register, handleSubmit } = useForm();
+    setModal(!modal)
+  }
+  const { errors, register, handleSubmit } = useForm()
 
   const handleFormSubmit = (formData) => {
     let newEvent = {
-      id: "default-event-id-" + Math.floor(Math.random() * 9999999),
+      id: 'default-event-id-' + Math.floor(Math.random() * 9999999),
       title: formData.title,
       start: setDateForPicker(dates.startDate),
       end: setDateForPicker(dates.endDate),
       description: formData.description,
       className: theme.value,
       type: theme,
-    };
-    updateEvent([...mockEvents, newEvent]);
+    }
+    updateEvent([...mockEvents, newEvent])
     settheme({
-      value: "fc-event-primary",
-      label: "Company",
-    });
-    toggle();
-  };
+      value: 'fc-event-primary',
+      label: 'Company',
+    })
+    toggle()
+  }
 
   const editEvent = (formData) => {
-    let newEvents = mockEvents;
-    const index = newEvents.findIndex((item) => item.id === formData.id);
-    events[index] = formData;
-    updateEvent([...events]);
-  };
+    let newEvents = mockEvents
+    const index = newEvents.findIndex((item) => item.id === formData.id)
+    events[index] = formData
+    updateEvent([...events])
+  }
 
   const deleteEvent = (id) => {
-    let filteredEvents = mockEvents.filter((item) => item.id !== id);
-    updateEvent(filteredEvents);
-  };
+    let filteredEvents = mockEvents.filter((item) => item.id !== id)
+    updateEvent(filteredEvents)
+  }
 
   return (
     <React.Fragment>
@@ -84,14 +87,21 @@ const Calender = () => {
         </BlockHead>
         <Block>
           <PreviewAltCard>
-            <CalenderApp events={mockEvents} onDelete={deleteEvent} onEdit={editEvent} />
+            <CalenderApp
+              events={mockEvents}
+              onDelete={deleteEvent}
+              onEdit={editEvent}
+            />
           </PreviewAltCard>
         </Block>
       </Content>
       <Modal isOpen={modal} toggle={toggle} className="modal-md">
         <ModalHeader toggle={toggle}>Add Event</ModalHeader>
         <ModalBody>
-          <form className="form-validate is-alter" onSubmit={handleSubmit(handleFormSubmit)}>
+          <form
+            className="form-validate is-alter"
+            onSubmit={handleSubmit(handleFormSubmit)}
+          >
             <Row className="gx-4 gy-3">
               <Col size="12">
                 <FormGroup>
@@ -106,7 +116,9 @@ const Calender = () => {
                       className="form-control"
                       ref={register({ required: true })}
                     />
-                    {errors.title && <p className="invalid">This field is required</p>}
+                    {errors.title && (
+                      <p className="invalid">This field is required</p>
+                    )}
                   </div>
                 </FormGroup>
               </Col>
@@ -118,7 +130,9 @@ const Calender = () => {
                       <div className="form-control-wrap">
                         <DatePicker
                           selected={dates.startDate}
-                          onChange={(date) => setDates({ ...dates, startDate: date })}
+                          onChange={(date) =>
+                            setDates({ ...dates, startDate: date })
+                          }
                           className="form-control date-picker"
                         />
                       </div>
@@ -127,7 +141,9 @@ const Calender = () => {
                       <div className="form-control-wrap has-timepicker">
                         <DatePicker
                           selected={dates.startTime}
-                          onChange={(date) => setDates({ ...dates, startTime: date })}
+                          onChange={(date) =>
+                            setDates({ ...dates, startTime: date })
+                          }
                           showTimeSelect
                           showTimeSelectOnly
                           timeIntervals={15}
@@ -148,7 +164,9 @@ const Calender = () => {
                       <div className="form-control-wrap">
                         <DatePicker
                           selected={dates.endDate}
-                          onChange={(date) => setDates({ ...dates, endDate: date })}
+                          onChange={(date) =>
+                            setDates({ ...dates, endDate: date })
+                          }
                           className="form-control date-picker"
                         />
                       </div>
@@ -157,7 +175,9 @@ const Calender = () => {
                       <div className="form-control-wrap has-timepicker">
                         <DatePicker
                           selected={dates.endTime}
-                          onChange={(date) => setDates({ ...dates, endTime: date })}
+                          onChange={(date) =>
+                            setDates({ ...dates, endTime: date })
+                          }
                           showTimeSelect
                           showTimeSelectOnly
                           timeIntervals={15}
@@ -183,7 +203,9 @@ const Calender = () => {
                       ref={register({ required: true })}
                     ></textarea>
 
-                    {errors.description && <p className="invalid">This field is required</p>}
+                    {errors.description && (
+                      <p className="invalid">This field is required</p>
+                    )}
                   </div>
                 </FormGroup>
               </Col>
@@ -194,8 +216,8 @@ const Calender = () => {
                     <RSelect
                       options={eventOptions}
                       defaultValue={{
-                        value: "fc-event-primary",
-                        label: "Company",
+                        value: 'fc-event-primary',
+                        label: 'Company',
                       }}
                       onChange={(e) => settheme(e)}
                       //ref={register({ required: true })}
@@ -222,6 +244,6 @@ const Calender = () => {
         </ModalBody>
       </Modal>
     </React.Fragment>
-  );
-};
-export default Calender;
+  )
+}
+export default Calender

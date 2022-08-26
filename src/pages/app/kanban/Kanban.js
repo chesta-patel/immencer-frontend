@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import KanbanBoard from "./KanbanBoard";
-import { columnData } from "./KanbanData";
-import { Modal } from "reactstrap";
+import React, { useState } from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import KanbanBoard from './KanbanBoard'
+import { columnData } from './KanbanData'
+import { Modal } from 'reactstrap'
 import {
   BlockHead,
   BlockBetween,
@@ -12,22 +12,22 @@ import {
   Button,
   Icon,
   Block,
-} from "../../../components/Component";
-import { KanbanBoardForm, KanbanTaskForm } from "./KanbanForms";
+} from '../../../components/Component'
+import { KanbanBoardForm, KanbanTaskForm } from './KanbanForms'
 
 const Kanban = () => {
-  const [columns, setColumns] = useState(columnData);
-  const [smBtn, setSmBtn] = useState(false);
-  const [boardModal, setBoardModal] = useState(false);
-  const [taskModal, setTaskModal] = useState(false);
+  const [columns, setColumns] = useState(columnData)
+  const [smBtn, setSmBtn] = useState(false)
+  const [boardModal, setBoardModal] = useState(false)
+  const [taskModal, setTaskModal] = useState(false)
 
   const toggleBoardModal = () => {
-    setBoardModal(!boardModal);
-  };
+    setBoardModal(!boardModal)
+  }
 
   const toggleTaskModal = () => {
-    setTaskModal(!taskModal);
-  };
+    setTaskModal(!taskModal)
+  }
 
   return (
     <React.Fragment>
@@ -43,23 +43,33 @@ const Kanban = () => {
                 <a
                   href="#toggle"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    setSmBtn(!smBtn);
+                    ev.preventDefault()
+                    setSmBtn(!smBtn)
                   }}
                   className="btn btn-icon btn-trigger toggle-expand mr-n1"
                 >
                   <Icon name="menu-alt-r"></Icon>
                 </a>
-                <div className={`toggle-expand-content ${smBtn ? "expanded" : ""}`}>
+                <div
+                  className={`toggle-expand-content ${smBtn ? 'expanded' : ''}`}
+                >
                   <ul className="nk-block-tools g-3">
                     <li>
-                      <Button color="light" outline className="btn-white" onClick={() => toggleTaskModal()}>
+                      <Button
+                        color="light"
+                        outline
+                        className="btn-white"
+                        onClick={() => toggleTaskModal()}
+                      >
                         <Icon name="plus" />
                         <span>Add Task</span>
                       </Button>
                     </li>
                     <li>
-                      <Button color="primary" onClick={() => toggleBoardModal()}>
+                      <Button
+                        color="primary"
+                        onClick={() => toggleBoardModal()}
+                      >
                         <Icon name="plus" />
                         <span>Add Board</span>
                       </Button>
@@ -78,15 +88,23 @@ const Kanban = () => {
         </Block>
 
         <Modal size="lg" isOpen={boardModal} toggle={toggleBoardModal}>
-          <KanbanBoardForm toggle={toggleBoardModal} data={columns} setData={setColumns} />
+          <KanbanBoardForm
+            toggle={toggleBoardModal}
+            data={columns}
+            setData={setColumns}
+          />
         </Modal>
 
         <Modal size="lg" isOpen={taskModal} toggle={toggleTaskModal}>
-          <KanbanTaskForm toggle={toggleTaskModal} data={columns} setData={setColumns} />
+          <KanbanTaskForm
+            toggle={toggleTaskModal}
+            data={columns}
+            setData={setColumns}
+          />
         </Modal>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Kanban;
+export default Kanban

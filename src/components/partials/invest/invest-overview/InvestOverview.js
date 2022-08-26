@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import Icon from "../../../icon/Icon";
+import React, { useState } from 'react'
+import Icon from '../../../icon/Icon'
 
 const InvestOverview = () => {
-  const [tab, setTab] = useState("1");
+  const [tab, setTab] = useState('1')
   return (
     <React.Fragment>
       <div className="card-title-group mb-1">
         <div className="card-title">
           <h6 className="title">Investment Overview</h6>
           <p>
-            The investment overview of your platform.{" "}
+            The investment overview of your platform.{' '}
             <a
               href="#all"
               onClick={(ev) => {
-                ev.preventDefault();
+                ev.preventDefault()
               }}
             >
               All Investment
@@ -22,33 +22,33 @@ const InvestOverview = () => {
         </div>
       </div>
       <ul className="nav nav-tabs nav-tabs-card nav-tabs-xs">
-        <li className="nav-item" onClick={() => setTab("1")}>
+        <li className="nav-item" onClick={() => setTab('1')}>
           <a
             href="#overview"
             onClick={(ev) => {
-              ev.preventDefault();
+              ev.preventDefault()
             }}
-            className={`nav-link${tab === "1" ? " active" : ""}`}
+            className={`nav-link${tab === '1' ? ' active' : ''}`}
           >
             Overview
           </a>
         </li>
-        <li className="nav-item" onClick={() => setTab("2")}>
+        <li className="nav-item" onClick={() => setTab('2')}>
           <a
             onClick={(ev) => {
-              ev.preventDefault();
+              ev.preventDefault()
             }}
-            className={`nav-link${tab === "2" ? " active" : ""}`}
+            className={`nav-link${tab === '2' ? ' active' : ''}`}
             href="#year"
           >
             This Year
           </a>
         </li>
-        <li className="nav-item" onClick={() => setTab("3")}>
+        <li className="nav-item" onClick={() => setTab('3')}>
           <a
-            className={`nav-link${tab === "3" ? " active" : ""}`}
+            className={`nav-link${tab === '3' ? ' active' : ''}`}
             onClick={(ev) => {
-              ev.preventDefault();
+              ev.preventDefault()
             }}
             href="#all"
           >
@@ -57,14 +57,15 @@ const InvestOverview = () => {
         </li>
       </ul>
       <div className="tab-content mt-0">
-        {tab === "1" && (
-          <div className={`tab-pane${tab === "1" && " active"}`}>
+        {tab === '1' && (
+          <div className={`tab-pane${tab === '1' && ' active'}`}>
             <div className="invest-ov gy-2">
               <div className="subtitle">Currently Actived Investment</div>
               <div className="invest-ov-details">
                 <div className="invest-ov-info">
                   <div className="amount">
-                    49,395.395 <span className="currency currency-usd">USD</span>
+                    49,395.395{' '}
+                    <span className="currency currency-usd">USD</span>
                   </div>
                   <div className="title">Amount</div>
                 </div>
@@ -82,7 +83,8 @@ const InvestOverview = () => {
               <div className="invest-ov-details">
                 <div className="invest-ov-info">
                   <div className="amount">
-                    49,395.395 <span className="currency currency-usd">USD</span>
+                    49,395.395{' '}
+                    <span className="currency currency-usd">USD</span>
                   </div>
                   <div className="title">Paid Profit</div>
                 </div>
@@ -93,7 +95,8 @@ const InvestOverview = () => {
               <div className="invest-ov-details">
                 <div className="invest-ov-info">
                   <div className="amount">
-                    49,395.395 <span className="currency currency-usd">USD</span>
+                    49,395.395{' '}
+                    <span className="currency currency-usd">USD</span>
                   </div>
                   <div className="title">Amount</div>
                 </div>
@@ -112,14 +115,15 @@ const InvestOverview = () => {
           </div>
         )}
 
-        {tab === "2" && (
-          <div className={`tab-pane${tab === "2" && " active"}`}>
+        {tab === '2' && (
+          <div className={`tab-pane${tab === '2' && ' active'}`}>
             <div className="invest-ov gy-2">
               <div className="subtitle">Currently Actived Investment</div>
               <div className="invest-ov-details">
                 <div className="invest-ov-info">
                   <div className="amount">
-                    89,395.395 <span className="currency currency-usd">USD</span>
+                    89,395.395{' '}
+                    <span className="currency currency-usd">USD</span>
                   </div>
                   <div className="title">Amount</div>
                 </div>
@@ -137,7 +141,8 @@ const InvestOverview = () => {
               <div className="invest-ov-details">
                 <div className="invest-ov-info">
                   <div className="amount">
-                    99,395.395 <span className="currency currency-usd">USD</span>
+                    99,395.395{' '}
+                    <span className="currency currency-usd">USD</span>
                   </div>
                   <div className="title">Paid Profit</div>
                 </div>
@@ -148,7 +153,8 @@ const InvestOverview = () => {
               <div className="invest-ov-details">
                 <div className="invest-ov-info">
                   <div className="amount">
-                    149,395.395 <span className="currency currency-usd">USD</span>
+                    149,395.395{' '}
+                    <span className="currency currency-usd">USD</span>
                   </div>
                   <div className="title">Amount</div>
                 </div>
@@ -167,14 +173,15 @@ const InvestOverview = () => {
           </div>
         )}
 
-        {tab === "3" && (
-          <div className={`tab-pane${tab === "3" && " active"}`}>
+        {tab === '3' && (
+          <div className={`tab-pane${tab === '3' && ' active'}`}>
             <div className="invest-ov gy-2">
               <div className="subtitle">Currently Actived Investment</div>
               <div className="invest-ov-details">
                 <div className="invest-ov-info">
                   <div className="amount">
-                    249,395.395 <span className="currency currency-usd">USD</span>
+                    249,395.395{' '}
+                    <span className="currency currency-usd">USD</span>
                   </div>
                   <div className="title">Amount</div>
                 </div>
@@ -192,7 +199,8 @@ const InvestOverview = () => {
               <div className="invest-ov-details">
                 <div className="invest-ov-info">
                   <div className="amount">
-                    149,395.395 <span className="currency currency-usd">USD</span>
+                    149,395.395{' '}
+                    <span className="currency currency-usd">USD</span>
                   </div>
                   <div className="title">Paid Profit</div>
                 </div>
@@ -203,7 +211,8 @@ const InvestOverview = () => {
               <div className="invest-ov-details">
                 <div className="invest-ov-info">
                   <div className="amount">
-                    249,395.395 <span className="currency currency-usd">USD</span>
+                    249,395.395{' '}
+                    <span className="currency currency-usd">USD</span>
                   </div>
                   <div className="title">Amount</div>
                 </div>
@@ -223,6 +232,6 @@ const InvestOverview = () => {
         )}
       </div>
     </React.Fragment>
-  );
-};
-export default InvestOverview;
+  )
+}
+export default InvestOverview

@@ -1,38 +1,51 @@
-import React, { useEffect, useState, useContext } from "react";
-import FileManagerDropdown from "../../../../components/partials/file-manager-dropdown/FileManagerDropdown";
-import SelectorCopy from "../modals/SelectorCopy";
-import CreateFolder from "../modals/CreateFolder";
-import { Icon, UserAvatar, UserGroup } from "../../../../components/Component";
-import { findUpper } from "../../../../utils/Utils";
-import { FileManagerContext } from "../FileManagerContext";
-import { Link } from "react-router-dom";
-import { DropdownItem, DropdownMenu, Modal, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+import React, { useEffect, useState, useContext } from 'react'
+import FileManagerDropdown from '../../../../components/partials/file-manager-dropdown/FileManagerDropdown'
+import SelectorCopy from '../modals/SelectorCopy'
+import CreateFolder from '../modals/CreateFolder'
+import { Icon, UserAvatar, UserGroup } from '../../../../components/Component'
+import { findUpper } from '../../../../utils/Utils'
+import { FileManagerContext } from '../FileManagerContext'
+import { Link } from 'react-router-dom'
+import {
+  DropdownItem,
+  DropdownMenu,
+  Modal,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap'
 
 const List = ({ data, setData, starred }) => {
-  const { onStarClick, onFileCheck, selectorDeleteFolder, selectorDownloadFile, getTotalSize } =
-    useContext(FileManagerContext);
+  const {
+    onStarClick,
+    onFileCheck,
+    selectorDeleteFolder,
+    selectorDownloadFile,
+    getTotalSize,
+  } = useContext(FileManagerContext)
 
-  const [dataList, setDataList] = useState();
-  const [createModal, setCreateModal] = useState(false);
-  const [copyModal, setCopyModal] = useState(false);
+  const [dataList, setDataList] = useState()
+  const [createModal, setCreateModal] = useState(false)
+  const [copyModal, setCopyModal] = useState(false)
 
   useEffect(() => {
     if (starred) {
-      let filteredData = data.filter((item) => item.meta.starred === true && !item.recovery);
-      setDataList([...filteredData]);
+      let filteredData = data.filter(
+        (item) => item.meta.starred === true && !item.recovery
+      )
+      setDataList([...filteredData])
     } else {
-      let filteredData = data.filter((item) => !item.recovery);
-      setDataList([...filteredData]);
+      let filteredData = data.filter((item) => !item.recovery)
+      setDataList([...filteredData])
     }
-  }, [data]);
+  }, [data])
 
   const toggleCreateModal = () => {
-    setCreateModal(!createModal);
-  };
+    setCreateModal(!createModal)
+  }
 
   const toggleCopyModal = () => {
-    setCopyModal(!copyModal);
-  };
+    setCopyModal(!copyModal)
+  }
 
   return (
     <div className="nk-files nk-files-view-list">
@@ -64,8 +77,8 @@ const List = ({ data, setData, starred }) => {
                     <DropdownItem
                       tag="a"
                       onClick={(ev) => {
-                        ev.preventDefault();
-                        toggleCopyModal();
+                        ev.preventDefault()
+                        toggleCopyModal()
                       }}
                       href="#item"
                     >
@@ -77,8 +90,8 @@ const List = ({ data, setData, starred }) => {
                     <DropdownItem
                       tag="a"
                       onClick={(ev) => {
-                        ev.preventDefault();
-                        toggleCopyModal();
+                        ev.preventDefault()
+                        toggleCopyModal()
                       }}
                       href="#item"
                     >
@@ -90,8 +103,8 @@ const List = ({ data, setData, starred }) => {
                     <DropdownItem
                       tag="a"
                       onClick={(ev) => {
-                        ev.preventDefault();
-                        selectorDownloadFile();
+                        ev.preventDefault()
+                        selectorDownloadFile()
                       }}
                       href="#item"
                       className="file-dl-toast"
@@ -104,8 +117,8 @@ const List = ({ data, setData, starred }) => {
                     <DropdownItem
                       tag="a"
                       onClick={(ev) => {
-                        ev.preventDefault();
-                        selectorDeleteFolder();
+                        ev.preventDefault()
+                        selectorDeleteFolder()
                       }}
                       href="#item"
                     >
@@ -133,19 +146,29 @@ const List = ({ data, setData, starred }) => {
                       onChange={(ev) => onFileCheck(ev, item.id)}
                       id={`folder-${item.id}`}
                     />
-                    <label className="custom-control-label" htmlFor={`folder-${item.id}`}></label>
+                    <label
+                      className="custom-control-label"
+                      htmlFor={`folder-${item.id}`}
+                    ></label>
                   </div>
                   <div className="nk-file-icon">
                     <span className="nk-file-icon-type">{item.meta.svg}</span>
                   </div>
                   <div className="nk-file-name">
                     <div className="nk-file-name-text">
-                      {item.meta.type === "folder" ? (
-                        <Link to={`${process.env.PUBLIC_URL}/app-file-manager/folder/${item.id}`} className="title">
+                      {item.meta.type === 'folder' ? (
+                        <Link
+                          to={`${process.env.PUBLIC_URL}/app-file-manager/folder/${item.id}`}
+                          className="title"
+                        >
                           {item.meta.name}
                         </Link>
                       ) : (
-                        <a href="#link" onClick={(ev) => ev.preventDefault()} className="title">
+                        <a
+                          href="#link"
+                          onClick={(ev) => ev.preventDefault()}
+                          className="title"
+                        >
                           {item.meta.name}
                         </a>
                       )}
@@ -153,10 +176,10 @@ const List = ({ data, setData, starred }) => {
                         <a
                           href="#folder"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            onStarClick(item.id);
+                            ev.preventDefault()
+                            onStarClick(item.id)
                           }}
-                          className={item.meta.starred ? "active" : ""}
+                          className={item.meta.starred ? 'active' : ''}
                         >
                           <Icon className="asterisk-off icon ni ni-star"></Icon>
                           <Icon className="asterisk-on icon ni ni-star-fill"></Icon>
@@ -168,7 +191,9 @@ const List = ({ data, setData, starred }) => {
               </div>
               <div className="nk-file-meta">
                 <div className="tb-lead">{item.meta.time}</div>
-                {item.meta.members && <div className="tb-sub">by {item.meta.members[0].user}</div>}
+                {item.meta.members && (
+                  <div className="tb-sub">by {item.meta.members[0].user}</div>
+                )}
               </div>
               <div className="nk-file-members">
                 {!item.meta.members ? (
@@ -186,11 +211,20 @@ const List = ({ data, setData, starred }) => {
                             key={index}
                           />
                         ))}
-                        <UserAvatar theme="light" className="xs" text={`+${item.meta.members.length - 3}`} />
+                        <UserAvatar
+                          theme="light"
+                          className="xs"
+                          text={`+${item.meta.members.length - 3}`}
+                        />
                       </React.Fragment>
                     ) : (
                       item.meta.members.map((user, index) => (
-                        <UserAvatar theme={user.theme} text={findUpper(user.user)} className="xs" key={index} />
+                        <UserAvatar
+                          theme={user.theme}
+                          text={findUpper(user.user)}
+                          className="xs"
+                          key={index}
+                        />
                       ))
                     )}
                   </UserGroup>
@@ -204,10 +238,13 @@ const List = ({ data, setData, starred }) => {
         <CreateFolder toggle={toggleCreateModal} />
       </Modal>
       <Modal isOpen={copyModal} size="md" toggle={toggleCopyModal}>
-        <SelectorCopy toggle={toggleCopyModal} toggleCreateModal={toggleCreateModal} />
+        <SelectorCopy
+          toggle={toggleCopyModal}
+          toggleCreateModal={toggleCreateModal}
+        />
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default List;
+export default List

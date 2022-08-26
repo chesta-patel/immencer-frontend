@@ -1,18 +1,18 @@
-import React, { useContext, useState } from "react";
-import { Button } from "reactstrap";
-import { Icon } from "../../../../components/Component";
-import { FileManagerContext } from "../FileManagerContext";
+import React, { useContext, useState } from 'react'
+import { Button } from 'reactstrap'
+import { Icon } from '../../../../components/Component'
+import { FileManagerContext } from '../FileManagerContext'
 
 const Share = ({ file, toggle }) => {
-  const { shareFiles } = useContext(FileManagerContext);
-  const [mail, setMail] = useState("");
+  const { shareFiles } = useContext(FileManagerContext)
+  const [mail, setMail] = useState('')
 
   const onSubmit = () => {
-    if (mail !== "") {
-      shareFiles(file.id, mail);
-      toggle();
+    if (mail !== '') {
+      shareFiles(file.id, mail)
+      toggle()
     }
-  };
+  }
 
   return (
     <React.Fragment>
@@ -29,8 +29,8 @@ const Share = ({ file, toggle }) => {
         <a
           href="#close"
           onClick={(ev) => {
-            ev.preventDefault();
-            toggle();
+            ev.preventDefault()
+            toggle()
           }}
           className="close"
         >
@@ -53,7 +53,9 @@ const Share = ({ file, toggle }) => {
             </div>
             <ul className="nk-file-share-nav">
               <li>
-                <span className="badge badge-sm badge-outline-gray">Can View</span>
+                <span className="badge badge-sm badge-outline-gray">
+                  Can View
+                </span>
               </li>
             </ul>
           </div>
@@ -73,8 +75,8 @@ const Share = ({ file, toggle }) => {
             <a
               href="link"
               onClick={(ev) => {
-                ev.preventDefault();
-                toggle();
+                ev.preventDefault()
+                toggle()
               }}
               className="btn btn-outline-light btn-white"
             >
@@ -89,7 +91,7 @@ const Share = ({ file, toggle }) => {
         </ul>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Share;
+export default Share

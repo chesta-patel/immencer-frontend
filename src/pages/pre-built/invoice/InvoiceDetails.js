@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
-import LogoDark from "../../../images/logo-dark.png";
+import React, { useState, useEffect } from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
+import LogoDark from '../../../images/logo-dark.png'
 import {
   BlockHead,
   BlockTitle,
@@ -11,23 +11,23 @@ import {
   BlockHeadContent,
   Block,
   BlockBetween,
-} from "../../../components/Component";
-import { invoiceData } from "./Invoice";
-import { Link } from "react-router-dom";
+} from '../../../components/Component'
+import { invoiceData } from './Invoice'
+import { Link } from 'react-router-dom'
 
 const InvoiceDetails = ({ match }) => {
-  const [data] = useState(invoiceData);
-  const [user, setUser] = useState();
+  const [data] = useState(invoiceData)
+  const [user, setUser] = useState()
 
   useEffect(() => {
-    const id = match.params.id;
-    if (id !== undefined || null || "") {
-      let spUser = data.find((item) => item.id === Number(id));
-      setUser(spUser);
+    const id = match.params.id
+    if (id !== undefined || null || '') {
+      let spUser = data.find((item) => item.id === Number(id))
+      setUser(spUser)
     } else {
-      setUser(data[0]);
+      setUser(data[0])
     }
-  }, [match.params.id, data]);
+  }, [match.params.id, data])
 
   return (
     <React.Fragment>
@@ -38,7 +38,10 @@ const InvoiceDetails = ({ match }) => {
             <BlockBetween className="g-3">
               <BlockHeadContent>
                 <BlockTitle>
-                  Invoice <strong className="text-primary small">#{user.orderId}</strong>
+                  Invoice{' '}
+                  <strong className="text-primary small">
+                    #{user.orderId}
+                  </strong>
                 </BlockTitle>
                 <BlockDes className="text-soft">
                   <ul className="list-inline">
@@ -50,13 +53,21 @@ const InvoiceDetails = ({ match }) => {
               </BlockHeadContent>
               <BlockHeadContent>
                 <Link to={`${process.env.PUBLIC_URL}/invoice-list`}>
-                  <Button color="light" outline className="bg-white d-none d-sm-inline-flex">
+                  <Button
+                    color="light"
+                    outline
+                    className="bg-white d-none d-sm-inline-flex"
+                  >
                     <Icon name="arrow-left"></Icon>
                     <span>Back</span>
                   </Button>
                 </Link>
                 <Link to={`${process.env.PUBLIC_URL}/invoice-list`}>
-                  <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">
+                  <Button
+                    color="light"
+                    outline
+                    className="btn-icon bg-white d-inline-flex d-sm-none"
+                  >
                     <Icon name="arrow-left"></Icon>
                   </Button>
                 </Link>
@@ -67,8 +78,16 @@ const InvoiceDetails = ({ match }) => {
           <Block>
             <div className="invoice">
               <div className="invoice-action">
-                <Link to={`${process.env.PUBLIC_URL}/invoice-print/${user.id}`} target="_blank">
-                  <Button size="lg" color="primary" outline className="btn-icon btn-white btn-dim">
+                <Link
+                  to={`${process.env.PUBLIC_URL}/invoice-print/${user.id}`}
+                  target="_blank"
+                >
+                  <Button
+                    size="lg"
+                    color="primary"
+                    outline
+                    className="btn-icon btn-white btn-dim"
+                  >
                     <Icon name="printer-fill"></Icon>
                   </Button>
                 </Link>
@@ -106,7 +125,7 @@ const InvoiceDetails = ({ match }) => {
                         <span>Invoice ID</span>:<span>{user.orderId}</span>
                       </li>
                       <li className="invoice-date">
-                        <span>Date</span>:<span>{user.date.split(",")[0]}</span>
+                        <span>Date</span>:<span>{user.date.split(',')[0]}</span>
                       </li>
                     </ul>
                   </div>
@@ -127,7 +146,10 @@ const InvoiceDetails = ({ match }) => {
                       <tbody>
                         <tr>
                           <td>24108054</td>
-                          <td>Dashlite - Conceptual App Dashboard - Regular License</td>
+                          <td>
+                            Dashlite - Conceptual App Dashboard - Regular
+                            License
+                          </td>
                           <td>${user.invoiceItem1}</td>
                           <td>1</td>
                           <td>${user.invoiceItem1}</td>
@@ -164,7 +186,7 @@ const InvoiceDetails = ({ match }) => {
                               Number(user.invoiceItem2) +
                               Number(user.invoiceItem3) +
                               Number(user.invoiceItem4) +
-                              ".00"}
+                              '.00'}
                           </td>
                         </tr>
                         <tr>
@@ -185,7 +207,8 @@ const InvoiceDetails = ({ match }) => {
                       </tfoot>
                     </table>
                     <div className="nk-notes ff-italic fs-12px text-soft">
-                      Invoice was created on a computer and is valid without the signature and seal.
+                      Invoice was created on a computer and is valid without the
+                      signature and seal.
                     </div>
                   </div>
                 </div>
@@ -195,6 +218,6 @@ const InvoiceDetails = ({ match }) => {
         </Content>
       )}
     </React.Fragment>
-  );
-};
-export default InvoiceDetails;
+  )
+}
+export default InvoiceDetails

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
-import Dropzone from "react-dropzone";
+import React, { useState } from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
+import Dropzone from 'react-dropzone'
 import {
   Block,
   BlockHead,
@@ -13,16 +13,16 @@ import {
   CodeBlock,
   Button,
   PreviewTable,
-} from "../../../components/Component";
-import { Col, Row } from "reactstrap";
+} from '../../../components/Component'
+import { Col, Row } from 'reactstrap'
 
 const FormUpload = () => {
-  const [defaultFiles, setDefaultFiles] = useState("");
-  const [defaultFiles2, setDefaultFiles2] = useState("");
-  const [files, setFiles] = useState([]);
-  const [files2, setFiles2] = useState([]);
-  const [files3, setFiles3] = useState([]);
-  const [files4, setFiles4] = useState([]);
+  const [defaultFiles, setDefaultFiles] = useState('')
+  const [defaultFiles2, setDefaultFiles2] = useState('')
+  const [files, setFiles] = useState([])
+  const [files2, setFiles2] = useState([])
+  const [files3, setFiles3] = useState([])
+  const [files4, setFiles4] = useState([])
 
   // handles ondrop function of dropzone
   const handleDropChange = (acceptedFiles, set) => {
@@ -32,8 +32,8 @@ const FormUpload = () => {
           preview: URL.createObjectURL(file),
         })
       )
-    );
-  };
+    )
+  }
 
   return (
     <React.Fragment>
@@ -49,10 +49,15 @@ const FormUpload = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Examples and usage guidelines for form upload fields with default file input type and with{" "}
-                <a href="https://react-dropzone.js.org/" target="_blank" rel="noreferrer">
-                  {" "}
-                  Dropzone{" "}
+                Examples and usage guidelines for form upload fields with
+                default file input type and with{' '}
+                <a
+                  href="https://react-dropzone.js.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {' '}
+                  Dropzone{' '}
                 </a>
                 components.
               </p>
@@ -78,10 +83,12 @@ const FormUpload = () => {
                         type="file"
                         className="custom-file-input"
                         id="customFile"
-                        onChange={(e) => setDefaultFiles(e.target.files[0].name)}
+                        onChange={(e) =>
+                          setDefaultFiles(e.target.files[0].name)
+                        }
                       />
                       <label className="custom-file-label" htmlFor="customFile">
-                        {defaultFiles === "" ? "Choose files" : defaultFiles}
+                        {defaultFiles === '' ? 'Choose files' : defaultFiles}
                       </label>
                     </div>
                   </div>
@@ -97,10 +104,15 @@ const FormUpload = () => {
                         multiple
                         className="custom-file-input"
                         id="customMultipleFiles"
-                        onChange={(e) => setDefaultFiles2(e.target.files[0].name)}
+                        onChange={(e) =>
+                          setDefaultFiles2(e.target.files[0].name)
+                        }
                       />
-                      <label className="custom-file-label" htmlFor="customMultipleFiles">
-                        {defaultFiles2 === "" ? "Choose files" : defaultFiles2}
+                      <label
+                        className="custom-file-label"
+                        htmlFor="customMultipleFiles"
+                      >
+                        {defaultFiles2 === '' ? 'Choose files' : defaultFiles2}
                       </label>
                     </div>
                   </div>
@@ -130,14 +142,22 @@ const FormUpload = () => {
               <BlockTitle tag="h5">Dropzone</BlockTitle>
               <p>
                 File Upload system with
-                <a href="https://react-dropzone.js.org/" target="_blank" rel="noreferrer">
-                  {" "}
-                  Dropzone{" "}
+                <a
+                  href="https://react-dropzone.js.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {' '}
+                  Dropzone{' '}
                 </a>
-                , for more detailed documentation, visit{" "}
-                <a href="https://react-dropzone.js.org/" target="_blank" rel="noreferrer">
-                  {" "}
-                  React Dropzone{" "}
+                , for more detailed documentation, visit{' '}
+                <a
+                  href="https://react-dropzone.js.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {' '}
+                  React Dropzone{' '}
                 </a>
                 .
               </p>
@@ -147,14 +167,23 @@ const FormUpload = () => {
             <Row className="g-4">
               <Col sm="6">
                 <label className="form-label">Dropzone Default</label>
-                <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles, setFiles)}>
+                <Dropzone
+                  onDrop={(acceptedFiles) =>
+                    handleDropChange(acceptedFiles, setFiles)
+                  }
+                >
                   {({ getRootProps, getInputProps }) => (
                     <section>
-                      <div {...getRootProps()} className="dropzone upload-zone dz-clickable">
+                      <div
+                        {...getRootProps()}
+                        className="dropzone upload-zone dz-clickable"
+                      >
                         <input {...getInputProps()} />
                         {files.length === 0 && (
                           <div className="dz-message">
-                            <span className="dz-message-text">Drag and drop file</span>
+                            <span className="dz-message-text">
+                              Drag and drop file
+                            </span>
                             <span className="dz-message-or">or</span>
                             <Button color="primary">SELECT</Button>
                           </div>
@@ -176,14 +205,24 @@ const FormUpload = () => {
               </Col>
               <Col sm="6">
                 <label className="form-label">Dropzone Single File</label>
-                <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles, setFiles2)} maxFiles={1}>
+                <Dropzone
+                  onDrop={(acceptedFiles) =>
+                    handleDropChange(acceptedFiles, setFiles2)
+                  }
+                  maxFiles={1}
+                >
                   {({ getRootProps, getInputProps }) => (
                     <section>
-                      <div {...getRootProps()} className="dropzone upload-zone dz-clickable">
+                      <div
+                        {...getRootProps()}
+                        className="dropzone upload-zone dz-clickable"
+                      >
                         <input {...getInputProps()} />
                         {files2.length === 0 && (
                           <div className="dz-message">
-                            <span className="dz-message-text">Drag and drop file</span>
+                            <span className="dz-message-text">
+                              Drag and drop file
+                            </span>
                             <span className="dz-message-or">or</span>
                             <Button color="primary">SELECT</Button>
                           </div>
@@ -205,14 +244,24 @@ const FormUpload = () => {
               </Col>
               <Col sm="6">
                 <label className="form-label">Dropzone File Size Limit</label>
-                <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles, setFiles3)} maxSize={4194304}>
+                <Dropzone
+                  onDrop={(acceptedFiles) =>
+                    handleDropChange(acceptedFiles, setFiles3)
+                  }
+                  maxSize={4194304}
+                >
                   {({ getRootProps, getInputProps }) => (
                     <section>
-                      <div {...getRootProps()} className="dropzone upload-zone dz-clickable">
+                      <div
+                        {...getRootProps()}
+                        className="dropzone upload-zone dz-clickable"
+                      >
                         <input {...getInputProps()} />
                         {files3.length === 0 && (
                           <div className="dz-message">
-                            <span className="dz-message-text">Drag and drop file</span>
+                            <span className="dz-message-text">
+                              Drag and drop file
+                            </span>
                             <span className="dz-message-or">or</span>
                             <Button color="primary">SELECT</Button>
                           </div>
@@ -235,16 +284,23 @@ const FormUpload = () => {
               <Col sm="6">
                 <label className="form-label">Dropzone Only Image Upload</label>
                 <Dropzone
-                  onDrop={(acceptedFiles) => handleDropChange(acceptedFiles, setFiles4)}
-                  accept={[".jpg", ".png", ".svg"]}
+                  onDrop={(acceptedFiles) =>
+                    handleDropChange(acceptedFiles, setFiles4)
+                  }
+                  accept={['.jpg', '.png', '.svg']}
                 >
                   {({ getRootProps, getInputProps }) => (
                     <section>
-                      <div {...getRootProps()} className="dropzone upload-zone dz-clickable">
+                      <div
+                        {...getRootProps()}
+                        className="dropzone upload-zone dz-clickable"
+                      >
                         <input {...getInputProps()} />
                         {files4.length === 0 && (
                           <div className="dz-message">
-                            <span className="dz-message-text">Drag and drop file</span>
+                            <span className="dz-message-text">
+                              Drag and drop file
+                            </span>
                             <span className="dz-message-or">or</span>
                             <Button color="primary">SELECT</Button>
                           </div>
@@ -324,7 +380,8 @@ const handleDropChange = (acceptedFiles) => {
                   <code>maxFiles={`{number}`}</code>
                 </td>
                 <td>
-                  Use <code>{`{number}`}</code> with <code>maxFiles</code> props to specify file limit in react dropzone{" "}
+                  Use <code>{`{number}`}</code> with <code>maxFiles</code> props
+                  to specify file limit in react dropzone{' '}
                 </td>
               </tr>
               <tr>
@@ -332,8 +389,8 @@ const handleDropChange = (acceptedFiles) => {
                   <code>maxSize={`{size}`}</code>
                 </td>
                 <td>
-                  Use <code>{`{size}`}</code> with <code>maxSize</code> props to specify file size (bytes) limit in
-                  react dropzone{" "}
+                  Use <code>{`{size}`}</code> with <code>maxSize</code> props to
+                  specify file size (bytes) limit in react dropzone{' '}
                 </td>
               </tr>
               <tr>
@@ -341,8 +398,10 @@ const handleDropChange = (acceptedFiles) => {
                   <code>acceptedFiles=[".jpg", ".png", ".svg"]</code>
                 </td>
                 <td>
-                  Use <code>{`{fileType}`}</code> with <code>acceptedFiles</code> props as{" "}
-                  <code>image/*, .docx, .psd, .txt</code> etc in a array of strings to specify accepted file types.
+                  Use <code>{`{fileType}`}</code> with{' '}
+                  <code>acceptedFiles</code> props as{' '}
+                  <code>image/*, .docx, .psd, .txt</code> etc in a array of
+                  strings to specify accepted file types.
                 </td>
               </tr>
             </tbody>
@@ -350,7 +409,7 @@ const handleDropChange = (acceptedFiles) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default FormUpload;
+export default FormUpload

@@ -1,7 +1,7 @@
-import React from "react";
-import LogoLight2x from "../../images/logo_immence.svg";
-import LogoDark2x from "../../images/logo-dark2x.png";
-import {Link} from "react-router-dom";
+import React from 'react'
+import LogoLight2x from '../../images/logo_immence.svg'
+import LogoDark2x from '../../images/logo-dark2x.png'
+import { Link } from 'react-router-dom'
 
 const Logo = () => {
   return (
@@ -9,7 +9,7 @@ const Logo = () => {
       <img className="logo-light logo-img" src={LogoLight2x} alt="logo" />
       <img className="logo-dark logo-img" src={LogoDark2x} alt="logo" />
     </Link>
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo

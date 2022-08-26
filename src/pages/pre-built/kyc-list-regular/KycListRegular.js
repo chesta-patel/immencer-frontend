@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Content from "../../../layout/content/Content";
-import Head from "../../../layout/head/Head";
+import React, { useState, useEffect } from 'react'
+import Content from '../../../layout/content/Content'
+import Head from '../../../layout/head/Head'
 import {
   Modal,
   ModalBody,
@@ -10,7 +10,7 @@ import {
   FormGroup,
   DropdownItem,
   Badge,
-} from "reactstrap";
+} from 'reactstrap'
 import {
   Button,
   Block,
@@ -31,122 +31,127 @@ import {
   DataTableItem,
   PaginationComponent,
   RSelect,
-} from "../../../components/Component";
-import { kycData, filterStatus, filterDoc, bulkActionKycOptions } from "./KycData";
-import { findUpper } from "../../../utils/Utils";
-import { Link } from "react-router-dom";
+} from '../../../components/Component'
+import {
+  kycData,
+  filterStatus,
+  filterDoc,
+  bulkActionKycOptions,
+} from './KycData'
+import { findUpper } from '../../../utils/Utils'
+import { Link } from 'react-router-dom'
 
 const KycListRegular = ({ history }) => {
-  const [onSearch, setonSearch] = useState(true);
-  const [onSearchText, setSearchText] = useState("");
-  const [tablesm, updateTableSm] = useState(false);
-  const [data, setData] = useState(kycData);
-  const [viewModal, setViewModal] = useState(false);
-  const [detail, setDetail] = useState({});
-  const [actionText, setActionText] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage, setItemPerPage] = useState(10);
-  const [sort, setSortState] = useState("");
+  const [onSearch, setonSearch] = useState(true)
+  const [onSearchText, setSearchText] = useState('')
+  const [tablesm, updateTableSm] = useState(false)
+  const [data, setData] = useState(kycData)
+  const [viewModal, setViewModal] = useState(false)
+  const [detail, setDetail] = useState({})
+  const [actionText, setActionText] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemPerPage, setItemPerPage] = useState(10)
+  const [sort, setSortState] = useState('')
 
   // Sorting data
   const sortFunc = (params) => {
-    let defaultData = data;
-    if (params === "asc") {
-      let sortedData = defaultData.sort((a, b) => a.name.localeCompare(b.name));
-      setData([...sortedData]);
-    } else if (params === "dsc") {
-      let sortedData = defaultData.sort((a, b) => b.name.localeCompare(a.name));
-      setData([...sortedData]);
+    let defaultData = data
+    if (params === 'asc') {
+      let sortedData = defaultData.sort((a, b) => a.name.localeCompare(b.name))
+      setData([...sortedData])
+    } else if (params === 'dsc') {
+      let sortedData = defaultData.sort((a, b) => b.name.localeCompare(a.name))
+      setData([...sortedData])
     }
-  };
+  }
 
   // Changing state value when searching name
   useEffect(() => {
-    if (onSearchText !== "") {
+    if (onSearchText !== '') {
       const filteredObject = kycData.filter((item) => {
-        return item.name.toLowerCase().includes(onSearchText.toLowerCase());
-      });
-      setData([...filteredObject]);
+        return item.name.toLowerCase().includes(onSearchText.toLowerCase())
+      })
+      setData([...filteredObject])
     } else {
-      setData([...kycData]);
+      setData([...kycData])
     }
-  }, [onSearchText]);
+  }, [onSearchText])
 
   // onChange function for searching name
   const onFilterChange = (e) => {
-    setSearchText(e.target.value);
-  };
+    setSearchText(e.target.value)
+  }
 
   // function to declare the state change
   const onActionText = (e) => {
-    setActionText(e.value);
-  };
+    setActionText(e.value)
+  }
 
   // function to select all the items of the table
   const selectorCheck = (e) => {
-    let newData;
+    let newData
     newData = data.map((item) => {
-      item.check = e.currentTarget.checked;
-      return item;
-    });
-    setData([...newData]);
-  };
+      item.check = e.currentTarget.checked
+      return item
+    })
+    setData([...newData])
+  }
 
   // function to change the property of an item of the table
   const onSelectChange = (e, id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].check = e.currentTarget.checked;
-    setData([...newData]);
-  };
+    let newData = data
+    let index = newData.findIndex((item) => item.id === id)
+    newData[index].check = e.currentTarget.checked
+    setData([...newData])
+  }
 
   // function to fire actions after dropdowm select
   const onActionClick = (e) => {
-    if (actionText === "Reject") {
+    if (actionText === 'Reject') {
       let newData = data.map((item) => {
-        if (item.check === true) item.status = "Rejected";
-        return item;
-      });
-      setData([...newData]);
-    } else if (actionText === "Delete") {
-      let newData;
-      newData = data.filter((item) => item.check !== true);
-      setData([...newData]);
+        if (item.check === true) item.status = 'Rejected'
+        return item
+      })
+      setData([...newData])
+    } else if (actionText === 'Delete') {
+      let newData
+      newData = data.filter((item) => item.check !== true)
+      setData([...newData])
     }
-  };
+  }
 
   // function to change to approve property for an item
   const onApproveClick = (id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].status = "Approved";
-    setData([...newData]);
-  };
+    let newData = data
+    let index = newData.findIndex((item) => item.id === id)
+    newData[index].status = 'Approved'
+    setData([...newData])
+  }
 
   // function to change to reject property for an item
   const onRejectClick = (id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].status = "Rejected";
-    setData([...newData]);
-  };
+    let newData = data
+    let index = newData.findIndex((item) => item.id === id)
+    newData[index].status = 'Rejected'
+    setData([...newData])
+  }
 
   // function to load detail data
   const loadDetail = (id) => {
-    let index = data.findIndex((item) => item.id === id);
-    setDetail(data[index]);
-  };
+    let index = data.findIndex((item) => item.id === id)
+    setDetail(data[index])
+  }
 
   // function to toggle the search option
-  const toggle = () => setonSearch(!onSearch);
+  const toggle = () => setonSearch(!onSearch)
 
   // Get current list, pagination
-  const indexOfLastItem = currentPage * itemPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemPerPage
+  const indexOfFirstItem = indexOfLastItem - itemPerPage
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
 
   // Change Page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (
     <React.Fragment>
@@ -161,11 +166,19 @@ const KycListRegular = ({ history }) => {
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
-              <Button color="light" outline className="bg-white d-none d-sm-inline-flex">
+              <Button
+                color="light"
+                outline
+                className="bg-white d-none d-sm-inline-flex"
+              >
                 <Icon name="download-cloud"></Icon>
                 <span>Export</span>
               </Button>
-              <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">
+              <Button
+                color="light"
+                outline
+                className="btn-icon bg-white d-inline-flex d-sm-none"
+              >
                 <Icon name="download-cloud"></Icon>
               </Button>
             </BlockHeadContent>
@@ -191,7 +204,7 @@ const KycListRegular = ({ history }) => {
                         <Button
                           color="light"
                           outline
-                          disabled={actionText === "" ? true : false}
+                          disabled={actionText === '' ? true : false}
                           className="btn-dim"
                           onClick={() => onActionClick()}
                         >
@@ -202,7 +215,7 @@ const KycListRegular = ({ history }) => {
                         <Button
                           color="light"
                           outline
-                          disabled={actionText === "" ? true : false}
+                          disabled={actionText === '' ? true : false}
                           className="btn-dim btn-icon"
                           onClick={() => onActionClick()}
                         >
@@ -217,8 +230,8 @@ const KycListRegular = ({ history }) => {
                     <li>
                       <Button
                         onClick={(ev) => {
-                          ev.preventDefault();
-                          toggle();
+                          ev.preventDefault()
+                          toggle()
                         }}
                         className="btn-icon search-toggle toggle-search"
                       >
@@ -229,49 +242,76 @@ const KycListRegular = ({ history }) => {
                     <li>
                       <div className="toggle-wrap">
                         <Button
-                          className={`btn-icon btn-trigger toggle ${tablesm ? "active" : ""}`}
+                          className={`btn-icon btn-trigger toggle ${
+                            tablesm ? 'active' : ''
+                          }`}
                           onClick={() => updateTableSm(true)}
                         >
                           <Icon name="menu-right"></Icon>
                         </Button>
-                        <div className={`toggle-content ${tablesm ? "content-active" : ""}`}>
+                        <div
+                          className={`toggle-content ${
+                            tablesm ? 'content-active' : ''
+                          }`}
+                        >
                           <ul className="btn-toolbar gx-1">
                             <li className="toggle-close">
-                              <Button className="btn-icon btn-trigger toggle" onClick={() => updateTableSm(false)}>
+                              <Button
+                                className="btn-icon btn-trigger toggle"
+                                onClick={() => updateTableSm(false)}
+                              >
                                 <Icon name="arrow-left"></Icon>
                               </Button>
                             </li>
                             <li>
                               <UncontrolledDropdown>
-                                <DropdownToggle tag="a" className="btn btn-trigger btn-icon dropdown-toggle">
+                                <DropdownToggle
+                                  tag="a"
+                                  className="btn btn-trigger btn-icon dropdown-toggle"
+                                >
                                   <div className="dot dot-primary"></div>
                                   <Icon name="filter-alt"></Icon>
                                 </DropdownToggle>
                                 <DropdownMenu
                                   right
                                   className="filter-wg dropdown-menu-xl"
-                                  style={{ overflow: "visible" }}
+                                  style={{ overflow: 'visible' }}
                                 >
                                   <div className="dropdown-head">
-                                    <span className="sub-title dropdown-title">Advanced Filter</span>
+                                    <span className="sub-title dropdown-title">
+                                      Advanced Filter
+                                    </span>
                                   </div>
                                   <div className="dropdown-body dropdown-body-rg">
                                     <Row className="gx-6 gy-3">
                                       <Col size="6">
                                         <FormGroup>
-                                          <label className="overline-title overline-title-alt">Doc Type</label>
-                                          <RSelect options={filterDoc} placeholder="Any Type" />
+                                          <label className="overline-title overline-title-alt">
+                                            Doc Type
+                                          </label>
+                                          <RSelect
+                                            options={filterDoc}
+                                            placeholder="Any Type"
+                                          />
                                         </FormGroup>
                                       </Col>
                                       <Col size="6">
                                         <FormGroup>
-                                          <label className="overline-title overline-title-alt">Status</label>
-                                          <RSelect options={filterStatus} placeholder="Any Status" />
+                                          <label className="overline-title overline-title-alt">
+                                            Status
+                                          </label>
+                                          <RSelect
+                                            options={filterStatus}
+                                            placeholder="Any Status"
+                                          />
                                         </FormGroup>
                                       </Col>
                                       <Col size="12">
                                         <FormGroup>
-                                          <Button type="button" color="secondary">
+                                          <Button
+                                            type="button"
+                                            color="secondary"
+                                          >
                                             Filter
                                           </Button>
                                         </FormGroup>
@@ -283,7 +323,7 @@ const KycListRegular = ({ history }) => {
                                       className="clickable"
                                       href="#reset"
                                       onClick={(ev) => {
-                                        ev.preventDefault();
+                                        ev.preventDefault()
                                       }}
                                     >
                                       Reset Filter
@@ -291,7 +331,7 @@ const KycListRegular = ({ history }) => {
                                     <a
                                       href="#save"
                                       onClick={(ev) => {
-                                        ev.preventDefault();
+                                        ev.preventDefault()
                                       }}
                                     >
                                       Save Filter
@@ -302,33 +342,47 @@ const KycListRegular = ({ history }) => {
                             </li>
                             <li>
                               <UncontrolledDropdown>
-                                <DropdownToggle tag="a" className="btn btn-trigger btn-icon dropdown-toggle">
+                                <DropdownToggle
+                                  tag="a"
+                                  className="btn btn-trigger btn-icon dropdown-toggle"
+                                >
                                   <Icon name="setting"></Icon>
                                 </DropdownToggle>
-                                <DropdownMenu right className="dropdown-menu-xs">
+                                <DropdownMenu
+                                  right
+                                  className="dropdown-menu-xs"
+                                >
                                   <ul className="link-check">
                                     <li>
                                       <span>Show</span>
                                     </li>
-                                    <li className={itemPerPage === 10 ? "active" : ""}>
+                                    <li
+                                      className={
+                                        itemPerPage === 10 ? 'active' : ''
+                                      }
+                                    >
                                       <DropdownItem
                                         tag="a"
                                         href="#dropdownitem"
                                         onClick={(ev) => {
-                                          ev.preventDefault();
-                                          setItemPerPage(10);
+                                          ev.preventDefault()
+                                          setItemPerPage(10)
                                         }}
                                       >
                                         10
                                       </DropdownItem>
                                     </li>
-                                    <li className={itemPerPage === 15 ? "active" : ""}>
+                                    <li
+                                      className={
+                                        itemPerPage === 15 ? 'active' : ''
+                                      }
+                                    >
                                       <DropdownItem
                                         tag="a"
                                         href="#dropdownitem"
                                         onClick={(ev) => {
-                                          ev.preventDefault();
-                                          setItemPerPage(15);
+                                          ev.preventDefault()
+                                          setItemPerPage(15)
                                         }}
                                       >
                                         15
@@ -339,27 +393,31 @@ const KycListRegular = ({ history }) => {
                                     <li>
                                       <span>Order</span>
                                     </li>
-                                    <li className={sort === "dsc" ? "active" : ""}>
+                                    <li
+                                      className={sort === 'dsc' ? 'active' : ''}
+                                    >
                                       <DropdownItem
                                         tag="a"
                                         href="#dropdownitem"
                                         onClick={(ev) => {
-                                          ev.preventDefault();
-                                          setSortState("dsc");
-                                          sortFunc("dsc");
+                                          ev.preventDefault()
+                                          setSortState('dsc')
+                                          sortFunc('dsc')
                                         }}
                                       >
                                         DESC
                                       </DropdownItem>
                                     </li>
-                                    <li className={sort === "asc" ? "active" : ""}>
+                                    <li
+                                      className={sort === 'asc' ? 'active' : ''}
+                                    >
                                       <DropdownItem
                                         tag="a"
                                         href="#dropdownitem"
                                         onClick={(ev) => {
-                                          ev.preventDefault();
-                                          setSortState("asc");
-                                          sortFunc("asc");
+                                          ev.preventDefault()
+                                          setSortState('asc')
+                                          sortFunc('asc')
                                         }}
                                       >
                                         ASC
@@ -376,13 +434,15 @@ const KycListRegular = ({ history }) => {
                   </ul>
                 </div>
               </div>
-              <div className={`card-search search-wrap ${!onSearch && "active"}`}>
+              <div
+                className={`card-search search-wrap ${!onSearch && 'active'}`}
+              >
                 <div className="card-body">
                   <div className="search-content">
                     <Button
                       onClick={() => {
-                        setSearchText("");
-                        toggle();
+                        setSearchText('')
+                        toggle()
                       }}
                       className="search-back btn-icon toggle-search"
                     >
@@ -412,7 +472,10 @@ const KycListRegular = ({ history }) => {
                       id="uid_1"
                       onChange={(e) => selectorCheck(e)}
                     />
-                    <label className="custom-control-label" htmlFor="uid_1"></label>
+                    <label
+                      className="custom-control-label"
+                      htmlFor="uid_1"
+                    ></label>
                   </div>
                 </DataTableRow>
                 <DataTableRow>
@@ -446,15 +509,20 @@ const KycListRegular = ({ history }) => {
                               type="checkbox"
                               className="custom-control-input form-control"
                               defaultChecked={item.check}
-                              id={item.id + "uid1"}
+                              id={item.id + 'uid1'}
                               key={Math.random()}
                               onChange={(e) => onSelectChange(e, item.id)}
                             />
-                            <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
+                            <label
+                              className="custom-control-label"
+                              htmlFor={item.id + 'uid1'}
+                            ></label>
                           </div>
                         </DataTableRow>
                         <DataTableRow>
-                          <Link to={`${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`}>
+                          <Link
+                            to={`${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`}
+                          >
                             <div className="user-card">
                               <UserAvatar
                                 theme={item.avatarBg}
@@ -463,14 +531,14 @@ const KycListRegular = ({ history }) => {
                               ></UserAvatar>
                               <div className="user-info">
                                 <span className="tb-lead">
-                                  {item.name}{" "}
+                                  {item.name}{' '}
                                   <span
                                     className={`dot dot-${
-                                      item.status === "Approved"
-                                        ? "success"
-                                        : item.status === "Pending"
-                                        ? "info"
-                                        : "danger"
+                                      item.status === 'Approved'
+                                        ? 'success'
+                                        : item.status === 'Pending'
+                                        ? 'info'
+                                        : 'danger'
                                     } d-md-none ml-1`}
                                   ></span>
                                 </span>
@@ -486,11 +554,11 @@ const KycListRegular = ({ history }) => {
                           <ul className="list-inline list-download">
                             {item.front && (
                               <li>
-                                Front Side{" "}
+                                Front Side{' '}
                                 <a
                                   href="#download"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
+                                    ev.preventDefault()
                                   }}
                                   className="popup"
                                 >
@@ -500,11 +568,11 @@ const KycListRegular = ({ history }) => {
                             )}
                             {item.back && (
                               <li>
-                                Back Side{" "}
+                                Back Side{' '}
                                 <a
                                   href="#download"
                                   onClick={(ev) => {
-                                    ev.preventDefault();
+                                    ev.preventDefault()
                                   }}
                                   className="popup"
                                 >
@@ -520,28 +588,41 @@ const KycListRegular = ({ history }) => {
                         <DataTableRow size="md">
                           <span
                             className={`tb-status text-${
-                              item.status === "Approved" ? "success" : item.status === "Pending" ? "info" : "danger"
+                              item.status === 'Approved'
+                                ? 'success'
+                                : item.status === 'Pending'
+                                ? 'info'
+                                : 'danger'
                             }`}
                           >
                             {item.status}
                           </span>
-                          {item.status !== "Pending" && (
+                          {item.status !== 'Pending' && (
                             <TooltipComponent
                               icon="info"
                               direction="top"
-                              id={item.id + "pendingless"}
+                              id={item.id + 'pendingless'}
                               text={`${item.status} at Dec 18, 2019 01:02 am`}
                             ></TooltipComponent>
                           )}
-                          {!item.status === "Pending" && (
+                          {!item.status === 'Pending' && (
                             <span>
-                              <TooltipComponent icon="info" direction="top" text={item.date} id={item.id} />
+                              <TooltipComponent
+                                icon="info"
+                                direction="top"
+                                text={item.date}
+                                id={item.id}
+                              />
                             </span>
                           )}
                         </DataTableRow>
                         <DataTableRow size="lg">
                           <div className="user-card">
-                            <UserAvatar theme="orange-dim" size="xs" text={findUpper(item.checked)}></UserAvatar>
+                            <UserAvatar
+                              theme="orange-dim"
+                              size="xs"
+                              text={findUpper(item.checked)}
+                            ></UserAvatar>
                             <div className="user-name">
                               <span className="tb-lead">{item.checked} </span>
                             </div>
@@ -552,25 +633,29 @@ const KycListRegular = ({ history }) => {
                             <li
                               className="nk-tb-action-hidden"
                               onClick={() => {
-                                loadDetail(item.id);
-                                setViewModal(true);
+                                loadDetail(item.id)
+                                setViewModal(true)
                               }}
                             >
                               <TooltipComponent
                                 tag="a"
                                 containerClassName="btn btn-trigger btn-icon"
-                                id={"view" + item.id}
+                                id={'view' + item.id}
                                 icon="eye-fill"
                                 direction="top"
                                 text="Quick View"
                               />
                             </li>
-                            {item.status === "Rejected" ? null : item.status === "Approved" ? (
-                              <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
+                            {item.status === 'Rejected' ? null : item.status ===
+                              'Approved' ? (
+                              <li
+                                className="nk-tb-action-hidden"
+                                onClick={() => onRejectClick(item.id)}
+                              >
                                 <TooltipComponent
                                   tag="a"
                                   containerClassName="btn btn-trigger btn-icon"
-                                  id={"reject" + item.id}
+                                  id={'reject' + item.id}
                                   icon="cross-fill-c"
                                   direction="top"
                                   text="Reject"
@@ -578,21 +663,27 @@ const KycListRegular = ({ history }) => {
                               </li>
                             ) : (
                               <React.Fragment>
-                                <li className="nk-tb-action-hidden" onClick={() => onApproveClick(item.id)}>
+                                <li
+                                  className="nk-tb-action-hidden"
+                                  onClick={() => onApproveClick(item.id)}
+                                >
                                   <TooltipComponent
                                     tag="a"
                                     containerClassName="btn btn-trigger btn-icon"
-                                    id={"approve" + item.id}
+                                    id={'approve' + item.id}
                                     icon="check-fill-c"
                                     direction="top"
                                     text="Approve"
                                   />
                                 </li>
-                                <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
+                                <li
+                                  className="nk-tb-action-hidden"
+                                  onClick={() => onRejectClick(item.id)}
+                                >
                                   <TooltipComponent
                                     tag="a"
                                     containerClassName="btn btn-trigger btn-icon"
-                                    id={"reject" + item.id}
+                                    id={'reject' + item.id}
                                     icon="cross-fill-c"
                                     direction="top"
                                     text="Reject"
@@ -602,7 +693,10 @@ const KycListRegular = ({ history }) => {
                             )}
                             <li>
                               <UncontrolledDropdown>
-                                <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+                                <DropdownToggle
+                                  tag="a"
+                                  className="dropdown-toggle btn btn-icon btn-trigger"
+                                >
                                   <Icon name="more-h"></Icon>
                                 </DropdownToggle>
                                 <DropdownMenu right>
@@ -612,9 +706,9 @@ const KycListRegular = ({ history }) => {
                                         tag="a"
                                         href="#view"
                                         onClick={(ev) => {
-                                          ev.preventDefault();
-                                          loadDetail(item.id);
-                                          setViewModal(true);
+                                          ev.preventDefault()
+                                          loadDetail(item.id)
+                                          setViewModal(true)
                                         }}
                                       >
                                         <Icon name="eye"></Icon>
@@ -626,21 +720,27 @@ const KycListRegular = ({ history }) => {
                                         tag="a"
                                         href="#details"
                                         onClick={(ev) => {
-                                          ev.preventDefault();
-                                          history.push(`${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`);
+                                          ev.preventDefault()
+                                          history.push(
+                                            `${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`
+                                          )
                                         }}
                                       >
                                         <Icon name="focus"></Icon>
                                         <span>View Details</span>
                                       </DropdownItem>
                                     </li>
-                                    {item.status === "Rejected" ? null : item.status === "Approved" ? (
-                                      <li onClick={() => onRejectClick(item.id)}>
+                                    {item.status ===
+                                    'Rejected' ? null : item.status ===
+                                      'Approved' ? (
+                                      <li
+                                        onClick={() => onRejectClick(item.id)}
+                                      >
                                         <DropdownItem
                                           tag="a"
                                           href="#reject"
                                           onClick={(ev) => {
-                                            ev.preventDefault();
+                                            ev.preventDefault()
                                           }}
                                         >
                                           <Icon name="na"></Icon>
@@ -649,24 +749,30 @@ const KycListRegular = ({ history }) => {
                                       </li>
                                     ) : (
                                       <React.Fragment>
-                                        <li onClick={() => onApproveClick(item.id)}>
+                                        <li
+                                          onClick={() =>
+                                            onApproveClick(item.id)
+                                          }
+                                        >
                                           <DropdownItem
                                             tag="a"
                                             href="#approve"
                                             onClick={(ev) => {
-                                              ev.preventDefault();
+                                              ev.preventDefault()
                                             }}
                                           >
                                             <Icon name="check-thick"></Icon>
                                             <span>Approve</span>
                                           </DropdownItem>
                                         </li>
-                                        <li onClick={() => onRejectClick(item.id)}>
+                                        <li
+                                          onClick={() => onRejectClick(item.id)}
+                                        >
                                           <DropdownItem
                                             tag="a"
                                             href="#suspend"
                                             onClick={(ev) => {
-                                              ev.preventDefault();
+                                              ev.preventDefault()
                                             }}
                                           >
                                             <Icon name="na"></Icon>
@@ -682,7 +788,7 @@ const KycListRegular = ({ history }) => {
                           </ul>
                         </DataTableRow>
                       </DataTableItem>
-                    );
+                    )
                   })
                 : null}
             </DataTableBody>
@@ -705,13 +811,18 @@ const KycListRegular = ({ history }) => {
         </Block>
       </Content>
 
-      <Modal isOpen={viewModal} toggle={() => setViewModal(false)} className="modal-dialog-centered" size="lg">
+      <Modal
+        isOpen={viewModal}
+        toggle={() => setViewModal(false)}
+        className="modal-dialog-centered"
+        size="lg"
+      >
         <ModalBody>
           <a
             href="#cancel"
             onClick={(ev) => {
-              ev.preventDefault();
-              setViewModal(false);
+              ev.preventDefault()
+              setViewModal(false)
             }}
             className="close"
           >
@@ -739,7 +850,13 @@ const KycListRegular = ({ history }) => {
               <Col lg={6}>
                 <span className="sub-text">Status</span>
                 <Badge
-                  color={detail.status === "Approved" ? "success" : detail.status === "Pending" ? "info" : "danger"}
+                  color={
+                    detail.status === 'Approved'
+                      ? 'success'
+                      : detail.status === 'Pending'
+                      ? 'info'
+                      : 'danger'
+                  }
                   size="md"
                 >
                   {detail.status}
@@ -758,6 +875,6 @@ const KycListRegular = ({ history }) => {
         </ModalBody>
       </Modal>
     </React.Fragment>
-  );
-};
-export default KycListRegular;
+  )
+}
+export default KycListRegular

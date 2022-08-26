@@ -1,6 +1,6 @@
-import React from "react";
-import Head from "../../../layout/head/Head";
-import Content from "../../../layout/content/Content";
+import React from 'react'
+import Head from '../../../layout/head/Head'
+import Content from '../../../layout/content/Content'
 import {
   Block,
   BlockHead,
@@ -11,9 +11,9 @@ import {
   PreviewCard,
   CodeBlock,
   PreviewTable,
-} from "../../../components/Component";
-import Nouislider from "nouislider-react";
-import { Row, Col } from "reactstrap";
+} from '../../../components/Component'
+import Nouislider from 'nouislider-react'
+import { Row, Col } from 'reactstrap'
 
 const NouiSlider = () => {
   return (
@@ -30,10 +30,14 @@ const NouiSlider = () => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Examples and usage guidelines for range sliders with{" "}
-                <a href="https://www.npmjs.com/package/nouislider-react/" target="_blank" rel="noreferrer">
+                Examples and usage guidelines for range sliders with{' '}
+                <a
+                  href="https://www.npmjs.com/package/nouislider-react/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   noUislider
-                </a>{" "}
+                </a>{' '}
                 package. All the props referrence are in that page.
               </p>
             </BlockDes>
@@ -45,7 +49,8 @@ const NouiSlider = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Basic Configuration</BlockTitle>
               <p>
-                For slider use <code>{`<Nouislider/>`}</code> component from <code>{`nouislider-react`}</code>.
+                For slider use <code>{`<Nouislider/>`}</code> component from{' '}
+                <code>{`nouislider-react`}</code>.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -145,7 +150,8 @@ const NouiSlider = () => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Vertical Slider</BlockTitle>
               <p>
-                For vertical slider, just add <code>orientation</code> props to <code>"vertical"</code>
+                For vertical slider, just add <code>orientation</code> props to{' '}
+                <code>"vertical"</code>
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -325,8 +331,8 @@ const NouiSlider = () => {
                   <code>limit={`{number}`}</code>
                 </td>
                 <td>
-                  Use <code>{`{number}`}</code> with <code>limit</code> props to specify the minimum limit in between
-                  the sliders.
+                  Use <code>{`{number}`}</code> with <code>limit</code> props to
+                  specify the minimum limit in between the sliders.
                 </td>
               </tr>
               <tr>
@@ -334,8 +340,8 @@ const NouiSlider = () => {
                   <code>margin={`{number}`}</code>
                 </td>
                 <td>
-                  Use <code>{`{number}`}</code> with <code>margin</code> props to specify the maximum limit in between
-                  the sliders.
+                  Use <code>{`{number}`}</code> with <code>margin</code> props
+                  to specify the maximum limit in between the sliders.
                 </td>
               </tr>
               <tr>
@@ -343,8 +349,8 @@ const NouiSlider = () => {
                   <code>step={`{number}`}</code>
                 </td>
                 <td>
-                  Use <code>{`{number}`}</code> with <code>step</code> props to specify the number with which to
-                  increament or decreament.
+                  Use <code>{`{number}`}</code> with <code>step</code> props to
+                  specify the number with which to increament or decreament.
                 </td>
               </tr>
               <tr>
@@ -352,7 +358,8 @@ const NouiSlider = () => {
                   <code>tooltip={`{boolean}`}</code>
                 </td>
                 <td>
-                  Use <code>{`{boolean}`}</code> with <code>tooltip</code> props to specify if tooltip is required.
+                  Use <code>{`{boolean}`}</code> with <code>tooltip</code> props
+                  to specify if tooltip is required.
                 </td>
               </tr>
             </tbody>
@@ -360,7 +367,7 @@ const NouiSlider = () => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default NouiSlider;
+export default NouiSlider

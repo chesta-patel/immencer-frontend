@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Line, Bar, Doughnut } from "react-chartjs-2";
-import { VectorMap } from "react-jvectormap";
+import React, { useEffect, useState } from 'react'
+import { Line, Bar, Doughnut } from 'react-chartjs-2'
+import { VectorMap } from 'react-jvectormap'
 import {
   analyticOvData,
   analyticAuData,
@@ -15,19 +15,19 @@ import {
   deviceStatusDataSet2,
   deviceStatusDataSet3,
   deviceStatusDataSet4,
-} from "./AnalyticsData";
+} from './AnalyticsData'
 
 export const AudienceLineChart = ({ state }) => {
-  const [data, setData] = useState(analyticOvData);
+  const [data, setData] = useState(analyticOvData)
   useEffect(() => {
-    let object;
-    if (state === "day-7") {
-      object = analyticOvDataSet2;
+    let object
+    if (state === 'day-7') {
+      object = analyticOvDataSet2
     } else {
-      object = analyticOvDataSet3;
+      object = analyticOvDataSet3
     }
-    setData(object);
-  }, [state]);
+    setData(object)
+  }, [state])
   return (
     <Line
       className="analytics-line-large"
@@ -38,19 +38,19 @@ export const AudienceLineChart = ({ state }) => {
           labels: {
             boxWidth: 12,
             padding: 20,
-            fontColor: "#6783b8",
+            fontColor: '#6783b8',
           },
         },
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#fff",
-          borderColor: "#eff6ff",
+          backgroundColor: '#fff',
+          borderColor: '#eff6ff',
           borderWidth: 2,
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -65,14 +65,14 @@ export const AudienceLineChart = ({ state }) => {
               ticks: {
                 beginAtZero: true,
                 fontSize: 12,
-                fontColor: "#9eaecf",
+                fontColor: '#9eaecf',
                 padding: 8,
                 stepSize: 2400,
               },
               gridLines: {
-                color: "rgba(82, 100, 132, 0.2)",
+                color: 'rgba(82, 100, 132, 0.2)',
                 tickMarkLength: 0,
-                zeroLineColor: "rgba(82, 100, 132,0.2)",
+                zeroLineColor: 'rgba(82, 100, 132,0.2)',
               },
             },
           ],
@@ -81,14 +81,14 @@ export const AudienceLineChart = ({ state }) => {
               display: false,
               ticks: {
                 fontSize: 12,
-                fontColor: "#9eaecf",
-                source: "auto",
+                fontColor: '#9eaecf',
+                source: 'auto',
                 padding: 0,
               },
               gridLines: {
-                color: "transparent",
+                color: 'transparent',
                 tickMarkLength: 0,
-                zeroLineColor: "transparent",
+                zeroLineColor: 'transparent',
                 offsetGridLines: true,
               },
             },
@@ -96,8 +96,8 @@ export const AudienceLineChart = ({ state }) => {
         },
       }}
     ></Line>
-  );
-};
+  )
+}
 
 export const ActiveUserBarChart = () => {
   return (
@@ -113,17 +113,19 @@ export const ActiveUserBarChart = () => {
           enabled: true,
           callbacks: {
             title: function (tooltipItem, data) {
-              return false; //data['labels'][tooltipItem[0]['index']];
+              return false //data['labels'][tooltipItem[0]['index']];
             },
             label: function (tooltipItem, data) {
-              return data.datasets[tooltipItem.datasetIndex]["data"][tooltipItem["index"]];
+              return data.datasets[tooltipItem.datasetIndex]['data'][
+                tooltipItem['index']
+              ]
             },
           },
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 9,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 9,
           bodySpacing: 4,
           yPadding: 6,
@@ -138,15 +140,15 @@ export const ActiveUserBarChart = () => {
               ticks: {
                 beginAtZero: false,
                 fontSize: 12,
-                fontColor: "#9eaecf",
+                fontColor: '#9eaecf',
                 padding: 0,
                 display: false,
                 stepSize: 300,
               },
               gridLines: {
-                color: "rgba(82, 100, 132, 0.2)",
+                color: 'rgba(82, 100, 132, 0.2)',
                 tickMarkLength: 0,
-                zeroLineColor: "rgba(82, 100, 132, 0.2)",
+                zeroLineColor: 'rgba(82, 100, 132, 0.2)',
               },
             },
           ],
@@ -155,14 +157,14 @@ export const ActiveUserBarChart = () => {
               display: false,
               ticks: {
                 fontSize: 12,
-                fontColor: "#9eaecf",
-                source: "auto",
+                fontColor: '#9eaecf',
+                source: 'auto',
                 padding: 0,
               },
               gridLines: {
-                color: "transparent",
+                color: 'transparent',
                 tickMarkLength: 0,
-                zeroLineColor: "transparent",
+                zeroLineColor: 'transparent',
                 offsetGridLines: true,
               },
             },
@@ -170,8 +172,8 @@ export const ActiveUserBarChart = () => {
         },
       }}
     ></Bar>
-  );
-};
+  )
+}
 
 export const WPCharts = ({ data, className }) => {
   return (
@@ -184,7 +186,7 @@ export const WPCharts = ({ data, className }) => {
           labels: {
             boxWidth: 12,
             padding: 20,
-            fontColor: "#6783b8",
+            fontColor: '#6783b8',
           },
         },
         maintainAspectRatio: false,
@@ -192,17 +194,19 @@ export const WPCharts = ({ data, className }) => {
           enabled: true,
           callbacks: {
             title: function (tooltipItem, data) {
-              return false; //data['labels'][tooltipItem[0]['index']];
+              return false //data['labels'][tooltipItem[0]['index']];
             },
             label: function (tooltipItem, data) {
-              return data.datasets[tooltipItem.datasetIndex]["data"][tooltipItem["index"]];
+              return data.datasets[tooltipItem.datasetIndex]['data'][
+                tooltipItem['index']
+              ]
             },
           },
-          backgroundColor: "#eff6ff",
+          backgroundColor: '#eff6ff',
           titleFontSize: 9,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 9,
           bodySpacing: 4,
           yPadding: 6,
@@ -217,14 +221,14 @@ export const WPCharts = ({ data, className }) => {
               ticks: {
                 beginAtZero: false,
                 fontSize: 12,
-                fontColor: "#9eaecf",
+                fontColor: '#9eaecf',
                 padding: 0,
                 stepSize: 300,
               },
               gridLines: {
-                color: "rgba(82, 100, 132, 0.2)",
+                color: 'rgba(82, 100, 132, 0.2)',
                 tickMarkLength: 0,
-                zeroLineColor: "rgba(82, 100, 132, 0.2)",
+                zeroLineColor: 'rgba(82, 100, 132, 0.2)',
               },
             },
           ],
@@ -233,14 +237,14 @@ export const WPCharts = ({ data, className }) => {
               display: false,
               ticks: {
                 fontSize: 12,
-                fontColor: "#9eaecf",
-                source: "auto",
+                fontColor: '#9eaecf',
+                source: 'auto',
                 padding: 0,
               },
               gridLines: {
-                color: "transparent",
+                color: 'transparent',
                 tickMarkLength: 0,
-                zeroLineColor: "rgba(82, 100, 132,0.2)",
+                zeroLineColor: 'rgba(82, 100, 132,0.2)',
                 offsetGridLines: true,
               },
             },
@@ -248,20 +252,20 @@ export const WPCharts = ({ data, className }) => {
         },
       }}
     ></Line>
-  );
-};
+  )
+}
 
 export const TCDoughnut = ({ state, className }) => {
-  const [data, setData] = useState(TrafficChannelDoughnutData);
+  const [data, setData] = useState(TrafficChannelDoughnutData)
   useEffect(() => {
-    if (state === "7") {
-      setData(TrafficChannelDoughnutData2);
-    } else if (state === "15") {
-      setData(TrafficChannelDoughnutData3);
+    if (state === '7') {
+      setData(TrafficChannelDoughnutData2)
+    } else if (state === '15') {
+      setData(TrafficChannelDoughnutData3)
     } else {
-      setData(TrafficChannelDoughnutData4);
+      setData(TrafficChannelDoughnutData4)
     }
-  }, [state]);
+  }, [state])
   return (
     <Doughnut
       className={className}
@@ -275,13 +279,13 @@ export const TCDoughnut = ({ state, className }) => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#fff",
-          borderColor: "#eff6ff",
+          backgroundColor: '#fff',
+          borderColor: '#eff6ff',
           borderWidth: 2,
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -291,22 +295,22 @@ export const TCDoughnut = ({ state, className }) => {
         },
       }}
     ></Doughnut>
-  );
-};
+  )
+}
 
 export const SessionDoughnut = ({ state, className }) => {
-  const [data, setData] = useState(deviceStatusData);
+  const [data, setData] = useState(deviceStatusData)
   useEffect(() => {
-    let filteredData;
-    if (state === "7") {
-      filteredData = deviceStatusDataSet2;
-    } else if (state === "15") {
-      filteredData = deviceStatusDataSet3;
+    let filteredData
+    if (state === '7') {
+      filteredData = deviceStatusDataSet2
+    } else if (state === '15') {
+      filteredData = deviceStatusDataSet3
     } else {
-      filteredData = deviceStatusDataSet4;
+      filteredData = deviceStatusDataSet4
     }
-    setData(filteredData);
-  }, [state]);
+    setData(filteredData)
+  }, [state])
   return (
     <Doughnut
       className={className}
@@ -320,13 +324,13 @@ export const SessionDoughnut = ({ state, className }) => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#fff",
-          borderColor: "#eff6ff",
+          backgroundColor: '#fff',
+          borderColor: '#eff6ff',
           borderWidth: 2,
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: '#6783b8',
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: '#9eaecf',
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -336,13 +340,13 @@ export const SessionDoughnut = ({ state, className }) => {
         },
       }}
     ></Doughnut>
-  );
-};
+  )
+}
 
 export const Map = ({ set }) => {
   return (
     <VectorMap
-      map={"world_mill"}
+      map={'world_mill'}
       backgroundColor="transparent"
       borderColor="#dee6ed"
       borderOpacity={1}
@@ -355,29 +359,34 @@ export const Map = ({ set }) => {
       tooltip={true}
       regionStyle={{
         initial: {
-          fill: "#e4e4e4",
-          "fill-opacity": 0.9,
-          stroke: "none",
-          "stroke-width": 0,
-          "stroke-opacity": 0,
+          fill: '#e4e4e4',
+          'fill-opacity': 0.9,
+          stroke: 'none',
+          'stroke-width': 0,
+          'stroke-opacity': 0,
         },
         hover: {
-          "fill-opacity": 0.8,
-          hoverColor: "#9cabff",
+          'fill-opacity': 0.8,
+          hoverColor: '#9cabff',
           hoverOpacity: null,
-          cursor: "pointer",
+          cursor: 'pointer',
         },
         selectedHover: {},
       }}
       series={{
         regions: [
           {
-            values: set === "30" ? worldMap.data2 : set === "7" ? worldMap.data3 : worldMap.data4,
-            scale: ["#ccd7e2", "#798bff"],
-            normalizeFunction: "polynomial",
+            values:
+              set === '30'
+                ? worldMap.data2
+                : set === '7'
+                ? worldMap.data3
+                : worldMap.data4,
+            scale: ['#ccd7e2', '#798bff'],
+            normalizeFunction: 'polynomial',
           },
         ],
       }}
     ></VectorMap>
-  );
-};
+  )
+}

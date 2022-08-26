@@ -1,54 +1,60 @@
-import React, { useContext, useState } from "react";
-import Dropzone from "react-dropzone";
-import { Button } from "reactstrap";
-import { Icon } from "../../../../components/Component";
-import { svgSelect } from "../Data";
-import { FileManagerContext } from "../FileManagerContext";
-import { bytesToMegaBytes, currentTime, getDateStructured } from "../../../../utils/Utils";
+import React, { useContext, useState } from 'react'
+import Dropzone from 'react-dropzone'
+import { Button } from 'reactstrap'
+import { Icon } from '../../../../components/Component'
+import { svgSelect } from '../Data'
+import { FileManagerContext } from '../FileManagerContext'
+import {
+  bytesToMegaBytes,
+  currentTime,
+  getDateStructured,
+} from '../../../../utils/Utils'
 
 const Upload = ({ toggle }) => {
-  const { createFile } = useContext(FileManagerContext);
+  const { createFile } = useContext(FileManagerContext)
 
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([])
   // handles ondrop function of dropzone
   const handleDropChange = (acceptedFiles) => {
-    setFiles(acceptedFiles);
-  };
+    setFiles(acceptedFiles)
+  }
 
   const addFilesToSystem = () => {
-    let newFiles = [];
+    let newFiles = []
     files.forEach((file) => {
       let newFile = {
         id: Math.random(),
         meta: {
-          type: "file",
+          type: 'file',
           name: file.name,
-          svg: svgSelect[file.type] ? svgSelect[file.type] : svgSelect["others"],
+          svg: svgSelect[file.type]
+            ? svgSelect[file.type]
+            : svgSelect['others'],
           time: currentTime(),
           date: getDateStructured(new Date()),
           size: bytesToMegaBytes(file.size),
           starred: false,
         },
-      };
-      newFiles.push(newFile);
-    });
-    createFile(newFiles);
-    toggle();
-  };
+      }
+      newFiles.push(newFile)
+    })
+    createFile(newFiles)
+    toggle()
+  }
 
   const removeFromList = (name) => {
-    let defaultFiles = files;
-    defaultFiles = defaultFiles.filter((item) => item.name !== name);
-    setFiles([...defaultFiles]);
-  };
+    let defaultFiles = files
+    defaultFiles = defaultFiles.filter((item) => item.name !== name)
+    setFiles([...defaultFiles])
+  }
 
   return (
     <React.Fragment>
       <a
         href="#close"
         onClick={(ev) => {
-          ev.preventDefault();
-          toggle();
+          ev.preventDefault()
+          toggle()
         }}
         className="close"
       >
@@ -60,11 +66,15 @@ const Upload = ({ toggle }) => {
           <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}>
             {({ getRootProps, getInputProps }) => (
               <section>
-                <div {...getRootProps()} className="dropzone upload-zone small bg-lighter my-2 dz-clickable">
+                <div
+                  {...getRootProps()}
+                  className="dropzone upload-zone small bg-lighter my-2 dz-clickable"
+                >
                   <input {...getInputProps()} />
                   <div className="dz-message">
                     <span className="dz-message-text">
-                      <span>Drag and drop</span> file here or <span>browse</span>
+                      <span>Drag and drop</span> file here or{' '}
+                      <span>browse</span>
                     </span>
                   </div>
                 </div>
@@ -78,20 +88,24 @@ const Upload = ({ toggle }) => {
             files.map((file, index) => (
               <div className="nk-upload-item" key={index}>
                 <div className="nk-upload-icon">
-                  {svgSelect[file.type] ? svgSelect[file.type] : svgSelect["others"]}
+                  {svgSelect[file.type]
+                    ? svgSelect[file.type]
+                    : svgSelect['others']}
                 </div>
                 <div className="nk-upload-info">
                   <div className="nk-upload-title">
                     <span className="title">{file.name}</span>
                   </div>
-                  <div className="nk-upload-size">{bytesToMegaBytes(file.size)} MB</div>
+                  <div className="nk-upload-size">
+                    {bytesToMegaBytes(file.size)} MB
+                  </div>
                 </div>
                 <div className="nk-upload-action">
                   <a
                     href="#delete"
                     onClick={(ev) => {
-                      ev.preventDefault();
-                      removeFromList(file.name);
+                      ev.preventDefault()
+                      removeFromList(file.name)
                     }}
                     className="btn btn-icon btn-trigger"
                   >
@@ -112,8 +126,8 @@ const Upload = ({ toggle }) => {
               <a
                 href="#toggle"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  toggle();
+                  ev.preventDefault()
+                  toggle()
                 }}
                 className="link link-primary"
               >
@@ -129,7 +143,7 @@ const Upload = ({ toggle }) => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Upload;
+export default Upload

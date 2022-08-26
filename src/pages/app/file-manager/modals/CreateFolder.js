@@ -1,28 +1,28 @@
-import React, { useContext, useState } from "react";
-import { Icon, RSelect } from "../../../../components/Component";
-import { Button, FormGroup } from "reactstrap";
-import { FileManagerContext } from "../FileManagerContext";
-import { useForm } from "react-hook-form";
-import { selectFolderTypes } from "../Data";
+import React, { useContext, useState } from 'react'
+import { Icon, RSelect } from '../../../../components/Component'
+import { Button, FormGroup } from 'reactstrap'
+import { FileManagerContext } from '../FileManagerContext'
+import { useForm } from 'react-hook-form'
+import { selectFolderTypes } from '../Data'
 
 const CreateFolder = ({ toggle }) => {
-  const { createFolder } = useContext(FileManagerContext);
-  const [svg, setSvg] = useState(selectFolderTypes[0].svg);
+  const { createFolder } = useContext(FileManagerContext)
+  const [svg, setSvg] = useState(selectFolderTypes[0].svg)
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   const onSubmit = (formData) => {
-    createFolder(formData.name, svg);
-    toggle();
-  };
+    createFolder(formData.name, svg)
+    toggle()
+  }
 
   return (
     <React.Fragment>
       <a
         href="#close"
         onClick={(ev) => {
-          ev.preventDefault();
-          toggle();
+          ev.preventDefault()
+          toggle()
         }}
         className="close"
       >
@@ -34,8 +34,15 @@ const CreateFolder = ({ toggle }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup>
               <label className="form-label">Folder Name</label>
-              <input name="name" type="text" ref={register({ required: true })} className="form-control"></input>
-              {errors.name && <span className="invalid">This field is required</span>}
+              <input
+                name="name"
+                type="text"
+                ref={register({ required: true })}
+                className="form-control"
+              ></input>
+              {errors.name && (
+                <span className="invalid">This field is required</span>
+              )}
             </FormGroup>
             <FormGroup>
               <label className="form-label">Folder Type</label>
@@ -50,8 +57,8 @@ const CreateFolder = ({ toggle }) => {
                 <a
                   href="#"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggle();
+                    ev.preventDefault()
+                    toggle()
                   }}
                   className="link link-primary"
                 >
@@ -68,7 +75,7 @@ const CreateFolder = ({ toggle }) => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default CreateFolder;
+export default CreateFolder

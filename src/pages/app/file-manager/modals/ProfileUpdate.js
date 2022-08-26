@@ -1,10 +1,14 @@
-import React from "react";
-import DatePicker from "react-datepicker";
-import { Icon, RSelect, Col } from "../../../../components/Component";
-import { useForm } from "react-hook-form";
-import { ModalBody, FormGroup, Button } from "reactstrap";
-import { getDateStructured } from "../../../../utils/Utils";
-import { selectDateFormat, selectLanguageOptions, selectTimezoneFormat } from "../Data";
+import React from 'react'
+import DatePicker from 'react-datepicker'
+import { Icon, RSelect, Col } from '../../../../components/Component'
+import { useForm } from 'react-hook-form'
+import { ModalBody, FormGroup, Button } from 'reactstrap'
+import { getDateStructured } from '../../../../utils/Utils'
+import {
+  selectDateFormat,
+  selectLanguageOptions,
+  selectTimezoneFormat,
+} from '../Data'
 
 const ProfileUpdate = ({ formData, setFormData, setModal }) => {
   const submitForm = (formVal) => {
@@ -17,12 +21,12 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
       language: formData.language,
       dateFormat: formData.dateFormat,
       timezone: formData.timezone,
-    };
-    setFormData({ ...newForm });
-    setModal(false);
-  };
+    }
+    setFormData({ ...newForm })
+    setModal(false)
+  }
 
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, handleSubmit } = useForm()
 
   return (
     <React.Fragment>
@@ -30,8 +34,8 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
         <a
           href="#dropdownitem"
           onClick={(ev) => {
-            ev.preventDefault();
-            setModal(false);
+            ev.preventDefault()
+            setModal(false)
           }}
           className="close"
         >
@@ -55,7 +59,9 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
                     defaultValue={formData.name}
                     placeholder="Enter name"
                   />
-                  {errors.name && <p className="invalid">This field is required</p>}
+                  {errors.name && (
+                    <p className="invalid">This field is required</p>
+                  )}
                 </FormGroup>
               </Col>
               <Col md="6">
@@ -72,7 +78,9 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
                     defaultValue={formData.displayName}
                     placeholder="Enter display name"
                   />
-                  {errors.displayName && <p className="invalid">This field is required</p>}
+                  {errors.displayName && (
+                    <p className="invalid">This field is required</p>
+                  )}
                 </FormGroup>
               </Col>
               <Col md="6">
@@ -89,16 +97,16 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
                       required: true,
                       pattern: {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Invalid email address",
+                        message: 'Invalid email address',
                       },
                     })}
                     defaultValue={formData.email}
                     placeholder="Enter recovery email"
                   />
-                  {errors.email && errors.email.type === "required" && (
+                  {errors.email && errors.email.type === 'required' && (
                     <span className="invalid">This is required</span>
                   )}
-                  {errors.email && errors.email.type === "pattern" && (
+                  {errors.email && errors.email.type === 'pattern' && (
                     <span className="invalid">{errors.email.message}</span>
                   )}
                 </FormGroup>
@@ -117,7 +125,9 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
                     defaultValue={formData.phone}
                     placeholder="Phone Number"
                   />
-                  {errors.phone && <p className="invalid">This field is required</p>}
+                  {errors.phone && (
+                    <p className="invalid">This field is required</p>
+                  )}
                 </FormGroup>
               </Col>
               <Col md="6">
@@ -128,7 +138,9 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
                   <DatePicker
                     selected={new Date(formData.dob)}
                     className="form-control"
-                    onChange={(date) => setFormData({ ...formData, dob: getDateStructured(date) })}
+                    onChange={(date) =>
+                      setFormData({ ...formData, dob: getDateStructured(date) })
+                    }
                     maxDate={new Date()}
                   />
                 </FormGroup>
@@ -141,7 +153,9 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
                   <RSelect
                     options={selectLanguageOptions}
                     defaultValue={selectLanguageOptions[0]}
-                    onChange={(e) => setFormData({ ...formData, language: e.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, language: e.value })
+                    }
                   />
                 </FormGroup>
               </Col>
@@ -153,7 +167,9 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
                   <RSelect
                     options={selectDateFormat}
                     defaultValue={selectDateFormat[0]}
-                    onChange={(e) => setFormData({ ...formData, dateFormat: e.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, dateFormat: e.value })
+                    }
                   />
                 </FormGroup>
               </Col>
@@ -165,7 +181,9 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
                   <RSelect
                     options={selectTimezoneFormat}
                     defaultValue={selectTimezoneFormat[0]}
-                    onChange={(e) => setFormData({ ...formData, timezone: e.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, timezone: e.value })
+                    }
                   />
                 </FormGroup>
               </Col>
@@ -180,8 +198,8 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
                     <a
                       href="#dropdownitem"
                       onClick={(ev) => {
-                        ev.preventDefault();
-                        setModal(false);
+                        ev.preventDefault()
+                        setModal(false)
                       }}
                       className="link link-light"
                     >
@@ -195,7 +213,7 @@ const ProfileUpdate = ({ formData, setFormData, setModal }) => {
         </div>
       </ModalBody>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ProfileUpdate;
+export default ProfileUpdate

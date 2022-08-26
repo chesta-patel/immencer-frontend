@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import SimpleBar from "simplebar-react";
-import { UserAvatar, Icon } from "../../../../components/Component";
-import { findUpper } from "../../../../utils/Utils";
-import { contacts } from "./ContactData";
-import { chatData } from "../ChatData";
-import { ContactItem } from "../ChatPartials";
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import SimpleBar from 'simplebar-react'
+import { UserAvatar, Icon } from '../../../../components/Component'
+import { findUpper } from '../../../../utils/Utils'
+import { contacts } from './ContactData'
+import { chatData } from '../ChatData'
+import { ContactItem } from '../ChatPartials'
 
 const AppContact = ({ setTab, setSelectedId }) => {
-  const [contactData] = useState(contacts);
-  const [filterData, setFilterData] = useState([]);
-  const [filterText, setFilter] = useState("");
+  const [contactData] = useState(contacts)
+  const [filterData, setFilterData] = useState([])
+  const [filterText, setFilter] = useState('')
 
   useEffect(() => {
-    if (filterText !== "") {
+    if (filterText !== '') {
       const filteredObject = chatData.filter((item) => {
-        return item.name.toLowerCase().includes(filterText.toLowerCase());
-      });
-      setFilterData([...filteredObject]);
+        return item.name.toLowerCase().includes(filterText.toLowerCase())
+      })
+      setFilterData([...filteredObject])
     } else {
-      setFilterData([]);
+      setFilterData([])
     }
-  }, [filterText]);
+  }, [filterText])
 
   const onInputChange = (e) => {
-    setFilter(e.target.value);
-  };
+    setFilter(e.target.value)
+  }
 
   return (
     <React.Fragment>
@@ -52,7 +52,14 @@ const AppContact = ({ setTab, setSelectedId }) => {
               <div className="ml-5">No user</div>
             ) : (
               contactData.map((item, idx) => {
-                return <ContactItem key={idx} item={item} setTab={setTab} setSelectedId={setSelectedId}></ContactItem>;
+                return (
+                  <ContactItem
+                    key={idx}
+                    item={item}
+                    setTab={setTab}
+                    setSelectedId={setSelectedId}
+                  ></ContactItem>
+                )
               })
             )
           ) : (
@@ -63,8 +70,8 @@ const AppContact = ({ setTab, setSelectedId }) => {
                     <li
                       key={idx}
                       onClick={() => {
-                        setTab("Chats");
-                        setSelectedId(contact.id);
+                        setTab('Chats')
+                        setSelectedId(contact.id)
                       }}
                     >
                       <div className="user-card">
@@ -77,18 +84,20 @@ const AppContact = ({ setTab, setSelectedId }) => {
                           <div className="user-name">{contact.name}</div>
                         </a>
                         <div className="user-actions">
-                          <Link to={`${process.env.PUBLIC_URL}/app-chat`}>Start Chat</Link>
+                          <Link to={`${process.env.PUBLIC_URL}/app-chat`}>
+                            Start Chat
+                          </Link>
                         </div>
                       </div>
                     </li>
                   </React.Fragment>
-                );
+                )
               })}
             </ul>
           )}
         </div>
       </SimpleBar>
     </React.Fragment>
-  );
-};
-export default AppContact;
+  )
+}
+export default AppContact

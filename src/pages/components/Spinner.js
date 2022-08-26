@@ -1,10 +1,17 @@
-import React from "react";
-import Content from "../../layout/content/Content";
-import Head from "../../layout/head/Head";
+import React from 'react'
+import Content from '../../layout/content/Content'
+import Head from '../../layout/head/Head'
 
-import { Spinner, Button } from "reactstrap";
-import { Block, BlockHead, BlockHeadContent, BlockTitle, BlockDes, BackTo } from "../../components/block/Block";
-import { PreviewCard, CodeBlock } from "../../components/preview/Preview";
+import { Spinner, Button } from 'reactstrap'
+import {
+  Block,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  BlockDes,
+  BackTo,
+} from '../../components/block/Block'
+import { PreviewCard, CodeBlock } from '../../components/preview/Preview'
 
 const SpinnerPage = ({ ...props }) => {
   return (
@@ -21,11 +28,18 @@ const SpinnerPage = ({ ...props }) => {
             </BlockTitle>
             <BlockDes>
               <p className="lead">
-                Indicate the loading state of a component or page with Bootstrap spinners. To use it, import it such as{" "}
-                <code>import {`{Spinner}`} from "reactstrap"</code>. Visit the{" "}
-                <a href={"https://deploy-preview-2356--reactstrap.netlify.app/components/spinners"} target="_blank" rel="noreferrer">
+                Indicate the loading state of a component or page with Bootstrap
+                spinners. To use it, import it such as{' '}
+                <code>import {`{Spinner}`} from "reactstrap"</code>. Visit the{' '}
+                <a
+                  href={
+                    'https://deploy-preview-2356--reactstrap.netlify.app/components/spinners'
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Reactstrap
-                </a>{" "}
+                </a>{' '}
                 library for detailed instructions.
               </p>
             </BlockDes>
@@ -36,7 +50,9 @@ const SpinnerPage = ({ ...props }) => {
           <BlockHead>
             <BlockHeadContent>
               <BlockTitle tag="h5">Border spinner</BlockTitle>
-              <p>Use the border spinners for a lightweight loading indicator.</p>
+              <p>
+                Use the border spinners for a lightweight loading indicator.
+              </p>
             </BlockHeadContent>
           </BlockHead>
           <PreviewCard>
@@ -50,9 +66,11 @@ const SpinnerPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Colors</BlockTitle>
               <p>
-                The border spinner uses <code className="highlighter-rouge">color</code> props for its{" "}
-                <code className="highlighter-rouge">border-color</code>, meaning you can customize the color with text
-                color utilities. You can use any of our text color utilities on the standard spinner.
+                The border spinner uses{' '}
+                <code className="highlighter-rouge">color</code> props for its{' '}
+                <code className="highlighter-rouge">border-color</code>, meaning
+                you can customize the color with text color utilities. You can
+                use any of our text color utilities on the standard spinner.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -92,8 +110,8 @@ const SpinnerPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Growing spinner</BlockTitle>
               <p>
-                If you don’t fancy a border spinner, switch to the grow spinner. While it doesn’t technically spin, it
-                does repeatedly grow!
+                If you don’t fancy a border spinner, switch to the grow spinner.
+                While it doesn’t technically spin, it does repeatedly grow!
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -137,9 +155,10 @@ const SpinnerPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Size</BlockTitle>
               <p>
-                Add <code className="highlighter-rouge">size</code> props and{" "}
-                <code className="highlighter-rouge">type="grow"</code> to make a smaller spinner that can quickly be
-                used within other components.
+                Add <code className="highlighter-rouge">size</code> props and{' '}
+                <code className="highlighter-rouge">type="grow"</code> to make a
+                smaller spinner that can quickly be used within other
+                components.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -157,10 +176,13 @@ const SpinnerPage = ({ ...props }) => {
           <PreviewCard>
             <ul className="preview-list g-2">
               <li className="preview-item">
-                <Spinner style={{ width: "3rem", height: "3rem" }} />
+                <Spinner style={{ width: '3rem', height: '3rem' }} />
               </li>
               <li className="preview-item">
-                <Spinner style={{ width: "3rem", height: "3rem" }} type="grow" />
+                <Spinner
+                  style={{ width: '3rem', height: '3rem' }}
+                  type="grow"
+                />
               </li>
             </ul>
           </PreviewCard>
@@ -172,8 +194,9 @@ const SpinnerPage = ({ ...props }) => {
             <BlockHeadContent>
               <BlockTitle tag="h5">Buttons</BlockTitle>
               <p>
-                Use spinners within buttons to indicate an action is currently processing or taking place. You may also
-                swap the text out of the spinner element and utilize button text as needed.
+                Use spinners within buttons to indicate an action is currently
+                processing or taking place. You may also swap the text out of
+                the spinner element and utilize button text as needed.
               </p>
             </BlockHeadContent>
           </BlockHead>
@@ -222,7 +245,7 @@ const SpinnerPage = ({ ...props }) => {
         </Block>
       </Content>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default SpinnerPage;
+export default SpinnerPage

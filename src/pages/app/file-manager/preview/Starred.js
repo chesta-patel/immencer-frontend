@@ -1,13 +1,32 @@
-import React, { useState } from "react";
-import List from "../views/List";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { Block, BlockBetween, BlockHead, BlockHeadContent, BlockTitle, Icon } from "../../../../components/Component";
+import React, { useState } from 'react'
+import List from '../views/List'
+import {
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from 'reactstrap'
+import {
+  Block,
+  BlockBetween,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  Icon,
+} from '../../../../components/Component'
 
-const Starred = ({ data, setData, setSearchText, toggleCreateModal, toggleUploadModal, toggleScreenLg }) => {
-  const [search, setSearch] = useState(false);
+const Starred = ({
+  data,
+  setData,
+  setSearchText,
+  toggleCreateModal,
+  toggleUploadModal,
+  toggleScreenLg,
+}) => {
+  const [search, setSearch] = useState(false)
   const toggleSearch = () => {
-    setSearch(!search);
-  };
+    setSearch(!search)
+  }
   return (
     <React.Fragment>
       <BlockHead size="sm">
@@ -21,8 +40,8 @@ const Starred = ({ data, setData, setSearchText, toggleCreateModal, toggleUpload
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleSearch();
+                    ev.preventDefault()
+                    toggleSearch()
                   }}
                   className="btn btn-trigger btn-icon search-toggle toggle-search"
                 >
@@ -46,8 +65,8 @@ const Starred = ({ data, setData, setSearchText, toggleCreateModal, toggleUpload
                           tag="a"
                           href="#upload"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            toggleUploadModal();
+                            ev.preventDefault()
+                            toggleUploadModal()
                           }}
                         >
                           <Icon name="upload-cloud"></Icon>
@@ -59,8 +78,8 @@ const Starred = ({ data, setData, setSearchText, toggleCreateModal, toggleUpload
                           tag="a"
                           href="#upload"
                           onClick={(ev) => {
-                            ev.preventDefault();
-                            toggleCreateModal();
+                            ev.preventDefault()
+                            toggleCreateModal()
                           }}
                         >
                           <Icon name="folder-plus"></Icon>
@@ -75,8 +94,8 @@ const Starred = ({ data, setData, setSearchText, toggleCreateModal, toggleUpload
                 <a
                   href="#folder"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggleScreenLg();
+                    ev.preventDefault()
+                    toggleScreenLg()
                   }}
                   className="btn btn-trigger btn-icon toggle"
                 >
@@ -85,13 +104,15 @@ const Starred = ({ data, setData, setSearchText, toggleCreateModal, toggleUpload
               </li>
             </ul>
           </BlockHeadContent>
-          <div className={`search-wrap px-2 d-lg-none ${search ? "active" : ""}`}>
+          <div
+            className={`search-wrap px-2 d-lg-none ${search ? 'active' : ''}`}
+          >
             <div className="search-content">
               <a
                 href="#toggle"
                 onClick={(ev) => {
-                  ev.preventDefault();
-                  toggleSearch();
+                  ev.preventDefault()
+                  toggleSearch()
                 }}
                 className="search-back btn btn-icon toggle-search"
               >
@@ -111,10 +132,14 @@ const Starred = ({ data, setData, setSearchText, toggleCreateModal, toggleUpload
         </BlockBetween>
       </BlockHead>
       <Block className="nk-fmg-listing">
-        {data.length > 0 ? <List data={data} setData={setData} starred /> : <div>No files or folders available</div>}
+        {data.length > 0 ? (
+          <List data={data} setData={setData} starred />
+        ) : (
+          <div>No files or folders available</div>
+        )}
       </Block>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Starred;
+export default Starred

@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
-import { Icon } from "../../../../components/Component";
-import { FileManagerContext } from "../FileManagerContext";
+import React, { useContext, useState } from 'react'
+import { Icon } from '../../../../components/Component'
+import { FileManagerContext } from '../FileManagerContext'
 
 const Copy = ({ file, toggle, toggleCreateModal }) => {
-  const { contextData, copyToFolder } = useContext(FileManagerContext);
-  const [data, setData] = contextData;
+  const { contextData, copyToFolder } = useContext(FileManagerContext)
+  const [data, setData] = contextData
 
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState('')
 
   return (
     <React.Fragment>
@@ -15,8 +15,8 @@ const Copy = ({ file, toggle, toggleCreateModal }) => {
         <a
           href="#close"
           onClick={(ev) => {
-            ev.preventDefault();
-            toggle();
+            ev.preventDefault()
+            toggle()
           }}
           className="close"
         >
@@ -32,16 +32,27 @@ const Copy = ({ file, toggle, toggleCreateModal }) => {
           <div className="nk-files nk-files-view-list is-compact">
             <div className="nk-files-list">
               {data
-                .filter((item) => item.meta.type === "folder" && item.id !== file.id && !item.recovery)
+                .filter(
+                  (item) =>
+                    item.meta.type === 'folder' &&
+                    item.id !== file.id &&
+                    !item.recovery
+                )
                 .map((item) => {
                   return (
                     <div
-                      className={`nk-file-item nk-file ${item.id === selected ? "selected" : ""}`}
+                      className={`nk-file-item nk-file ${
+                        item.id === selected ? 'selected' : ''
+                      }`}
                       key={item.id}
                       onClick={() => setSelected(item.id)}
                     >
                       <div className="nk-file-info">
-                        <a className="nk-file-link" href="#link" onClick={(ev) => ev.preventDefault()}>
+                        <a
+                          className="nk-file-link"
+                          href="#link"
+                          onClick={(ev) => ev.preventDefault()}
+                        >
                           <div className="nk-file-title">
                             <div className="nk-file-icon">{item.meta.svg}</div>
                             <div className="nk-file-name">
@@ -62,7 +73,7 @@ const Copy = ({ file, toggle, toggleCreateModal }) => {
                         </a>
                       </div>
                     </div>
-                  );
+                  )
                 })}
             </div>
           </div>
@@ -74,9 +85,9 @@ const Copy = ({ file, toggle, toggleCreateModal }) => {
             <a
               href="link"
               onClick={(ev) => {
-                ev.preventDefault();
-                toggle();
-                toggleCreateModal();
+                ev.preventDefault()
+                toggle()
+                toggleCreateModal()
               }}
               className="link link-primary"
             >
@@ -89,8 +100,8 @@ const Copy = ({ file, toggle, toggleCreateModal }) => {
                 <a
                   href="#file-share"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    toggle();
+                    ev.preventDefault()
+                    toggle()
                   }}
                   className="btn btn-outline-light btn-white"
                 >
@@ -101,9 +112,9 @@ const Copy = ({ file, toggle, toggleCreateModal }) => {
                 <a
                   href="link"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    copyToFolder(file, selected);
-                    toggle();
+                    ev.preventDefault()
+                    copyToFolder(file, selected)
+                    toggle()
                   }}
                   className="btn btn-primary file-dl-toast"
                 >
@@ -115,7 +126,7 @@ const Copy = ({ file, toggle, toggleCreateModal }) => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Copy;
+export default Copy
