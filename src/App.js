@@ -10,14 +10,10 @@ import Error404Modern from './pages/error/404-modern'
 import Error504Modern from './pages/error/504-modern'
 import Error504Classic from './pages/error/504-classic'
 
-import Faq from './pages/others/Faq'
-import Terms from './pages/others/Terms'
-
 import Login from './pages/auth/Login'
 
 import ForgotPassword from './pages/auth/ForgotPassword'
 import Success from './pages/auth/Success'
-import InvoicePrint from './pages/pre-built/invoice/InvoicePrint'
 
 const App = () => {
   return (
@@ -37,31 +33,6 @@ const App = () => {
         exact
         path={`${process.env.PUBLIC_URL}/auth-login`}
         component={Login}
-      ></Route>
-
-      {/* Print Pages */}
-      <Route
-        exact
-        path={`${process.env.PUBLIC_URL}/invoice-print/:id`}
-        component={InvoicePrint}
-      ></Route>
-
-      {/* Helper pages */}
-      <Route
-        exact
-        path={`${process.env.PUBLIC_URL}/auths/terms`}
-        component={Terms}
-      ></Route>
-      <Route
-        exact
-        path={`${process.env.PUBLIC_URL}/auths/faq`}
-        component={Faq}
-      ></Route>
-
-      <Route
-        exact
-        path={`${process.env.PUBLIC_URL}/invoice-print`}
-        component={InvoicePrint}
       ></Route>
 
       {/*Error Pages*/}

@@ -1,23 +1,12 @@
-import Accordian from './partials/accordian/Preview'
 import Button from './button/Button'
 import Icon from './icon/Icon'
-import NioIconCard from './partials/nioIcon/NioIcon'
-import TooltipComponent from './tooltip/Tooltip'
 import Table from './table/Table'
 import UserAvatar from './user/UserAvatar'
-import UserGroup from './user/UserGroup'
 import PaginationComponent from '../components/pagination/Pagination'
 import DataTablePagination from './pagination/DataTablePagination'
 import Sidebar from './sidebar/Sidebar'
 import ReactDataTable from './table/ReactDataTable'
 import RSelect from './select/ReactSelect'
-import InputSwitch from './input/switch/Switch'
-import OutlinedInput from './input/outlined-input/OutlinedInput'
-import Progress from './progress/Progress'
-import NSComponent from './number-spinner/NumberSpinner'
-import Knob from './knob/Knob'
-import ReactDualList from './dual-list/RDualList'
-import Rating from './rating/Rating'
 import {
   Block,
   BlockHead,
@@ -67,22 +56,16 @@ import {
 } from '../components/table/DataTable'
 
 export {
-  Accordian,
   LinkItem,
   LinkList,
   OverlineTitle,
   Sidebar,
   Button,
   UserAvatar,
-  UserGroup,
-  InputSwitch,
   Block,
   BlockContent,
-  Rating,
   PaginationComponent,
-  ReactDualList,
   DataTablePagination,
-  NSComponent,
   ReactDataTable,
   PreviewCard,
   PreviewTable,
@@ -96,13 +79,10 @@ export {
   BackTo,
   BlockBetween,
   Icon,
-  OutlinedInput,
   Table,
   Row,
   Col,
-  TooltipComponent,
   SpecialTable,
-  Knob,
   LineChartExample,
   BarChartExample,
   PieChartExample,
@@ -113,7 +93,6 @@ export {
   EmailBodyContent,
   EmailWrapper,
   EmailFooter,
-  NioIconCard,
   ProjectCard,
   ProjectBody,
   ProjectHead,
@@ -125,5 +104,4 @@ export {
   DataTableTitle,
   PreviewAltCard,
   RSelect,
-  Progress,
 }

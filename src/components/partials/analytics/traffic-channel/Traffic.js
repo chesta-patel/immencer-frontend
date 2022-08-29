@@ -129,11 +129,6 @@ const TrafficChannel = () => {
                   </span>
                 </span>
               </DataTableRow>
-              <DataTableRow className="nk-tb-trend text-right">
-                <div className="traffic-channel-ck ml-auto">
-                  <WPCharts data={item.chart}></WPCharts>
-                </div>
-              </DataTableRow>
             </DataTableItem>
           )
         })}

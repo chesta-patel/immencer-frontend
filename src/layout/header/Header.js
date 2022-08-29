@@ -2,7 +2,6 @@ import React from 'react'
 import classNames from 'classnames'
 import Toggle from '../sidebar/Toggle'
 import Logo from '../logo/Logo'
-import News from '../news/News'
 import User from './dropdown/user/User'
 import Notification from './dropdown/notification/Notification'
 
@@ -27,9 +26,6 @@ const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
           </div>
           <div className="nk-header-brand d-xl-none">
             <Logo />
-          </div>
-          <div className="nk-header-news d-none d-xl-block">
-            <News />
           </div>
           <div className="nk-header-tools">
             <ul className="nk-quick-nav">

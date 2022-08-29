@@ -90,16 +90,6 @@ const AudienceOverview = () => {
         <div className="analytic-ov-ck">
           <AudienceLineChart state={auOverview} />
         </div>
-        <div className="chart-label-group ml-5">
-          <div className="chart-label">01 Jan, 2020</div>
-          <div className="chart-label d-none d-sm-block">
-            {auOverview === 'month-1' ? '15' : '4'} Jan, 2020
-          </div>
-          <div className="chart-label">
-            {' '}
-            {auOverview === 'month-1' ? '30' : '7'} Jan, 2020
-          </div>
-        </div>
       </div>
     </React.Fragment>
   )

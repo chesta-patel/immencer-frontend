@@ -36,7 +36,7 @@ const Login = () => {
           `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '/'}`
         )
         window.location.reload()
-      }, 2000)
+      }, 500)
     } else {
       setTimeout(() => {
         setError('Cannot login with credentials')

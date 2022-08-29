@@ -1,8 +1,3 @@
-import User from '../../images/avatar/b-sm.jpg'
-import User2 from '../../images/avatar/c-sm.jpg'
-import User3 from '../../images/avatar/a-sm.jpg'
-import User4 from '../../images/avatar/d-sm.jpg'
-
 export const userData = [
   {
     id: 1,
@@ -30,7 +25,6 @@ export const userData = [
   {
     id: 2,
     avatarBg: 'purple',
-    image: User3,
     name: 'Ashley Lawson',
     dob: '10 Sept, 1990',
     role: 'Investor',
@@ -94,7 +88,6 @@ export const userData = [
     name: 'Frances Burns',
     dob: '30 May, 2000',
     role: 'Manager',
-    image: User,
     email: 'frances@example.com',
     balance: '42.50',
     checked: false,
@@ -115,7 +108,6 @@ export const userData = [
     name: 'Alan Butler',
     dob: '10 Feb, 1997',
     role: 'Investor',
-    image: User2,
     email: 'butler@example.com',
     balance: '440.34',
     checked: false,
@@ -176,7 +168,6 @@ export const userData = [
     name: 'Jane Harris',
     dob: '28 Feb, 1985',
     role: 'Customer',
-    image: User4,
     email: 'harris@example.com',
     balance: '5,530.23',
     checked: false,
@@ -297,7 +288,6 @@ export const userData = [
     name: 'Raymond Atkins',
     dob: '30 Dec, 1998',
     role: 'Customer',
-    image: User4,
     email: 'sara@example.com',
     balance: '165.00',
     checked: false,
@@ -357,7 +347,6 @@ export const userData = [
     avatarBg: 'warning',
     name: 'Joshua Mcnair',
     dob: '30 Dec, 1998',
-    image: User4,
     role: 'Admin',
     email: 'joshua@example.com',
     balance: '55.00',
