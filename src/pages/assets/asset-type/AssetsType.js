@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import Pageheader from '../../Pageheader'
-import Pagetable from '../../Pagetable'
-import { assetf, assett } from './Assettypejson'
+import PageHeader from '../../PageHeader'
+import PageTable from '../../PageTable'
+import { assetTypeForm, assetTypeTable } from './AssetTypeJson'
+import { assetsTypeString } from '../../Strings'
 
 const AssetsType = ({ ...props }) => {
-  const [roleform] = useState(assetf)
-  const [roletable] = useState(assett)
+  const [roleForm] = useState(assetTypeForm)
+  const [roleTable] = useState(assetTypeTable)
+
   return (
     <React.Fragment>
-      <Head title="Role Page" />
+      <Head title="Assets Type" />
       <Content>
-        <Pageheader json={roleform} />
-        <Pagetable json={roletable} />
+        <PageHeader json={roleForm} string={assetsTypeString} />
+        <PageTable json={roleTable} string={assetsTypeString} />
       </Content>
     </React.Fragment>
   )

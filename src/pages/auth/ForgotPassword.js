@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Logo from '../../images/logo.png'
-import LogoDark from '../../images/logo_immence.svg'
+import Logo from '../../../src/assets/images/immence_wordlogo.svg'
+import LogoDark from '../../../src/assets/images/gfx/immence.svg'
 import PageContainer from '../../layout/page-container/PageContainer'
 import Head from '../../layout/head/Head'
 import AuthFooter from './AuthFooter'
@@ -17,11 +17,11 @@ import {
 import { FormGroup, Spinner, Alert } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import commanString from '../../utils/CommanString'
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false)
   const [errorVal, setError] = useState('')
-
   const { errors, register, handleSubmit } = useForm()
 
   const onFormSubmit = (formData) => {
@@ -40,7 +40,7 @@ const ForgotPassword = () => {
       }, 2000)
     } else {
       setTimeout(() => {
-        setError('Cannot login with credentials')
+        setError(`${commanString.can_not_login}`)
         setLoading(false)
       }, 2000)
     }
@@ -68,12 +68,9 @@ const ForgotPassword = () => {
           <PreviewCard className="card-bordered" bodyClass="card-inner-lg">
             <BlockHead>
               <BlockContent>
-                <BlockTitle tag="h5">Reset password</BlockTitle>
+                <BlockTitle tag="h5">{commanString.reset_password}</BlockTitle>
                 <BlockDes>
-                  <p>
-                    If you forgot your password, well, then we’ll email you
-                    instructions to reset your password.
-                  </p>
+                  <p>{commanString.if_you_forgot_your}</p>
                 </BlockDes>
               </BlockContent>
             </BlockHead>
@@ -81,7 +78,8 @@ const ForgotPassword = () => {
               <div className="mb-3">
                 <Alert color="danger" className="alert-icon">
                   {' '}
-                  <Icon name="alert-circle" /> Unable to login with credentials{' '}
+                  <Icon name="alert-circle" />
+                  {commanString.unable_to_login}{' '}
                 </Alert>
               </div>
             )}
@@ -89,7 +87,7 @@ const ForgotPassword = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="default-01">
-                    Email <span className="error">*</span>
+                    {commanString.email} <span className="error">*</span>
                   </label>
                 </div>
                 <div className="form-control-wrap">
@@ -120,7 +118,7 @@ const ForgotPassword = () => {
             </form>
             <div className="form-note-s2 text-center pt-4">
               <Link to={`${process.env.PUBLIC_URL}/auth-login`}>
-                <strong>Return to login</strong>
+                <strong>{commanString.return_to_login}</strong>
               </Link>
             </div>
           </PreviewCard>
@@ -130,4 +128,5 @@ const ForgotPassword = () => {
     </React.Fragment>
   )
 }
+
 export default ForgotPassword

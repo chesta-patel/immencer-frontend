@@ -3,7 +3,6 @@ import classNames from 'classnames'
 import Toggle from '../sidebar/Toggle'
 import Logo from '../logo/Logo'
 import User from './dropdown/user/User'
-import Notification from './dropdown/notification/Notification'
 
 const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
   const headerClass = classNames({
@@ -13,6 +12,7 @@ const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
     [`is-${theme}`]: theme !== 'white' && theme !== 'light',
     [`${className}`]: className,
   })
+
   return (
     <div className={headerClass}>
       <div className="container-fluid">
@@ -35,12 +35,6 @@ const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
               >
                 <User />
               </li>
-              <li
-                className="notification-dropdown mr-n1"
-                onClick={() => setVisibility(false)}
-              >
-                <Notification />
-              </li>
             </ul>
           </div>
         </div>
@@ -48,4 +42,5 @@ const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
     </div>
   )
 }
+
 export default Header

@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import Pageheader from '../../Pageheader'
-import Pagetable from '../../Pagetable'
-import { leaveform, leavetable } from './LeaveTypejson'
+import PageHeader from '../../PageHeader'
+import PageTable from '../../PageTable'
+import { leaveForm, leaveTable } from './LeaveTypeJson'
+import { leaveTypeString } from '../../Strings'
 
 const LeaveType = ({ ...props }) => {
-  const [roleform] = useState(leaveform)
-  const [roletable] = useState(leavetable)
+  const [roleForm] = useState(leaveForm)
+  const [roleTable] = useState(leaveTable)
+
   return (
     <React.Fragment>
-      <Head title="Role Page" />
+      <Head title="Leave Type" />
       <Content>
-        <Pageheader json={roleform} />
-        <Pagetable json={roletable} />
+        <PageHeader json={roleForm} string={leaveTypeString} />
+        <PageTable json={roleTable} string={leaveTypeString} />
       </Content>
     </React.Fragment>
   )

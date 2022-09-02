@@ -9,15 +9,12 @@ const PaginationComponent = ({
   currentPage,
 }) => {
   const pageNumbers = []
-
   for (let i = 1; i <= Math.ceil(totalItems / itemPerPage); i++) {
     pageNumbers.push(i)
   }
-
   const nextPage = () => {
     paginate(currentPage + 1)
   }
-
   const prevPage = () => {
     paginate(currentPage - 1)
   }
@@ -56,7 +53,6 @@ const PaginationComponent = ({
           </PaginationItem>
         )
       })}
-
       <PaginationItem
         disabled={pageNumbers[pageNumbers.length - 1] === currentPage}
       >
@@ -75,4 +71,5 @@ const PaginationComponent = ({
     </Pagination>
   )
 }
+
 export default PaginationComponent

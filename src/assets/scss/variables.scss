@@ -8,12 +8,12 @@ $font-url: '../../../fonts';
 //////////////////////////////////////
 $white: #fff;
 $black: #000;
-
+$secondry: #eff6ff;
 $light-100: #ebeef2;
 $light-200: #e5e9f2;
 $light-300: #dbdfea;
 $light-400: #b7c2d0;
-$light-500: #8091a7;
+$light_500: #8091a7;
 $light-600: #3c4d62;
 $light-700: #344357;
 $light-800: #2b3748;
@@ -826,3 +826,7 @@ $gd_investment: true;
 $nk-dashlite-font: 'Nioicon';
 $nk-dashlite-font-url: '../../../fonts';
 @import 'vendors/nioicon/variables';
+
+:export {
+  white: $white;
+}

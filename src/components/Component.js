@@ -42,11 +42,6 @@ import {
   EmailFooter,
 } from './email/Email'
 import {
-  ProjectCard,
-  ProjectBody,
-  ProjectHead,
-} from './partials/project-card/ProjectCard'
-import {
   DataTable,
   DataTableBody,
   DataTableHead,
@@ -93,9 +88,6 @@ export {
   EmailBodyContent,
   EmailWrapper,
   EmailFooter,
-  ProjectCard,
-  ProjectBody,
-  ProjectHead,
   DataTableRow,
   DataTableItem,
   DataTableHead,

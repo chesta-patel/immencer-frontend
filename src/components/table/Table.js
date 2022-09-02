@@ -10,6 +10,7 @@ const Table = ({ headColor, striped, border, hover, responsive }) => {
     'table-striped': striped,
     'table-hover': hover,
   })
+
   return (
     <div className={responsive ? 'table-responsive' : ''}>
       <table className={tableClass}>
@@ -36,4 +37,5 @@ const Table = ({ headColor, striped, border, hover, responsive }) => {
     </div>
   )
 }
+
 export default Table

@@ -24,4 +24,5 @@ const Error404Classic = () => {
     </PageContainer>
   )
 }
+
 export default Error404Classic

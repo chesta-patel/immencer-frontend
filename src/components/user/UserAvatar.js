@@ -22,6 +22,7 @@ const UserAvatar = ({
     [`user-avatar-${size}`]: size,
     [`bg-${theme}`]: theme,
   })
+
   return (
     <div className={classes}>
       {icon ? <Icon name={icon} /> : null}

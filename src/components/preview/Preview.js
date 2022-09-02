@@ -14,7 +14,6 @@ export const PreviewCard = ({ className, bodyClass, ...props }) => {
     </Card>
   )
 }
-
 export const PreviewAltCard = ({ className, bodyClass, ...props }) => {
   return (
     <Card className={`card-bordered ${className ? className : ''}`}>
@@ -24,7 +23,6 @@ export const PreviewAltCard = ({ className, bodyClass, ...props }) => {
     </Card>
   )
 }
-
 export const PreviewTable = ({ ...props }) => {
   return (
     <Card className="card-preview">
@@ -35,10 +33,12 @@ export const PreviewTable = ({ ...props }) => {
 export const CodeBlock = ({ language, ...props }) => {
   const [copyText] = useState(props.children)
   const [copyState, setCopyState] = useState(false)
+
   const onCopyClick = () => {
     setCopyState(true)
     setTimeout(() => setCopyState(false), 2000)
   }
+
   return (
     <div
       className={`code-block code-block-clean ${

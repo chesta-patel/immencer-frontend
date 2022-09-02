@@ -18,19 +18,15 @@ const DataTablePagination = ({
   setRowsPerPage,
 }) => {
   const pageNumbers = []
-
   for (let i = 1; i <= Math.ceil(totalItems / itemPerPage); i++) {
     pageNumbers.push(i)
   }
-
   const nextPage = () => {
     paginate(currentPage + 1)
   }
-
   const prevPage = () => {
     paginate(currentPage - 1)
   }
-
   useEffect(() => {
     onChangeRowsPerPage(customItemPerPage)
     setRowsPerPage(customItemPerPage)
@@ -74,7 +70,6 @@ const DataTablePagination = ({
               </PaginationItem>
             )
           })}
-
           <PaginationItem
             disabled={pageNumbers[pageNumbers.length - 1] === currentPage}
           >
@@ -105,4 +100,5 @@ const DataTablePagination = ({
     </Row>
   )
 }
+
 export default DataTablePagination

@@ -3,7 +3,7 @@
  * It will helps you to easy update of the template.
  **/
 
-/* 
+/*
 ----------------------
 ## Table Contents ##
 * 01. FONTS
@@ -18,10 +18,10 @@
 ////////////////////////// DO NOT REMOVE BELOW ///////////////////////
 
 // SET RTL OPTION
-$rtl: true;
+$rtl: false;
 
 // Included Global Variables and Functions
-@import 'dashlite_variables';
+@import 'variables';
 
 // Included Fonts
 /** 01. FONTS */
@@ -63,9 +63,6 @@ $rtl: true;
 
 ///////  DARK MODE SKIN
 @import 'core/dark-skin';
-
-///////  THEME SETTING PANEL
-@import '../../_global/scss/preview-settings';
 
 /*! END @iO */
 ////////////////////////// END STYLESHEET ////////////////////////////

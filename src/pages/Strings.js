@@ -1,100 +1,139 @@
-export let strings = {
-  role: [
-    {
-      id: 1,
-      head_title: 'Role Page',
-      header: 'User Role',
-      form_title: 'Role',
-    },
-  ],
-  premission: [
-    {
-      id: 2,
-      head_title: 'Permission Page',
-      header: 'User Permission',
-      form_title: 'Permission',
-    },
-  ],
-  setuppermission: [
-    {
-      id: 3,
-      head_title: 'Setup Role Permission',
-      header: 'Setup Role Permission',
-      form_title: 'Setup Role Permission',
-    },
-  ],
-  userinfo: [
-    {
-      id: 4,
-      head_title: 'User Info',
-      header: 'User Info',
-      form_title: 'User Info',
-    },
-  ],
-  assetstype: [
-    {
-      id: 5,
-      head_title: 'Employe',
-      header: 'Employe',
-      form_title: 'Employe',
-    },
-  ],
-  assetetype: [
-    {
-      id: 6,
-      head_title: 'Assets Type ',
-      header: 'Employe',
-      form_title: 'Employe',
-    },
-  ],
-  assetsapp: {
-    id: 7,
-    head_title: 'Assets Application ',
-    header: 'Assets Applicat',
-    form_title: 'Assets Applicat',
-  },
-  leavetype: {
-    id: 8,
-    head_title: 'Leave Type',
-    header: 'Leave Type',
-    form_title: 'Leave Type',
-  },
-  leaveapp: {
-    id: 9,
-    head_title: 'Leave Application ',
-    header: 'Leave Applicat',
-    form_title: 'Leave Applicat',
-  },
-  holidaylist: {
-    id: 10,
-    head_title: 'Holiday list ',
-    header: 'Holiday List',
-    form_title: 'Holiday list',
-  },
-  holidaytype: {
-    id: 11,
-    head_title: 'Holiday Type ',
-    header: 'Holiday Type',
-    form_title: 'Holiday Type',
-  },
-  companydoc: {
-    id: 12,
-    head_title: 'Company Documents',
-    header: 'Company Documents',
-    form_title: 'Company Documents',
-  },
-  companypolicy: {
-    id: 13,
-    head_title: 'Company Documents',
-    header: 'Company Documents',
-    form_title: 'Company Documents',
-  },
+import commanString from '../utils/CommanString'
+
+const com = {
+  export_icon: commanString.download_cloud,
+  export_btn: commanString.export,
+  form_btn: commanString.submit,
+  form_cancel: commanString.cancle,
+  table_apply_btn: commanString.apply,
+  search_icon: commanString.search,
+  search_input_placeholder: commanString.search_by_user_name,
+  input_search_icon: commanString.search,
+  filter_icon: commanString.filter_alt,
+  table_filter_user: `${commanString.filter} ${commanString.user}`,
+  filter_have_blc: commanString.have_balance,
+  kyc: commanString.kyc_verified,
+  filter_role: commanString.role,
+  filter_status: commanString.status,
+  filter_btn: commanString.filter,
+  reset_filter: `${commanString.reset} ${commanString.filter}`,
+  save_filter: `${commanString.save} ${commanString.filter}`,
+  row_show: commanString.show,
+  shorting_order: commanString.order,
+  asc_order: commanString.asc_order,
+  desc_order: commanString.desc_order,
 }
 
-export const companypolicy = [
+export const roleString = [
   {
-    head_title: 'Company Policy',
-    header: 'Company Policy',
-    form_title: 'Company Policy',
+    ...com,
+    head_title: commanString.role,
+    header: commanString.role,
+    form_title: `${commanString.create} ${commanString.role}`,
+  },
+]
+
+export const permissionString = [
+  {
+    ...com,
+    head_title: commanString.permission,
+    header: commanString.permission,
+    form_title: `${commanString.create} ${commanString.permission}`,
+  },
+]
+
+export const setupRoleString = [
+  {
+    ...com,
+    head_title: commanString.setup_role_permission,
+    header: commanString.setup_role_permission,
+    form_title: `${commanString.role} ${commanString.permission}`,
+  },
+]
+
+export const userString = [
+  {
+    ...com,
+    head_title: commanString.user_info,
+    header: commanString.user_info,
+    form_title: commanString.user_info,
+  },
+]
+
+export const employeString = [
+  {
+    ...com,
+    head_title: commanString.employee,
+    header: commanString.employee,
+    form_title: `${commanString.create} ${commanString.employee}`,
+  },
+]
+
+export const assetsTypeString = [
+  {
+    ...com,
+    head_title: commanString.assets_type,
+    header: commanString.assets_type,
+    form_title: `${commanString.create} ${commanString.assets_type}`,
+  },
+]
+export const assetsAppString = [
+  {
+    ...com,
+    head_title: commanString.assets_application,
+    header: commanString.assets_application,
+    form_title: `${commanString.create} ${commanString.assets_application}`,
+  },
+]
+
+export const leaveTypeString = [
+  {
+    ...com,
+    head_title: commanString.leave_type,
+    header: commanString.leave_type,
+    form_title: `${commanString.create} ${commanString.leave_type}`,
+  },
+]
+export const leaveAppString = [
+  {
+    ...com,
+    head_title: commanString.leave_application,
+    header: commanString.leave_type,
+    form_title: `${commanString.create} ${commanString.leave_application}`,
+  },
+]
+
+export const holidayListStrig = [
+  {
+    ...com,
+    head_title: commanString.holiday_list,
+    header: commanString.holiday_list,
+    form_title: `${commanString.create} ${commanString.holiday_list}`,
+  },
+]
+export const holidayTypeString = [
+  {
+    ...com,
+    head_title: commanString.holiday_type,
+    header: commanString.holiday_type,
+    form_title: `${commanString.create} ${commanString.holiday_type}`,
+  },
+]
+
+export const companyDocString = [
+  {
+    ...com,
+    head_title: commanString.company_document,
+    header: commanString.company_document,
+    form_title: `${commanString.create} ${commanString.company_document}`,
+  },
+]
+
+export const companyPolicyString = [
+  {
+    ...com,
+    head_title: commanString.company_policy,
+    header: commanString.company_policy,
+    form_title: `${commanString.create} ${commanString.company_policy}`,
   },
 ]

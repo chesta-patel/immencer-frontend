@@ -4,28 +4,25 @@ import exportFromJSON from 'export-from-json'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { Col, Modal, ModalBody, Row, Button } from 'reactstrap'
 import { DataTablePagination } from '../Component'
+import commanString from '../../utils/CommanString'
 
 const Export = ({ data }) => {
   const [modal, setModal] = useState(false)
+  const fileName = 'user-data'
 
   useEffect(() => {
     if (modal === true) {
       setTimeout(() => setModal(false), 2000)
     }
   }, [modal])
-
-  const fileName = 'user-data'
-
   const exportCSV = () => {
     const exportType = exportFromJSON.types.csv
     exportFromJSON({ data, fileName, exportType })
   }
-
   const exportExcel = () => {
     const exportType = exportFromJSON.types.xls
     exportFromJSON({ data, fileName, exportType })
   }
-
   const copyToClipboard = () => {
     setModal(true)
   }
@@ -33,14 +30,16 @@ const Export = ({ data }) => {
   return (
     <React.Fragment>
       <div className="dt-export-buttons d-flex align-center">
-        <div className="dt-export-title d-none d-md-inline-block">Export</div>
+        <div className="dt-export-title d-none d-md-inline-block">
+          {commanString.export}
+        </div>
         <div className="dt-buttons btn-group flex-wrap">
           <CopyToClipboard text={JSON.stringify(data)}>
             <Button
               className="buttons-copy buttons-html5"
               onClick={() => copyToClipboard()}
             >
-              <span>Copy</span>
+              <span>{commanString.copy}</span>
             </Button>
           </CopyToClipboard>{' '}
           <button
@@ -48,14 +47,14 @@ const Export = ({ data }) => {
             type="button"
             onClick={() => exportCSV()}
           >
-            <span>CSV</span>
+            <span>{commanString.csv}</span>
           </button>{' '}
           <button
             className="btn btn-secondary buttons-excel buttons-html5"
             type="button"
             onClick={() => exportExcel()}
           >
-            <span>Excel</span>
+            <span>{commanString.excel}</span>
           </button>{' '}
         </div>
       </div>
@@ -65,41 +64,39 @@ const Export = ({ data }) => {
         size="sm"
       >
         <ModalBody className="text-center m-2">
-          <h5>Copied to clipboard</h5>
+          <h5>{`${commanString.copied} ${commanString.to_clipboard}`}</h5>
         </ModalBody>
         <div className="p-3 bg-light">
           <div className="text-center">
-            Copied {data.length} rows to clipboard
+            {`${commanString.copied} ${data.length} ${commanString.row} ${commanString.to_clipboard}`}
           </div>
         </div>
       </Modal>
     </React.Fragment>
   )
 }
-
 const ExpandableRowComponent = ({ data }) => {
   return (
     <ul className="dtr-details p-2 border-bottom ml-1">
       <li className="d-block d-sm-none">
-        <span className="dtr-title">Company</span>{' '}
+        <span className="dtr-title">{commanString.company}</span>{' '}
         <span className="dtr-data">{data.company}</span>
       </li>
       <li className="d-block d-sm-none">
-        <span className="dtr-title ">Gender</span>{' '}
+        <span className="dtr-title ">{commanString.gender}</span>{' '}
         <span className="dtr-data">{data.gender}</span>
       </li>
       <li>
-        <span className="dtr-title">Start Date</span>{' '}
+        <span className="dtr-title">{commanString.start_date}</span>{' '}
         <span className="dtr-data">{data.startDate}</span>
       </li>
       <li>
-        <span className="dtr-title">Salary</span>{' '}
+        <span className="dtr-title">{commanString.salary}</span>{' '}
         <span className="dtr-data">{data.salary}</span>
       </li>
     </ul>
   )
 }
-
 const CustomCheckbox = React.forwardRef(({ onClick, ...rest }, ref) => (
   <div className="custom-control custom-control-sm custom-checkbox notext">
     <input
@@ -113,7 +110,6 @@ const CustomCheckbox = React.forwardRef(({ onClick, ...rest }, ref) => (
     <label className="custom-control-label" htmlFor={rest.name} />
   </div>
 ))
-
 const ReactDataTable = ({
   data,
   columns,
@@ -139,7 +135,6 @@ const ReactDataTable = ({
       setTableData(data)
     }
   }, [searchText]) // eslint-disable-line react-hooks/exhaustive-deps
-
   // function to change the design view under 1200 px
   const viewChange = () => {
     if (window.innerWidth < 960 && expandableRows) {
@@ -148,7 +143,6 @@ const ReactDataTable = ({
       setMobileView(false)
     }
   }
-
   useEffect(() => {
     window.addEventListener('load', viewChange)
     window.addEventListener('resize', viewChange)
@@ -156,7 +150,6 @@ const ReactDataTable = ({
       window.removeEventListener('resize', viewChange)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div
       className={`dataTables_wrapper dt-bootstrap4 no-footer ${
@@ -182,7 +175,9 @@ const ReactDataTable = ({
               {actions && <Export data={data} />}
               <div className="dataTables_length" id="DataTables_Table_0_length">
                 <label>
-                  <span className="d-none d-sm-inline-block">Show</span>
+                  <span className="d-none d-sm-inline-block">
+                    {commanString.show}
+                  </span>
                   <div className="form-control-select">
                     {' '}
                     <select
@@ -211,7 +206,9 @@ const ReactDataTable = ({
         selectableRowsComponent={CustomCheckbox}
         expandableRowsComponent={ExpandableRowComponent}
         expandableRows={mobileView}
-        noDataComponent={<div className="p-2">There are no records found</div>}
+        noDataComponent={
+          <div className="p-2">{commanString.there_are_no_record}</div>
+        }
         sortIcon={
           <div>
             <span>&darr;</span>

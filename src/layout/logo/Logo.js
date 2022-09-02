@@ -1,13 +1,13 @@
 import React from 'react'
-import LogoLight2x from '../../images/logo_immence.svg'
-import LogoDark2x from '../../images/logo-dark2x.png'
+import immence_logo from '../../../src/assets/images/gfx/immence.svg'
+import immence from '../../../src/assets/images/immence_wordlogo.svg'
 import { Link } from 'react-router-dom'
 
 const Logo = () => {
   return (
     <Link to={`${process.env.PUBLIC_URL}/`} className="logo-link">
-      <img className="logo-light logo-img" src={LogoLight2x} alt="logo" />
-      <img className="logo-dark logo-img" src={LogoDark2x} alt="logo" />
+      <img className="logo-light logo-img" src={immence_logo} alt="logo" />
+      <img className="logo-dark logo-img" src={immence} alt="logo" />
     </Link>
   )
 }

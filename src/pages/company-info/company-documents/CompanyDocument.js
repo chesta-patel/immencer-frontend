@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import Pageheader from '../../Pageheader'
-import Pagetable from '../../Pagetable'
-import { companydocform, companydoctable } from './companydocjson'
+import PageHeader from '../../PageHeader'
+import PageTable from '../../PageTable'
+import { companyDocForm, companyDocTable } from './CompanyDocJson'
+import { companyDocString } from '../../Strings'
 
 const CompanyDocument = ({ ...props }) => {
-  const [roleform] = useState(companydocform)
-  const [roletable] = useState(companydoctable)
+  const [roleForm] = useState(companyDocForm)
+  const [roleTable] = useState(companyDocTable)
+
   return (
     <React.Fragment>
-      <Head title="Role Page" />
+      <Head title="Company Document" />
       <Content>
-        <Pageheader json={roleform} />
-        <Pagetable json={roletable} />
+        <PageHeader json={roleForm} string={companyDocString} />
+        <PageTable json={roleTable} string={companyDocString} />
       </Content>
     </React.Fragment>
   )

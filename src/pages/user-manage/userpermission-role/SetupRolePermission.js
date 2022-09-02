@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import { rolepermissonform, rolepermissontable } from './Rolepermissonjson'
-import Pageheader from '../../Pageheader'
-import Pagetable from '../../Pagetable'
+import { rolePermissonForm, rolePermissonTable } from './RolePermissonJson'
+import PageHeader from '../../PageHeader'
+import PageTable from '../../PageTable'
+import { setupRoleString } from '../../Strings'
 
 const SetupRolePermission = ({ ...props }) => {
-  const [roleform] = useState(rolepermissonform)
-  const [roletable] = useState(rolepermissontable)
+  const [roleForm] = useState(rolePermissonForm)
+  const [roleTable] = useState(rolePermissonTable)
+
   return (
     <React.Fragment>
-      <Head title="Role Page" />
+      <Head title="Setup Role Permission" />
       <Content>
-        <Pageheader json={roleform} />
-        <Pagetable json={roletable} />
+        <PageHeader json={roleForm} string={setupRoleString} />
+        <PageTable json={roleTable} string={setupRoleString} />
       </Content>
     </React.Fragment>
   )

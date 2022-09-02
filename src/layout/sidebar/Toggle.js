@@ -15,4 +15,5 @@ const Toggle = ({ className, click, icon }) => {
     </a>
   )
 }
+
 export default Toggle

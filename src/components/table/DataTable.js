@@ -9,7 +9,6 @@ export const DataTable = ({ className, bodyClassName, title, ...props }) => {
     </Card>
   )
 }
-
 export const DataTableTitle = ({ ...props }) => {
   return (
     <div className="card-inner position-relative card-tools-toggle">
@@ -17,7 +16,6 @@ export const DataTableTitle = ({ ...props }) => {
     </div>
   )
 }
-
 export const DataTableBody = ({ compact, className, bodyclass, ...props }) => {
   return (
     <div className={`card-inner p-0 ${className ? className : ''}`}>
@@ -31,11 +29,9 @@ export const DataTableBody = ({ compact, className, bodyclass, ...props }) => {
     </div>
   )
 }
-
 export const DataTableHead = ({ ...props }) => {
   return <div className="nk-tb-item nk-tb-head">{props.children}</div>
 }
-
 export const DataTableRow = ({ className, size, ...props }) => {
   const rowClass = classNames({
     'nk-tb-col': true,
@@ -44,7 +40,6 @@ export const DataTableRow = ({ className, size, ...props }) => {
   })
   return <div className={rowClass}>{props.children}</div>
 }
-
 export const DataTableItem = ({ className, ...props }) => {
   return (
     <div className={`nk-tb-item ${className ? className : ''}`}>

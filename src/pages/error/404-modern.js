@@ -1,5 +1,5 @@
 import React from 'react'
-import ErrorImage from '../../images/gfx/error-404.svg'
+import ErrorImage from '../../../src/assets/images/gfx/error-404.svg'
 import PageContainer from '../../layout/page-container/PageContainer'
 import { Link } from 'react-router-dom'
 import { Block, BlockContent, Button } from '../../components/Component'
@@ -27,4 +27,5 @@ const Error404Modern = () => {
     </PageContainer>
   )
 }
+
 export default Error404Modern

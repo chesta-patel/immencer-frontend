@@ -1,15 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import commanString from '../../utils/CommanString'
 
 const Footer = () => {
   return (
     <div className="nk-footer">
       <div className="container-fluid">
         <div className="nk-footer-wrap">
-          <div className="nk-footer-copyright">&copy; 2022 immence.</div>
+          <div className="nk-footer-copyright">
+            &copy; {commanString.immence_2022}.
+          </div>
         </div>
       </div>
     </div>
   )
 }
+
 export default Footer

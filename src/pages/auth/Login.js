@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Logo from '../../images/logo.png'
-import LogoDark from '../../images/logo_immence.svg'
+import Logo from '../../../src/assets/images/immence_wordlogo.svg'
+import LogoDark from '../../../src/assets/images/gfx/immence.svg'
 import PageContainer from '../../layout/page-container/PageContainer'
 import Head from '../../layout/head/Head'
 import AuthFooter from './AuthFooter'
@@ -17,11 +17,13 @@ import {
 import { Form, FormGroup, Spinner, Alert } from 'reactstrap'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import commanString from '../../utils/CommanString'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
   const [passState, setPassState] = useState(false)
   const [errorVal, setError] = useState('')
+  const { errors, register, handleSubmit } = useForm()
 
   const onFormSubmit = (formData) => {
     setLoading(true)
@@ -39,13 +41,11 @@ const Login = () => {
       }, 500)
     } else {
       setTimeout(() => {
-        setError('Cannot login with credentials')
+        setError(`${commanString.can_not_login}`)
         setLoading(false)
       }, 2000)
     }
   }
-
-  const { errors, register, handleSubmit } = useForm()
 
   return (
     <React.Fragment>
@@ -66,13 +66,12 @@ const Login = () => {
               />
             </Link>
           </div>
-
           <PreviewCard className="card-bordered" bodyClass="card-inner-lg">
             <BlockHead>
               <BlockContent>
-                <BlockTitle tag="h4">Sign-In</BlockTitle>
+                <BlockTitle tag="h4">{commanString.sign_in}</BlockTitle>
                 <BlockDes>
-                  <p>Access immence using your email and passcode.</p>
+                  <p>{commanString.access_immence_using_email_pass}</p>
                 </BlockDes>
               </BlockContent>
             </BlockHead>
@@ -80,7 +79,7 @@ const Login = () => {
               <div className="mb-3">
                 <Alert color="danger" className="alert-icon">
                   {' '}
-                  <Icon name="alert-circle" /> Unable to login with credentials{' '}
+                  <Icon name="alert-circle" /> {commanString.can_not_login}{' '}
                 </Alert>
               </div>
             )}
@@ -115,7 +114,7 @@ const Login = () => {
                     className="link link-primary link-sm"
                     to={`${process.env.PUBLIC_URL}/auth-reset`}
                   >
-                    Forgot Code?
+                    {commanString.forget_code}
                   </Link>
                 </div>
                 <div className="form-control-wrap">
@@ -170,4 +169,5 @@ const Login = () => {
     </React.Fragment>
   )
 }
+
 export default Login

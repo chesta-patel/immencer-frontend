@@ -20,7 +20,6 @@ const Layout = () => {
   useEffect(() => {
     viewChange()
   }, [])
-
   // Stops scrolling on overlay
   useLayoutEffect(() => {
     if (visibility) {
@@ -32,7 +31,6 @@ const Layout = () => {
       document.body.style.height = 'auto'
     }
   }, [visibility])
-
   // function to toggle sidebar
   const toggleSidebar = (e) => {
     e.preventDefault()
@@ -42,13 +40,11 @@ const Layout = () => {
       setVisibility(false)
     }
   }
-
   useEffect(() => {
     document.body.className = `nk-body bg-lighter npc-default has-sidebar no-touch nk-nio-theme ${
       themeState.skin === 'dark' ? 'dark-mode' : ''
     }`
   }, [themeState.skin])
-
   // function to change the design view under 1200 px
   const viewChange = () => {
     if (window.innerWidth < 1200) {
@@ -60,7 +56,6 @@ const Layout = () => {
   }
   window.addEventListener('load', viewChange)
   window.addEventListener('resize', viewChange)
-
   const sidebarClass = classNames({
     'nk-sidebar-mobile': mobileView,
     'nk-sidebar-active': visibility && mobileView,
@@ -96,4 +91,5 @@ const Layout = () => {
     </React.Fragment>
   )
 }
+
 export default Layout

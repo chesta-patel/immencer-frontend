@@ -23,7 +23,6 @@ export const LinkItem = ({ ...props }) => {
     </li>
   )
 }
-
 export const LinkList = ({ ...props }) => {
   const listClasses = classNames({
     'link-list': !props.opt,

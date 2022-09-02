@@ -11,7 +11,6 @@ const MenuHeading = ({ heading }) => {
     </li>
   )
 }
-
 const MenuItem = ({
   icon,
   link,
@@ -29,13 +28,11 @@ const MenuItem = ({
       sidebarToggle(e)
     }
   }
-
   if (window.location.pathname !== undefined) {
     currentUrl = window.location.pathname
   } else {
     currentUrl = null
   }
-
   const menuHeight = (el) => {
     var totalHeight = []
     for (var i = 0; i < el.length; i++) {
@@ -51,7 +48,6 @@ const MenuItem = ({
     totalHeight = totalHeight.reduce((sum, value) => (sum += value))
     return totalHeight
   }
-
   const makeParentActive = (el, childHeight) => {
     let element = el.parentElement.parentElement.parentElement
     let wrap = el.parentElement.parentElement
@@ -62,13 +58,11 @@ const MenuItem = ({
       makeParentActive(element)
     }
   }
-
   useEffect(() => {
     var element = document.getElementsByClassName(
       'nk-menu-item active current-page'
     )
     var arrayElement = [...element]
-
     arrayElement.forEach((dom) => {
       if (
         dom.parentElement.parentElement.parentElement.classList[0] ===
@@ -84,7 +78,6 @@ const MenuItem = ({
       }
     })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
   const menuToggle = (e) => {
     e.preventDefault()
     var self = e.target.closest('.nk-menu-toggle')
@@ -153,7 +146,6 @@ const MenuItem = ({
       subMenu.style.height = 0
     }
   }
-
   const menuItemClass = classNames({
     'nk-menu-item': true,
     'has-sub': sub,
@@ -202,7 +194,6 @@ const MenuItem = ({
     </li>
   )
 }
-
 const MenuSub = ({
   icon,
   link,
@@ -230,7 +221,6 @@ const MenuSub = ({
     </ul>
   )
 }
-
 const Menu = ({ sidebarToggle, mobileView }) => {
   return (
     <ul className="nk-menu">

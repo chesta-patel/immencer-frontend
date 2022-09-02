@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import { userrolecolum, formfield } from './Rolejson'
-import Pageheader from '../../Pageheader'
-import Pagetable from '../../Pagetable'
+import { userRoleColum, formField } from './RoleJson'
+import PageHeader from '../../PageHeader'
+import PageTable from '../../PageTable'
+import { roleString } from '../../Strings'
 
 const Role = ({ ...props }) => {
-  const [roleform] = useState(formfield)
-  const [roletable] = useState(userrolecolum)
+  const [roleField] = useState(formField)
+  const [roleTable] = useState(userRoleColum)
+
   return (
     <React.Fragment>
-      <Head title="Role Page" />
+      <Head title="Role" />
       <Content>
-        <Pageheader json={roleform} />
-        <Pagetable json={roletable} />
+        <PageHeader json={roleField} string={roleString} />
+        <PageTable json={roleTable} string={roleString} />
       </Content>
     </React.Fragment>
   )

@@ -11,7 +11,6 @@ export const EmailWrapper = ({ ...props }) => {
     </table>
   )
 }
-
 export const EmailHeader = ({ ...props }) => {
   return (
     <table className="email-header">
@@ -23,7 +22,6 @@ export const EmailHeader = ({ ...props }) => {
     </table>
   )
 }
-
 export const EmailBody = ({ centered, ...props }) => {
   return (
     <table className={`email-body ${centered ? 'text-center' : ''}`}>
@@ -31,7 +29,6 @@ export const EmailBody = ({ centered, ...props }) => {
     </table>
   )
 }
-
 export const EmailBodyContent = ({ className, ...props }) => {
   return (
     <tr>
@@ -39,7 +36,6 @@ export const EmailBodyContent = ({ className, ...props }) => {
     </tr>
   )
 }
-
 export const EmailFooter = ({ ...props }) => {
   return (
     <table className="email-footer">

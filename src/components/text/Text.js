@@ -7,6 +7,7 @@ export const OverlineTitle = ({ className, alt, ...props }) => {
     [`${className}`]: className,
     'overline-title-alt': alt,
   })
+
   return (
     <React.Fragment>
       {!props.tag ? (

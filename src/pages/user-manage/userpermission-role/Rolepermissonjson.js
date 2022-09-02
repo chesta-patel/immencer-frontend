@@ -1,2 +1,2 @@
-export const rolepermissonform = []
-export const rolepermissontable = []
+export const rolePermissonForm = []
+export const rolePermissonTable = []

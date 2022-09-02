@@ -19,4 +19,5 @@ const Sidebar = ({ toggleState, ...props }) => {
     </React.Fragment>
   )
 }
+
 export default Sidebar

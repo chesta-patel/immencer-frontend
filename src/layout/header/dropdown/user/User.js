@@ -3,6 +3,7 @@ import UserAvatar from '../../../../components/user/UserAvatar'
 import { DropdownToggle, DropdownMenu, Dropdown } from 'reactstrap'
 import { Icon } from '../../../../components/Component'
 import { LinkList, LinkItem } from '../../../../components/links/Links'
+import commanString from '../../../../utils/CommanString'
 
 const User = () => {
   const [open, setOpen] = useState(false)
@@ -25,8 +26,10 @@ const User = () => {
         <div className="user-toggle">
           <UserAvatar icon="user-alt" className="sm" />
           <div className="user-info d-none d-md-block">
-            <div className="user-status">Administrator</div>
-            <div className="user-name dropdown-indicator">Abu Bin Ishityak</div>
+            <div className="user-status">{commanString.administrator}</div>
+            <div className="user-name dropdown-indicator">
+              {commanString.abu_bin_ishityak}
+            </div>
           </div>
         </div>
       </DropdownToggle>
@@ -37,7 +40,7 @@ const User = () => {
               <span>AB</span>
             </div>
             <div className="user-info">
-              <span className="lead-text">Abu Bin Ishtiyak</span>
+              <span className="lead-text">{commanString.abu_bin_ishityak}</span>
               <span className="sub-text">user@immence.in</span>
             </div>
           </div>
@@ -49,21 +52,21 @@ const User = () => {
               icon="user-alt"
               onClick={toggle}
             >
-              View Profile
+              {`${commanString.view}${commanString.profile}`}
             </LinkItem>
             <LinkItem
               link="/user-profile-setting"
               icon="setting-alt"
               onClick={toggle}
             >
-              Account Setting
+              {`${commanString.account_setting}`}
             </LinkItem>
             <LinkItem
               link="/user-profile-activity"
               icon="activity-alt"
               onClick={toggle}
             >
-              Login Activity
+              {commanString.login_activity}
             </LinkItem>
           </LinkList>
         </div>
@@ -74,7 +77,7 @@ const User = () => {
               onClick={handleSignout}
             >
               <Icon name="signout"></Icon>
-              <span>Sign Out</span>
+              <span>{commanString.sign_out}</span>
             </a>
           </LinkList>
         </div>

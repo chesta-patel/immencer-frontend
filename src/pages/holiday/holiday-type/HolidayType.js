@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import Pageheader from '../../Pageheader'
-import Pagetable from '../../Pagetable'
-import { holidaytypeform, holidaytypetable } from './HolidayTypejson'
+import PageHeader from '../../PageHeader'
+import PageTable from '../../PageTable'
+import { holidayTypeForm, holidayTypeTable } from './HolidayTypeJson'
+import { holidayTypeString } from '../../Strings'
 
 const HolidayType = ({ ...props }) => {
-  const [roleform] = useState(holidaytypeform)
-  const [roletable] = useState(holidaytypetable)
+  const [roleForm] = useState(holidayTypeForm)
+  const [roleTable] = useState(holidayTypeTable)
+
   return (
     <React.Fragment>
-      <Head title="Role Page" />
+      <Head title="Holiday Type" />
       <Content>
-        <Pageheader json={roleform} />
-        <Pagetable json={roletable} />
+        <PageHeader json={roleForm} string={holidayTypeString} />
+        <PageTable json={roleTable} string={holidayTypeString} />
       </Content>
     </React.Fragment>
   )

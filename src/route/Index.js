@@ -2,13 +2,12 @@ import React, { Suspense, useLayoutEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { UserContextProvider } from '../pages/user-manage/UserContext'
 import { RedirectAs404 } from '../utils/Utils'
-
-import Homepage from '../pages/Homepage'
+import Homepage from '../pages/HomePage'
 import Role from '../pages/user-manage/user-role/Role'
 import UserPermission from '../pages/user-manage/user-permission/UserPermission'
 import SetupRolePermission from '../pages/user-manage/userpermission-role/SetupRolePermission'
 import UserInfo from '../pages/user-manage/user-info/UserInfo'
-import Employee from '../pages/user-manage/user-employe/Employee'
+import Employee from '../pages/user-manage/user-employee/Employee'
 import AssetsType from '../pages/assets/asset-type/AssetsType'
 import AssetApplication from '../pages/assets/assets-application/AssetsApplication'
 import LeaveType from '../pages/leave/leave-type/LeaveType'
@@ -72,7 +71,6 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
-
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/assets/assets-type`}
@@ -91,7 +89,6 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
-
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/leave/leave-type`}
@@ -110,13 +107,12 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
-
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/holiday/holiday-type`}
           render={() => (
             <UserContextProvider>
-              <HolidayList />
+              <HolidayType />
             </UserContextProvider>
           )}
         ></Route>
@@ -125,11 +121,10 @@ const Pages = () => {
           path={`${process.env.PUBLIC_URL}/holiday/holiday-list`}
           render={() => (
             <UserContextProvider>
-              <HolidayType />
+              <HolidayList />
             </UserContextProvider>
           )}
         ></Route>
-
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/company-info/company-document`}
@@ -148,7 +143,6 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
-
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/`}
@@ -159,4 +153,5 @@ const Pages = () => {
     </Suspense>
   )
 }
+
 export default Pages

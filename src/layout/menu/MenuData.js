@@ -1,112 +1,113 @@
+import commanString from '../../utils/CommanString'
 const menu = [
   {
     icon: 'dashlite',
-    text: 'Default Dashboard',
+    text: `${commanString.dashboard}`,
     link: '/',
   },
   {
     icon: 'users',
-    text: 'User Manage',
+    text: `${commanString.user_manage}`,
     active: false,
     subMenu: [
       {
-        text: 'Role',
-        link: '/user-manage/role',
+        text: `${commanString.role}`,
+        link: `${commanString.user_role}`,
       },
       {
-        text: 'Permission',
+        text: `${commanString.permission}`,
         link: '/user-manage/user-permission',
       },
       {
-        text: 'Setup Role Permission',
+        text: `${commanString.setup_role_permission}`,
         link: '/user-manage/setup-role-permission',
       },
       {
-        text: 'User',
+        text: `${commanString.user}`,
         link: '/user-manage/user-info',
       },
       {
-        text: 'Employee',
+        text: `${commanString.employee}`,
         link: '/user-manage/employee',
       },
     ],
   },
   {
     icon: 'archived',
-    text: 'Assets',
+    text: `${commanString.assets}`,
     active: false,
     subMenu: [
       {
-        text: 'Assets Type',
+        text: `${commanString.assets_type}`,
         link: '/assets/assets-type',
       },
       {
-        text: 'Assets Application',
+        text: `${commanString.assets_application}`,
         link: '/assets/assets-application',
       },
     ],
   },
   {
     icon: 'calendar-alt',
-    text: 'Leave',
+    text: `${commanString.leave}`,
     active: false,
     subMenu: [
       {
-        text: 'Leave Type',
+        text: `${commanString.leave_type}`,
         link: '/leave/leave-type',
       },
       {
-        text: 'Leave Application',
+        text: `${commanString.leave_application}`,
         link: '/leave/leave-application',
       },
     ],
   },
   {
     icon: 'calendar-booking',
-    text: 'Holiday',
+    text: `${commanString.holiday}`,
     active: false,
     subMenu: [
       {
-        text: 'Holiday List',
-        link: '/Holiday/holiday-list',
+        text: `${commanString.holiday_list}`,
+        link: '/holiday/holiday-list',
       },
       {
-        text: 'Holiday Type',
+        text: `${commanString.holiday_type}`,
         link: '/holiday/holiday-type',
       },
     ],
   },
   {
     icon: 'file-docs',
-    text: 'Company Document',
+    text: `${commanString.company_document}`,
     link: '/company-info/company-document',
   },
   {
     icon: 'policy',
-    text: 'Company Policy',
+    text: `${commanString.company_policy}`,
     link: '/company-info/company-policy',
   },
   {
-    heading: 'Misc Pages',
+    heading: `${commanString.misc_pages}`,
   },
   {
     icon: 'signin',
-    text: 'Auth Pages',
+    text: `${commanString.auth_page}`,
     active: false,
     subMenu: [
       {
-        text: 'Login / Signin',
+        text: `${commanString.login}`,
         link: '/auth-login',
         newTab: true,
       },
 
       {
-        text: 'Forgot Password',
+        text: `${commanString.forgot_password}`,
         link: '/auth-reset',
         newTab: true,
       },
       {
-        text: 'Success / Confirm',
+        text: `${commanString.success}`,
         link: '/auth-success',
         newTab: true,
       },
@@ -114,26 +115,26 @@ const menu = [
   },
   {
     icon: 'files',
-    text: 'Error Pages',
+    text: `${commanString.error_page}`,
     active: false,
     subMenu: [
       {
-        text: '404 Classic',
+        text: `404 ${commanString.classic}`,
         link: '/errors/404-classic',
         newTab: true,
       },
       {
-        text: '504 Classic',
+        text: `504 ${commanString.classic}`,
         link: '/errors/504-classic',
         newTab: true,
       },
       {
-        text: '404 Modern',
+        text: `404 ${commanString.modern}`,
         link: '/errors/404-modern',
         newTab: true,
       },
       {
-        text: '504 Modern',
+        text: `504 ${commanString.modern}`,
         link: '/errors/504-modern',
         newTab: true,
       },

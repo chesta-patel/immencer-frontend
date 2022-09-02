@@ -16,4 +16,5 @@ const Button = ({ color, size, className, outline, disabled, ...props }) => {
     </button>
   )
 }
+
 export default Button

@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import Pageheader from '../../Pageheader'
-import Pagetable from '../../Pagetable'
-import { formfield, userpermission } from './Permissionjson'
+import PageHeader from '../../PageHeader'
+import PageTable from '../../PageTable'
+import { formField, userPermission } from './PermissionJson'
+import { permissionString } from '../../Strings'
 
 const UserPermission = () => {
-  const [roleform] = useState(formfield)
-  const [roletable] = useState(userpermission)
+  const [roleForm] = useState(formField)
+  const [roleTable] = useState(userPermission)
+
   return (
     <React.Fragment>
       <Head title="Permission Page" />
       <Content>
-        <Pageheader json={roleform} />
-        <Pagetable json={roletable} />
+        <PageHeader json={roleForm} string={permissionString} />
+        <PageTable json={roleTable} string={permissionString} />
       </Content>
     </React.Fragment>
   )

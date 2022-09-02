@@ -10,4 +10,5 @@ const Icon = ({ name, id, className, style, ...props }) => {
   })
   return <em className={iconClass} id={id} style={style} {...props}></em>
 }
+
 export default Icon

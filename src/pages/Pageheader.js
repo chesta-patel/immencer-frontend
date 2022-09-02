@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Col, Form, FormGroup, Modal, ModalBody } from 'reactstrap'
 import {
@@ -10,11 +10,10 @@ import {
   Icon,
   RSelect,
 } from '../components/Component'
-import Head from '../layout/head/Head'
 import { cloneDeep } from 'lodash'
-import strings from './Strings'
+import variable from '../assets/scss/variables.scss'
 
-function Pageheader(props) {
+function PageHeader(props) {
   const initialState = {}
   props.json.forEach((formFields) => {
     initialState[`${formFields.name}`] = ''
@@ -27,11 +26,22 @@ function Pageheader(props) {
   const { handleSubmit } = useForm()
   const [validate, setValidate] = useState(false)
   const [Fdata, setFdata] = useState({ ...initialState })
-  const [string, setstring] = useState()
+  const [strings, setstrings] = useState('')
   const onFormCancel = () => {
     setModal({ edit: false, add: false })
     resetForm()
   }
+  const [setFormData] = useState({
+    title: '',
+    slug: '',
+    description: '',
+    type: '',
+    active: '',
+    content: '',
+    isActive: 'Active',
+    isDelete: 'No',
+  })
+
   // function to reset the form
   const resetForm = () => {
     setFormData({
@@ -45,35 +55,30 @@ function Pageheader(props) {
       isDelete: 'No',
     })
   }
-  const [setFormData] = useState({
-    title: '',
-    slug: '',
-    description: '',
-    type: '',
-    active: '',
-    content: '',
-    isActive: 'Active',
-    isDelete: 'No',
-  })
-
   // submit function to add a new item
   const onFormSubmit = (e) => {
-    resetForm()
     setValidate(true)
     e.preventDefault()
   }
 
+  useEffect(() => {
+    var string = props.string.find(function (element) {
+      return element
+    })
+    setstrings(string)
+    console.log(variable, 'mahendra')
+  }, [props.string])
+
   return (
     <React.Fragment>
-      <Head title="Role Page" />
       <BlockHead size="sm">
         <BlockBetween>
           <BlockHeadContent>
             <BlockTitle tag="h3" page>
-              User Role
+              {strings.head_title}
             </BlockTitle>
             <BlockDes className="text-soft">
-              <p>You have total 2,595 users.</p>
+              <p>{strings.user_count}</p>
             </BlockDes>
           </BlockHeadContent>
           <BlockHeadContent>
@@ -99,8 +104,8 @@ function Pageheader(props) {
                       }}
                       className="btn btn-white btn-outline-light"
                     >
-                      <Icon name="download-cloud"></Icon>
-                      <span>Export</span>
+                      <Icon name={strings.export_icon}></Icon>
+                      <span>{strings.export_btn}</span>
                     </a>
                   </li>
                   <li className="nk-block-tools-opt">
@@ -135,10 +140,10 @@ function Pageheader(props) {
           >
             <Icon name="cross-sm"></Icon>
           </a>
-          <div className="p-2">
-            <h5 className="title">Add Role</h5>
-            <div className="mt-4">
-              <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
+          <div className="p-3">
+            <h5 className="title">{strings.form_title}</h5>
+            <div className="mt-2">
+              <Form className="row gy-3" onSubmit={handleSubmit(onFormSubmit)}>
                 {props.json.map((formFields, id) => {
                   if (
                     (formFields.type !== 'text') &
@@ -148,10 +153,7 @@ function Pageheader(props) {
                     return (
                       <Col md="6">
                         <FormGroup>
-                          <label
-                            className={formFields.label_class}
-                            style={{ marginBottom: '0px' }}
-                          >
+                          <label className={formFields.label_class}>
                             {formFields.label_name}
                           </label>
                           <RSelect
@@ -181,7 +183,7 @@ function Pageheader(props) {
                               const oldState = cloneDeep(Fdata)
                               oldState[`${formFields.name}`] = e.target.value
                               setFdata({ ...oldState })
-                              setValidate(oldState)
+                              setValidate(true)
                             }}
                           />
                           {formFields.required &&
@@ -198,11 +200,12 @@ function Pageheader(props) {
                   <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                     <li>
                       <Button color="primary" size="md" type="submit">
-                        Add Role
+                        {strings.form_btn}
                       </Button>
                     </li>
                     <li>
                       <a
+                        style={{ marginRight: '25px' }}
                         href="#cancel"
                         onClick={(ev) => {
                           ev.preventDefault()
@@ -210,7 +213,7 @@ function Pageheader(props) {
                         }}
                         className="link link-light"
                       >
-                        Cancel
+                        {strings.form_cancel}
                       </a>
                     </li>
                   </ul>
@@ -224,4 +227,4 @@ function Pageheader(props) {
   )
 }
 
-export default Pageheader
+export default PageHeader

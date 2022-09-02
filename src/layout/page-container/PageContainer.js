@@ -24,4 +24,5 @@ const PageContainer = ({ ...props }) => {
     </React.Fragment>
   )
 }
+
 export default PageContainer

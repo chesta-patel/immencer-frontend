@@ -19,10 +19,8 @@ const Sidebar = ({
   const toggleCollapse = () => {
     setSidebar(!collapseSidebar)
   }
-
   const handleMouseEnter = () => setMouseEnter(true)
   const handleMouseLeave = () => setMouseEnter(false)
-
   const classes = classNames({
     'nk-sidebar': true,
     'nk-sidebar-fixed': fixed,
@@ -66,4 +64,5 @@ const Sidebar = ({
     </div>
   )
 }
+
 export default Sidebar

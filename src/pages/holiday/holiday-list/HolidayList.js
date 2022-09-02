@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import Pageheader from '../../Pageheader'
-import Pagetable from '../../Pagetable'
-import { holydaylistform, holydaylisttable } from './Holidaylistjson'
+import PageHeader from '../../PageHeader'
+import PageTable from '../../PageTable'
+import { holidayListForm, holidayListTable } from './HolidayListJson'
+import { holidayListStrig } from '../../Strings'
 
 const HolidayList = ({ ...props }) => {
-  const [roleform] = useState(holydaylistform)
-  const [roletable] = useState(holydaylisttable)
+  const [roleForm] = useState(holidayListForm)
+  const [roleTable] = useState(holidayListTable)
+
   return (
     <React.Fragment>
-      <Head title="Role Page" />
+      <Head title="Holiday List" />
       <Content>
-        <Pageheader json={roleform} />
-        <Pagetable json={roletable} />
+        <PageHeader json={roleForm} string={holidayListStrig} />
+        <PageTable json={roleTable} string={holidayListStrig} />
       </Content>
     </React.Fragment>
   )

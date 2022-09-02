@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Head from '../layout/head/Head'
 import Content from '../layout/content/Content'
 import {
   BlockDes,
   BlockHead,
   BlockHeadContent,
-  BlockTitle,
   BlockBetween,
 } from '../components/Component'
+import commanString from '../utils/CommanString'
 
-const Homepage = () => {
-  const [sm, updateSm] = useState(false)
+const HomePage = () => {
   return (
     <React.Fragment>
       <Head title="Homepage"></Head>
@@ -18,11 +17,8 @@ const Homepage = () => {
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
-              <BlockTitle page tag="h3">
-                Sales Overview
-              </BlockTitle>
               <BlockDes className="text-soft">
-                <p>Welcome to DashLite Dashboard Template</p>
+                <p>{commanString.welcome_to_immence} </p>
               </BlockDes>
             </BlockHeadContent>
           </BlockBetween>
@@ -31,4 +27,5 @@ const Homepage = () => {
     </React.Fragment>
   )
 }
-export default Homepage
+
+export default HomePage

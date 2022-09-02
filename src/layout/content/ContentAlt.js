@@ -16,4 +16,5 @@ const ContentAlt = ({ ...props }) => {
     </div>
   )
 }
+
 export default ContentAlt

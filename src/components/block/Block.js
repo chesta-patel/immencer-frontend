@@ -18,7 +18,6 @@ export const BlockContent = ({ className, ...props }) => {
   })
   return <div className={blockContentClass}>{props.children}</div>
 }
-
 export const BlockBetween = ({ className, ...props }) => {
   return (
     <div className={`nk-block-between ${className ? className : ''}`}>
@@ -64,7 +63,6 @@ export const BlockDes = ({ className, page, ...props }) => {
   const classes = [`nk-block-des${className ? ' ' + className : ''}`]
   return <div className={classes}>{props.children}</div>
 }
-
 export const BackTo = ({ className, link, icon, ...props }) => {
   const classes = [`back-to${className ? ' ' + className : ''}`]
   return (

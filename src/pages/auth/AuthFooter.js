@@ -1,12 +1,7 @@
 import React from 'react'
 import { Row, Col } from '../../components/Component'
-import {
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  UncontrolledDropdown,
-} from 'reactstrap'
 import { Link } from 'react-router-dom'
+import commanString from '../../utils/CommanString'
 
 const AuthFooter = () => {
   return (
@@ -21,7 +16,7 @@ const AuthFooter = () => {
                   target="_blank"
                   to={`${process.env.PUBLIC_URL}/auths/terms`}
                 >
-                  Terms &amp; Condition
+                  {commanString.term_condition}
                 </Link>
               </li>
               <li className="nav-item">
@@ -30,7 +25,7 @@ const AuthFooter = () => {
                   target="_blank"
                   to={`${process.env.PUBLIC_URL}/auths/terms`}
                 >
-                  Privacy Policy
+                  {`${commanString.privacy} ${commanString.policy}`}
                 </Link>
               </li>
               <li className="nav-item">
@@ -39,83 +34,15 @@ const AuthFooter = () => {
                   target="_blank"
                   to={`${process.env.PUBLIC_URL}/auths/faq`}
                 >
-                  Help
+                  {commanString.help}
                 </Link>
               </li>
-              <li className="nav-item ">
-                <UncontrolledDropdown direction="up">
-                  <DropdownToggle
-                    color="transparent"
-                    className="dropdown-toggle dropdown-indicator has-indicator nav-link"
-                  >
-                    <span>English</span>
-                  </DropdownToggle>
-                  <DropdownMenu right className="dropdown-menu-sm">
-                    <ul className="language-list">
-                      <li>
-                        <DropdownItem
-                          tag="a"
-                          href="#dropdownitem"
-                          onClick={(ev) => {
-                            ev.preventDefault()
-                          }}
-                          className="language-item"
-                        >
-                          <span className="language-name">English</span>
-                        </DropdownItem>
-                      </li>
-                      <li>
-                        <DropdownItem
-                          tag="a"
-                          href="#dropdownitem"
-                          onClick={(ev) => {
-                            ev.preventDefault()
-                          }}
-                          className="language-item"
-                        >
-                          <span className="language-name">Español</span>
-                        </DropdownItem>
-                      </li>
-                      <li>
-                        <DropdownItem
-                          tag="a"
-                          href="#dropdownitem"
-                          onClick={(ev) => {
-                            ev.preventDefault()
-                          }}
-                          className="language-item"
-                        >
-                          <span className="language-name">Français</span>
-                        </DropdownItem>
-                      </li>
-                      <li>
-                        <DropdownItem
-                          tag="a"
-                          href="#dropdownitem"
-                          onClick={(ev) => {
-                            ev.preventDefault()
-                          }}
-                          className="language-item"
-                        >
-                          <span className="language-name">Türkçe</span>
-                        </DropdownItem>
-                      </li>
-                    </ul>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </li>
             </ul>
-          </Col>
-          <Col lg="6">
-            <div className="nk-block-content text-center text-lg-left">
-              <p className="text-soft">
-                &copy; 2022 Dashlite. All Rights Reserved.
-              </p>
-            </div>
           </Col>
         </Row>
       </div>
     </div>
   )
 }
+
 export default AuthFooter
