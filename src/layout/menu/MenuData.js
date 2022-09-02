@@ -12,7 +12,7 @@ const menu = [
     subMenu: [
       {
         text: `${commanString.role}`,
-        link: `${commanString.user_role}`,
+        link: '/user-manage/role',
       },
       {
         text: `${commanString.permission}`,
