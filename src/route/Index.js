@@ -16,7 +16,7 @@ import HolidayType from '../pages/holiday/holiday-type/HolidayType'
 import HolidayList from '../pages/holiday/holiday-list/HolidayList'
 import CompanyDocument from '../pages/company-info/company-documents/CompanyDocument'
 import CompanyPolicy from '../pages/company-info/company-policy/CompanyPolicy'
-
+import UserDetail from '../pages/user-manage/user-info/UserDetail'
 const Pages = () => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
@@ -59,6 +59,15 @@ const Pages = () => {
           render={() => (
             <UserContextProvider>
               <UserInfo />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`${process.env.PUBLIC_URL}/user-manage/user-info/user-detail`}
+          render={() => (
+            <UserContextProvider>
+              <UserDetail />
             </UserContextProvider>
           )}
         ></Route>

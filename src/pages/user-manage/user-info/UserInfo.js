@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
 import { userData } from '../UserData'
-import { Modal, ModalBody } from 'reactstrap'
 import {
   BlockBetween,
   BlockDes,
@@ -13,18 +12,14 @@ import {
   Button,
 } from '../../../components/Component'
 import { UserContext } from '../UserContext'
-import Stepsform from './Stepsform'
 import { userInfo } from './UserInfoJson'
 import PageTable from '../../PageTable'
 import { roleString } from '../../Strings'
+import { useHistory } from 'react-router-dom'
 
 const UserInfo = ({ ...props }) => {
   // Stats declaration for data
   const [sm, updateSm] = useState(false)
-  const [modal, setModal] = useState({
-    edit: false,
-    add: false,
-  })
   const [setFormData] = useState({
     role_id: '',
     department: '',
@@ -55,13 +50,12 @@ const UserInfo = ({ ...props }) => {
     isdelete: '',
   })
   const { contextData } = useContext(UserContext)
-  const [setData] = contextData
+  const [Data, setData] = contextData
   // Get current list, pagination
   const [onSearchText] = useState('')
   const [roleTable] = useState(userInfo)
 
   const onFormCancel = () => {
-    setModal({ edit: false, add: false })
     resetForm()
   }
   // function to reset the form
@@ -109,6 +103,7 @@ const UserInfo = ({ ...props }) => {
       setData([...userData])
     }
   }, [onSearchText, setData])
+  const history = useHistory()
 
   return (
     <React.Fragment>
@@ -155,7 +150,9 @@ const UserInfo = ({ ...props }) => {
                       <Button
                         color="primary"
                         className="btn-icon"
-                        onClick={() => setModal({ add: true })}
+                        onClick={() => {
+                          history.push('/user-manage/user-info/user-detail')
+                        }}
                       >
                         <Icon name="plus"></Icon>
                       </Button>
@@ -167,31 +164,6 @@ const UserInfo = ({ ...props }) => {
           </BlockBetween>
         </BlockHead>
         <PageTable json={roleTable} string={roleString} />
-        <Modal
-          isOpen={modal.add}
-          toggle={() => setModal({ add: false })}
-          className="modal-dialog-centered"
-          size="lg"
-        >
-          <ModalBody>
-            <a
-              href="#cancel"
-              onClick={(ev) => {
-                ev.preventDefault()
-                onFormCancel()
-              }}
-              className="close"
-            >
-              <Icon name="cross-sm"></Icon>
-            </a>
-            <div className="p-2">
-              <h5 className="title">Add User</h5>
-              <div className="mt-4">
-                <Stepsform />
-              </div>
-            </div>
-          </ModalBody>
-        </Modal>
       </Content>
     </React.Fragment>
   )
