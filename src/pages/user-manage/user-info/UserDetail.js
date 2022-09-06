@@ -1,9 +1,21 @@
 import React, { useState } from 'react'
-import { Block, BlockTitle, RSelect } from '../../../components/Component'
+import {
+  Block,
+  BlockTitle,
+  DataTableBody,
+  DataTableHead,
+  DataTableRow,
+  RSelect,
+} from '../../../components/Component'
 import { useForm } from 'react-hook-form'
 import { Steps, Step } from 'react-step-builder'
 import { Row, Col, FormGroup, Button } from 'reactstrap'
-import { AddressDetailform, userCreate } from './UserInfoJson'
+import {
+  AddressDetailform,
+  tableHeader,
+  tableRow,
+  userCreate,
+} from './UserInfoJson'
 import commanString from '../../../utils/CommanString'
 import Content from '../../../layout/content/Content'
 import { cloneDeep } from 'lodash'
@@ -14,6 +26,10 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap'
+import Dropzone from 'react-dropzone'
+import Education from './Education'
+import DataTable from 'react-data-table-component'
+import './userdetail.scss'
 
 const UserCreate = (props) => {
   const initialState = {}
@@ -23,12 +39,22 @@ const UserCreate = (props) => {
   const [validation, setvalidation] = useState(false)
   const { handleSubmit } = useForm()
   const [Fdata, setFdata] = useState({ ...initialState })
+  const [files, setFiles] = useState([])
 
   const submitForm = (e) => {
     setvalidation(true)
     e.preventDefault()
-    props.next()
   }
+  const handleDropChange = (acceptedFiles) => {
+    setFiles(
+      acceptedFiles.map((file) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })
+      )
+    )
+  }
+  var today = new Date().toISOString().split('T')[0]
 
   return (
     <form
@@ -51,6 +77,13 @@ const UserCreate = (props) => {
                   <label className={formFields.label_class}>
                     {formFields.label_name}
                   </label>
+                  {formFields.required &&
+                    !Fdata[`${formFields.name}`] &&
+                    validation && (
+                      <span className="error-message">
+                        {formFields.required}
+                      </span>
+                    )}
                   <RSelect
                     options={formFields.option}
                     defaultValue={{
@@ -68,6 +101,14 @@ const UserCreate = (props) => {
                   <label className={formFields.label_class}>
                     {formFields.label_name}
                   </label>
+                  {''}
+                  {formFields.required &&
+                    !Fdata[`${formFields.name}`] &&
+                    validation && (
+                      <span className="error-message">
+                        {formFields.required}
+                      </span>
+                    )}
                   <input
                     className={formFields.input_class}
                     type={formFields.type}
@@ -80,22 +121,47 @@ const UserCreate = (props) => {
                       setFdata({ ...oldState })
                       setvalidation(true)
                     }}
+                    max={formFields.today}
                   />
-                  {formFields.required &&
-                    !Fdata[`${formFields.name}`] &&
-                    validation && (
-                      <p style={{ color: 'red' }}>{formFields.required}</p>
-                    )}
                 </FormGroup>
               </Col>
             )
           }
         })}
+        <Col md="4">
+          <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}>
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div
+                  {...getRootProps()}
+                  className="dropzone upload-zone dz-clickable"
+                >
+                  <input {...getInputProps()} />
+                  {files.length === 0 && (
+                    <div className="dz-message">
+                      <Button color="primary">SELECT</Button>
+                    </div>
+                  )}
+                  {files.map((file) => (
+                    <div
+                      key={file.name}
+                      className="dz-preview dz-processing dz-image-preview dz-error dz-complete"
+                    >
+                      <div className="dz-image">
+                        <img src={file.preview} alt="preview" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </Dropzone>
+        </Col>
       </Row>
       <div className="actions clearfix">
         <ul>
           <li>
-            <Button color="primary" type="submit">
+            <Button color="primary" type="submit" onClick={props.next}>
               {commanString.next}
             </Button>
           </li>
@@ -107,7 +173,7 @@ const UserCreate = (props) => {
 
 const AddressDetails = (props) => {
   const initialState = {}
-  userCreate.forEach((formFields) => {
+  AddressDetailform.forEach((formFields) => {
     initialState[`${formFields.name}`] = ''
   })
   const [validate, setValidate] = useState(false)
@@ -121,19 +187,21 @@ const AddressDetails = (props) => {
     props.next()
   }
   const onChangeAddress = (event) => {
+    console.log('add log', event.target.checked)
     if (event.target.checked) {
       setAdata(Fdata)
     } else {
-      removedata(event)
+      const tempAdata = { ...Adata }
+      Object.keys(tempAdata).forEach((key) => {
+        tempAdata[key] = ''
+      })
+      setAdata(tempAdata)
     }
-  }
-  const removedata = (event) => {
-    setAdata(Adata)
   }
 
   return (
     <>
-      <p>{commanString.permenent_address}</p>
+      <p className="permenent-address">{commanString.permenent_address}</p>
       <form
         className="content clearfix"
         onSubmit={(e) => {
@@ -154,6 +222,13 @@ const AddressDetails = (props) => {
                     <label className={formFields.label_class}>
                       {formFields.label_name}
                     </label>
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span style={{ color: 'red' }}>
+                          {formFields.required}
+                        </span>
+                      )}
                     <RSelect
                       options={formFields.option}
                       defaultValue={{
@@ -171,6 +246,13 @@ const AddressDetails = (props) => {
                     <label className={formFields.label_class}>
                       {formFields.label_name}
                     </label>
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span style={{ color: 'red' }}>
+                          {formFields.required}
+                        </span>
+                      )}
                     <input
                       className={formFields.input_class}
                       type={formFields.type}
@@ -184,11 +266,6 @@ const AddressDetails = (props) => {
                         setValidate(true)
                       }}
                     />
-                    {formFields.required &&
-                      !Fdata[`${formFields.name}`] &&
-                      validate && (
-                        <p style={{ color: 'red' }}>{formFields.required}</p>
-                      )}
                   </FormGroup>
                 </Col>
               )
@@ -196,9 +273,17 @@ const AddressDetails = (props) => {
           })}
         </Row>
         {'\n'}
-        <input type="checkbox" onChange={onChangeAddress} />
-        <label>same as aouve</label>
-        <p>{commanString.current_address}</p>
+        <div className="div-checkbox">
+          <label className="label-checkbox">
+            <input
+              type="checkbox"
+              onChange={onChangeAddress}
+              className="input-checkbox"
+            />{' '}
+            {commanString.same_as_above}
+          </label>
+        </div>
+        <p className="current-address">{commanString.current_address}</p>
         <Row className="gy-3">
           {AddressDetailform.map((formFields, id) => {
             if (
@@ -213,6 +298,13 @@ const AddressDetails = (props) => {
                     <label className={formFields.label_class}>
                       {formFields.label_name}
                     </label>
+                    {formFields.required &&
+                      !Adata[`${formFields.name}`] &&
+                      validate && (
+                        <span style={{ color: 'red' }}>
+                          {formFields.required}
+                        </span>
+                      )}
                     <RSelect
                       options={formFields.option}
                       defaultValue={{
@@ -230,6 +322,13 @@ const AddressDetails = (props) => {
                     <label className={formFields.label_class}>
                       {formFields.label_name}
                     </label>
+                    {formFields.required &&
+                      !Adata[`${formFields.name}`] &&
+                      validate && (
+                        <span style={{ color: 'red' }}>
+                          {formFields.required}
+                        </span>
+                      )}
                     <input
                       className={formFields.input_class}
                       type={formFields.type}
@@ -243,11 +342,6 @@ const AddressDetails = (props) => {
                         setValidate(true)
                       }}
                     />
-                    {formFields.required &&
-                      !Adata[`${formFields.name}`] &&
-                      validate && (
-                        <p style={{ color: 'red' }}>{formFields.required}</p>
-                      )}
                   </FormGroup>
                 </Col>
               )
@@ -290,7 +384,20 @@ const Permission = (props) => {
           </DropdownMenu>
         </Dropdown>
       </div>
-      <Table>
+      <Block>
+        <DataTable>
+          <DataTableBody compact>
+            <DataTableHead>
+              {tableHeader.map((colum, id) => (
+                <DataTableRow size={colum.header} key={id}>
+                  <input type={colum.type} />
+                </DataTableRow>
+              ))}
+            </DataTableHead>
+          </DataTableBody>
+        </DataTable>
+      </Block>
+      {/* <Table>
         <thead>
           <tr>
             <th></th>
@@ -371,13 +478,14 @@ const Permission = (props) => {
             </td>
           </tr>
         </tbody>
-      </Table>
-
+      </Table> */}
       <div>
         <div className="actions clearfix">
           <ul>
             <li>
-              <Button color="primary">{commanString.submit}</Button>
+              <Button color="primary" onClick={props.next}>
+                {commanString.next}
+              </Button>
             </li>
             <li>
               <Button color="primary" onClick={props.prev}>
@@ -396,7 +504,8 @@ const Header = (props) => {
       <ul>
         <li className={props.current >= 1 ? 'first done' : 'first'}>
           <a href="#wizard-01-h-0" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">01</span> <p>{commanString.user_create}</p>
+            <span className="number">01</span>{' '}
+            <p>{commanString.employee_detail}</p>
           </a>
         </li>
         <li className={props.current >= 2 ? 'second done' : 'second'}>
@@ -407,8 +516,12 @@ const Header = (props) => {
         </li>
         <li className={props.current >= 3 ? 'third done' : 'third'}>
           <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">03</span>{' '}
-            <p>{commanString.number_email}</p>
+            <span className="number">04</span> <p>{commanString.permission}</p>
+          </a>
+        </li>
+        <li className={props.current >= 4 ? 'third done' : 'third'}>
+          <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
+            <span className="number">03</span> <p>{commanString.education}</p>
           </a>
         </li>
       </ul>
@@ -440,6 +553,7 @@ function UserDetail() {
               <Step component={UserCreate} />
               <Step component={AddressDetails} />
               <Step component={Permission} />
+              <Step component={Education} />
             </Steps>
           </div>
         </Block>
