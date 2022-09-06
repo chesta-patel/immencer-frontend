@@ -3,7 +3,7 @@ import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
 import PageHeader from '../../PageHeader'
 import PageTable from '../../PageTable'
-import { companyDocForm, companyDocTable } from './CompanyDocJson'
+import { companyDocForm, companyDocTable } from './CompanyDocumentJson'
 import { companyDocString } from '../../Strings'
 
 const CompanyDocument = ({ ...props }) => {
