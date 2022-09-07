@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import UserAvatar from "../../../../components/user/UserAvatar";
-import { DropdownToggle, DropdownMenu, Dropdown } from "reactstrap";
-import { Icon } from "../../../../components/Component";
-import { LinkList, LinkItem } from "../../../../components/links/Links";
+import React, { useState } from 'react'
+import UserAvatar from '../../../../components/user/UserAvatar'
+import { DropdownToggle, DropdownMenu, Dropdown } from 'reactstrap'
+import { Icon } from '../../../../components/Component'
+import { LinkList, LinkItem } from '../../../../components/links/Links'
+import commanString from '../../../../utils/CommanString'
 
 const User = () => {
-  const [open, setOpen] = useState(false);
-  const toggle = () => setOpen((prevState) => !prevState);
+  const [open, setOpen] = useState(false)
+  const toggle = () => setOpen((prevState) => !prevState)
 
   const handleSignout = () => {
-    localStorage.removeItem("accessToken");
-  };
+    localStorage.removeItem('accessToken')
+  }
 
   return (
     <Dropdown isOpen={open} className="user-dropdown" toggle={toggle}>
@@ -19,14 +20,16 @@ const User = () => {
         href="#toggle"
         className="dropdown-toggle"
         onClick={(ev) => {
-          ev.preventDefault();
+          ev.preventDefault()
         }}
       >
         <div className="user-toggle">
           <UserAvatar icon="user-alt" className="sm" />
           <div className="user-info d-none d-md-block">
-            <div className="user-status">Administrator</div>
-            <div className="user-name dropdown-indicator">Abu Bin Ishityak</div>
+            <div className="user-status">{commanString.administrator}</div>
+            <div className="user-name dropdown-indicator">
+              {commanString.abu_bin_ishityak}
+            </div>
           </div>
         </div>
       </DropdownToggle>
@@ -37,35 +40,50 @@ const User = () => {
               <span>AB</span>
             </div>
             <div className="user-info">
-              <span className="lead-text">Abu Bin Ishtiyak</span>
-              <span className="sub-text">info@softnio.com</span>
+              <span className="lead-text">{commanString.abu_bin_ishityak}</span>
+              <span className="sub-text">user@immence.in</span>
             </div>
           </div>
         </div>
         <div className="dropdown-inner">
           <LinkList>
-            <LinkItem link="/user-profile-regular" icon="user-alt" onClick={toggle}>
-              View Profile
+            <LinkItem
+              link="/user-profile-regular"
+              icon="user-alt"
+              onClick={toggle}
+            >
+              {`${commanString.view}${commanString.profile}`}
             </LinkItem>
-            <LinkItem link="/user-profile-setting" icon="setting-alt" onClick={toggle}>
-              Account Setting
+            <LinkItem
+              link="/user-profile-setting"
+              icon="setting-alt"
+              onClick={toggle}
+            >
+              {`${commanString.account_setting}`}
             </LinkItem>
-            <LinkItem link="/user-profile-activity" icon="activity-alt" onClick={toggle}>
-              Login Activity
+            <LinkItem
+              link="/user-profile-activity"
+              icon="activity-alt"
+              onClick={toggle}
+            >
+              {commanString.login_activity}
             </LinkItem>
           </LinkList>
         </div>
         <div className="dropdown-inner">
           <LinkList>
-            <a href={`${process.env.PUBLIC_URL}/auth-login`} onClick={handleSignout}>
+            <a
+              href={`${process.env.PUBLIC_URL}/auth-login`}
+              onClick={handleSignout}
+            >
               <Icon name="signout"></Icon>
-              <span>Sign Out</span>
+              <span>{commanString.sign_out}</span>
             </a>
           </LinkList>
         </div>
       </DropdownMenu>
     </Dropdown>
-  );
-};
+  )
+}
 
-export default User;
+export default User

@@ -2,7 +2,6 @@
 // Released under MIT and copyright 2014 Waybury.
 // https://useiconic.com/open
 
-
 // Checkboxes and radios
 //
 // Base class takes care of all the key behavioral aspects.
@@ -12,20 +11,20 @@
   z-index: 1;
   display: block;
   min-height: $font-size-base * $line-height-base;
-  @if($rtl==false){
+  @if ($rtl==false) {
     padding-left: $custom-control-gutter + $custom-control-indicator-size;
   }
-  @if($rtl==true){
+  @if ($rtl==true) {
     padding-right: $custom-control-gutter + $custom-control-indicator-size;
   }
 }
 
 .custom-control-inline {
   display: inline-flex;
-  @if($rtl==false){
+  @if ($rtl==false) {
     margin-right: $custom-control-spacer-x;
   }
-  @if($rtl==true){
+  @if ($rtl==true) {
     margin-left: $custom-control-spacer-x;
   }
 }
@@ -35,7 +34,8 @@
   left: 0;
   z-index: -1; // Put the input behind the label so it doesn't overlay text
   width: $custom-control-indicator-size;
-  height: ($font-size-base * $line-height-base + $custom-control-indicator-size) / 2;
+  height: ($font-size-base * $line-height-base + $custom-control-indicator-size) /
+    2;
   opacity: 0;
 
   &:checked ~ .custom-control-label::before {
@@ -88,47 +88,50 @@
   color: $custom-control-label-color;
   vertical-align: top;
   cursor: $custom-control-cursor;
-  &:before,&:after{
+  &:before,
+  &:after {
     z-index: 1;
   }
   // Background-color and (when enabled) gradient
   &::before {
     position: absolute;
-    top: ($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
-    @if($rtl==false){
+    top: ($font-size-base * $line-height-base - $custom-control-indicator-size) /
+      2;
+    @if ($rtl==false) {
       left: -($custom-control-gutter + $custom-control-indicator-size);
     }
-    @if($rtl==true){
+    @if ($rtl==true) {
       right: -($custom-control-gutter + $custom-control-indicator-size);
     }
     display: block;
     width: $custom-control-indicator-size;
     height: $custom-control-indicator-size;
     pointer-events: none;
-    content: "";
+    content: '';
     background-color: $custom-control-indicator-bg;
-    border: $custom-control-indicator-border-color solid $custom-control-indicator-border-width;
+    border: $custom-control-indicator-border-color solid
+      $custom-control-indicator-border-width;
     @include box-shadow($custom-control-indicator-box-shadow);
   }
 
   // Foreground (icon)
   &::after {
     position: absolute;
-    top: ($font-size-base * $line-height-base - $custom-control-indicator-size) / 2;
-    @if($rtl==false){
+    top: ($font-size-base * $line-height-base - $custom-control-indicator-size) /
+      2;
+    @if ($rtl==false) {
       left: -($custom-control-gutter + $custom-control-indicator-size);
     }
-    @if($rtl==true){
+    @if ($rtl==true) {
       right: -($custom-control-gutter + $custom-control-indicator-size);
     }
     display: block;
     width: $custom-control-indicator-size;
     height: $custom-control-indicator-size;
-    content: "";
+    content: '';
     background: no-repeat 50% / #{$custom-control-indicator-bg-size};
   }
 }
-
 
 // Checkboxes
 //
@@ -152,7 +155,9 @@
       @include box-shadow($custom-checkbox-indicator-indeterminate-box-shadow);
     }
     &::after {
-      background-image: escape-svg($custom-checkbox-indicator-icon-indeterminate);
+      background-image: escape-svg(
+        $custom-checkbox-indicator-icon-indeterminate
+      );
     }
   }
 
@@ -189,24 +194,23 @@
   }
 }
 
-
 // switches
 //
 // Tweak a few things for switches
 
 .custom-switch {
-  @if($rtl==false){
+  @if ($rtl==false) {
     padding-left: $custom-switch-width + $custom-control-gutter;
   }
-  @if($rtl==true){
+  @if ($rtl==true) {
     padding-right: $custom-switch-width + $custom-control-gutter;
   }
   .custom-control-label {
     &::before {
-      @if($rtl==false){
+      @if ($rtl==false) {
         left: -($custom-switch-width + $custom-control-gutter);
       }
-      @if($rtl==true){
+      @if ($rtl==true) {
         right: -($custom-switch-width + $custom-control-gutter);
       }
       width: $custom-switch-width;
@@ -216,26 +220,41 @@
     }
 
     &::after {
-      top: add(($font-size-base * $line-height-base - $custom-control-indicator-size) / 2, $custom-control-indicator-border-width * 2);
-      @if($rtl==false){
-        left: add(-($custom-switch-width + $custom-control-gutter), $custom-control-indicator-border-width * 2);
+      top: add(
+        ($font-size-base * $line-height-base - $custom-control-indicator-size) /
+          2,
+        $custom-control-indicator-border-width * 2
+      );
+      @if ($rtl==false) {
+        left: add(
+          -($custom-switch-width + $custom-control-gutter),
+          $custom-control-indicator-border-width * 2
+        );
       }
-      @if($rtl==true){
-        right: add(-($custom-switch-width + $custom-control-gutter), $custom-control-indicator-border-width * 2);
+      @if ($rtl==true) {
+        right: add(
+          -($custom-switch-width + $custom-control-gutter),
+          $custom-control-indicator-border-width * 2
+        );
       }
       width: $custom-switch-indicator-size;
       height: $custom-switch-indicator-size;
       background-color: $custom-control-indicator-border-color;
       // stylelint-disable-next-line property-blacklist
       border-radius: $custom-switch-indicator-border-radius;
-      @include transition(transform .15s ease-in-out, $custom-forms-transition);
+      @include transition(
+        transform 0.15s ease-in-out,
+        $custom-forms-transition
+      );
     }
   }
 
   .custom-control-input:checked ~ .custom-control-label {
     &::after {
       background-color: $custom-control-indicator-bg;
-      transform: translateX($custom-switch-width - $custom-control-indicator-size);
+      transform: translateX(
+        $custom-switch-width - $custom-control-indicator-size
+      );
     }
   }
 
@@ -245,7 +264,6 @@
     }
   }
 }
-
 
 // Select
 //
@@ -257,11 +275,17 @@
   display: inline-block;
   width: 100%;
   height: $custom-select-height;
-  @if($rtl==false){
-    padding: $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) $custom-select-padding-y $custom-select-padding-x;
+  @if ($rtl==false) {
+    padding: $custom-select-padding-y
+      ($custom-select-padding-x + $custom-select-indicator-padding)
+      $custom-select-padding-y
+      $custom-select-padding-x;
   }
-  @if($rtl==true){
-    padding: $custom-select-padding-y $custom-select-padding-x $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding);
+  @if ($rtl==true) {
+    padding: $custom-select-padding-y
+      $custom-select-padding-x
+      $custom-select-padding-y
+      ($custom-select-padding-x + $custom-select-indicator-padding);
   }
   font-family: $custom-select-font-family;
   @include font-size($custom-select-font-size);
@@ -279,7 +303,10 @@
     border-color: $custom-select-focus-border-color;
     outline: 0;
     @if $enable-shadows {
-      @include box-shadow($custom-select-box-shadow, $custom-select-focus-box-shadow);
+      @include box-shadow(
+        $custom-select-box-shadow,
+        $custom-select-focus-box-shadow
+      );
     } @else {
       // Avoid using mixin so we can pass custom focus shadow properly
       box-shadow: $custom-select-focus-box-shadow;
@@ -297,12 +324,12 @@
   }
 
   &[multiple],
-  &[size]:not([size="1"]) {
+  &[size]:not([size='1']) {
     height: auto;
-    @if($rtl==false){
+    @if ($rtl==false) {
       padding-right: $custom-select-padding-x;
     }
-    @if($rtl==true){
+    @if ($rtl==true) {
       padding-left: $custom-select-padding-x;
     }
     background-image: none;
@@ -329,10 +356,10 @@
   height: $custom-select-height-sm;
   padding-top: $custom-select-padding-y-sm;
   padding-bottom: $custom-select-padding-y-sm;
-  @if($rtl==false){
+  @if ($rtl==false) {
     padding-left: $custom-select-padding-x-sm;
   }
-  @if($rtl==true){
+  @if ($rtl==true) {
     padding-right: $custom-select-padding-x-sm;
   }
   @include font-size($custom-select-font-size-sm);
@@ -342,15 +369,14 @@
   height: $custom-select-height-lg;
   padding-top: $custom-select-padding-y-lg;
   padding-bottom: $custom-select-padding-y-lg;
-  @if($rtl==false){
+  @if ($rtl==false) {
     padding-left: $custom-select-padding-x-lg;
   }
-  @if($rtl==true){
+  @if ($rtl==true) {
     padding-right: $custom-select-padding-x-lg;
   }
   @include font-size($custom-select-font-size-lg);
 }
-
 
 // File
 //
@@ -414,10 +440,10 @@
   &::after {
     position: absolute;
     top: 0;
-    @if($rtl==false){
+    @if ($rtl==false) {
       right: 0;
     }
-    @if($rtl==true){
+    @if ($rtl==true) {
       left: 0;
     }
     bottom: 0;
@@ -427,15 +453,19 @@
     padding: $custom-file-padding-y $custom-file-padding-x;
     line-height: $custom-file-line-height;
     color: $custom-file-button-color;
-    content: "Browse";
+    content: 'Browse';
     @include gradient-bg($custom-file-button-bg);
-    @if($rtl==false){
+    @if ($rtl==false) {
       border-left: inherit;
-      @include border-radius(0 $custom-file-border-radius $custom-file-border-radius 0);
+      @include border-radius(
+        0 $custom-file-border-radius $custom-file-border-radius 0
+      );
     }
-    @if($rtl==true){
+    @if ($rtl==true) {
       border-right: inherit;
-      @include border-radius($custom-file-border-radius 0 0 $custom-file-border-radius);
+      @include border-radius(
+        $custom-file-border-radius 0 0 $custom-file-border-radius
+      );
     }
   }
 }
@@ -448,7 +478,10 @@
 
 .custom-range {
   width: 100%;
-  height: add($custom-range-thumb-height, $custom-range-thumb-focus-box-shadow-width * 2);
+  height: add(
+    $custom-range-thumb-height,
+    $custom-range-thumb-focus-box-shadow-width * 2
+  );
   padding: 0; // Need to reset padding
   background-color: transparent;
   appearance: none;
@@ -458,9 +491,15 @@
 
     // Pseudo-elements must be split across multiple rulesets to have an effect.
     // No box-shadow() mixin for focus accessibility.
-    &::-webkit-slider-thumb { box-shadow: $custom-range-thumb-focus-box-shadow; }
-    &::-moz-range-thumb     { box-shadow: $custom-range-thumb-focus-box-shadow; }
-    &::-ms-thumb            { box-shadow: $custom-range-thumb-focus-box-shadow; }
+    &::-webkit-slider-thumb {
+      box-shadow: $custom-range-thumb-focus-box-shadow;
+    }
+    &::-moz-range-thumb {
+      box-shadow: $custom-range-thumb-focus-box-shadow;
+    }
+    &::-ms-thumb {
+      box-shadow: $custom-range-thumb-focus-box-shadow;
+    }
   }
 
   &::-moz-focus-outer {
@@ -525,7 +564,7 @@
     height: $custom-range-thumb-height;
     margin-top: 0; // Edge specific
     margin-right: $custom-range-thumb-focus-box-shadow-width; // Workaround that overflowed box-shadow is hidden.
-    margin-left: $custom-range-thumb-focus-box-shadow-width;  // Workaround that overflowed box-shadow is hidden.
+    margin-left: $custom-range-thumb-focus-box-shadow-width; // Workaround that overflowed box-shadow is hidden.
     @include gradient-bg($custom-range-thumb-bg);
     border: $custom-range-thumb-border;
     @include border-radius($custom-range-thumb-border-radius);
@@ -555,10 +594,10 @@
   }
 
   &::-ms-fill-upper {
-    @if($rtl==false){
+    @if ($rtl==false) {
       margin-right: 15px; // arbitrary?
     }
-    @if($rtl==true){
+    @if ($rtl==true) {
       margin-left: 15px; // arbitrary?
     }
     background-color: $custom-range-track-bg;
@@ -595,21 +634,21 @@
 }
 
 //image control
-.image-control{
-  &.custom-control{
-    @if($rtl==false){
+.image-control {
+  &.custom-control {
+    @if ($rtl==false) {
       padding-left: 0;
     }
-    @if($rtl==true){
+    @if ($rtl==true) {
       padding-right: 0;
     }
   }
-  .custom-control-input:checked ~ .custom-control-label{
-    &:before{
+  .custom-control-input:checked ~ .custom-control-label {
+    &:before {
       border-color: $white;
     }
-    img{
-      opacity: .8;
+    img {
+      opacity: 0.8;
     }
   }
   .custom-control-label {
@@ -617,55 +656,56 @@
     border-radius: $border-radius;
     overflow: hidden;
     background-color: $dark;
-    img{
-      transition:opacity .3s ease;
+    img {
+      transition: opacity 0.3s ease;
     }
-    &:before,&:after{
+    &:before,
+    &:after {
       z-index: 9;
     }
     &::before {
       border-width: 1px;
       top: 1rem;
-      @if($rtl==false){
+      @if ($rtl==false) {
         left: 1rem;
       }
-      @if($rtl==true){
+      @if ($rtl==true) {
         right: 1rem;
       }
     }
     &::after {
       top: 1rem;
-      @if($rtl==false){
+      @if ($rtl==false) {
         left: 1rem;
       }
-      @if($rtl==true){
+      @if ($rtl==true) {
         right: 1rem;
       }
     }
   }
-  &:hover{
-    .custom-control-label{
-      img{
-        opacity: .8;
+  &:hover {
+    .custom-control-label {
+      img {
+        opacity: 0.8;
       }
     }
   }
 }
 
 //btn control
-.custom-control-pro{
-  @if($rtl==false){
+.custom-control-pro {
+  @if ($rtl==false) {
     padding-left: 0;
   }
-  @if($rtl==true){
+  @if ($rtl==true) {
     padding-right: 0;
   }
   position: relative;
-  &.no-control{
-    &.checked{
+  &.no-control {
+    &.checked {
       z-index: 3;
     }
-    &.focused{
+    &.focused {
       z-index: 2;
     }
     .custom-control-label {
@@ -682,7 +722,7 @@
         border-color: $custom-control-indicator-active-border-color;
         @include box-shadow($custom-control-indicator-active-box-shadow);
       }
-    
+
       // Use [disabled] and :disabled to work around https://github.com/twbs/bootstrap/issues/28247
       &[disabled],
       &:disabled {
@@ -692,21 +732,35 @@
       }
     }
   }
-  &-block{
-    &.custom-control{
+  &-block {
+    &.custom-control {
       display: flex;
     }
-    .custom-control-label{
+    .custom-control-label {
       width: 100%;
     }
   }
   .custom-control-label {
     border: 1px solid $border-light;
-    @if($rtl==false){
-      padding: $btn-padding-x $btn-padding-x $btn-padding-x ($custom-control-gutter + $custom-control-indicator-size + $btn-padding-x);
+    @if ($rtl==false) {
+      padding: $btn-padding-x
+        $btn-padding-x
+        $btn-padding-x
+        (
+          $custom-control-gutter +
+            $custom-control-indicator-size +
+            $btn-padding-x
+        );
     }
-    @if($rtl==true){
-      padding: $btn-padding-x ($custom-control-gutter + $custom-control-indicator-size + $btn-padding-x) $btn-padding-x $btn-padding-x;
+    @if ($rtl==true) {
+      padding: $btn-padding-x
+        (
+          $custom-control-gutter +
+            $custom-control-indicator-size +
+            $btn-padding-x
+        )
+        $btn-padding-x
+        $btn-padding-x;
     }
     font-size: $btn-font-size;
     line-height: $btn-line-height;
@@ -715,88 +769,105 @@
     display: inline-flex;
     align-items: center;
     background-color: $white;
-    &::before,&::after {
+    &::before,
+    &::after {
       top: 50%;
       transform: translateY(-50%);
-      @if($rtl==false){
+      @if ($rtl==false) {
         left: $btn-padding-x;
       }
-      @if($rtl==true){
+      @if ($rtl==true) {
         right: $btn-padding-x;
       }
     }
 
     // With Icon
-    .icon{
-        font-size: 1.4em;
-        line-height: inherit;
-        &-lg{
-          font-size: 2.2em;
-        }
+    .icon {
+      font-size: 1.4em;
+      line-height: inherit;
+      &-lg {
+        font-size: 2.2em;
+      }
     }
-    > span{
-        // display: inline-block;
-        white-space: nowrap;
-        &:only-child(){
-            width: 100%;
-        }
+    > span {
+      // display: inline-block;
+      white-space: nowrap;
+      &:only-child() {
+        width: 100%;
+      }
     }
-    .icon + span,span + .icon{
-        @if($rtl==false){
-            padding-left: 8px;
-        }
-        @if($rtl==true){
-            padding-right: 8px;
-        }
+    .icon + span,
+    span + .icon {
+      @if ($rtl==false) {
+        padding-left: 8px;
+      }
+      @if ($rtl==true) {
+        padding-right: 8px;
+      }
     }
   }
-  &.custom-control-sm{
-    @if($rtl==false){
+  &.custom-control-sm {
+    @if ($rtl==false) {
       padding-left: 0;
     }
-    @if($rtl==true){
+    @if ($rtl==true) {
       padding-right: 0;
     }
     .custom-control-label {
-      @if($rtl==false){
-        padding: .75rem $btn-padding-x .75rem ($checkbox-radio-switch-text-gap + $checkbox-radio-switch-size-sm + $btn-padding-x);
+      @if ($rtl==false) {
+        padding: 0.75rem
+          $btn-padding-x
+          0.75rem
+          (
+            $checkbox-radio-switch-text-gap +
+              $checkbox-radio-switch-size-sm +
+              $btn-padding-x
+          );
       }
-      @if($rtl==true){
-        padding: .75rem ($checkbox-radio-switch-text-gap + $checkbox-radio-switch-size-sm + $btn-padding-x) $btn-padding-x .75rem;
+      @if ($rtl==true) {
+        padding: 0.75rem
+          (
+            $checkbox-radio-switch-text-gap +
+              $checkbox-radio-switch-size-sm +
+              $btn-padding-x
+          )
+          $btn-padding-x
+          0.75rem;
       }
       font-size: $btn-font-size;
       line-height: $btn-line-height;
       border-radius: $btn-border-radius;
-      &::before,&::after {
+      &::before,
+      &::after {
         top: 50%;
         transform: translateY(-50%);
-        @if($rtl==false){
+        @if ($rtl==false) {
           left: $btn-padding-x;
         }
-        @if($rtl==true){
+        @if ($rtl==true) {
           right: $btn-padding-x;
         }
       }
     }
   }
-  &-icon{
-    &.custom-control-pro{
-      .custom-control-label{
+  &-icon {
+    &.custom-control-pro {
+      .custom-control-label {
         padding-left: 0;
         padding-right: 0;
-        .icon{
+        .icon {
           text-align: center;
-          width: $btn-line-height + $btn-padding-y*2;
+          width: $btn-line-height + $btn-padding-y * 2;
         }
       }
     }
   }
 }
 .custom-control {
-  &.color-control{
+  &.color-control {
     padding: 4px !important;
-    .custom-control-label{
-      &::before{
+    .custom-control-label {
+      &::before {
         opacity: 0;
         display: block;
         left: -4px;
@@ -806,76 +877,76 @@
         border-radius: 50%;
         border: 2px solid $primary !important;
         background: transparent !important;
-        transition: .3s ease;
+        transition: 0.3s ease;
       }
       &::after {
         display: none;
       }
     }
-    .custom-control-input:checked ~{
-      .custom-control-label{
-        &::before{
+    .custom-control-input:checked ~ {
+      .custom-control-label {
+        &::before {
           opacity: 1;
         }
       }
     }
   }
 }
-.no-control{
-  @if($rtl==false){
+.no-control {
+  @if ($rtl==false) {
     padding-left: 0;
   }
-  @if($rtl==true){
+  @if ($rtl==true) {
     padding-right: 0;
   }
   .custom-control-label {
-    &::before,&::after {
+    &::before,
+    &::after {
       display: none;
     }
   }
 }
 
-
-.form-control-slider{
+.form-control-slider {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
 
 // group
-.custom-control{
-  &-group{
+.custom-control {
+  &-group {
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    margin: -($spacer/2 * .75);
-    > *{
-      padding: ($spacer/2 * .75);
+    margin: -($spacer/2 * 0.75);
+    > * {
+      padding: ($spacer/2 * 0.75);
     }
   }
-  &-stacked{
+  &-stacked {
     margin: 0;
-    > *{
+    > * {
       padding: 0;
       margin: -1px;
     }
-    &:not(.custom-control-vertical){
-      > *{
-        &:not(:first-child) .custom-control-label{
-          @if($rtl==false){
+    &:not(.custom-control-vertical) {
+      > * {
+        &:not(:first-child) .custom-control-label {
+          @if ($rtl==false) {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
           }
-          @if($rtl==true){
+          @if ($rtl==true) {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
           }
         }
-        &:not(:last-child) .custom-control-label{
-          @if($rtl==false){
+        &:not(:last-child) .custom-control-label {
+          @if ($rtl==false) {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
           }
-          @if($rtl==true){
+          @if ($rtl==true) {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
           }
@@ -883,25 +954,25 @@
       }
     }
   }
-  &-vertical{
+  &-vertical {
     flex-direction: column;
     align-items: start;
-    > *{
+    > * {
       width: 100%;
     }
-    .custom-control{
+    .custom-control {
       display: flex;
-      .custom-control-label{
+      .custom-control-label {
         width: 100%;
       }
     }
-    &.custom-control-stacked{
-      > *{
-        &:not(:first-child) .custom-control-label{
+    &.custom-control-stacked {
+      > * {
+        &:not(:first-child) .custom-control-label {
           border-top-left-radius: 0;
           border-top-right-radius: 0;
         }
-        &:not(:last-child) .custom-control-label{
+        &:not(:last-child) .custom-control-label {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
         }

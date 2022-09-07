@@ -1,0 +1,24 @@
+.error-message {
+  color: red;
+}
+.label-checkbox {
+  padding-left: 15px;
+  text-indent: -15px;
+  padding-top: 10px;
+}
+.input-checkbox {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
+}
+.permenent-address {
+  color: darkcyan;
+}
+.current-address {
+  color: darkorchid;
+}

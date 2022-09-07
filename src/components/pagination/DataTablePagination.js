@@ -1,6 +1,12 @@
-import React, { useEffect } from "react";
-import Icon from "../icon/Icon";
-import { Pagination, PaginationLink, PaginationItem, Row, Col } from "reactstrap";
+import React, { useEffect } from 'react'
+import Icon from '../icon/Icon'
+import {
+  Pagination,
+  PaginationLink,
+  PaginationItem,
+  Row,
+  Col,
+} from 'reactstrap'
 
 const DataTablePagination = ({
   itemPerPage,
@@ -11,24 +17,20 @@ const DataTablePagination = ({
   customItemPerPage,
   setRowsPerPage,
 }) => {
-  const pageNumbers = [];
-
+  const pageNumbers = []
   for (let i = 1; i <= Math.ceil(totalItems / itemPerPage); i++) {
-    pageNumbers.push(i);
+    pageNumbers.push(i)
   }
-
   const nextPage = () => {
-    paginate(currentPage + 1);
-  };
-
+    paginate(currentPage + 1)
+  }
   const prevPage = () => {
-    paginate(currentPage - 1);
-  };
-
+    paginate(currentPage - 1)
+  }
   useEffect(() => {
-    onChangeRowsPerPage(customItemPerPage);
-    setRowsPerPage(customItemPerPage);
-  }, [customItemPerPage]); // eslint-disable-line react-hooks/exhaustive-deps
+    onChangeRowsPerPage(customItemPerPage)
+    setRowsPerPage(customItemPerPage)
+  }, [customItemPerPage]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Row className="align-items-center">
@@ -38,8 +40,8 @@ const DataTablePagination = ({
             <PaginationLink
               className="page-link-prev"
               onClick={(ev) => {
-                ev.preventDefault();
-                prevPage();
+                ev.preventDefault()
+                prevPage()
               }}
               href="#prev"
             >
@@ -49,27 +51,33 @@ const DataTablePagination = ({
           </PaginationItem>
           {pageNumbers.map((item) => {
             return (
-              <PaginationItem className={`d-none d-sm-block ${currentPage === item ? "active" : ""}`} key={item}>
+              <PaginationItem
+                className={`d-none d-sm-block ${
+                  currentPage === item ? 'active' : ''
+                }`}
+                key={item}
+              >
                 <PaginationLink
                   tag="a"
                   href="#pageitem"
                   onClick={(ev) => {
-                    ev.preventDefault();
-                    paginate(item);
+                    ev.preventDefault()
+                    paginate(item)
                   }}
                 >
                   {item}
                 </PaginationLink>
               </PaginationItem>
-            );
+            )
           })}
-
-          <PaginationItem disabled={pageNumbers[pageNumbers.length - 1] === currentPage}>
+          <PaginationItem
+            disabled={pageNumbers[pageNumbers.length - 1] === currentPage}
+          >
             <PaginationLink
               className="page-link-next"
               onClick={(ev) => {
-                ev.preventDefault();
-                nextPage();
+                ev.preventDefault()
+                nextPage()
               }}
               href="#next"
             >
@@ -80,11 +88,17 @@ const DataTablePagination = ({
         </Pagination>
       </Col>
       <Col sm="12" md="3" className="col-5 text-left text-md-right">
-        <div className="dataTables_info" id="DataTables_Table_2_info" role="status" aria-live="polite">
+        <div
+          className="dataTables_info"
+          id="DataTables_Table_2_info"
+          role="status"
+          aria-live="polite"
+        >
           1 - {customItemPerPage} of {totalItems}
         </div>
       </Col>
     </Row>
-  );
-};
-export default DataTablePagination;
+  )
+}
+
+export default DataTablePagination

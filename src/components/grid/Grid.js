@@ -1,5 +1,5 @@
-import React from "react";
-import classnames from "classnames";
+import React from 'react'
+import classnames from 'classnames'
 
 export const Col = ({ sm, lg, md, xxl, size, className, ...props }) => {
   var classNames = classnames({
@@ -9,13 +9,13 @@ export const Col = ({ sm, lg, md, xxl, size, className, ...props }) => {
     [`col-xxl-${xxl}`]: xxl,
     [`col-${size}`]: size,
     [`${className}`]: className,
-  });
-  return <div className={classNames}>{props.children}</div>;
-};
+  })
+  return <div className={classNames}>{props.children}</div>
+}
 export const Row = ({ className, ...props }) => {
   const rowClass = classnames({
     row: true,
     [`${className}`]: className,
-  });
-  return <div className={rowClass}>{props.children}</div>;
-};
+  })
+  return <div className={rowClass}>{props.children}</div>
+}
