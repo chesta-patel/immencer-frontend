@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export const EmailWrapper = ({ ...props }) => {
   return (
@@ -9,9 +9,8 @@ export const EmailWrapper = ({ ...props }) => {
         </tr>
       </tbody>
     </table>
-  );
-};
-
+  )
+}
 export const EmailHeader = ({ ...props }) => {
   return (
     <table className="email-header">
@@ -21,25 +20,22 @@ export const EmailHeader = ({ ...props }) => {
         </tr>
       </tbody>
     </table>
-  );
-};
-
+  )
+}
 export const EmailBody = ({ centered, ...props }) => {
   return (
-    <table className={`email-body ${centered ? "text-center" : ""}`}>
+    <table className={`email-body ${centered ? 'text-center' : ''}`}>
       <tbody>{props.children}</tbody>
     </table>
-  );
-};
-
+  )
+}
 export const EmailBodyContent = ({ className, ...props }) => {
   return (
     <tr>
-      <td className={`${className ? className : ""}`}>{props.children}</td>
+      <td className={`${className ? className : ''}`}>{props.children}</td>
     </tr>
-  );
-};
-
+  )
+}
 export const EmailFooter = ({ ...props }) => {
   return (
     <table className="email-footer">
@@ -49,5 +45,5 @@ export const EmailFooter = ({ ...props }) => {
         </tr>
       </tbody>
     </table>
-  );
-};
+  )
+}
