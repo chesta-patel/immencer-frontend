@@ -200,7 +200,7 @@ export const userCreate = [
     type: 'date',
     name: `${commanString.birth_day}`,
     required: '*',
-    today: 'today',
+    today: new Date().toISOString().split('T')[0],
   },
   {
     id: 14,
@@ -227,7 +227,6 @@ export const userCreate = [
       { value: `${commanString.o}`, label: `${commanString.o}` },
       { value: `${commanString.o_plus}`, label: `${commanString.o_plus}` },
     ],
-    required: '*',
   },
   {
     id: 16,
@@ -241,7 +240,6 @@ export const userCreate = [
       { value: `${commanString.male}`, label: `${commanString.male}` },
       { value: `${commanString.female}`, label: `${commanString.female}` },
     ],
-    required: '*',
   },
 
   {
@@ -372,20 +370,29 @@ export const AddressDetailform = [
 
 export const tableHeader = [
   {
+    id: '',
+    type: '',
+    header: '',
+  },
+  {
+    id: 1,
     type: 'checkbox',
     header: 'View',
   },
   {
+    id: 2,
     type: 'checkbox',
     header: 'Add',
   },
   {
+    id: 3,
     type: 'checkbox',
     header: 'Edit',
   },
   {
-    header: 'Delete',
+    id: 4,
     type: 'checkbox',
+    header: 'Delete',
   },
 ]
 
@@ -401,7 +408,7 @@ export const tableRow = [
     type: 'checkbox',
   },
   {
-    id: 1,
+    id: 3,
     name: 'Asset',
     type: 'checkbox',
   },

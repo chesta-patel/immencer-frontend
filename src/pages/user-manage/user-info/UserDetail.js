@@ -1,12 +1,5 @@
 import React, { useState } from 'react'
-import {
-  Block,
-  BlockTitle,
-  DataTableBody,
-  DataTableHead,
-  DataTableRow,
-  RSelect,
-} from '../../../components/Component'
+import { Block, RSelect } from '../../../components/Component'
 import { useForm } from 'react-hook-form'
 import { Steps, Step } from 'react-step-builder'
 import { Row, Col, FormGroup, Button } from 'reactstrap'
@@ -28,8 +21,8 @@ import {
 } from 'reactstrap'
 import Dropzone from 'react-dropzone'
 import Education from './Education'
-import DataTable from 'react-data-table-component'
 import './userdetail.scss'
+import { useEffect } from 'react'
 
 const UserCreate = (props) => {
   const initialState = {}
@@ -54,7 +47,7 @@ const UserCreate = (props) => {
       )
     )
   }
-  var today = new Date().toISOString().split('T')[0]
+  // var today = new Date().toISOString().split('T')[0]
 
   return (
     <form
@@ -139,7 +132,7 @@ const UserCreate = (props) => {
                   <input {...getInputProps()} />
                   {files.length === 0 && (
                     <div className="dz-message">
-                      <Button color="primary">SELECT</Button>
+                      <Button color="primary">{commanString.select}</Button>
                     </div>
                   )}
                   {files.map((file) => (
@@ -369,9 +362,23 @@ const AddressDetails = (props) => {
 
 const Permission = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [checked] = useState(false)
 
   const toggle = () => setDropdownOpen((prevState) => !prevState)
+  tableHeader.map((e) => {
+    for (const key in e) {
+      if (e[key] === '') {
+        delete e[key]
+      }
+    }
+  })
 
+  const c = tableHeader.filter((value) => Object.keys(value).length !== 0)
+
+  const handlechange = (e) => {
+    console.log(e.target.id)
+  }
+  useEffect(() => {}, [])
   return (
     <>
       <div style={{ float: 'right' }}>
@@ -384,101 +391,53 @@ const Permission = (props) => {
           </DropdownMenu>
         </Dropdown>
       </div>
-      <Block>
-        <DataTable>
-          <DataTableBody compact>
-            <DataTableHead>
-              {tableHeader.map((colum, id) => (
-                <DataTableRow size={colum.header} key={id}>
-                  <input type={colum.type} />
-                </DataTableRow>
-              ))}
-            </DataTableHead>
-          </DataTableBody>
-        </DataTable>
-      </Block>
-      {/* <Table>
+      <Table>
         <thead>
-          <tr>
-            <th></th>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-            </th>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-            </th>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-            </th>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-            </th>
-          </tr>
-          <tr>
-            <th></th>
-            <th>{commanString.view}</th>
-            <th>{commanString.add}</th>
-            <th>{commanString.edit}</th>
-            <th>{commanString.delete}</th>
-          </tr>
+          {tableHeader.map((head, i) =>
+            head.type === 'checkbox' && head.header !== '' ? (
+              <th>
+                <tr>
+                  <input
+                    type="checkbox"
+                    onChange={(e) => handlechange(e)}
+                    id={head.header}
+                  />
+                </tr>
+                <tr>{head.header}</tr>
+              </th>
+            ) : (
+              <th></th>
+            )
+          )}
         </thead>
         <tbody>
-          <tr>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-              {commanString.leave}
-            </th>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-              {commanString.holiday}
-            </th>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-              {commanString.assets}
-            </th>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-          </tr>
+          {tableRow.map((row, i) => (
+            <tr key={i}>
+              <td>
+                <input
+                  type="checkbox"
+                  onChange={(e) => handlechange(e)}
+                  value={checked}
+                  id={row.name}
+                />
+                {row.name}
+              </td>
+              {c.map((chekbox, index) => {
+                return (
+                  <td>
+                    <input
+                      type={chekbox.type}
+                      onChange={(e) => handlechange(e)}
+                      id={`${i}${index}`}
+                    />
+                  </td>
+                )
+              })}
+              <td></td>
+            </tr>
+          ))}
         </tbody>
-      </Table> */}
+      </Table>
       <div>
         <div className="actions clearfix">
           <ul>
@@ -525,16 +484,6 @@ const Header = (props) => {
           </a>
         </li>
       </ul>
-    </div>
-  )
-}
-
-const Success = (props) => {
-  return (
-    <div className="d-flex justify-content-center align-items-center p-3">
-      <BlockTitle tag="h6" className="text-center">
-        {commanString.thank_you_for_submitting_form}
-      </BlockTitle>
     </div>
   )
 }

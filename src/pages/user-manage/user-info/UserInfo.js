@@ -20,76 +20,76 @@ import { useHistory } from 'react-router-dom'
 const UserInfo = ({ ...props }) => {
   // Stats declaration for data
   const [sm, updateSm] = useState(false)
-  const [setFormData] = useState({
-    role_id: '',
-    department: '',
-    firstname: '',
-    lastname: '',
-    blood_group: '',
-    height: '',
-    gender: '',
-    country: '',
-    birth_day: '',
-    current_add: '',
-    permanent_add: '',
-    mobile: '',
-    parent_mobile: '',
-    whatsapp_number: '',
-    email: '',
-    personal_email: '',
-    adhar_card: '',
-    pan_card: '',
-    registered_at: '',
-    last_login: '',
-    intro: '',
-    avatar: '',
-    profile: '',
-    swift_time: '',
-    education: '',
-    isactive: '',
-    isdelete: '',
-  })
+  // const [setFormData] = useState({
+  //   role_id: '',
+  //   department: '',
+  //   firstname: '',
+  //   lastname: '',
+  //   blood_group: '',
+  //   height: '',
+  //   gender: '',
+  //   country: '',
+  //   birth_day: '',
+  //   current_add: '',
+  //   permanent_add: '',
+  //   mobile: '',
+  //   parent_mobile: '',
+  //   whatsapp_number: '',
+  //   email: '',
+  //   personal_email: '',
+  //   adhar_card: '',
+  //   pan_card: '',
+  //   registered_at: '',
+  //   last_login: '',
+  //   intro: '',
+  //   avatar: '',
+  //   profile: '',
+  //   swift_time: '',
+  //   education: '',
+  //   isactive: '',
+  //   isdelete: '',
+  // })
   const { contextData } = useContext(UserContext)
-  const [Data, setData] = contextData
+  const [setData] = contextData
   // Get current list, pagination
   const [onSearchText] = useState('')
   const [roleTable] = useState(userInfo)
 
-  const onFormCancel = () => {
-    resetForm()
-  }
-  // function to reset the form
-  const resetForm = () => {
-    setFormData({
-      role_id: '',
-      department: '',
-      firstname: '',
-      lastname: '',
-      blood_group: '',
-      height: '',
-      gender: '',
-      country: '',
-      birth_day: '',
-      current_add: '',
-      permanent_add: '',
-      mobile: '',
-      parent_mobile: '',
-      whatsapp_number: '',
-      email: '',
-      personal_email: '',
-      adhar_card: '',
-      pan_card: '',
-      registered_at: '',
-      last_login: '',
-      intro: '',
-      avatar: '',
-      profile: '',
-      swift_time: '',
-      education: '',
-      isactive: '',
-      isdelete: '',
-    })
-  }
+  // const onFormCancel = () => {
+  //   resetForm()
+  // }
+  // // function to reset the form
+  // const resetForm = () => {
+  //   setFormData({
+  //     role_id: '',
+  //     department: '',
+  //     firstname: '',
+  //     lastname: '',
+  //     blood_group: '',
+  //     height: '',
+  //     gender: '',
+  //     country: '',
+  //     birth_day: '',
+  //     current_add: '',
+  //     permanent_add: '',
+  //     mobile: '',
+  //     parent_mobile: '',
+  //     whatsapp_number: '',
+  //     email: '',
+  //     personal_email: '',
+  //     adhar_card: '',
+  //     pan_card: '',
+  //     registered_at: '',
+  //     last_login: '',
+  //     intro: '',
+  //     avatar: '',
+  //     profile: '',
+  //     swift_time: '',
+  //     education: '',
+  //     isactive: '',
+  //     isdelete: '',
+  //   })
+  // }
   useEffect(() => {
     if (onSearchText !== '') {
       const filteredObject = userData.filter((item) => {
@@ -100,7 +100,7 @@ const UserInfo = ({ ...props }) => {
       })
       setData([...filteredObject])
     } else {
-      setData([...userData])
+      // setData([...userData])
     }
   }, [onSearchText, setData])
   const history = useHistory()

@@ -1,28 +1,32 @@
 import React from 'react'
 import { useState } from 'react'
-import { Button, Col, FormGroup, Modal, ModalBody, Row } from 'reactstrap'
+import { Button, Col, FormGroup, Modal, ModalBody } from 'reactstrap'
 import { Icon } from '../../../components/Component'
 import commanString from '../../../utils/CommanString'
 
-function Education() {
-  const [data, setdata] = useState({
-    degree: '',
-    start_date: '',
-    end_date: '',
-  })
+function Education(props) {
+  const [degree, setdegrre] = useState()
+  const [sdate, setsdate] = useState(new Date())
+  const [edate] = useState()
+
   //   var today = new Date().toISOString().split('T')[0]
   const [modal, setModal] = useState({
     edit: false,
     add: false,
   })
-  const onFormCancel = (props) => {
+  const onFormCancel = (e) => {
+    e.preventDefault()
     setModal({ edit: false, add: false })
   }
 
-  const onsubmit = (e) => {
+  const handlesubmit = (e) => {
     e.preventDefault()
-
-    setdata({ ...data, [e.target.name]: e.target.value })
+    console.log(degree)
+    console.log(sdate)
+    console.log(edate)
+  }
+  const date = (newValue, event) => {
+    setsdate(newValue({ newValue: event.target.value }))
   }
   return (
     <React.Fragment>
@@ -38,71 +42,67 @@ function Education() {
         isOpen={modal.add}
         toggle={() => setModal({ add: false })}
         className="modal-dialog-centered"
-        size="md"
+        size="sm"
       >
         <ModalBody>
-          <a
-            href="#cancel"
-            onClick={(e) => {
-              e.preventDefault()
-              onFormCancel()
-            }}
-            className="close"
-          >
-            <Icon name="cross-sm"></Icon>
-          </a>
-
-          <Row className="gy-3">
-            <Col md="12">
+          <Col lg="12">
+            <form
+              className="form-group"
+              onSubmit={(e) => {
+                handlesubmit(e)
+              }}
+            >
               <FormGroup>
-                <form
-                  onSubmit={(e) => {
-                    onsubmit(e)
+                <label className="form-label">{commanString.degree}</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => {
+                    setdegrre(e.target.value)
                   }}
-                >
-                  <div>
-                    <label className="form-label">{commanString.degree}</label>
-                    <input
-                      className="form-control"
-                      type="text"
-                      name="degree"
-                      value={data.degree}
-                      onChange={(e) => {
-                        onchange(e)
-                      }}
-                    />
-                    <label className="form-label">
-                      {commanString.start_date}
-                    </label>
-                    <input
-                      className="form-control"
-                      type="date"
-                      name="degree"
-                      value={data.start_date}
-                      onChange={(e) => {
-                        onchange(e)
-                      }}
-                    />
-                    <label className="form-label">
-                      {commanString.end_date}
-                    </label>
-                    <input
-                      className="form-control"
-                      type="date"
-                      name="degree"
-                      value={data.end_date}
-                      onChange={(e) => {
-                        onchange(e)
-                      }}
-                    />
-                  </div>
-                </form>
+                />
               </FormGroup>
-              <Button type="submit">{commanString.add} </Button>
-            </Col>
-          </Row>
+              <FormGroup>
+                <label className="form-label">{commanString.start_date}</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  selected={sdate}
+                  onChange={(newValue, event) => date(newValue, event)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <label className="form-label">{commanString.end_date}</label>
+                <input type="date" className="form-control" />
+              </FormGroup>
+              <Button color="primary" size="md" className="education-button">
+                {commanString.submit}
+              </Button>
+              <Button
+                className="education-button"
+                color="primary"
+                size="md"
+                onClick={(e) => {
+                  onFormCancel(e)
+                }}
+              >
+                {commanString.cancle}
+              </Button>
+            </form>
+          </Col>
         </ModalBody>
       </Modal>
+      <div>
+        <div className="actions clearfix">
+          <ul>
+            <li>
+              <Button color="primary" onClick={props.prev}>
+                {commanString.previous}
+              </Button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </React.Fragment>
   )
 }
