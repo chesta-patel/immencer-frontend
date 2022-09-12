@@ -23,6 +23,7 @@ import Dropzone from 'react-dropzone'
 import Education from './Education'
 import './userdetail.scss'
 import { useEffect } from 'react'
+import AvatarCropper from './avatar-crop/AvatarCropper'
 
 const UserCreate = (props) => {
   const initialState = {}
@@ -32,21 +33,12 @@ const UserCreate = (props) => {
   const [validation, setvalidation] = useState(false)
   const { handleSubmit } = useForm()
   const [Fdata, setFdata] = useState({ ...initialState })
-  const [files, setFiles] = useState([])
 
   const submitForm = (e) => {
     setvalidation(true)
     e.preventDefault()
   }
-  const handleDropChange = (acceptedFiles) => {
-    setFiles(
-      acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      )
-    )
-  }
+
   // var today = new Date().toISOString().split('T')[0]
 
   return (
@@ -122,33 +114,7 @@ const UserCreate = (props) => {
           }
         })}
         <Col md="4">
-          <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}>
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div
-                  {...getRootProps()}
-                  className="dropzone upload-zone dz-clickable"
-                >
-                  <input {...getInputProps()} />
-                  {files.length === 0 && (
-                    <div className="dz-message">
-                      <Button color="primary">{commanString.select}</Button>
-                    </div>
-                  )}
-                  {files.map((file) => (
-                    <div
-                      key={file.name}
-                      className="dz-preview dz-processing dz-image-preview dz-error dz-complete"
-                    >
-                      <div className="dz-image">
-                        <img src={file.preview} alt="preview" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-          </Dropzone>
+          <AvatarCropper />
         </Col>
       </Row>
       <div className="actions clearfix">

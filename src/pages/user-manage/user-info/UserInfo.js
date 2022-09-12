@@ -16,6 +16,7 @@ import { userInfo } from './UserInfoJson'
 import PageTable from '../../PageTable'
 import { roleString } from '../../Strings'
 import { useHistory } from 'react-router-dom'
+import commanString from '../../../utils/CommanString'
 
 const UserInfo = ({ ...props }) => {
   // Stats declaration for data
@@ -143,7 +144,7 @@ const UserInfo = ({ ...props }) => {
                         className="btn btn-white btn-outline-light"
                       >
                         <Icon name="download-cloud"></Icon>
-                        <span>Export</span>
+                        <span>{commanString.export}</span>
                       </a>
                     </li>
                     <li className="nk-block-tools-opt">

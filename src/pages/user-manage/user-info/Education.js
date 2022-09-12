@@ -7,7 +7,7 @@ import commanString from '../../../utils/CommanString'
 function Education(props) {
   const [degree, setdegrre] = useState()
   const [sdate, setsdate] = useState(new Date())
-  const [edate] = useState()
+  const [edate, setedate] = useState(new Date())
 
   //   var today = new Date().toISOString().split('T')[0]
   const [modal, setModal] = useState({
@@ -25,9 +25,15 @@ function Education(props) {
     console.log(sdate)
     console.log(edate)
   }
-  const date = (newValue, event) => {
-    setsdate(newValue({ newValue: event.target.value }))
+  const handledChange = (e) => {
+    setsdate(e.target.value)
   }
+  const handleddate = (e) => {
+    setedate(e.target.value)
+  }
+  // const date = (newValue, event) => {
+  //   setsdate(newValue({ newValue: event.target.value }))
+  // }
   return (
     <React.Fragment>
       <label>{}</label>
@@ -67,13 +73,18 @@ function Education(props) {
                 <input
                   type="date"
                   className="form-control"
-                  selected={sdate}
-                  onChange={(newValue, event) => date(newValue, event)}
+                  value={sdate}
+                  onChange={handledChange}
                 />
               </FormGroup>
               <FormGroup>
                 <label className="form-label">{commanString.end_date}</label>
-                <input type="date" className="form-control" />
+                <input
+                  type="date"
+                  className="form-control"
+                  value={edate}
+                  onChange={handleddate}
+                />
               </FormGroup>
               <Button color="primary" size="md" className="education-button">
                 {commanString.submit}
