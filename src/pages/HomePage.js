@@ -7,7 +7,7 @@ import {
   BlockHeadContent,
   BlockBetween,
 } from '../components/Component'
-import commanString from '../utils/CommanString'
+import commanString from '../utils/String'
 
 const HomePage = () => {
   return (

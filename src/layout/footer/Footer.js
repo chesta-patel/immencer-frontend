@@ -1,5 +1,5 @@
 import React from 'react'
-import commanString from '../../utils/CommanString'
+import commanString from '../../utils/String'
 
 const Footer = () => {
   return (

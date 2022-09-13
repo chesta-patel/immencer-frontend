@@ -12,7 +12,7 @@ import {
   BlockTitle,
 } from '../../components/Component'
 import { Link } from 'react-router-dom'
-import commanString from '../../utils/CommanString'
+import commanString from '../../utils/String'
 
 const Success = () => {
   return (

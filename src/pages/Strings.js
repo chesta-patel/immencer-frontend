@@ -1,4 +1,4 @@
-import commanString from '../utils/CommanString'
+import commanString from '../utils/String'
 
 const com = {
   export_icon: commanString.download_cloud,

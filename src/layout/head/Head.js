@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import commanString from '../../utils/CommanString'
+import commanString from '../../utils/String'
 
 const Head = ({ ...props }) => {
   return (

@@ -1,5 +1,5 @@
 import { Redirect } from 'react-router-dom'
-import commanString from './CommanString'
+import commanString from './String'
 
 //url for production
 export var url = ''

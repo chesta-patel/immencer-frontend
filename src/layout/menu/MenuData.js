@@ -1,4 +1,4 @@
-import commanString from '../../utils/CommanString'
+import commanString from '../../utils/String'
 const menu = [
   {
     icon: 'dashlite',

@@ -4,7 +4,7 @@ import exportFromJSON from 'export-from-json'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { Col, Modal, ModalBody, Row, Button } from 'reactstrap'
 import { DataTablePagination } from '../Component'
-import commanString from '../../utils/CommanString'
+import commanString from '../../utils/String'
 
 const Export = ({ data }) => {
   const [modal, setModal] = useState(false)

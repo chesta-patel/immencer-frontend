@@ -3,7 +3,7 @@ import UserAvatar from '../../../../components/user/UserAvatar'
 import { DropdownToggle, DropdownMenu, Dropdown } from 'reactstrap'
 import { Icon } from '../../../../components/Component'
 import { LinkList, LinkItem } from '../../../../components/links/Links'
-import commanString from '../../../../utils/CommanString'
+import commanString from '../../../../utils/String'
 
 const User = () => {
   const [open, setOpen] = useState(false)

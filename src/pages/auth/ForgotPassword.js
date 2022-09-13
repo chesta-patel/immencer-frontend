@@ -17,7 +17,7 @@ import {
 import { FormGroup, Spinner, Alert } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import commanString from '../../utils/CommanString'
+import commanString from '../../utils/String'
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false)

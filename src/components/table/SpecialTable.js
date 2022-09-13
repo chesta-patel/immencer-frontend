@@ -8,7 +8,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap'
-import commanString from '../../utils/CommanString'
+import commanString from '../../utils/String'
 
 export const SpecialTable = ({ action, isCompact, data }) => {
   const DropdownTrans = () => {

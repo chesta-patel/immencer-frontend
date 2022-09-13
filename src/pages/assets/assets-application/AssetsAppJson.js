@@ -1,4 +1,4 @@
-import commanString from '../../../utils/CommanString'
+import commanString from '../../../utils/String'
 
 export const assetAppForm = [
   {
@@ -26,7 +26,7 @@ export const assetAppForm = [
     label_class: 'form-label',
     label_name: `${commanString.start_date}`,
     input_class: 'form-control',
-    type: 'email',
+    type: 'date',
     name: `${commanString.start_date}`,
     placeholder: `${commanString.enter} ${commanString.start_date}`,
     required: `${commanString.Please_enter} ${commanString.start_date}`,
@@ -36,7 +36,7 @@ export const assetAppForm = [
     label_class: 'form-label',
     label_name: `${commanString.end_date}`,
     input_class: 'form-control',
-    type: 'email',
+    type: 'date',
     name: 'form-label',
     required: `${commanString.Please_enter} ${commanString.end_date}`,
     placeholder: `${commanString.enter} ${commanString.end_date}`,
@@ -44,19 +44,19 @@ export const assetAppForm = [
   {
     id: 5,
     label_class: 'form-label',
-    label_name: `${commanString.attechment}`,
+    label_name: `${commanString.attachment}`,
     input_class: 'form-control',
-    type: `${commanString.text}`,
-    name: `${commanString.attechment}`,
-    required: `${commanString.Please_enter} ${commanString.attechment}`,
-    placeholder: `${commanString.enter} ${commanString.attechment}`,
+    type: 'text',
+    name: `${commanString.attachment}`,
+    required: `${commanString.Please_enter} ${commanString.attachment}`,
+    placeholder: `${commanString.enter} ${commanString.attachment}`,
   },
   {
     id: 7,
     label_class: 'form-label',
     label_name: `${commanString.remark}`,
     input_class: 'form-control',
-    type: `${commanString.text}`,
+    type: 'text',
     name: `${commanString.remark}`,
     required: `${commanString.Please_enter} ${commanString.remark}`,
     placeholder: `${commanString.enter} ${commanString.remark}`,
@@ -79,7 +79,7 @@ export const assetAppForm = [
     label_class: 'form-label',
     label_name: `${commanString.updated_by}`,
     input_class: 'form-control',
-    type: `${commanString.text}`,
+    type: 'text',
     name: `${commanString.updated_by}`,
     placeholder: `${commanString.enter} ${commanString.updated_by}`,
     required: `${commanString.Please_enter} ${commanString.updated_by}`,

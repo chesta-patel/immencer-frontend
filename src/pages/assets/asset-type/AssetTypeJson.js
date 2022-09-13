@@ -1,4 +1,4 @@
-import commanString from '../../../utils/CommanString'
+import commanString from '../../../utils/String'
 
 export const assetTypeForm = [
   {
@@ -16,7 +16,7 @@ export const assetTypeForm = [
     label_class: 'form-label',
     label_name: `${commanString.name}`,
     input_class: 'form-control',
-    type: 'number',
+    type: 'text',
     name: `${commanString.name}`,
     required: `${commanString.Please_enter} ${commanString.name}`,
     placeholder: `${commanString.enter} ${commanString.name}`,
@@ -26,7 +26,7 @@ export const assetTypeForm = [
     label_class: 'form-label',
     label_name: `${commanString.description}`,
     input_class: 'form-control',
-    type: 'number',
+    type: 'text',
     name: `${commanString.description}`,
     required: `${commanString.Please_enter} ${commanString.description}`,
     placeholder: `${commanString.enter} ${commanString.description}`,

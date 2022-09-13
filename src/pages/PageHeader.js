@@ -11,7 +11,6 @@ import {
   RSelect,
 } from '../components/Component'
 import { cloneDeep } from 'lodash'
-import variable from '../assets/scss/variables.scss'
 
 function PageHeader(props) {
   const initialState = {}
@@ -66,7 +65,6 @@ function PageHeader(props) {
       return element
     })
     setstrings(string)
-    console.log(variable, 'mahendra')
   }, [props.string])
 
   return (
