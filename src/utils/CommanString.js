@@ -196,6 +196,8 @@ const commanString = {
   joining_date: 'Joining Date',
   onboarding_date: 'Onboarding Date',
   relieving_date: 'Relieving Date',
+  education_detali: 'Education Detail',
+  profile_picture: 'Profile Picture',
 }
 
 export default commanString
