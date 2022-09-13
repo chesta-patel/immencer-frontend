@@ -1,9 +1,9 @@
-import axios from 'react-axios'
+import axios from 'axios'
 
-const loginurl = ''
+const baseURL = 'https://fakestoreapi.com/auth/login'
 
 const Api = axios.create({
-  loginurl,
+  baseURL,
 })
 
 export default Api

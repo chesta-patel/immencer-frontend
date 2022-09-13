@@ -3,7 +3,6 @@ import { Line, Bar, Pie, Polar, Doughnut } from 'react-chartjs-2'
 import variable from '../../assets/scss/variables.scss'
 
 export const LineChartExample = ({ data, legend }) => {
-  console.log(variable, 'mahendra')
   return (
     <Line
       className="line-chart"
