@@ -1,42 +1,58 @@
 import React from 'react'
 import { useState } from 'react'
-import { Button, Col, FormGroup, Modal, ModalBody } from 'reactstrap'
-import { Icon } from '../../../components/Component'
-import commanString from '../../../utils/CommanString'
+import {
+  Button,
+  Col,
+  Container,
+  FormGroup,
+  Modal,
+  ModalBody,
+  Row,
+} from 'reactstrap'
+import { Icon } from '../../../../components/Component'
+import commanString from '../../../../utils/String'
+import '../userdetail.scss'
+import EducationCard from './EducationCard'
 
 function Education(props) {
-  const [degree, setdegrre] = useState()
-  const [sdate, setsdate] = useState(new Date())
-  const [edate, setedate] = useState(new Date())
-
-  //   var today = new Date().toISOString().split('T')[0]
+  const [data, setData] = useState({
+    degree: '',
+    startdate: new Date(),
+    enddate: new Date(),
+  })
+  const [items, setItems] = useState([])
   const [modal, setModal] = useState({
     edit: false,
     add: false,
   })
+
   const onFormCancel = (e) => {
     e.preventDefault()
     setModal({ edit: false, add: false })
   }
-
   const handlesubmit = (e) => {
     e.preventDefault()
-    console.log(degree)
-    console.log(sdate)
-    console.log(edate)
+    let tempSetItems = items
+    tempSetItems.push(data)
+    setItems(tempSetItems)
+    setData('')
+    setModal({ add: false })
   }
-  const handledChange = (e) => {
-    setsdate(e.target.value)
+  let name, value
+  const handledChange = (event) => {
+    name = event.target.name
+    value = event.target.value
+    setData({ ...data, [name]: value })
   }
-  const handleddate = (e) => {
-    setedate(e.target.value)
+  const deleteItem = (index) => {
+    setItems((tempItem) => {
+      return tempItem.filter((item, id) => {
+        return id !== index
+      })
+    })
   }
-  // const date = (newValue, event) => {
-  //   setsdate(newValue({ newValue: event.target.value }))
-  // }
   return (
     <React.Fragment>
-      <label>{}</label>
       <Button
         color="primary"
         className="btn-icon"
@@ -44,6 +60,23 @@ function Education(props) {
       >
         <Icon name="plus"></Icon>
       </Button>
+      <Container>
+        <Row className="gy-3">
+          {items.map((item, index) => (
+            <Col md="4">
+              <EducationCard
+                key={index}
+                id={index}
+                text={item}
+                onclick={(id) => {
+                  deleteItem(index)
+                }}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+
       <Modal
         isOpen={modal.add}
         toggle={() => setModal({ add: false })}
@@ -63,9 +96,10 @@ function Education(props) {
                 <input
                   type="text"
                   className="form-control"
-                  onChange={(e) => {
-                    setdegrre(e.target.value)
-                  }}
+                  name="degree"
+                  value={data.degree}
+                  onChange={handledChange}
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -73,8 +107,10 @@ function Education(props) {
                 <input
                   type="date"
                   className="form-control"
-                  value={sdate}
+                  name="startdate"
+                  value={data.startdate}
                   onChange={handledChange}
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -82,11 +118,18 @@ function Education(props) {
                 <input
                   type="date"
                   className="form-control"
-                  value={edate}
-                  onChange={handleddate}
+                  name="enddate"
+                  value={data.enddate}
+                  onChange={handledChange}
+                  required
                 />
               </FormGroup>
-              <Button color="primary" size="md" className="education-button">
+              <Button
+                color="primary"
+                size="md"
+                className="education-button"
+                type="submit"
+              >
                 {commanString.submit}
               </Button>
               <Button
@@ -106,6 +149,11 @@ function Education(props) {
       <div>
         <div className="actions clearfix">
           <ul>
+            <li>
+              <Button color="primary" onClick={props.next}>
+                {commanString.next}
+              </Button>
+            </li>
             <li>
               <Button color="primary" onClick={props.prev}>
                 {commanString.previous}

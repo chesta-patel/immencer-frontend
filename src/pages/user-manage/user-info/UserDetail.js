@@ -9,7 +9,7 @@ import {
   tableRow,
   userCreate,
 } from './UserInfoJson'
-import commanString from '../../../utils/CommanString'
+import commanString from '../../../utils/String'
 import Content from '../../../layout/content/Content'
 import { cloneDeep } from 'lodash'
 import {
@@ -19,10 +19,8 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap'
-import Dropzone from 'react-dropzone'
-import Education from './Education'
+import Education from './education/Education'
 import './userdetail.scss'
-import { useEffect } from 'react'
 import AvatarCropper from './avatar-crop/AvatarCropper'
 
 const UserCreate = (props) => {
@@ -38,8 +36,6 @@ const UserCreate = (props) => {
     setvalidation(true)
     e.preventDefault()
   }
-
-  // var today = new Date().toISOString().split('T')[0]
 
   return (
     <form
@@ -146,7 +142,6 @@ const AddressDetails = (props) => {
     props.next()
   }
   const onChangeAddress = (event) => {
-    console.log('add log', event.target.checked)
     if (event.target.checked) {
       setAdata(Fdata)
     } else {
@@ -338,13 +333,25 @@ const Permission = (props) => {
       }
     }
   })
-
   const c = tableHeader.filter((value) => Object.keys(value).length !== 0)
 
   const handlechange = (e) => {
-    console.log(e.target.id)
+    var value = e.target.checked
+    var string = e.target.id[1]
+    var pointer = parseInt(string) - 1
+    if (e.target.id.startsWith('c')) {
+      for (var i = 0; i < tableRow.length; i++) {
+        var rowcheckbox = `${i}${pointer}`
+        document.getElementById(rowcheckbox).checked = value
+      }
+    } else {
+      for (var j = 0; j < tableHeader.length; j++) {
+        var columncheckbox = `${pointer}${j}`
+        document.getElementById(columncheckbox).checked = value
+      }
+    }
   }
-  useEffect(() => {}, [])
+
   return (
     <>
       <div style={{ float: 'right' }}>
@@ -366,7 +373,7 @@ const Permission = (props) => {
                   <input
                     type="checkbox"
                     onChange={(e) => handlechange(e)}
-                    id={head.header}
+                    id={head.id}
                   />
                 </tr>
                 <tr>{head.header}</tr>
@@ -384,18 +391,14 @@ const Permission = (props) => {
                   type="checkbox"
                   onChange={(e) => handlechange(e)}
                   value={checked}
-                  id={row.name}
+                  id={row.id}
                 />
                 {row.name}
               </td>
               {c.map((chekbox, index) => {
                 return (
                   <td>
-                    <input
-                      type={chekbox.type}
-                      onChange={(e) => handlechange(e)}
-                      id={`${i}${index}`}
-                    />
+                    <input type={chekbox.type} id={`${i}${index}`} />
                   </td>
                 )
               })}
@@ -408,11 +411,6 @@ const Permission = (props) => {
         <div className="actions clearfix">
           <ul>
             <li>
-              <Button color="primary" onClick={props.next}>
-                {commanString.next}
-              </Button>
-            </li>
-            <li>
               <Button color="primary" onClick={props.prev}>
                 {commanString.previous}
               </Button>
@@ -423,6 +421,7 @@ const Permission = (props) => {
     </>
   )
 }
+
 const Header = (props) => {
   return (
     <div className="steps clearfix">
@@ -441,12 +440,12 @@ const Header = (props) => {
         </li>
         <li className={props.current >= 3 ? 'third done' : 'third'}>
           <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">04</span> <p>{commanString.permission}</p>
+            <span className="number">03</span> <p>{commanString.education}</p>
           </a>
         </li>
         <li className={props.current >= 4 ? 'third done' : 'third'}>
           <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">03</span> <p>{commanString.education}</p>
+            <span className="number">04</span> <p>{commanString.permission}</p>
           </a>
         </li>
       </ul>
@@ -467,8 +466,8 @@ function UserDetail() {
             <Steps config={config}>
               <Step component={UserCreate} />
               <Step component={AddressDetails} />
-              <Step component={Permission} />
               <Step component={Education} />
+              <Step component={Permission} />
             </Steps>
           </div>
         </Block>

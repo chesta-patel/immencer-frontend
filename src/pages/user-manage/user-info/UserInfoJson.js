@@ -1,4 +1,4 @@
-import commanString from '../../../utils/CommanString'
+import commanString from '../../../utils/String'
 
 export const userInfo = [
   {
@@ -375,22 +375,22 @@ export const tableHeader = [
     header: '',
   },
   {
-    id: 1,
+    id: 'c1',
     type: 'checkbox',
     header: 'View',
   },
   {
-    id: 2,
+    id: 'c2',
     type: 'checkbox',
     header: 'Add',
   },
   {
-    id: 3,
+    id: 'c3',
     type: 'checkbox',
     header: 'Edit',
   },
   {
-    id: 4,
+    id: 'c4',
     type: 'checkbox',
     header: 'Delete',
   },
@@ -398,17 +398,17 @@ export const tableHeader = [
 
 export const tableRow = [
   {
-    id: 1,
+    id: 'r1',
     name: 'Leave',
     type: 'checkbox',
   },
   {
-    id: 2,
+    id: 'r2',
     name: 'Holiday',
     type: 'checkbox',
   },
   {
-    id: 3,
+    id: 'r3',
     name: 'Asset',
     type: 'checkbox',
   },
