@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import commanString from '../../utils/CommanString'
 
 const Footer = () => {
   return (
@@ -7,12 +7,12 @@ const Footer = () => {
       <div className="container-fluid">
         <div className="nk-footer-wrap">
           <div className="nk-footer-copyright">
-            &copy; 2022 immence.
+            &copy; {commanString.immence_2022}.
           </div>
-         
         </div>
       </div>
     </div>
-  );
-};
-export default Footer;
+  )
+}
+
+export default Footer

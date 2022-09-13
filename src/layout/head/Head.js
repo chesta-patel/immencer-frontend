@@ -1,11 +1,15 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import React from 'react'
+import { Helmet } from 'react-helmet'
+import commanString from '../../utils/CommanString'
 
 const Head = ({ ...props }) => {
   return (
     <Helmet>
-      <title>{props.title ? props.title + " | " : null} DashLite React Admin Template</title>
+      <title>
+        {props.title ? props.title + ' | ' : null} {commanString.immence}
+      </title>
     </Helmet>
-  );
-};
-export default Head;
+  )
+}
+
+export default Head

@@ -1,7 +1,7 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
 
-const auth = localStorage.getItem("accessToken");
+const auth = localStorage.getItem('accessToken')
 
 const PrivateRoute = ({ exact, component: Component, ...rest }) => (
   <Route
@@ -15,6 +15,6 @@ const PrivateRoute = ({ exact, component: Component, ...rest }) => (
       )
     }
   ></Route>
-);
+)
 
-export default PrivateRoute;
+export default PrivateRoute
