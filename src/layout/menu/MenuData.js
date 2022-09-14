@@ -1,113 +1,113 @@
-import commanString from '../../utils/String'
+import commonString from '../../utils/String'
 const menu = [
   {
     icon: 'dashlite',
-    text: `${commanString.dashboard}`,
+    text: `${commonString.dashboard}`,
     link: '/',
   },
   {
     icon: 'users',
-    text: `${commanString.user_manage}`,
+    text: `${commonString.user_manage}`,
     active: false,
     subMenu: [
       {
-        text: `${commanString.role}`,
+        text: `${commonString.role}`,
         link: '/user-manage/role',
       },
       {
-        text: `${commanString.permission}`,
+        text: `${commonString.permission}`,
         link: '/user-manage/user-permission',
       },
       {
-        text: `${commanString.setup_role_permission}`,
+        text: `${commonString.setup_role_permission}`,
         link: '/user-manage/setup-role-permission',
       },
       {
-        text: `${commanString.user}`,
+        text: `${commonString.user}`,
         link: '/user-manage/user-info',
       },
       {
-        text: `${commanString.employee}`,
+        text: `${commonString.employee}`,
         link: '/user-manage/employee',
       },
     ],
   },
   {
     icon: 'archived',
-    text: `${commanString.assets}`,
+    text: `${commonString.assets}`,
     active: false,
     subMenu: [
       {
-        text: `${commanString.assets_type}`,
+        text: `${commonString.assets_type}`,
         link: '/assets/assets-type',
       },
       {
-        text: `${commanString.assets_application}`,
+        text: `${commonString.assets_application}`,
         link: '/assets/assets-application',
       },
     ],
   },
   {
     icon: 'calendar-alt',
-    text: `${commanString.leave}`,
+    text: `${commonString.leave}`,
     active: false,
     subMenu: [
       {
-        text: `${commanString.leave_type}`,
+        text: `${commonString.leave_type}`,
         link: '/leave/leave-type',
       },
       {
-        text: `${commanString.leave_application}`,
+        text: `${commonString.leave_application}`,
         link: '/leave/leave-application',
       },
     ],
   },
   {
     icon: 'calendar-booking',
-    text: `${commanString.holiday}`,
+    text: `${commonString.holiday}`,
     active: false,
     subMenu: [
       {
-        text: `${commanString.holiday_list}`,
+        text: `${commonString.holiday_list}`,
         link: '/holiday/holiday-list',
       },
       {
-        text: `${commanString.holiday_type}`,
+        text: `${commonString.holiday_type}`,
         link: '/holiday/holiday-type',
       },
     ],
   },
   {
     icon: 'file-docs',
-    text: `${commanString.company_document}`,
+    text: `${commonString.company_document}`,
     link: '/company-info/company-document',
   },
   {
     icon: 'policy',
-    text: `${commanString.company_policy}`,
+    text: `${commonString.company_policy}`,
     link: '/company-info/company-policy',
   },
   {
-    heading: `${commanString.misc_pages}`,
+    heading: `${commonString.misc_pages}`,
   },
   {
     icon: 'signin',
-    text: `${commanString.auth_page}`,
+    text: `${commonString.auth_page}`,
     active: false,
     subMenu: [
       {
-        text: `${commanString.login}`,
+        text: `${commonString.login}`,
         link: '/auth-login',
         newTab: true,
       },
 
       {
-        text: `${commanString.forgot_password}`,
+        text: `${commonString.forgot_password}`,
         link: '/auth-reset',
         newTab: true,
       },
       {
-        text: `${commanString.success}`,
+        text: `${commonString.success}`,
         link: '/auth-success',
         newTab: true,
       },
@@ -115,26 +115,26 @@ const menu = [
   },
   {
     icon: 'files',
-    text: `${commanString.error_page}`,
+    text: `${commonString.error_page}`,
     active: false,
     subMenu: [
       {
-        text: `404 ${commanString.classic}`,
+        text: `404 ${commonString.classic}`,
         link: '/errors/404-classic',
         newTab: true,
       },
       {
-        text: `504 ${commanString.classic}`,
+        text: `504 ${commonString.classic}`,
         link: '/errors/504-classic',
         newTab: true,
       },
       {
-        text: `404 ${commanString.modern}`,
+        text: `404 ${commonString.modern}`,
         link: '/errors/404-modern',
         newTab: true,
       },
       {
-        text: `504 ${commanString.modern}`,
+        text: `504 ${commonString.modern}`,
         link: '/errors/504-modern',
         newTab: true,
       },

@@ -9,7 +9,7 @@ import {
   tableRow,
   userCreate,
 } from './UserInfoJson'
-import commanString from '../../../utils/String'
+import commonString from '../../../utils/String'
 import Content from '../../../layout/content/Content'
 import { cloneDeep } from 'lodash'
 import {
@@ -117,7 +117,7 @@ const UserCreate = (props) => {
         <ul>
           <li>
             <Button color="primary" type="submit" onClick={props.next}>
-              {commanString.next}
+              {commonString.next}
             </Button>
           </li>
         </ul>
@@ -155,7 +155,7 @@ const AddressDetails = (props) => {
 
   return (
     <>
-      <p className="permenent-address">{commanString.permenent_address}</p>
+      <p className="permenent-address">{commonString.permenent_address}</p>
       <form
         className="content clearfix"
         onSubmit={(e) => {
@@ -234,10 +234,10 @@ const AddressDetails = (props) => {
               onChange={onChangeAddress}
               className="input-checkbox"
             />{' '}
-            {commanString.same_as_above}
+            {commonString.same_as_above}
           </label>
         </div>
-        <p className="current-address">{commanString.current_address}</p>
+        <p className="current-address">{commonString.current_address}</p>
         <Row className="gy-3">
           {AddressDetailform.map((formFields, id) => {
             if (
@@ -306,12 +306,12 @@ const AddressDetails = (props) => {
           <ul>
             <li>
               <Button color="primary" type="submit">
-                {commanString.next}
+                {commonString.next}
               </Button>
             </li>
             <li>
               <Button color="primary" onClick={props.prev}>
-                {commanString.previous}
+                {commonString.previous}
               </Button>
             </li>
           </ul>
@@ -356,11 +356,11 @@ const Permission = (props) => {
     <>
       <div style={{ float: 'right' }}>
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret>{commanString.role}</DropdownToggle>
+          <DropdownToggle caret>{commonString.role}</DropdownToggle>
           <DropdownMenu left>
-            <DropdownItem>{commanString.employee}</DropdownItem>
-            <DropdownItem>{commanString.admin}</DropdownItem>
-            <DropdownItem>{commanString.hr}</DropdownItem>
+            <DropdownItem>{commonString.employee}</DropdownItem>
+            <DropdownItem>{commonString.admin}</DropdownItem>
+            <DropdownItem>{commonString.hr}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </div>
@@ -412,7 +412,7 @@ const Permission = (props) => {
           <ul>
             <li>
               <Button color="primary" onClick={props.prev}>
-                {commanString.previous}
+                {commonString.previous}
               </Button>
             </li>
           </ul>
@@ -429,23 +429,23 @@ const Header = (props) => {
         <li className={props.current >= 1 ? 'first done' : 'first'}>
           <a href="#wizard-01-h-0" onClick={(ev) => ev.preventDefault()}>
             <span className="number">01</span>{' '}
-            <p>{commanString.employee_detail}</p>
+            <p>{commonString.employee_detail}</p>
           </a>
         </li>
         <li className={props.current >= 2 ? 'second done' : 'second'}>
           <a href="#wizard-01-h-1" onClick={(ev) => ev.preventDefault()}>
             <span className="number">02</span>{' '}
-            <p>{commanString.address_detail}</p>
+            <p>{commonString.address_detail}</p>
           </a>
         </li>
         <li className={props.current >= 3 ? 'third done' : 'third'}>
           <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">03</span> <p>{commanString.education}</p>
+            <span className="number">03</span> <p>{commonString.education}</p>
           </a>
         </li>
         <li className={props.current >= 4 ? 'third done' : 'third'}>
           <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">04</span> <p>{commanString.permission}</p>
+            <span className="number">04</span> <p>{commonString.permission}</p>
           </a>
         </li>
       </ul>

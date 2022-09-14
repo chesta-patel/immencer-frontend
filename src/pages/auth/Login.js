@@ -17,7 +17,7 @@ import {
 import { Form, FormGroup } from 'reactstrap'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import commanString from '../../utils/String'
+import commonString from '../../utils/String'
 import { useDispatch } from 'react-redux'
 import { login } from '../../services/slices/AuthThunk'
 
@@ -60,9 +60,9 @@ const Login = () => {
           <PreviewCard className="card-bordered" bodyClass="card-inner-lg">
             <BlockHead>
               <BlockContent>
-                <BlockTitle tag="h4">{commanString.sign_in}</BlockTitle>
+                <BlockTitle tag="h4">{commonString.sign_in}</BlockTitle>
                 <BlockDes>
-                  <p>{commanString.access_immence_using_email_pass}</p>
+                  <p>{commonString.access_immence_using_email_pass}</p>
                 </BlockDes>
               </BlockContent>
             </BlockHead>
@@ -70,7 +70,7 @@ const Login = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="default-01">
-                    {commanString.email} <span className="error">*</span>
+                    {commonString.email} <span className="error">*</span>
                   </label>
                 </div>
                 <div className="form-control-wrap">
@@ -91,13 +91,13 @@ const Login = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="password">
-                    {commanString.passcode} <span className="error">*</span>
+                    {commonString.passcode} <span className="error">*</span>
                   </label>
                   <Link
                     className="link link-primary link-sm"
                     to={`${process.env.PUBLIC_URL}/auth-reset`}
                   >
-                    {commanString.forget_code}
+                    {commonString.forget_code}
                   </Link>
                 </div>
                 <div className="form-control-wrap">
@@ -142,7 +142,7 @@ const Login = () => {
                   type="submit"
                   color="primary"
                 >
-                  {commanString.submit}
+                  {commonString.submit}
                 </Button>
                 {error && <p>{error}</p>}
               </FormGroup>

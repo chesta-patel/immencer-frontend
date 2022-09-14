@@ -1,5 +1,5 @@
 import React from 'react'
-import commanString from '../../utils/String'
+import commonString from '../../utils/String'
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container-fluid">
         <div className="nk-footer-wrap">
           <div className="nk-footer-copyright">
-            &copy; {commanString.immence_2022}.
+            &copy; {commonString.immence_2022}.
           </div>
         </div>
       </div>

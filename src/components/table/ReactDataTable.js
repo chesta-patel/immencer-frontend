@@ -4,7 +4,7 @@ import exportFromJSON from 'export-from-json'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { Col, Modal, ModalBody, Row, Button } from 'reactstrap'
 import { DataTablePagination } from '../Component'
-import commanString from '../../utils/String'
+import commonString from '../../utils/String'
 
 const Export = ({ data }) => {
   const [modal, setModal] = useState(false)
@@ -31,7 +31,7 @@ const Export = ({ data }) => {
     <React.Fragment>
       <div className="dt-export-buttons d-flex align-center">
         <div className="dt-export-title d-none d-md-inline-block">
-          {commanString.export}
+          {commonString.export}
         </div>
         <div className="dt-buttons btn-group flex-wrap">
           <CopyToClipboard text={JSON.stringify(data)}>
@@ -39,7 +39,7 @@ const Export = ({ data }) => {
               className="buttons-copy buttons-html5"
               onClick={() => copyToClipboard()}
             >
-              <span>{commanString.copy}</span>
+              <span>{commonString.copy}</span>
             </Button>
           </CopyToClipboard>{' '}
           <button
@@ -47,14 +47,14 @@ const Export = ({ data }) => {
             type="button"
             onClick={() => exportCSV()}
           >
-            <span>{commanString.csv}</span>
+            <span>{commonString.csv}</span>
           </button>{' '}
           <button
             className="btn btn-secondary buttons-excel buttons-html5"
             type="button"
             onClick={() => exportExcel()}
           >
-            <span>{commanString.excel}</span>
+            <span>{commonString.excel}</span>
           </button>{' '}
         </div>
       </div>
@@ -64,11 +64,11 @@ const Export = ({ data }) => {
         size="sm"
       >
         <ModalBody className="text-center m-2">
-          <h5>{`${commanString.copied} ${commanString.to_clipboard}`}</h5>
+          <h5>{`${commonString.copied} ${commonString.to_clipboard}`}</h5>
         </ModalBody>
         <div className="p-3 bg-light">
           <div className="text-center">
-            {`${commanString.copied} ${data.length} ${commanString.row} ${commanString.to_clipboard}`}
+            {`${commonString.copied} ${data.length} ${commonString.row} ${commonString.to_clipboard}`}
           </div>
         </div>
       </Modal>
@@ -79,19 +79,19 @@ const ExpandableRowComponent = ({ data }) => {
   return (
     <ul className="dtr-details p-2 border-bottom ml-1">
       <li className="d-block d-sm-none">
-        <span className="dtr-title">{commanString.company}</span>{' '}
+        <span className="dtr-title">{commonString.company}</span>{' '}
         <span className="dtr-data">{data.company}</span>
       </li>
       <li className="d-block d-sm-none">
-        <span className="dtr-title ">{commanString.gender}</span>{' '}
+        <span className="dtr-title ">{commonString.gender}</span>{' '}
         <span className="dtr-data">{data.gender}</span>
       </li>
       <li>
-        <span className="dtr-title">{commanString.start_date}</span>{' '}
+        <span className="dtr-title">{commonString.start_date}</span>{' '}
         <span className="dtr-data">{data.startDate}</span>
       </li>
       <li>
-        <span className="dtr-title">{commanString.salary}</span>{' '}
+        <span className="dtr-title">{commonString.salary}</span>{' '}
         <span className="dtr-data">{data.salary}</span>
       </li>
     </ul>
@@ -176,7 +176,7 @@ const ReactDataTable = ({
               <div className="dataTables_length" id="DataTables_Table_0_length">
                 <label>
                   <span className="d-none d-sm-inline-block">
-                    {commanString.show}
+                    {commonString.show}
                   </span>
                   <div className="form-control-select">
                     {' '}
@@ -207,7 +207,7 @@ const ReactDataTable = ({
         expandableRowsComponent={ExpandableRowComponent}
         expandableRows={mobileView}
         noDataComponent={
-          <div className="p-2">{commanString.there_are_no_record}</div>
+          <div className="p-2">{commonString.there_are_no_record}</div>
         }
         sortIcon={
           <div>

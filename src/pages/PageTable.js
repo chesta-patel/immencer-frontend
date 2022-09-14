@@ -36,7 +36,7 @@ function PageTable(props) {
   const [data, setData] = contextData
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
-  const [strings, setstrings] = useState('')
+  const [strings, setStrings] = useState('')
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
@@ -99,7 +99,7 @@ function PageTable(props) {
     var string = props.string.find(function (element) {
       return element
     })
-    setstrings(string)
+    setStrings(string)
   }, [onSearchText, setData, props.string])
   // Sorting data
   const sortFunc = (params) => {
