@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'https://fakestoreapi.com/auth/login'
+const baseURL = 'http://192.168.29.40:3001/api/v1/auth/logIn'
 
 const Api = axios.create({
   baseURL,
