@@ -202,6 +202,7 @@ const commonString = {
   profile_picture: 'Profile Picture',
   passcode: 'Passcode',
   attachment: 'Attachment ',
+  password: 'Password',
 }
 
 export default commonString

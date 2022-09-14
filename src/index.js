@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import './assets/scss/immence.scss'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import history from './utils/History'
@@ -10,13 +10,11 @@ import store from './store/Store'
 
 ReactDOM.render(
   <React.Fragment>
-    <Suspense fallback={<div />}>
-      <Router history={history}>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </Router>
-    </Suspense>
+    <Router history={history}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Router>
   </React.Fragment>,
   document.getElementById('root')
 )

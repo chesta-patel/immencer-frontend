@@ -14,7 +14,7 @@ import {
   Icon,
   PreviewCard,
 } from '../../components/Component'
-import { Form, FormGroup } from 'reactstrap'
+import { Alert, Form, FormGroup, Spinner } from 'reactstrap'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import commonString from '../../utils/String'
@@ -22,20 +22,18 @@ import { useDispatch } from 'react-redux'
 import { login } from '../../services/slices/AuthThunk'
 
 const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const dispatch = useDispatch()
+  const [loading] = useState(false)
   const [passState, setPassState] = useState(false)
-  const [error, setError] = useState('')
-  const { errors, register } = useForm()
+  const [errorVal] = useState('')
+  const dispatch = useDispatch()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const { errors, register, handleSubmit } = useForm()
+  // const { token } = useSelector((state) => state.auth)
 
-  const onFormSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      dispatch(login({ username, password }))
-    } catch (error) {
-      setError('Invalid username or password')
-    }
+  const onFormSubmit = async () => {
+    dispatch(login({ email, password }))
+    console.log(email, password)
   }
 
   return (
@@ -57,6 +55,7 @@ const Login = () => {
               />
             </Link>
           </div>
+
           <PreviewCard className="card-bordered" bodyClass="card-inner-lg">
             <BlockHead>
               <BlockContent>
@@ -66,7 +65,15 @@ const Login = () => {
                 </BlockDes>
               </BlockContent>
             </BlockHead>
-            <Form className="is-alter" onSubmit={onFormSubmit}>
+            {errorVal && (
+              <div className="mb-3">
+                <Alert color="danger" className="alert-icon">
+                  {' '}
+                  <Icon name="alert-circle" /> {commonString.unable_to_login}{' '}
+                </Alert>
+              </div>
+            )}
+            <Form className="is-alter" onSubmit={handleSubmit(onFormSubmit)}>
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="default-01">
@@ -75,23 +82,24 @@ const Login = () => {
                 </div>
                 <div className="form-control-wrap">
                   <input
+                    type="email"
                     id="default-01"
-                    name="name"
+                    name="email"
                     ref={register({ required: 'This field is required' })}
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
                     className="form-control-lg form-control"
                   />
-                  {errors.name && (
-                    <span className="invalid">{errors.name.message}</span>
+                  {errors.email && (
+                    <span className="invalid">{errors.email.message}</span>
                   )}
                 </div>
               </FormGroup>
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="password">
-                    {commonString.passcode} <span className="error">*</span>
+                    {commonString.password} <span className="error">*</span>
                   </label>
                   <Link
                     className="link link-primary link-sm"
@@ -107,7 +115,7 @@ const Login = () => {
                       ev.preventDefault()
                       setPassState(!passState)
                     }}
-                    className={`form-icon lg form-icon-right passcode-switch ${
+                    className={`form-icon lg form-icon-right password-switch ${
                       passState ? 'is-hidden' : 'is-shown'
                     }`}
                   >
@@ -121,11 +129,11 @@ const Login = () => {
                   <input
                     type={passState ? 'text' : 'password'}
                     id="password"
-                    name="passcode"
+                    name="password"
                     ref={register({ required: 'This field is required' })}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter your passcode"
+                    placeholder="Enter your password"
                     className={`form-control-lg form-control ${
                       passState ? 'is-hidden' : 'is-shown'
                     }`}
@@ -142,9 +150,8 @@ const Login = () => {
                   type="submit"
                   color="primary"
                 >
-                  {commonString.submit}
+                  {loading ? <Spinner size="sm" color="light" /> : 'Sign in'}
                 </Button>
-                {error && <p>{error}</p>}
               </FormGroup>
             </Form>
           </PreviewCard>

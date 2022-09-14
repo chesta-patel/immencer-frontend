@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, Col, Form, FormGroup, Modal, ModalBody } from 'reactstrap'
+import { Button, Col, Form, FormGroup, Modal, ModalBody, Row } from 'reactstrap'
 import {
   BlockBetween,
   BlockDes,
@@ -11,6 +11,8 @@ import {
   RSelect,
 } from '../components/Component'
 import { cloneDeep } from 'lodash'
+import variable from '../assets/scss/variables.scss'
+import './pageheader.scss'
 
 function PageHeader(props) {
   const initialState = {}
@@ -25,7 +27,7 @@ function PageHeader(props) {
   const { handleSubmit } = useForm()
   const [validate, setValidate] = useState(false)
   const [Fdata, setFdata] = useState({ ...initialState })
-  const [strings, setstrings] = useState('')
+  const [strings, setStrings] = useState('')
   const onFormCancel = () => {
     setModal({ edit: false, add: false })
     resetForm()
@@ -64,7 +66,7 @@ function PageHeader(props) {
     var string = props.string.find(function (element) {
       return element
     })
-    setstrings(string)
+    setStrings(string)
   }, [props.string])
 
   return (
@@ -194,30 +196,17 @@ function PageHeader(props) {
                     )
                   }
                 })}
-                <Col size="12">
-                  <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                    <li>
-                      <Button color="primary" size="md" type="submit">
-                        {strings.form_btn}
-                      </Button>
-                    </li>
-                    <li>
-                      <a
-                        style={{ marginRight: '25px' }}
-                        href="#cancel"
-                        onClick={(ev) => {
-                          ev.preventDefault()
-                          onFormCancel()
-                        }}
-                        className="link link-light"
-                      >
-                        {strings.form_cancel}
-                      </a>
-                    </li>
-                  </ul>
-                </Col>
               </Form>
             </div>
+            <Col size="4">
+              <Button
+                color="primary"
+                type="submit"
+                className="header_submit_bn"
+              >
+                {strings.form_btn}
+              </Button>
+            </Col>
           </div>
         </ModalBody>
       </Modal>
