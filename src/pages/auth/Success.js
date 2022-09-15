@@ -12,7 +12,7 @@ import {
   BlockTitle,
 } from '../../components/Component'
 import { Link } from 'react-router-dom'
-import commonString from '../../utils/String'
+import String from '../../utils/String'
 
 const Success = () => {
   return (
@@ -37,10 +37,10 @@ const Success = () => {
           <BlockHead>
             <BlockContent>
               <BlockTitle tag="h4">
-                {commonString.thank_you_for_submitting_form}
+                {String.thank_you_for_submitting_form}
               </BlockTitle>
               <BlockDes className="text-success">
-                <p>{commonString.you_can_now_sign_in}</p>
+                <p>{String.you_can_now_sign_in}</p>
               </BlockDes>
             </BlockContent>
           </BlockHead>

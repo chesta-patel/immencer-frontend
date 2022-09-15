@@ -25,6 +25,7 @@ import {
 import { UserContext } from './user-manage/UserContext'
 import { Link } from 'react-router-dom'
 import { bulkActionOptions } from '../utils/Utils'
+import String from '../utils/String'
 
 function PageTable(props) {
   const [actionText, setActionText] = useState('')
@@ -36,7 +37,6 @@ function PageTable(props) {
   const [data, setData] = contextData
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
-  const [strings, setStrings] = useState('')
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
@@ -95,12 +95,7 @@ function PageTable(props) {
     } else {
       setData([...userData])
     }
-    //for dynamic strings come from Strings.js
-    var string = props.string.find(function (element) {
-      return element
-    })
-    setStrings(string)
-  }, [onSearchText, setData, props.string])
+  }, [onSearchText, setData])
   // Sorting data
   const sortFunc = (params) => {
     let defaultData = data
@@ -138,7 +133,7 @@ function PageTable(props) {
                         className="btn-dim"
                         onClick={(e) => onActionClick(e)}
                       >
-                        {strings.table_apply_btn}
+                        {String.apply}
                       </Button>
                     </span>
                     <span className="d-md-none">
@@ -166,7 +161,7 @@ function PageTable(props) {
                       }}
                       className="btn btn-icon search-toggle toggle-search"
                     >
-                      <Icon name={strings.search_icon}></Icon>
+                      <Icon name="search"></Icon>
                     </a>
                   </li>
                   <li className="btn-toolbar-sep"></li>
@@ -201,7 +196,7 @@ function PageTable(props) {
                                 className="btn btn-trigger btn-icon dropdown-toggle"
                               >
                                 <div className="dot dot-primary"></div>
-                                <Icon name={strings.filter_icon}></Icon>
+                                <Icon name="filter-alt"></Icon>
                               </DropdownToggle>
                               <DropdownMenu
                                 right
@@ -210,7 +205,7 @@ function PageTable(props) {
                               >
                                 <div className="dropdown-head">
                                   <span className="sub-title dropdown-title">
-                                    {strings.table_filter_user}
+                                    {`${String.filter} ${String.user}`}
                                   </span>
                                   <div className="dropdown">
                                     <DropdownItem
@@ -238,7 +233,7 @@ function PageTable(props) {
                                           htmlFor="hasBalance"
                                         >
                                           {' '}
-                                          {strings.filter_have_blc}
+                                          {String.have_balance}
                                         </label>
                                       </div>
                                     </Col>
@@ -254,14 +249,14 @@ function PageTable(props) {
                                           htmlFor="hasKYC"
                                         >
                                           {' '}
-                                          {strings.kyc}
+                                          {String.kyc_verified}
                                         </label>
                                       </div>
                                     </Col>
                                     <Col size="6">
                                       <FormGroup>
                                         <label className="overline-title overline-title-alt">
-                                          {strings.filter_role}
+                                          {String.role}
                                         </label>
                                         <RSelect
                                           options={filterRole}
@@ -272,7 +267,7 @@ function PageTable(props) {
                                     <Col size="6">
                                       <FormGroup>
                                         <label className="overline-title overline-title-alt">
-                                          {strings.filter_status}
+                                          {String.status}
                                         </label>
                                         <RSelect
                                           options={filterStatus}
@@ -283,7 +278,7 @@ function PageTable(props) {
                                     <Col size="12">
                                       <FormGroup className="form-group">
                                         <Button color="secondary">
-                                          {strings.filter_btn}
+                                          {String.filter}
                                         </Button>
                                       </FormGroup>
                                     </Col>
@@ -297,7 +292,7 @@ function PageTable(props) {
                                     }}
                                     className="clickable"
                                   >
-                                    {strings.reset_filter}
+                                    {`${String.reset} ${String.filter}`}
                                   </a>
                                   <a
                                     href="#save"
@@ -305,7 +300,7 @@ function PageTable(props) {
                                       ev.preventDefault()
                                     }}
                                   >
-                                    {strings.save_filter}
+                                    {`${String.save} ${String.filter}`}
                                   </a>
                                 </div>
                               </DropdownMenu>
@@ -322,7 +317,7 @@ function PageTable(props) {
                               <DropdownMenu right className="dropdown-menu-xs">
                                 <ul className="link-check">
                                   <li>
-                                    <span>{strings.row_show}</span>
+                                    <span>{String.show}</span>
                                   </li>
                                   <li
                                     className={
@@ -359,7 +354,7 @@ function PageTable(props) {
                                 </ul>
                                 <ul className="link-check">
                                   <li>
-                                    <span>{strings.shorting_order}</span>
+                                    <span>{String.order}</span>
                                   </li>
                                   <li
                                     className={sort === 'dsc' ? 'active' : ''}
@@ -373,7 +368,7 @@ function PageTable(props) {
                                         sortFunc('dsc')
                                       }}
                                     >
-                                      {strings.asc_order}
+                                      {String.asc}
                                     </DropdownItem>
                                   </li>
                                   <li
@@ -388,7 +383,7 @@ function PageTable(props) {
                                         sortFunc('asc')
                                       }}
                                     >
-                                      {strings.desc_order}
+                                      {String.desc}
                                     </DropdownItem>
                                   </li>
                                 </ul>
@@ -417,12 +412,11 @@ function PageTable(props) {
                   <input
                     type="text"
                     className="border-transparent form-focus-none form-control"
-                    placeholder={strings.search_input_placeholder}
                     value={onSearchText}
                     onChange={(e) => onFilterChange(e)}
                   />
                   <Button className="search-submit btn-icon">
-                    <Icon name={strings.input_search_icon}></Icon>
+                    <Icon name="search"></Icon>
                   </Button>
                 </div>
               </div>
@@ -442,8 +436,8 @@ function PageTable(props) {
                 </div>
               </DataTableRow>
               {props.json.map((colum, id) => (
-                <DataTableRow size={colum.size} key={id}>
-                  <span className={colum.class_name}>{colum.name}</span>
+                <DataTableRow size="md" key={id}>
+                  <span className="sub-text">{colum.name}</span>
                 </DataTableRow>
               ))}
             </DataTableHead>

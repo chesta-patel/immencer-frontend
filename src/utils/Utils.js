@@ -16,7 +16,7 @@ export const checkForm = (formData) => {
   let errorState = {}
   Object.keys(formData).forEach((item) => {
     if (formData[item] === null || formData[item] === '') {
-      errorState[item] = `${commonString.this_field_is_required}`
+      errorState[item] = `${commonString.required_field}`
     }
   })
   return errorState
@@ -95,7 +95,7 @@ export const todaysDate = new Date()
 export const currentTime = () => {
   var hours = todaysDate.getHours()
   var minutes = todaysDate.getMinutes()
-  var ampm = hours >= 12 ? `${commonString.am}` : `${commonString.pm}`
+  var ampm = hours >= 12 ? 'AM' : 'PM'
   hours = hours % 12
   hours = hours ? hours : 12 // the hour '0' should be '12'
   minutes = minutes < 10 ? '0' + minutes : minutes

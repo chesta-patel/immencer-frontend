@@ -9,7 +9,7 @@ import {
   tableRow,
   userCreate,
 } from './UserInfoJson'
-import commonString from '../../../utils/String'
+import String from '../../../utils/String'
 import Content from '../../../layout/content/Content'
 import { cloneDeep } from 'lodash'
 import {
@@ -55,9 +55,7 @@ const UserCreate = (props) => {
             return (
               <Col md="4">
                 <FormGroup>
-                  <label className={formFields.label_class}>
-                    {formFields.label_name}
-                  </label>
+                  <label className="form-label">{formFields.label_name}</label>
                   {formFields.required &&
                     !Fdata[`${formFields.name}`] &&
                     validation && (
@@ -79,9 +77,7 @@ const UserCreate = (props) => {
             return (
               <Col md="4">
                 <FormGroup>
-                  <label className={formFields.label_class}>
-                    {formFields.label_name}
-                  </label>
+                  <label className="form-label">{formFields.label_name}</label>
                   {''}
                   {formFields.required &&
                     !Fdata[`${formFields.name}`] &&
@@ -91,7 +87,7 @@ const UserCreate = (props) => {
                       </span>
                     )}
                   <input
-                    className={formFields.input_class}
+                    className="form-control"
                     type={formFields.type}
                     name={formFields.name}
                     placeholder={formFields.placeholder}
@@ -117,7 +113,7 @@ const UserCreate = (props) => {
         <ul>
           <li>
             <Button color="primary" type="submit" onClick={props.next}>
-              {commonString.next}
+              {String.next}
             </Button>
           </li>
         </ul>
@@ -155,7 +151,7 @@ const AddressDetails = (props) => {
 
   return (
     <>
-      <p className="permenent-address">{commonString.permenent_address}</p>
+      <p className="permenent-address">{String.permanent_address}</p>
       <form
         className="content clearfix"
         onSubmit={(e) => {
@@ -173,7 +169,7 @@ const AddressDetails = (props) => {
               return (
                 <Col md="4">
                   <FormGroup>
-                    <label className={formFields.label_class}>
+                    <label className="form-label">
                       {formFields.label_name}
                     </label>
                     {formFields.required &&
@@ -197,7 +193,7 @@ const AddressDetails = (props) => {
               return (
                 <Col md="4">
                   <FormGroup>
-                    <label className={formFields.label_class}>
+                    <label className="form-label">
                       {formFields.label_name}
                     </label>
                     {formFields.required &&
@@ -208,7 +204,7 @@ const AddressDetails = (props) => {
                         </span>
                       )}
                     <input
-                      className={formFields.input_class}
+                      className="form-control"
                       type={formFields.type}
                       name={formFields.name}
                       placeholder={formFields.placeholder}
@@ -234,10 +230,10 @@ const AddressDetails = (props) => {
               onChange={onChangeAddress}
               className="input-checkbox"
             />{' '}
-            {commonString.same_as_above}
+            {String.same_as_above}
           </label>
         </div>
-        <p className="current-address">{commonString.current_address}</p>
+        <p className="current-address">{String.current_address}</p>
         <Row className="gy-3">
           {AddressDetailform.map((formFields, id) => {
             if (
@@ -249,7 +245,7 @@ const AddressDetails = (props) => {
               return (
                 <Col md="4">
                   <FormGroup>
-                    <label className={formFields.label_class}>
+                    <label className="form-label">
                       {formFields.label_name}
                     </label>
                     {formFields.required &&
@@ -273,7 +269,7 @@ const AddressDetails = (props) => {
               return (
                 <Col md="4">
                   <FormGroup>
-                    <label className={formFields.label_class}>
+                    <label className="form-label">
                       {formFields.label_name}
                     </label>
                     {formFields.required &&
@@ -284,7 +280,7 @@ const AddressDetails = (props) => {
                         </span>
                       )}
                     <input
-                      className={formFields.input_class}
+                      className="form-control"
                       type={formFields.type}
                       name={formFields.name}
                       placeholder={formFields.placeholder}
@@ -306,12 +302,12 @@ const AddressDetails = (props) => {
           <ul>
             <li>
               <Button color="primary" type="submit">
-                {commonString.next}
+                {String.next}
               </Button>
             </li>
             <li>
               <Button color="primary" onClick={props.prev}>
-                {commonString.previous}
+                {String.previous}
               </Button>
             </li>
           </ul>
@@ -356,11 +352,11 @@ const Permission = (props) => {
     <>
       <div style={{ float: 'right' }}>
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret>{commonString.role}</DropdownToggle>
+          <DropdownToggle caret>{String.role}</DropdownToggle>
           <DropdownMenu left>
-            <DropdownItem>{commonString.employee}</DropdownItem>
-            <DropdownItem>{commonString.admin}</DropdownItem>
-            <DropdownItem>{commonString.hr}</DropdownItem>
+            <DropdownItem>{String.employee}</DropdownItem>
+            <DropdownItem>{String.admin}</DropdownItem>
+            <DropdownItem>{String.hr}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </div>
@@ -412,7 +408,7 @@ const Permission = (props) => {
           <ul>
             <li>
               <Button color="primary" onClick={props.prev}>
-                {commonString.previous}
+                {String.previous}
               </Button>
             </li>
           </ul>
@@ -428,24 +424,22 @@ const Header = (props) => {
       <ul>
         <li className={props.current >= 1 ? 'first done' : 'first'}>
           <a href="#wizard-01-h-0" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">01</span>{' '}
-            <p>{commonString.employee_detail}</p>
+            <span className="number">01</span> <p>{String.employee_detail}</p>
           </a>
         </li>
         <li className={props.current >= 2 ? 'second done' : 'second'}>
           <a href="#wizard-01-h-1" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">02</span>{' '}
-            <p>{commonString.address_detail}</p>
+            <span className="number">02</span> <p>{String.address_detail}</p>
           </a>
         </li>
         <li className={props.current >= 3 ? 'third done' : 'third'}>
           <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">03</span> <p>{commonString.education}</p>
+            <span className="number">03</span> <p>{String.education}</p>
           </a>
         </li>
         <li className={props.current >= 4 ? 'third done' : 'third'}>
           <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">04</span> <p>{commonString.permission}</p>
+            <span className="number">04</span> <p>{String.permission}</p>
           </a>
         </li>
       </ul>

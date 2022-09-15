@@ -8,7 +8,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap'
-import commonString from '../../utils/String'
+import String from '../../utils/String'
 
 export const SpecialTable = ({ action, isCompact, data }) => {
   const DropdownTrans = () => {
@@ -30,7 +30,7 @@ export const SpecialTable = ({ action, isCompact, data }) => {
                   ev.preventDefault()
                 }}
               >
-                {commonString.view}
+                {String.view}
               </DropdownItem>
             </li>
             <li>
@@ -41,7 +41,7 @@ export const SpecialTable = ({ action, isCompact, data }) => {
                   ev.preventDefault()
                 }}
               >
-                {commonString.view}
+                {String.view}
               </DropdownItem>
             </li>
             <li>
@@ -52,7 +52,7 @@ export const SpecialTable = ({ action, isCompact, data }) => {
                   ev.preventDefault()
                 }}
               >
-                {commonString.print}
+                {String.print}
               </DropdownItem>
             </li>
           </ul>
@@ -70,20 +70,20 @@ export const SpecialTable = ({ action, isCompact, data }) => {
           </th>
           <th className="tb-tnx-info">
             <span className="tb-tnx-desc d-none d-sm-inline-block">
-              <span>{commonString.bill_for}</span>
+              <span>{String.bill_for}</span>
             </span>
             <span className="tb-tnx-date d-md-inline-block d-none">
-              <span className="d-md-none">{commonString.date}</span>
+              <span className="d-md-none">{String.date}</span>
               <span className="d-none d-md-block">
-                <span>{`${commonString.issue} ${commonString.date}`}</span>
-                <span>{`${commonString.due} ${commonString.date}`}</span>
+                <span>{`${String.issue} ${String.date}`}</span>
+                <span>{`${String.due} ${String.date}`}</span>
               </span>
             </span>
           </th>
           <th className="tb-tnx-amount is-alt">
-            <span className="tb-tnx-total">{commonString.total}</span>
+            <span className="tb-tnx-total">{String.total}</span>
             <span className="tb-tnx-status d-none d-md-inline-block">
-              {commonString.status}
+              {String.status}
             </span>
           </th>
           {action && (
@@ -216,7 +216,7 @@ export const OrderTable = () => {
                   ev.preventDefault()
                 }}
               >
-                {commonString.view}
+                {String.view}
               </DropdownItem>
             </li>
             <li>
@@ -227,7 +227,7 @@ export const OrderTable = () => {
                   ev.preventDefault()
                 }}
               >
-                {commonString.invoice}
+                {String.invoice}
               </DropdownItem>
             </li>
             <li>
@@ -238,7 +238,7 @@ export const OrderTable = () => {
                   ev.preventDefault()
                 }}
               >
-                {commonString.print}
+                {String.print}
               </DropdownItem>
             </li>
           </ul>
@@ -251,15 +251,15 @@ export const OrderTable = () => {
       <thead className="tb-odr-head">
         <tr className="tb-odr-item">
           <th className="tb-odr-info">
-            <span className="tb-odr-id">{commonString.order_id}</span>
+            <span className="tb-odr-id">{String.order_id}</span>
             <span className="tb-odr-date d-none d-md-inline-block">
-              {commonString.date}
+              {String.date}
             </span>
           </th>
           <th className="tb-odr-amount">
-            <span className="tb-odr-total">{commonString.amount}</span>
+            <span className="tb-odr-total">{String.amount}</span>
             <span className="tb-odr-status d-none d-md-inline-block">
-              {commonString.status}
+              {String.status}
             </span>
           </th>
           <th className="tb-odr-action">&nbsp;</th>
@@ -303,7 +303,7 @@ export const OrderTable = () => {
               <td className="tb-odr-action">
                 <div className="tb-odr-btns d-none d-md-inline">
                   <Button color="primary" className="btn-sm">
-                    {commonString.view}
+                    {String.view}
                   </Button>
                 </div>
                 <DropdownTrans />
@@ -322,15 +322,15 @@ export const LoginLogTable = () => {
         <tr>
           <th className="tb-col-os">
             <span className="overline-title">
-              {commonString.browser}{' '}
-              <span className="d-sm-none">{`/ ${commonString.ip}`}</span>
+              {String.browser}{' '}
+              <span className="d-sm-none">{`/ ${String.ip}`}</span>
             </span>
           </th>
           <th className="tb-col-ip">
-            <span className="overline-title">{commonString.ip}</span>
+            <span className="overline-title">{String.ip}</span>
           </th>
           <th className="tb-col-time">
-            <span className="overline-title">{commonString.time}</span>
+            <span className="overline-title">{String.time}</span>
           </th>
           <th className="tb-col-action">
             <span className="overline-title">&nbsp;</span>

@@ -7,7 +7,7 @@ import {
   BlockHeadContent,
   BlockBetween,
 } from '../components/Component'
-import commonString from '../utils/String'
+import String from '../utils/String'
 
 const HomePage = () => {
   return (
@@ -18,7 +18,7 @@ const HomePage = () => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockDes className="text-soft">
-                <p>{commonString.welcome_to_immence} </p>
+                <p>{String.welcome_to_immence} </p>
               </BlockDes>
             </BlockHeadContent>
           </BlockBetween>

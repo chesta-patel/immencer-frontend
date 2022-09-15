@@ -15,7 +15,7 @@ const AssetsType = ({ ...props }) => {
       <Head title="Assets Type" />
       <Content>
         <PageHeader json={roleForm} string={assetsTypeString} />
-        <PageTable json={roleTable} string={assetsTypeString} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

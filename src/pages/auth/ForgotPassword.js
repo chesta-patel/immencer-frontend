@@ -17,7 +17,7 @@ import {
 import { FormGroup, Spinner, Alert } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import commonString from '../../utils/String'
+import String from '../../utils/String'
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false)
@@ -40,7 +40,7 @@ const ForgotPassword = () => {
       }, 2000)
     } else {
       setTimeout(() => {
-        setError(`${commonString.can_not_login}`)
+        setError(`${String.can_not_login}`)
         setLoading(false)
       }, 2000)
     }
@@ -68,9 +68,9 @@ const ForgotPassword = () => {
           <PreviewCard className="card-bordered" bodyClass="card-inner-lg">
             <BlockHead>
               <BlockContent>
-                <BlockTitle tag="h5">{commonString.reset_password}</BlockTitle>
+                <BlockTitle tag="h5">{String.reset_password}</BlockTitle>
                 <BlockDes>
-                  <p>{commonString.if_you_forgot_your}</p>
+                  <p>{String.if_you_forgot_your}</p>
                 </BlockDes>
               </BlockContent>
             </BlockHead>
@@ -79,7 +79,7 @@ const ForgotPassword = () => {
                 <Alert color="danger" className="alert-icon">
                   {' '}
                   <Icon name="alert-circle" />
-                  {commonString.unable_to_login}{' '}
+                  {String.unable_to_login}{' '}
                 </Alert>
               </div>
             )}
@@ -87,7 +87,7 @@ const ForgotPassword = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="default-01">
-                    {commonString.email} <span className="error">*</span>
+                    {String.email} <span className="error">*</span>
                   </label>
                 </div>
                 <div className="form-control-wrap">
@@ -118,7 +118,7 @@ const ForgotPassword = () => {
             </form>
             <div className="form-note-s2 text-center pt-4">
               <Link to={`${process.env.PUBLIC_URL}/auth-login`}>
-                <strong>{commonString.return_to_login}</strong>
+                <strong>{String.return_to_login}</strong>
               </Link>
             </div>
           </PreviewCard>

@@ -17,7 +17,7 @@ import {
 import { Alert, Form, FormGroup, Spinner } from 'reactstrap'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import commonString from '../../utils/String'
+import String from '../../utils/String'
 import { useDispatch } from 'react-redux'
 import { login } from '../../services/slices/AuthThunk'
 
@@ -59,9 +59,9 @@ const Login = () => {
           <PreviewCard className="card-bordered" bodyClass="card-inner-lg">
             <BlockHead>
               <BlockContent>
-                <BlockTitle tag="h4">{commonString.sign_in}</BlockTitle>
+                <BlockTitle tag="h4">{String.sign_in}</BlockTitle>
                 <BlockDes>
-                  <p>{commonString.access_immence_using_email_pass}</p>
+                  <p>{String.access_immence_using_email_pass}</p>
                 </BlockDes>
               </BlockContent>
             </BlockHead>
@@ -69,7 +69,7 @@ const Login = () => {
               <div className="mb-3">
                 <Alert color="danger" className="alert-icon">
                   {' '}
-                  <Icon name="alert-circle" /> {commonString.unable_to_login}{' '}
+                  <Icon name="alert-circle" /> {String.unable_to_login}{' '}
                 </Alert>
               </div>
             )}
@@ -77,7 +77,7 @@ const Login = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="default-01">
-                    {commonString.email} <span className="error">*</span>
+                    {String.email} <span className="error">*</span>
                   </label>
                 </div>
                 <div className="form-control-wrap">
@@ -99,13 +99,13 @@ const Login = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="password">
-                    {commonString.password} <span className="error">*</span>
+                    {String.password} <span className="error">*</span>
                   </label>
                   <Link
                     className="link link-primary link-sm"
                     to={`${process.env.PUBLIC_URL}/auth-reset`}
                   >
-                    {commonString.forget_code}
+                    {String.forget_code}
                   </Link>
                 </div>
                 <div className="form-control-wrap">

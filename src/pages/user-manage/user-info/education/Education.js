@@ -10,7 +10,7 @@ import {
   Row,
 } from 'reactstrap'
 import { Icon } from '../../../../components/Component'
-import commonString from '../../../../utils/String'
+import String from '../../../../utils/String'
 import '../userdetail.scss'
 import EducationCard from './EducationCard'
 
@@ -51,6 +51,7 @@ function Education(props) {
       })
     })
   }
+
   return (
     <React.Fragment>
       <Button
@@ -92,7 +93,7 @@ function Education(props) {
               }}
             >
               <FormGroup>
-                <label className="form-label">{commonString.degree}</label>
+                <label className="form-label">{String.degree}</label>
                 <input
                   type="text"
                   className="form-control"
@@ -103,7 +104,7 @@ function Education(props) {
                 />
               </FormGroup>
               <FormGroup>
-                <label className="form-label">{commonString.start_date}</label>
+                <label className="form-label">{String.start_date}</label>
                 <input
                   type="date"
                   className="form-control"
@@ -114,7 +115,7 @@ function Education(props) {
                 />
               </FormGroup>
               <FormGroup>
-                <label className="form-label">{commonString.end_date}</label>
+                <label className="form-label">{String.end_date}</label>
                 <input
                   type="date"
                   className="form-control"
@@ -130,7 +131,7 @@ function Education(props) {
                 className="education-button"
                 type="submit"
               >
-                {commonString.submit}
+                {String.submit}
               </Button>
               <Button
                 className="education-button"
@@ -140,7 +141,7 @@ function Education(props) {
                   onFormCancel(e)
                 }}
               >
-                {commonString.cancel}
+                {String.cancel}
               </Button>
             </form>
           </Col>
@@ -151,12 +152,12 @@ function Education(props) {
           <ul>
             <li>
               <Button color="primary" onClick={props.next}>
-                {commonString.next}
+                {String.next}
               </Button>
             </li>
             <li>
               <Button color="primary" onClick={props.prev}>
-                {commonString.previous}
+                {String.previous}
               </Button>
             </li>
           </ul>
