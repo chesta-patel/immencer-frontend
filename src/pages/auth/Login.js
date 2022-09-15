@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '../../../src/assets/images/immence_wordlogo.svg'
 import LogoDark from '../../../src/assets/images/gfx/immence.svg'
 import PageContainer from '../../layout/page-container/PageContainer'
@@ -16,25 +16,36 @@ import {
 } from '../../components/Component'
 import { Alert, Form, FormGroup, Spinner } from 'reactstrap'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import String from '../../utils/String'
 import { useDispatch } from 'react-redux'
-import { login } from '../../services/slices/AuthThunk'
+import {
+  clearState,
+  login,
+  userSelector,
+} from '../../services/slices/AuthThunk'
+import { useSelector } from 'react-redux'
+import { clearMessage } from '../../services/slices/Message'
 
 const Login = () => {
-  const [loading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [passState, setPassState] = useState(false)
   const [errorVal] = useState('')
   const dispatch = useDispatch()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const { errors, register, handleSubmit } = useForm()
-  // const { token } = useSelector((state) => state.auth)
+  const history = useHistory()
+  const { message } = useSelector((state) => state.message)
+  const { isFetching, isSuccess, isError, errorMessage } =
+    useSelector(userSelector)
 
   const onFormSubmit = async () => {
     dispatch(login({ email, password }))
-    console.log(email, password)
   }
+  useEffect(() => {
+    dispatch(clearMessage())
+  }, [dispatch])
 
   return (
     <React.Fragment>
@@ -55,7 +66,6 @@ const Login = () => {
               />
             </Link>
           </div>
-
           <PreviewCard className="card-bordered" bodyClass="card-inner-lg">
             <BlockHead>
               <BlockContent>
@@ -85,15 +95,20 @@ const Login = () => {
                     type="email"
                     id="default-01"
                     name="email"
-                    ref={register({ required: 'This field is required' })}
+                    ref={register({
+                      required: `${String.required_field}`,
+                    })}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email address"
+                    placeholder={`${String.enter_your} ${String.email}`}
                     className="form-control-lg form-control"
                   />
                   {errors.email && (
                     <span className="invalid">{errors.email.message}</span>
                   )}
+                  {message === 'Invalid email' ? (
+                    <span className="invalid">{message}</span>
+                  ) : null}
                 </div>
               </FormGroup>
               <FormGroup>
@@ -130,10 +145,10 @@ const Login = () => {
                     type={passState ? 'text' : 'password'}
                     id="password"
                     name="password"
-                    ref={register({ required: 'This field is required' })}
+                    ref={register({ required: `${String.required_field}` })}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter your password"
+                    placeholder={`${String.enter_your} ${String.password}`}
                     className={`form-control-lg form-control ${
                       passState ? 'is-hidden' : 'is-shown'
                     }`}
@@ -141,8 +156,12 @@ const Login = () => {
                   {errors.password && (
                     <span className="invalid">{errors.password.message}</span>
                   )}
+                  {message === 'Invalid password' ? (
+                    <span className="invalid">{message}</span>
+                  ) : null}
                 </div>
               </FormGroup>
+              {isFetching && <p>{`${isFetching}`}</p>}
               <FormGroup>
                 <Button
                   size="lg"
@@ -150,7 +169,11 @@ const Login = () => {
                   type="submit"
                   color="primary"
                 >
-                  {loading ? <Spinner size="sm" color="light" /> : 'Sign in'}
+                  {loading ? (
+                    <Spinner size="sm" color="light" />
+                  ) : (
+                    `${String.sign_in}`
+                  )}
                 </Button>
               </FormGroup>
             </Form>
