@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Logo from '../../../src/assets/images/immence_wordlogo.svg'
 import LogoDark from '../../../src/assets/images/gfx/immence.svg'
 import PageContainer from '../../layout/page-container/PageContainer'
@@ -16,36 +16,24 @@ import {
 } from '../../components/Component'
 import { Alert, Form, FormGroup, Spinner } from 'reactstrap'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import String from '../../utils/String'
 import { useDispatch } from 'react-redux'
-import {
-  clearState,
-  login,
-  userSelector,
-} from '../../services/slices/AuthThunk'
+import { login } from '../../services/slices/AuthThunk'
 import { useSelector } from 'react-redux'
-import { clearMessage } from '../../services/slices/Message'
 
 const Login = () => {
-  const [loading, setLoading] = useState(false)
   const [passState, setPassState] = useState(false)
   const [errorVal] = useState('')
   const dispatch = useDispatch()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const { errors, register, handleSubmit } = useForm()
-  const history = useHistory()
-  const { message } = useSelector((state) => state.message)
-  const { isFetching, isSuccess, isError, errorMessage } =
-    useSelector(userSelector)
+  const { isLoading, message } = useSelector((state) => state.auth)
 
   const onFormSubmit = async () => {
     dispatch(login({ email, password }))
   }
-  useEffect(() => {
-    dispatch(clearMessage())
-  }, [dispatch])
 
   return (
     <React.Fragment>
@@ -161,7 +149,6 @@ const Login = () => {
                   ) : null}
                 </div>
               </FormGroup>
-              {isFetching && <p>{`${isFetching}`}</p>}
               <FormGroup>
                 <Button
                   size="lg"
@@ -169,7 +156,7 @@ const Login = () => {
                   type="submit"
                   color="primary"
                 >
-                  {loading ? (
+                  {isLoading ? (
                     <Spinner size="sm" color="light" />
                   ) : (
                     `${String.sign_in}`

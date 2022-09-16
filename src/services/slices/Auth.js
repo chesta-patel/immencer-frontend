@@ -2,30 +2,39 @@ import { createSlice } from '@reduxjs/toolkit'
 import { login } from './AuthThunk'
 
 const initialState = {
-  token: null,
-  loading: false,
-  userData: {},
+  isLoading: false,
+  user: false,
+  isAuthenticated: false,
+  error: false,
+  message: '',
 }
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {},
-  extraReducers: {
-    [login.pending]: (state, action) => {
-      state.loading = true
-    },
-    [login.fulfilled]: (state, action) => {
-      const { accessToken, user } = action.payload
-      state.token = accessToken
-      state.userData = user
-      state.loading = false
-    },
-    [login.rejected]: (state, action) => {
-      state.loading = false
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(login.fulfilled, (state, action) => {
+        console.log('fullfield')
+        state.isLoading = false
+        state.user = action.payload
+        state.isAuthenticated = true
+      })
+      .addCase(login.pending, function (state) {
+        console.log('pending')
+        state.isLoading = true
+      })
+      .addCase(login.rejected, (state, action) => {
+        console.log('rejected')
+        console.log(action.payload.response.data.message)
+        state.isLoading = false
+        state.error = true
+        state.message = action.payload.response.data.message
+        state.user = null
+      })
   },
 })
 
-// export const {} = authSlice.actions
+export const {} = authSlice.actions
 export default authSlice.reducer

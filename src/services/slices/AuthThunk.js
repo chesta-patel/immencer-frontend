@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 import { setToken } from '../../utils/Helpers'
 import api from '../api/Api'
-import { setMessage } from './Message'
+import history from '../../utils/History'
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -16,51 +16,7 @@ export const login = createAsyncThunk(
         return thunkAPI.rejectWithValue(response.data)
       }
     } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString()
-      thunkAPI.dispatch(setMessage(message))
-      return thunkAPI.rejectWithValue()
+      return thunkAPI.rejectWithValue(error)
     }
   }
 )
-
-export const authSlice = createSlice({
-  name: 'authenticate',
-  initialState: {
-    isFetching: false,
-    isSuccess: false,
-    isError: false,
-    errorMessage: '',
-  },
-  reducers: {
-    clearState: (state) => {
-      state.isError = false
-      state.isSuccess = false
-      state.isFetching = false
-
-      return state
-    },
-  },
-  extraReducers: {
-    [login.fulfilled]: (state) => {
-      state.isFetching = 'fulfield'
-      state.isSuccess = true
-      return state
-    },
-    [login.pending]: (state) => {
-      state.isFetching = 'panding'
-    },
-    [login.rejected]: (state) => {
-      state.isFetching = 'invalid'
-      state.isError = true
-    },
-  },
-})
-
-export const { clearState } = authSlice.actions
-
-export const userSelector = (state) => state.authenticate
