@@ -15,7 +15,7 @@ const UserPermission = () => {
       <Head title="Permission Page" />
       <Content>
         <PageHeader json={roleForm} string={permissionString} />
-        <PageTable json={roleTable} string={permissionString} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

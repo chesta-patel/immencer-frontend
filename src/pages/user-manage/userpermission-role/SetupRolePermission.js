@@ -15,7 +15,7 @@ const SetupRolePermission = ({ ...props }) => {
       <Head title="Setup Role Permission" />
       <Content>
         <PageHeader json={roleForm} string={setupRoleString} />
-        <PageTable json={roleTable} string={setupRoleString} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

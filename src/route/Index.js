@@ -2,7 +2,6 @@ import React, { Suspense, useLayoutEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { UserContextProvider } from '../pages/user-manage/UserContext'
 import { RedirectAs404 } from '../utils/Utils'
-import Homepage from '../pages/HomePage'
 import Role from '../pages/user-manage/user-role/Role'
 import UserPermission from '../pages/user-manage/user-permission/UserPermission'
 import SetupRolePermission from '../pages/user-manage/userpermission-role/SetupRolePermission'
@@ -17,6 +16,8 @@ import HolidayList from '../pages/holiday/holiday-list/HolidayList'
 import CompanyDocument from '../pages/company-info/company-documents/CompanyDocument'
 import CompanyPolicy from '../pages/company-info/company-policy/CompanyPolicy'
 import UserDetail from '../pages/user-manage/user-info/UserDetail'
+import HomePage from '../pages/HomePage'
+
 const Pages = () => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
@@ -155,7 +156,7 @@ const Pages = () => {
         <Route
           exact
           path={`${process.env.PUBLIC_URL}/`}
-          component={Homepage}
+          component={HomePage}
         ></Route>
         <Route component={RedirectAs404}></Route>
       </Switch>

@@ -15,7 +15,7 @@ const Employee = ({ ...props }) => {
       <Head title="Employee" />
       <Content>
         <PageHeader json={rolForm} string={employeString} />
-        <PageTable json={roleTable} string={employeString} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

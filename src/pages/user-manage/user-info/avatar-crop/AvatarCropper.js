@@ -1,70 +1,46 @@
-import React from 'react'
-import { useState } from 'react'
-// import { Cropper } from 'react-cropper'
-import Dropzone from 'react-dropzone'
-import { Button, Col, Modal, ModalBody } from 'reactstrap'
-import commanString from '../../../../utils/CommanString'
+import React, { useState } from 'react'
+import ImgCrop from 'antd-img-crop'
+import { Upload } from 'antd'
+import 'antd/dist/antd.min.css'
+import './index.scss'
 
-function AvatarCropper() {
-  const [files, setFiles] = useState([])
-  const [modal, setModal] = useState({
-    edit: false,
-    add: false,
+const getSrcFromFile = (file) => {
+  return new Promise((resolve) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file.originFileObj)
+    reader.onload = () => resolve(reader.result)
   })
+}
+function AvatarCropper() {
+  const [fileList, setFileList] = useState([])
 
-  const onFormCancel = (e) => {
-    e.preventDefault()
-    setModal({ edit: false, add: false })
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList)
   }
-  const handleDropChange = (acceptedFiles) => {
-    setModal({ add: true })
+  const onPreview = async (file) => {
+    const src = file.url || (await getSrcFromFile(file))
+    const imgWindow = window.open(src)
 
-    setFiles(
-      acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      )
-    )
+    if (imgWindow) {
+      const image = new Image()
+      image.src = src
+      imgWindow.document.write(image.outerHTML)
+    } else {
+      window.location.href = src
+    }
   }
   return (
-    <React.Fragment>
-      <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}>
-        {({ getRootProps, getInputProps }) => (
-          <section>
-            <label className="form-label">{commanString.profile_picture}</label>
-            <div {...getRootProps()} className="drop-zone">
-              <input {...getInputProps()} />
-              {files.length === 0 && (
-                <div className="dz-message">
-                  <Button color="primary">{commanString.select}</Button>
-                </div>
-              )}
-              {files.map((file) => (
-                <div
-                  key={file.name}
-                  className="dz-preview dz-processing dz-image-preview dz-error dz-complete"
-                >
-                  <div className="dz-image">
-                    <img src={file.preview} alt="preview" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-      </Dropzone>
-      <Modal
-        isOpen={modal.add}
-        toggle={() => setModal({ add: false })}
-        className="modal-dialog-centered"
-        size="sm"
+    <ImgCrop grid rotate>
+      <Upload
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        listType="picture-card"
+        fileList={fileList}
+        onChange={onChange}
+        onPreview={onPreview}
       >
-        <ModalBody>
-          <div></div>
-        </ModalBody>
-      </Modal>
-    </React.Fragment>
+        {fileList.length < 1 && '+ Upload'}
+      </Upload>
+    </ImgCrop>
   )
 }
 

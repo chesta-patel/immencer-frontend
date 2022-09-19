@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from '../../components/Component'
 import { Link } from 'react-router-dom'
-import commanString from '../../utils/CommanString'
+import String from '../../utils/String'
 
 const AuthFooter = () => {
   return (
@@ -16,7 +16,7 @@ const AuthFooter = () => {
                   target="_blank"
                   to={`${process.env.PUBLIC_URL}/auths/terms`}
                 >
-                  {commanString.term_condition}
+                  {String.term_condition}
                 </Link>
               </li>
               <li className="nav-item">
@@ -25,7 +25,7 @@ const AuthFooter = () => {
                   target="_blank"
                   to={`${process.env.PUBLIC_URL}/auths/terms`}
                 >
-                  {`${commanString.privacy} ${commanString.policy}`}
+                  {`${String.privacy} ${String.policy}`}
                 </Link>
               </li>
               <li className="nav-item">
@@ -34,7 +34,7 @@ const AuthFooter = () => {
                   target="_blank"
                   to={`${process.env.PUBLIC_URL}/auths/faq`}
                 >
-                  {commanString.help}
+                  {String.help}
                 </Link>
               </li>
             </ul>

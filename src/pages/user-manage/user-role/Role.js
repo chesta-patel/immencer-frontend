@@ -15,7 +15,7 @@ const Role = ({ ...props }) => {
       <Head title="Role" />
       <Content>
         <PageHeader json={roleField} string={roleString} />
-        <PageTable json={roleTable} string={roleString} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

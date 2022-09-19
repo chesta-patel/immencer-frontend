@@ -14,37 +14,25 @@ import {
   Icon,
   PreviewCard,
 } from '../../components/Component'
-import { Form, FormGroup, Spinner, Alert } from 'reactstrap'
+import { Alert, Form, FormGroup, Spinner } from 'reactstrap'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import commanString from '../../utils/CommanString'
+import String from '../../utils/String'
+import { useDispatch } from 'react-redux'
+import { login } from '../../services/slices/AuthThunk'
+import { useSelector } from 'react-redux'
 
 const Login = () => {
-  const [loading, setLoading] = useState(false)
   const [passState, setPassState] = useState(false)
-  const [errorVal, setError] = useState('')
+  const [errorVal] = useState('')
+  const dispatch = useDispatch()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
   const { errors, register, handleSubmit } = useForm()
+  const { isLoading, message } = useSelector((state) => state.auth)
 
-  const onFormSubmit = (formData) => {
-    setLoading(true)
-    const loginName = 'user@immence.in'
-    const pass = '123456'
-    if (formData.name === loginName && formData.passcode === pass) {
-      localStorage.setItem('accessToken', 'token')
-      setTimeout(() => {
-        window.history.pushState(
-          `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '/'}`,
-          'auth-login',
-          `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '/'}`
-        )
-        window.location.reload()
-      }, 500)
-    } else {
-      setTimeout(() => {
-        setError(`${commanString.can_not_login}`)
-        setLoading(false)
-      }, 2000)
-    }
+  const onFormSubmit = async () => {
+    dispatch(login({ email, password }))
   }
 
   return (
@@ -69,9 +57,9 @@ const Login = () => {
           <PreviewCard className="card-bordered" bodyClass="card-inner-lg">
             <BlockHead>
               <BlockContent>
-                <BlockTitle tag="h4">{commanString.sign_in}</BlockTitle>
+                <BlockTitle tag="h4">{String.sign_in}</BlockTitle>
                 <BlockDes>
-                  <p>{commanString.access_immence_using_email_pass}</p>
+                  <p>{String.access_immence_using_email_pass}</p>
                 </BlockDes>
               </BlockContent>
             </BlockHead>
@@ -79,7 +67,7 @@ const Login = () => {
               <div className="mb-3">
                 <Alert color="danger" className="alert-icon">
                   {' '}
-                  <Icon name="alert-circle" /> {commanString.can_not_login}{' '}
+                  <Icon name="alert-circle" /> {String.unable_to_login}{' '}
                 </Alert>
               </div>
             )}
@@ -87,34 +75,40 @@ const Login = () => {
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="default-01">
-                    Email <span className="error">*</span>
+                    {String.email} <span className="error">*</span>
                   </label>
                 </div>
                 <div className="form-control-wrap">
                   <input
                     type="email"
                     id="default-01"
-                    name="name"
-                    ref={register({ required: 'This field is required' })}
-                    defaultValue="user@immence.in"
-                    placeholder="Enter your email address"
+                    name="email"
+                    ref={register({
+                      required: `${String.required_field}`,
+                    })}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={`${String.enter_your} ${String.email}`}
                     className="form-control-lg form-control"
                   />
-                  {errors.name && (
-                    <span className="invalid">{errors.name.message}</span>
+                  {errors.email && (
+                    <span className="invalid">{errors.email.message}</span>
                   )}
+                  {message === 'Invalid email' ? (
+                    <span className="invalid">{message}</span>
+                  ) : null}
                 </div>
               </FormGroup>
               <FormGroup>
                 <div className="form-label-group">
                   <label className="form-label" htmlFor="password">
-                    Passcode <span className="error">*</span>
+                    {String.password} <span className="error">*</span>
                   </label>
                   <Link
                     className="link link-primary link-sm"
                     to={`${process.env.PUBLIC_URL}/auth-reset`}
                   >
-                    {commanString.forget_code}
+                    {String.forget_code}
                   </Link>
                 </div>
                 <div className="form-control-wrap">
@@ -124,7 +118,7 @@ const Login = () => {
                       ev.preventDefault()
                       setPassState(!passState)
                     }}
-                    className={`form-icon lg form-icon-right passcode-switch ${
+                    className={`form-icon lg form-icon-right password-switch ${
                       passState ? 'is-hidden' : 'is-shown'
                     }`}
                   >
@@ -138,17 +132,21 @@ const Login = () => {
                   <input
                     type={passState ? 'text' : 'password'}
                     id="password"
-                    name="passcode"
-                    defaultValue="123456"
-                    ref={register({ required: 'This field is required' })}
-                    placeholder="Enter your passcode"
+                    name="password"
+                    ref={register({ required: `${String.required_field}` })}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder={`${String.enter_your} ${String.password}`}
                     className={`form-control-lg form-control ${
                       passState ? 'is-hidden' : 'is-shown'
                     }`}
                   />
-                  {errors.passcode && (
-                    <span className="invalid">{errors.passcode.message}</span>
+                  {errors.password && (
+                    <span className="invalid">{errors.password.message}</span>
                   )}
+                  {message === 'Invalid password' ? (
+                    <span className="invalid">{message}</span>
+                  ) : null}
                 </div>
               </FormGroup>
               <FormGroup>
@@ -158,7 +156,11 @@ const Login = () => {
                   type="submit"
                   color="primary"
                 >
-                  {loading ? <Spinner size="sm" color="light" /> : 'Sign in'}
+                  {isLoading ? (
+                    <Spinner size="sm" color="light" />
+                  ) : (
+                    `${String.sign_in}`
+                  )}
                 </Button>
               </FormGroup>
             </Form>

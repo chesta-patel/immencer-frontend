@@ -1,17 +1,17 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { getToken } from '../utils/Helpers'
 
-const auth = localStorage.getItem('accessToken')
-
-const PrivateRoute = ({ exact, component: Component, ...rest }) => (
+const auth = getToken('token')
+console.log(auth)
+const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
-    exact={exact ? true : false}
     rest
     render={(props) =>
       auth ? (
         <Component {...props} {...rest}></Component>
       ) : (
-        <Redirect to={`${process.env.PUBLIC_URL}/auth-login`}></Redirect>
+        <Redirect to={'/auth-login'}></Redirect>
       )
     }
   ></Route>

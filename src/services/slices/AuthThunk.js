@@ -1,12 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getToken, setToken, removeToken } from '../../utils/Helpers'
+import { setToken } from '../../utils/Helpers'
 import api from '../api/Api'
 import history from '../../utils/History'
 
-export const login = createAsyncThunk('auth/login', async (payload) => {
-  const response = await api.post('/login', payload)
-  setToken(response.data.accessToken)
-  history.push('/')
-  console.log(response.data)
-  return response.data
-})
+export const login = createAsyncThunk(
+  'auth/login',
+  async (payload, thunkAPI) => {
+    try {
+      const response = await api.post('/', payload)
+      if (response.status === 200) {
+        setToken(response.data.data.token)
+        window.location.href = '/'
+        return response.data
+      } else {
+        return thunkAPI.rejectWithValue(response.data)
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)

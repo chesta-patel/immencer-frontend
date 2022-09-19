@@ -15,7 +15,7 @@ const HolidayList = ({ ...props }) => {
       <Head title="Holiday List" />
       <Content>
         <PageHeader json={roleForm} string={holidayListStrig} />
-        <PageTable json={roleTable} string={holidayListStrig} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

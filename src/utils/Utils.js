@@ -1,5 +1,5 @@
 import { Redirect } from 'react-router-dom'
-import commanString from './CommanString'
+import commonString from './String'
 
 //url for production
 export var url = ''
@@ -16,7 +16,7 @@ export const checkForm = (formData) => {
   let errorState = {}
   Object.keys(formData).forEach((item) => {
     if (formData[item] === null || formData[item] === '') {
-      errorState[item] = `${commanString.this_field_is_required}`
+      errorState[item] = `${commonString.required_field}`
     }
   })
   return errorState
@@ -95,7 +95,7 @@ export const todaysDate = new Date()
 export const currentTime = () => {
   var hours = todaysDate.getHours()
   var minutes = todaysDate.getMinutes()
-  var ampm = hours >= 12 ? `${commanString.am}` : `${commanString.pm}`
+  var ampm = hours >= 12 ? 'AM' : 'PM'
   hours = hours % 12
   hours = hours ? hours : 12 // the hour '0' should be '12'
   minutes = minutes < 10 ? '0' + minutes : minutes
@@ -121,12 +121,12 @@ export const getUploadParams = () => {
   return { url: 'https://httpbin.org/post' }
 }
 export const bulkActionOptions = [
-  { value: `${commanString.suspend}`, label: `${commanString.suspend}` },
-  { value: `${commanString.delete}`, label: `${commanString.delete}` },
+  { value: `${commonString.suspend}`, label: `${commonString.suspend}` },
+  { value: `${commonString.delete}`, label: `${commonString.delete}` },
 ]
 // Converts KB to MB
 export const bytesToMegaBytes = (bytes) => {
   let result = bytes / (1024 * 1024)
   return result.toFixed(2)
 }
-export const monthNames = [`${commanString.month}`]
+export const monthNames = [`${commonString.month}`]
