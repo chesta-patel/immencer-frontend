@@ -1,7 +1,7 @@
 import React from 'react'
 import PlanS1 from '../../../../assets/images/plan-s1.145bedf2dff953a59fca891147d5fcf6.svg'
 import { Icon } from '../../../../components/Component'
-import '../userdetail.scss'
+import '../employeecreation.scss'
 import { Card } from 'reactstrap'
 function EducationCard(props) {
   return (

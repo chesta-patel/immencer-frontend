@@ -12,7 +12,7 @@ import {
   Button,
 } from '../../../components/Component'
 import { UserContext } from '../UserContext'
-import { userInfo } from './UserInfoJson'
+import { userInfo } from './EmployeeInfoJson'
 import PageTable from '../../PageTable'
 import { roleString } from '../../Strings'
 import { useHistory } from 'react-router-dom'
@@ -43,17 +43,14 @@ const UserInfo = ({ ...props }) => {
 
   return (
     <React.Fragment>
-      <Head title="User Profile" />
+      <Head title="Employee" />
       <Content>
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                User Profile
+                {String.employee}
               </BlockTitle>
-              <BlockDes className="text-soft">
-                <p>This is User Profile Page.</p>
-              </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
@@ -87,7 +84,7 @@ const UserInfo = ({ ...props }) => {
                         color="primary"
                         className="btn-icon"
                         onClick={() => {
-                          history.push('/user-manage/user-info/user-detail')
+                          history.push('/employee/employee_creation')
                         }}
                       >
                         <Icon name="plus"></Icon>
