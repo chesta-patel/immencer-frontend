@@ -15,7 +15,7 @@ const LeaveApplication = ({ ...props }) => {
       <Head title="Leave Application" />
       <Content>
         <PageHeader json={roleForm} string={leaveAppString} />
-        <PageTable json={roleTable} string={leaveAppString} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

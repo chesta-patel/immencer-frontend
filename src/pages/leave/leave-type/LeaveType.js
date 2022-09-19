@@ -15,7 +15,7 @@ const LeaveType = ({ ...props }) => {
       <Head title="Leave Type" />
       <Content>
         <PageHeader json={roleForm} string={leaveTypeString} />
-        <PageTable json={roleTable} string={leaveTypeString} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

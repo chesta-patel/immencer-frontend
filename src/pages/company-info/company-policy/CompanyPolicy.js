@@ -15,7 +15,7 @@ const CompanyPolicy = ({ ...props }) => {
       <Head title="Company Policy" />
       <Content>
         <PageHeader json={roleForm} string={companyPolicyString} />
-        <PageTable json={roleTable} string={companyPolicyString} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )
