@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import './assets/scss/immence.scss'
 import { Router } from 'react-router-dom'
