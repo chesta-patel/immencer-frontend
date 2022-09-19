@@ -16,13 +16,14 @@ import {
 } from '../../components/Component'
 import { Alert, Form, FormGroup, Spinner } from 'reactstrap'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import String from '../../utils/String'
 import { useDispatch } from 'react-redux'
 import { login } from '../../services/slices/AuthThunk'
 import { useSelector } from 'react-redux'
 
 const Login = () => {
+  const history = useHistory()
   const [passState, setPassState] = useState(false)
   const [errorVal] = useState('')
   const dispatch = useDispatch()
@@ -32,7 +33,10 @@ const Login = () => {
   const { isLoading, message } = useSelector((state) => state.auth)
 
   const onFormSubmit = async () => {
-    dispatch(login({ email, password }))
+    let callAPI = await dispatch(login({ email, password }))
+    if (callAPI.payload.isSuccess) {
+      history.push('/')
+    }
   }
 
   return (
