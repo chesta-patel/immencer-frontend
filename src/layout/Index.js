@@ -10,13 +10,18 @@ const Layout = () => {
   //Sidebar
   const [mobileView, setMobileView] = useState()
   const [visibility, setVisibility] = useState(false)
-  const [themeState] = useState({
+  const [themeState, setTheme] = useState({
     main: 'default',
     sidebar: 'dark',
     header: 'white',
     skin: 'light',
   })
 
+  const changeTheme = () => {
+    // let updateTheme = themeState
+    // updateTheme.sidebar = 'navyblue'
+    // setTheme(updateTheme)
+  }
   useEffect(() => {
     viewChange()
   }, [])
@@ -82,6 +87,7 @@ const Layout = () => {
               setVisibility={setVisibility}
               fixed
               theme={themeState.header}
+              changetheme={changeTheme}
             />
             <Pages />
             <Footer />
