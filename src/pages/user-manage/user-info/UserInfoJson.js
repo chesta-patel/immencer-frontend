@@ -50,7 +50,7 @@ export const userCreate = [
     type: 'text',
     name: `${String.first_name}`,
     placeholder: `${String.enter} ${String.first_name}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 2,
@@ -58,7 +58,7 @@ export const userCreate = [
     type: 'text',
     name: `${String.middle_name}`,
     placeholder: `${String.enter} ${String.middle_name}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 3,
@@ -66,7 +66,7 @@ export const userCreate = [
     type: 'text',
     name: `${String.last_name}`,
     placeholder: `${String.enter} ${String.last_name}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ export const userCreate = [
     type: 'text',
     name: `${String.employee_code}`,
     placeholder: `${String.enter} ${String.employee_code}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 5,
@@ -82,7 +82,7 @@ export const userCreate = [
     type: 'email',
     name: `${String.company_email}`,
     placeholder: `${String.enter} ${String.company_email}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 6,
@@ -100,7 +100,6 @@ export const userCreate = [
         label: `${String.ex_employee}`,
       },
     ],
-    required: '*',
   },
 
   {
@@ -112,7 +111,6 @@ export const userCreate = [
       { value: `${String.admin}`, label: `${String.admin}` },
       { value: `${String.user}`, label: `${String.user}` },
     ],
-    required: '*',
   },
   {
     id: 8,
@@ -124,7 +122,6 @@ export const userCreate = [
       { value: `${String.user}`, label: `${String.user}` },
       { value: `${String.hr}`, label: `${String.hr}` },
     ],
-    required: '*',
   },
   {
     id: 9,
@@ -137,33 +134,34 @@ export const userCreate = [
         label: `${String.amit_kasetiya}`,
       },
     ],
-    required: '*',
   },
   {
     id: 10,
     label_name: `${String.joining_date}`,
     type: 'date',
     name: `${String.joining_date}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 11,
     label_name: `${String.onboarding_date}`,
     type: 'date',
     name: `${String.onboarding_date}`,
+    required: 'Required *',
   },
   {
     id: 12,
     label_name: `${String.relieving_date}`,
     type: 'date',
     name: `${String.relieving_date}`,
+    required: 'Required *',
   },
   {
     id: 13,
     label_name: `${String.birth_day}`,
     type: 'date',
     name: `${String.birth_day}`,
-    required: '*',
+    required: 'Required *',
     today: new Date().toISOString().split('T')[0],
   },
   {
@@ -171,14 +169,12 @@ export const userCreate = [
     label_name: `${String.nationality}`,
     type: 'select',
     name: `${String.nationality}`,
-    required: '*',
   },
   {
     id: 15,
     label_name: `${String.blood_group}`,
     type: 'select',
     name: `${String.blood_group}`,
-    required: '*',
     option: [
       { value: `${String.a}`, label: `${String.a}` },
       { value: `${String.a_plus}`, label: `${String.a_plus}` },
@@ -193,7 +189,6 @@ export const userCreate = [
     label_name: `${String.gender}`,
     type: 'select',
     name: `${String.gender}`,
-    required: '*',
     option: [
       { value: `${String.male}`, label: `${String.male}` },
       { value: `${String.female}`, label: `${String.female}` },
@@ -205,7 +200,7 @@ export const userCreate = [
     label_name: `${String.personal_email}`,
     type: 'email',
     name: `${String.personal_email}`,
-    required: '*',
+    required: 'Required *',
     placeholder: `${String.Please_enter} ${String.personal_email}`,
   },
   {
@@ -213,7 +208,7 @@ export const userCreate = [
     label_name: `${String.mobile_number}`,
     type: 'number',
     name: `${String.mobile}`,
-    required: '*',
+    required: 'Required *',
     placeholder: `${String.Please_enter} ${String.mobile}`,
   },
   {
@@ -222,13 +217,14 @@ export const userCreate = [
     type: 'number',
     name: `${String.whatsapp_mobile}`,
     placeholder: `${String.Please_enter} ${String.whatsapp_mobile}`,
+    required: 'Required *',
   },
   {
     id: 20,
     label_name: `${String.parent_mobile}`,
     type: 'number',
     name: `${String.parent_mobile}`,
-    required: '*',
+    required: 'Required *',
     placeholder: `${String.Please_enter} ${String.parent_mobile}`,
   },
   {
@@ -237,6 +233,7 @@ export const userCreate = [
     type: 'number',
     name: `${String.aadhaar_card_number}`,
     placeholder: `${String.Please_enter} ${String.aadhaar_card_number}`,
+    required: 'Required *',
   },
   {
     id: 22,
@@ -244,6 +241,7 @@ export const userCreate = [
     type: 'number',
     name: `${String.pan_card_number}`,
     placeholder: `${String.Please_enter} ${String.pan_card_number}`,
+    required: 'Required *',
   },
 ]
 
@@ -254,7 +252,7 @@ export const AddressDetailform = [
     type: 'text',
     name: `${String.address_1}`,
     placeholder: `${String.enter} ${String.address_1}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 2,
@@ -262,7 +260,7 @@ export const AddressDetailform = [
     type: 'text',
     name: `${String.address_2}`,
     placeholder: `${String.enter} ${String.address_2}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 3,
@@ -270,7 +268,7 @@ export const AddressDetailform = [
     type: 'text',
     name: `${String.city}`,
     placeholder: `${String.enter} ${String.city}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 6,
@@ -278,7 +276,7 @@ export const AddressDetailform = [
     type: 'number',
     name: `${String.postal_code}`,
     placeholder: `${String.enter} ${String.postal_code}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 5,
@@ -286,7 +284,7 @@ export const AddressDetailform = [
     type: 'text',
     name: `${String.state_region}`,
     placeholder: `${String.enter} ${String.state_region}`,
-    required: '*',
+    required: 'Required *',
   },
   {
     id: 6,
@@ -294,7 +292,6 @@ export const AddressDetailform = [
     type: 'select',
     name: `${String.country}`,
     placeholder: `${String.enter} ${String.country}`,
-    required: '*',
     option: [{ value: `${String.indian}`, label: `${String.indian}` }],
   },
 ]
