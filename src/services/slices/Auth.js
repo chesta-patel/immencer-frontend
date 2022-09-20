@@ -16,18 +16,14 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        console.log('fullfield')
         state.isLoading = false
         state.user = action.payload
         state.isAuthenticated = true
       })
       .addCase(login.pending, function (state) {
-        console.log('pending')
         state.isLoading = true
       })
       .addCase(login.rejected, (state, action) => {
-        console.log('rejected')
-        console.log(action.payload.response.data.message)
         state.isLoading = false
         state.error = true
         state.message = action.payload.response.data.message
