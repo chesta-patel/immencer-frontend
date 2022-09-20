@@ -7,6 +7,7 @@ import {
   Row,
   Col,
 } from 'reactstrap'
+import String from '../../utils/String'
 
 const DataTablePagination = ({
   itemPerPage,
@@ -30,7 +31,7 @@ const DataTablePagination = ({
   useEffect(() => {
     onChangeRowsPerPage(customItemPerPage)
     setRowsPerPage(customItemPerPage)
-  }, [customItemPerPage]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [customItemPerPage])
 
   return (
     <Row className="align-items-center">
@@ -81,7 +82,7 @@ const DataTablePagination = ({
               }}
               href="#next"
             >
-              <span>Next</span>
+              <span>{String.next}</span>
               <Icon name="chevrons-right" />
             </PaginationLink>
           </PaginationItem>

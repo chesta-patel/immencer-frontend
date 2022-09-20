@@ -8,7 +8,7 @@ import {
   tableHeader,
   tableRow,
   userCreate,
-} from './UserInfoJson'
+} from './EmployeeInfoJson'
 import String from '../../../utils/String'
 import Content from '../../../layout/content/Content'
 import { cloneDeep } from 'lodash'
@@ -20,7 +20,7 @@ import {
   DropdownItem,
 } from 'reactstrap'
 import Education from './education/Education'
-import './userdetail.scss'
+import './employeecreation.scss'
 import AvatarCropper from './avatar-crop/AvatarCropper'
 
 const UserCreate = (props) => {

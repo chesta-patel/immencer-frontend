@@ -4,6 +4,7 @@ import SimpleBar from 'simplebar-react'
 import Logo from '../logo/Logo'
 import Menu from '../menu/Menu'
 import Toggle from './Toggle'
+import './sidebar.scss'
 
 const Sidebar = ({
   fixed,
@@ -33,7 +34,7 @@ const Sidebar = ({
 
   return (
     <div className={classes}>
-      <div className="nk-sidebar-element nk-sidebar-head">
+      <div className="nk-sidebar-element nk-sidebar-head" id="sidebar_logo">
         <div className="nk-menu-trigger">
           <Toggle
             className="nk-nav-toggle nk-quick-nav-icon d-xl-none mr-n2"

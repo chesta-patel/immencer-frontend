@@ -1,6 +1,7 @@
 import React from 'react'
 import Icon from '../icon/Icon'
 import { Pagination, PaginationLink, PaginationItem } from 'reactstrap'
+import String from '../../utils/String'
 
 const PaginationComponent = ({
   itemPerPage,
@@ -64,7 +65,7 @@ const PaginationComponent = ({
           }}
           href="#next"
         >
-          <span>Next</span>
+          <span>{String.next}</span>
           <Icon name="chevrons-right" />
         </PaginationLink>
       </PaginationItem>

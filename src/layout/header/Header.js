@@ -33,7 +33,7 @@ const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
                 className="user-dropdown"
                 onClick={() => setVisibility(false)}
               >
-                <User />
+                <User changetheme={props.changetheme} />
               </li>
             </ul>
           </div>

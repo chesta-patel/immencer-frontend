@@ -45,6 +45,15 @@
         border-left-color: $sidebar-border-light-color;
       }
     }
+    &.is-navyblue {
+      background: $sidebar-bg-navyblue-color;
+      @if ($rtl==false) {
+        border-right-color: $sidebar-border-navyblue-color;
+      }
+      @if ($rtl==true) {
+        border-left-color: $sidebar-border-navyblue-color;
+      }
+    }
 
     @if ($dark_option==true) {
       &.is-dark {
