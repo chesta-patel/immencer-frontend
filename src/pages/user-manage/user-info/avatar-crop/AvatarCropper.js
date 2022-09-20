@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import ImgCrop from 'antd-img-crop'
 import { Upload } from 'antd'
 import 'antd/dist/antd.min.css'
-import './index.scss'
 
 const getSrcFromFile = (file) => {
   return new Promise((resolve) => {

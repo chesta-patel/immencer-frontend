@@ -47,11 +47,6 @@ const Login = () => {
           <div className="brand-logo pb-4 text-center">
             <Link to={process.env.PUBLIC_URL + '/'} className="logo-link">
               <img
-                className="logo-light logo-img logo-img-lg"
-                src={Logo}
-                alt="logo"
-              />
-              <img
                 className="logo-dark logo-img logo-img-lg"
                 src={LogoDark}
                 alt="logo-dark"

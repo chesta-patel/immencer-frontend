@@ -63,7 +63,7 @@ const Layout = () => {
     if (visibility === false) {
       setVisibility(true)
     } else {
-      setVisibility(true)
+      setVisibility(false)
     }
   }
   useEffect(() => {
@@ -76,8 +76,8 @@ const Layout = () => {
     if (window.innerWidth < 1200) {
       setMobileView(true)
     } else {
-      setMobileView(true)
-      setVisibility(true)
+      setMobileView(false)
+      setVisibility(false)
     }
   }
   window.addEventListener('load', viewChange)
