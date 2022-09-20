@@ -33,8 +33,27 @@ const UserCreate = (props) => {
   const [Fdata, setFdata] = useState({ ...initialState })
 
   const submitForm = (e) => {
-    setvalidation(true)
     e.preventDefault()
+    setvalidation(true)
+
+    let checkValidation = []
+    userCreate.map((formFields) => {
+      if (formFields.required && !Fdata[`${formFields.name}`]) {
+        checkValidation.push(formFields.name)
+      } else {
+        let filterCheckValidation = checkValidation?.filter(
+          (value) => value !== formFields.name
+        )
+        checkValidation = filterCheckValidation
+      }
+      // eslint-disable-next-line array-callback-return
+      return
+    })
+
+    if (checkValidation.length === 0) {
+      console.log('Next====>')
+      props.next()
+    }
   }
 
   return (
@@ -56,13 +75,6 @@ const UserCreate = (props) => {
               <Col md="4">
                 <FormGroup>
                   <label className="form-label">{formFields.label_name}</label>
-                  {formFields.required &&
-                    !Fdata[`${formFields.name}`] &&
-                    validation && (
-                      <span className="error-message">
-                        {formFields.required}
-                      </span>
-                    )}
                   <RSelect
                     options={formFields.option}
                     defaultValue={{
@@ -70,6 +82,13 @@ const UserCreate = (props) => {
                       label: formFields.option?.[0]?.label,
                     }}
                   />
+                  {formFields.required &&
+                    !Fdata[`${formFields.name}`] &&
+                    validation && (
+                      <span className="error-message">
+                        {formFields.required}
+                      </span>
+                    )}
                 </FormGroup>
               </Col>
             )
@@ -78,14 +97,6 @@ const UserCreate = (props) => {
               <Col md="4">
                 <FormGroup>
                   <label className="form-label">{formFields.label_name}</label>
-                  {''}
-                  {formFields.required &&
-                    !Fdata[`${formFields.name}`] &&
-                    validation && (
-                      <span className="error-message">
-                        {formFields.required}
-                      </span>
-                    )}
                   <input
                     className="form-control"
                     type={formFields.type}
@@ -98,8 +109,21 @@ const UserCreate = (props) => {
                       setFdata({ ...oldState })
                       setvalidation(true)
                     }}
+                    onBlur={(e) => {
+                      const oldState = cloneDeep(Fdata)
+                      oldState[`${formFields.name}`] = e.target.value
+                      setFdata({ ...oldState })
+                      setvalidation(true)
+                    }}
                     max={formFields.today}
                   />
+                  {formFields.required &&
+                    !Fdata[`${formFields.name}`] &&
+                    validation && (
+                      <span className="error-message">
+                        {formFields.required}
+                      </span>
+                    )}
                 </FormGroup>
               </Col>
             )
@@ -112,7 +136,7 @@ const UserCreate = (props) => {
       <div className="actions clearfix">
         <ul>
           <li>
-            <Button color="primary" type="submit" onClick={props.next}>
+            <Button color="primary" type="submit">
               {String.next}
             </Button>
           </li>
@@ -133,9 +157,26 @@ const AddressDetails = (props) => {
   const [Fdata, setFdata] = useState({ ...initialState })
 
   const submitForm = (e) => {
-    setValidate(true)
     e.preventDefault()
-    props.next()
+    setValidate(true)
+    let checkValidation = []
+    userCreate.map((formFields) => {
+      if (formFields.required && !Fdata[`${formFields.name}`]) {
+        checkValidation.push(formFields.name)
+      } else {
+        let filterCheckValidation = checkValidation?.filter(
+          (value) => value !== formFields.name
+        )
+        checkValidation = filterCheckValidation
+      }
+      // eslint-disable-next-line array-callback-return
+      return
+    })
+
+    if (checkValidation.length === 0) {
+      console.log('Next====>')
+      props.next()
+    }
   }
   const onChangeAddress = (event) => {
     if (event.target.checked) {
@@ -172,13 +213,6 @@ const AddressDetails = (props) => {
                     <label className="form-label">
                       {formFields.label_name}
                     </label>
-                    {formFields.required &&
-                      !Fdata[`${formFields.name}`] &&
-                      validate && (
-                        <span style={{ color: 'red' }}>
-                          {formFields.required}
-                        </span>
-                      )}
                     <RSelect
                       options={formFields.option}
                       defaultValue={{
@@ -186,6 +220,13 @@ const AddressDetails = (props) => {
                         label: formFields.option?.[0]?.label,
                       }}
                     />
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span className="error-message">
+                          {formFields.required}
+                        </span>
+                      )}
                   </FormGroup>
                 </Col>
               )
@@ -196,13 +237,6 @@ const AddressDetails = (props) => {
                     <label className="form-label">
                       {formFields.label_name}
                     </label>
-                    {formFields.required &&
-                      !Fdata[`${formFields.name}`] &&
-                      validate && (
-                        <span style={{ color: 'red' }}>
-                          {formFields.required}
-                        </span>
-                      )}
                     <input
                       className="form-control"
                       type={formFields.type}
@@ -215,7 +249,20 @@ const AddressDetails = (props) => {
                         setFdata({ ...oldState })
                         setValidate(true)
                       }}
+                      onBlur={(e) => {
+                        const oldState = cloneDeep(Fdata)
+                        oldState[`${formFields.name}`] = e.target.value
+                        setFdata({ ...oldState })
+                        setValidate(true)
+                      }}
                     />
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span className="error-message">
+                          {formFields.required}
+                        </span>
+                      )}
                   </FormGroup>
                 </Col>
               )
@@ -248,13 +295,6 @@ const AddressDetails = (props) => {
                     <label className="form-label">
                       {formFields.label_name}
                     </label>
-                    {formFields.required &&
-                      !Adata[`${formFields.name}`] &&
-                      validate && (
-                        <span style={{ color: 'red' }}>
-                          {formFields.required}
-                        </span>
-                      )}
                     <RSelect
                       options={formFields.option}
                       defaultValue={{
@@ -262,6 +302,13 @@ const AddressDetails = (props) => {
                         label: formFields.option?.[0]?.label,
                       }}
                     />
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span className="error-message">
+                          {formFields.required}
+                        </span>
+                      )}
                   </FormGroup>
                 </Col>
               )
@@ -272,13 +319,6 @@ const AddressDetails = (props) => {
                     <label className="form-label">
                       {formFields.label_name}
                     </label>
-                    {formFields.required &&
-                      !Adata[`${formFields.name}`] &&
-                      validate && (
-                        <span style={{ color: 'red' }}>
-                          {formFields.required}
-                        </span>
-                      )}
                     <input
                       className="form-control"
                       type={formFields.type}
@@ -291,7 +331,20 @@ const AddressDetails = (props) => {
                         setAdata({ ...oldState })
                         setValidate(true)
                       }}
+                      onBlur={(e) => {
+                        const oldState = cloneDeep(Adata)
+                        oldState[`${formFields.name}`] = e.target.value
+                        setAdata({ ...oldState })
+                        setValidate(true)
+                      }}
                     />
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span className="error-message">
+                          {formFields.required}
+                        </span>
+                      )}
                   </FormGroup>
                 </Col>
               )
