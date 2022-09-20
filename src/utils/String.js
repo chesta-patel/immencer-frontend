@@ -57,7 +57,6 @@ const String = {
   immence_2022: '2022-immence',
   immence: 'immence',
   administrator: 'Administrator',
-  abu_bin_ishityak: 'Abu Bin Ishityak',
   profile: 'Profile',
   account_setting: 'Account Settings',
   login_activity: 'Login Activity',
@@ -180,6 +179,7 @@ const String = {
   attachment: 'Attachment ',
   password: 'Password',
   enter_your: 'Enter your',
+  next: 'Next',
 }
 
 export default String

@@ -7,30 +7,8 @@ const menu = [
   },
   {
     icon: 'users',
-    text: `${String.user_manage}`,
-    active: false,
-    subMenu: [
-      {
-        text: `${String.role}`,
-        link: '/user-manage/role',
-      },
-      {
-        text: `${String.permission}`,
-        link: '/user-manage/user-permission',
-      },
-      {
-        text: `${String.setup_role_permission}`,
-        link: '/user-manage/setup-role-permission',
-      },
-      {
-        text: `${String.user}`,
-        link: '/user-manage/user-info',
-      },
-      {
-        text: `${String.employee}`,
-        link: '/user-manage/employee',
-      },
-    ],
+    text: `${String.employee}`,
+    link: '/employee',
   },
   {
     icon: 'archived',

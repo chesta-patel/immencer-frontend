@@ -2,11 +2,8 @@ import React, { Suspense, useLayoutEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { UserContextProvider } from '../pages/user-manage/UserContext'
 import { RedirectAs404 } from '../utils/Utils'
-import Role from '../pages/user-manage/user-role/Role'
-import UserPermission from '../pages/user-manage/user-permission/UserPermission'
-import SetupRolePermission from '../pages/user-manage/userpermission-role/SetupRolePermission'
-import UserInfo from '../pages/user-manage/user-info/UserInfo'
-import Employee from '../pages/user-manage/user-employee/Employee'
+import EmployeeInfo from '../pages/user-manage/user-info/EmployeeInfo'
+import Employee from '../pages/user-manage/user-info/EmployeeInfo'
 import AssetsType from '../pages/assets/asset-type/AssetsType'
 import AssetApplication from '../pages/assets/assets-application/AssetsApplication'
 import LeaveType from '../pages/leave/leave-type/LeaveType'
@@ -15,7 +12,7 @@ import HolidayType from '../pages/holiday/holiday-type/HolidayType'
 import HolidayList from '../pages/holiday/holiday-list/HolidayList'
 import CompanyDocument from '../pages/company-info/company-documents/CompanyDocument'
 import CompanyPolicy from '../pages/company-info/company-policy/CompanyPolicy'
-import UserDetail from '../pages/user-manage/user-info/UserDetail'
+import EmployeeCreation from '../pages/user-manage/user-info/EmployeeCreation'
 import HomePage from '../pages/HomePage'
 
 const Pages = () => {
@@ -27,48 +24,21 @@ const Pages = () => {
     <Suspense fallback={<div />}>
       <Switch>
         {/*Dashboards*/}
-        <Route //Context Api added
+        <Route
           exact
-          path={`${process.env.PUBLIC_URL}/user-manage/role`}
+          path={`${process.env.PUBLIC_URL}/employee`}
           render={() => (
             <UserContextProvider>
-              <Role />
-            </UserContextProvider>
-          )}
-        ></Route>
-        <Route //Context Api added
-          exact
-          path={`${process.env.PUBLIC_URL}/user-manage/user-permission`}
-          render={() => (
-            <UserContextProvider>
-              <UserPermission />
+              <EmployeeInfo />
             </UserContextProvider>
           )}
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/user-manage/setup-role-permission`}
+          path={`${process.env.PUBLIC_URL}/employee/employee_creation`}
           render={() => (
             <UserContextProvider>
-              <SetupRolePermission />
-            </UserContextProvider>
-          )}
-        ></Route>
-        <Route
-          exact
-          path={`${process.env.PUBLIC_URL}/user-manage/user-info`}
-          render={() => (
-            <UserContextProvider>
-              <UserInfo />
-            </UserContextProvider>
-          )}
-        ></Route>
-        <Route
-          exact
-          path={`${process.env.PUBLIC_URL}/user-manage/user-info/user-detail`}
-          render={() => (
-            <UserContextProvider>
-              <UserDetail />
+              <EmployeeCreation />
             </UserContextProvider>
           )}
         ></Route>

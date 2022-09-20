@@ -11,7 +11,7 @@ import {
 } from 'reactstrap'
 import { Icon } from '../../../../components/Component'
 import String from '../../../../utils/String'
-import '../userdetail.scss'
+import '../employeecreation.scss'
 import EducationCard from './EducationCard'
 
 function Education(props) {
