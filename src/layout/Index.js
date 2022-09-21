@@ -10,6 +10,7 @@ const Layout = () => {
   //Sidebar
   const [mobileView, setMobileView] = useState()
   const [visibility, setVisibility] = useState(false)
+  const [showimg, setShowimg] = useState()
   const [themeState, setTheme] = useState({
     main: 'default',
     sidebar: 'dark',
@@ -18,11 +19,31 @@ const Layout = () => {
   })
 
   const changeTheme = () => {
-    // let updateTheme = themeState
-    // updateTheme.sidebar = 'navyblue'
-    // setTheme(updateTheme)
+    const token = localStorage.getItem('navyblue')
+    setShowimg(token)
+    if (themeState.sidebar === 'dark') {
+      let updateTheme = themeState
+      updateTheme.sidebar = 'navyblue'
+      setTheme(updateTheme)
+      localStorage.setItem('navyblue', themeState.sidebar)
+    } else {
+      localStorage.removeItem('navyblue')
+      let updateTheme = themeState
+      updateTheme.sidebar = 'dark'
+      setTheme(updateTheme)
+    }
   }
   useEffect(() => {
+    const token = localStorage.getItem('navyblue')
+    if (token === 'navyblue') {
+      let updateTheme = themeState
+      updateTheme.sidebar = 'navyblue'
+      setTheme(updateTheme)
+    } else {
+      let updateTheme = themeState
+      updateTheme.sidebar = 'dark'
+      setTheme(updateTheme)
+    }
     viewChange()
   }, [])
   // Stops scrolling on overlay
