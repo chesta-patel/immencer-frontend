@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { getToken } from '../utils/Helpers'
 
 const auth = getToken('token')
-console.log(auth)
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     rest

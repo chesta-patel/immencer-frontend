@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserAvatar from '../../../../components/user/UserAvatar'
 import { DropdownToggle, DropdownMenu, Dropdown, Button } from 'reactstrap'
 import { Icon } from '../../../../components/Component'
@@ -9,20 +9,20 @@ import immence_logo from '../../../../assets/images/immence_logo.svg'
 const User = (props) => {
   const [open, setOpen] = useState(false)
   const toggle = () => setOpen((prevState) => !prevState)
-
+  const [showimg, setShowimg] = useState('')
+  const [text, settext] = useState('Admin')
   const handleSignout = () => {
     localStorage.removeItem('accessToken')
   }
-
   return (
     <React.Fragment>
-      <Button color="white">
+      <Button color="white" onClick={props.changetheme}>
+        {' '}
         <img
           className="logo-dark logo-img"
           src={immence_logo}
           alt="logo"
-          onClick={props.changetheme}
-        />
+        />{' '}
       </Button>
       <Dropdown isOpen={open} className="user-dropdown" toggle={toggle}>
         <DropdownToggle

@@ -138,7 +138,7 @@
 .sub-text {
   display: block;
   font-size: $fx-sz-13;
-  color: $base-light;
+  color: $base-600;
   span + .dot,
   .dot + span {
     @if ($rtl==false) {
