@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Block, RSelect } from '../../../components/Component'
 import { useForm } from 'react-hook-form'
 import { Steps, Step } from 'react-step-builder'
@@ -22,6 +22,7 @@ import {
 import Education from './education/Education'
 import './employeecreation.scss'
 import AvatarCropper from './avatar-crop/AvatarCropper'
+import { useSelector } from 'react-redux'
 
 const UserCreate = (props) => {
   const initialState = {}
@@ -51,7 +52,7 @@ const UserCreate = (props) => {
     })
 
     if (checkValidation.length === 0) {
-      console.log('Next====>')
+      // console.log('Next====>')
       props.next()
     }
   }
@@ -160,7 +161,7 @@ const AddressDetails = (props) => {
     e.preventDefault()
     setValidate(true)
     let checkValidation = []
-    userCreate.map((formFields) => {
+    userCreate.map((formFields, index) => {
       if (formFields.required && !Fdata[`${formFields.name}`]) {
         checkValidation.push(formFields.name)
       } else {
@@ -375,7 +376,7 @@ const Permission = (props) => {
   const [checked] = useState(false)
 
   const toggle = () => setDropdownOpen((prevState) => !prevState)
-  tableHeader.map((e) => {
+  tableHeader.map((e, index) => {
     for (const key in e) {
       if (e[key] === '') {
         delete e[key]
@@ -444,10 +445,10 @@ const Permission = (props) => {
                 />
                 {row.name}
               </td>
-              {c.map((chekbox, index) => {
+              {c.map((checkbox, index) => {
                 return (
                   <td>
-                    <input type={chekbox.type} id={`${i}${index}`} />
+                    <input type={checkbox.type} id={`${i}${index}`} />
                   </td>
                 )
               })}
