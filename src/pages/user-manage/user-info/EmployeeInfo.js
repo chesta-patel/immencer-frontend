@@ -4,7 +4,6 @@ import Head from '../../../layout/head/Head'
 import { userData } from '../UserData'
 import {
   BlockBetween,
-  BlockDes,
   BlockHead,
   BlockHeadContent,
   BlockTitle,
@@ -17,8 +16,11 @@ import PageTable from '../../PageTable'
 import { roleString } from '../../Strings'
 import { useHistory } from 'react-router-dom'
 import String from '../../../utils/String'
+import { useDispatch } from 'react-redux'
+import { fetchData } from '../../../services/slices/AuthThunk'
 
 const UserInfo = ({ ...props }) => {
+  const dispatch = useDispatch()
   // Stats declaration for data
   const [sm, updateSm] = useState(false)
   const { contextData } = useContext(UserContext)
@@ -27,6 +29,13 @@ const UserInfo = ({ ...props }) => {
   const [onSearchText] = useState('')
   const [roleTable] = useState(userInfo)
 
+  useEffect(() => {
+    dispatch(fetchData('employmentStatus'))
+    dispatch(fetchData('department'))
+    dispatch(fetchData('designation'))
+    dispatch(fetchData('bloodGroup'))
+    dispatch(fetchData('gender'))
+  }, [])
   useEffect(() => {
     if (onSearchText !== '') {
       const filteredObject = userData.filter((item) => {

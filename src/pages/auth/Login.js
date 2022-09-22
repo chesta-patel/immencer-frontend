@@ -35,7 +35,7 @@ const Login = () => {
   const onFormSubmit = async () => {
     let callAPI = await dispatch(login({ email, password }))
     if (callAPI.payload.isSuccess) {
-      history.push('/')
+      window.location.href = '/'
     }
   }
 

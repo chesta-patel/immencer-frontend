@@ -52,7 +52,7 @@ const App = () => {
         component={Error504Classic}
       ></Route>
       {/*Main Routes*/}
-      <Route exact path="" component={Layout}></Route>
+      <PrivateRoute exact path="" component={Layout}></PrivateRoute>
       <Route component={RedirectAs404}></Route>
     </Switch>
   )

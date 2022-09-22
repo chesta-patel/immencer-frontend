@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { setToken } from '../../utils/Helpers'
 import api from '../api/Api'
+import empApi from '../api/employee/EmpStatusApi'
+let token = localStorage.getItem('token')
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -18,3 +20,20 @@ export const login = createAsyncThunk(
     }
   }
 )
+
+export const fetchData = createAsyncThunk('', async (payload, thunkAPI) => {
+  try {
+    const response = await empApi.get(
+      `${payload}`,
+      {
+        headers: {
+          authentication: `${token}`,
+        },
+      },
+      payload
+    )
+    return response.data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error)
+  }
+})
