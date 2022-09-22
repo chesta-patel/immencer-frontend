@@ -1,12 +1,5 @@
-import React, { useState } from 'react'
-import {
-  Block,
-  BlockTitle,
-  DataTableBody,
-  DataTableHead,
-  DataTableRow,
-  RSelect,
-} from '../../../components/Component'
+import React, { useEffect, useState } from 'react'
+import { Block, RSelect } from '../../../components/Component'
 import { useForm } from 'react-hook-form'
 import { Steps, Step } from 'react-step-builder'
 import { Row, Col, FormGroup, Button } from 'reactstrap'
@@ -15,8 +8,8 @@ import {
   tableHeader,
   tableRow,
   userCreate,
-} from './UserInfoJson'
-import commanString from '../../../utils/CommanString'
+} from './EmployeeInfoJson'
+import String from '../../../utils/String'
 import Content from '../../../layout/content/Content'
 import { cloneDeep } from 'lodash'
 import {
@@ -26,10 +19,10 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap'
-import Dropzone from 'react-dropzone'
-import Education from './Education'
-import DataTable from 'react-data-table-component'
-import './userdetail.scss'
+import Education from './education/Education'
+import './employeecreation.scss'
+import AvatarCropper from './avatar-crop/AvatarCropper'
+import { useSelector } from 'react-redux'
 
 const UserCreate = (props) => {
   const initialState = {}
@@ -39,22 +32,30 @@ const UserCreate = (props) => {
   const [validation, setvalidation] = useState(false)
   const { handleSubmit } = useForm()
   const [Fdata, setFdata] = useState({ ...initialState })
-  const [files, setFiles] = useState([])
 
   const submitForm = (e) => {
-    setvalidation(true)
     e.preventDefault()
+    setvalidation(true)
+
+    let checkValidation = []
+    userCreate.map((formFields) => {
+      if (formFields.required && !Fdata[`${formFields.name}`]) {
+        checkValidation.push(formFields.name)
+      } else {
+        let filterCheckValidation = checkValidation?.filter(
+          (value) => value !== formFields.name
+        )
+        checkValidation = filterCheckValidation
+      }
+      // eslint-disable-next-line array-callback-return
+      return
+    })
+
+    if (checkValidation.length === 0) {
+      // console.log('Next====>')
+      props.next()
+    }
   }
-  const handleDropChange = (acceptedFiles) => {
-    setFiles(
-      acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      )
-    )
-  }
-  var today = new Date().toISOString().split('T')[0]
 
   return (
     <form
@@ -74,16 +75,7 @@ const UserCreate = (props) => {
             return (
               <Col md="4">
                 <FormGroup>
-                  <label className={formFields.label_class}>
-                    {formFields.label_name}
-                  </label>
-                  {formFields.required &&
-                    !Fdata[`${formFields.name}`] &&
-                    validation && (
-                      <span className="error-message">
-                        {formFields.required}
-                      </span>
-                    )}
+                  <label className="form-label">{formFields.label_name}</label>
                   <RSelect
                     options={formFields.option}
                     defaultValue={{
@@ -91,17 +83,6 @@ const UserCreate = (props) => {
                       label: formFields.option?.[0]?.label,
                     }}
                   />
-                </FormGroup>
-              </Col>
-            )
-          } else {
-            return (
-              <Col md="4">
-                <FormGroup>
-                  <label className={formFields.label_class}>
-                    {formFields.label_name}
-                  </label>
-                  {''}
                   {formFields.required &&
                     !Fdata[`${formFields.name}`] &&
                     validation && (
@@ -109,8 +90,16 @@ const UserCreate = (props) => {
                         {formFields.required}
                       </span>
                     )}
+                </FormGroup>
+              </Col>
+            )
+          } else {
+            return (
+              <Col md="4">
+                <FormGroup>
+                  <label className="form-label">{formFields.label_name}</label>
                   <input
-                    className={formFields.input_class}
+                    className="form-control"
                     type={formFields.type}
                     name={formFields.name}
                     placeholder={formFields.placeholder}
@@ -121,48 +110,35 @@ const UserCreate = (props) => {
                       setFdata({ ...oldState })
                       setvalidation(true)
                     }}
+                    onBlur={(e) => {
+                      const oldState = cloneDeep(Fdata)
+                      oldState[`${formFields.name}`] = e.target.value
+                      setFdata({ ...oldState })
+                      setvalidation(true)
+                    }}
                     max={formFields.today}
                   />
+                  {formFields.required &&
+                    !Fdata[`${formFields.name}`] &&
+                    validation && (
+                      <span className="error-message">
+                        {formFields.required}
+                      </span>
+                    )}
                 </FormGroup>
               </Col>
             )
           }
         })}
         <Col md="4">
-          <Dropzone onDrop={(acceptedFiles) => handleDropChange(acceptedFiles)}>
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div
-                  {...getRootProps()}
-                  className="dropzone upload-zone dz-clickable"
-                >
-                  <input {...getInputProps()} />
-                  {files.length === 0 && (
-                    <div className="dz-message">
-                      <Button color="primary">SELECT</Button>
-                    </div>
-                  )}
-                  {files.map((file) => (
-                    <div
-                      key={file.name}
-                      className="dz-preview dz-processing dz-image-preview dz-error dz-complete"
-                    >
-                      <div className="dz-image">
-                        <img src={file.preview} alt="preview" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-          </Dropzone>
+          <AvatarCropper />
         </Col>
       </Row>
       <div className="actions clearfix">
         <ul>
           <li>
-            <Button color="primary" type="submit" onClick={props.next}>
-              {commanString.next}
+            <Button color="primary" type="submit">
+              {String.next}
             </Button>
           </li>
         </ul>
@@ -182,12 +158,28 @@ const AddressDetails = (props) => {
   const [Fdata, setFdata] = useState({ ...initialState })
 
   const submitForm = (e) => {
-    setValidate(true)
     e.preventDefault()
-    props.next()
+    setValidate(true)
+    let checkValidation = []
+    userCreate.map((formFields, index) => {
+      if (formFields.required && !Fdata[`${formFields.name}`]) {
+        checkValidation.push(formFields.name)
+      } else {
+        let filterCheckValidation = checkValidation?.filter(
+          (value) => value !== formFields.name
+        )
+        checkValidation = filterCheckValidation
+      }
+      // eslint-disable-next-line array-callback-return
+      return
+    })
+
+    if (checkValidation.length === 0) {
+      console.log('Next====>')
+      props.next()
+    }
   }
   const onChangeAddress = (event) => {
-    console.log('add log', event.target.checked)
     if (event.target.checked) {
       setAdata(Fdata)
     } else {
@@ -201,7 +193,7 @@ const AddressDetails = (props) => {
 
   return (
     <>
-      <p className="permenent-address">{commanString.permenent_address}</p>
+      <p className="permenent-address">{String.permanent_address}</p>
       <form
         className="content clearfix"
         onSubmit={(e) => {
@@ -219,16 +211,9 @@ const AddressDetails = (props) => {
               return (
                 <Col md="4">
                   <FormGroup>
-                    <label className={formFields.label_class}>
+                    <label className="form-label">
                       {formFields.label_name}
                     </label>
-                    {formFields.required &&
-                      !Fdata[`${formFields.name}`] &&
-                      validate && (
-                        <span style={{ color: 'red' }}>
-                          {formFields.required}
-                        </span>
-                      )}
                     <RSelect
                       options={formFields.option}
                       defaultValue={{
@@ -236,6 +221,13 @@ const AddressDetails = (props) => {
                         label: formFields.option?.[0]?.label,
                       }}
                     />
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span className="error-message">
+                          {formFields.required}
+                        </span>
+                      )}
                   </FormGroup>
                 </Col>
               )
@@ -243,18 +235,11 @@ const AddressDetails = (props) => {
               return (
                 <Col md="4">
                   <FormGroup>
-                    <label className={formFields.label_class}>
+                    <label className="form-label">
                       {formFields.label_name}
                     </label>
-                    {formFields.required &&
-                      !Fdata[`${formFields.name}`] &&
-                      validate && (
-                        <span style={{ color: 'red' }}>
-                          {formFields.required}
-                        </span>
-                      )}
                     <input
-                      className={formFields.input_class}
+                      className="form-control"
                       type={formFields.type}
                       name={formFields.name}
                       placeholder={formFields.placeholder}
@@ -265,7 +250,20 @@ const AddressDetails = (props) => {
                         setFdata({ ...oldState })
                         setValidate(true)
                       }}
+                      onBlur={(e) => {
+                        const oldState = cloneDeep(Fdata)
+                        oldState[`${formFields.name}`] = e.target.value
+                        setFdata({ ...oldState })
+                        setValidate(true)
+                      }}
                     />
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span className="error-message">
+                          {formFields.required}
+                        </span>
+                      )}
                   </FormGroup>
                 </Col>
               )
@@ -280,10 +278,10 @@ const AddressDetails = (props) => {
               onChange={onChangeAddress}
               className="input-checkbox"
             />{' '}
-            {commanString.same_as_above}
+            {String.same_as_above}
           </label>
         </div>
-        <p className="current-address">{commanString.current_address}</p>
+        <p className="current-address">{String.current_address}</p>
         <Row className="gy-3">
           {AddressDetailform.map((formFields, id) => {
             if (
@@ -295,16 +293,9 @@ const AddressDetails = (props) => {
               return (
                 <Col md="4">
                   <FormGroup>
-                    <label className={formFields.label_class}>
+                    <label className="form-label">
                       {formFields.label_name}
                     </label>
-                    {formFields.required &&
-                      !Adata[`${formFields.name}`] &&
-                      validate && (
-                        <span style={{ color: 'red' }}>
-                          {formFields.required}
-                        </span>
-                      )}
                     <RSelect
                       options={formFields.option}
                       defaultValue={{
@@ -312,6 +303,13 @@ const AddressDetails = (props) => {
                         label: formFields.option?.[0]?.label,
                       }}
                     />
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span className="error-message">
+                          {formFields.required}
+                        </span>
+                      )}
                   </FormGroup>
                 </Col>
               )
@@ -319,18 +317,11 @@ const AddressDetails = (props) => {
               return (
                 <Col md="4">
                   <FormGroup>
-                    <label className={formFields.label_class}>
+                    <label className="form-label">
                       {formFields.label_name}
                     </label>
-                    {formFields.required &&
-                      !Adata[`${formFields.name}`] &&
-                      validate && (
-                        <span style={{ color: 'red' }}>
-                          {formFields.required}
-                        </span>
-                      )}
                     <input
-                      className={formFields.input_class}
+                      className="form-control"
                       type={formFields.type}
                       name={formFields.name}
                       placeholder={formFields.placeholder}
@@ -341,7 +332,20 @@ const AddressDetails = (props) => {
                         setAdata({ ...oldState })
                         setValidate(true)
                       }}
+                      onBlur={(e) => {
+                        const oldState = cloneDeep(Adata)
+                        oldState[`${formFields.name}`] = e.target.value
+                        setAdata({ ...oldState })
+                        setValidate(true)
+                      }}
                     />
+                    {formFields.required &&
+                      !Fdata[`${formFields.name}`] &&
+                      validate && (
+                        <span className="error-message">
+                          {formFields.required}
+                        </span>
+                      )}
                   </FormGroup>
                 </Col>
               )
@@ -352,12 +356,12 @@ const AddressDetails = (props) => {
           <ul>
             <li>
               <Button color="primary" type="submit">
-                {commanString.next}
+                {String.next}
               </Button>
             </li>
             <li>
               <Button color="primary" onClick={props.prev}>
-                {commanString.previous}
+                {String.previous}
               </Button>
             </li>
           </ul>
@@ -369,127 +373,96 @@ const AddressDetails = (props) => {
 
 const Permission = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [checked] = useState(false)
 
   const toggle = () => setDropdownOpen((prevState) => !prevState)
+  tableHeader.map((e, index) => {
+    for (const key in e) {
+      if (e[key] === '') {
+        delete e[key]
+      }
+    }
+  })
+  const c = tableHeader.filter((value) => Object.keys(value).length !== 0)
+
+  const handlechange = (e) => {
+    var value = e.target.checked
+    var string = e.target.id[1]
+    var pointer = parseInt(string) - 1
+    if (e.target.id.startsWith('c')) {
+      for (var i = 0; i < tableRow.length; i++) {
+        var rowcheckbox = `${i}${pointer}`
+        document.getElementById(rowcheckbox).checked = value
+      }
+    } else {
+      for (var j = 0; j < tableHeader.length; j++) {
+        var columncheckbox = `${pointer}${j}`
+        document.getElementById(columncheckbox).checked = value
+      }
+    }
+  }
 
   return (
     <>
       <div style={{ float: 'right' }}>
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret>{commanString.role}</DropdownToggle>
+          <DropdownToggle caret>{String.role}</DropdownToggle>
           <DropdownMenu left>
-            <DropdownItem>{commanString.employee}</DropdownItem>
-            <DropdownItem>{commanString.admin}</DropdownItem>
-            <DropdownItem>{commanString.hr}</DropdownItem>
+            <DropdownItem>{String.employee}</DropdownItem>
+            <DropdownItem>{String.admin}</DropdownItem>
+            <DropdownItem>{String.hr}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </div>
-      <Block>
-        <DataTable>
-          <DataTableBody compact>
-            <DataTableHead>
-              {tableHeader.map((colum, id) => (
-                <DataTableRow size={colum.header} key={id}>
-                  <input type={colum.type} />
-                </DataTableRow>
-              ))}
-            </DataTableHead>
-          </DataTableBody>
-        </DataTable>
-      </Block>
-      {/* <Table>
+      <Table>
         <thead>
-          <tr>
-            <th></th>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-            </th>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-            </th>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-            </th>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-            </th>
-          </tr>
-          <tr>
-            <th></th>
-            <th>{commanString.view}</th>
-            <th>{commanString.add}</th>
-            <th>{commanString.edit}</th>
-            <th>{commanString.delete}</th>
-          </tr>
+          {tableHeader.map((head, i) =>
+            head.type === 'checkbox' && head.header !== '' ? (
+              <th>
+                <tr>
+                  <input
+                    type="checkbox"
+                    onChange={(e) => handlechange(e)}
+                    id={head.id}
+                  />
+                </tr>
+                <tr>{head.header}</tr>
+              </th>
+            ) : (
+              <th></th>
+            )
+          )}
         </thead>
         <tbody>
-          <tr>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-              {commanString.leave}
-            </th>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-              {commanString.holiday}
-            </th>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <input type="checkbox" name="myTextEditBox" value="checked" />{' '}
-              {commanString.assets}
-            </th>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-            <td>
-              <input type="checkbox" name="myTextEditBox" value="checked" />
-            </td>
-          </tr>
+          {tableRow.map((row, i) => (
+            <tr key={i}>
+              <td>
+                <input
+                  type="checkbox"
+                  onChange={(e) => handlechange(e)}
+                  value={checked}
+                  id={row.id}
+                />
+                {row.name}
+              </td>
+              {c.map((checkbox, index) => {
+                return (
+                  <td>
+                    <input type={checkbox.type} id={`${i}${index}`} />
+                  </td>
+                )
+              })}
+              <td></td>
+            </tr>
+          ))}
         </tbody>
-      </Table> */}
+      </Table>
       <div>
         <div className="actions clearfix">
           <ul>
             <li>
-              <Button color="primary" onClick={props.next}>
-                {commanString.next}
-              </Button>
-            </li>
-            <li>
               <Button color="primary" onClick={props.prev}>
-                {commanString.previous}
+                {String.previous}
               </Button>
             </li>
           </ul>
@@ -498,43 +471,32 @@ const Permission = (props) => {
     </>
   )
 }
+
 const Header = (props) => {
   return (
     <div className="steps clearfix">
       <ul>
         <li className={props.current >= 1 ? 'first done' : 'first'}>
           <a href="#wizard-01-h-0" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">01</span>{' '}
-            <p>{commanString.employee_detail}</p>
+            <span className="number">01</span> <p>{String.employee_detail}</p>
           </a>
         </li>
         <li className={props.current >= 2 ? 'second done' : 'second'}>
           <a href="#wizard-01-h-1" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">02</span>{' '}
-            <p>{commanString.address_detail}</p>
+            <span className="number">02</span> <p>{String.address_detail}</p>
           </a>
         </li>
         <li className={props.current >= 3 ? 'third done' : 'third'}>
           <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">04</span> <p>{commanString.permission}</p>
+            <span className="number">03</span> <p>{String.education}</p>
           </a>
         </li>
         <li className={props.current >= 4 ? 'third done' : 'third'}>
           <a href="#wizard-01-h-2" onClick={(ev) => ev.preventDefault()}>
-            <span className="number">03</span> <p>{commanString.education}</p>
+            <span className="number">04</span> <p>{String.permission}</p>
           </a>
         </li>
       </ul>
-    </div>
-  )
-}
-
-const Success = (props) => {
-  return (
-    <div className="d-flex justify-content-center align-items-center p-3">
-      <BlockTitle tag="h6" className="text-center">
-        {commanString.thank_you_for_submitting_form}
-      </BlockTitle>
     </div>
   )
 }
@@ -552,8 +514,8 @@ function UserDetail() {
             <Steps config={config}>
               <Step component={UserCreate} />
               <Step component={AddressDetails} />
-              <Step component={Permission} />
               <Step component={Education} />
+              <Step component={Permission} />
             </Steps>
           </div>
         </Block>

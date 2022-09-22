@@ -1,139 +1,103 @@
-import commanString from '../utils/CommanString'
-
-const com = {
-  export_icon: commanString.download_cloud,
-  export_btn: commanString.export,
-  form_btn: commanString.submit,
-  form_cancel: commanString.cancle,
-  table_apply_btn: commanString.apply,
-  search_icon: commanString.search,
-  search_input_placeholder: commanString.search_by_user_name,
-  input_search_icon: commanString.search,
-  filter_icon: commanString.filter_alt,
-  table_filter_user: `${commanString.filter} ${commanString.user}`,
-  filter_have_blc: commanString.have_balance,
-  kyc: commanString.kyc_verified,
-  filter_role: commanString.role,
-  filter_status: commanString.status,
-  filter_btn: commanString.filter,
-  reset_filter: `${commanString.reset} ${commanString.filter}`,
-  save_filter: `${commanString.save} ${commanString.filter}`,
-  row_show: commanString.show,
-  shorting_order: commanString.order,
-  asc_order: commanString.asc_order,
-  desc_order: commanString.desc_order,
-}
+import String from '../utils/String'
 
 export const roleString = [
   {
-    ...com,
-    head_title: commanString.role,
-    header: commanString.role,
-    form_title: `${commanString.create} ${commanString.role}`,
+    head_title: String.role,
+    header: String.role,
+    form_title: `${String.create} ${String.role}`,
   },
 ]
 
 export const permissionString = [
   {
-    ...com,
-    head_title: commanString.permission,
-    header: commanString.permission,
-    form_title: `${commanString.create} ${commanString.permission}`,
+    head_title: String.permission,
+    header: String.permission,
+    form_title: `${String.create} ${String.permission}`,
   },
 ]
 
 export const setupRoleString = [
   {
-    ...com,
-    head_title: commanString.setup_role_permission,
-    header: commanString.setup_role_permission,
-    form_title: `${commanString.role} ${commanString.permission}`,
+    head_title: String.setup_role_permission,
+    header: String.setup_role_permission,
+    form_title: `${String.role} ${String.permission}`,
   },
 ]
 
 export const userString = [
   {
-    ...com,
-    head_title: commanString.user_info,
-    header: commanString.user_info,
-    form_title: commanString.user_info,
+    head_title: String.user_info,
+    header: String.user_info,
+    form_title: String.user_info,
   },
 ]
 
 export const employeString = [
   {
-    ...com,
-    head_title: commanString.employee,
-    header: commanString.employee,
-    form_title: `${commanString.create} ${commanString.employee}`,
+    head_title: String.employee,
+    header: String.employee,
+    form_title: `${String.create} ${String.employee}`,
   },
 ]
 
 export const assetsTypeString = [
   {
-    ...com,
-    head_title: commanString.assets_type,
-    header: commanString.assets_type,
-    form_title: `${commanString.create} ${commanString.assets_type}`,
+    head_title: String.assets_type,
+    header: String.assets_type,
+    form_title: `${String.create} ${String.assets_type}`,
   },
 ]
+
 export const assetsAppString = [
   {
-    ...com,
-    head_title: commanString.assets_application,
-    header: commanString.assets_application,
-    form_title: `${commanString.create} ${commanString.assets_application}`,
+    head_title: String.assets_application,
+    header: String.assets_application,
+    form_title: `${String.create} ${String.assets_application}`,
   },
 ]
 
 export const leaveTypeString = [
   {
-    ...com,
-    head_title: commanString.leave_type,
-    header: commanString.leave_type,
-    form_title: `${commanString.create} ${commanString.leave_type}`,
+    head_title: String.leave_type,
+    header: String.leave_type,
+    form_title: `${String.create} ${String.leave_type}`,
   },
 ]
 export const leaveAppString = [
   {
-    ...com,
-    head_title: commanString.leave_application,
-    header: commanString.leave_type,
-    form_title: `${commanString.create} ${commanString.leave_application}`,
+    head_title: String.leave_application,
+    header: String.leave_type,
+    form_title: `${String.create} ${String.leave_application}`,
   },
 ]
 
 export const holidayListStrig = [
   {
-    ...com,
-    head_title: commanString.holiday_list,
-    header: commanString.holiday_list,
-    form_title: `${commanString.create} ${commanString.holiday_list}`,
+    head_title: String.holiday_list,
+    header: String.holiday_list,
+    form_title: `${String.create} ${String.holiday_list}`,
   },
 ]
 export const holidayTypeString = [
   {
-    ...com,
-    head_title: commanString.holiday_type,
-    header: commanString.holiday_type,
-    form_title: `${commanString.create} ${commanString.holiday_type}`,
+    head_title: String.holiday_type,
+    header: String.holiday_type,
+    form_title: `${String.create} ${String.holiday_type}`,
   },
 ]
 
 export const companyDocString = [
   {
-    ...com,
-    head_title: commanString.company_document,
-    header: commanString.company_document,
-    form_title: `${commanString.create} ${commanString.company_document}`,
+    head_title: String.company_document,
+    header: String.company_document,
+    form_title: `${String.create} ${String.company_document}`,
   },
 ]
 
 export const companyPolicyString = [
   {
-    ...com,
-    head_title: commanString.company_policy,
-    header: commanString.company_policy,
-    form_title: `${commanString.create} ${commanString.company_policy}`,
+    head_title: String.company_policy,
+    header: String.company_policy,
+    form_title: `${String.create} ${String.company_policy}`,
   },
 ]

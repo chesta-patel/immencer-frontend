@@ -1,27 +1,20 @@
-import React, { Suspense, lazy } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import './assets/scss/immence.scss'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-
-const Error404Modern = lazy(() => import('./pages/error/404-modern'))
+import history from './utils/History'
+import { Provider } from 'react-redux'
+import store from './store/Store'
 
 ReactDOM.render(
   <React.Fragment>
-    <Suspense fallback={<div />}>
-      <Router basename={`/`}>
-        <Route
-          render={({ location }) =>
-            location.state && location.state.is404 ? (
-              <Error404Modern />
-            ) : (
-              <App />
-            )
-          }
-        />
-      </Router>
-    </Suspense>
+    <Router history={history}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Router>
   </React.Fragment>,
   document.getElementById('root')
 )

@@ -1,144 +1,69 @@
-import commanString from '../../utils/CommanString'
+import String from '../../utils/String'
 const menu = [
   {
     icon: 'dashlite',
-    text: `${commanString.dashboard}`,
+    text: `${String.dashboard}`,
     link: '/',
   },
   {
     icon: 'users',
-    text: `${commanString.user_manage}`,
-    active: false,
-    subMenu: [
-      {
-        text: `${commanString.role}`,
-        link: '/user-manage/role',
-      },
-      {
-        text: `${commanString.permission}`,
-        link: '/user-manage/user-permission',
-      },
-      {
-        text: `${commanString.setup_role_permission}`,
-        link: '/user-manage/setup-role-permission',
-      },
-      {
-        text: `${commanString.user}`,
-        link: '/user-manage/user-info',
-      },
-      {
-        text: `${commanString.employee}`,
-        link: '/user-manage/employee',
-      },
-    ],
+    text: `${String.employee}`,
+    link: '/employee',
   },
   {
     icon: 'archived',
-    text: `${commanString.assets}`,
+    text: `${String.assets}`,
     active: false,
     subMenu: [
       {
-        text: `${commanString.assets_type}`,
+        text: `${String.assets_type}`,
         link: '/assets/assets-type',
       },
       {
-        text: `${commanString.assets_application}`,
+        text: `${String.assets_application}`,
         link: '/assets/assets-application',
       },
     ],
   },
   {
     icon: 'calendar-alt',
-    text: `${commanString.leave}`,
+    text: `${String.leave}`,
     active: false,
     subMenu: [
       {
-        text: `${commanString.leave_type}`,
+        text: `${String.leave_type}`,
         link: '/leave/leave-type',
       },
       {
-        text: `${commanString.leave_application}`,
+        text: `${String.leave_application}`,
         link: '/leave/leave-application',
       },
     ],
   },
   {
     icon: 'calendar-booking',
-    text: `${commanString.holiday}`,
+    text: `${String.holiday}`,
     active: false,
     subMenu: [
       {
-        text: `${commanString.holiday_list}`,
+        text: `${String.holiday_list}`,
         link: '/holiday/holiday-list',
       },
       {
-        text: `${commanString.holiday_type}`,
+        text: `${String.holiday_type}`,
         link: '/holiday/holiday-type',
       },
     ],
   },
   {
     icon: 'file-docs',
-    text: `${commanString.company_document}`,
+    text: `${String.company_document}`,
     link: '/company-info/company-document',
   },
   {
     icon: 'policy',
-    text: `${commanString.company_policy}`,
+    text: `${String.company_policy}`,
     link: '/company-info/company-policy',
-  },
-  {
-    heading: `${commanString.misc_pages}`,
-  },
-  {
-    icon: 'signin',
-    text: `${commanString.auth_page}`,
-    active: false,
-    subMenu: [
-      {
-        text: `${commanString.login}`,
-        link: '/auth-login',
-        newTab: true,
-      },
-
-      {
-        text: `${commanString.forgot_password}`,
-        link: '/auth-reset',
-        newTab: true,
-      },
-      {
-        text: `${commanString.success}`,
-        link: '/auth-success',
-        newTab: true,
-      },
-    ],
-  },
-  {
-    icon: 'files',
-    text: `${commanString.error_page}`,
-    active: false,
-    subMenu: [
-      {
-        text: `404 ${commanString.classic}`,
-        link: '/errors/404-classic',
-        newTab: true,
-      },
-      {
-        text: `504 ${commanString.classic}`,
-        link: '/errors/504-classic',
-        newTab: true,
-      },
-      {
-        text: `404 ${commanString.modern}`,
-        link: '/errors/404-modern',
-        newTab: true,
-      },
-      {
-        text: `504 ${commanString.modern}`,
-        link: '/errors/504-modern',
-        newTab: true,
-      },
-    ],
   },
 ]
 export default menu

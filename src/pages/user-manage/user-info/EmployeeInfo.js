@@ -4,7 +4,6 @@ import Head from '../../../layout/head/Head'
 import { userData } from '../UserData'
 import {
   BlockBetween,
-  BlockDes,
   BlockHead,
   BlockHeadContent,
   BlockTitle,
@@ -12,84 +11,31 @@ import {
   Button,
 } from '../../../components/Component'
 import { UserContext } from '../UserContext'
-import { userInfo } from './UserInfoJson'
+import { userInfo } from './EmployeeInfoJson'
 import PageTable from '../../PageTable'
 import { roleString } from '../../Strings'
 import { useHistory } from 'react-router-dom'
+import String from '../../../utils/String'
+import { useDispatch } from 'react-redux'
+import { fetchData } from '../../../services/slices/AuthThunk'
 
 const UserInfo = ({ ...props }) => {
+  const dispatch = useDispatch()
   // Stats declaration for data
   const [sm, updateSm] = useState(false)
-  const [setFormData] = useState({
-    role_id: '',
-    department: '',
-    firstname: '',
-    lastname: '',
-    blood_group: '',
-    height: '',
-    gender: '',
-    country: '',
-    birth_day: '',
-    current_add: '',
-    permanent_add: '',
-    mobile: '',
-    parent_mobile: '',
-    whatsapp_number: '',
-    email: '',
-    personal_email: '',
-    adhar_card: '',
-    pan_card: '',
-    registered_at: '',
-    last_login: '',
-    intro: '',
-    avatar: '',
-    profile: '',
-    swift_time: '',
-    education: '',
-    isactive: '',
-    isdelete: '',
-  })
   const { contextData } = useContext(UserContext)
-  const [Data, setData] = contextData
+  const [setData] = contextData
   // Get current list, pagination
   const [onSearchText] = useState('')
   const [roleTable] = useState(userInfo)
 
-  const onFormCancel = () => {
-    resetForm()
-  }
-  // function to reset the form
-  const resetForm = () => {
-    setFormData({
-      role_id: '',
-      department: '',
-      firstname: '',
-      lastname: '',
-      blood_group: '',
-      height: '',
-      gender: '',
-      country: '',
-      birth_day: '',
-      current_add: '',
-      permanent_add: '',
-      mobile: '',
-      parent_mobile: '',
-      whatsapp_number: '',
-      email: '',
-      personal_email: '',
-      adhar_card: '',
-      pan_card: '',
-      registered_at: '',
-      last_login: '',
-      intro: '',
-      avatar: '',
-      profile: '',
-      swift_time: '',
-      education: '',
-      isactive: '',
-      isdelete: '',
-    })
-  }
+  useEffect(() => {
+    dispatch(fetchData('employmentStatus'))
+    dispatch(fetchData('department'))
+    dispatch(fetchData('designation'))
+    dispatch(fetchData('bloodGroup'))
+    dispatch(fetchData('gender'))
+  }, [])
   useEffect(() => {
     if (onSearchText !== '') {
       const filteredObject = userData.filter((item) => {
@@ -100,24 +46,20 @@ const UserInfo = ({ ...props }) => {
       })
       setData([...filteredObject])
     } else {
-      setData([...userData])
     }
   }, [onSearchText, setData])
   const history = useHistory()
 
   return (
     <React.Fragment>
-      <Head title="User Profile" />
+      <Head title="Employee" />
       <Content>
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                User Profile
+                {String.employee}
               </BlockTitle>
-              <BlockDes className="text-soft">
-                <p>This is User Profile Page.</p>
-              </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
@@ -143,7 +85,7 @@ const UserInfo = ({ ...props }) => {
                         className="btn btn-white btn-outline-light"
                       >
                         <Icon name="download-cloud"></Icon>
-                        <span>Export</span>
+                        <span>{String.export}</span>
                       </a>
                     </li>
                     <li className="nk-block-tools-opt">
@@ -151,7 +93,7 @@ const UserInfo = ({ ...props }) => {
                         color="primary"
                         className="btn-icon"
                         onClick={() => {
-                          history.push('/user-manage/user-info/user-detail')
+                          history.push('/employee/employee_creation')
                         }}
                       >
                         <Icon name="plus"></Icon>
