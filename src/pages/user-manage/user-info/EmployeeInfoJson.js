@@ -89,6 +89,7 @@ export const userCreate = [
     label_name: `${String.employment} ${String.status}`,
     type: 'select',
     name: `${String.employment} ${String.status}`,
+    state_name: 'empStatus',
     option: [
       {
         value: `${String.permanent}`,
@@ -107,6 +108,7 @@ export const userCreate = [
     label_name: `${String.department}`,
     type: 'select',
     name: `${String.department}`,
+    state_name: 'department',
     option: [
       { value: `${String.admin}`, label: `${String.admin}` },
       { value: `${String.user}`, label: `${String.user}` },
@@ -117,6 +119,7 @@ export const userCreate = [
     label_name: `${String.designation}`,
     type: 'select',
     name: `${String.designation}`,
+    state_name: 'designation',
     option: [
       { value: `${String.admin}`, label: `${String.admin}` },
       { value: `${String.user}`, label: `${String.user}` },
@@ -128,6 +131,7 @@ export const userCreate = [
     label_name: `${String.manager_team_lead}`,
     type: 'select',
     name: `${String.manager_team_lead}`,
+    state_name: 'teamLead',
     option: [
       {
         value: `${String.amit_kasetiya}`,
@@ -169,12 +173,14 @@ export const userCreate = [
     label_name: `${String.nationality}`,
     type: 'select',
     name: `${String.nationality}`,
+    state_name: 'nationality',
   },
   {
     id: 15,
     label_name: `${String.blood_group}`,
     type: 'select',
     name: `${String.blood_group}`,
+    state_name: 'bloodGroup',
     option: [
       { value: `${String.a}`, label: `${String.a}` },
       { value: `${String.a_plus}`, label: `${String.a_plus}` },
@@ -189,6 +195,7 @@ export const userCreate = [
     label_name: `${String.gender}`,
     type: 'select',
     name: `${String.gender}`,
+    state_name: 'gender',
     option: [
       { value: `${String.male}`, label: `${String.male}` },
       { value: `${String.female}`, label: `${String.female}` },
