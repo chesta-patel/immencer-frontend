@@ -40,7 +40,7 @@ const ComponentsPage = ({ ...props }) => {
           <Row className="g-gs">
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/alerts`}
+                to={`/components/alerts`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -60,7 +60,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/accordions`}
+                to={`/components/accordions`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -80,7 +80,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/badges`}
+                to={`/components/badges`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -102,7 +102,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/buttons`}
+                to={`/components/buttons`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -124,7 +124,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/button-group`}
+                to={`/components/button-group`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -146,7 +146,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/cards`}
+                to={`/components/cards`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -169,7 +169,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/dropdowns`}
+                to={`/components/dropdowns`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -190,7 +190,7 @@ const ComponentsPage = ({ ...props }) => {
 
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/modals`}
+                to={`/components/modals`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -212,7 +212,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/pagination`}
+                to={`/components/pagination`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -234,7 +234,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/spinner`}
+                to={`/components/spinner`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -254,7 +254,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/tabs`}
+                to={`/components/tabs`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -274,7 +274,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/toast`}
+                to={`/components/toast`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -296,7 +296,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/table-basic`}
+                to={`/table-basic`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -318,7 +318,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/table-special`}
+                to={`/table-special`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -338,7 +338,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/form-elements`}
+                to={`/components/form-elements`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -358,7 +358,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/form-layouts`}
+                to={`/components/form-layouts`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -378,7 +378,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/components/form-validation`}
+                to={`/components/form-validation`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -398,7 +398,7 @@ const ComponentsPage = ({ ...props }) => {
             </Col>
             <Col lg={6}>
               <Link
-                to={`${process.env.PUBLIC_URL}/charts/chartjs`}
+                to={`/charts/chartjs`}
                 className="card card-bordered text-soft"
               >
                 <div className="card-inner">
@@ -426,74 +426,47 @@ const ComponentsPage = ({ ...props }) => {
                       <h6 className="title">Utilities</h6>
                       <ul className="gx-3 gy-1 align-center flex-wrap">
                         <li>
-                          <Link
-                            tag="a"
-                            to={`${process.env.PUBLIC_URL}/components/util-border`}
-                          >
+                          <Link tag="a" to={`/components/util-border`}>
                             Border
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            tag="a"
-                            to={`${process.env.PUBLIC_URL}/components/util-colors`}
-                          >
+                          <Link tag="a" to={`/components/util-colors`}>
                             Colors
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            tag="a"
-                            to={`${process.env.PUBLIC_URL}/components/util-display`}
-                          >
+                          <Link tag="a" to={`/components/util-display`}>
                             Display
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            tag="a"
-                            to={`${process.env.PUBLIC_URL}/components/util-embeded`}
-                          >
+                          <Link tag="a" to={`/components/util-embeded`}>
                             Embeded
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            tag="a"
-                            to={`${process.env.PUBLIC_URL}/components/util-flex`}
-                          >
+                          <Link tag="a" to={`/components/util-flex`}>
                             Flex
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            tag="a"
-                            to={`${process.env.PUBLIC_URL}/components/util-text`}
-                          >
+                          <Link tag="a" to={`/components/util-text`}>
                             Text
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            tag="a"
-                            to={`${process.env.PUBLIC_URL}/components/util-sizing`}
-                          >
+                          <Link tag="a" to={`/components/util-sizing`}>
                             Sizing
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            tag="a"
-                            to={`${process.env.PUBLIC_URL}/components/util-spacing`}
-                          >
+                          <Link tag="a" to={`/components/util-spacing`}>
                             Spacing
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            tag="a"
-                            to={`${process.env.PUBLIC_URL}/components/util-others`}
-                          >
+                          <Link tag="a" to={`/components/util-others`}>
                             Others
                           </Link>
                         </li>
