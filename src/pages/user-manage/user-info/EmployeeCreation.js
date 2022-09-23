@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Block, RSelect } from '../../../components/Component'
 import { useForm } from 'react-hook-form'
 import { Steps, Step } from 'react-step-builder'
@@ -22,9 +22,13 @@ import {
 import Education from './education/Education'
 import './employeecreation.scss'
 import AvatarCropper from './avatar-crop/AvatarCropper'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchData } from '../../../services/slices/AuthThunk'
 
 const UserCreate = (props) => {
+  const allDropdownState = useSelector((state) => state.dropdown)
+  const dispatch = useDispatch()
+
   const initialState = {}
   userCreate.forEach((formFields) => {
     initialState[`${formFields.name}`] = ''
@@ -50,11 +54,13 @@ const UserCreate = (props) => {
       // eslint-disable-next-line array-callback-return
       return
     })
-
     if (checkValidation.length === 0) {
-      // console.log('Next====>')
       props.next()
     }
+  }
+  const handle = (dropdown) => {
+    console.log()
+    dispatch(fetchData(`teamLead/${dropdown.value}`))
   }
 
   return (
@@ -72,16 +78,28 @@ const UserCreate = (props) => {
             (formFields.type !== 'date') &
             (formFields.type !== 'email')
           ) {
+            const dropDownData = allDropdownState[
+              `${formFields.state_name}`
+            ]?.map((data) => {
+              if (formFields.state_name !== 'nationality') {
+                return {
+                  value: `${data.code}`,
+                  label: `${data.name}`,
+                }
+              } else {
+                return {
+                  value: `${data.id}`,
+                  label: `${data.nationality}`,
+                }
+              }
+            })
             return (
-              <Col md="4">
+              <Col md="4" key={`userCreate-form-fields-${id + 10}`}>
                 <FormGroup>
                   <label className="form-label">{formFields.label_name}</label>
                   <RSelect
-                    options={formFields.option}
-                    defaultValue={{
-                      value: formFields.option?.[0]?.value,
-                      label: formFields.option?.[0]?.label,
-                    }}
+                    options={dropDownData?.length > 0 ? dropDownData : []}
+                    onChange={handle}
                   />
                   {formFields.required &&
                     !Fdata[`${formFields.name}`] &&
@@ -175,7 +193,6 @@ const AddressDetails = (props) => {
     })
 
     if (checkValidation.length === 0) {
-      console.log('Next====>')
       props.next()
     }
   }
