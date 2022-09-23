@@ -30,11 +30,11 @@ const UserInfo = ({ ...props }) => {
   const [roleTable] = useState(userInfo)
 
   useEffect(() => {
-    dispatch(fetchData('employmentStatus'))
-    dispatch(fetchData('department'))
-    dispatch(fetchData('designation'))
-    dispatch(fetchData('bloodGroup'))
-    dispatch(fetchData('gender'))
+    dispatch(fetchData('master/employmentStatus'))
+    dispatch(fetchData('master/department'))
+    dispatch(fetchData('master/designation'))
+    dispatch(fetchData('master/bloodGroup'))
+    dispatch(fetchData('master/gender'))
   }, [])
   useEffect(() => {
     if (onSearchText !== '') {
