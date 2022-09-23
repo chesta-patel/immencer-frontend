@@ -52,7 +52,7 @@ const ForgotPassword = () => {
       <PageContainer>
         <Block className="nk-block-middle nk-auth-body  wide-xs">
           <div className="brand-logo pb-4 text-center">
-            <Link to={process.env.PUBLIC_URL + '/'} className="logo-link">
+            <Link to={'/'} className="logo-link">
               <img
                 className="logo-light logo-img logo-img-lg"
                 src={Logo}
@@ -117,7 +117,7 @@ const ForgotPassword = () => {
               </FormGroup>
             </form>
             <div className="form-note-s2 text-center pt-4">
-              <Link to={`${process.env.PUBLIC_URL}/auth-login`}>
+              <Link to={`/auth-login`}>
                 <strong>{String.return_to_login}</strong>
               </Link>
             </div>

@@ -82,10 +82,7 @@ const User = (props) => {
           </div>
           <div className="dropdown-inner">
             <LinkList>
-              <a
-                href={`${process.env.PUBLIC_URL}/auth-login`}
-                onClick={handleSignout}
-              >
+              <a href={`/auth-login`} onClick={handleSignout}>
                 <Icon name="signout"></Icon>
                 <span>{String.sign_out}</span>
               </a>

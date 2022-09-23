@@ -26,7 +26,7 @@ const Pages = () => {
         {/*Dashboards*/}
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/employee`}
+          path={`/employee`}
           render={() => (
             <UserContextProvider>
               <EmployeeInfo />
@@ -35,7 +35,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/employee/employee_creation`}
+          path={`/employee/employee_creation`}
           render={() => (
             <UserContextProvider>
               <EmployeeCreation />
@@ -44,7 +44,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/user-manage/employee`}
+          path={`/user-manage/employee`}
           render={() => (
             <UserContextProvider>
               <Employee />
@@ -53,7 +53,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/assets/assets-type`}
+          path={`/assets/assets-type`}
           render={() => (
             <UserContextProvider>
               <AssetsType />
@@ -62,7 +62,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/assets/assets-application`}
+          path={`/assets/assets-application`}
           render={() => (
             <UserContextProvider>
               <AssetApplication />
@@ -71,7 +71,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/leave/leave-type`}
+          path={`/leave/leave-type`}
           render={() => (
             <UserContextProvider>
               <LeaveType />
@@ -80,7 +80,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/leave/leave-application`}
+          path={`/leave/leave-application`}
           render={() => (
             <UserContextProvider>
               <LeaveApplication />
@@ -89,7 +89,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/holiday/holiday-type`}
+          path={`/holiday/holiday-type`}
           render={() => (
             <UserContextProvider>
               <HolidayType />
@@ -98,7 +98,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/holiday/holiday-list`}
+          path={`/holiday/holiday-list`}
           render={() => (
             <UserContextProvider>
               <HolidayList />
@@ -107,7 +107,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/company-info/company-document`}
+          path={`/company-info/company-document`}
           render={() => (
             <UserContextProvider>
               <CompanyDocument />
@@ -116,18 +116,14 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`${process.env.PUBLIC_URL}/company-info/company-policy`}
+          path={`/company-info/company-policy`}
           render={() => (
             <UserContextProvider>
               <CompanyPolicy />
             </UserContextProvider>
           )}
         ></Route>
-        <Route
-          exact
-          path={`${process.env.PUBLIC_URL}/`}
-          component={HomePage}
-        ></Route>
+        <Route exact path={`/`} component={HomePage}></Route>
         <Route component={RedirectAs404}></Route>
       </Switch>
     </Suspense>

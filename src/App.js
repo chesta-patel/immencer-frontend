@@ -15,40 +15,28 @@ const App = () => {
   return (
     <Switch>
       {/* Auth Pages */}
-      <Route
-        exact
-        path={`${process.env.PUBLIC_URL}/auth-success`}
-        component={Success}
-      ></Route>
-      <Route
-        exact
-        path={`${process.env.PUBLIC_URL}/auth-reset`}
-        component={ForgotPassword}
-      ></Route>
-      <Route
-        exact
-        path={`${process.env.PUBLIC_URL}/auth-login`}
-        component={Login}
-      ></Route>
+      <Route exact path={`/auth-success`} component={Success}></Route>
+      <Route exact path={`/auth-reset`} component={ForgotPassword}></Route>
+      <Route exact path={`/auth-login`} component={Login}></Route>
       {/*Error Pages*/}
       <Route
         exact
-        path={`${process.env.PUBLIC_URL}/errors/404-classic`}
+        path={`/errors/404-classic`}
         component={Error404Classic}
       ></Route>
       <Route
         exact
-        path={`${process.env.PUBLIC_URL}/errors/504-modern`}
+        path={`/errors/504-modern`}
         component={Error504Modern}
       ></Route>
       <Route
         exact
-        path={`${process.env.PUBLIC_URL}/errors/404-modern`}
+        path={`/errors/404-modern`}
         component={Error404Modern}
       ></Route>
       <Route
         exact
-        path={`${process.env.PUBLIC_URL}/errors/504-classic`}
+        path={`/errors/504-classic`}
         component={Error504Classic}
       ></Route>
       {/*Main Routes*/}
