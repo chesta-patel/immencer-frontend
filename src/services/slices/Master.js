@@ -7,6 +7,8 @@ const initialState = {
   designation: [],
   bloodGroup: [],
   gender: [],
+  nationality: [],
+  teamLead: [],
 }
 
 export const dropdownSlice = createSlice({
@@ -32,9 +34,16 @@ export const dropdownSlice = createSlice({
         case 'gender':
           state.gender = action.payload.data.gender
           break
+        case 'nationality':
+          state.nationality = action.payload.data.nationality
+          break
+        case 'teamLead':
+          state.teamLead = action.payload.data.teamLead
+          break
         default:
           break
       }
+      state.dropdown = action.payload.data
     })
   },
 })
