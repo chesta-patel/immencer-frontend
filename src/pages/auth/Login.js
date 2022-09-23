@@ -33,7 +33,7 @@ const Login = () => {
   const { isLoading, message } = useSelector((state) => state.auth)
 
   const onFormSubmit = async () => {
-    let callAPI = await dispatch(login({ email, password }))
+    let callAPI = await dispatch(login({ email, password }, 'auth/logIn'))
     if (callAPI.payload.isSuccess) {
       window.location.href = '/'
     }
@@ -45,7 +45,7 @@ const Login = () => {
       <PageContainer>
         <Block className="nk-block-middle nk-auth-body  wide-xs">
           <div className="brand-logo pb-4 text-center">
-            <Link to={process.env.PUBLIC_URL + '/'} className="logo-link">
+            <Link to={'/'} className="logo-link">
               <img
                 className="logo-dark logo-img logo-img-lg"
                 src={LogoDark}
@@ -105,7 +105,7 @@ const Login = () => {
                   </label>
                   <Link
                     className="link link-primary link-sm"
-                    to={`${process.env.PUBLIC_URL}/auth-reset`}
+                    to={`/auth-reset`}
                   >
                     {String.forget_code}
                   </Link>

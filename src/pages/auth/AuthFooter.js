@@ -11,29 +11,17 @@ const AuthFooter = () => {
           <Col lg={6} className="order-lg-last">
             <ul className="nav nav-sm justify-content-center justify-content-lg-end">
               <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  target="_blank"
-                  to={`${process.env.PUBLIC_URL}/auths/terms`}
-                >
+                <Link className="nav-link" target="_blank" to={`/auths/terms`}>
                   {String.term_condition}
                 </Link>
               </li>
               <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  target="_blank"
-                  to={`${process.env.PUBLIC_URL}/auths/terms`}
-                >
+                <Link className="nav-link" target="_blank" to={`/auths/terms`}>
                   {`${String.privacy} ${String.policy}`}
                 </Link>
               </li>
               <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  target="_blank"
-                  to={`${process.env.PUBLIC_URL}/auths/faq`}
-                >
+                <Link className="nav-link" target="_blank" to={`/auths/faq`}>
                   {String.help}
                 </Link>
               </li>

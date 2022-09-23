@@ -7,15 +7,12 @@ export const LinkItem = ({ ...props }) => {
   return (
     <li>
       {props.tag !== 'a' ? (
-        <Link to={process.env.PUBLIC_URL + props.link} {...props}>
+        <Link to={props.link} {...props}>
           {props.icon ? <Icon name={props.icon} /> : null}{' '}
           <span>{props.text || props.children}</span>
         </Link>
       ) : (
-        <a
-          href={process.env.PUBLIC_URL + props.link}
-          onClick={(ev) => ev.preventDefault()}
-        >
+        <a href={props.link} onClick={(ev) => ev.preventDefault()}>
           {props.icon ? <Icon name={props.icon} /> : null}{' '}
           <span>{props.text || props.children}</span>
         </a>
