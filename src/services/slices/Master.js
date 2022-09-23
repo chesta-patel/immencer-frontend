@@ -17,7 +17,6 @@ export const dropdownSlice = createSlice({
   reducers: [],
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, action) => {
-      console.log(action.payload.data)
       switch (Object.keys(action.payload.data)?.[0]) {
         case 'employmentStatus':
           state.empStatus = action.payload.data.employmentStatus
@@ -43,7 +42,6 @@ export const dropdownSlice = createSlice({
         default:
           break
       }
-      state.dropdown = action.payload.data
     })
   },
 })

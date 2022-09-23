@@ -33,7 +33,7 @@ const Login = () => {
   const { isLoading, message } = useSelector((state) => state.auth)
 
   const onFormSubmit = async () => {
-    let callAPI = await dispatch(login({ email, password }))
+    let callAPI = await dispatch(login({ email, password }, 'auth/logIn'))
     if (callAPI.payload.isSuccess) {
       window.location.href = '/'
     }
