@@ -1,5 +1,6 @@
-import React from "react";
-import { Line, Bar, Pie, Polar, Doughnut } from "react-chartjs-2";
+import React from 'react'
+import { Line, Bar, Pie, Polar, Doughnut } from 'react-chartjs-2'
+import variable from '../../assets/scss/variables.scss'
 
 export const LineChartExample = ({ data, legend }) => {
   return (
@@ -12,17 +13,16 @@ export const LineChartExample = ({ data, legend }) => {
           labels: {
             boxWidth: 12,
             padding: 20,
-            fontColor: "#6783b8",
+            fontColor: variable.white,
           },
         },
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: variable.white,
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: variable.white,
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -37,7 +37,7 @@ export const LineChartExample = ({ data, legend }) => {
               ticks: {
                 beginAtZero: false,
                 fontSize: 12,
-                fontColor: "#9eaecf",
+                fontColor: variable.white,
                 padding: 10,
               },
               gridLines: {
@@ -50,12 +50,12 @@ export const LineChartExample = ({ data, legend }) => {
               display: true,
               ticks: {
                 fontSize: 12,
-                fontColor: "#9eaecf",
-                source: "auto",
+                fontColor: variable.white,
+                source: 'auto',
                 padding: 5,
               },
               gridLines: {
-                color: "transparent",
+                color: 'transparent',
                 tickMarkLength: 10,
                 offsetGridLines: true,
               },
@@ -64,9 +64,8 @@ export const LineChartExample = ({ data, legend }) => {
         },
       }}
     />
-  );
-};
-
+  )
+}
 export const BarChartExample = ({ data, stacked }) => {
   return (
     <Bar
@@ -77,17 +76,17 @@ export const BarChartExample = ({ data, stacked }) => {
           labels: {
             boxWidth: 30,
             padding: 20,
-            fontColor: "#6783b8",
+            fontColor: variable.white,
           },
         },
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: variable.white,
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: variable.white,
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: variable.white,
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -103,7 +102,7 @@ export const BarChartExample = ({ data, stacked }) => {
               ticks: {
                 beginAtZero: true,
                 fontSize: 12,
-                fontColor: "#9eaecf",
+                fontColor: variable.white,
                 padding: 5,
               },
               gridLines: {
@@ -117,23 +116,22 @@ export const BarChartExample = ({ data, stacked }) => {
               stacked: stacked ? true : false,
               ticks: {
                 fontSize: 12,
-                fontColor: "#9eaecf",
-                source: "auto",
+                fontColor: variable.white,
+                source: 'auto',
                 padding: 5,
               },
               gridLines: {
-                color: "transparent",
+                color: variable.cyan,
                 tickMarkLength: 10,
-                zeroLineColor: "transparent",
+                zeroLineColor: variable.white,
               },
             },
           ],
         },
       }}
     />
-  );
-};
-
+  )
+}
 export const PieChartExample = ({ data }) => {
   return (
     <Pie
@@ -146,11 +144,11 @@ export const PieChartExample = ({ data }) => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: variable.white,
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: variable.white,
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: variable.white,
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -160,9 +158,8 @@ export const PieChartExample = ({ data }) => {
         },
       }}
     />
-  );
-};
-
+  )
+}
 export const DoughnutExample = ({ data }) => {
   return (
     <Doughnut
@@ -176,11 +173,11 @@ export const DoughnutExample = ({ data }) => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: variable.white,
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: variable.white,
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: variable.white,
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -190,9 +187,8 @@ export const DoughnutExample = ({ data }) => {
         },
       }}
     />
-  );
-};
-
+  )
+}
 export const PolarExample = ({ data }) => {
   return (
     <Polar
@@ -204,11 +200,11 @@ export const PolarExample = ({ data }) => {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          backgroundColor: "#eff6ff",
+          backgroundColor: variable.white,
           titleFontSize: 13,
-          titleFontColor: "#6783b8",
+          titleFontColor: variable.white,
           titleMarginBottom: 6,
-          bodyFontColor: "#9eaecf",
+          bodyFontColor: variable.white,
           bodyFontSize: 12,
           bodySpacing: 4,
           yPadding: 10,
@@ -218,5 +214,5 @@ export const PolarExample = ({ data }) => {
         },
       }}
     />
-  );
-};
+  )
+}
