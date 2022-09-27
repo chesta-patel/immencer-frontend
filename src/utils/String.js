@@ -176,10 +176,15 @@ const String = {
   relieving_date: 'Relieving Date',
   profile_picture: 'Profile Picture',
   passcode: 'Passcode',
-  attachment: 'Attachment ',
   password: 'Password',
   enter_your: 'Enter your',
   next: 'Next',
+  uploaded_by: 'Uploaded By',
+  updated_by: 'Updated By',
+  file: 'File',
+  simple_pdf: 'Simple PDF',
+  preview: 'Preview',
+  sequence_no: 'Sequence No',
 }
 
 export default String

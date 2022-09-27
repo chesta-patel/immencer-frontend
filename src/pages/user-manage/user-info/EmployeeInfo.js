@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import { userData } from '../UserData'
 import {
   BlockBetween,
   BlockHead,
@@ -16,44 +15,35 @@ import PageTable from '../../PageTable'
 import { roleString } from '../../Strings'
 import { useHistory } from 'react-router-dom'
 import String from '../../../utils/String'
+import { useSelector } from 'react-redux'
+import { fetchData } from '../../../services/thunk/AuthThunk'
 import { useDispatch } from 'react-redux'
-import { fetchData } from '../../../services/slices/AuthThunk'
+import { empData } from '../../../services/thunk/GetEmployee'
+import Loader from '../../Loader'
 
 const UserInfo = ({ ...props }) => {
+  const history = useHistory()
+  const { employeeData, loader } = useSelector((state) => state.getEmp)
   const dispatch = useDispatch()
+
   // Stats declaration for data
   const [sm, updateSm] = useState(false)
   const { contextData } = useContext(UserContext)
-  const [setData] = contextData
+  const [data, setData] = useState()
   // Get current list, pagination
   const [onSearchText] = useState('')
   const [roleTable] = useState(userInfo)
 
   useEffect(() => {
-    dispatch(fetchData('master/employmentStatus'))
-    dispatch(fetchData('master/department'))
-    dispatch(fetchData('master/designation'))
-    dispatch(fetchData('master/bloodGroup'))
-    dispatch(fetchData('master/gender'))
+    dispatch(empData('employee'))
   }, [])
-  useEffect(() => {
-    if (onSearchText !== '') {
-      const filteredObject = userData.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(onSearchText.toLowerCase()) ||
-          item.email.toLowerCase().includes(onSearchText.toLowerCase())
-        )
-      })
-      setData([...filteredObject])
-    } else {
-    }
-  }, [onSearchText, setData])
-  const history = useHistory()
 
   return (
     <React.Fragment>
       <Head title="Employee" />
       <Content>
+        {/* <Loader /> */}
+        {loader ? <Loader /> : null}
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
@@ -105,7 +95,11 @@ const UserInfo = ({ ...props }) => {
             </BlockHeadContent>
           </BlockBetween>
         </BlockHead>
-        <PageTable json={roleTable} string={roleString} />
+        <PageTable
+          json={roleTable}
+          string={roleString}
+          employeeData={employeeData}
+        />
       </Content>
     </React.Fragment>
   )
