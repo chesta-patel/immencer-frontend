@@ -146,7 +146,8 @@ function PageHeader(props) {
                   if (
                     (formFields.type !== 'text') &
                     (formFields.type !== 'number') &
-                    (formFields.type !== 'date')
+                    (formFields.type !== 'date') &
+                    (formFields.type !== 'file')
                   ) {
                     return (
                       <Col md="6">
@@ -165,33 +166,68 @@ function PageHeader(props) {
                       </Col>
                     )
                   } else {
-                    return (
-                      <Col md="6">
-                        <FormGroup>
-                          <label className="form-label">
-                            {formFields.label_name}
-                          </label>
-                          <input
-                            className="form-control"
-                            type={formFields.type}
-                            name={formFields.name}
-                            placeholder={formFields.placeholder}
-                            value={Fdata[`${formFields.name}`]}
-                            onChange={(e) => {
-                              const oldState = cloneDeep(Fdata)
-                              oldState[`${formFields.name}`] = e.target.value
-                              setFdata({ ...oldState })
-                              setValidate(true)
-                            }}
-                          />
-                          {formFields.required &&
-                            !Fdata[`${formFields.name}`] &&
-                            validate && (
-                              <p className="invalid">{formFields.required}</p>
-                            )}
-                        </FormGroup>
-                      </Col>
-                    )
+                    if (formFields.type === 'file') {
+                      return (
+                        <Col md="6">
+                          <div className="form-group">
+                            <label className="form-label">
+                              {formFields.label_name}
+                            </label>
+                            <div className="form-control-wrap">
+                              <div className="custom-file">
+                                <input
+                                  type={formFields.type}
+                                  multiple
+                                  className="custom-file-input"
+                                  id="customMultipleFiles"
+                                  onChange={(e) => {
+                                    const oldState = cloneDeep(Fdata)
+                                    oldState[`${formFields.name}`] =
+                                      e.target.value
+                                    setFdata({ ...oldState })
+                                    setValidate(true)
+                                  }}
+                                />
+                                <label
+                                  className="custom-file-label"
+                                  htmlFor="customMultipleFiles"
+                                >
+                                  {formFields.placeholder}
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </Col>
+                      )
+                    } else {
+                      return (
+                        <Col md="6">
+                          <FormGroup>
+                            <label className="form-label">
+                              {formFields.label_name}
+                            </label>
+                            <input
+                              className="form-control"
+                              type={formFields.type}
+                              name={formFields.name}
+                              placeholder={formFields.placeholder}
+                              value={Fdata[`${formFields.name}`]}
+                              onChange={(e) => {
+                                const oldState = cloneDeep(Fdata)
+                                oldState[`${formFields.name}`] = e.target.value
+                                setFdata({ ...oldState })
+                                setValidate(true)
+                              }}
+                            />
+                            {formFields.required &&
+                              !Fdata[`${formFields.name}`] &&
+                              validate && (
+                                <p className="invalid">{formFields.required}</p>
+                              )}
+                          </FormGroup>
+                        </Col>
+                      )
+                    }
                   }
                 })}
                 <Col size="4">
