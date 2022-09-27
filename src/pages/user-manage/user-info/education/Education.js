@@ -10,27 +10,26 @@ import {
   Row,
 } from 'reactstrap'
 import { Icon } from '../../../../components/Component'
-import String from '../../../../utils/String'
-import '../employeecreation.scss'
+import commonString from '../../../../utils/String'
 import EducationCard from './EducationCard'
 
 function Education(props) {
   const [data, setData] = useState({
     degree: '',
-    startdate: new Date(),
-    enddate: new Date(),
+    startDate: new Date(),
+    endDate: new Date(),
   })
   const [items, setItems] = useState([])
   const [modal, setModal] = useState({
     edit: false,
     add: false,
   })
-
+  const [eduDetail, setEduDetail] = useState([])
   const onFormCancel = (e) => {
     e.preventDefault()
     setModal({ edit: false, add: false })
   }
-  const handlesubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     let tempSetItems = items
     tempSetItems.push(data)
@@ -44,13 +43,6 @@ function Education(props) {
     value = event.target.value
     setData({ ...data, [name]: value })
   }
-  const deleteItem = (index) => {
-    setItems((tempItem) => {
-      return tempItem.filter((item, id) => {
-        return id !== index
-      })
-    })
-  }
 
   return (
     <React.Fragment>
@@ -63,21 +55,9 @@ function Education(props) {
       </Button>
       <Container>
         <Row className="gy-3">
-          {items.map((item, index) => (
-            <Col md="4">
-              <EducationCard
-                key={index}
-                id={index}
-                text={item}
-                onclick={(id) => {
-                  deleteItem(index)
-                }}
-              />
-            </Col>
-          ))}
+          <EducationCard item={items} setItems={setItems} />
         </Row>
       </Container>
-
       <Modal
         isOpen={modal.add}
         toggle={() => setModal({ add: false })}
@@ -89,11 +69,11 @@ function Education(props) {
             <form
               className="form-group"
               onSubmit={(e) => {
-                handlesubmit(e)
+                handleSubmit(e)
               }}
             >
               <FormGroup>
-                <label className="form-label">{String.degree}</label>
+                <label className="form-label">{commonString.degree}</label>
                 <input
                   type="text"
                   className="form-control"
@@ -104,23 +84,23 @@ function Education(props) {
                 />
               </FormGroup>
               <FormGroup>
-                <label className="form-label">{String.start_date}</label>
+                <label className="form-label">{commonString.start_date}</label>
                 <input
                   type="date"
                   className="form-control"
-                  name="startdate"
-                  value={data.startdate}
+                  name="startDate"
+                  value={data.startDate}
                   onChange={handledChange}
                   required
                 />
               </FormGroup>
               <FormGroup>
-                <label className="form-label">{String.end_date}</label>
+                <label className="form-label">{commonString.end_date}</label>
                 <input
                   type="date"
                   className="form-control"
-                  name="enddate"
-                  value={data.enddate}
+                  name="endDate"
+                  value={data.endDate}
                   onChange={handledChange}
                   required
                 />
@@ -131,7 +111,7 @@ function Education(props) {
                 className="education-button"
                 type="submit"
               >
-                {String.submit}
+                {commonString.submit}
               </Button>
               <Button
                 className="education-button"
@@ -141,7 +121,7 @@ function Education(props) {
                   onFormCancel(e)
                 }}
               >
-                {String.cancel}
+                {commonString.cancel}
               </Button>
             </form>
           </Col>
@@ -152,12 +132,12 @@ function Education(props) {
           <ul>
             <li>
               <Button color="primary" onClick={props.next}>
-                {String.next}
+                {commonString.next}
               </Button>
             </li>
             <li>
               <Button color="primary" onClick={props.prev}>
-                {String.previous}
+                {commonString.previous}
               </Button>
             </li>
           </ul>

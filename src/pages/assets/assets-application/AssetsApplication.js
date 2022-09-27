@@ -3,7 +3,7 @@ import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
 import { assetAppForm, assetAppTable } from './AssetsAppJson'
 import Pageheader from '../../PageHeader'
-import Pagetable from '../../PageTable'
+import PageTable from '../../PageTable'
 import { assetsAppString } from '../../Strings'
 
 const AssetApplication = ({ ...props }) => {
@@ -14,7 +14,7 @@ const AssetApplication = ({ ...props }) => {
       <Head title="Assets Appliaction" />
       <Content>
         <Pageheader json={roleForm} string={assetsAppString} />
-        <Pagetable json={roleTable} />
+        <PageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

@@ -176,7 +176,6 @@ const String = {
   relieving_date: 'Relieving Date',
   profile_picture: 'Profile Picture',
   passcode: 'Passcode',
-  attachment: 'Attachment ',
   password: 'Password',
   enter_your: 'Enter your',
   next: 'Next',

@@ -26,8 +26,12 @@ import { UserContext } from './user-manage/UserContext'
 import { Link } from 'react-router-dom'
 import { bulkActionOptions } from '../utils/Utils'
 import String from '../utils/String'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { empData } from '../services/thunk/GetEmployee'
 
 function PageTable(props) {
+  const dispatch = useDispatch()
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -40,7 +44,10 @@ function PageTable(props) {
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = props?.employeeData?.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  )
 
   // function which selects all the items
   const selectorCheck = (e) => {
@@ -96,6 +103,10 @@ function PageTable(props) {
       setData([...userData])
     }
   }, [onSearchText, setData])
+  useEffect(() => {
+    // dispatch(empData('employee'))
+  }, [])
+  useEffect(() => {}, [])
   // Sorting data
   const sortFunc = (params) => {
     let defaultData = data
@@ -442,7 +453,7 @@ function PageTable(props) {
               ))}
             </DataTableHead>
             {/*Head*/}
-            {currentItems.length > 0
+            {currentItems?.length > 0
               ? currentItems.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
@@ -468,26 +479,64 @@ function PageTable(props) {
                             <UserAvatar
                               theme={item.avatarBg}
                               className="xs"
-                              text={findUpper(item.name)}
+                              text={findUpper(
+                                `${item.firstName} ${item.lastName}`
+                              )}
                               image={item.image}
                             ></UserAvatar>
-                            <div className="user-info">
-                              <span className="tb-lead">{item.name} </span>
-                            </div>
                           </div>
                         </Link>
                       </DataTableRow>
-                      <DataTableRow size="md">
-                        <span>{item.role}</span>
+                      <DataTableRow size="sm">
+                        <span>{`${item.firstName} ${item.lastName}`}</span>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{item.email}</span>
+                        <span>{item.department}</span>
                       </DataTableRow>
-                      <DataTableRow size="md">
-                        <span>{item.phone}</span>
+                      <DataTableRow size="sm">
+                        <span>{item.mobile}</span>
                       </DataTableRow>
-                      <DataTableRow size="lg">
-                        <span>{item.country}</span>
+                      <DataTableRow size="sm">
+                        <span>{item.personalEmail}</span>
+                      </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.isActive}</span>
+                      </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.isDeleted}</span>
+                      </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.employmentStatus}</span>
+                      </DataTableRow>
+                      <DataTableRow className="nk-tb-col-tools">
+                        <ul className="nk-tb-actions gx-1">
+                          <li>
+                            <UncontrolledDropdown>
+                              <DropdownToggle
+                                tag="a"
+                                className="dropdown-toggle btn btn-icon btn-trigger"
+                              >
+                                <Icon name="more-h"></Icon>
+                              </DropdownToggle>
+                              <DropdownMenu right>
+                                <ul className="link-list-opt no-bdr">
+                                  <li>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#edit"
+                                      onClick={(ev) => {
+                                        ev.preventDefault()
+                                      }}
+                                    >
+                                      <Icon name="edit"></Icon>
+                                      <span>{String.edit}</span>
+                                    </DropdownItem>
+                                  </li>
+                                </ul>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+                          </li>
+                        </ul>
                       </DataTableRow>
                     </DataTableItem>
                   )

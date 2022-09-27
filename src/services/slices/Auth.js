@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { login } from './AuthThunk'
+import { login } from '../thunk/AuthThunk'
 
 const initialState = {
   isLoading: false,
@@ -16,6 +16,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
+        console.log(action.payload)
         state.isLoading = false
         state.user = action.payload
         state.isAuthenticated = true
