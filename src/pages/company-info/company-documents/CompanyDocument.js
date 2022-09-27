@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
 import PageHeader from '../../PageHeader'
-import PageTable from '../../PageTable'
+import CompanyDocumentPageTable from '../../CompanyDocumentPageTable'
 import { companyDocForm, companyDocTable } from './CompanyDocumentJson'
 import { companyDocString } from '../../Strings'
 
@@ -15,7 +15,7 @@ const CompanyDocument = ({ ...props }) => {
       <Head title="Company Document" />
       <Content>
         <PageHeader json={roleForm} string={companyDocString} />
-        <PageTable json={roleTable} />
+        <CompanyDocumentPageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )
