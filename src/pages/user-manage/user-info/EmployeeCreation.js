@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Block, RSelect } from '../../../components/Component'
 import { useForm } from 'react-hook-form'
 import { Steps, Step } from 'react-step-builder'
 import { Row, Col, FormGroup, Button } from 'reactstrap'
 import {
-  AddressDetailform,
+  AddressDetailForm,
   tableHeader,
   tableRow,
   userCreate,
@@ -23,27 +23,34 @@ import Education from './education/Education'
 import './employeecreation.scss'
 import AvatarCropper from './avatar-crop/AvatarCropper'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchData } from '../../../services/slices/AuthThunk'
+import { fetchData } from '../../../services/thunk/AuthThunk'
+import { setEmp } from '../../../services/thunk/SaveEmp'
 
 const UserCreate = (props) => {
   const allDropdownState = useSelector((state) => state.dropdown)
   const dispatch = useDispatch()
-
   const initialState = {}
   userCreate.forEach((formFields) => {
     initialState[`${formFields.name}`] = ''
   })
-  const [validation, setvalidation] = useState(false)
+  const [validation, setValidation] = useState(false)
   const { handleSubmit } = useForm()
-  const [Fdata, setFdata] = useState({ ...initialState })
+  const [empCreate, setEmpCreate] = useState({ ...initialState })
 
+  useEffect(() => {
+    dispatch(fetchData('master/employmentStatus'))
+    dispatch(fetchData('master/department'))
+    dispatch(fetchData('master/designation'))
+    dispatch(fetchData('master/bloodGroup'))
+    dispatch(fetchData('master/gender'))
+    dispatch(fetchData('master/nationality'))
+  }, [])
   const submitForm = (e) => {
     e.preventDefault()
-    setvalidation(true)
-
+    setValidation(true)
     let checkValidation = []
     userCreate.map((formFields) => {
-      if (formFields.required && !Fdata[`${formFields.name}`]) {
+      if (formFields.required && !empCreate[`${formFields.name}`]) {
         checkValidation.push(formFields.name)
       } else {
         let filterCheckValidation = checkValidation?.filter(
@@ -56,10 +63,10 @@ const UserCreate = (props) => {
     })
     if (checkValidation.length === 0) {
       props.next()
+      dispatch(setEmp(empCreate))
     }
   }
   const handle = (dropdown) => {
-    console.log()
     dispatch(fetchData(`teamLead/${dropdown.value}`))
   }
 
@@ -99,10 +106,17 @@ const UserCreate = (props) => {
                   <label className="form-label">{formFields.label_name}</label>
                   <RSelect
                     options={dropDownData?.length > 0 ? dropDownData : []}
-                    onChange={handle}
+                    name={formFields.name}
+                    Value={empCreate[`${formFields.name}`]}
+                    onChange={(e) => {
+                      const oldState = cloneDeep(empCreate)
+                      oldState[`${formFields.name}`] = e.label
+                      setEmpCreate({ ...oldState })
+                      setValidation(true)
+                    }}
                   />
                   {formFields.required &&
-                    !Fdata[`${formFields.name}`] &&
+                    !empCreate[`${formFields.name}`] &&
                     validation && (
                       <span className="error-message">
                         {formFields.required}
@@ -121,23 +135,23 @@ const UserCreate = (props) => {
                     type={formFields.type}
                     name={formFields.name}
                     placeholder={formFields.placeholder}
-                    value={Fdata[`${formFields.name}`]}
+                    value={empCreate[`${formFields.name}`]}
                     onChange={(e) => {
-                      const oldState = cloneDeep(Fdata)
+                      const oldState = cloneDeep(empCreate)
                       oldState[`${formFields.name}`] = e.target.value
-                      setFdata({ ...oldState })
-                      setvalidation(true)
+                      setEmpCreate({ ...oldState })
+                      setValidation(true)
                     }}
                     onBlur={(e) => {
-                      const oldState = cloneDeep(Fdata)
+                      const oldState = cloneDeep(empCreate)
                       oldState[`${formFields.name}`] = e.target.value
-                      setFdata({ ...oldState })
-                      setvalidation(true)
+                      setEmpCreate({ ...oldState })
+                      setValidation(true)
                     }}
                     max={formFields.today}
                   />
                   {formFields.required &&
-                    !Fdata[`${formFields.name}`] &&
+                    !empCreate[`${formFields.name}`] &&
                     validation && (
                       <span className="error-message">
                         {formFields.required}
@@ -155,9 +169,7 @@ const UserCreate = (props) => {
       <div className="actions clearfix">
         <ul>
           <li>
-            <Button color="primary" type="submit">
-              {String.next}
-            </Button>
+            <Button color="primary">{String.next}</Button>
           </li>
         </ul>
       </div>
@@ -166,34 +178,53 @@ const UserCreate = (props) => {
 }
 
 const AddressDetails = (props) => {
+  const dispatch = useDispatch()
+  const allDropDown = useSelector((state) => state.dropdown)
+  // const allDropdown=
   const initialState = {}
-  AddressDetailform.forEach((formFields) => {
+  AddressDetailForm.forEach((formFields) => {
     initialState[`${formFields.name}`] = ''
   })
   const [validate, setValidate] = useState(false)
   const { handleSubmit } = useForm()
   const [Adata, setAdata] = useState({ ...initialState })
   const [Fdata, setFdata] = useState({ ...initialState })
+  const [Country, setCountry] = useState([])
 
+  var checkValidate = []
   const submitForm = (e) => {
     e.preventDefault()
     setValidate(true)
-    let checkValidation = []
-    userCreate.map((formFields, index) => {
+    AddressDetailForm.map((formFields, index) => {
       if (formFields.required && !Fdata[`${formFields.name}`]) {
-        checkValidation.push(formFields.name)
+        checkValidate.push(formFields.name)
       } else {
-        let filterCheckValidation = checkValidation?.filter(
+        let filterCheckValidation = checkValidate?.filter(
           (value) => value !== formFields.name
         )
-        checkValidation = filterCheckValidation
+        checkValidate = filterCheckValidation
       }
       // eslint-disable-next-line array-callback-return
       return
     })
-
-    if (checkValidation.length === 0) {
+    if (checkValidate.length === 0) {
       props.next()
+      dispatch(setEmp({ Fdata, Adata }))
+    }
+  }
+  const handleChangeAddress = (dropdown, dropDownType) => {
+    switch (dropDownType) {
+      case 'Country':
+        setCountry(dropdown)
+        dispatch(fetchData(`master/states/byCountryCode/${dropdown.value}`))
+        break
+      case 'State/Region':
+        dispatch(
+          fetchData(`master/cities/${Country.value}/states/${dropdown.value}`)
+        )
+        break
+      default:
+        break
     }
   }
   const onChangeAddress = (event) => {
@@ -206,7 +237,11 @@ const AddressDetails = (props) => {
       })
       setAdata(tempAdata)
     }
+    console.log(Adata)
   }
+  useEffect(() => {
+    dispatch(fetchData('master/countries'))
+  }, [])
 
   return (
     <>
@@ -218,13 +253,33 @@ const AddressDetails = (props) => {
         }}
       >
         <Row className="gy-3">
-          {AddressDetailform.map((formFields, id) => {
+          {AddressDetailForm.map((formFields, id) => {
             if (
               (formFields.type !== 'text') &
               (formFields.type !== 'number') &
               (formFields.type !== 'date') &
               (formFields.type !== 'email')
             ) {
+              const dropDownData = allDropDown[`${formFields.state_name}`]?.map(
+                (data) => {
+                  if (formFields.state_name === 'countries') {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  } else if (formFields.state_name === 'states') {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  } else {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  }
+                }
+              )
               return (
                 <Col md="4">
                   <FormGroup>
@@ -232,10 +287,15 @@ const AddressDetails = (props) => {
                       {formFields.label_name}
                     </label>
                     <RSelect
-                      options={formFields.option}
-                      defaultValue={{
-                        value: formFields.option?.[0]?.value,
-                        label: formFields.option?.[0]?.label,
+                      options={dropDownData?.length > 0 ? dropDownData : []}
+                      name={formFields.name}
+                      Value={Fdata[`${formFields.name}`]}
+                      onChange={(e) => {
+                        handleChangeAddress(e, formFields.label_name)
+                        const oldState = cloneDeep(Fdata)
+                        oldState[`${formFields.name}`] = e.label
+                        setFdata({ ...oldState })
+                        setValidate(true)
                       }}
                     />
                     {formFields.required &&
@@ -300,13 +360,33 @@ const AddressDetails = (props) => {
         </div>
         <p className="current-address">{String.current_address}</p>
         <Row className="gy-3">
-          {AddressDetailform.map((formFields, id) => {
+          {AddressDetailForm.map((formFields, id) => {
             if (
               (formFields.type !== 'text') &
               (formFields.type !== 'number') &
               (formFields.type !== 'date') &
               (formFields.type !== 'email')
             ) {
+              const dropDownData = allDropDown[`${formFields.state_name}`]?.map(
+                (data) => {
+                  if (formFields.state_name === 'countries') {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  } else if (formFields.state_name === 'states') {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  } else {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  }
+                }
+              )
               return (
                 <Col md="4">
                   <FormGroup>
@@ -314,10 +394,14 @@ const AddressDetails = (props) => {
                       {formFields.label_name}
                     </label>
                     <RSelect
-                      options={formFields.option}
-                      defaultValue={{
-                        value: formFields.option?.[0]?.value,
-                        label: formFields.option?.[0]?.label,
+                      options={dropDownData?.length > 0 ? dropDownData : []}
+                      name={formFields.name}
+                      Value={Fdata[`${formFields.name}`]}
+                      onChange={(e) => {
+                        handleChangeAddress(e, formFields.label_name)
+                        const oldState = cloneDeep(Fdata)
+                        oldState[`${formFields.name}`] = e.label
+                        setFdata({ ...oldState })
                       }}
                     />
                     {formFields.required &&
@@ -401,7 +485,6 @@ const Permission = (props) => {
     }
   })
   const c = tableHeader.filter((value) => Object.keys(value).length !== 0)
-
   const handlechange = (e) => {
     var value = e.target.checked
     var string = e.target.id[1]

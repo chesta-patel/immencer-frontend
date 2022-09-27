@@ -1,42 +1,71 @@
 import React from 'react'
 import PlanS1 from '../../../../assets/images/plan-s1.145bedf2dff953a59fca891147d5fcf6.svg'
 import { Icon } from '../../../../components/Component'
-import '../employeecreation.scss'
-import { Card } from 'reactstrap'
+import { Button, Card } from 'reactstrap'
+import String from '../../../../utils/String'
 function EducationCard(props) {
+  const deleteItem = (index) => {
+    props.setItems((tempItem) => {
+      return tempItem.filter((item, id) => {
+        return id !== index
+      })
+    })
+  }
+
   return (
     <>
-      <div>
-        <Card className="card-bordered pricing text-center">
-          <ul className="delete-icon">
-            <li>
-              <a
-                href="#cancel"
-                onClick={props.onclick}
-                className="link link-light"
-              >
-                <Icon name="cross-fill-c"></Icon>
-              </a>
-            </li>
-          </ul>
-          <div className="pricing-body">
-            <div className="pricing-media">
-              <img src={PlanS1} alt="" />
-            </div>
-            <div className="pricing-title w-220px mx-auto">
-              <h5 className="title">{props.text.degree}</h5>
-            </div>
-            <div className="pricing-title w-220px mx-auto">
-              <label className="form-label">Start Date</label>
-              <h5 className="title">{props.text.startdate}</h5>
-            </div>{' '}
-            <div className="pricing-title w-220px mx-auto">
-              <label className="form-label">End Date</label>
-              <h5 className="title">{props.text.enddate}</h5>
-            </div>
-          </div>
-        </Card>
-      </div>
+      <table className="table table-orders">
+        <thead className="tb-odr-head" color="secondry">
+          <tr className="tb-odr-item">
+            <th className="tb-odr-info">
+              <span className="tb-odr-date d-none d-md-inline-block">
+                {String.degree}
+              </span>
+            </th>
+            <th>
+              <span className="tb-odr-total">{String.start_date}</span>
+            </th>
+            <th className="tb-odr-amount">
+              <span className="tb-odr-status d-none d-md-inline-block">
+                {String.end_date}
+              </span>
+            </th>
+            <th className="tb-odr-action">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody className="tb-odr-body">
+          {props.item.map((item, index) => (
+            <tr className="tb-odr-item" key={item.id}>
+              <td className="tb-odr-info">
+                <span className="tb-odr-date d-none d-md-inline-block">
+                  {item.degree}
+                </span>
+              </td>
+              <td>
+                <span className="tb-odr-total">{item.startDate}</span>
+              </td>
+              <td className="tb-odr-amount">
+                <span className="tb-odr-status d-none d-md-inline-block">
+                  {item.endDate}
+                </span>
+              </td>
+              <td className="tb-odr-action">
+                <div className="tb-odr-btns d-none d-md-inline">
+                  <Button
+                    color="primary"
+                    className="btn-sm"
+                    onClick={(item) => {
+                      deleteItem(index)
+                    }}
+                  >
+                    <Icon name="trash"></Icon>
+                  </Button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   )
 }

@@ -7,39 +7,35 @@ export const userInfo = [
   },
   {
     id: 2,
-    name: `${String.first_name}`,
+    name: `${String.name}`,
   },
   {
     id: 3,
-    name: `${String.last_name}`,
-  },
-  {
-    id: 4,
-    name: `${String.role_id}`,
-  },
-  {
-    id: 5,
     name: `${String.department}`,
   },
   {
-    id: 6,
+    id: 4,
     name: `${String.mobile_number}`,
   },
   {
-    id: 7,
+    id: 5,
     name: `${String.email}`,
   },
   {
-    id: 8,
-    name: `${String.registered_at}`,
-  },
-  {
-    id: 9,
+    id: 6,
     name: `${String.is_active}`,
   },
   {
-    id: 10,
+    id: 7,
     name: `${String.is_delete}`,
+  },
+  {
+    id: 8,
+    name: `${String.status}`,
+  },
+  {
+    id: 9,
+    name: '',
   },
 ]
 
@@ -214,9 +210,9 @@ export const userCreate = [
     id: 18,
     label_name: `${String.mobile_number}`,
     type: 'number',
-    name: `${String.mobile}`,
+    name: `${String.mobile_number}`,
     required: 'Required *',
-    placeholder: `${String.Please_enter} ${String.mobile}`,
+    placeholder: `${String.Please_enter} ${String.mobile_number}`,
   },
   {
     id: 19,
@@ -252,7 +248,7 @@ export const userCreate = [
   },
 ]
 
-export const AddressDetailform = [
+export const AddressDetailForm = [
   {
     id: 1,
     label_name: `${String.address_1}`,
@@ -270,12 +266,30 @@ export const AddressDetailform = [
     required: 'Required *',
   },
   {
+    id: 6,
+    label_name: `${String.country}`,
+    type: 'select',
+    name: `${String.country}`,
+    state_name: 'countries',
+    placeholder: `${String.enter} ${String.country}`,
+    option: [{ value: `${String.indian}`, label: `${String.indian}` }],
+  },
+  {
+    id: 5,
+    label_name: `${String.state_region}`,
+    type: 'select',
+    name: `${String.state_region}`,
+    state_name: 'states',
+    placeholder: `${String.enter} ${String.state_region}`,
+    required: 'Required *',
+  },
+  {
     id: 3,
     label_name: `${String.city}`,
-    type: 'text',
+    type: 'select',
     name: `${String.city}`,
+    state_name: 'city',
     placeholder: `${String.enter} ${String.city}`,
-    required: 'Required *',
   },
   {
     id: 6,
@@ -284,22 +298,6 @@ export const AddressDetailform = [
     name: `${String.postal_code}`,
     placeholder: `${String.enter} ${String.postal_code}`,
     required: 'Required *',
-  },
-  {
-    id: 5,
-    label_name: `${String.state_region}`,
-    type: 'text',
-    name: `${String.state_region}`,
-    placeholder: `${String.enter} ${String.state_region}`,
-    required: 'Required *',
-  },
-  {
-    id: 6,
-    label_name: `${String.country}`,
-    type: 'select',
-    name: `${String.country}`,
-    placeholder: `${String.enter} ${String.country}`,
-    option: [{ value: `${String.indian}`, label: `${String.indian}` }],
   },
 ]
 

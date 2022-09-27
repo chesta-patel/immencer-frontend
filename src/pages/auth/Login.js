@@ -19,7 +19,7 @@ import { useForm } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
 import String from '../../utils/String'
 import { useDispatch } from 'react-redux'
-import { login } from '../../services/slices/AuthThunk'
+import { login } from '../../services/thunk/AuthThunk'
 import { useSelector } from 'react-redux'
 
 const Login = () => {
