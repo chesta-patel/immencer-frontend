@@ -11,17 +11,9 @@ export const setEmpSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(setEmp.fulfilled, (state, action) => {
-        //   console.log('saveEmpslice', action.payload)
-        state.empInfo = action.payload
-      })
-      .addCase(login.pending, function (state) {
-        state.empInfo = true
-      })
-      .addCase(login.rejected, (state, action) => {
-        state.empInfo = false
-      })
+    builder.addCase(setEmp.fulfilled, (state, action) => {
+      state.empInfo = action?.payload
+    })
   },
 })
 

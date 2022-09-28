@@ -5,7 +5,6 @@ let token = localStorage.getItem('token')
 const API_URL = `${process.env.REACT_APP_API_URL}`
 
 export const setEmp = createAsyncThunk('', async (payload, thunkAPI) => {
-  console.log('saveEmpthunk', payload)
   try {
     const response = await axios.post('', payload)
     // if (response.status === 200) {

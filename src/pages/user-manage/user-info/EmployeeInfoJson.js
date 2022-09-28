@@ -86,17 +86,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.employment} ${String.status}`,
     state_name: 'empStatus',
-    option: [
-      {
-        value: `${String.permanent}`,
-        label: `${String.permanent}`,
-      },
-      { value: `${String.training}`, label: `${String.training}` },
-      {
-        value: `${String.ex_employee}`,
-        label: `${String.ex_employee}`,
-      },
-    ],
+    required: 'Required *',
   },
 
   {
@@ -105,10 +95,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.department}`,
     state_name: 'department',
-    option: [
-      { value: `${String.admin}`, label: `${String.admin}` },
-      { value: `${String.user}`, label: `${String.user}` },
-    ],
+    required: 'Required *',
   },
   {
     id: 8,
@@ -116,11 +103,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.designation}`,
     state_name: 'designation',
-    option: [
-      { value: `${String.admin}`, label: `${String.admin}` },
-      { value: `${String.user}`, label: `${String.user}` },
-      { value: `${String.hr}`, label: `${String.hr}` },
-    ],
+    required: 'Required *',
   },
   {
     id: 9,
@@ -128,12 +111,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.manager_team_lead}`,
     state_name: 'teamLead',
-    option: [
-      {
-        value: `${String.amit_kasetiya}`,
-        label: `${String.amit_kasetiya}`,
-      },
-    ],
+    required: 'Required *',
   },
   {
     id: 10,
@@ -170,6 +148,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.nationality}`,
     state_name: 'nationality',
+    required: 'Required *',
   },
   {
     id: 15,
@@ -177,14 +156,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.blood_group}`,
     state_name: 'bloodGroup',
-    option: [
-      { value: `${String.a}`, label: `${String.a}` },
-      { value: `${String.a_plus}`, label: `${String.a_plus}` },
-      { value: `${String.b}`, label: `${String.b}` },
-      { value: `${String.b_plus}`, label: `${String.b_plus}` },
-      { value: `${String.o}`, label: `${String.o}` },
-      { value: `${String.o_plus}`, label: `${String.o_plus}` },
-    ],
+    required: 'Required *',
   },
   {
     id: 16,
@@ -192,10 +164,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.gender}`,
     state_name: 'gender',
-    option: [
-      { value: `${String.male}`, label: `${String.male}` },
-      { value: `${String.female}`, label: `${String.female}` },
-    ],
+    required: 'Required *',
   },
 
   {
@@ -272,7 +241,7 @@ export const AddressDetailForm = [
     name: `${String.country}`,
     state_name: 'countries',
     placeholder: `${String.enter} ${String.country}`,
-    option: [{ value: `${String.indian}`, label: `${String.indian}` }],
+    required: 'Required *',
   },
   {
     id: 5,
@@ -290,6 +259,7 @@ export const AddressDetailForm = [
     name: `${String.city}`,
     state_name: 'city',
     placeholder: `${String.enter} ${String.city}`,
+    required: 'Required *',
   },
   {
     id: 6,
