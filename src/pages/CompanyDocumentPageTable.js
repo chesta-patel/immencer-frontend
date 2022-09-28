@@ -4,7 +4,6 @@ import {
   filterRole,
   companyDocument,
 } from './user-manage/UserData'
-import { findUpper } from '../utils/Utils'
 import {
   DropdownMenu,
   DropdownToggle,
@@ -26,12 +25,11 @@ import {
   DataTableHead,
   DataTableRow,
   DataTableItem,
-  UserAvatar,
 } from '../components/Component'
 import { UserContext } from './user-manage/UserContext'
-import { Link } from 'react-router-dom'
 import { bulkActionOptions } from '../utils/Utils'
 import String from '../utils/String'
+import PdfViewer from '../components/pdfviewer/PdfViewer'
 
 function CompanyDocumentPageTable(props) {
   const [actionText, setActionText] = useState('')
@@ -530,24 +528,7 @@ function CompanyDocumentPageTable(props) {
         size="lg"
       >
         <ModalBody>
-          <button
-            onClick={(ev) => {
-              ev.preventDefault()
-              onFormCancel()
-              setModal({ view: false, link: '' })
-            }}
-            className="close"
-          >
-            <Icon name="cross-sm"></Icon>
-          </button>
-          <iframe
-            src={modal.link + '#toolbar=0'}
-            width="100%"
-            height="500px"
-            title="pdf"
-            onMouseDown={(e) => e.preventDefault()}
-            onContextMenu={(e) => e.preventDefault()}
-          ></iframe>
+          <PdfViewer url={modal.link} />
         </ModalBody>
       </Modal>
     </React.Fragment>

@@ -1,3 +1,5 @@
+import samplePDFFile from '../../assets/pdf/sample.pdf'
+
 export const userData = [
   {
     id: 1,
@@ -480,7 +482,7 @@ export const companyDocument = [
     fileName: 'company doc',
     uploadedBy: 'Name',
     updatedDate: '26-09-2022',
-    link: 'https://www.africau.edu/images/default/sample.pdf#toolbar=0',
+    link: samplePDFFile,
   },
   {
     id: 1,
@@ -488,7 +490,7 @@ export const companyDocument = [
     fileName: 'company doc 2',
     uploadedBy: 'Name 2',
     updatedDate: '27-09-2022',
-    link: 'https://www.africau.edu/images/default/sample.pdf#toolbar=0',
+    link: samplePDFFile,
   },
   {
     id: 1,
@@ -496,6 +498,6 @@ export const companyDocument = [
     fileName: 'company doc 3',
     uploadedBy: 'Name 3',
     updatedDate: '28-09-2022',
-    link: 'https://www.africau.edu/images/default/sample.pdf#toolbar=0',
+    link: samplePDFFile,
   },
 ]
