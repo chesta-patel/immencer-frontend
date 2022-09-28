@@ -5,6 +5,7 @@ import PageHeader from '../../PageHeader'
 import PageTable from '../../PageTable'
 import { companyPolicyForm, companyPolicyTable } from './CompanyPolicyJson'
 import { companyPolicyString } from '../../Strings'
+import CompanyPolicyPageTable from '../../CompanyPolicyPageTable'
 
 const CompanyPolicy = ({ ...props }) => {
   const [roleForm] = useState(companyPolicyForm)
@@ -15,7 +16,7 @@ const CompanyPolicy = ({ ...props }) => {
       <Head title="Company Policy" />
       <Content>
         <PageHeader json={roleForm} string={companyPolicyString} />
-        <PageTable json={roleTable} />
+        <CompanyPolicyPageTable json={roleTable} />
       </Content>
     </React.Fragment>
   )

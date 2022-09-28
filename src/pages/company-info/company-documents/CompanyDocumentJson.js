@@ -42,7 +42,7 @@ export const companyDocTable = [
   },
   {
     id: 2,
-    name: `${String.file}`,
+    name: `${String.description}`,
   },
   {
     id: 3,
