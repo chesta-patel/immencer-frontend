@@ -1,9 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import {
-  filterStatus,
-  filterRole,
-  // companyDocument,
-} from './user-manage/UserData'
+import { filterStatus, filterRole, companyPolicy } from './user-manage/UserData'
 import { findUpper } from '../utils/Utils'
 import {
   DropdownMenu,
@@ -32,11 +28,8 @@ import { UserContext } from './user-manage/UserContext'
 import { Link } from 'react-router-dom'
 import { bulkActionOptions } from '../utils/Utils'
 import String from '../utils/String'
-import { useSelector } from 'react-redux'
-import moment from 'moment'
 
-function CompanyDocumentPageTable(props) {
-  const { infoList, loader } = useSelector((state) => state.companyDocument)
+function CompanyPolicyPageTable(props) {
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -49,7 +42,7 @@ function CompanyDocumentPageTable(props) {
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  const currentItems = infoList.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
 
   const [modal, setModal] = useState({ view: false, link: '' })
 
@@ -100,7 +93,7 @@ function CompanyDocumentPageTable(props) {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== '') {
-      const filteredObject = infoList.filter((item) => {
+      const filteredObject = companyPolicy.filter((item) => {
         return (
           item.name.toLowerCase().includes(onSearchText.toLowerCase()) ||
           item.email.toLowerCase().includes(onSearchText.toLowerCase())
@@ -108,7 +101,7 @@ function CompanyDocumentPageTable(props) {
       })
       setData([...filteredObject])
     } else {
-      setData([...infoList])
+      setData([...companyPolicy])
     }
   }, [onSearchText, setData])
   // Sorting data
@@ -450,7 +443,7 @@ function CompanyDocumentPageTable(props) {
               ? currentItems.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
-                      <DataTableRow>
+                      <DataTableRow size="md">
                         {/* <Link to={`/user-details-regular/${item.id}`}> */}
                         <div className="user-card">
                           {/* <UserAvatar
@@ -460,7 +453,9 @@ function CompanyDocumentPageTable(props) {
                               image={item.image}
                             ></UserAvatar> */}
                           <div className="user-info">
-                            <span className="tb-lead">{item.title} </span>
+                            <span className="tb-lead">
+                              {item.documentTitle}{' '}
+                            </span>
                           </div>
                         </div>
                         {/* </Link> */}
@@ -474,11 +469,7 @@ function CompanyDocumentPageTable(props) {
                         <span>{item.uploadedBy}</span>
                       </DataTableRow>
                       <DataTableRow size="md">
-                        <span>
-                          {item.updatedAt
-                            ? moment(item.updatedAt).format('L')
-                            : moment(item.createdAt).format('L')}
-                        </span>
+                        <span>{item.updatedDate}</span>
                       </DataTableRow>
                       <DataTableRow size="lg">
                         <span>
@@ -486,7 +477,7 @@ function CompanyDocumentPageTable(props) {
                             color=""
                             className="btn-icon eye_btn"
                             onClick={() =>
-                              setModal({ view: true, link: item.assets })
+                              setModal({ view: true, link: item.link })
                             }
                             style={{ margin: '0px' }}
                           >
@@ -532,4 +523,4 @@ function CompanyDocumentPageTable(props) {
   )
 }
 
-export default CompanyDocumentPageTable
+export default CompanyPolicyPageTable
