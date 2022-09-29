@@ -501,3 +501,33 @@ export const companyDocument = [
     link: samplePDFFile,
   },
 ]
+
+export const companyPolicy = [
+  {
+    id: 1,
+    documentTitle: 'Policy',
+    fileName: 'company Policy',
+    uploadedBy: 'Name',
+    updatedDate: '26-09-2022',
+    description: 'company Policy 1',
+    link: samplePDFFile,
+  },
+  {
+    id: 1,
+    documentTitle: 'Policy 2',
+    fileName: 'company Policy 2',
+    uploadedBy: 'Name 2',
+    updatedDate: '27-09-2022',
+    description: 'company Policy 2',
+    link: samplePDFFile,
+  },
+  {
+    id: 1,
+    documentTitle: 'Policy 3',
+    fileName: 'company Policy 3',
+    uploadedBy: 'Name 3',
+    updatedDate: '28-09-2022',
+    description: 'company Policy 3',
+    link: samplePDFFile,
+  },
+]

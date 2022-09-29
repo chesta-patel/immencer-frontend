@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { filterStatus, filterRole } from './user-manage/UserData'
+import { filterStatus, filterRole, companyPolicy } from './user-manage/UserData'
+import { findUpper } from '../utils/Utils'
 import {
   DropdownMenu,
   DropdownToggle,
@@ -21,16 +22,14 @@ import {
   DataTableHead,
   DataTableRow,
   DataTableItem,
+  UserAvatar,
 } from '../components/Component'
 import { UserContext } from './user-manage/UserContext'
+import { Link } from 'react-router-dom'
 import { bulkActionOptions } from '../utils/Utils'
 import String from '../utils/String'
-import PdfViewer from '../components/pdfviewer/PdfViewer'
-import { useSelector } from 'react-redux'
-import moment from 'moment'
 
-function CompanyDocumentPageTable(props) {
-  const { infoList, loader } = useSelector((state) => state.companyDocument)
+function CompanyPolicyPageTable(props) {
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -43,7 +42,7 @@ function CompanyDocumentPageTable(props) {
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
 
   const [modal, setModal] = useState({ view: false, link: '' })
 
@@ -94,7 +93,7 @@ function CompanyDocumentPageTable(props) {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== '') {
-      const filteredObject = infoList.filter((item) => {
+      const filteredObject = companyPolicy.filter((item) => {
         return (
           item.name.toLowerCase().includes(onSearchText.toLowerCase()) ||
           item.email.toLowerCase().includes(onSearchText.toLowerCase())
@@ -102,9 +101,7 @@ function CompanyDocumentPageTable(props) {
       })
       setData([...filteredObject])
     } else {
-      if (Array.isArray(infoList)) {
-        setData([...infoList])
-      }
+      setData([...companyPolicy])
     }
   }, [onSearchText, setData])
   // Sorting data
@@ -442,16 +439,26 @@ function CompanyDocumentPageTable(props) {
               ))}
             </DataTableHead>
             {/*Head*/}
-            {currentItems?.length > 0
+            {currentItems.length > 0
               ? currentItems.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
-                      <DataTableRow>
+                      <DataTableRow size="md">
+                        {/* <Link to={`/user-details-regular/${item.id}`}> */}
                         <div className="user-card">
+                          {/* <UserAvatar
+                              theme={item.avatarBg}
+                              className="xs"
+                              text={findUpper(item.name)}
+                              image={item.image}
+                            ></UserAvatar> */}
                           <div className="user-info">
-                            <span className="tb-lead">{item.title} </span>
+                            <span className="tb-lead">
+                              {item.documentTitle}{' '}
+                            </span>
                           </div>
                         </div>
+                        {/* </Link> */}
                       </DataTableRow>
                       <DataTableRow size="md">
                         <div className="user-info">
@@ -462,11 +469,7 @@ function CompanyDocumentPageTable(props) {
                         <span>{item.uploadedBy}</span>
                       </DataTableRow>
                       <DataTableRow size="md">
-                        <span>
-                          {item.updatedAt
-                            ? moment(item.updatedAt).format('L')
-                            : moment(item.createdAt).format('L')}
-                        </span>
+                        <span>{item.updatedDate}</span>
                       </DataTableRow>
                       <DataTableRow size="lg">
                         <span>
@@ -474,7 +477,7 @@ function CompanyDocumentPageTable(props) {
                             color=""
                             className="btn-icon eye_btn"
                             onClick={() =>
-                              setModal({ view: true, link: item.assets })
+                              setModal({ view: true, link: item.link })
                             }
                             style={{ margin: '0px' }}
                           >
@@ -496,11 +499,28 @@ function CompanyDocumentPageTable(props) {
         size="lg"
       >
         <ModalBody>
-          <PdfViewer url={modal.link} />
+          <button
+            onClick={(ev) => {
+              ev.preventDefault()
+              onFormCancel()
+              setModal({ view: false, link: '' })
+            }}
+            className="close"
+          >
+            <Icon name="cross-sm"></Icon>
+          </button>
+          <iframe
+            src={modal.link + '#toolbar=0'}
+            width="100%"
+            height="500px"
+            title="pdf"
+            onMouseDown={(e) => e.preventDefault()}
+            onContextMenu={(e) => e.preventDefault()}
+          ></iframe>
         </ModalBody>
       </Modal>
     </React.Fragment>
   )
 }
 
-export default CompanyDocumentPageTable
+export default CompanyPolicyPageTable
