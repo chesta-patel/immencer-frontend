@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
 import PageHeader from '../../PageHeader'
-import PageTable from '../../PageTable'
 import { companyPolicyForm, companyPolicyTable } from './CompanyPolicyJson'
 import { companyPolicyString } from '../../Strings'
 import CompanyPolicyPageTable from '../../CompanyPolicyPageTable'
+import { companyPolicy } from '../../../services/thunk/CompanyPolicyThunk'
+import { useDispatch } from 'react-redux'
 
 const CompanyPolicy = ({ ...props }) => {
   const [roleForm] = useState(companyPolicyForm)
   const [roleTable] = useState(companyPolicyTable)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(companyPolicy('companyPolicies'))
+  }, [])
 
   return (
     <React.Fragment>

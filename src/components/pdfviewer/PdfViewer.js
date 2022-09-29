@@ -4,7 +4,6 @@ import disableDevtool from 'disable-devtool'
 import './PdfViewer.scss'
 
 const PdfViewer = ({ url }) => {
-  console.log('🚀 ~ url', `${process.env.REACT_APP_TEST_IP}upload/${url}`)
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
   const [numPages, setNumPages] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
