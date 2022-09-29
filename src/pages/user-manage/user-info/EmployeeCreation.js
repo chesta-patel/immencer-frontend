@@ -24,7 +24,7 @@ import './employeecreation.scss'
 import AvatarCropper from './avatar-crop/AvatarCropper'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../../services/thunk/AuthThunk'
-import { setEmp } from '../../../services/thunk/SaveEmp'
+import { getCreateNewEmpData } from '../../../services/thunk/CreateNewEmpDataThunk'
 
 const UserCreate = (props) => {
   const allDropdownState = useSelector((state) => state.dropdown)
@@ -36,6 +36,7 @@ const UserCreate = (props) => {
   const [validation, setValidation] = useState(false)
   const { handleSubmit } = useForm()
   const [empCreate, setEmpCreate] = useState({ ...initialState })
+  const [fileList, setFileList] = useState([])
 
   useEffect(() => {
     dispatch(fetchData('master/employmentStatus'))
@@ -62,10 +63,11 @@ const UserCreate = (props) => {
       return
     })
     if (checkValidation.length === 0) {
-      props.next()
+      dispatch(getCreateNewEmpData(empCreate))
     }
   }
   const handle = (dropdown) => {
+    props.next()
     dispatch(fetchData(`master/teamLead/${dropdown.value}`))
   }
 
@@ -163,7 +165,7 @@ const UserCreate = (props) => {
           }
         })}
         <Col md="4">
-          <AvatarCropper />
+          <AvatarCropper fileList={fileList} setFileList={setFileList} />
         </Col>
       </Row>
       <div className="actions clearfix">
@@ -208,6 +210,7 @@ const AddressDetails = (props) => {
     })
     if (checkValidate.length === 0) {
       props.next()
+      dispatch(getCreateNewEmpData({ currentAddress, permanentAddress }))
     }
   }
   const handleChangeAddress = (dropdown, dropDownType) => {
@@ -470,11 +473,12 @@ const AddressDetails = (props) => {
 }
 
 const Permission = (props) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [permissionList, setPermissionList] = useState([])
   const [checked] = useState(false)
   const [permissionSt, setPermissionSt] = useState([])
+  const dispatch = useDispatch()
 
-  const toggle = () => setDropdownOpen((prevState) => !prevState)
+  // const toggle = () => setDropdownOpen((prevState) => !prevState)
   tableHeader.map((e, index) => {
     for (const key in e) {
       if (e[key] === '') {
@@ -489,7 +493,6 @@ const Permission = (props) => {
   })
   const c = tableHeader.filter((value) => Object.keys(value).length !== 0)
   const handlechange = (e) => {
-    var columId = []
     var value = e.target.checked
     var string = e.target.id[1]
     var rowPointer = parseInt(string) - 1
@@ -512,21 +515,46 @@ const Permission = (props) => {
         setPermission(e, value)
         break
     }
+    getPermission()
   }
   function getPermission() {
     var per = []
-    Object.entries(permissionSt).forEach((element) => {
-      per.push({
-        key: element[0],
-        value: {
-          view: element[1][0],
-          add: element[1][1],
-          edit: element[1][2],
-          delete: element[1][3],
-        },
-      })
+    var temp = []
+    let found = Object.entries(permissionSt).find((pair) => pair[0] === 'Leave')
+    temp.push({
+      view: found[1][0],
+      add: found[1][1],
+      edit: found[1][2],
+      delete: found[1][3],
     })
-    return per
+    per.push({
+      Leave: temp,
+    })
+    temp = []
+    found = Object.entries(permissionSt).find((pair) => pair[0] === 'Holiday')
+    temp.push({
+      view: found[1][0],
+      add: found[1][1],
+      edit: found[1][2],
+      delete: found[1][3],
+    })
+    per.push({
+      Holiday: temp,
+    })
+    temp = []
+    found = Object.entries(permissionSt).find((pair) => pair[0] === 'Asset')
+    temp.push({
+      view: found[1][0],
+      add: found[1][1],
+      edit: found[1][2],
+      delete: found[1][3],
+    })
+    per.push({
+      Asset: temp,
+    })
+    return {
+      permission: per,
+    }
   }
   function setPermission(per, v) {
     switch (per.target.id) {
@@ -577,19 +605,13 @@ const Permission = (props) => {
         break
     }
   }
+  const CreateEmployee = () => {
+    debugger
+    dispatch(getCreateNewEmpData(getPermission()))
+  }
 
   return (
     <>
-      <div style={{ float: 'right' }}>
-        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret>{String.role}</DropdownToggle>
-          <DropdownMenu left>
-            <DropdownItem>{String.employee}</DropdownItem>
-            <DropdownItem>{String.admin}</DropdownItem>
-            <DropdownItem>{String.hr}</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </div>
       <Table>
         <thead>
           {tableHeader.map((head, i) =>
@@ -641,6 +663,11 @@ const Permission = (props) => {
         <div className="actions clearfix">
           <ul>
             <li>
+              <Button color="primary" onClick={CreateEmployee}>
+                {String.submit}
+              </Button>
+            </li>
+            <li>
               <Button color="primary" onClick={props.prev}>
                 {String.previous}
               </Button>
@@ -686,6 +713,7 @@ const config = {
 }
 
 function UserDetail() {
+  const [userCreation, setCreation] = useState([])
   return (
     <React.Fragment>
       <Content>

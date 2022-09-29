@@ -11,7 +11,7 @@ import {
   Row,
 } from 'reactstrap'
 import { Icon } from '../../../../components/Component'
-import { setEmp } from '../../../../services/thunk/SaveEmp'
+import { getCreateNewEmpData } from '../../../../services/thunk/CreateNewEmpDataThunk'
 import commonString from '../../../../utils/String'
 import EducationCard from './EducationCard'
 
@@ -48,12 +48,21 @@ function Education(props) {
     value = event.target.value
     setData({ ...data, [name]: value })
   }
+  const getEducationList = () => {
+    var list = []
+    Object.entries(educationList).forEach((element) => {
+      list.push(element[1])
+    })
+    return {
+      education: list,
+    }
+  }
   const displaydata = () => {
     setEducationList(items)
   }
   const senData = () => {
-    dispatch(setEmp(educationList))
     props.next()
+    dispatch(getCreateNewEmpData(getEducationList()))
   }
 
   return (
