@@ -1,0 +1,11 @@
+.pdf-container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+@media print {
+  .pdf-container {
+    display: none;
+  }
+}
