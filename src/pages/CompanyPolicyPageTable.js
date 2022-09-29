@@ -28,8 +28,12 @@ import { UserContext } from './user-manage/UserContext'
 import { Link } from 'react-router-dom'
 import { bulkActionOptions } from '../utils/Utils'
 import String from '../utils/String'
+import PdfViewer from './../components/pdfviewer/PdfViewer'
+import moment from 'moment'
+import { useSelector } from 'react-redux'
 
 function CompanyPolicyPageTable(props) {
+  const { infoList, loader } = useSelector((state) => state.companyPolicy)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -42,7 +46,7 @@ function CompanyPolicyPageTable(props) {
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
 
   const [modal, setModal] = useState({ view: false, link: '' })
 
@@ -93,7 +97,7 @@ function CompanyPolicyPageTable(props) {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== '') {
-      const filteredObject = companyPolicy.filter((item) => {
+      const filteredObject = infoList.filter((item) => {
         return (
           item.name.toLowerCase().includes(onSearchText.toLowerCase()) ||
           item.email.toLowerCase().includes(onSearchText.toLowerCase())
@@ -453,9 +457,7 @@ function CompanyPolicyPageTable(props) {
                               image={item.image}
                             ></UserAvatar> */}
                           <div className="user-info">
-                            <span className="tb-lead">
-                              {item.documentTitle}{' '}
-                            </span>
+                            <span className="tb-lead">{item.title} </span>
                           </div>
                         </div>
                         {/* </Link> */}
@@ -469,7 +471,11 @@ function CompanyPolicyPageTable(props) {
                         <span>{item.uploadedBy}</span>
                       </DataTableRow>
                       <DataTableRow size="md">
-                        <span>{item.updatedDate}</span>
+                        <span>
+                          {item.updatedAt
+                            ? moment(item.updatedAt).format('L')
+                            : moment(item.createdAt).format('L')}
+                        </span>
                       </DataTableRow>
                       <DataTableRow size="lg">
                         <span>
@@ -498,7 +504,7 @@ function CompanyPolicyPageTable(props) {
         className="modal-dialog-centered pdf_modal"
         size="lg"
       >
-        <ModalBody>
+        {/* <ModalBody>
           <button
             onClick={(ev) => {
               ev.preventDefault()
@@ -517,6 +523,9 @@ function CompanyPolicyPageTable(props) {
             onMouseDown={(e) => e.preventDefault()}
             onContextMenu={(e) => e.preventDefault()}
           ></iframe>
+        </ModalBody> */}
+        <ModalBody>
+          <PdfViewer url={modal.link} />
         </ModalBody>
       </Modal>
     </React.Fragment>
