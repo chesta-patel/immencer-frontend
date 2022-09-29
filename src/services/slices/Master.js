@@ -49,7 +49,6 @@ export const dropdownSlice = createSlice({
           state.states = action.payload.data.states
           break
         case 'cities':
-          console.log(action.payload.data.cities)
           state.city = action.payload.data.cities
 
         default:

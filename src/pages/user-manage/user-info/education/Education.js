@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import {
   Button,
   Col,
@@ -10,23 +11,27 @@ import {
   Row,
 } from 'reactstrap'
 import { Icon } from '../../../../components/Component'
+import { getCreateNewEmpData } from '../../../../services/thunk/CreateNewEmpDataThunk'
 import commonString from '../../../../utils/String'
 import EducationCard from './EducationCard'
 
 function Education(props) {
+  const dispatch = useDispatch()
   const [data, setData] = useState({
     degree: '',
     startDate: new Date(),
     endDate: new Date(),
   })
   const [items, setItems] = useState([])
+  const [educationList, setEducationList] = useState([])
+
   const [modal, setModal] = useState({
     edit: false,
     add: false,
   })
-  const [eduDetail, setEduDetail] = useState([])
   const onFormCancel = (e) => {
     e.preventDefault()
+
     setModal({ edit: false, add: false })
   }
   const handleSubmit = (e) => {
@@ -42,6 +47,22 @@ function Education(props) {
     name = event.target.name
     value = event.target.value
     setData({ ...data, [name]: value })
+  }
+  const getEducationList = () => {
+    var list = []
+    Object.entries(educationList).forEach((element) => {
+      list.push(element[1])
+    })
+    return {
+      education: list,
+    }
+  }
+  const displaydata = () => {
+    setEducationList(items)
+  }
+  const senData = () => {
+    props.next()
+    dispatch(getCreateNewEmpData(getEducationList()))
   }
 
   return (
@@ -110,6 +131,7 @@ function Education(props) {
                 size="md"
                 className="education-button"
                 type="submit"
+                onClick={displaydata}
               >
                 {commonString.submit}
               </Button>
@@ -131,7 +153,7 @@ function Education(props) {
         <div className="actions clearfix">
           <ul>
             <li>
-              <Button color="primary" onClick={props.next}>
+              <Button color="primary" onClick={senData}>
                 {commonString.next}
               </Button>
             </li>
