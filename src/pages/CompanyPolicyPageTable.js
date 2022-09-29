@@ -443,7 +443,7 @@ function CompanyPolicyPageTable(props) {
               ))}
             </DataTableHead>
             {/*Head*/}
-            {currentItems.length > 0
+            {currentItems?.length > 0
               ? currentItems.map((item) => {
                   return (
                     <DataTableItem key={item.id}>

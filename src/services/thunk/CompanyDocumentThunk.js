@@ -2,8 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 let token = localStorage.getItem('token')
-const API_URL = `http://192.168.29.40:3001/v1/`
-// const API_URL = `${process.env.REACT_APP_API_URL}`
+const API_URL = `${process.env.REACT_APP_API_URL}`
 
 export const companyDocument = createAsyncThunk(
   '',

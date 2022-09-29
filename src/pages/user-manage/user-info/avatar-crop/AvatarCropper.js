@@ -13,7 +13,6 @@ const getSrcFromFile = (file) => {
 function AvatarCropper({ fileList, setFileList }) {
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList)
-    console.log(fileList)
   }
   const onPreview = async (file) => {
     const src = file.url || (await getSrcFromFile(file))
