@@ -1,10 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import {
-  filterStatus,
-  filterRole,
-  // companyDocument,
-} from './user-manage/UserData'
-import { findUpper } from '../utils/Utils'
+import { filterStatus, filterRole } from './user-manage/UserData'
 import {
   DropdownMenu,
   DropdownToggle,
@@ -26,12 +21,11 @@ import {
   DataTableHead,
   DataTableRow,
   DataTableItem,
-  UserAvatar,
 } from '../components/Component'
 import { UserContext } from './user-manage/UserContext'
-import { Link } from 'react-router-dom'
 import { bulkActionOptions } from '../utils/Utils'
 import String from '../utils/String'
+import PdfViewer from '../components/pdfviewer/PdfViewer'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 
@@ -49,7 +43,7 @@ function CompanyDocumentPageTable(props) {
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  const currentItems = infoList.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
 
   const [modal, setModal] = useState({ view: false, link: '' })
 
@@ -108,7 +102,9 @@ function CompanyDocumentPageTable(props) {
       })
       setData([...filteredObject])
     } else {
-      setData([...infoList])
+      if (Array.isArray(infoList)) {
+        setData([...infoList])
+      }
     }
   }, [onSearchText, setData])
   // Sorting data
@@ -446,24 +442,16 @@ function CompanyDocumentPageTable(props) {
               ))}
             </DataTableHead>
             {/*Head*/}
-            {currentItems.length > 0
+            {currentItems?.length > 0
               ? currentItems.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
                       <DataTableRow>
-                        {/* <Link to={`/user-details-regular/${item.id}`}> */}
                         <div className="user-card">
-                          {/* <UserAvatar
-                              theme={item.avatarBg}
-                              className="xs"
-                              text={findUpper(item.name)}
-                              image={item.image}
-                            ></UserAvatar> */}
                           <div className="user-info">
                             <span className="tb-lead">{item.title} </span>
                           </div>
                         </div>
-                        {/* </Link> */}
                       </DataTableRow>
                       <DataTableRow size="md">
                         <div className="user-info">
@@ -508,24 +496,7 @@ function CompanyDocumentPageTable(props) {
         size="lg"
       >
         <ModalBody>
-          <button
-            onClick={(ev) => {
-              ev.preventDefault()
-              onFormCancel()
-              setModal({ view: false, link: '' })
-            }}
-            className="close"
-          >
-            <Icon name="cross-sm"></Icon>
-          </button>
-          <iframe
-            src={modal.link + '#toolbar=0'}
-            width="100%"
-            height="500px"
-            title="pdf"
-            onMouseDown={(e) => e.preventDefault()}
-            onContextMenu={(e) => e.preventDefault()}
-          ></iframe>
+          <PdfViewer url={modal.link} />
         </ModalBody>
       </Modal>
     </React.Fragment>
