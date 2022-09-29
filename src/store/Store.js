@@ -4,6 +4,8 @@ import dropdown from '../services/slices/Master'
 import getEmp from '../services/slices/GetEmployeeSlice'
 import getCompanyDocument from './../services/slices/CompanyDocumentSlice'
 import CreateNewEmpData from '../services/slices/CreateNewEmpData'
+import CreateEmp from '../services/slices/CreateEmployeeSlice'
+
 export default configureStore({
   reducer: {
     auth: authReducer,
@@ -11,5 +13,6 @@ export default configureStore({
     getEmp: getEmp,
     companyDocument: getCompanyDocument,
     createNewEmpData: CreateNewEmpData,
+    CreateEmp: CreateEmp,
   },
 })

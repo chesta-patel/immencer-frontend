@@ -47,6 +47,7 @@ export const userCreate = [
     name: `${String.first_name}`,
     placeholder: `${String.enter} ${String.first_name}`,
     required: 'Required *',
+    key_name: 'firstName',
   },
   {
     id: 2,
@@ -55,6 +56,7 @@ export const userCreate = [
     name: `${String.middle_name}`,
     placeholder: `${String.enter} ${String.middle_name}`,
     required: 'Required *',
+    key_name: 'MiddleName',
   },
   {
     id: 3,
@@ -63,6 +65,7 @@ export const userCreate = [
     name: `${String.last_name}`,
     placeholder: `${String.enter} ${String.last_name}`,
     required: 'Required *',
+    key_name: 'lastName',
   },
   {
     id: 4,
@@ -71,6 +74,7 @@ export const userCreate = [
     name: `${String.employee_code}`,
     placeholder: `${String.enter} ${String.employee_code}`,
     required: 'Required *',
+    key_name: 'employeeCode',
   },
   {
     id: 5,
@@ -79,6 +83,7 @@ export const userCreate = [
     name: `${String.company_email}`,
     placeholder: `${String.enter} ${String.company_email}`,
     required: 'Required *',
+    key_name: 'companyEmail',
   },
   {
     id: 6,
@@ -87,8 +92,8 @@ export const userCreate = [
     name: `${String.employment} ${String.status}`,
     state_name: 'empStatus',
     required: 'Required *',
+    key_name: 'employmentStatus',
   },
-
   {
     id: 7,
     label_name: `${String.department}`,
@@ -96,6 +101,7 @@ export const userCreate = [
     name: `${String.department}`,
     state_name: 'department',
     required: 'Required *',
+    key_name: 'department',
   },
   {
     id: 8,
@@ -104,6 +110,7 @@ export const userCreate = [
     name: `${String.designation}`,
     state_name: 'designation',
     required: 'Required *',
+    key_name: 'designation',
   },
   {
     id: 9,
@@ -111,7 +118,8 @@ export const userCreate = [
     type: 'select',
     name: `${String.manager_team_lead}`,
     state_name: 'teamLead',
-    required: 'Required *',
+    key_name: 'teamLead',
+    // required: 'Required *',
   },
   {
     id: 10,
@@ -119,6 +127,7 @@ export const userCreate = [
     type: 'date',
     name: `${String.joining_date}`,
     required: 'Required *',
+    key_name: 'joiningDate',
   },
   {
     id: 11,
@@ -126,6 +135,7 @@ export const userCreate = [
     type: 'date',
     name: `${String.onboarding_date}`,
     required: 'Required *',
+    key_name: 'onboardingDate',
   },
   {
     id: 12,
@@ -133,6 +143,7 @@ export const userCreate = [
     type: 'date',
     name: `${String.relieving_date}`,
     required: 'Required *',
+    key_name: 'relievingDate',
   },
   {
     id: 13,
@@ -140,7 +151,8 @@ export const userCreate = [
     type: 'date',
     name: `${String.birth_day}`,
     required: 'Required *',
-    today: new Date().toISOString().split('T')[0],
+    max: new Date().toISOString().split('T')[0],
+    key_name: 'birthDate',
   },
   {
     id: 14,
@@ -149,6 +161,7 @@ export const userCreate = [
     name: `${String.nationality}`,
     state_name: 'nationality',
     required: 'Required *',
+    key_name: 'nationality',
   },
   {
     id: 15,
@@ -157,6 +170,7 @@ export const userCreate = [
     name: `${String.blood_group}`,
     state_name: 'bloodGroup',
     required: 'Required *',
+    key_name: 'bloodGroup',
   },
   {
     id: 16,
@@ -165,8 +179,8 @@ export const userCreate = [
     name: `${String.gender}`,
     state_name: 'gender',
     required: 'Required *',
+    key_name: 'gender',
   },
-
   {
     id: 17,
     label_name: `${String.personal_email}`,
@@ -174,6 +188,7 @@ export const userCreate = [
     name: `${String.personal_email}`,
     required: 'Required *',
     placeholder: `${String.Please_enter} ${String.personal_email}`,
+    key_name: 'personalEmail',
   },
   {
     id: 18,
@@ -182,6 +197,7 @@ export const userCreate = [
     name: `${String.mobile_number}`,
     required: 'Required *',
     placeholder: `${String.Please_enter} ${String.mobile_number}`,
+    key_name: 'mobile',
   },
   {
     id: 19,
@@ -190,6 +206,7 @@ export const userCreate = [
     name: `${String.whatsapp_mobile}`,
     placeholder: `${String.Please_enter} ${String.whatsapp_mobile}`,
     required: 'Required *',
+    key_name: 'whatsappNumber',
   },
   {
     id: 20,
@@ -198,6 +215,7 @@ export const userCreate = [
     name: `${String.parent_mobile}`,
     required: 'Required *',
     placeholder: `${String.Please_enter} ${String.parent_mobile}`,
+    key_name: 'parentsMobile',
   },
   {
     id: 21,
@@ -206,14 +224,16 @@ export const userCreate = [
     name: `${String.aadhaar_card_number}`,
     placeholder: `${String.Please_enter} ${String.aadhaar_card_number}`,
     required: 'Required *',
+    key_name: 'aadharCard',
   },
   {
     id: 22,
     label_name: `${String.pan_card_number}`,
-    type: 'number',
+    type: 'text',
     name: `${String.pan_card_number}`,
     placeholder: `${String.Please_enter} ${String.pan_card_number}`,
     required: 'Required *',
+    key_name: 'panCard',
   },
 ]
 
@@ -225,6 +245,7 @@ export const AddressDetailForm = [
     name: `${String.address_1}`,
     placeholder: `${String.enter} ${String.address_1}`,
     required: 'Required *',
+    key_name: 'address1',
   },
   {
     id: 2,
@@ -233,6 +254,7 @@ export const AddressDetailForm = [
     name: `${String.address_2}`,
     placeholder: `${String.enter} ${String.address_2}`,
     required: 'Required *',
+    key_name: 'address2',
   },
   {
     id: 6,
@@ -242,6 +264,7 @@ export const AddressDetailForm = [
     state_name: 'countries',
     placeholder: `${String.enter} ${String.country}`,
     required: 'Required *',
+    key_name: 'country',
   },
   {
     id: 5,
@@ -251,6 +274,7 @@ export const AddressDetailForm = [
     state_name: 'states',
     placeholder: `${String.enter} ${String.state_region}`,
     required: 'Required *',
+    key_name: 'state',
   },
   {
     id: 3,
@@ -260,6 +284,7 @@ export const AddressDetailForm = [
     state_name: 'city',
     placeholder: `${String.enter} ${String.city}`,
     required: 'Required *',
+    key_name: 'city',
   },
   {
     id: 6,
@@ -268,6 +293,7 @@ export const AddressDetailForm = [
     name: `${String.postal_code}`,
     placeholder: `${String.enter} ${String.postal_code}`,
     required: 'Required *',
+    key_name: 'zipCode',
   },
 ]
 
