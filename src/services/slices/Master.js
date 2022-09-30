@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchData } from './AuthThunk'
+import { fetchData } from '../thunk/AuthThunk'
 
 const initialState = {
   empStatus: [],
@@ -9,6 +9,9 @@ const initialState = {
   gender: [],
   nationality: [],
   teamLead: [],
+  countries: [],
+  states: [],
+  city: [],
 }
 
 export const dropdownSlice = createSlice({
@@ -39,6 +42,15 @@ export const dropdownSlice = createSlice({
         case 'teamLead':
           state.teamLead = action.payload.data.teamLead
           break
+        case 'countries':
+          state.countries = action.payload.data.countries
+          break
+        case 'states':
+          state.states = action.payload.data.states
+          break
+        case 'cities':
+          state.city = action.payload.data.cities
+
         default:
           break
       }

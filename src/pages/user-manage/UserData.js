@@ -1,3 +1,5 @@
+import samplePDFFile from '../../assets/pdf/sample.pdf'
+
 export const userData = [
   {
     id: 1,
@@ -471,4 +473,61 @@ export const countryOptions = [
   { value: 'Bangladesh', label: 'Bangladesh' },
   { value: 'France', label: 'France' },
   { value: 'England', label: 'England' },
+]
+
+export const companyDocument = [
+  {
+    id: 1,
+    documentTitle: 'Latter',
+    fileName: 'company doc',
+    uploadedBy: 'Name',
+    updatedDate: '26-09-2022',
+    link: samplePDFFile,
+  },
+  {
+    id: 1,
+    documentTitle: 'Latter 2',
+    fileName: 'company doc 2',
+    uploadedBy: 'Name 2',
+    updatedDate: '27-09-2022',
+    link: samplePDFFile,
+  },
+  {
+    id: 1,
+    documentTitle: 'Latter 3',
+    fileName: 'company doc 3',
+    uploadedBy: 'Name 3',
+    updatedDate: '28-09-2022',
+    link: samplePDFFile,
+  },
+]
+
+export const companyPolicy = [
+  {
+    id: 1,
+    documentTitle: 'Policy',
+    fileName: 'company Policy',
+    uploadedBy: 'Name',
+    updatedDate: '26-09-2022',
+    description: 'company Policy 1',
+    link: samplePDFFile,
+  },
+  {
+    id: 1,
+    documentTitle: 'Policy 2',
+    fileName: 'company Policy 2',
+    uploadedBy: 'Name 2',
+    updatedDate: '27-09-2022',
+    description: 'company Policy 2',
+    link: samplePDFFile,
+  },
+  {
+    id: 1,
+    documentTitle: 'Policy 3',
+    fileName: 'company Policy 3',
+    uploadedBy: 'Name 3',
+    updatedDate: '28-09-2022',
+    description: 'company Policy 3',
+    link: samplePDFFile,
+  },
 ]

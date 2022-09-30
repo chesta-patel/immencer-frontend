@@ -1,6 +1,6 @@
 import { Redirect } from 'react-router-dom'
 import commonString from './String'
-
+import jwt_decode from 'jwt-decode'
 //url for production
 export var url = ''
 if (process.env.NODE_ENV === 'development') {
@@ -27,7 +27,7 @@ export const findUpper = (string) => {
 
   for (var i = 0; i < string.length; i++) {
     if (
-      string.charAt(i) === string.charAt(i).toUpperCase() &&
+      string.charAt(i) === string.charAt(i).toLowerCase() &&
       string.charAt(i) !== ' '
     ) {
       extractedString.push(string.charAt(i))
@@ -54,14 +54,14 @@ export const getDateStructured = (date) => {
   let final = monthNames[m] + ' ' + d + ', ' + y
   return final
 }
-// Function to structure date ex: YYYY-MM-DD
+// Function to structure date ex: DD-MM-YYYY
 export const setDateForPicker = (rdate) => {
   let d = rdate.getDate()
   d < 10 && (d = '0' + d)
   let m = rdate.getMonth() + 1
   m < 10 && (m = '0' + m)
   let y = rdate.getFullYear()
-  rdate = y + '-' + m + '-' + d
+  rdate = d + '-' + m + '-' + y
   return rdate
 }
 // Set deadlines for projects
@@ -70,6 +70,19 @@ export const setDeadlineDays = (deadline) => {
   var difference = deadline.getTime() - currentDate.getTime()
   var days = Math.ceil(difference / (1000 * 3600 * 24))
   return days
+}
+//validate token
+export const tokenValidation = (isExpired) => {
+  let token = localStorage.getItem('token')
+  let decodedToken = jwt_decode(token)
+  let currentDate = new Date()
+
+  // JWT exp is in seconds
+  if (decodedToken.exp * 1000 < currentDate.getTime()) {
+    isExpired = true
+  } else {
+    isExpired = false
+  }
 }
 //Date formatter function Example : 10-02-2004
 export const dateFormatterAlt = (date, reverse) => {

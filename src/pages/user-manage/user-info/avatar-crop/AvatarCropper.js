@@ -10,9 +10,7 @@ const getSrcFromFile = (file) => {
     reader.onload = () => resolve(reader.result)
   })
 }
-function AvatarCropper() {
-  const [fileList, setFileList] = useState([])
-
+function AvatarCropper({ fileList, setFileList }) {
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList)
   }

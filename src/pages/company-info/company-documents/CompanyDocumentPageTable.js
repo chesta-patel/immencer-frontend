@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { filterStatus, filterRole, userData } from './user-manage/UserData'
-import { findUpper } from '../utils/Utils'
+import { filterStatus, filterRole } from '../../user-manage/UserData'
 import {
   DropdownMenu,
   DropdownToggle,
   FormGroup,
   UncontrolledDropdown,
   DropdownItem,
+  Modal,
+  ModalBody,
 } from 'reactstrap'
 import {
   Block,
@@ -20,18 +21,16 @@ import {
   DataTableHead,
   DataTableRow,
   DataTableItem,
-  UserAvatar,
-} from '../components/Component'
-import { UserContext } from './user-manage/UserContext'
-import { Link } from 'react-router-dom'
-import { bulkActionOptions } from '../utils/Utils'
-import String from '../utils/String'
-import { useDispatch } from 'react-redux'
+} from '../../../components/Component'
+import { UserContext } from '../../user-manage/UserContext'
+import { bulkActionOptions } from '../../../utils/Utils'
+import String from '../../../utils/String'
+import PdfViewer from '../../../components/pdfviewer/PdfViewer'
 import { useSelector } from 'react-redux'
-import { empData } from '../services/thunk/GetEmployee'
+import moment from 'moment'
 
-function PageTable(props) {
-  const dispatch = useDispatch()
+function CompanyDocumentPageTable(props) {
+  const { infoList, loader } = useSelector((state) => state.companyDocument)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -44,10 +43,13 @@ function PageTable(props) {
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  const currentItems = props?.employeeData?.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  )
+  const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
+
+  const [modal, setModal] = useState({ view: false, link: '' })
+
+  const onFormCancel = () => {
+    setModal({ view: false, link: '' })
+  }
 
   // function which selects all the items
   const selectorCheck = (e) => {
@@ -92,7 +94,7 @@ function PageTable(props) {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== '') {
-      const filteredObject = userData.filter((item) => {
+      const filteredObject = infoList.filter((item) => {
         return (
           item.name.toLowerCase().includes(onSearchText.toLowerCase()) ||
           item.email.toLowerCase().includes(onSearchText.toLowerCase())
@@ -100,13 +102,11 @@ function PageTable(props) {
       })
       setData([...filteredObject])
     } else {
-      setData([...userData])
+      if (Array.isArray(infoList)) {
+        setData([...infoList])
+      }
     }
   }, [onSearchText, setData])
-  useEffect(() => {
-    // dispatch(empData('employee'))
-  }, [])
-  useEffect(() => {}, [])
   // Sorting data
   const sortFunc = (params) => {
     let defaultData = data
@@ -435,17 +435,6 @@ function PageTable(props) {
           </div>
           <DataTableBody compact>
             <DataTableHead>
-              <DataTableRow className="nk-tb-col-check">
-                <div className="custom-control custom-control-sm custom-checkbox notext">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input form-control"
-                    onChange={(e) => selectorCheck(e)}
-                    id="uid"
-                  />
-                  <label className="custom-control-label" htmlFor="uid"></label>
-                </div>
-              </DataTableRow>
               {props.json.map((colum, id) => (
                 <DataTableRow size="md" key={id}>
                   <span className="sub-text">{colum.name}</span>
@@ -457,86 +446,41 @@ function PageTable(props) {
               ? currentItems.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
-                      <DataTableRow className="nk-tb-col-check">
-                        <div className="custom-control custom-control-sm custom-checkbox notext">
-                          <input
-                            type="checkbox"
-                            className="custom-control-input form-control"
-                            defaultChecked={item.checked}
-                            id={item.id + 'uid1'}
-                            key={Math.random()}
-                            onChange={(e) => onSelectChange(e, item.id)}
-                          />
-                          <label
-                            className="custom-control-label"
-                            htmlFor={item.id + 'uid1'}
-                          ></label>
+                      <DataTableRow>
+                        <div className="user-card">
+                          <div className="user-info">
+                            <span className="tb-lead">{item.title} </span>
+                          </div>
                         </div>
                       </DataTableRow>
-                      <DataTableRow>
-                        <Link to={`/user-details-regular/${item.id}`}>
-                          <div className="user-card">
-                            <UserAvatar
-                              theme={item.avatarBg}
-                              className="xs"
-                              text={findUpper(
-                                `${item.firstName} ${item.lastName}`
-                              )}
-                              image={item.image}
-                            ></UserAvatar>
-                          </div>
-                        </Link>
+                      <DataTableRow size="md">
+                        <div className="user-info">
+                          <span className="tb-lead">{item.description} </span>
+                        </div>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{`${item.firstName} ${item.lastName}`}</span>
+                        <span>{item.uploadedBy}</span>
                       </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.department}</span>
+                      <DataTableRow size="md">
+                        <span>
+                          {item.updatedAt
+                            ? moment(item.updatedAt).format('L')
+                            : moment(item.createdAt).format('L')}
+                        </span>
                       </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.mobile}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.personalEmail}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.isActive}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.isDeleted}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.employmentStatus}</span>
-                      </DataTableRow>
-                      <DataTableRow className="nk-tb-col-tools">
-                        <ul className="nk-tb-actions gx-1">
-                          <li>
-                            <UncontrolledDropdown>
-                              <DropdownToggle
-                                tag="a"
-                                className="dropdown-toggle btn btn-icon btn-trigger"
-                              >
-                                <Icon name="more-h"></Icon>
-                              </DropdownToggle>
-                              <DropdownMenu right>
-                                <ul className="link-list-opt no-bdr">
-                                  <li>
-                                    <DropdownItem
-                                      tag="a"
-                                      href="#edit"
-                                      onClick={(ev) => {
-                                        ev.preventDefault()
-                                      }}
-                                    >
-                                      <Icon name="edit"></Icon>
-                                      <span>{String.edit}</span>
-                                    </DropdownItem>
-                                  </li>
-                                </ul>
-                              </DropdownMenu>
-                            </UncontrolledDropdown>
-                          </li>
-                        </ul>
+                      <DataTableRow size="lg">
+                        <span>
+                          <Button
+                            color=""
+                            className="btn-icon eye_btn"
+                            onClick={() =>
+                              setModal({ view: true, link: item.assets })
+                            }
+                            style={{ margin: '0px' }}
+                          >
+                            <em class="icon ni ni-eye"></em>
+                          </Button>
+                        </span>
                       </DataTableRow>
                     </DataTableItem>
                   )
@@ -545,8 +489,18 @@ function PageTable(props) {
           </DataTableBody>
         </DataTable>
       </Block>
+      <Modal
+        isOpen={modal.view}
+        toggle={() => setModal({ view: false, link: '' })}
+        className="modal-dialog-centered pdf_modal"
+        size="lg"
+      >
+        <ModalBody>
+          <PdfViewer url={modal.link} />
+        </ModalBody>
+      </Modal>
     </React.Fragment>
   )
 }
 
-export default PageTable
+export default CompanyDocumentPageTable

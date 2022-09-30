@@ -34,7 +34,7 @@
   }
   &-date {
     .tb-odr-item & {
-      color: $base-light;
+      color: $base-700;
       .tb-odr-head & {
         color: inherit;
       }
@@ -81,7 +81,7 @@
       font-weight: $fw-bold;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: $base-light;
+      color: $base-700;
       padding: 0.625rem 0.25rem;
     }
   }

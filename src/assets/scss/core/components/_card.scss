@@ -173,3 +173,9 @@
     width: 380px;
   }
 }
+
+.eye_btn {
+  &:focus {
+    box-shadow: inherit;
+  }
+}

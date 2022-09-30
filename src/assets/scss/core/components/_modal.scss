@@ -42,7 +42,9 @@
     margin-top: 2rem;
   }
 }
-
+.pdf_modal.modal-lg {
+  max-width: 75%;
+}
 @include media-breakpoint-up(sm) {
   .nk-modal {
     &-action {

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Block, RSelect } from '../../../components/Component'
 import { useForm } from 'react-hook-form'
 import { Steps, Step } from 'react-step-builder'
 import { Row, Col, FormGroup, Button } from 'reactstrap'
 import {
-  AddressDetailform,
+  AddressDetailForm,
   tableHeader,
   tableRow,
   userCreate,
@@ -12,39 +12,47 @@ import {
 import String from '../../../utils/String'
 import Content from '../../../layout/content/Content'
 import { cloneDeep } from 'lodash'
-import {
-  Table,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from 'reactstrap'
+import { Table } from 'reactstrap'
 import Education from './education/Education'
 import './employeecreation.scss'
 import AvatarCropper from './avatar-crop/AvatarCropper'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchData } from '../../../services/slices/AuthThunk'
+import { fetchData } from '../../../services/thunk/AuthThunk'
+import {
+  CreateNewEmployee,
+  getCreateNewEmpData,
+} from '../../../services/thunk/CreateNewEmpDataThunk'
+import { validateByRegex } from '../../../utils/Helpers'
 
 const UserCreate = (props) => {
   const allDropdownState = useSelector((state) => state.dropdown)
   const dispatch = useDispatch()
-
   const initialState = {}
   userCreate.forEach((formFields) => {
-    initialState[`${formFields.name}`] = ''
+    initialState[`${formFields.key_name}`] = ''
   })
-  const [validation, setvalidation] = useState(false)
+  const [validation, setValidation] = useState(false)
   const { handleSubmit } = useForm()
-  const [Fdata, setFdata] = useState({ ...initialState })
+  const [empCreate, setEmpCreate] = useState({ ...initialState })
+  const [fileList, setFileList] = useState([])
+  const [invalidFormatError, setInvalidFormatError] = useState([])
+  let checkValidation = []
+
+  useEffect(() => {
+    dispatch(fetchData('master/employmentStatus'))
+    dispatch(fetchData('master/department'))
+    dispatch(fetchData('master/designation'))
+    dispatch(fetchData('master/bloodGroup'))
+    dispatch(fetchData('master/gender'))
+    dispatch(fetchData('master/nationality'))
+  }, [])
 
   const submitForm = (e) => {
     e.preventDefault()
-    setvalidation(true)
-
-    let checkValidation = []
+    setValidation(true)
     userCreate.map((formFields) => {
-      if (formFields.required && !Fdata[`${formFields.name}`]) {
-        checkValidation.push(formFields.name)
+      if (formFields.required && !empCreate[`${formFields.key_name}`]) {
+        checkValidation.push(formFields.key_name)
       } else {
         let filterCheckValidation = checkValidation?.filter(
           (value) => value !== formFields.name
@@ -54,13 +62,56 @@ const UserCreate = (props) => {
       // eslint-disable-next-line array-callback-return
       return
     })
+    checkValidate()
     if (checkValidation.length === 0) {
       props.next()
+      dispatch(getCreateNewEmpData(empCreate))
     }
   }
+
+  const checkValidate = () => {
+    userCreate.map((formFields) => {
+      if (formFields.validationType) {
+        let checkNumberIsValidate = validateByRegex(
+          formFields.validationType,
+          empCreate[`${formFields.key_name}`]
+        )
+
+        let findCurrentField = checkValidation?.find(
+          (value) => value === formFields.name
+        )
+
+        if (!findCurrentField && !checkNumberIsValidate) {
+          checkValidation.push(formFields.name)
+
+          let findCurrentFieldInInvalidFormatError = invalidFormatError?.find(
+            (value) => value === formFields.name
+          )
+
+          if (!findCurrentFieldInInvalidFormatError) {
+            let tempInvalidFormatError = invalidFormatError
+            tempInvalidFormatError.push(formFields.name)
+            setInvalidFormatError(tempInvalidFormatError)
+          }
+        } else if (checkNumberIsValidate) {
+          let filterInvalidFormatError = invalidFormatError?.filter(
+            (value) => value !== formFields.name
+          )
+          setInvalidFormatError(filterInvalidFormatError)
+
+          let filterCheckValidation = checkValidation?.filter(
+            (value) => value !== formFields.name
+          )
+          checkValidation = filterCheckValidation
+        }
+      }
+      // eslint-disable-next-line array-callback-return
+      return
+    })
+  }
+
   const handle = (dropdown) => {
-    console.log()
-    dispatch(fetchData(`teamLead/${dropdown.value}`))
+    dispatch(fetchData(`master/teamLead/${dropdown.value}`))
   }
 
   return (
@@ -83,7 +134,7 @@ const UserCreate = (props) => {
             ]?.map((data) => {
               if (formFields.state_name !== 'nationality') {
                 return {
-                  value: `${data.code}`,
+                  value: `${data.id}`,
                   label: `${data.name}`,
                 }
               } else {
@@ -99,10 +150,18 @@ const UserCreate = (props) => {
                   <label className="form-label">{formFields.label_name}</label>
                   <RSelect
                     options={dropDownData?.length > 0 ? dropDownData : []}
-                    onChange={handle}
+                    name={formFields.name}
+                    Value={empCreate[`${formFields.key}`]}
+                    onChange={(e) => {
+                      handle(e)
+                      const oldState = cloneDeep(empCreate)
+                      oldState[`${formFields.key_name}`] = e.value
+                      setEmpCreate({ ...oldState })
+                      // setValidation(true)
+                    }}
                   />
                   {formFields.required &&
-                    !Fdata[`${formFields.name}`] &&
+                    !empCreate[`${formFields.key_name}`] &&
                     validation && (
                       <span className="error-message">
                         {formFields.required}
@@ -121,26 +180,37 @@ const UserCreate = (props) => {
                     type={formFields.type}
                     name={formFields.name}
                     placeholder={formFields.placeholder}
-                    value={Fdata[`${formFields.name}`]}
+                    value={empCreate[`${formFields.key_name}`]}
                     onChange={(e) => {
-                      const oldState = cloneDeep(Fdata)
-                      oldState[`${formFields.name}`] = e.target.value
-                      setFdata({ ...oldState })
-                      setvalidation(true)
+                      const oldState = cloneDeep(empCreate)
+                      oldState[`${formFields.key_name}`] = e.target.value
+                      setEmpCreate({ ...oldState })
+                      // setValidation(true)
                     }}
                     onBlur={(e) => {
-                      const oldState = cloneDeep(Fdata)
-                      oldState[`${formFields.name}`] = e.target.value
-                      setFdata({ ...oldState })
-                      setvalidation(true)
+                      const oldState = cloneDeep(empCreate)
+                      oldState[`${formFields.key_name}`] = e.target.value
+                      setEmpCreate({ ...oldState })
+                      // setValidation(true)
                     }}
-                    max={formFields.today}
+                    onKeyUp={(e) => {
+                      const oldState = cloneDeep(empCreate)
+                      oldState[`${formFields.name}`] = e.target.value
+                      setEmpCreate({ ...oldState })
+                      checkValidate()
+                    }}
                   />
                   {formFields.required &&
-                    !Fdata[`${formFields.name}`] &&
+                    !empCreate[`${formFields.key_name}`] &&
                     validation && (
                       <span className="error-message">
                         {formFields.required}
+                      </span>
+                    )}
+                  {empCreate[`${formFields.name}`] &&
+                    invalidFormatError.find((e) => e === formFields.name) && (
+                      <span className="error-message">
+                        {formFields.validationMessage}
                       </span>
                     )}
                 </FormGroup>
@@ -149,15 +219,13 @@ const UserCreate = (props) => {
           }
         })}
         <Col md="4">
-          <AvatarCropper />
+          <AvatarCropper fileList={fileList} setFileList={setFileList} />
         </Col>
       </Row>
       <div className="actions clearfix">
         <ul>
           <li>
-            <Button color="primary" type="submit">
-              {String.next}
-            </Button>
+            <Button color="primary">{String.next}</Button>
           </li>
         </ul>
       </div>
@@ -166,47 +234,68 @@ const UserCreate = (props) => {
 }
 
 const AddressDetails = (props) => {
+  const dispatch = useDispatch()
+  const allDropDown = useSelector((state) => state.dropdown)
   const initialState = {}
-  AddressDetailform.forEach((formFields) => {
-    initialState[`${formFields.name}`] = ''
+  AddressDetailForm.forEach((formFields) => {
+    initialState[`${formFields.key_name}`] = ''
   })
   const [validate, setValidate] = useState(false)
   const { handleSubmit } = useForm()
-  const [Adata, setAdata] = useState({ ...initialState })
-  const [Fdata, setFdata] = useState({ ...initialState })
+  const [currentAddress, setCurrentAddress] = useState({ ...initialState })
+  const [permanentAddress, setPermanentAddress] = useState({ ...initialState })
+  const [Country, setCountry] = useState([])
 
+  var checkValidate = []
   const submitForm = (e) => {
     e.preventDefault()
     setValidate(true)
-    let checkValidation = []
-    userCreate.map((formFields, index) => {
-      if (formFields.required && !Fdata[`${formFields.name}`]) {
-        checkValidation.push(formFields.name)
+    AddressDetailForm.map((formFields, index) => {
+      if (formFields.required && !permanentAddress[`${formFields.key_name}`]) {
+        checkValidate.push(formFields.key_name)
       } else {
-        let filterCheckValidation = checkValidation?.filter(
-          (value) => value !== formFields.name
+        let filterCheckValidation = checkValidate?.filter(
+          (value) => value !== formFields.key_name
         )
-        checkValidation = filterCheckValidation
+        checkValidate = filterCheckValidation
       }
       // eslint-disable-next-line array-callback-return
       return
     })
-
-    if (checkValidation.length === 0) {
+    if (checkValidate.length === 0) {
       props.next()
+      dispatch(getCreateNewEmpData({ currentAddress, permanentAddress }))
+    }
+  }
+  const handleChangeAddress = (dropdown, dropDownType) => {
+    switch (dropDownType) {
+      case 'Country':
+        setCountry(dropdown)
+        dispatch(fetchData(`master/states/byCountryCode/${dropdown.value}`))
+        break
+      case 'State/Region':
+        dispatch(
+          fetchData(`master/cities/${Country.value}/states/${dropdown.value}`)
+        )
+        break
+      default:
+        break
     }
   }
   const onChangeAddress = (event) => {
     if (event.target.checked) {
-      setAdata(Fdata)
+      setCurrentAddress(permanentAddress)
     } else {
-      const tempAdata = { ...Adata }
+      const tempAdata = { ...currentAddress }
       Object.keys(tempAdata).forEach((key) => {
         tempAdata[key] = ''
       })
-      setAdata(tempAdata)
+      setCurrentAddress(tempAdata)
     }
   }
+  useEffect(() => {
+    dispatch(fetchData('master/countries'))
+  }, [])
 
   return (
     <>
@@ -218,13 +307,33 @@ const AddressDetails = (props) => {
         }}
       >
         <Row className="gy-3">
-          {AddressDetailform.map((formFields, id) => {
+          {AddressDetailForm.map((formFields, id) => {
             if (
               (formFields.type !== 'text') &
               (formFields.type !== 'number') &
               (formFields.type !== 'date') &
               (formFields.type !== 'email')
             ) {
+              const dropDownData = allDropDown[`${formFields.state_name}`]?.map(
+                (data) => {
+                  if (formFields.state_name === 'countries') {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  } else if (formFields.state_name === 'states') {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  } else {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  }
+                }
+              )
               return (
                 <Col md="4">
                   <FormGroup>
@@ -232,14 +341,19 @@ const AddressDetails = (props) => {
                       {formFields.label_name}
                     </label>
                     <RSelect
-                      options={formFields.option}
-                      defaultValue={{
-                        value: formFields.option?.[0]?.value,
-                        label: formFields.option?.[0]?.label,
+                      options={dropDownData?.length > 0 ? dropDownData : []}
+                      name={formFields.name}
+                      Value={permanentAddress[`${formFields.key_name}`]}
+                      onChange={(e) => {
+                        handleChangeAddress(e, formFields.label_name)
+                        const oldState = cloneDeep(permanentAddress)
+                        oldState[`${formFields.key_name}`] = e.label
+                        setPermanentAddress({ ...oldState })
+                        // setValidate(true)
                       }}
                     />
                     {formFields.required &&
-                      !Fdata[`${formFields.name}`] &&
+                      !permanentAddress[`${formFields.key_name}`] &&
                       validate && (
                         <span className="error-message">
                           {formFields.required}
@@ -260,22 +374,22 @@ const AddressDetails = (props) => {
                       type={formFields.type}
                       name={formFields.name}
                       placeholder={formFields.placeholder}
-                      value={Fdata[`${formFields.name}`]}
+                      value={permanentAddress[`${formFields.key_name}`]}
                       onChange={(e) => {
-                        const oldState = cloneDeep(Fdata)
-                        oldState[`${formFields.name}`] = e.target.value
-                        setFdata({ ...oldState })
-                        setValidate(true)
+                        const oldState = cloneDeep(permanentAddress)
+                        oldState[`${formFields.key_name}`] = e.target.value
+                        setPermanentAddress({ ...oldState })
+                        // setValidate(true)
                       }}
                       onBlur={(e) => {
-                        const oldState = cloneDeep(Fdata)
-                        oldState[`${formFields.name}`] = e.target.value
-                        setFdata({ ...oldState })
-                        setValidate(true)
+                        const oldState = cloneDeep(permanentAddress)
+                        oldState[`${formFields.key_name}`] = e.target.value
+                        setPermanentAddress({ ...oldState })
+                        // setValidate(true)
                       }}
                     />
                     {formFields.required &&
-                      !Fdata[`${formFields.name}`] &&
+                      !permanentAddress[`${formFields.key_name}`] &&
                       validate && (
                         <span className="error-message">
                           {formFields.required}
@@ -300,13 +414,33 @@ const AddressDetails = (props) => {
         </div>
         <p className="current-address">{String.current_address}</p>
         <Row className="gy-3">
-          {AddressDetailform.map((formFields, id) => {
+          {AddressDetailForm.map((formFields, id) => {
             if (
               (formFields.type !== 'text') &
               (formFields.type !== 'number') &
               (formFields.type !== 'date') &
               (formFields.type !== 'email')
             ) {
+              const dropDownData = allDropDown[`${formFields.state_name}`]?.map(
+                (data) => {
+                  if (formFields.state_name === 'countries') {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  } else if (formFields.state_name === 'states') {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  } else {
+                    return {
+                      value: `${data.iso2}`,
+                      label: `${data.name}`,
+                    }
+                  }
+                }
+              )
               return (
                 <Col md="4">
                   <FormGroup>
@@ -314,14 +448,18 @@ const AddressDetails = (props) => {
                       {formFields.label_name}
                     </label>
                     <RSelect
-                      options={formFields.option}
-                      defaultValue={{
-                        value: formFields.option?.[0]?.value,
-                        label: formFields.option?.[0]?.label,
+                      options={dropDownData?.length > 0 ? dropDownData : []}
+                      name={formFields.name}
+                      Value={currentAddress[`${formFields.key_name}`]}
+                      onChange={(e) => {
+                        handleChangeAddress(e, formFields.label_name)
+                        const oldState = cloneDeep(currentAddress)
+                        oldState[`${formFields.key_name}`] = e.label
+                        setCurrentAddress({ ...oldState })
                       }}
                     />
                     {formFields.required &&
-                      !Fdata[`${formFields.name}`] &&
+                      !currentAddress[`${formFields.key_name}`] &&
                       validate && (
                         <span className="error-message">
                           {formFields.required}
@@ -342,22 +480,22 @@ const AddressDetails = (props) => {
                       type={formFields.type}
                       name={formFields.name}
                       placeholder={formFields.placeholder}
-                      value={Adata[`${formFields.name}`]}
+                      value={currentAddress[`${formFields.key_name}`]}
                       onChange={(e) => {
-                        const oldState = cloneDeep(Adata)
-                        oldState[`${formFields.name}`] = e.target.value
-                        setAdata({ ...oldState })
+                        const oldState = cloneDeep(currentAddress)
+                        oldState[`${formFields.key_name}`] = e.target.value
+                        setCurrentAddress({ ...oldState })
                         setValidate(true)
                       }}
                       onBlur={(e) => {
-                        const oldState = cloneDeep(Adata)
-                        oldState[`${formFields.name}`] = e.target.value
-                        setAdata({ ...oldState })
+                        const oldState = cloneDeep(currentAddress)
+                        oldState[`${formFields.key_name}`] = e.target.value
+                        setCurrentAddress({ ...oldState })
                         setValidate(true)
                       }}
                     />
                     {formFields.required &&
-                      !Fdata[`${formFields.name}`] &&
+                      !currentAddress[`${formFields.key_name}`] &&
                       validate && (
                         <span className="error-message">
                           {formFields.required}
@@ -389,10 +527,13 @@ const AddressDetails = (props) => {
 }
 
 const Permission = (props) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [permissionList, setPermissionList] = useState([])
   const [checked] = useState(false)
+  const [permissionSt, setPermissionSt] = useState([])
+  const dispatch = useDispatch()
+  const { formData } = useSelector((state) => state.createNewEmpData)
 
-  const toggle = () => setDropdownOpen((prevState) => !prevState)
+  // const toggle = () => setDropdownOpen((prevState) => !prevState)
   tableHeader.map((e, index) => {
     for (const key in e) {
       if (e[key] === '') {
@@ -400,37 +541,135 @@ const Permission = (props) => {
       }
     }
   })
+  useEffect(() => {
+    permissionSt['Leave'] = [false, false, false, false]
+    permissionSt['Holiday'] = [false, false, false, false]
+    permissionSt['Asset'] = [false, false, false, false]
+  })
   const c = tableHeader.filter((value) => Object.keys(value).length !== 0)
-
   const handlechange = (e) => {
     var value = e.target.checked
     var string = e.target.id[1]
-    var pointer = parseInt(string) - 1
-    if (e.target.id.startsWith('c')) {
-      for (var i = 0; i < tableRow.length; i++) {
-        var rowcheckbox = `${i}${pointer}`
-        document.getElementById(rowcheckbox).checked = value
-      }
-    } else {
-      for (var j = 0; j < tableHeader.length; j++) {
-        var columncheckbox = `${pointer}${j}`
-        document.getElementById(columncheckbox).checked = value
-      }
+    var rowPointer = parseInt(string) - 1
+    switch (true) {
+      case e.target.id.startsWith('c'):
+        for (var i = 0; i < tableRow.length; i++) {
+          var rowCheckbox = `${i}${rowPointer}`
+          document.getElementById(rowCheckbox).checked = value
+        }
+        setPermission(e, value)
+        break
+      case e.target.id.startsWith('r'):
+        for (var j = 0; j < tableHeader.length - 1; j++) {
+          var columnCheckbox = `${rowPointer}${j}`
+          document.getElementById(columnCheckbox).checked = value
+        }
+        setPermission(e, value)
+        break
+      default:
+        setPermission(e, value)
+        break
     }
+    getPermission()
+  }
+  function getPermission() {
+    var per = []
+    var temp = []
+    let found = Object.entries(permissionSt).find((pair) => pair[0] === 'Leave')
+    temp.push({
+      view: found[1][0],
+      add: found[1][1],
+      edit: found[1][2],
+      delete: found[1][3],
+    })
+    per.push({
+      leave: temp,
+    })
+    temp = []
+    found = Object.entries(permissionSt).find((pair) => pair[0] === 'Holiday')
+    temp.push({
+      view: found[1][0],
+      add: found[1][1],
+      edit: found[1][2],
+      delete: found[1][3],
+    })
+    per.push({
+      holiday: temp,
+    })
+    temp = []
+    found = Object.entries(permissionSt).find((pair) => pair[0] === 'Asset')
+    temp.push({
+      view: found[1][0],
+      add: found[1][1],
+      edit: found[1][2],
+      delete: found[1][3],
+    })
+    per.push({
+      asset: temp,
+    })
+    return {
+      permission: per,
+    }
+  }
+  function setPermission(per, v) {
+    switch (per.target.id) {
+      case 'r1':
+        permissionSt['Leave'] = [v, v, v, v]
+        break
+      case 'r2':
+        permissionSt['Holiday'] = [v, v, v, v]
+        break
+      case 'r3':
+        permissionSt['Asset'] = [v, v, v, v]
+        break
+      case 'c1':
+        permissionSt['Asset'][0] = v
+        permissionSt['Leave'][0] = v
+        permissionSt['Holiday'][0] = v
+        break
+      case 'c2':
+        permissionSt['Asset'][1] = v
+        permissionSt['Leave'][1] = v
+        permissionSt['Holiday'][1] = v
+        break
+      case 'c3':
+        permissionSt['Asset'][2] = v
+        permissionSt['Leave'][2] = v
+        permissionSt['Holiday'][2] = v
+        break
+      case 'c4':
+        permissionSt['Asset'][3] = v
+        permissionSt['Leave'][3] = v
+        permissionSt['Holiday'][3] = v
+        break
+      default:
+        var chkid = per.target.id
+        switch (chkid[0]) {
+          case '0':
+            permissionSt['Leave'][chkid[1]] = v
+            break
+          case '1':
+            permissionSt['Holiday'][chkid[1]] = v
+            break
+          case '2':
+            permissionSt['Asset'][chkid[1]] = v
+            break
+          default:
+            break
+        }
+        break
+    }
+  }
+  const AddPermission = () => {
+    dispatch(getCreateNewEmpData(getPermission()))
+  }
+  const CreateEmployee = () => {
+    AddPermission()
+    dispatch(CreateNewEmployee(formData))
   }
 
   return (
     <>
-      <div style={{ float: 'right' }}>
-        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret>{String.role}</DropdownToggle>
-          <DropdownMenu left>
-            <DropdownItem>{String.employee}</DropdownItem>
-            <DropdownItem>{String.admin}</DropdownItem>
-            <DropdownItem>{String.hr}</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </div>
       <Table>
         <thead>
           {tableHeader.map((head, i) =>
@@ -465,7 +704,11 @@ const Permission = (props) => {
               {c.map((checkbox, index) => {
                 return (
                   <td>
-                    <input type={checkbox.type} id={`${i}${index}`} />
+                    <input
+                      type={checkbox.type}
+                      id={`${i}${index}`}
+                      onChange={(e) => handlechange(e)}
+                    />
                   </td>
                 )
               })}
@@ -477,6 +720,16 @@ const Permission = (props) => {
       <div>
         <div className="actions clearfix">
           <ul>
+            <li>
+              <Button color="primary" onClick={CreateEmployee}>
+                {String.submit}
+              </Button>
+            </li>
+            {/* <li>
+              <Button color="primary" onClick={AddPermission}>
+                {String.submit}
+              </Button>
+            </li> */}
             <li>
               <Button color="primary" onClick={props.prev}>
                 {String.previous}
@@ -523,6 +776,7 @@ const config = {
 }
 
 function UserDetail() {
+  const [userCreation, setCreation] = useState([])
   return (
     <React.Fragment>
       <Content>
