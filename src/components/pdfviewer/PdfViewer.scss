@@ -4,6 +4,27 @@
   -ms-user-select: none;
   user-select: none;
 }
+.react-pdf__Page__canvas {
+  width: 100% !important;
+  object-fit: contain;
+}
+.pdf_modal.modal-lg {
+  max-width: 54%;
+}
+.prev_next {
+  justify-content: space-between !important;
+  margin-bottom: 20px;
+}
+.buttonc {
+  button {
+    background: #fff;
+    border: 1px solid #000;
+    &:hover{
+      background: #0231c8;
+      color: #fff;
+    }
+  }
+}
 @media print {
   .pdf-container {
     display: none;
