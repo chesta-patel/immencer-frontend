@@ -172,6 +172,7 @@ const String = {
   file: 'File',
   preview: 'Preview',
   sequence_no: 'Sequence No',
+  valid: 'Valid',
 }
 
 export default String
