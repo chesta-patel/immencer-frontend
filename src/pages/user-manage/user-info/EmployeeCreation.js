@@ -22,6 +22,7 @@ import {
   CreateNewEmployee,
   getCreateNewEmpData,
 } from '../../../services/thunk/CreateNewEmpDataThunk'
+import { validateByRegex } from '../../../utils/Helpers'
 
 const UserCreate = (props) => {
   const allDropdownState = useSelector((state) => state.dropdown)
@@ -34,6 +35,8 @@ const UserCreate = (props) => {
   const { handleSubmit } = useForm()
   const [empCreate, setEmpCreate] = useState({ ...initialState })
   const [fileList, setFileList] = useState([])
+  const [invalidFormatError, setInvalidFormatError] = useState([])
+  let checkValidation = []
 
   useEffect(() => {
     dispatch(fetchData('master/employmentStatus'))
@@ -43,10 +46,10 @@ const UserCreate = (props) => {
     dispatch(fetchData('master/gender'))
     dispatch(fetchData('master/nationality'))
   }, [])
+
   const submitForm = (e) => {
     e.preventDefault()
     setValidation(true)
-    let checkValidation = []
     userCreate.map((formFields) => {
       if (formFields.required && !empCreate[`${formFields.key_name}`]) {
         checkValidation.push(formFields.key_name)
@@ -59,11 +62,54 @@ const UserCreate = (props) => {
       // eslint-disable-next-line array-callback-return
       return
     })
+    checkValidate()
     if (checkValidation.length === 0) {
       props.next()
       dispatch(getCreateNewEmpData(empCreate))
     }
   }
+
+  const checkValidate = () => {
+    userCreate.map((formFields) => {
+      if (formFields.validationType) {
+        let checkNumberIsValidate = validateByRegex(
+          formFields.validationType,
+          empCreate[`${formFields.key_name}`]
+        )
+
+        let findCurrentField = checkValidation?.find(
+          (value) => value === formFields.name
+        )
+
+        if (!findCurrentField && !checkNumberIsValidate) {
+          checkValidation.push(formFields.name)
+
+          let findCurrentFieldInInvalidFormatError = invalidFormatError?.find(
+            (value) => value === formFields.name
+          )
+
+          if (!findCurrentFieldInInvalidFormatError) {
+            let tempInvalidFormatError = invalidFormatError
+            tempInvalidFormatError.push(formFields.name)
+            setInvalidFormatError(tempInvalidFormatError)
+          }
+        } else if (checkNumberIsValidate) {
+          let filterInvalidFormatError = invalidFormatError?.filter(
+            (value) => value !== formFields.name
+          )
+          setInvalidFormatError(filterInvalidFormatError)
+
+          let filterCheckValidation = checkValidation?.filter(
+            (value) => value !== formFields.name
+          )
+          checkValidation = filterCheckValidation
+        }
+      }
+      // eslint-disable-next-line array-callback-return
+      return
+    })
+  }
+
   const handle = (dropdown) => {
     dispatch(fetchData(`master/teamLead/${dropdown.value}`))
   }
@@ -147,12 +193,24 @@ const UserCreate = (props) => {
                       setEmpCreate({ ...oldState })
                       // setValidation(true)
                     }}
+                    onKeyUp={(e) => {
+                      const oldState = cloneDeep(empCreate)
+                      oldState[`${formFields.name}`] = e.target.value
+                      setEmpCreate({ ...oldState })
+                      checkValidate()
+                    }}
                   />
                   {formFields.required &&
                     !empCreate[`${formFields.key_name}`] &&
                     validation && (
                       <span className="error-message">
                         {formFields.required}
+                      </span>
+                    )}
+                  {empCreate[`${formFields.name}`] &&
+                    invalidFormatError.find((e) => e === formFields.name) && (
+                      <span className="error-message">
+                        {formFields.validationMessage}
                       </span>
                     )}
                 </FormGroup>
