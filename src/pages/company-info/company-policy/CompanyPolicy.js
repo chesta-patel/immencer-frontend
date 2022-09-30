@@ -4,7 +4,7 @@ import Head from '../../../layout/head/Head'
 import PageHeader from '../../PageHeader'
 import { companyPolicyForm, companyPolicyTable } from './CompanyPolicyJson'
 import { companyPolicyString } from '../../Strings'
-import CompanyPolicyPageTable from '../../CompanyPolicyPageTable'
+import CompanyPolicyPageTable from '../company-policy/CompanyPolicyPageTable'
 import { companyPolicy } from '../../../services/thunk/CompanyPolicyThunk'
 import { useDispatch } from 'react-redux'
 
