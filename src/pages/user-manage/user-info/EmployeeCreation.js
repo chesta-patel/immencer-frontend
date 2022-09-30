@@ -36,6 +36,7 @@ const UserCreate = (props) => {
   const [empCreate, setEmpCreate] = useState({ ...initialState })
   const [fileList, setFileList] = useState([])
   const [invalidFormatError, setInvalidFormatError] = useState([])
+  const { formData } = useSelector((state) => state.createNewEmpData)
   let checkValidation = []
 
   useEffect(() => {
@@ -46,7 +47,9 @@ const UserCreate = (props) => {
     dispatch(fetchData('master/gender'))
     dispatch(fetchData('master/nationality'))
   }, [])
-
+  useEffect(() => {
+    setEmpCreate({ ...empCreate, ...formData })
+  }, [])
   const submitForm = (e) => {
     e.preventDefault()
     setValidation(true)
@@ -62,13 +65,12 @@ const UserCreate = (props) => {
       // eslint-disable-next-line array-callback-return
       return
     })
-    checkValidate()
+    // checkValidate()
     if (checkValidation.length === 0) {
       props.next()
       dispatch(getCreateNewEmpData(empCreate))
     }
   }
-
   const checkValidate = () => {
     userCreate.map((formFields) => {
       if (formFields.validationType) {
@@ -76,18 +78,14 @@ const UserCreate = (props) => {
           formFields.validationType,
           empCreate[`${formFields.key_name}`]
         )
-
         let findCurrentField = checkValidation?.find(
           (value) => value === formFields.name
         )
-
         if (!findCurrentField && !checkNumberIsValidate) {
           checkValidation.push(formFields.name)
-
           let findCurrentFieldInInvalidFormatError = invalidFormatError?.find(
             (value) => value === formFields.name
           )
-
           if (!findCurrentFieldInInvalidFormatError) {
             let tempInvalidFormatError = invalidFormatError
             tempInvalidFormatError.push(formFields.name)
@@ -98,22 +96,18 @@ const UserCreate = (props) => {
             (value) => value !== formFields.name
           )
           setInvalidFormatError(filterInvalidFormatError)
-
           let filterCheckValidation = checkValidation?.filter(
             (value) => value !== formFields.name
           )
           checkValidation = filterCheckValidation
         }
       }
-      // eslint-disable-next-line array-callback-return
       return
     })
   }
-
   const handle = (dropdown) => {
     dispatch(fetchData(`master/teamLead/${dropdown.value}`))
   }
-
   return (
     <form
       className="content clearfix"
@@ -144,14 +138,21 @@ const UserCreate = (props) => {
                 }
               }
             })
+            const currentDefaultValue = dropDownData?.find(
+              (data) => data.value === empCreate[`${formFields.key_name}`]
+            )
             return (
               <Col md="4" key={`userCreate-form-fields-${id + 10}`}>
                 <FormGroup>
                   <label className="form-label">{formFields.label_name}</label>
                   <RSelect
+                    defaultValue={{
+                      value: currentDefaultValue?.value,
+                      label: currentDefaultValue?.label,
+                    }}
                     options={dropDownData?.length > 0 ? dropDownData : []}
                     name={formFields.name}
-                    Value={empCreate[`${formFields.key}`]}
+                    Value={empCreate[`${formFields.key_name}`]}
                     onChange={(e) => {
                       handle(e)
                       const oldState = cloneDeep(empCreate)
@@ -193,12 +194,12 @@ const UserCreate = (props) => {
                       setEmpCreate({ ...oldState })
                       // setValidation(true)
                     }}
-                    onKeyUp={(e) => {
-                      const oldState = cloneDeep(empCreate)
-                      oldState[`${formFields.name}`] = e.target.value
-                      setEmpCreate({ ...oldState })
-                      checkValidate()
-                    }}
+                    // onKeyUp={(e) => {
+                    //   const oldState = cloneDeep(empCreate)
+                    //   oldState[`${formFields.name}`] = e.target.value
+                    //   setEmpCreate({ ...oldState })
+                    //   checkValidate()
+                    // }}
                   />
                   {formFields.required &&
                     !empCreate[`${formFields.key_name}`] &&
@@ -245,6 +246,7 @@ const AddressDetails = (props) => {
   const [currentAddress, setCurrentAddress] = useState({ ...initialState })
   const [permanentAddress, setPermanentAddress] = useState({ ...initialState })
   const [Country, setCountry] = useState([])
+  const { formData } = useSelector((state) => state.createNewEmpData)
 
   var checkValidate = []
   const submitForm = (e) => {
@@ -295,6 +297,10 @@ const AddressDetails = (props) => {
   }
   useEffect(() => {
     dispatch(fetchData('master/countries'))
+  }, [])
+  useEffect(() => {
+    setPermanentAddress({ ...permanentAddress, ...formData.permanentAddress })
+    setCurrentAddress({ ...currentAddress, ...formData.currentAddress })
   }, [])
 
   return (
