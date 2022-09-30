@@ -168,11 +168,11 @@ const String = {
   enter_your: 'Enter your',
   next: 'Next',
   uploaded_by: 'Uploaded By',
-  updated_by: 'Updated By',
   file: 'File',
   preview: 'Preview',
   sequence_no: 'Sequence No',
   valid: 'Valid',
+  seqNo: 'seqNo',
 }
 
 export default String
