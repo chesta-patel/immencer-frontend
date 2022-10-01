@@ -177,13 +177,12 @@ function PageHeader(props) {
                               <div className="custom-file">
                                 <input
                                   type={formFields.type}
-                                  multiple
                                   className="custom-file-input"
                                   id="customMultipleFiles"
                                   onChange={(e) => {
                                     const oldState = cloneDeep(Fdata)
                                     oldState[`${formFields.name}`] =
-                                      e.target.value
+                                      e.target.files[0]
                                     setFdata({ ...oldState })
                                     setValidate(true)
                                   }}
@@ -192,7 +191,9 @@ function PageHeader(props) {
                                   className="custom-file-label"
                                   htmlFor="customMultipleFiles"
                                 >
-                                  {formFields.placeholder}
+                                  {Fdata?.File?.name
+                                    ? Fdata?.File?.name
+                                    : formFields.placeholder}
                                 </label>
                               </div>
                             </div>

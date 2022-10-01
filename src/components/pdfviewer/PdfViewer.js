@@ -43,7 +43,7 @@ const PdfViewer = ({ url }) => {
       ondrag="return false"
       ondrop="return false"
     >
-      <div className="center">
+      <div className="center prev_next">
         <div className="pagec">
           Page {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}
         </div>

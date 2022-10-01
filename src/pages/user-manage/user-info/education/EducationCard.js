@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PlanS1 from '../../../../assets/images/plan-s1.145bedf2dff953a59fca891147d5fcf6.svg'
 import { Icon } from '../../../../components/Component'
 import { Button, Card } from 'reactstrap'
 import String from '../../../../utils/String'
+import { useSelector } from 'react-redux'
 function EducationCard(props) {
+  const { formData } = useSelector((state) => state.createNewEmpData)
+
+  useEffect(() => {}, [])
   const deleteItem = (index) => {
     props.setItems((tempItem) => {
       return tempItem.filter((item, id) => {

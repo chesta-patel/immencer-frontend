@@ -3,8 +3,8 @@ import { CreateNewEmployee } from '../thunk/CreateNewEmpDataThunk'
 
 const initialState = {
   //   isLoading: false,
-  //   error: false,
-  //   message: '',
+  error: false,
+  message: '',
 }
 
 export const CreateEmp = createSlice({
@@ -13,7 +13,9 @@ export const CreateEmp = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(CreateNewEmployee.fulfilled, (state, action) => {})
+      .addCase(CreateNewEmployee.fulfilled, (state, action) => {
+        state.message = action.payload.code
+      })
       .addCase(CreateNewEmployee.pending, function (state, action) {})
       .addCase(CreateNewEmployee.rejected, (state, action) => {})
   },
