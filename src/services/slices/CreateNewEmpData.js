@@ -3,7 +3,9 @@ import { getCreateNewEmpData } from '../thunk/CreateNewEmpDataThunk'
 
 const initialState = {
   isLoading: false,
-  error: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: '',
   formData: {},
 }
 
