@@ -8,6 +8,7 @@ export const companyPolicyForm = [
     name: `${String.title}`,
     required: `${String.Please_enter} ${String.title}`,
     placeholder: `${String.enter} ${String.title}`,
+    key_name: 'title',
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const companyPolicyForm = [
     name: `${String.description}`,
     required: `${String.Please_enter} ${String.description}`,
     placeholder: `${String.enter} ${String.description}`,
+    key_name: 'description',
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const companyPolicyForm = [
     name: `${String.sequence_no}`,
     required: `${String.Please_enter} ${String.sequence_no}`,
     placeholder: `${String.enter} ${String.sequence_no}`,
+    key_name: 'seqNo',
   },
   {
     id: 4,
@@ -33,6 +36,7 @@ export const companyPolicyForm = [
     required: `${String.Please_enter} ${String.file}`,
     placeholder: `Choose file`,
     file_id: `Company DocumentFileUpload`,
+    key_name: 'assets',
   },
 ]
 export const companyPolicyTable = [
