@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, Col, Form, FormGroup, Modal, ModalBody, Row } from 'reactstrap'
+import { Button, Col, Form, FormGroup, Modal, ModalBody } from 'reactstrap'
 import {
   BlockBetween,
   BlockDes,
@@ -60,6 +60,7 @@ function PageHeader(props) {
   const onFormSubmit = (e) => {
     setValidate(true)
     e.preventDefault()
+    console.log('Fdata', Fdata)
   }
   useEffect(() => {
     var string = props.string.find(function (element) {
