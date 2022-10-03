@@ -2,6 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import { fetchData } from '../thunk/AuthThunk'
 
 const initialState = {
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: '',
   empStatus: [],
   department: [],
   designation: [],
@@ -50,7 +54,7 @@ export const dropdownSlice = createSlice({
           break
         case 'cities':
           state.city = action.payload.data.cities
-
+          break
         default:
           break
       }

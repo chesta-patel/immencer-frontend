@@ -4,8 +4,8 @@ import { addNewCompanyDoc } from '../thunk/CreateNewCompanyDocThunk'
 const initialState = {
   isLoading: false,
   isSuccess: false,
-  error: false,
-  message: '',
+  isError: false,
+  errorMessage: '',
 }
 
 export const CreateCompanyDoc = createSlice({

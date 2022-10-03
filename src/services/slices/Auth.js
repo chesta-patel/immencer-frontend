@@ -3,9 +3,11 @@ import { login } from '../thunk/AuthThunk'
 
 const initialState = {
   isLoading: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: '',
   user: false,
   isAuthenticated: false,
-  error: false,
   message: '',
 }
 

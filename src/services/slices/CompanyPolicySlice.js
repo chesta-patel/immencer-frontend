@@ -2,8 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 import { companyPolicy } from '../thunk/CompanyPolicyThunk'
 
 const initialState = {
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: '',
   infoList: [],
-  loader: false,
 }
 
 export const getCompanyPolicy = createSlice({

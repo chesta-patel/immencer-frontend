@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 import { companyDocument } from '../thunk/CompanyDocumentThunk'
 
 const initialState = {
-  infoList: [],
   isLoading: false,
   isSuccess: false,
   isError: false,
   errorMessage: '',
+  infoList: [],
 }
 
 export const getCompanyDocument = createSlice({
