@@ -36,7 +36,7 @@ export const companyDocForm = [
     required: `${String.Please_enter} ${String.file}`,
     placeholder: `Choose file`,
     file_id: `Company DocumentFileUpload`,
-    key_name: 'assets',
+    key_name: 'assetsFile',
   },
 ]
 export const companyDocTable = [

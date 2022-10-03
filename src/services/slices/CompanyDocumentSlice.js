@@ -3,7 +3,10 @@ import { companyDocument } from '../thunk/CompanyDocumentThunk'
 
 const initialState = {
   infoList: [],
-  loader: false,
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: '',
 }
 
 export const getCompanyDocument = createSlice({
@@ -13,10 +16,20 @@ export const getCompanyDocument = createSlice({
   extraReducers: (builder) => {
     builder.addCase(companyDocument.fulfilled, (state, action) => {
       state.infoList = action.payload?.data?.data?.companyDocuments
-      state.loader = false
+      state.isLoading = false
+      state.isSuccess = true
+      state.isError = false
     })
     builder.addCase(companyDocument.pending, (state, action) => {
-      state.loader = true
+      state.isLoading = true
+      state.isSuccess = false
+      state.isError = false
+    })
+    builder.addCase(companyDocument.rejected, (state, action) => {
+      state.isLoading = false
+      state.isSuccess = false
+      state.isError = true
+      state.errorMessage = action.error
     })
   },
 })

@@ -13,11 +13,13 @@ import {
 import { cloneDeep } from 'lodash'
 import './pageheader.scss'
 import String from '../utils/String'
+import { useDispatch } from 'react-redux'
+import { addNewCompanyDoc } from './../services/thunk/CreateNewCompanyDocThunk'
 
 function PageHeader(props) {
   const initialState = {}
   props.json.forEach((formFields) => {
-    initialState[`${formFields.name}`] = ''
+    initialState[`${formFields.key_name}`] = ''
   })
   const [sm, updateSm] = useState(false)
   const [modal, setModal] = useState({
@@ -56,12 +58,25 @@ function PageHeader(props) {
       isDelete: 'No',
     })
   }
+  const dispatch = useDispatch()
   // submit function to add a new item
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     setValidate(true)
-    e.preventDefault()
-    console.log('Fdata', Fdata)
+    // e.preventDefault()
+    var bodyFormData = new FormData()
+    bodyFormData.append('title', Fdata['title'])
+    bodyFormData.append('description', Fdata['description'])
+    bodyFormData.append('seqNo', Fdata['seqNo'])
+    bodyFormData.append('assetsFile', Fdata['assetsFile'])
+
+    let callAPI = await dispatch(addNewCompanyDoc(bodyFormData))
+    console.log('payload', callAPI.payload)
+    if (callAPI.payload) {
+      console.log('Call ======>')
+      window.location.reload()
+    }
   }
+  console.log('Fdata', Fdata)
   useEffect(() => {
     var string = props.string.find(function (element) {
       return element
@@ -182,7 +197,7 @@ function PageHeader(props) {
                                   id="customMultipleFiles"
                                   onChange={(e) => {
                                     const oldState = cloneDeep(Fdata)
-                                    oldState[`${formFields.name}`] =
+                                    oldState[`${formFields.key_name}`] =
                                       e.target.files[0]
                                     setFdata({ ...oldState })
                                     setValidate(true)
@@ -192,8 +207,8 @@ function PageHeader(props) {
                                   className="custom-file-label"
                                   htmlFor="customMultipleFiles"
                                 >
-                                  {Fdata?.File?.name
-                                    ? Fdata?.File?.name
+                                  {Fdata?.assetsFile?.name
+                                    ? Fdata?.assetsFile?.name
                                     : formFields.placeholder}
                                 </label>
                               </div>
@@ -211,18 +226,19 @@ function PageHeader(props) {
                             <input
                               className="form-control"
                               type={formFields.type}
-                              name={formFields.name}
+                              name={formFields.key_name}
                               placeholder={formFields.placeholder}
-                              value={Fdata[`${formFields.name}`]}
+                              value={Fdata[`${formFields.key_name}`]}
                               onChange={(e) => {
                                 const oldState = cloneDeep(Fdata)
-                                oldState[`${formFields.name}`] = e.target.value
+                                oldState[`${formFields.key_name}`] =
+                                  e.target.value
                                 setFdata({ ...oldState })
                                 setValidate(true)
                               }}
                             />
                             {formFields.required &&
-                              !Fdata[`${formFields.name}`] &&
+                              !Fdata[`${formFields.key_name}`] &&
                               validate && (
                                 <p className="invalid">{formFields.required}</p>
                               )}
