@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { CreateNewEmployee } from '../thunk/CreateNewEmpDataThunk'
 
 const initialState = {
-  //   isLoading: false,
+  isLoading: false,
+  isSuccess: false,
   error: false,
   message: '',
 }
