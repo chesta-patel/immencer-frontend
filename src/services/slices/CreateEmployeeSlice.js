@@ -4,8 +4,8 @@ import { CreateNewEmployee } from '../thunk/CreateNewEmpDataThunk'
 const initialState = {
   isLoading: false,
   isSuccess: false,
-  error: false,
-  message: '',
+  isError: false,
+  errorMessage: '',
 }
 
 export const CreateEmp = createSlice({

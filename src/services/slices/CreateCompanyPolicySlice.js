@@ -4,8 +4,8 @@ import { createNewCompanyPolicy } from '../thunk/CreateNewCompanyPolicyThunk'
 const initialState = {
   isLoading: false,
   isSuccess: false,
-  error: false,
-  message: '',
+  isError: false,
+  errorMessage: '',
 }
 
 export const CreatePolicy = createSlice({
