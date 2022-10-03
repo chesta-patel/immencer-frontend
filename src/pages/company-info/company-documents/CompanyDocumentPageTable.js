@@ -123,19 +123,19 @@ function CompanyDocumentPageTable(props) {
     <React.Fragment>
       <Block>
         <DataTable className="card-stretch">
-          <div className="card-inner position-relative card-tools-toggle">
+          <div className="card-inner position-relative card-tools-toggle padding_btm_0">
             <div className="card-title-group">
               <div className="card-tools">
                 <div className="form-inline flex-nowrap gx-3">
-                  <div className="form-wrap">
+                  {/* <div className="form-wrap">
                     <RSelect
                       options={bulkActionOptions}
                       className="w-130px"
                       placeholder="Bulk Action"
                       onChange={(e) => onActionText(e)}
                     />
-                  </div>
-                  <div className="btn-wrap">
+                  </div> */}
+                  {/* <div className="btn-wrap">
                     <span className="d-none d-md-block">
                       <Button
                         disabled={actionText !== '' ? false : true}
@@ -158,7 +158,7 @@ function CompanyDocumentPageTable(props) {
                         <Icon name="arrow-right"></Icon>
                       </Button>
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="card-tools mr-n1">
