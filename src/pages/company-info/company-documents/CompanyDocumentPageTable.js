@@ -6,8 +6,6 @@ import {
   FormGroup,
   UncontrolledDropdown,
   DropdownItem,
-  Modal,
-  ModalBody,
 } from 'reactstrap'
 import {
   Block,
@@ -25,9 +23,9 @@ import {
 import { UserContext } from '../../user-manage/UserContext'
 import { bulkActionOptions } from '../../../utils/Utils'
 import String from '../../../utils/String'
-import PdfViewer from '../../../components/pdfviewer/PdfViewer'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
+import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
 
 function CompanyDocumentPageTable(props) {
   const { infoList, loader } = useSelector((state) => state.companyDocument)
@@ -44,12 +42,6 @@ function CompanyDocumentPageTable(props) {
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
   const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
-
-  const [modal, setModal] = useState({ view: false, link: '' })
-
-  const onFormCancel = () => {
-    setModal({ view: false, link: '' })
-  }
 
   // function which selects all the items
   const selectorCheck = (e) => {
@@ -470,16 +462,7 @@ function CompanyDocumentPageTable(props) {
                       </DataTableRow>
                       <DataTableRow size="lg">
                         <span>
-                          <Button
-                            color=""
-                            className="btn-icon eye_btn"
-                            onClick={() =>
-                              setModal({ view: true, link: item.assets })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <em class="icon ni ni-eye"></em>
-                          </Button>
+                          <GoogleFileViewerLink link={item.assets} />
                         </span>
                       </DataTableRow>
                     </DataTableItem>
@@ -489,16 +472,6 @@ function CompanyDocumentPageTable(props) {
           </DataTableBody>
         </DataTable>
       </Block>
-      <Modal
-        isOpen={modal.view}
-        toggle={() => setModal({ view: false, link: '' })}
-        className="modal-dialog-centered pdf_modal"
-        size="lg"
-      >
-        <ModalBody>
-          <PdfViewer url={modal.link} />
-        </ModalBody>
-      </Modal>
     </React.Fragment>
   )
 }

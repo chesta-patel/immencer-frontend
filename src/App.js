@@ -41,6 +41,7 @@ const App = () => {
       ></Route>
       {/*Main Routes*/}
       <PrivateRoute exact path="" component={Layout}></PrivateRoute>
+      <Route path="/upload/*"></Route>
       <Route component={RedirectAs404}></Route>
     </Switch>
   )
