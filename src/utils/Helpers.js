@@ -36,3 +36,38 @@ export const validateByRegex = (type, number) => {
   }
   return checkValidation
 }
+
+export const getFormData = (object) => {
+  const formData = new FormData()
+  Object.keys(object).forEach((key) => formData.append(key, object[key]))
+  return formData
+}
+
+export const logFormData = (formData) => {
+  const formDataObj = Object.fromEntries(formData.entries())
+  console.log('=== Start Log Form Data ===')
+  console.log(formDataObj)
+  console.log('=== End Log Form Data ===')
+}
+
+export const checkIsEmptyObjectKey = (objData, type) => {
+  let isEmpty
+
+  switch (type) {
+    case 'every':
+      isEmpty = !Object.values(objData).every(
+        (x) => x !== null && x !== '' && x !== undefined
+      )
+      break
+
+    case 'some':
+      isEmpty = !Object.values(objData).some(
+        (x) => x !== null && x !== '' && x !== undefined
+      )
+      break
+
+    default:
+      break
+  }
+  return isEmpty
+}

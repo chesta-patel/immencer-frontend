@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals'
 import history from './utils/History'
 import { Provider } from 'react-redux'
 import store from './store/Store'
+import 'react-toastify/dist/ReactToastify.css'
 
 ReactDOM.render(
   <React.Fragment>

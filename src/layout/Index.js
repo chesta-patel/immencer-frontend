@@ -7,6 +7,7 @@ import Footer from './footer/Footer'
 import classNames from 'classnames'
 import Loader from '../pages/Loader'
 import { useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Layout = () => {
   // Redux States
@@ -139,6 +140,7 @@ const Layout = () => {
             />
             <Pages />
             <Footer />
+            <ToastContainer />
           </div>
         </div>
       </div>
@@ -147,3 +149,15 @@ const Layout = () => {
 }
 
 export default Layout
+
+export const toastNotify = (type, message) =>
+  toast(`${message}`, {
+    position: 'top-center',
+    autoClose: 4000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    type,
+  })
