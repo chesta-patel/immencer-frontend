@@ -35,6 +35,7 @@ import String from '../../../utils/String'
 import PdfViewer from '../../../components/pdfviewer/PdfViewer'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
+import './companyPolicy.scss'
 
 function CompanyPolicyPageTable(props) {
   const { infoList, loader } = useSelector((state) => state.companyPolicy)
@@ -53,6 +54,7 @@ function CompanyPolicyPageTable(props) {
   const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
 
   const [modal, setModal] = useState({ view: false, link: '' })
+  const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
 
   const onFormCancel = () => {
     setModal({ view: false, link: '' })
@@ -495,6 +497,23 @@ function CompanyPolicyPageTable(props) {
                           </Button>
                         </span>
                       </DataTableRow>
+                      <DataTableRow size="lg">
+                        <span>
+                          <Button
+                            color=""
+                            className="btn-icon"
+                            onClick={() =>
+                              setDeleteModal({
+                                status: true,
+                                data: item,
+                              })
+                            }
+                            style={{ margin: '0px' }}
+                          >
+                            <em class="icon ni ni-trash"></em>
+                          </Button>
+                        </span>
+                      </DataTableRow>
                     </DataTableItem>
                   )
                 })
@@ -530,6 +549,47 @@ function CompanyPolicyPageTable(props) {
         </ModalBody> */}
         <ModalBody>
           <PdfViewer url={modal.link} />
+        </ModalBody>
+      </Modal>
+      <Modal
+        isOpen={deleteModal.status}
+        toggle={() => setDeleteModal()}
+        className="modal-dialog-centered delete_policy"
+        size="lg"
+      >
+        <ModalBody>
+          <button
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+            }}
+            className="close"
+          >
+            <Icon name="cross-sm"></Icon>
+          </button>
+          <h2 className="modal_title">Delete Confirmation</h2>
+          <p className="alert alert-danger">
+            Are you sure you want to delete the {deleteModal.data.title}
+          </p>
+          <button
+            type="button"
+            // disabled={pageNumber <= 1}
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+            }}
+            className="Pre btn header_submit_bn"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="header_submit_bn btn btn-danger"
+            // disabled={pageNumber >= numPages}
+            // onClick={nextPage}
+          >
+            Delete
+          </button>
         </ModalBody>
       </Modal>
     </React.Fragment>

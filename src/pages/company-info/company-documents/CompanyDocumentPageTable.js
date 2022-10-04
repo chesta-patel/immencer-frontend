@@ -6,6 +6,8 @@ import {
   FormGroup,
   UncontrolledDropdown,
   DropdownItem,
+  Modal,
+  ModalBody,
 } from 'reactstrap'
 import {
   Block,
@@ -42,6 +44,8 @@ function CompanyDocumentPageTable(props) {
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
   const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
+
+  const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
 
   // function which selects all the items
   const selectorCheck = (e) => {
@@ -465,6 +469,23 @@ function CompanyDocumentPageTable(props) {
                           <GoogleFileViewerLink link={item.assets} />
                         </span>
                       </DataTableRow>
+                      <DataTableRow size="lg">
+                        <span>
+                          <Button
+                            color=""
+                            className="btn-icon"
+                            onClick={() =>
+                              setDeleteModal({
+                                status: true,
+                                data: item,
+                              })
+                            }
+                            style={{ margin: '0px' }}
+                          >
+                            <em class="icon ni ni-trash"></em>
+                          </Button>
+                        </span>
+                      </DataTableRow>
                     </DataTableItem>
                   )
                 })
@@ -472,6 +493,47 @@ function CompanyDocumentPageTable(props) {
           </DataTableBody>
         </DataTable>
       </Block>
+      <Modal
+        isOpen={deleteModal.status}
+        toggle={() => setDeleteModal()}
+        className="modal-dialog-centered delete_policy"
+        size="lg"
+      >
+        <ModalBody>
+          <button
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+              // setModal({ view: false, link: '' })
+            }}
+            className="close"
+          >
+            <Icon name="cross-sm"></Icon>
+          </button>
+          <h2 className="modal_title">Delete Confirmation</h2>
+          <p className="alert alert-danger">
+            Are you sure you want to delete the {deleteModal.data.title}
+          </p>
+          <button
+            type="button"
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+            }}
+            className="Pre btn header_submit_bn"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="header_submit_bn btn btn-danger"
+            // disabled={pageNumber >= numPages}
+            // onClick={nextPage}
+          >
+            Delete
+          </button>
+        </ModalBody>
+      </Modal>
     </React.Fragment>
   )
 }
