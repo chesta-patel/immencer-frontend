@@ -13,8 +13,7 @@ import {
 import { cloneDeep } from 'lodash'
 import './pageheader.scss'
 import String from '../utils/String'
-import { useDispatch } from 'react-redux'
-import { addNewCompanyDoc } from './../services/thunk/CreateNewCompanyDocThunk'
+import { checkIsEmptyObjectKey } from '../utils/Helpers'
 
 function PageHeader(props) {
   const initialState = {}
@@ -30,59 +29,47 @@ function PageHeader(props) {
   const [validate, setValidate] = useState(false)
   const [Fdata, setFdata] = useState({ ...initialState })
   const [strings, setStrings] = useState('')
-  const [setFormData] = useState({
-    title: '',
-    slug: '',
-    description: '',
-    type: '',
-    active: '',
-    content: '',
-    isActive: 'Active',
-    isDelete: 'No',
-  })
 
   const onFormCancel = () => {
     setModal({ edit: false, add: false })
-    resetForm()
   }
-  // function to reset the form
-  const resetForm = () => {
-    setFormData({
-      title: '',
-      slug: '',
-      description: '',
-      type: '',
-      active: '',
-      content: '',
-      isActive: 'Active',
-      isDelete: 'No',
-    })
-  }
-  const dispatch = useDispatch()
+
   // submit function to add a new item
   const onFormSubmit = async (e) => {
     setValidate(true)
-    // e.preventDefault()
-    var bodyFormData = new FormData()
-    bodyFormData.append('title', Fdata['title'])
-    bodyFormData.append('description', Fdata['description'])
-    bodyFormData.append('seqNo', Fdata['seqNo'])
-    bodyFormData.append('assetsFile', Fdata['assetsFile'])
+    e.preventDefault()
+    console.log('Fdata', Fdata)
 
-    let callAPI = await dispatch(addNewCompanyDoc(bodyFormData))
-    console.log('payload', callAPI.payload)
-    if (callAPI.payload) {
-      console.log('Call ======>')
-      window.location.reload()
+    // checkValidate()
+    const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
+    console.log('🚀 ~ isEmpty', isEmpty)
+
+    if (!isEmpty) {
+      props.callFormSubmit(Fdata)
     }
   }
-  console.log('Fdata', Fdata)
+
   useEffect(() => {
     var string = props.string.find(function (element) {
       return element
     })
     setStrings(string)
   }, [props.string])
+
+  useEffect(() => {
+    if (props.apiCallStatus.status === 'success') {
+      setModal({
+        edit: false,
+        add: false,
+      })
+      setValidate(false)
+      setFdata({ ...initialState })
+      props.setApiCallStatus({
+        status: '',
+        message: '',
+      })
+    }
+  }, [props])
 
   return (
     <React.Fragment>
@@ -157,7 +144,10 @@ function PageHeader(props) {
           <div className="p-3">
             <h5 className="title">{strings.form_title}</h5>
             <div className="mt-2">
-              <Form className="row gy-3" onSubmit={handleSubmit(onFormSubmit)}>
+              <Form
+                className="row gy-3"
+                onSubmit={(e) => handleSubmit(onFormSubmit(e))}
+              >
                 {props.json.map((formFields, id) => {
                   if (
                     (formFields.type !== 'text') &
@@ -200,7 +190,7 @@ function PageHeader(props) {
                                     oldState[`${formFields.key_name}`] =
                                       e.target.files[0]
                                     setFdata({ ...oldState })
-                                    setValidate(true)
+                                    // setValidate(true)
                                   }}
                                 />
                                 <label
@@ -213,6 +203,13 @@ function PageHeader(props) {
                                 </label>
                               </div>
                             </div>
+                            {formFields.required &&
+                              !Fdata[`${formFields.key_name}`] &&
+                              validate && (
+                                <p className="file-upload-error">
+                                  {formFields.required}
+                                </p>
+                              )}
                           </div>
                         </Col>
                       )
@@ -234,7 +231,7 @@ function PageHeader(props) {
                                 oldState[`${formFields.key_name}`] =
                                   e.target.value
                                 setFdata({ ...oldState })
-                                setValidate(true)
+                                // setValidate(true)
                               }}
                             />
                             {formFields.required &&

@@ -4,19 +4,22 @@ import axios from 'axios'
 let token = localStorage.getItem('token')
 const API_URL = `${process.env.REACT_APP_API_URL}`
 
-export const companyPolicy = createAsyncThunk('', async (payload, thunkAPI) => {
-  try {
-    const response = await axios.get(
-      `${API_URL}${payload}`,
-      {
-        headers: {
-          authentication: `${token}`,
+export const companyPolicy = createAsyncThunk(
+  'companyPolicy',
+  async (payload, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `${API_URL}${payload}`,
+        {
+          headers: {
+            authentication: `${token}`,
+          },
         },
-      },
-      payload
-    )
-    return response
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error)
+        payload
+      )
+      return response
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
   }
-})
+)
