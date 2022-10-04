@@ -23,6 +23,7 @@ import {
   getCreateNewEmpData,
 } from '../../../services/thunk/CreateNewEmpDataThunk'
 import { validateByRegex } from '../../../utils/Helpers'
+import Swal from 'sweetalert2'
 
 const UserCreate = (props) => {
   const allDropdownState = useSelector((state) => state.dropdown)
@@ -138,21 +139,17 @@ const UserCreate = (props) => {
                 }
               }
             })
-            const currentDefaultValue = dropDownData?.find(
-              (data) => data.value === empCreate[`${formFields.key_name}`]
-            )
             return (
               <Col md="4" key={`userCreate-form-fields-${id + 10}`}>
                 <FormGroup>
                   <label className="form-label">{formFields.label_name}</label>
                   <RSelect
-                    defaultValue={{
-                      value: currentDefaultValue?.value,
-                      label: currentDefaultValue?.label,
-                    }}
                     options={dropDownData?.length > 0 ? dropDownData : []}
                     name={formFields.name}
-                    Value={empCreate[`${formFields.key_name}`]}
+                    value={dropDownData?.find(
+                      (data) =>
+                        data.value === empCreate[`${formFields.key_name}`]
+                    )}
                     onChange={(e) => {
                       handle(e)
                       const oldState = cloneDeep(empCreate)
@@ -264,6 +261,7 @@ const AddressDetails = (props) => {
       // eslint-disable-next-line array-callback-return
       return
     })
+
     if (checkValidate.length === 0) {
       props.next()
       dispatch(getCreateNewEmpData({ currentAddress, permanentAddress }))
@@ -349,11 +347,15 @@ const AddressDetails = (props) => {
                     <RSelect
                       options={dropDownData?.length > 0 ? dropDownData : []}
                       name={formFields.name}
-                      Value={permanentAddress[`${formFields.key_name}`]}
+                      value={dropDownData?.find(
+                        (data) =>
+                          data.value ===
+                          permanentAddress[`${formFields.key_name}`]
+                      )}
                       onChange={(e) => {
                         handleChangeAddress(e, formFields.label_name)
                         const oldState = cloneDeep(permanentAddress)
-                        oldState[`${formFields.key_name}`] = e.label
+                        oldState[`${formFields.key_name}`] = e.value
                         setPermanentAddress({ ...oldState })
                         // setValidate(true)
                       }}
@@ -456,7 +458,10 @@ const AddressDetails = (props) => {
                     <RSelect
                       options={dropDownData?.length > 0 ? dropDownData : []}
                       name={formFields.name}
-                      Value={currentAddress[`${formFields.key_name}`]}
+                      value={dropDownData?.find(
+                        (ddd) =>
+                          ddd.value === currentAddress[`${formFields.key_name}`]
+                      )}
                       onChange={(e) => {
                         handleChangeAddress(e, formFields.label_name)
                         const oldState = cloneDeep(currentAddress)
@@ -538,6 +543,7 @@ const Permission = (props) => {
   const [permissionSt, setPermissionSt] = useState([])
   const dispatch = useDispatch()
   const { formData } = useSelector((state) => state.createNewEmpData)
+  const { success, error } = useSelector((state) => state.CreateEmp)
 
   // const toggle = () => setDropdownOpen((prevState) => !prevState)
   tableHeader.map((e, index) => {
@@ -672,6 +678,18 @@ const Permission = (props) => {
   const CreateEmployee = () => {
     AddPermission()
     dispatch(CreateNewEmployee(formData))
+    if (success == '') {
+      Swal.fire({
+        icon: 'warning',
+        title: `${error}`,
+      })
+    } else {
+      Swal.fire({
+        icon: 'success',
+        title: `${success}`,
+        focusConfirm: false,
+      })
+    }
   }
 
   return (
