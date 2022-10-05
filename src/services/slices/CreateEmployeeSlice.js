@@ -2,9 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import { CreateNewEmployee } from '../thunk/CreateNewEmpDataThunk'
 
 const initialState = {
-  //   isLoading: false,
-  error: false,
-  message: '',
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: '',
 }
 
 export const CreateEmp = createSlice({

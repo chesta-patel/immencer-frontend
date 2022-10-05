@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, Col, Form, FormGroup, Modal, ModalBody, Row } from 'reactstrap'
+import { Button, Col, Form, FormGroup, Modal, ModalBody } from 'reactstrap'
 import {
   BlockBetween,
   BlockDes,
@@ -13,11 +13,12 @@ import {
 import { cloneDeep } from 'lodash'
 import './pageheader.scss'
 import String from '../utils/String'
+import { checkIsEmptyObjectKey } from '../utils/Helpers'
 
 function PageHeader(props) {
   const initialState = {}
   props.json.forEach((formFields) => {
-    initialState[`${formFields.name}`] = ''
+    initialState[`${formFields.key_name}`] = ''
   })
   const [sm, updateSm] = useState(false)
   const [modal, setModal] = useState({
@@ -28,45 +29,47 @@ function PageHeader(props) {
   const [validate, setValidate] = useState(false)
   const [Fdata, setFdata] = useState({ ...initialState })
   const [strings, setStrings] = useState('')
-  const [setFormData] = useState({
-    title: '',
-    slug: '',
-    description: '',
-    type: '',
-    active: '',
-    content: '',
-    isActive: 'Active',
-    isDelete: 'No',
-  })
 
   const onFormCancel = () => {
     setModal({ edit: false, add: false })
-    resetForm()
   }
-  // function to reset the form
-  const resetForm = () => {
-    setFormData({
-      title: '',
-      slug: '',
-      description: '',
-      type: '',
-      active: '',
-      content: '',
-      isActive: 'Active',
-      isDelete: 'No',
-    })
-  }
+
   // submit function to add a new item
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     setValidate(true)
     e.preventDefault()
+    console.log('Fdata', Fdata)
+
+    // checkValidate()
+    const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
+    console.log('🚀 ~ isEmpty', isEmpty)
+
+    if (!isEmpty) {
+      props.callFormSubmit(Fdata)
+    }
   }
+
   useEffect(() => {
     var string = props.string.find(function (element) {
       return element
     })
     setStrings(string)
   }, [props.string])
+
+  useEffect(() => {
+    if (props.apiCallStatus.status === 'success') {
+      setModal({
+        edit: false,
+        add: false,
+      })
+      setValidate(false)
+      setFdata({ ...initialState })
+      props.setApiCallStatus({
+        status: '',
+        message: '',
+      })
+    }
+  }, [props])
 
   return (
     <React.Fragment>
@@ -141,7 +144,10 @@ function PageHeader(props) {
           <div className="p-3">
             <h5 className="title">{strings.form_title}</h5>
             <div className="mt-2">
-              <Form className="row gy-3" onSubmit={handleSubmit(onFormSubmit)}>
+              <Form
+                className="row gy-3"
+                onSubmit={(e) => handleSubmit(onFormSubmit(e))}
+              >
                 {props.json.map((formFields, id) => {
                   if (
                     (formFields.type !== 'text') &
@@ -181,22 +187,29 @@ function PageHeader(props) {
                                   id="customMultipleFiles"
                                   onChange={(e) => {
                                     const oldState = cloneDeep(Fdata)
-                                    oldState[`${formFields.name}`] =
+                                    oldState[`${formFields.key_name}`] =
                                       e.target.files[0]
                                     setFdata({ ...oldState })
-                                    setValidate(true)
+                                    // setValidate(true)
                                   }}
                                 />
                                 <label
                                   className="custom-file-label"
                                   htmlFor="customMultipleFiles"
                                 >
-                                  {Fdata?.File?.name
-                                    ? Fdata?.File?.name
+                                  {Fdata?.assetsFile?.name
+                                    ? Fdata?.assetsFile?.name
                                     : formFields.placeholder}
                                 </label>
                               </div>
                             </div>
+                            {formFields.required &&
+                              !Fdata[`${formFields.key_name}`] &&
+                              validate && (
+                                <p className="file-upload-error">
+                                  {formFields.required}
+                                </p>
+                              )}
                           </div>
                         </Col>
                       )
@@ -210,18 +223,19 @@ function PageHeader(props) {
                             <input
                               className="form-control"
                               type={formFields.type}
-                              name={formFields.name}
+                              name={formFields.key_name}
                               placeholder={formFields.placeholder}
-                              value={Fdata[`${formFields.name}`]}
+                              value={Fdata[`${formFields.key_name}`]}
                               onChange={(e) => {
                                 const oldState = cloneDeep(Fdata)
-                                oldState[`${formFields.name}`] = e.target.value
+                                oldState[`${formFields.key_name}`] =
+                                  e.target.value
                                 setFdata({ ...oldState })
-                                setValidate(true)
+                                // setValidate(true)
                               }}
                             />
                             {formFields.required &&
-                              !Fdata[`${formFields.name}`] &&
+                              !Fdata[`${formFields.key_name}`] &&
                               validate && (
                                 <p className="invalid">{formFields.required}</p>
                               )}

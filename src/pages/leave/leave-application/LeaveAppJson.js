@@ -8,6 +8,7 @@ export const leaveAppForm = [
     name: `${String.employee_id}`,
     required: `${String.Please_enter} ${String.employee_id}`,
     placeholder: `${String.enter} ${String.employee_id}`,
+    key_name: `${String.employee_id}`,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const leaveAppForm = [
     name: `${String.leave_type_id}`,
     required: `${String.Please_enter} ${String.leave_type_id}`,
     placeholder: `${String.enter} ${String.leave_type_id}`,
+    key_name: `${String.leave_type_id}`,
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ export const leaveAppForm = [
     type: 'date',
     name: `${String.start_date}`,
     required: `${String.Please_enter} ${String.start_date}`,
+    key_name: `${String.start_date}`,
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ export const leaveAppForm = [
     type: 'date',
     name: `${String.end_date}`,
     required: `${String.Please_enter} ${String.end_date}`,
+    key_name: `${String.end_date}`,
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ export const leaveAppForm = [
     name: `${String.date}`,
     required: `${String.Please_enter} ${String.attachment}`,
     placeholder: `${String.enter} ${String.attachment}`,
+    key_name: `${String.date}`,
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ export const leaveAppForm = [
     name: `${String.remark}`,
     required: `${String.Please_enter} ${String.remark}`,
     placeholder: `${String.enter} ${String.remark}`,
+    key_name: `${String.remark}`,
   },
   {
     id: 7,
@@ -57,6 +63,7 @@ export const leaveAppForm = [
       { value: `${String.approved}`, label: `${String.approved}` },
       { value: `${String.reject}`, label: `${String.reject}` },
     ],
+    key_name: `${String.stutus}`,
   },
   {
     id: 8,
@@ -64,6 +71,7 @@ export const leaveAppForm = [
     type: 'date',
     name: `${String.approved_date}`,
     required: `${String.Please_enter} ${String.approved} ${String.date}`,
+    key_name: `${String.approved_date}`,
   },
   {
     id: 9,
@@ -72,6 +80,7 @@ export const leaveAppForm = [
     name: `${String.updated_by}`,
     required: `${String.Please_enter} ${String.updated_by} `,
     placeholder: `${String.enter} ${String.updated_by}`,
+    key_name: `${String.updated_by}`,
   },
   {
     id: 10,
@@ -82,6 +91,7 @@ export const leaveAppForm = [
       { value: `${String.active}`, label: `${String.active}` },
       { value: `${String.in_active}`, label: `${String.in_active}` },
     ],
+    key_name: `${String.is_active}`,
   },
   {
     id: 11,
@@ -98,6 +108,7 @@ export const leaveAppForm = [
         label: `${String.is_not_deleted}`,
       },
     ],
+    key_name: `${String.is_delete}`,
   },
 ]
 

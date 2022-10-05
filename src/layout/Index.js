@@ -5,8 +5,27 @@ import Head from './head/Head'
 import Header from './header/Header'
 import Footer from './footer/Footer'
 import classNames from 'classnames'
+import Loader from '../pages/Loader'
+import { useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Layout = () => {
+  // Redux States
+  const authReduxState = useSelector((state) => state.auth)
+  const dropdownReduxState = useSelector((state) => state.dropdown)
+  const getEmpReduxState = useSelector((state) => state.getEmp)
+  const companyDocumentReduxState = useSelector(
+    (state) => state.companyDocument
+  )
+  const companyPolicyReduxState = useSelector((state) => state.companyPolicy)
+  const createNewEmpDataReduxState = useSelector(
+    (state) => state.createNewEmpData
+  )
+  const CreateEmpReduxState = useSelector((state) => state.CreateEmp)
+  const createCompanyDocReduxState = useSelector(
+    (state) => state.createCompanyDoc
+  )
+  const createPolicyReduxState = useSelector((state) => state.createPolicy)
   //Sidebar
   const [mobileView, setMobileView] = useState()
   const [visibility, setVisibility] = useState(false)
@@ -89,6 +108,15 @@ const Layout = () => {
 
   return (
     <React.Fragment>
+      {(authReduxState?.isLoading ||
+        dropdownReduxState?.isLoading ||
+        getEmpReduxState?.isLoading ||
+        companyDocumentReduxState?.isLoading ||
+        companyPolicyReduxState?.isLoading ||
+        createNewEmpDataReduxState?.isLoading ||
+        CreateEmpReduxState?.isLoading ||
+        createCompanyDocReduxState?.isLoading ||
+        createPolicyReduxState?.isLoading) && <Loader />}
       <Head title="Loading" />
       <div className="nk-app-root">
         <div className="nk-main">
@@ -112,6 +140,7 @@ const Layout = () => {
             />
             <Pages />
             <Footer />
+            <ToastContainer />
           </div>
         </div>
       </div>
@@ -120,3 +149,15 @@ const Layout = () => {
 }
 
 export default Layout
+
+export const toastNotify = (type, message) =>
+  toast(`${message}`, {
+    position: 'top-center',
+    autoClose: 4000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    type,
+  })

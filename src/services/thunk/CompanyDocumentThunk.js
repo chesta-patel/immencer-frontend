@@ -5,7 +5,7 @@ let token = localStorage.getItem('token')
 const API_URL = `${process.env.REACT_APP_API_URL}`
 
 export const companyDocument = createAsyncThunk(
-  '',
+  'companyDocument',
   async (payload, thunkAPI) => {
     try {
       const response = await axios.get(
