@@ -487,7 +487,7 @@ function CompanyPolicyPageTable(props) {
                             color=""
                             className="btn-icon eye_btn"
                             onClick={() =>
-                              setModal({ view: true, link: item.link })
+                              setModal({ view: true, link: item.assets })
                             }
                             style={{ margin: '0px' }}
                           >
