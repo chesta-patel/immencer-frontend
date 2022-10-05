@@ -543,7 +543,7 @@ const Permission = (props) => {
   const [permissionSt, setPermissionSt] = useState([])
   const dispatch = useDispatch()
   const { formData } = useSelector((state) => state.createNewEmpData)
-  const { success, error } = useSelector((state) => state.CreateEmp)
+  const { isSuccess, isError } = useSelector((state) => state.CreateEmp)
 
   // const toggle = () => setDropdownOpen((prevState) => !prevState)
   tableHeader.map((e, index) => {
@@ -678,15 +678,15 @@ const Permission = (props) => {
   const CreateEmployee = () => {
     AddPermission()
     dispatch(CreateNewEmployee(formData))
-    if (success == '') {
+    if (isSuccess == '') {
       Swal.fire({
         icon: 'warning',
-        title: `${error}`,
+        title: `${isError}`,
       })
     } else {
       Swal.fire({
         icon: 'success',
-        title: `${success}`,
+        title: `${isSuccess}`,
         focusConfirm: false,
       })
     }
