@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import {
   Button,
@@ -17,6 +18,7 @@ import EducationCard from './EducationCard'
 
 function Education(props) {
   const dispatch = useDispatch()
+  const { formData } = useSelector((state) => state.createNewEmpData)
   const [data, setData] = useState({
     degree: '',
     startDate: new Date(),
@@ -24,14 +26,13 @@ function Education(props) {
   })
   const [items, setItems] = useState([])
   const [educationList, setEducationList] = useState([])
-
   const [modal, setModal] = useState({
     edit: false,
     add: false,
   })
+
   const onFormCancel = (e) => {
     e.preventDefault()
-
     setModal({ edit: false, add: false })
   }
   const handleSubmit = (e) => {
@@ -42,6 +43,11 @@ function Education(props) {
     setData('')
     setModal({ add: false })
   }
+  useEffect(() => {
+    if (!formData?.education?.length) return
+
+    setItems(formData.education)
+  }, [formData?.education?.length])
   let name, value
   const handledChange = (event) => {
     name = event.target.name
