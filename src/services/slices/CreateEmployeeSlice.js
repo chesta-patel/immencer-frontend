@@ -15,7 +15,7 @@ export const CreateEmp = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(CreateNewEmployee.fulfilled, (state, action) => {
-        state.message = action.payload.code
+        state.errorMessage = action.payload.code
       })
       .addCase(CreateNewEmployee.pending, function (state, action) {})
       .addCase(CreateNewEmployee.rejected, (state, action) => {})
