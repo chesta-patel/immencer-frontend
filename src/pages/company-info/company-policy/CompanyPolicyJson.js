@@ -58,6 +58,6 @@ export const companyPolicyTable = [
   },
   {
     id: 5,
-    name: `${String.preview}`,
+    name: `${String.action}`,
   },
 ]

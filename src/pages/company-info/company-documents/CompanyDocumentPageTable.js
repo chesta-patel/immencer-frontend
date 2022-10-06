@@ -481,9 +481,7 @@ function CompanyDocumentPageTable(props) {
                         <span>
                           <GoogleFileViewerLink link={item.assets} />
                         </span>
-                      </DataTableRow>
-                      <DataTableRow size="lg">
-                        <span>
+                        <span className="ml-2">
                           <Button
                             color=""
                             className="btn-icon"

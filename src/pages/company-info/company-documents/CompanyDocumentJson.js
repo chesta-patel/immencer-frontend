@@ -58,6 +58,6 @@ export const companyDocTable = [
   },
   {
     id: 5,
-    name: `${String.preview}`,
+    name: `${String.action}`,
   },
 ]
