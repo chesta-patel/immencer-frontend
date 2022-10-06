@@ -23,14 +23,17 @@ import {
   UserAvatar,
 } from '../components/Component'
 import { UserContext } from './user-manage/UserContext'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { bulkActionOptions } from '../utils/Utils'
 import String from '../utils/String'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { empData } from '../services/thunk/GetEmployee'
+import { empDetail } from '../services/thunk/EmployeeDetailThunk'
+import { toastNotify } from '../layout/Index'
 
 function PageTable(props) {
+  const history = useHistory()
   const dispatch = useDispatch()
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
@@ -48,6 +51,11 @@ function PageTable(props) {
     indexOfFirstItem,
     indexOfLastItem
   )
+  const [apiCallStatus, setApiCallStatus] = useState({
+    status: '',
+    message: '',
+  })
+  const { isSuccess } = useSelector((state) => state.getEmpDetail)
 
   // function which selects all the items
   const selectorCheck = (e) => {
@@ -118,6 +126,10 @@ function PageTable(props) {
       setData([...sortedData])
     }
   }
+  // const handleChange = (id) => {
+  //   dispatch(empDetail(`employee/${id}`))
+  //   history.push('/employee/employee_update')
+  // }
 
   return (
     <React.Fragment>
@@ -474,67 +486,54 @@ function PageTable(props) {
                         </div>
                       </DataTableRow>
                       <DataTableRow>
-                        <Link to={`/user-details-regular/${item.id}`}>
+                        <Link
+                          to={`${process.env.PUBLIC_URL}/employee/employee-detail/${item.id}`}
+                        >
                           <div className="user-card">
                             <UserAvatar
                               theme={item.avatarBg}
-                              className="xs"
                               text={findUpper(
                                 `${item.firstName} ${item.lastName}`
                               )}
                               image={item.image}
                             ></UserAvatar>
+                            <div className="user-info">
+                              <span className="tb-lead">
+                                {`${item.firstName} ${item.lastName}`}
+                                <span
+                                  className={`dot dot-${
+                                    item.status === 'Active'
+                                      ? 'success'
+                                      : item.status === 'Pending'
+                                      ? 'warning'
+                                      : 'danger'
+                                  } d-md-none ml-1`}
+                                ></span>
+                              </span>
+                            </div>
                           </div>
                         </Link>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{`${item.firstName} ${item.lastName}`}</span>
+                        <span>{item.companyEmail}</span>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{item.department}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.mobile}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.personalEmail}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.isActive}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.isDeleted}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.employmentStatus}</span>
+                        <span>{item.mobileNumbers}</span>
                       </DataTableRow>
                       <DataTableRow className="nk-tb-col-tools">
                         <ul className="nk-tb-actions gx-1">
                           <li>
-                            <UncontrolledDropdown>
-                              <DropdownToggle
-                                tag="a"
-                                className="dropdown-toggle btn btn-icon btn-trigger"
-                              >
-                                <Icon name="more-h"></Icon>
-                              </DropdownToggle>
-                              <DropdownMenu right>
-                                <ul className="link-list-opt no-bdr">
-                                  <li>
-                                    <DropdownItem
-                                      tag="a"
-                                      href="#edit"
-                                      onClick={(ev) => {
-                                        ev.preventDefault()
-                                      }}
-                                    >
-                                      <Icon name="edit"></Icon>
-                                      <span>{String.edit}</span>
-                                    </DropdownItem>
-                                  </li>
-                                </ul>
-                              </DropdownMenu>
-                            </UncontrolledDropdown>
+                            <DropdownItem
+                              tag="a"
+                              href="#edit"
+                              onClick={(ev) => {
+                                ev.preventDefault()
+                                // handleChange(item.id)
+                              }}
+                            >
+                              <Icon name="edit"></Icon>
+                              <span>{String.edit}</span>
+                            </DropdownItem>
                           </li>
                         </ul>
                       </DataTableRow>
