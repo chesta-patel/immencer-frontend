@@ -45,9 +45,6 @@ export const getFormData = (object) => {
 
 export const logFormData = (formData) => {
   const formDataObj = Object.fromEntries(formData.entries())
-  console.log('=== Start Log Form Data ===')
-  console.log(formDataObj)
-  console.log('=== End Log Form Data ===')
 }
 
 export const checkIsEmptyObjectKey = (objData, type) => {
