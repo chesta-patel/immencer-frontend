@@ -35,8 +35,12 @@ import String from '../../../utils/String'
 import PdfViewer from '../../../components/pdfviewer/PdfViewer'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
+import './companyPolicy.scss'
+import { useDispatch } from 'react-redux'
+import { deleteCompanyPolicy } from './../../../services/thunk/DeleteCompanyPolicyThunk'
 
 function CompanyPolicyPageTable(props) {
+  const dispatch = useDispatch()
   const { infoList, loader } = useSelector((state) => state.companyPolicy)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
@@ -53,6 +57,7 @@ function CompanyPolicyPageTable(props) {
   const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
 
   const [modal, setModal] = useState({ view: false, link: '' })
+  const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
 
   const onFormCancel = () => {
     setModal({ view: false, link: '' })
@@ -123,6 +128,15 @@ function CompanyPolicyPageTable(props) {
       setData([...sortedData])
     }
   }
+  useEffect(() => {
+    if (props.deleteApiCallStatus.status === 'success') {
+      setDeleteModal({ status: false, data: '' })
+      props.setDeleteApiCallStatus({
+        status: '',
+        message: '',
+      })
+    }
+  }, [props])
 
   return (
     <React.Fragment>
@@ -487,11 +501,26 @@ function CompanyPolicyPageTable(props) {
                             color=""
                             className="btn-icon eye_btn"
                             onClick={() =>
-                              setModal({ view: true, link: item.link })
+                              setModal({ view: true, link: item.assets })
                             }
                             style={{ margin: '0px' }}
                           >
                             <em class="icon ni ni-eye"></em>
+                          </Button>
+                        </span>
+                        <span className="ml-2">
+                          <Button
+                            color=""
+                            className="btn-icon"
+                            onClick={() =>
+                              setDeleteModal({
+                                status: true,
+                                data: item,
+                              })
+                            }
+                            style={{ margin: '0px' }}
+                          >
+                            <em class="icon ni ni-trash"></em>
                           </Button>
                         </span>
                       </DataTableRow>
@@ -530,6 +559,47 @@ function CompanyPolicyPageTable(props) {
         </ModalBody> */}
         <ModalBody>
           <PdfViewer url={modal.link} />
+        </ModalBody>
+      </Modal>
+      <Modal
+        isOpen={deleteModal.status}
+        toggle={() => setDeleteModal({ status: false, data: '' })}
+        className="modal-dialog-centered delete_policy"
+        size="lg"
+      >
+        <ModalBody>
+          <button
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+            }}
+            className="close"
+          >
+            <Icon name="cross-sm"></Icon>
+          </button>
+          <h2 className="modal_title">Delete Confirmation</h2>
+          <p className="alert alert-danger">
+            Are you sure you want to delete the {deleteModal.data.title}
+          </p>
+          <button
+            type="button"
+            // disabled={pageNumber <= 1}
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+            }}
+            className="Pre btn header_submit_bn"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="header_submit_bn btn btn-danger"
+            // disabled={pageNumber >= numPages}
+            onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
+          >
+            Delete
+          </button>
         </ModalBody>
       </Modal>
     </React.Fragment>

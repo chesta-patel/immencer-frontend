@@ -6,6 +6,8 @@ import {
   FormGroup,
   UncontrolledDropdown,
   DropdownItem,
+  Modal,
+  ModalBody,
 } from 'reactstrap'
 import {
   Block,
@@ -26,8 +28,11 @@ import String from '../../../utils/String'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
+import { useDispatch } from 'react-redux'
+import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
 
 function CompanyDocumentPageTable(props) {
+  const dispatch = useDispatch()
   const { infoList, loader } = useSelector((state) => state.companyDocument)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
@@ -42,6 +47,8 @@ function CompanyDocumentPageTable(props) {
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
   const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
+
+  const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
 
   // function which selects all the items
   const selectorCheck = (e) => {
@@ -110,6 +117,16 @@ function CompanyDocumentPageTable(props) {
       setData([...sortedData])
     }
   }
+
+  useEffect(() => {
+    if (props.deleteApiCallStatus.status === 'success') {
+      setDeleteModal({ status: false, data: '' })
+      props.setDeleteApiCallStatus({
+        status: '',
+        message: '',
+      })
+    }
+  }, [props])
 
   return (
     <React.Fragment>
@@ -464,6 +481,21 @@ function CompanyDocumentPageTable(props) {
                         <span>
                           <GoogleFileViewerLink link={item.assets} />
                         </span>
+                        <span className="ml-2">
+                          <Button
+                            color=""
+                            className="btn-icon"
+                            onClick={() =>
+                              setDeleteModal({
+                                status: true,
+                                data: item,
+                              })
+                            }
+                            style={{ margin: '0px' }}
+                          >
+                            <em class="icon ni ni-trash"></em>
+                          </Button>
+                        </span>
                       </DataTableRow>
                     </DataTableItem>
                   )
@@ -472,6 +504,47 @@ function CompanyDocumentPageTable(props) {
           </DataTableBody>
         </DataTable>
       </Block>
+      <Modal
+        isOpen={deleteModal.status}
+        toggle={() => setDeleteModal({ status: false, data: '' })}
+        className="modal-dialog-centered delete_policy"
+        size="lg"
+      >
+        <ModalBody>
+          <button
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+              // setModal({ view: false, link: '' })
+            }}
+            className="close"
+          >
+            <Icon name="cross-sm"></Icon>
+          </button>
+          <h2 className="modal_title">Delete Confirmation</h2>
+          <p className="alert alert-danger">
+            Are you sure you want to delete the {deleteModal.data.title}
+          </p>
+          <button
+            type="button"
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+            }}
+            className="Pre btn header_submit_bn"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="header_submit_bn btn btn-danger"
+            // disabled={pageNumber >= numPages}
+            onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
+          >
+            Delete
+          </button>
+        </ModalBody>
+      </Modal>
     </React.Fragment>
   )
 }

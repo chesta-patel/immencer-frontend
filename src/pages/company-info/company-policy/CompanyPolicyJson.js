@@ -36,7 +36,7 @@ export const companyPolicyForm = [
     required: `${String.Please_enter} ${String.file}`,
     placeholder: `Choose file`,
     file_id: `Company DocumentFileUpload`,
-    key_name: 'assets',
+    key_name: 'assetsFile',
   },
 ]
 export const companyPolicyTable = [
@@ -58,6 +58,6 @@ export const companyPolicyTable = [
   },
   {
     id: 5,
-    name: `${String.preview}`,
+    name: `${String.action}`,
   },
 ]

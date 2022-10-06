@@ -33,29 +33,23 @@ function PageHeader(props) {
   const onFormCancel = () => {
     setModal({ edit: false, add: false })
   }
-
   // submit function to add a new item
   const onFormSubmit = async (e) => {
     setValidate(true)
     e.preventDefault()
-    console.log('Fdata', Fdata)
-
     // checkValidate()
     const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
-    console.log('🚀 ~ isEmpty', isEmpty)
 
     if (!isEmpty) {
       props.callFormSubmit(Fdata)
     }
   }
-
   useEffect(() => {
     var string = props.string.find(function (element) {
       return element
     })
     setStrings(string)
   }, [props.string])
-
   useEffect(() => {
     if (props.apiCallStatus.status === 'success') {
       setModal({

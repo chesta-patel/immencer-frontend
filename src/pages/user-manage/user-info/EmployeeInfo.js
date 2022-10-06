@@ -23,7 +23,7 @@ import Loader from '../../Loader'
 
 const UserInfo = ({ ...props }) => {
   const history = useHistory()
-  const { employeeData, loader } = useSelector((state) => state.getEmp)
+  const { employeeData, isLoading } = useSelector((state) => state.getEmp)
   const dispatch = useDispatch()
 
   // Stats declaration for data
@@ -43,7 +43,7 @@ const UserInfo = ({ ...props }) => {
       <Head title="Employee" />
       <Content>
         {/* <Loader /> */}
-        {loader ? <Loader /> : null}
+        {isLoading ? <Loader /> : null}
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
