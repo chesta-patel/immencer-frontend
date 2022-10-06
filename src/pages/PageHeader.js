@@ -39,6 +39,7 @@ function PageHeader(props) {
     e.preventDefault()
     // checkValidate()
     const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
+
     if (!isEmpty) {
       props.callFormSubmit(Fdata)
     }

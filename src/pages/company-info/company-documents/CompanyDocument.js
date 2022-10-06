@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getFormData, logFormData } from '../../../utils/Helpers'
 import { addNewCompanyDoc } from '../../../services/thunk/CreateNewCompanyDocThunk'
 import { toastNotify } from '../../../layout/Index'
+import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
 
 const CompanyDocument = ({ ...props }) => {
   const [roleForm] = useState(companyDocForm)
@@ -21,6 +22,11 @@ const CompanyDocument = ({ ...props }) => {
   }, [])
 
   const [apiCallStatus, setApiCallStatus] = useState({
+    status: '',
+    message: '',
+  })
+
+  const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
     status: '',
     message: '',
   })
@@ -44,6 +50,25 @@ const CompanyDocument = ({ ...props }) => {
     }
   }
 
+  const callDeleteFormSubmit = async (id) => {
+    let callAPI = await dispatch(deleteCompanyDoc(id))
+    console.log('call API Delete =====> ', callAPI)
+    if (callAPI?.payload?.data?.isSuccess) {
+      setDeleteApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      dispatch(companyDocument('companyDocuments'))
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setDeleteApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
+
   return (
     <React.Fragment>
       <Head title="Company Document" />
@@ -55,7 +80,12 @@ const CompanyDocument = ({ ...props }) => {
           apiCallStatus={apiCallStatus}
           setApiCallStatus={setApiCallStatus}
         />
-        <CompanyDocumentPageTable json={roleTable} />
+        <CompanyDocumentPageTable
+          json={roleTable}
+          callDeleteFormSubmit={callDeleteFormSubmit}
+          deleteApiCallStatus={deleteApiCallStatus}
+          setDeleteApiCallStatus={setDeleteApiCallStatus}
+        />
       </Content>
     </React.Fragment>
   )
