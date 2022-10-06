@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux'
 import { getFormData } from '../../../utils/Helpers'
 import { createNewCompanyPolicy } from '../../../services/thunk/CreateNewCompanyPolicyThunk'
 import { toastNotify } from '../../../layout/Index'
+import { deleteCompanyPolicy } from '../../../services/thunk/DeleteCompanyPolicyThunk'
 
 const CompanyPolicy = ({ ...props }) => {
   const [roleForm] = useState(companyPolicyForm)
@@ -21,6 +22,11 @@ const CompanyPolicy = ({ ...props }) => {
   }, [])
 
   const [apiCallStatus, setApiCallStatus] = useState({
+    status: '',
+    message: '',
+  })
+
+  const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
     status: '',
     message: '',
   })
@@ -44,6 +50,24 @@ const CompanyPolicy = ({ ...props }) => {
     }
   }
 
+  const callDeleteFormSubmit = async (id) => {
+    let callAPI = await dispatch(deleteCompanyPolicy(id))
+    if (callAPI?.payload?.data?.isSuccess) {
+      setDeleteApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      dispatch(companyPolicy('companyPolicies'))
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setDeleteApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
+
   return (
     <React.Fragment>
       <Head title="Company Policy" />
@@ -55,7 +79,13 @@ const CompanyPolicy = ({ ...props }) => {
           apiCallStatus={apiCallStatus}
           setApiCallStatus={setApiCallStatus}
         />
-        <CompanyPolicyPageTable json={roleTable} />
+        {/* <CompanyPolicyPageTable json={roleTable} /> */}
+        <CompanyPolicyPageTable
+          json={roleTable}
+          callDeleteFormSubmit={callDeleteFormSubmit}
+          deleteApiCallStatus={deleteApiCallStatus}
+          setDeleteApiCallStatus={setDeleteApiCallStatus}
+        />
       </Content>
     </React.Fragment>
   )

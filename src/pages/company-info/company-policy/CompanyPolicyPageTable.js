@@ -36,8 +36,11 @@ import PdfViewer from '../../../components/pdfviewer/PdfViewer'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
 import './companyPolicy.scss'
+import { useDispatch } from 'react-redux'
+import { deleteCompanyPolicy } from './../../../services/thunk/DeleteCompanyPolicyThunk'
 
 function CompanyPolicyPageTable(props) {
+  const dispatch = useDispatch()
   const { infoList, loader } = useSelector((state) => state.companyPolicy)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
@@ -125,6 +128,15 @@ function CompanyPolicyPageTable(props) {
       setData([...sortedData])
     }
   }
+  useEffect(() => {
+    if (props.deleteApiCallStatus.status === 'success') {
+      setDeleteModal({ status: false, data: '' })
+      props.setDeleteApiCallStatus({
+        status: '',
+        message: '',
+      })
+    }
+  }, [props])
 
   return (
     <React.Fragment>
@@ -553,7 +565,7 @@ function CompanyPolicyPageTable(props) {
       </Modal>
       <Modal
         isOpen={deleteModal.status}
-        toggle={() => setDeleteModal()}
+        toggle={() => setDeleteModal({ status: false, data: '' })}
         className="modal-dialog-centered delete_policy"
         size="lg"
       >
@@ -586,7 +598,7 @@ function CompanyPolicyPageTable(props) {
             type="button"
             className="header_submit_bn btn btn-danger"
             // disabled={pageNumber >= numPages}
-            // onClick={nextPage}
+            onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
           >
             Delete
           </button>

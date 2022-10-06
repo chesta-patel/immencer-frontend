@@ -28,8 +28,11 @@ import String from '../../../utils/String'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
+import { useDispatch } from 'react-redux'
+import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
 
 function CompanyDocumentPageTable(props) {
+  const dispatch = useDispatch()
   const { infoList, loader } = useSelector((state) => state.companyDocument)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
@@ -114,6 +117,16 @@ function CompanyDocumentPageTable(props) {
       setData([...sortedData])
     }
   }
+
+  useEffect(() => {
+    if (props.deleteApiCallStatus.status === 'success') {
+      setDeleteModal({ status: false, data: '' })
+      props.setDeleteApiCallStatus({
+        status: '',
+        message: '',
+      })
+    }
+  }, [props])
 
   return (
     <React.Fragment>
@@ -495,7 +508,7 @@ function CompanyDocumentPageTable(props) {
       </Block>
       <Modal
         isOpen={deleteModal.status}
-        toggle={() => setDeleteModal()}
+        toggle={() => setDeleteModal({ status: false, data: '' })}
         className="modal-dialog-centered delete_policy"
         size="lg"
       >
@@ -528,7 +541,7 @@ function CompanyDocumentPageTable(props) {
             type="button"
             className="header_submit_bn btn btn-danger"
             // disabled={pageNumber >= numPages}
-            // onClick={nextPage}
+            onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
           >
             Delete
           </button>

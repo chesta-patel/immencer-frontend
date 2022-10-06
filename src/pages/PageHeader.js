@@ -38,11 +38,8 @@ function PageHeader(props) {
   const onFormSubmit = async (e) => {
     setValidate(true)
     e.preventDefault()
-    console.log('Fdata', Fdata)
-
     // checkValidate()
     const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
-    console.log('🚀 ~ isEmpty', isEmpty)
 
     if (!isEmpty) {
       props.callFormSubmit(Fdata)

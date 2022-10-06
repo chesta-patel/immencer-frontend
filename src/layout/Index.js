@@ -25,6 +25,12 @@ const Layout = () => {
   const createCompanyDocReduxState = useSelector(
     (state) => state.createCompanyDoc
   )
+  const deleteCompanyDocReduxState = useSelector(
+    (state) => state.deleteCompanyDoc
+  )
+  const deleteCompanyPolicyReduxState = useSelector(
+    (state) => state.deleteCompanyPolicy
+  )
   const createPolicyReduxState = useSelector((state) => state.createPolicy)
   //Sidebar
   const [mobileView, setMobileView] = useState()
@@ -116,6 +122,8 @@ const Layout = () => {
         createNewEmpDataReduxState?.isLoading ||
         CreateEmpReduxState?.isLoading ||
         createCompanyDocReduxState?.isLoading ||
+        deleteCompanyDocReduxState?.isLoading ||
+        deleteCompanyPolicyReduxState?.isLoading ||
         createPolicyReduxState?.isLoading) && <Loader />}
       <Head title="Loading" />
       <div className="nk-app-root">
