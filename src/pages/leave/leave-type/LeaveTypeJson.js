@@ -8,6 +8,7 @@ export const leaveForm = [
     name: `${String.organization_meta_id}`,
     required: `${String.Please_enter} ${String.organization_meta_id}`,
     placeholder: `${String.enter} ${String.organization_meta_id}`,
+    key_name: `${String.organization_meta_id}`,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const leaveForm = [
     name: `${String.name}`,
     required: `${String.Please_enter} ${String.name}`,
     placeholder: `${String.enter} ${String.name}`,
+    key_name: `${String.name}`,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const leaveForm = [
     name: `${String.description}`,
     required: `${String.Please_enter} ${String.description}`,
     placeholder: `${String.enter} ${String.description}`,
+    key_name: `${String.description}`,
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const leaveForm = [
       { value: `${String.active}`, label: `${String.active}` },
       { value: `${String.in_active}`, label: `${String.in_active}` },
     ],
+    key_name: `${String.is_active}`,
   },
   {
     id: 4,
@@ -50,6 +54,7 @@ export const leaveForm = [
         label: `${String.is_not_deleted}`,
       },
     ],
+    key_name: `${String.is_delete}`,
   },
 ]
 

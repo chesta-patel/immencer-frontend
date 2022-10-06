@@ -2,9 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import { CreateNewEmployee } from '../thunk/CreateNewEmpDataThunk'
 
 const initialState = {
-  //   isLoading: false,
-  error: false,
-  message: '',
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: '',
 }
 
 export const CreateEmp = createSlice({
@@ -14,7 +15,7 @@ export const CreateEmp = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(CreateNewEmployee.fulfilled, (state, action) => {
-        state.message = action.payload.code
+        state.errorMessage = action.payload.code
       })
       .addCase(CreateNewEmployee.pending, function (state, action) {})
       .addCase(CreateNewEmployee.rejected, (state, action) => {})

@@ -31,7 +31,7 @@ const PdfViewer = ({ url }) => {
     changePage(1)
   }
 
-  disableDevtool()
+  // disableDevtool()
 
   return (
     <div
@@ -66,7 +66,7 @@ const PdfViewer = ({ url }) => {
         </div>
       </div>
       <Document
-        file={`${process.env.REACT_APP_API_URL}upload/${url}`}
+        file={`${process.env.REACT_APP_API_URL}${url}`}
         onLoadSuccess={onDocumentLoadSuccess}
       >
         <Page pageNumber={pageNumber} />

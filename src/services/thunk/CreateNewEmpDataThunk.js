@@ -15,15 +15,22 @@ export const getCreateNewEmpData = createAsyncThunk(
   }
 )
 
-export const CreateNewEmployee = createAsyncThunk('', async (payload) => {
-  try {
-    const response = await axios.post(`${API_URL}employee`, payload, {
-      headers: {
-        authentication: `${token}`,
-      },
-    })
-    return response.data
-  } catch (error) {
-    return error
+export const CreateNewEmployee = createAsyncThunk(
+  '',
+  async (payload, thunkAPI) => {
+    try {
+      const response = await axios.post(`${API_URL}employee`, payload, {
+        headers: {
+          authentication: `${token}`,
+        },
+      })
+      if (response.status === 201) {
+        return response
+      } else {
+        return thunkAPI.rejectWithValue(response)
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
   }
-})
+)

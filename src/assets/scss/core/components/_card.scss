@@ -60,6 +60,9 @@
     }
   }
 }
+.padding_btm_0 {
+  padding-bottom: 0 !important;
+}
 @include media-breakpoint-down(md) {
   .card {
     &-custom-s1 {

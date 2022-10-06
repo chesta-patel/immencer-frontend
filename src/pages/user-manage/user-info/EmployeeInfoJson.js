@@ -7,34 +7,14 @@ export const userInfo = [
   },
   {
     id: 2,
-    name: `${String.name}`,
-  },
-  {
-    id: 3,
-    name: `${String.department}`,
-  },
-  {
-    id: 4,
-    name: `${String.mobile_number}`,
-  },
-  {
-    id: 5,
     name: `${String.email}`,
   },
   {
-    id: 6,
-    name: `${String.is_active}`,
+    id: 3,
+    name: `${String.mobile_number}`,
   },
   {
-    id: 7,
-    name: `${String.is_delete}`,
-  },
-  {
-    id: 8,
-    name: `${String.status}`,
-  },
-  {
-    id: 9,
+    id: 4,
     name: '',
   },
 ]
@@ -199,7 +179,7 @@ export const userCreate = [
     validationMessage: `${String.Please_enter} ${String.valid} ${String.mobile_number}`,
     required: 'Required *',
     placeholder: `${String.Please_enter} ${String.mobile_number}`,
-    key_name: 'mobile',
+    key_name: 'mobileNumber',
   },
   {
     id: 19,
@@ -221,7 +201,7 @@ export const userCreate = [
     validationMessage: `${String.Please_enter} ${String.valid} ${String.parent_mobile}`,
     required: 'Required *',
     placeholder: `${String.Please_enter} ${String.parent_mobile}`,
-    key_name: 'parentsMobile',
+    key_name: 'parentsMobileNumber',
   },
   {
     id: 21,

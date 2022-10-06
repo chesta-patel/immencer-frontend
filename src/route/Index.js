@@ -14,6 +14,7 @@ import CompanyDocument from '../pages/company-info/company-documents/CompanyDocu
 import CompanyPolicy from '../pages/company-info/company-policy/CompanyPolicy'
 import EmployeeCreation from '../pages/user-manage/user-info/EmployeeCreation'
 import HomePage from '../pages/HomePage'
+import EmployeeDetail from '../pages/user-manage/user-info/employee-detail/EmployeeDetail'
 
 const Pages = () => {
   useLayoutEffect(() => {
@@ -48,6 +49,20 @@ const Pages = () => {
           render={() => (
             <UserContextProvider>
               <Employee />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/employee/employee-detail/:id`}
+          render={() => <EmployeeDetail />}
+        ></Route>
+        <Route
+          exact
+          path={`/employee/employee_update`}
+          render={() => (
+            <UserContextProvider>
+              <EmployeeCreation />
             </UserContextProvider>
           )}
         ></Route>

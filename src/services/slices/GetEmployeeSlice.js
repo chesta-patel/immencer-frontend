@@ -2,8 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 import { empData } from '../thunk/GetEmployee'
 
 const initialState = {
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: '',
   employeeData: [],
-  loader: false,
 }
 
 export const getEmpSlice = createSlice({
@@ -13,10 +16,10 @@ export const getEmpSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(empData.fulfilled, (state, action) => {
       state.employeeData = action.payload?.data?.data?.employeeList
-      state.loader = false
+      state.isLoading = false
     })
     builder.addCase(empData.pending, (state, action) => {
-      state.loader = true
+      state.isLoading = true
     })
   },
 })

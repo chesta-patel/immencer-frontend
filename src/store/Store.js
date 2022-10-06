@@ -6,6 +6,10 @@ import getCompanyDocument from './../services/slices/CompanyDocumentSlice'
 import getCompanyPolicy from './../services/slices/CompanyPolicySlice'
 import CreateNewEmpData from '../services/slices/CreateNewEmpData'
 import CreateEmp from '../services/slices/CreateEmployeeSlice'
+import CreateCompanyDoc from '../services/slices/CreateCompanyDocSlice'
+import CreatePolicy from '../services/slices/CreateCompanyPolicySlice'
+import DeleteCompanyDoc from './../services/slices/DeleteCompanyDocSlice'
+import getEmpDetail from '../services/slices/EmployeeDetailSlice'
 
 export default configureStore({
   reducer: {
@@ -14,7 +18,11 @@ export default configureStore({
     getEmp: getEmp,
     companyDocument: getCompanyDocument,
     companyPolicy: getCompanyPolicy,
+    getEmpDetail: getEmpDetail,
     createNewEmpData: CreateNewEmpData,
     CreateEmp: CreateEmp,
+    createCompanyDoc: CreateCompanyDoc,
+    createPolicy: CreatePolicy,
+    deleteCompanyDoc: DeleteCompanyDoc,
   },
 })

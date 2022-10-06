@@ -19,9 +19,11 @@
   button {
     background: #fff;
     border: 1px solid #000;
-    &:hover{
+    padding: 3px 5px;
+    &:hover {
       background: #0231c8;
       color: #fff;
+      outline: none;
     }
   }
 }

@@ -173,6 +173,7 @@ const String = {
   sequence_no: 'Sequence No',
   valid: 'Valid',
   seqNo: 'seqNo',
+  action: 'Action',
 }
 
 export default String

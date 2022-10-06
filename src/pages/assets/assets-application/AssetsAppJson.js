@@ -8,6 +8,7 @@ export const assetAppForm = [
     name: `${String.employee_id}`,
     required: `${String.Please_enter} ${String.employee_id}`,
     placeholder: `${String.enter} ${String.employee_id}`,
+    key_name: `${String.employee_id}`,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const assetAppForm = [
     name: `${String.assetsType_id}`,
     required: `${String.Please_enter} ${String.assetsType_id}`,
     placeholder: `${String.enter} ${String.assetsType_id}`,
+    key_name: `${String.assetsType_id}`,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const assetAppForm = [
     name: `${String.start_date}`,
     placeholder: `${String.enter} ${String.start_date}`,
     required: `${String.Please_enter} ${String.start_date}`,
+    key_name: `${String.start_date}`,
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ export const assetAppForm = [
     name: `${String.end_date}`,
     required: `${String.Please_enter} ${String.end_date}`,
     placeholder: `${String.enter} ${String.end_date}`,
+    key_name: `${String.end_date}`,
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ export const assetAppForm = [
     name: `${String.attachment}`,
     required: `${String.Please_enter} ${String.attachment}`,
     placeholder: `${String.enter} ${String.attachment}`,
+    key_name: `${String.attachment}`,
   },
   {
     id: 7,
@@ -48,6 +53,7 @@ export const assetAppForm = [
     name: `${String.remark}`,
     required: `${String.Please_enter} ${String.remark}`,
     placeholder: `${String.enter} ${String.remark}`,
+    key_name: `${String.remark}`,
   },
   {
     id: 4,
@@ -59,6 +65,7 @@ export const assetAppForm = [
       { value: `${String.pending}`, label: `${String.pending}` },
       { value: `${String.suspend}`, label: `${String.suspend}` },
     ],
+    key_name: `${String.status}`,
   },
   {
     id: 4,
@@ -67,6 +74,7 @@ export const assetAppForm = [
     name: `${String.updated_by}`,
     placeholder: `${String.enter} ${String.updated_by}`,
     required: `${String.Please_enter} ${String.updated_by}`,
+    key_name: `${String.updated_by}`,
   },
   {
     id: 8,
@@ -77,6 +85,7 @@ export const assetAppForm = [
       { value: `${String.active}`, label: `${String.active}` },
       { value: `${String.in_active}`, label: `${String.in_active}` },
     ],
+    key_name: `${String.is_active}`,
   },
   {
     id: 9,
@@ -93,6 +102,7 @@ export const assetAppForm = [
         label: `${String.is_not_deleted}`,
       },
     ],
+    key_name: `${String.is_delete}`,
   },
 ]
 

@@ -25,11 +25,14 @@ import {
 import { UserContext } from '../../user-manage/UserContext'
 import { bulkActionOptions } from '../../../utils/Utils'
 import String from '../../../utils/String'
-import PdfViewer from '../../../components/pdfviewer/PdfViewer'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
+import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
+import { useDispatch } from 'react-redux'
+import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
 
 function CompanyDocumentPageTable(props) {
+  const dispatch = useDispatch()
   const { infoList, loader } = useSelector((state) => state.companyDocument)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
@@ -45,11 +48,7 @@ function CompanyDocumentPageTable(props) {
   const indexOfFirstItem = indexOfLastItem - itemPerPage
   const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
 
-  const [modal, setModal] = useState({ view: false, link: '' })
-
-  const onFormCancel = () => {
-    setModal({ view: false, link: '' })
-  }
+  const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
 
   // function which selects all the items
   const selectorCheck = (e) => {
@@ -119,23 +118,33 @@ function CompanyDocumentPageTable(props) {
     }
   }
 
+  useEffect(() => {
+    if (props.deleteApiCallStatus.status === 'success') {
+      setDeleteModal({ status: false, data: '' })
+      props.setDeleteApiCallStatus({
+        status: '',
+        message: '',
+      })
+    }
+  }, [props])
+
   return (
     <React.Fragment>
       <Block>
         <DataTable className="card-stretch">
-          <div className="card-inner position-relative card-tools-toggle">
+          <div className="card-inner position-relative card-tools-toggle padding_btm_0">
             <div className="card-title-group">
               <div className="card-tools">
                 <div className="form-inline flex-nowrap gx-3">
-                  <div className="form-wrap">
+                  {/* <div className="form-wrap">
                     <RSelect
                       options={bulkActionOptions}
                       className="w-130px"
                       placeholder="Bulk Action"
                       onChange={(e) => onActionText(e)}
                     />
-                  </div>
-                  <div className="btn-wrap">
+                  </div> */}
+                  {/* <div className="btn-wrap">
                     <span className="d-none d-md-block">
                       <Button
                         disabled={actionText !== '' ? false : true}
@@ -158,7 +167,7 @@ function CompanyDocumentPageTable(props) {
                         <Icon name="arrow-right"></Icon>
                       </Button>
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="card-tools mr-n1">
@@ -470,15 +479,21 @@ function CompanyDocumentPageTable(props) {
                       </DataTableRow>
                       <DataTableRow size="lg">
                         <span>
+                          <GoogleFileViewerLink link={item.assets} />
+                        </span>
+                        <span className="ml-2">
                           <Button
                             color=""
-                            className="btn-icon eye_btn"
+                            className="btn-icon"
                             onClick={() =>
-                              setModal({ view: true, link: item.assets })
+                              setDeleteModal({
+                                status: true,
+                                data: item,
+                              })
                             }
                             style={{ margin: '0px' }}
                           >
-                            <em class="icon ni ni-eye"></em>
+                            <em class="icon ni ni-trash"></em>
                           </Button>
                         </span>
                       </DataTableRow>
@@ -490,13 +505,44 @@ function CompanyDocumentPageTable(props) {
         </DataTable>
       </Block>
       <Modal
-        isOpen={modal.view}
-        toggle={() => setModal({ view: false, link: '' })}
-        className="modal-dialog-centered pdf_modal"
+        isOpen={deleteModal.status}
+        toggle={() => setDeleteModal({ status: false, data: '' })}
+        className="modal-dialog-centered delete_policy"
         size="lg"
       >
         <ModalBody>
-          <PdfViewer url={modal.link} />
+          <button
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+              // setModal({ view: false, link: '' })
+            }}
+            className="close"
+          >
+            <Icon name="cross-sm"></Icon>
+          </button>
+          <h2 className="modal_title">Delete Confirmation</h2>
+          <p className="alert alert-danger">
+            Are you sure you want to delete the {deleteModal.data.title}
+          </p>
+          <button
+            type="button"
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+            }}
+            className="Pre btn header_submit_bn"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="header_submit_bn btn btn-danger"
+            // disabled={pageNumber >= numPages}
+            onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
+          >
+            Delete
+          </button>
         </ModalBody>
       </Modal>
     </React.Fragment>

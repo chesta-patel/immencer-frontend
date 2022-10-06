@@ -1,3 +1,11 @@
+@import '../../src/assets/scss/immence.scss';
+
 .header_submit_bn {
   margin-top: 30px;
+}
+
+.file-upload-error {
+  color: $red;
+  font-size: 11px;
+  font-style: italic;
 }
