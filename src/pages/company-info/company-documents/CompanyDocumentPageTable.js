@@ -30,6 +30,7 @@ import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
 import { useDispatch } from 'react-redux'
 import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
+import CompanyDocument from './CompanyDocument'
 
 function CompanyDocumentPageTable(props) {
   const dispatch = useDispatch()
@@ -493,7 +494,29 @@ function CompanyDocumentPageTable(props) {
                             }
                             style={{ margin: '0px' }}
                           >
-                            <em class="icon ni ni-trash"></em>
+                            <Icon name="trash" />
+                          </Button>
+                        </span>
+                      </DataTableRow>
+                      <DataTableRow size="lg">
+                        <span className="ml-2">
+                          <Button
+                            color=""
+                            className="btn-icon"
+                            onClick={() =>
+                              props.setModal({
+                                edit: true,
+                                add: false,
+                                data: item,
+                              })
+                            }
+                            style={{ margin: '0px' }}
+                          >
+                            <span style={{ display: 'flex' }}>
+                              <Icon name="edit" />
+
+                              <p>{String.edit}</p>
+                            </span>
                           </Button>
                         </span>
                       </DataTableRow>
@@ -541,7 +564,7 @@ function CompanyDocumentPageTable(props) {
             // disabled={pageNumber >= numPages}
             onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
           >
-            Delete
+            {String.delete}
           </button>
         </ModalBody>
       </Modal>
