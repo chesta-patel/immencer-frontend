@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { filterStatus, filterRole, userData } from './user-manage/UserData'
 import { findUpper } from '../utils/Utils'
 import {
@@ -22,26 +22,11 @@ import {
   DataTableItem,
   UserAvatar,
 } from '../components/Component'
-import { UserContext } from './user-manage/UserContext'
-import { Link, useHistory } from 'react-router-dom'
-import { bulkActionOptions } from '../utils/Utils'
+import { Link } from 'react-router-dom'
 import String from '../utils/String'
-import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { empData } from '../services/thunk/GetEmployee'
-import { empDetail } from '../services/thunk/EmployeeDetailThunk'
-import { toastNotify } from '../layout/Index'
 
 function PageTable(props) {
-  const history = useHistory()
-  const dispatch = useDispatch()
-  const [actionText, setActionText] = useState('')
-  const [onSearch, setonSearch] = useState(true)
-  const [onSearchText, setSearchText] = useState('')
-  const [tablesm, updateTableSm] = useState(false)
-  const [sort, setSortState] = useState('')
-  const { contextData } = useContext(UserContext)
-  const [data, setData] = contextData
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
   // Get current list, pagination
@@ -51,6 +36,17 @@ function PageTable(props) {
     indexOfFirstItem,
     indexOfLastItem
   )
+  const [actionText, setActionText] = useState('')
+  const [onSearch, setonSearch] = useState(true)
+  const [onSearchText, setSearchText] = useState('')
+  const [tablesm, updateTableSm] = useState(false)
+  const [sort, setSortState] = useState('')
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    setData(currentItems)
+  }, [props?.employeeData])
+
   const [apiCallStatus, setApiCallStatus] = useState({
     status: '',
     message: '',
@@ -100,29 +96,50 @@ function PageTable(props) {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== '') {
-      const filteredObject = userData.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(onSearchText.toLowerCase()) ||
-          item.email.toLowerCase().includes(onSearchText.toLowerCase())
-        )
+      const filter = props?.json.map((d) => {
+        return d?.key_name?.map((key) => {
+          const filteredObject = currentItems?.filter((item) => {
+            if (key === 'firstName' || key === 'lastName') {
+              let name = `${item.firstName} ${item.lastName}`
+              return name?.toLowerCase()?.includes(onSearchText?.toLowerCase())
+            } else {
+              return item[key]
+                ?.toLowerCase()
+                ?.includes(onSearchText?.toLowerCase())
+            }
+          })
+          return filteredObject
+        })
       })
-      setData([...filteredObject])
+
+      const filterNormalized = [
+        ...new Set(filter?.flat(2)?.map(JSON?.stringify)),
+      ]?.map(JSON?.parse)
+
+      setData([...filterNormalized])
     } else {
-      setData([...userData])
+      setData(currentItems)
     }
-  }, [onSearchText, setData])
+  }, [onSearchText])
+
   useEffect(() => {
     // dispatch(empData('employee'))
   }, [])
+
   useEffect(() => {}, [])
   // Sorting data
   const sortFunc = (params) => {
-    let defaultData = data
+    let defaultData = currentItems
     if (params === 'asc') {
-      let sortedData = defaultData.sort((a, b) => a.name.localeCompare(b.name))
+      let sortedData = defaultData.sort((a, b) =>
+        (a.firstName + a.lastName).localeCompare(b.firstName + b.lastName)
+      )
       setData([...sortedData])
     } else if (params === 'dsc') {
-      let sortedData = defaultData.sort((a, b) => b.name.localeCompare(a.name))
+      let sortedData = defaultData.sort(
+        (a, b) =>
+          b.firstName + b.lastName.localeCompare(a.firstName + a.lastName)
+      )
       setData([...sortedData])
     }
   }
@@ -138,7 +155,7 @@ function PageTable(props) {
           <div className="card-inner position-relative card-tools-toggle">
             <div className="card-title-group">
               <div className="card-tools">
-                <div className="form-inline flex-nowrap gx-3">
+                {/* <div className="form-inline flex-nowrap gx-3">
                   <div className="form-wrap">
                     <RSelect
                       options={bulkActionOptions}
@@ -171,11 +188,24 @@ function PageTable(props) {
                       </Button>
                     </span>
                   </div>
+                </div> */}
+                <div
+                  id="DataTables_Table_0_filter"
+                  className="dataTables_filter form-inline flex-nowrap gx-3"
+                >
+                  <label>
+                    <input
+                      type="search"
+                      className="form-control form-control-sm"
+                      placeholder="Search..."
+                      onChange={(ev) => setSearchText(ev.target.value)}
+                    />
+                  </label>
                 </div>
               </div>
               <div className="card-tools mr-n1">
                 <ul className="btn-toolbar gx-1">
-                  <li>
+                  {/* <li>
                     <a
                       href="#search"
                       onClick={(ev) => {
@@ -186,7 +216,7 @@ function PageTable(props) {
                     >
                       <Icon name="search"></Icon>
                     </a>
-                  </li>
+                  </li> */}
                   <li className="btn-toolbar-sep"></li>
                   <li>
                     <div className="toggle-wrap">
@@ -420,7 +450,7 @@ function PageTable(props) {
                 </ul>
               </div>
             </div>
-            <div className={`card-search search-wrap ${!onSearch && 'active'}`}>
+            {/* <div className={`card-search search-wrap ${!onSearch && 'active'}`}>
               <div className="card-body">
                 <div className="search-content">
                   <Button
@@ -443,11 +473,11 @@ function PageTable(props) {
                   </Button>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <DataTableBody compact>
             <DataTableHead>
-              <DataTableRow className="nk-tb-col-check">
+              {/* <DataTableRow className="nk-tb-col-check">
                 <div className="custom-control custom-control-sm custom-checkbox notext">
                   <input
                     type="checkbox"
@@ -457,7 +487,7 @@ function PageTable(props) {
                   />
                   <label className="custom-control-label" htmlFor="uid"></label>
                 </div>
-              </DataTableRow>
+              </DataTableRow> */}
               {props.json.map((colum, id) => (
                 <DataTableRow size="md" key={id}>
                   <span className="sub-text">{colum.name}</span>
@@ -465,62 +495,55 @@ function PageTable(props) {
               ))}
             </DataTableHead>
             {/*Head*/}
-            {currentItems?.length > 0
-              ? currentItems.map((item) => {
+            {data?.length > 0
+              ? data.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
-                      <DataTableRow className="nk-tb-col-check">
-                        <div className="custom-control custom-control-sm custom-checkbox notext">
-                          <input
-                            type="checkbox"
-                            className="custom-control-input form-control"
-                            defaultChecked={item.checked}
-                            id={item.id + 'uid1'}
-                            key={Math.random()}
-                            onChange={(e) => onSelectChange(e, item.id)}
-                          />
-                          <label
-                            className="custom-control-label"
-                            htmlFor={item.id + 'uid1'}
-                          ></label>
-                        </div>
-                      </DataTableRow>
-                      <DataTableRow>
-                        <Link
-                          to={`${process.env.PUBLIC_URL}/employee/employee-detail/${item.id}`}
-                        >
-                          <div className="user-card">
-                            <UserAvatar
-                              theme={item.avatarBg}
-                              text={findUpper(
-                                `${item.firstName} ${item.lastName}`
-                              )}
-                              image={item.image}
-                            ></UserAvatar>
-                            <div className="user-info">
-                              <span className="tb-lead">
-                                {`${item.firstName} ${item.lastName}`}
-                                <span
-                                  className={`dot dot-${
-                                    item.status === 'Active'
-                                      ? 'success'
-                                      : item.status === 'Pending'
-                                      ? 'warning'
-                                      : 'danger'
-                                  } d-md-none ml-1`}
-                                ></span>
-                              </span>
-                            </div>
-                          </div>
-                        </Link>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.companyEmail}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.mobileNumbers}</span>
-                      </DataTableRow>
-                      <DataTableRow className="nk-tb-col-tools">
+                      {props?.json.map((d) => {
+                        if (
+                          d?.key_name?.[0] === 'firstName' ||
+                          d?.key_name?.[0] === 'lastName'
+                        ) {
+                          return (
+                            <DataTableRow size="sm">
+                              <Link
+                                to={`${process.env.PUBLIC_URL}/employee/employee-detail/${item.id}`}
+                              >
+                                <div className="user-card">
+                                  <UserAvatar
+                                    theme={item.avatarBg}
+                                    text={findUpper(
+                                      `${item.firstName} ${item.lastName}`
+                                    )}
+                                    image={item.image}
+                                  ></UserAvatar>
+                                  <div className="user-info">
+                                    <span className="tb-lead">
+                                      {`${item.firstName} ${item.lastName}`}
+                                      <span
+                                        className={`dot dot-${
+                                          item.status === 'Active'
+                                            ? 'success'
+                                            : item.status === 'Pending'
+                                            ? 'warning'
+                                            : 'danger'
+                                        } d-md-none ml-1`}
+                                      ></span>
+                                    </span>
+                                  </div>
+                                </div>
+                              </Link>
+                            </DataTableRow>
+                          )
+                        } else {
+                          return (
+                            <DataTableRow size="sm">
+                              <span>{item[d?.key_name?.[0]]}</span>
+                            </DataTableRow>
+                          )
+                        }
+                      })}
+                      <DataTableRow className="nk-tb-col-tools" size="sm">
                         <ul className="nk-tb-actions gx-1">
                           <li>
                             <DropdownItem
