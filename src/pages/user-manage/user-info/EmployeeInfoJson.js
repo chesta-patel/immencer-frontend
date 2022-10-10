@@ -54,8 +54,7 @@ export const userCreate = [
     type: 'text',
     name: `${String.middle_name}`,
     placeholder: `${String.enter} ${String.middle_name}`,
-    required: 'Required *',
-    key_name: 'MiddleName',
+    key_name: 'middleName',
   },
   {
     id: 3,
@@ -348,6 +347,16 @@ export const tableRow = [
   {
     id: 'r3',
     name: 'Asset',
+    type: 'checkbox',
+  },
+  {
+    id: 'r3',
+    name: 'Company Doc',
+    type: 'checkbox',
+  },
+  {
+    id: 'r3',
+    name: 'Company Policy',
     type: 'checkbox',
   },
 ]

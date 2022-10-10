@@ -22,9 +22,12 @@ import {
   DataTableItem,
   UserAvatar,
 } from '../components/Component'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import String from '../utils/String'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { empDetail } from '../services/thunk/EmployeeDetailThunk'
+import { toastNotify } from '../layout/Index'
 
 function PageTable(props) {
   const [currentPage] = useState(1)
@@ -42,7 +45,8 @@ function PageTable(props) {
   const [tablesm, updateTableSm] = useState(false)
   const [sort, setSortState] = useState('')
   const [data, setData] = useState([])
-
+  const dispatch = useDispatch()
+  const history = useHistory()
   useEffect(() => {
     setData(currentItems)
   }, [props?.employeeData])
@@ -147,6 +151,24 @@ function PageTable(props) {
   //   dispatch(empDetail(`employee/${id}`))
   //   history.push('/employee/employee_update')
   // }
+  const handleChange = async (id) => {
+    // const dataAsFormData = getFormData(data)
+    let callAPI = await dispatch(empDetail(`employee/${id}`))
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      history.push('/employee/employee_update')
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
 
   return (
     <React.Fragment>
@@ -551,7 +573,7 @@ function PageTable(props) {
                               href="#edit"
                               onClick={(ev) => {
                                 ev.preventDefault()
-                                // handleChange(item.id)
+                                handleChange(item.id)
                               }}
                             >
                               <Icon name="edit"></Icon>

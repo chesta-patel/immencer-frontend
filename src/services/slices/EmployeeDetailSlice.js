@@ -15,11 +15,6 @@ export const getEmpDetail = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(empDetail.fulfilled, (state, action) => {
-        console.log(
-          'update emp detail call',
-          action?.payload?.data?.data?.employee
-        )
-
         state.isSuccess = action?.payload?.data?.data?.employee
         state.isLoading = false
       })

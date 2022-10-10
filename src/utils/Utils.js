@@ -72,16 +72,15 @@ export const setDeadlineDays = (deadline) => {
   return days
 }
 //validate token
-export const tokenValidation = (isExpired) => {
+export const tokenValidation = () => {
   let token = localStorage.getItem('token')
   let decodedToken = jwt_decode(token)
   let currentDate = new Date()
 
-  // JWT exp is in seconds
+  // JWT exp in seconds
   if (decodedToken.exp * 1000 < currentDate.getTime()) {
-    isExpired = true
-  } else {
-    isExpired = false
+    localStorage.removeItem('token')
+    window.location.href = '/auth-login'
   }
 }
 //Date formatter function Example : 10-02-2004
