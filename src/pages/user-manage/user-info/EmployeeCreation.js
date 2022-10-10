@@ -48,9 +48,11 @@ const UserCreate = (props) => {
     dispatch(fetchData('master/gender'))
     dispatch(fetchData('master/nationality'))
   }, [])
+
   useEffect(() => {
     setEmpCreate({ ...empCreate, ...formData })
   }, [])
+
   const submitForm = (e) => {
     e.preventDefault()
     setValidation(true)
@@ -72,6 +74,7 @@ const UserCreate = (props) => {
       dispatch(getCreateNewEmpData(empCreate))
     }
   }
+
   const checkValidate = () => {
     userCreate.map((formFields) => {
       if (formFields.validationType) {
@@ -106,9 +109,11 @@ const UserCreate = (props) => {
       return
     })
   }
+
   const handle = (dropdown) => {
     dispatch(fetchData(`master/teamLead/${dropdown.value}`))
   }
+
   return (
     <form
       className="content clearfix"

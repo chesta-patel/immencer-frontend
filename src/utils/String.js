@@ -174,6 +174,7 @@ const String = {
   valid: 'Valid',
   seqNo: 'seqNo',
   action: 'Action',
+  team_lead: `Team Lead`,
 }
 
 export default String
