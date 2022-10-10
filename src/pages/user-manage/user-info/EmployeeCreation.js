@@ -56,6 +56,7 @@ const UserCreate = (props) => {
     dispatch(fetchData('master/gender'))
     dispatch(fetchData('master/nationality'))
   }, [])
+
   useEffect(() => {
     if (location.pathname === '/employee/employee_update') {
       setEmpCreate({ ...empCreate, ...isSuccess })
@@ -123,6 +124,7 @@ const UserCreate = (props) => {
       return
     })
   }
+
   const handle = (dropdown) => {
     dispatch(fetchData(`master/teamLead/${dropdown.value}`))
   }

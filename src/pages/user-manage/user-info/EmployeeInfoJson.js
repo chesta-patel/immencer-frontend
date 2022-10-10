@@ -3,19 +3,38 @@ import String from '../../../utils/String'
 export const userInfo = [
   {
     id: 1,
-    name: `${String.avatar}`,
+    name: `${String.name}`,
+    key_name: [`firstName`, `lastName`],
   },
   {
     id: 2,
     name: `${String.email}`,
+    key_name: [`companyEmail`],
   },
   {
     id: 3,
-    name: `${String.mobile_number}`,
+    name: `${String.designation}`,
+    key_name: [`designation`],
+  },
+  {
+    id: 3,
+    name: `${String.blood_group}`,
+    key_name: [`bloodGroup`],
   },
   {
     id: 4,
+    name: `${String.department}`,
+    key_name: [`department`],
+  },
+  {
+    id: 5,
+    name: `${String.team_lead}`,
+    key_name: [`teamLead`],
+  },
+  {
+    id: 6,
     name: '',
+    key_name: [``],
   },
 ]
 
