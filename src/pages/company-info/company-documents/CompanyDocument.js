@@ -9,6 +9,8 @@ import { companyDocument } from '../../../services/thunk/CompanyDocumentThunk'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFormData, logFormData } from '../../../utils/Helpers'
 import { addNewCompanyDoc } from '../../../services/thunk/CreateNewCompanyDocThunk'
+import { updateNewCompanyDoc } from '../../../services/thunk/UpdateNewCompanyDocThunk'
+
 import { toastNotify } from '../../../layout/Index'
 import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
 
@@ -50,6 +52,28 @@ const CompanyDocument = ({ ...props }) => {
     }
   }
 
+  const updateFormSubmit = async (data, id) => {
+    const dataAsFormData = getFormData(data)
+    let callAPI = await dispatch(
+      updateNewCompanyDoc({ data: dataAsFormData, id })
+    )
+    console.log(callAPI)
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      dispatch(companyDocument('companyDocuments'))
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
+
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteCompanyDoc(id))
     console.log('call API Delete =====> ', callAPI)
@@ -69,6 +93,12 @@ const CompanyDocument = ({ ...props }) => {
     }
   }
 
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+    data: '',
+  })
+
   return (
     <React.Fragment>
       <Head title="Company Document" />
@@ -79,12 +109,17 @@ const CompanyDocument = ({ ...props }) => {
           callFormSubmit={callFormSubmit}
           apiCallStatus={apiCallStatus}
           setApiCallStatus={setApiCallStatus}
+          setModal={setModal}
+          modal={modal}
+          updateFormSubmit={updateFormSubmit}
         />
         <CompanyDocumentPageTable
           json={roleTable}
           callDeleteFormSubmit={callDeleteFormSubmit}
           deleteApiCallStatus={deleteApiCallStatus}
           setDeleteApiCallStatus={setDeleteApiCallStatus}
+          setModal={setModal}
+          modal={modal}
         />
       </Content>
     </React.Fragment>

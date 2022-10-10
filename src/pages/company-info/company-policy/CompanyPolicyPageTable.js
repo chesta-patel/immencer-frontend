@@ -524,6 +524,27 @@ function CompanyPolicyPageTable(props) {
                           </Button>
                         </span>
                       </DataTableRow>
+                      <DataTableRow size="lg">
+                        <span className="ml-2">
+                          <Button
+                            color=""
+                            className="btn-icon"
+                            onClick={() =>
+                              props.setModal({
+                                edit: true,
+                                add: false,
+                                data: item,
+                              })
+                            }
+                            style={{ margin: '0px' }}
+                          >
+                            <span style={{ display: 'flex' }}>
+                              <em class="icon ni ni-edit"></em>
+                              <p>{String.edit}</p>
+                            </span>
+                          </Button>
+                        </span>
+                      </DataTableRow>
                     </DataTableItem>
                   )
                 })
