@@ -130,6 +130,24 @@ function PageTable(props) {
   //   dispatch(empDetail(`employee/${id}`))
   //   history.push('/employee/employee_update')
   // }
+  const handleChange = async (id) => {
+    // const dataAsFormData = getFormData(data)
+    let callAPI = await dispatch(empDetail(`employee/${id}`))
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      history.push('/employee/employee_update')
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
 
   return (
     <React.Fragment>
@@ -518,7 +536,7 @@ function PageTable(props) {
                         <span>{item.companyEmail}</span>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{item.mobileNumbers}</span>
+                        <span>{item.mobileNumber}</span>
                       </DataTableRow>
                       <DataTableRow className="nk-tb-col-tools">
                         <ul className="nk-tb-actions gx-1">
@@ -528,7 +546,7 @@ function PageTable(props) {
                               href="#edit"
                               onClick={(ev) => {
                                 ev.preventDefault()
-                                // handleChange(item.id)
+                                handleChange(item.id)
                               }}
                             >
                               <Icon name="edit"></Icon>
