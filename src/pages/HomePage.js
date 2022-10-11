@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from '../layout/head/Head'
 import Content from '../layout/content/Content'
 import {
@@ -8,8 +8,12 @@ import {
   BlockBetween,
 } from '../components/Component'
 import String from '../utils/String'
+import { tokenValidation } from '../utils/Utils'
 
 const HomePage = () => {
+  useEffect(() => {
+    tokenValidation()
+  })
   return (
     <React.Fragment>
       <Head title="Homepage"></Head>
