@@ -1,10 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import {
-  filterStatus,
-  filterRole,
-  companyPolicy,
-} from '../../user-manage/UserData'
-import { findUpper } from '../../../utils/Utils'
+import React, { useEffect, useState } from 'react'
+import { filterStatus, filterRole } from '../../user-manage/UserData'
 import {
   DropdownMenu,
   DropdownToggle,
@@ -26,29 +21,21 @@ import {
   DataTableHead,
   DataTableRow,
   DataTableItem,
-  UserAvatar,
 } from '../../../components/Component'
-import { UserContext } from '../../user-manage/UserContext'
-import { Link } from 'react-router-dom'
-import { bulkActionOptions } from '../../../utils/Utils'
 import String from '../../../utils/String'
 import PdfViewer from '../../../components/pdfviewer/PdfViewer'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
 import './companyPolicy.scss'
-import { useDispatch } from 'react-redux'
-import { deleteCompanyPolicy } from './../../../services/thunk/DeleteCompanyPolicyThunk'
 
 function CompanyPolicyPageTable(props) {
-  const dispatch = useDispatch()
-  const { infoList, loader } = useSelector((state) => state.companyPolicy)
+  const { infoList } = useSelector((state) => state.companyPolicy)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
   const [tablesm, updateTableSm] = useState(false)
   const [sort, setSortState] = useState('')
-  const { contextData } = useContext(UserContext)
-  const [data, setData] = contextData
+  const [data, setData] = useState([])
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
   // Get current list, pagination
@@ -58,6 +45,10 @@ function CompanyPolicyPageTable(props) {
 
   const [modal, setModal] = useState({ view: false, link: '' })
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
+
+  useEffect(() => {
+    setData(currentItems)
+  }, [infoList])
 
   const onFormCancel = () => {
     setModal({ view: false, link: '' })
@@ -106,17 +97,33 @@ function CompanyPolicyPageTable(props) {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== '') {
-      const filteredObject = infoList.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(onSearchText.toLowerCase()) ||
-          item.email.toLowerCase().includes(onSearchText.toLowerCase())
-        )
+      const filter = props?.json.map((d) => {
+        return d?.key_name?.map((key) => {
+          const filteredObject = currentItems?.filter((item) => {
+            if (key === 'updatedAt' || key === 'createdAt') {
+              let date = item.updatedAt
+                ? moment(item.updatedAt).format('L')
+                : moment(item.createdAt).format('L')
+              return date?.toLowerCase()?.includes(onSearchText?.toLowerCase())
+            } else {
+              return item[key]
+                ?.toLowerCase()
+                ?.includes(onSearchText?.toLowerCase())
+            }
+          })
+          return filteredObject
+        })
       })
-      setData([...filteredObject])
+
+      const filterNormalized = [
+        ...new Set(filter?.flat(2)?.map(JSON?.stringify)),
+      ]?.map(JSON?.parse)
+
+      setData([...filterNormalized])
     } else {
-      setData([...companyPolicy])
+      setData(currentItems)
     }
-  }, [onSearchText, setData])
+  }, [onSearchText])
   // Sorting data
   const sortFunc = (params) => {
     let defaultData = data
@@ -145,55 +152,22 @@ function CompanyPolicyPageTable(props) {
           <div className="card-inner position-relative card-tools-toggle padding_btm_0">
             <div className="card-title-group">
               <div className="card-tools">
-                <div className="form-inline flex-nowrap gx-3">
-                  {/* <div className="form-wrap">
-                    <RSelect
-                      options={bulkActionOptions}
-                      className="w-130px"
-                      placeholder="Bulk Action"
-                      onChange={(e) => onActionText(e)}
+                <div
+                  id="DataTables_Table_0_filter"
+                  className="dataTables_filter form-inline flex-nowrap gx-3"
+                >
+                  <label>
+                    <input
+                      type="search"
+                      className="form-control form-control-sm"
+                      placeholder="Search..."
+                      onChange={(ev) => setSearchText(ev.target.value)}
                     />
-                  </div>
-                  <div className="btn-wrap">
-                    <span className="d-none d-md-block">
-                      <Button
-                        disabled={actionText !== '' ? false : true}
-                        color="light"
-                        outline
-                        className="btn-dim"
-                        onClick={(e) => onActionClick(e)}
-                      >
-                        {String.apply}
-                      </Button>
-                    </span>
-                    <span className="d-md-none">
-                      <Button
-                        color="light"
-                        outline
-                        disabled={actionText !== '' ? false : true}
-                        className="btn-dim  btn-icon"
-                        onClick={(e) => onActionClick(e)}
-                      >
-                        <Icon name="arrow-right"></Icon>
-                      </Button>
-                    </span>
-                  </div> */}
+                  </label>
                 </div>
               </div>
               <div className="card-tools mr-n1">
                 <ul className="btn-toolbar gx-1">
-                  <li>
-                    <a
-                      href="#search"
-                      onClick={(ev) => {
-                        ev.preventDefault()
-                        toggle()
-                      }}
-                      className="btn btn-icon search-toggle toggle-search"
-                    >
-                      <Icon name="search"></Icon>
-                    </a>
-                  </li>
                   <li className="btn-toolbar-sep"></li>
                   <li>
                     <div className="toggle-wrap">
@@ -460,25 +434,16 @@ function CompanyPolicyPageTable(props) {
                 </DataTableRow>
               ))}
             </DataTableHead>
-            {/*Head*/}
-            {currentItems?.length > 0
-              ? currentItems.map((item) => {
+            {data?.length > 0
+              ? data.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
                       <DataTableRow size="md">
-                        {/* <Link to={`/user-details-regular/${item.id}`}> */}
                         <div className="user-card">
-                          {/* <UserAvatar
-                              theme={item.avatarBg}
-                              className="xs"
-                              text={findUpper(item.name)}
-                              image={item.image}
-                            ></UserAvatar> */}
                           <div className="user-info">
                             <span className="tb-lead">{item.title} </span>
                           </div>
                         </div>
-                        {/* </Link> */}
                       </DataTableRow>
                       <DataTableRow size="md">
                         <div className="user-info">
@@ -501,7 +466,7 @@ function CompanyPolicyPageTable(props) {
                             color=""
                             className="btn-icon eye_btn"
                             onClick={() =>
-                              setModal({ view: true, link: item.assets })
+                              setModal({ view: true, link: item.attachment })
                             }
                             style={{ margin: '0px' }}
                           >
@@ -523,9 +488,7 @@ function CompanyPolicyPageTable(props) {
                             <em class="icon ni ni-trash"></em>
                           </Button>
                         </span>
-                      </DataTableRow>
-                      <DataTableRow size="lg">
-                        <span className="ml-2">
+                        <span>
                           <Button
                             color=""
                             className="btn-icon"
@@ -540,7 +503,6 @@ function CompanyPolicyPageTable(props) {
                           >
                             <span style={{ display: 'flex' }}>
                               <em class="icon ni ni-edit"></em>
-                              <p>{String.edit}</p>
                             </span>
                           </Button>
                         </span>
@@ -558,26 +520,6 @@ function CompanyPolicyPageTable(props) {
         className="modal-dialog-centered pdf_modal"
         size="lg"
       >
-        {/* <ModalBody>
-          <button
-            onClick={(ev) => {
-              ev.preventDefault()
-              onFormCancel()
-              setModal({ view: false, link: '' })
-            }}
-            className="close"
-          >
-            <Icon name="cross-sm"></Icon>
-          </button>
-          <iframe
-            src={modal.link + '#toolbar=0'}
-            width="100%"
-            height="500px"
-            title="pdf"
-            onMouseDown={(e) => e.preventDefault()}
-            onContextMenu={(e) => e.preventDefault()}
-          ></iframe>
-        </ModalBody> */}
         <ModalBody>
           <PdfViewer url={modal.link} />
         </ModalBody>
@@ -604,7 +546,6 @@ function CompanyPolicyPageTable(props) {
           </p>
           <button
             type="button"
-            // disabled={pageNumber <= 1}
             onClick={(ev) => {
               ev.preventDefault()
               setDeleteModal({ status: false, data: '' })
@@ -616,7 +557,6 @@ function CompanyPolicyPageTable(props) {
           <button
             type="button"
             className="header_submit_bn btn btn-danger"
-            // disabled={pageNumber >= numPages}
             onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
           >
             Delete

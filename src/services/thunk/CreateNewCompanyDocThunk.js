@@ -8,7 +8,7 @@ export const addNewCompanyDoc = createAsyncThunk(
   'addNewCompanyDoc',
   async (payload, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_URL}companyDocuments`, payload, {
+      const response = await axios.post(`${API_URL}companyDocument`, payload, {
         headers: {
           authentication: `${token}`,
         },

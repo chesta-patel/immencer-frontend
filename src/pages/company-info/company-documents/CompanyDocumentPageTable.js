@@ -23,25 +23,19 @@ import {
   DataTableItem,
 } from '../../../components/Component'
 import { UserContext } from '../../user-manage/UserContext'
-import { bulkActionOptions } from '../../../utils/Utils'
 import String from '../../../utils/String'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
-import { useDispatch } from 'react-redux'
-import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
-import CompanyDocument from './CompanyDocument'
 
 function CompanyDocumentPageTable(props) {
-  const dispatch = useDispatch()
-  const { infoList, loader } = useSelector((state) => state.companyDocument)
+  const { infoList } = useSelector((state) => state.companyDocument)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
   const [tablesm, updateTableSm] = useState(false)
   const [sort, setSortState] = useState('')
-  const { contextData } = useContext(UserContext)
-  const [data, setData] = contextData
+  const [data, setData] = useState([])
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
   // Get current list, pagination
@@ -50,6 +44,10 @@ function CompanyDocumentPageTable(props) {
   const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
 
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
+
+  useEffect(() => {
+    setData(currentItems)
+  }, [infoList])
 
   // function which selects all the items
   const selectorCheck = (e) => {
@@ -94,19 +92,33 @@ function CompanyDocumentPageTable(props) {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== '') {
-      const filteredObject = infoList.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(onSearchText.toLowerCase()) ||
-          item.email.toLowerCase().includes(onSearchText.toLowerCase())
-        )
+      const filter = props?.json.map((d) => {
+        return d?.key_name?.map((key) => {
+          const filteredObject = currentItems?.filter((item) => {
+            if (key === 'updatedAt' || key === 'createdAt') {
+              let date = item.updatedAt
+                ? moment(item.updatedAt).format('L')
+                : moment(item.createdAt).format('L')
+              return date?.toLowerCase()?.includes(onSearchText?.toLowerCase())
+            } else {
+              return item[key]
+                ?.toLowerCase()
+                ?.includes(onSearchText?.toLowerCase())
+            }
+          })
+          return filteredObject
+        })
       })
-      setData([...filteredObject])
+
+      const filterNormalized = [
+        ...new Set(filter?.flat(2)?.map(JSON?.stringify)),
+      ]?.map(JSON?.parse)
+
+      setData([...filterNormalized])
     } else {
-      if (Array.isArray(infoList)) {
-        setData([...infoList])
-      }
+      setData(currentItems)
     }
-  }, [onSearchText, setData])
+  }, [onSearchText])
   // Sorting data
   const sortFunc = (params) => {
     let defaultData = data
@@ -136,55 +148,22 @@ function CompanyDocumentPageTable(props) {
           <div className="card-inner position-relative card-tools-toggle padding_btm_0">
             <div className="card-title-group">
               <div className="card-tools">
-                <div className="form-inline flex-nowrap gx-3">
-                  {/* <div className="form-wrap">
-                    <RSelect
-                      options={bulkActionOptions}
-                      className="w-130px"
-                      placeholder="Bulk Action"
-                      onChange={(e) => onActionText(e)}
+                <div
+                  id="DataTables_Table_0_filter"
+                  className="dataTables_filter form-inline flex-nowrap gx-3"
+                >
+                  <label>
+                    <input
+                      type="search"
+                      className="form-control form-control-sm"
+                      placeholder="Search..."
+                      onChange={(ev) => setSearchText(ev.target.value)}
                     />
-                  </div> */}
-                  {/* <div className="btn-wrap">
-                    <span className="d-none d-md-block">
-                      <Button
-                        disabled={actionText !== '' ? false : true}
-                        color="light"
-                        outline
-                        className="btn-dim"
-                        onClick={(e) => onActionClick(e)}
-                      >
-                        {String.apply}
-                      </Button>
-                    </span>
-                    <span className="d-md-none">
-                      <Button
-                        color="light"
-                        outline
-                        disabled={actionText !== '' ? false : true}
-                        className="btn-dim  btn-icon"
-                        onClick={(e) => onActionClick(e)}
-                      >
-                        <Icon name="arrow-right"></Icon>
-                      </Button>
-                    </span>
-                  </div> */}
+                  </label>
                 </div>
               </div>
               <div className="card-tools mr-n1">
                 <ul className="btn-toolbar gx-1">
-                  <li>
-                    <a
-                      href="#search"
-                      onClick={(ev) => {
-                        ev.preventDefault()
-                        toggle()
-                      }}
-                      className="btn btn-icon search-toggle toggle-search"
-                    >
-                      <Icon name="search"></Icon>
-                    </a>
-                  </li>
                   <li className="btn-toolbar-sep"></li>
                   <li>
                     <div className="toggle-wrap">
@@ -451,9 +430,8 @@ function CompanyDocumentPageTable(props) {
                 </DataTableRow>
               ))}
             </DataTableHead>
-            {/*Head*/}
-            {currentItems?.length > 0
-              ? currentItems.map((item) => {
+            {data?.length > 0
+              ? data.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
                       <DataTableRow>
@@ -480,7 +458,7 @@ function CompanyDocumentPageTable(props) {
                       </DataTableRow>
                       <DataTableRow size="lg">
                         <span>
-                          <GoogleFileViewerLink link={item.assets} />
+                          <GoogleFileViewerLink link={item.attachment} />
                         </span>
                         <span className="ml-2">
                           <Button
@@ -497,9 +475,7 @@ function CompanyDocumentPageTable(props) {
                             <Icon name="trash" />
                           </Button>
                         </span>
-                      </DataTableRow>
-                      <DataTableRow size="lg">
-                        <span className="ml-2">
+                        <span>
                           <Button
                             color=""
                             className="btn-icon"
@@ -514,8 +490,6 @@ function CompanyDocumentPageTable(props) {
                           >
                             <span style={{ display: 'flex' }}>
                               <Icon name="edit" />
-
-                              <p>{String.edit}</p>
                             </span>
                           </Button>
                         </span>
@@ -538,7 +512,6 @@ function CompanyDocumentPageTable(props) {
             onClick={(ev) => {
               ev.preventDefault()
               setDeleteModal({ status: false, data: '' })
-              // setModal({ view: false, link: '' })
             }}
             className="close"
           >
@@ -561,7 +534,6 @@ function CompanyDocumentPageTable(props) {
           <button
             type="button"
             className="header_submit_bn btn btn-danger"
-            // disabled={pageNumber >= numPages}
             onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
           >
             {String.delete}

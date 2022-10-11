@@ -9,7 +9,7 @@ export const updateNewCompanyDoc = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await axios.put(
-        `${API_URL}companyDocuments/${payload.id}`,
+        `${API_URL}companyDocument/${payload.id}`,
         payload.data,
         {
           headers: {
