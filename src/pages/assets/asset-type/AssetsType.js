@@ -13,11 +13,16 @@ const AssetsType = ({ ...props }) => {
   const [roleForm] = useState(assetTypeForm)
   const [roleTable] = useState(assetTypeTable)
   const dispatch = useDispatch()
-
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+    data: '',
+  })
   const [apiCallStatus, setApiCallStatus] = useState({
     status: '',
     message: '',
   })
+
   //need to add dispatch
   const callFormSubmit = async (data) => {
     const dataAsFormData = getFormData(data)
@@ -37,6 +42,30 @@ const AssetsType = ({ ...props }) => {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
+  //need to add dispatch for update
+  const updateFormSubmit = async (data, id) => {
+    const dataAsFormData = getFormData(data)
+    let callAPI = await dispatch()
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      dispatch()
+      setModal({
+        edit: false,
+        add: false,
+        data: '',
+      })
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
 
   return (
     <React.Fragment>
@@ -48,6 +77,9 @@ const AssetsType = ({ ...props }) => {
           callFormSubmit={callFormSubmit}
           apiCallStatus={apiCallStatus}
           setApiCallStatus={setApiCallStatus}
+          setModal={setModal}
+          modal={modal}
+          updateFormSubmit={updateFormSubmit}
         />
         <PageTable json={roleTable} />
       </Content>
