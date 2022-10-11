@@ -15,10 +15,6 @@ import './pageheader.scss'
 import String from '../utils/String'
 import { checkIsEmptyObjectKey } from '../utils/Helpers'
 
-// import 'org.apache.commons.io.FileUtils'
-
-// FileUtils.copyURLToFile(url, f)
-
 function PageHeader(props) {
   const initialState = {}
   props.json.forEach((formFields) => {
@@ -31,19 +27,17 @@ function PageHeader(props) {
   const [Fdata, setFdata] = useState({ ...initialState })
   const [strings, setStrings] = useState('')
 
-  console.log('Fdata', Fdata)
-  console.log('props modal data', props.modal.data)
-
   useEffect(() => {
     if (props?.modal?.data) {
       let refactorModalData = {
         title: props?.modal?.data?.title,
         description: props?.modal?.data?.description,
         seqNo: props?.modal?.data?.seqNo,
-        assetsFile: {
-          name: props?.modal?.data?.assets?.split('/')[
-            props?.modal?.data?.assets?.split('/')?.length - 1
+        attachment: {
+          name: props?.modal?.data?.attachment?.split('/')[
+            props?.modal?.data?.attachment?.split('/')?.length - 1
           ],
+          path: props?.modal?.data?.attachment,
         },
       }
       setFdata(refactorModalData)
@@ -64,15 +58,22 @@ function PageHeader(props) {
     // checkValidate()
     const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
 
+    let formData = { ...Fdata }
+
+    if (!formData?.attachment?.size) {
+      formData = { ...Fdata, attachment: Fdata?.attachment?.path }
+    } else {
+      formData = { ...Fdata }
+    }
+
     if (!isEmpty) {
       if (props.modal.edit) {
-        props.updateFormSubmit(Fdata, props.modal?.data?.id)
+        props.updateFormSubmit(formData, props.modal?.data?.id)
       } else {
-        props.callFormSubmit(Fdata)
+        props.callFormSubmit(formData)
       }
     }
   }
-  console.log('props.modal.edit', props.modal.edit)
   useEffect(() => {
     var string = props.string.find(function (element) {
       return element
@@ -91,6 +92,11 @@ function PageHeader(props) {
       props.setApiCallStatus({
         status: '',
         message: '',
+      })
+      props.setModal({
+        edit: false,
+        add: false,
+        data: '',
       })
     }
   }, [props])
@@ -227,8 +233,8 @@ function PageHeader(props) {
                                   className="custom-file-label"
                                   htmlFor="customMultipleFiles"
                                 >
-                                  {Fdata?.assetsFile?.name
-                                    ? Fdata?.assetsFile?.name
+                                  {Fdata?.attachment?.name
+                                    ? Fdata?.attachment?.name
                                     : formFields.placeholder}
                                 </label>
                               </div>
