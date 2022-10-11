@@ -16,6 +16,11 @@ import { deleteCompanyPolicy } from '../../../services/thunk/DeleteCompanyPolicy
 const CompanyPolicy = ({ ...props }) => {
   const [roleForm] = useState(companyPolicyForm)
   const [roleTable] = useState(companyPolicyTable)
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+    data: '',
+  })
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -63,6 +68,11 @@ const CompanyPolicy = ({ ...props }) => {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch(companyPolicy('companyPolicies'))
+      setModal({
+        edit: false,
+        add: false,
+        data: '',
+      })
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -89,11 +99,6 @@ const CompanyPolicy = ({ ...props }) => {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
-  const [modal, setModal] = useState({
-    edit: false,
-    add: false,
-    data: '',
-  })
 
   return (
     <React.Fragment>
