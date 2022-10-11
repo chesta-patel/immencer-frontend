@@ -9,16 +9,23 @@ import { companyDocument } from '../../../services/thunk/CompanyDocumentThunk'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFormData, logFormData } from '../../../utils/Helpers'
 import { addNewCompanyDoc } from '../../../services/thunk/CreateNewCompanyDocThunk'
+import { updateNewCompanyDoc } from '../../../services/thunk/UpdateNewCompanyDocThunk'
+
 import { toastNotify } from '../../../layout/Index'
 import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
 
 const CompanyDocument = ({ ...props }) => {
   const [roleForm] = useState(companyDocForm)
   const [roleTable] = useState(companyDocTable)
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+    data: '',
+  })
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(companyDocument('companyDocuments'))
+    dispatch(companyDocument('companyDocument'))
   }, [])
 
   const [apiCallStatus, setApiCallStatus] = useState({
@@ -40,7 +47,34 @@ const CompanyDocument = ({ ...props }) => {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(companyDocument('companyDocuments'))
+      dispatch(companyDocument('companyDocument'))
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
+
+  const updateFormSubmit = async (data, id) => {
+    const dataAsFormData = getFormData(data)
+    let callAPI = await dispatch(
+      updateNewCompanyDoc({ data: dataAsFormData, id })
+    )
+    console.log(callAPI)
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      dispatch(companyDocument('companyDocument'))
+      setModal({
+        edit: false,
+        add: false,
+        data: '',
+      })
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -59,7 +93,7 @@ const CompanyDocument = ({ ...props }) => {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(companyDocument('companyDocuments'))
+      dispatch(companyDocument('companyDocument'))
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setDeleteApiCallStatus({
         status: 'error',
@@ -79,12 +113,17 @@ const CompanyDocument = ({ ...props }) => {
           callFormSubmit={callFormSubmit}
           apiCallStatus={apiCallStatus}
           setApiCallStatus={setApiCallStatus}
+          setModal={setModal}
+          modal={modal}
+          updateFormSubmit={updateFormSubmit}
         />
         <CompanyDocumentPageTable
           json={roleTable}
           callDeleteFormSubmit={callDeleteFormSubmit}
           deleteApiCallStatus={deleteApiCallStatus}
           setDeleteApiCallStatus={setDeleteApiCallStatus}
+          setModal={setModal}
+          modal={modal}
         />
       </Content>
     </React.Fragment>

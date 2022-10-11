@@ -15,7 +15,7 @@ export const getEmpSlice = createSlice({
   reducers: [],
   extraReducers: (builder) => {
     builder.addCase(empData.fulfilled, (state, action) => {
-      state.employeeData = action.payload?.data?.data?.employeeList
+      state.employeeData = action.payload?.data?.data?.employee
       state.isLoading = false
     })
     builder.addCase(empData.pending, (state, action) => {

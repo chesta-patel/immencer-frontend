@@ -9,12 +9,18 @@ import { companyPolicy } from '../../../services/thunk/CompanyPolicyThunk'
 import { useDispatch } from 'react-redux'
 import { getFormData } from '../../../utils/Helpers'
 import { createNewCompanyPolicy } from '../../../services/thunk/CreateNewCompanyPolicyThunk'
+import { updateNewCompanyPolicy } from '../../../services/thunk/UpdateNewCompanyPolicyThunk'
 import { toastNotify } from '../../../layout/Index'
 import { deleteCompanyPolicy } from '../../../services/thunk/DeleteCompanyPolicyThunk'
 
 const CompanyPolicy = ({ ...props }) => {
   const [roleForm] = useState(companyPolicyForm)
   const [roleTable] = useState(companyPolicyTable)
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+    data: '',
+  })
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -41,6 +47,32 @@ const CompanyPolicy = ({ ...props }) => {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch(companyPolicy('companyPolicies'))
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
+
+  const updateFormSubmit = async (data, id) => {
+    const dataAsFormData = getFormData(data)
+    let callAPI = await dispatch(
+      updateNewCompanyPolicy({ data: dataAsFormData, id })
+    )
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      dispatch(companyPolicy('companyPolicies'))
+      setModal({
+        edit: false,
+        add: false,
+        data: '',
+      })
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -78,6 +110,9 @@ const CompanyPolicy = ({ ...props }) => {
           callFormSubmit={callFormSubmit}
           apiCallStatus={apiCallStatus}
           setApiCallStatus={setApiCallStatus}
+          setModal={setModal}
+          modal={modal}
+          updateFormSubmit={updateFormSubmit}
         />
         {/* <CompanyPolicyPageTable json={roleTable} /> */}
         <CompanyPolicyPageTable
@@ -85,6 +120,8 @@ const CompanyPolicy = ({ ...props }) => {
           callDeleteFormSubmit={callDeleteFormSubmit}
           deleteApiCallStatus={deleteApiCallStatus}
           setDeleteApiCallStatus={setDeleteApiCallStatus}
+          setModal={setModal}
+          modal={modal}
         />
       </Content>
     </React.Fragment>

@@ -21,17 +21,35 @@ function PageHeader(props) {
     initialState[`${formFields.key_name}`] = ''
   })
   const [sm, updateSm] = useState(false)
-  const [modal, setModal] = useState({
-    edit: false,
-    add: false,
-  })
+
   const { handleSubmit } = useForm()
   const [validate, setValidate] = useState(false)
   const [Fdata, setFdata] = useState({ ...initialState })
   const [strings, setStrings] = useState('')
 
+  useEffect(() => {
+    if (props?.modal?.data) {
+      let refactorModalData = {
+        title: props?.modal?.data?.title,
+        description: props?.modal?.data?.description,
+        seqNo: props?.modal?.data?.seqNo,
+        attachment: {
+          name: props?.modal?.data?.attachment?.split('/')[
+            props?.modal?.data?.attachment?.split('/')?.length - 1
+          ],
+          path: props?.modal?.data?.attachment,
+        },
+      }
+      setFdata(refactorModalData)
+    }
+  }, [props?.modal?.data])
+
   const onFormCancel = () => {
-    setModal({ edit: false, add: false })
+    props.setModal({
+      edit: false,
+      add: false,
+      data: '',
+    })
   }
   // submit function to add a new item
   const onFormSubmit = async (e) => {
@@ -40,8 +58,20 @@ function PageHeader(props) {
     // checkValidate()
     const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
 
+    let formData = { ...Fdata }
+
+    if (!formData?.attachment?.size) {
+      formData = { ...Fdata, attachment: Fdata?.attachment?.path }
+    } else {
+      formData = { ...Fdata }
+    }
+
     if (!isEmpty) {
-      props.callFormSubmit(Fdata)
+      if (props.modal.edit) {
+        props.updateFormSubmit(formData, props.modal?.data?.id)
+      } else {
+        props.callFormSubmit(formData)
+      }
     }
   }
   useEffect(() => {
@@ -52,15 +82,21 @@ function PageHeader(props) {
   }, [props.string])
   useEffect(() => {
     if (props.apiCallStatus.status === 'success') {
-      setModal({
+      props.setModal({
         edit: false,
         add: false,
+        data: '',
       })
       setValidate(false)
       setFdata({ ...initialState })
       props.setApiCallStatus({
         status: '',
         message: '',
+      })
+      props.setModal({
+        edit: false,
+        add: false,
+        data: '',
       })
     }
   }, [props])
@@ -107,7 +143,7 @@ function PageHeader(props) {
                     <Button
                       color="primary"
                       className="btn-icon"
-                      onClick={() => setModal({ add: true })}
+                      onClick={() => props.setModal({ add: true })}
                     >
                       <Icon name="plus"></Icon>
                     </Button>
@@ -119,8 +155,14 @@ function PageHeader(props) {
         </BlockBetween>
       </BlockHead>
       <Modal
-        isOpen={modal.add}
-        toggle={() => setModal({ add: false })}
+        isOpen={props.modal.add || props.modal.edit}
+        toggle={() =>
+          props.setModal({
+            edit: false,
+            add: false,
+            data: '',
+          })
+        }
         className="modal-dialog-centered"
         size="lg"
       >
@@ -191,8 +233,8 @@ function PageHeader(props) {
                                   className="custom-file-label"
                                   htmlFor="customMultipleFiles"
                                 >
-                                  {Fdata?.assetsFile?.name
-                                    ? Fdata?.assetsFile?.name
+                                  {Fdata?.attachment?.name
+                                    ? Fdata?.attachment?.name
                                     : formFields.placeholder}
                                 </label>
                               </div>

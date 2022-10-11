@@ -15,10 +15,25 @@ export const CreateEmp = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(CreateNewEmployee.fulfilled, (state, action) => {
-        state.errorMessage = action.payload.code
+        state.isLoading = false
+        state.isSuccessEmp = action.payload.data.data
+        state.isError = false
       })
-      .addCase(CreateNewEmployee.pending, function (state, action) {})
-      .addCase(CreateNewEmployee.rejected, (state, action) => {})
+      .addCase(CreateNewEmployee.pending, function (state, action) {
+        state.isLoading = true
+        state.isSuccess = false
+        state.isError = false
+      })
+      .addCase(CreateNewEmployee.rejected, (state, action) => {
+        if (action.payload.response.data.code == '400') {
+          state.errorMessage = action.payload.response.data.message
+        } else {
+          state.errorMessage = action.payload.response.data.additionalInfo
+        }
+        state.isLoading = true
+        state.isSuccess = false
+        state.isError = false
+      })
   },
 })
 

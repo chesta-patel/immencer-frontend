@@ -36,28 +36,33 @@ export const companyDocForm = [
     required: `${String.Please_enter} ${String.file}`,
     placeholder: `Choose file`,
     file_id: `Company DocumentFileUpload`,
-    key_name: 'assetsFile',
+    key_name: 'attachment',
   },
 ]
 export const companyDocTable = [
   {
     id: 1,
     name: `${String.title}`,
+    key_name: [`title`],
   },
   {
     id: 2,
     name: `${String.description}`,
+    key_name: [`description`],
   },
   {
     id: 3,
     name: `${String.uploaded_by}`,
+    key_name: [`uploadedBy`],
   },
   {
     id: 4,
     name: `${String.updated_by}`,
+    key_name: [`updatedAt`, `createdAt`],
   },
   {
     id: 5,
     name: `${String.action}`,
+    key_name: [``],
   },
 ]

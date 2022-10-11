@@ -13,13 +13,7 @@ export const login = createAsyncThunk(
     try {
       const response = await axios.post(`${API_URL}auth/login`, payload)
       if (response.status === 200) {
-        var isExpired = false
         setToken(response.data.data.token)
-        tokenValidation(isExpired)
-        if (isExpired == true) {
-          const history = useHistory()
-          window.location.href = '/auth-login'
-        }
         return response.data
       } else {
         return thunkAPI.rejectWithValue(response.data)

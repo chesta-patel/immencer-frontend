@@ -4,12 +4,13 @@ import axios from 'axios'
 let token = localStorage.getItem('token')
 const API_URL = `${process.env.REACT_APP_API_URL}`
 
-export const deleteCompanyDoc = createAsyncThunk(
-  'deleteCompanyDoc',
+export const updateNewCompanyDoc = createAsyncThunk(
+  'updateNewCompanyDoc',
   async (payload, thunkAPI) => {
     try {
-      const response = await axios.delete(
-        `${API_URL}companyDocument/${payload}`,
+      const response = await axios.put(
+        `${API_URL}companyDocument/${payload.id}`,
+        payload.data,
         {
           headers: {
             authentication: `${token}`,

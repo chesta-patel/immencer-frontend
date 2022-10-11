@@ -23,7 +23,13 @@ import {
   getCreateNewEmpData,
 } from '../../../services/thunk/CreateNewEmpDataThunk'
 import { validateByRegex } from '../../../utils/Helpers'
-import Swal from 'sweetalert2'
+import { useHistory, useLocation } from 'react-router'
+import moment from 'moment'
+import { toastNotify } from '../../../layout/Index'
+import {
+  EmployeeEdit,
+  EmployeeUpdate,
+} from '../../../services/thunk/EmployeeEditThunk'
 
 const UserCreate = (props) => {
   const allDropdownState = useSelector((state) => state.dropdown)
@@ -38,6 +44,8 @@ const UserCreate = (props) => {
   const [fileList, setFileList] = useState([])
   const [invalidFormatError, setInvalidFormatError] = useState([])
   const { formData } = useSelector((state) => state.createNewEmpData)
+  const { isSuccess } = useSelector((state) => state.getEmpDetail)
+  const location = useLocation()
   let checkValidation = []
 
   useEffect(() => {
@@ -48,9 +56,15 @@ const UserCreate = (props) => {
     dispatch(fetchData('master/gender'))
     dispatch(fetchData('master/nationality'))
   }, [])
+
   useEffect(() => {
-    setEmpCreate({ ...empCreate, ...formData })
+    if (location.pathname === '/employee/employee_update') {
+      setEmpCreate({ ...empCreate, ...isSuccess })
+    } else {
+      setEmpCreate({ ...empCreate, ...formData })
+    }
   }, [])
+
   const submitForm = (e) => {
     e.preventDefault()
     setValidation(true)
@@ -72,6 +86,10 @@ const UserCreate = (props) => {
       dispatch(getCreateNewEmpData(empCreate))
     }
   }
+  const saveEmployeeData = () => {
+    dispatch(getCreateNewEmpData(empCreate))
+  }
+
   const checkValidate = () => {
     userCreate.map((formFields) => {
       if (formFields.validationType) {
@@ -106,9 +124,17 @@ const UserCreate = (props) => {
       return
     })
   }
+
   const handle = (dropdown) => {
     dispatch(fetchData(`master/teamLead/${dropdown.value}`))
   }
+
+  useEffect(() => {
+    if (isSuccess?.designation && !allDropdownState?.teamLead?.length) {
+      handle({ value: isSuccess?.designation })
+    }
+  }, [isSuccess?.designation])
+
   return (
     <form
       className="content clearfix"
@@ -146,12 +172,15 @@ const UserCreate = (props) => {
                   <RSelect
                     options={dropDownData?.length > 0 ? dropDownData : []}
                     name={formFields.name}
-                    value={dropDownData?.find(
-                      (data) =>
-                        data.value === empCreate[`${formFields.key_name}`]
-                    )}
+                    value={dropDownData?.find((data) => {
+                      console.log(`${formFields.key_name}`, data)
+                      return data.value === empCreate[`${formFields.key_name}`]
+                    })}
                     onChange={(e) => {
-                      handle(e)
+                      if (formFields.label_name == `${String.designation}`) {
+                        handle(e)
+                      }
+                      saveEmployeeData()
                       const oldState = cloneDeep(empCreate)
                       oldState[`${formFields.key_name}`] = e.value
                       setEmpCreate({ ...oldState })
@@ -178,17 +207,31 @@ const UserCreate = (props) => {
                     type={formFields.type}
                     name={formFields.name}
                     placeholder={formFields.placeholder}
-                    value={empCreate[`${formFields.key_name}`]}
+                    value={
+                      empCreate[`${formFields.key_name}`] &&
+                      formFields.type === 'date'
+                        ? moment(empCreate[`${formFields.key_name}`]).format(
+                            'YYYY-MM-DD'
+                          )
+                        : empCreate[`${formFields.key_name}`]
+                    }
                     onChange={(e) => {
                       const oldState = cloneDeep(empCreate)
                       oldState[`${formFields.key_name}`] = e.target.value
                       setEmpCreate({ ...oldState })
+                      saveEmployeeData()
                       // setValidation(true)
                     }}
                     onBlur={(e) => {
                       const oldState = cloneDeep(empCreate)
                       oldState[`${formFields.key_name}`] = e.target.value
                       setEmpCreate({ ...oldState })
+                      if (`${formFields.key_name}` == 'mobileNumber') {
+                        setEmpCreate({
+                          ...empCreate,
+                          whatsappNumber: e.target.value,
+                        })
+                      }
                       // setValidation(true)
                     }}
                     // onKeyUp={(e) => {
@@ -244,8 +287,9 @@ const AddressDetails = (props) => {
   const [permanentAddress, setPermanentAddress] = useState({ ...initialState })
   const [Country, setCountry] = useState([])
   const { formData } = useSelector((state) => state.createNewEmpData)
-
+  const location = useLocation()
   var checkValidate = []
+
   const submitForm = (e) => {
     e.preventDefault()
     setValidate(true)
@@ -296,10 +340,23 @@ const AddressDetails = (props) => {
   useEffect(() => {
     dispatch(fetchData('master/countries'))
   }, [])
+
   useEffect(() => {
-    setPermanentAddress({ ...permanentAddress, ...formData.permanentAddress })
-    setCurrentAddress({ ...currentAddress, ...formData.currentAddress })
-  }, [])
+    setPermanentAddress({
+      ...permanentAddress,
+      ...formData?.permanentAddress,
+    })
+    setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
+  }, [formData])
+  // useEffect(() => {
+  //   if (location.pathname === '/employee/employee_update') {
+  //     setPermanentAddress({
+  //       ...permanentAddress,
+  //       ...formData?.permanentAddress,
+  //     })
+  //     setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
+  //   }
+  // }, [location])
 
   return (
     <>
@@ -332,7 +389,7 @@ const AddressDetails = (props) => {
                     }
                   } else {
                     return {
-                      value: `${data.iso2}`,
+                      value: `${data.id}`,
                       label: `${data.name}`,
                     }
                   }
@@ -443,7 +500,7 @@ const AddressDetails = (props) => {
                     }
                   } else {
                     return {
-                      value: `${data.iso2}`,
+                      value: `${data.id}`,
                       label: `${data.name}`,
                     }
                   }
@@ -543,8 +600,17 @@ const Permission = (props) => {
   const [permissionSt, setPermissionSt] = useState([])
   const dispatch = useDispatch()
   const { formData } = useSelector((state) => state.createNewEmpData)
-  const { isSuccess, isError } = useSelector((state) => state.CreateEmp)
+  const { isError, errorMessage, isSuccessEmp } = useSelector(
+    (state) => state.CreateEmp
+  )
+  const { isSuccess } = useSelector((state) => state.getEmpDetail)
 
+  const [apiCallStatus, setApiCallStatus] = useState({
+    status: '',
+    message: '',
+  })
+  const history = useHistory()
+  const location = useLocation()
   // const toggle = () => setDropdownOpen((prevState) => !prevState)
   tableHeader.map((e, index) => {
     for (const key in e) {
@@ -675,20 +741,43 @@ const Permission = (props) => {
   const AddPermission = () => {
     dispatch(getCreateNewEmpData(getPermission()))
   }
-  const CreateEmployee = () => {
-    AddPermission()
-    dispatch(CreateNewEmployee(formData))
-    if (isSuccess == '') {
-      Swal.fire({
-        icon: 'warning',
-        title: `${isError}`,
-      })
+  const CreateEmployee = async () => {
+    if (location.pathname == '/employee/employee_update') {
+      AddPermission()
+      let callAPI = await dispatch(EmployeeUpdate(formData))
+      if (callAPI?.payload?.data?.isSuccess) {
+        setApiCallStatus({
+          status: 'success',
+          message: callAPI?.payload?.data?.message,
+        })
+        toastNotify('success', callAPI?.payload?.data?.message)
+        // dispatch(CreateNewEmployee(formData))
+        history.push('/employee')
+      } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+        setApiCallStatus({
+          status: 'error',
+          message: callAPI?.payload?.response?.data?.message,
+        })
+        toastNotify('error', callAPI?.payload?.response?.data?.message)
+      }
     } else {
-      Swal.fire({
-        icon: 'success',
-        title: `${isSuccess}`,
-        focusConfirm: false,
-      })
+      AddPermission()
+      let callAPI = await dispatch(CreateNewEmployee(formData))
+      if (callAPI?.payload?.data?.isSuccess) {
+        setApiCallStatus({
+          status: 'success',
+          message: callAPI?.payload?.data?.message,
+        })
+        toastNotify('success', callAPI?.payload?.data?.message)
+        // dispatch(companyDocument('companyDocuments'))
+        history.push('/employee')
+      } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+        setApiCallStatus({
+          status: 'error',
+          message: callAPI?.payload?.response?.data?.message,
+        })
+        toastNotify('error', callAPI?.payload?.response?.data?.message)
+      }
     }
   }
 
