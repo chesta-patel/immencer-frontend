@@ -17,10 +17,15 @@ import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThun
 const CompanyDocument = ({ ...props }) => {
   const [roleForm] = useState(companyDocForm)
   const [roleTable] = useState(companyDocTable)
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+    data: '',
+  })
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(companyDocument('companyDocuments'))
+    dispatch(companyDocument('companyDocument'))
   }, [])
 
   const [apiCallStatus, setApiCallStatus] = useState({
@@ -42,7 +47,7 @@ const CompanyDocument = ({ ...props }) => {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(companyDocument('companyDocuments'))
+      dispatch(companyDocument('companyDocument'))
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -64,7 +69,12 @@ const CompanyDocument = ({ ...props }) => {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(companyDocument('companyDocuments'))
+      dispatch(companyDocument('companyDocument'))
+      setModal({
+        edit: false,
+        add: false,
+        data: '',
+      })
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -83,7 +93,7 @@ const CompanyDocument = ({ ...props }) => {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(companyDocument('companyDocuments'))
+      dispatch(companyDocument('companyDocument'))
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setDeleteApiCallStatus({
         status: 'error',
@@ -92,12 +102,6 @@ const CompanyDocument = ({ ...props }) => {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
-
-  const [modal, setModal] = useState({
-    edit: false,
-    add: false,
-    data: '',
-  })
 
   return (
     <React.Fragment>

@@ -9,7 +9,7 @@ export const deleteCompanyDoc = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await axios.delete(
-        `${API_URL}companyDocuments/${payload}`,
+        `${API_URL}companyDocument/${payload}`,
         {
           headers: {
             authentication: `${token}`,
