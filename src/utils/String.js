@@ -16,6 +16,7 @@ const String = {
   apply: 'Apply',
   search_by_user_or_email: 'Search by user or email',
   have_balance: 'Have Balance',
+  balance: 'Balance',
   kyc_verified: 'KYC Verified',
   filter: 'Filter',
   cancel: 'Cancel',
@@ -177,6 +178,12 @@ const String = {
   team_lead: `Team Lead`,
   delete_confirmation: 'Delete Confirmation',
   are_you_sure_you_want_to_delete_the: ' Are you sure you want to delete the',
+  granted: 'Granted',
+  current_leave: 'Current Leave',
+  for: 'for',
+  half: 'Half',
+  applied: 'Applied',
+  day_type: 'Day Type',
 }
 
 export default String

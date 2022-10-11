@@ -67,7 +67,7 @@ export const leaveAppString = [
   {
     head_title: String.leave_application,
     header: String.leave_type,
-    form_title: `${String.create} ${String.leave_application}`,
+    form_title: `${String.apply} ${String.for} ${String.leave}`,
   },
 ]
 

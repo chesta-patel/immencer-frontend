@@ -8,16 +8,40 @@ import { leaveAppString } from '../../Strings'
 import { useDispatch } from 'react-redux'
 import { getFormData } from '../../../utils/Helpers'
 import { toastNotify } from '../../../layout/Index'
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  CardSubtitle,
+  CardText,
+  CardTitle,
+  Col,
+} from 'reactstrap'
+import {
+  BlockBetween,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  Icon,
+  PreviewCard,
+  Row,
+} from '../../../components/Component'
+import './leaveapplication.scss'
+import String from '../../../utils/String'
+import { useHistory } from 'react-router'
 
 const LeaveApplication = ({ ...props }) => {
   const [roleForm] = useState(leaveAppForm)
   const [roleTable] = useState(leaveAppTable)
+  const [sm, updateSm] = useState(false)
+  const history = useHistory()
   const dispatch = useDispatch()
-  const [modal, setModal] = useState({
-    edit: false,
-    add: false,
-    data: '',
-  })
+  // const [modal, setModal] = useState({
+  //   edit: false,
+  //   add: false,
+  //   data: '',
+  // })
   const [apiCallStatus, setApiCallStatus] = useState({
     status: '',
     message: '',
@@ -53,11 +77,11 @@ const LeaveApplication = ({ ...props }) => {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch()
-      setModal({
-        edit: false,
-        add: false,
-        data: '',
-      })
+      // setModal({
+      //   edit: false,
+      //   add: false,
+      //   data: '',
+      // })
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -71,7 +95,7 @@ const LeaveApplication = ({ ...props }) => {
     <React.Fragment>
       <Head title="Leave Application" />
       <Content>
-        <PageHeader
+        {/* <PageHeader
           json={roleForm}
           string={leaveAppString}
           callFormSubmit={callFormSubmit}
@@ -80,7 +104,86 @@ const LeaveApplication = ({ ...props }) => {
           setModal={setModal}
           modal={modal}
           updateFormSubmit={updateFormSubmit}
-        />
+        /> */}
+        <BlockHead size="sm">
+          <BlockBetween>
+            <BlockHeadContent>
+              <BlockTitle tag="h3" page>
+                {String.leave_application}
+              </BlockTitle>
+            </BlockHeadContent>
+            <BlockHeadContent>
+              <div className="toggle-wrap nk-block-tools-toggle">
+                <Button
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                    sm ? 'active' : ''
+                  }`}
+                  onClick={() => updateSm(!sm)}
+                >
+                  <Icon name="menu-alt-r"></Icon>
+                </Button>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
+                  <ul className="nk-block-tools g-3">
+                    <li>
+                      <a
+                        href="#export"
+                        onClick={(ev) => {
+                          ev.preventDefault()
+                        }}
+                        className="btn btn-white btn-outline-light"
+                      >
+                        <Icon name="download-cloud"></Icon>
+                        <span>{String.export}</span>
+                      </a>
+                    </li>
+                    <li className="nk-block-tools-opt">
+                      <Button
+                        color="primary"
+                        className="btn-icon"
+                        onClick={() => {
+                          history.push('/leave/apply-leave')
+                        }}
+                      >
+                        <Icon name="plus"></Icon>
+                      </Button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </BlockHeadContent>
+          </BlockBetween>
+        </BlockHead>
+        <PreviewCard>
+          <Row>
+            <Col sm="4">
+              <Card className="leaveCard" inverse>
+                <CardBody>
+                  <h5 className="grantedLeave">{`${String.granted} ${String.leave}`}</h5>
+                  <h4 className="grantedLeave">18</h4>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col sm="4">
+              <Card className="leaveCard" inverse>
+                <CardBody>
+                  <h5 className="appliedLeave">{`${String.applied} ${String.leave}`}</h5>
+                  <h4 className="appliedLeave">10</h4>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col sm="4">
+              <Card className="leaveCard" inverse>
+                <CardBody>
+                  <h5 className="balance">{`${String.balance}`}</h5>
+                  <h4 className="balance">8</h4>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </PreviewCard>
         <PageTable json={roleTable} />
       </Content>
     </React.Fragment>

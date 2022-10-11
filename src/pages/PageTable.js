@@ -47,10 +47,6 @@ function PageTable(props) {
   const [data, setData] = useState([])
   const dispatch = useDispatch()
   const history = useHistory()
-  useEffect(() => {
-    setData(currentItems)
-  }, [props?.employeeData])
-
   const [apiCallStatus, setApiCallStatus] = useState({
     status: '',
     message: '',
@@ -115,7 +111,6 @@ function PageTable(props) {
           return filteredObject
         })
       })
-
       const filterNormalized = [
         ...new Set(filter?.flat(2)?.map(JSON?.stringify)),
       ]?.map(JSON?.parse)
@@ -125,11 +120,9 @@ function PageTable(props) {
       setData(currentItems)
     }
   }, [onSearchText])
-
   useEffect(() => {
-    // dispatch(empData('employee'))
-  }, [])
-
+    setData(currentItems)
+  }, [props?.employeeData])
   useEffect(() => {}, [])
   // Sorting data
   const sortFunc = (params) => {
@@ -147,20 +140,17 @@ function PageTable(props) {
       setData([...sortedData])
     }
   }
-  // const handleChange = (id) => {
-  //   dispatch(empDetail(`employee/${id}`))
-  //   history.push('/employee/employee_update')
-  // }
+
   const handleChange = async (id) => {
     // const dataAsFormData = getFormData(data)
     let callAPI = await dispatch(empDetail(`employee/${id}`))
     if (callAPI?.payload?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      history.push('/employee/employee_update')
+      // setApiCallStatus({
+      //   status: 'success',
+      //   message: callAPI?.payload?.data?.message,
+      // })
+      // toastNotify('success', callAPI?.payload?.data?.message)
+      history.push('/employee/employee-update')
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -577,7 +567,7 @@ function PageTable(props) {
                               }}
                             >
                               <Icon name="edit"></Icon>
-                              <span>{String.edit}</span>
+                              {/* <span>{String.edit}</span> */}
                             </DropdownItem>
                           </li>
                         </ul>

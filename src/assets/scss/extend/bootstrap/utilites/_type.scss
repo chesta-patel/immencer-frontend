@@ -124,7 +124,7 @@ h6,
 .h5,
 .h6 {
   .text-white & {
-    color: $white;
+    color: $black;
   }
 }
 @if ($lead-fs < $lead-fs-dsk) {

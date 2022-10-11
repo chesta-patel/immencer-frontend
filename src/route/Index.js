@@ -15,6 +15,7 @@ import CompanyPolicy from '../pages/company-info/company-policy/CompanyPolicy'
 import EmployeeCreation from '../pages/user-manage/user-info/EmployeeCreation'
 import HomePage from '../pages/HomePage'
 import EmployeeDetail from '../pages/user-manage/user-info/employee-detail/EmployeeDetail'
+import ApplyLeave from '../pages/leave/leave-application/ApplyLeave'
 
 const Pages = () => {
   useLayoutEffect(() => {
@@ -36,7 +37,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/employee/employee_creation`}
+          path={`/employee/employee-creation`}
           render={() => (
             <UserContextProvider>
               <EmployeeCreation />
@@ -59,7 +60,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/employee/employee_update`}
+          path={`/employee/employee-update`}
           render={() => (
             <UserContextProvider>
               <EmployeeCreation />
@@ -99,6 +100,15 @@ const Pages = () => {
           render={() => (
             <UserContextProvider>
               <LeaveApplication />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/leave/apply-leave`}
+          render={() => (
+            <UserContextProvider>
+              <ApplyLeave />
             </UserContextProvider>
           )}
         ></Route>
