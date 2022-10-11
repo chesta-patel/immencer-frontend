@@ -175,6 +175,8 @@ const String = {
   seqNo: 'seqNo',
   action: 'Action',
   team_lead: `Team Lead`,
+  delete_confirmation: 'Delete Confirmation',
+  are_you_sure_you_want_to_delete_the: ' Are you sure you want to delete the',
 }
 
 export default String

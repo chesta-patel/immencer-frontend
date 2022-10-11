@@ -540,9 +540,10 @@ function CompanyPolicyPageTable(props) {
           >
             <Icon name="cross-sm"></Icon>
           </button>
-          <h2 className="modal_title">Delete Confirmation</h2>
+          <h2 className="modal_title">{String.delete_confirmation}</h2>
           <p className="alert alert-danger">
-            Are you sure you want to delete the {deleteModal.data.title}
+            {String.are_you_sure_you_want_to_delete_the}
+            {deleteModal.data.title}
           </p>
           <button
             type="button"
@@ -552,14 +553,14 @@ function CompanyPolicyPageTable(props) {
             }}
             className="Pre btn header_submit_bn"
           >
-            Cancel
+            {String.cancel}
           </button>
           <button
             type="button"
             className="header_submit_bn btn btn-danger"
             onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
           >
-            Delete
+            {String.delete}
           </button>
         </ModalBody>
       </Modal>
