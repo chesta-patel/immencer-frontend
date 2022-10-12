@@ -184,6 +184,8 @@ const String = {
   half: 'Half',
   applied: 'Applied',
   day_type: 'Day Type',
+  personal: 'Personal',
+  master: 'Master',
 }
 
 export default String

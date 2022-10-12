@@ -27,6 +27,7 @@ import PdfViewer from '../../../components/pdfviewer/PdfViewer'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
 import './companyPolicy.scss'
+import { useHistory } from 'react-router'
 
 function CompanyPolicyPageTable(props) {
   const { infoList } = useSelector((state) => state.companyPolicy)
@@ -36,6 +37,7 @@ function CompanyPolicyPageTable(props) {
   const [tablesm, updateTableSm] = useState(false)
   const [sort, setSortState] = useState('')
   const [data, setData] = useState([])
+  const history = useHistory()
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
   // Get current list, pagination
@@ -493,10 +495,9 @@ function CompanyPolicyPageTable(props) {
                             color=""
                             className="btn-icon"
                             onClick={() =>
-                              props.setModal({
-                                edit: true,
-                                add: false,
-                                data: item,
+                              history.push({
+                                pathname: '/company-info/company-policy/create',
+                                state: { add: false, edit: true, data: item },
                               })
                             }
                             style={{ margin: '0px' }}

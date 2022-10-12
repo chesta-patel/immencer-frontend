@@ -1,23 +1,11 @@
 import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import PageHeader from '../../PageHeader'
 import PageTable from '../../PageTable'
-import { leaveAppForm, leaveAppTable } from './LeaveAppJson'
-import { leaveAppString } from '../../Strings'
+import { leaveAppTable } from './LeaveAppJson'
 import { useDispatch } from 'react-redux'
-import { getFormData } from '../../../utils/Helpers'
 import { toastNotify } from '../../../layout/Index'
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-  Col,
-} from 'reactstrap'
+import { Button, Card, CardBody, Col } from 'reactstrap'
 import {
   BlockBetween,
   BlockHead,
@@ -32,7 +20,6 @@ import String from '../../../utils/String'
 import { useHistory } from 'react-router'
 
 const LeaveApplication = ({ ...props }) => {
-  const [roleForm] = useState(leaveAppForm)
   const [roleTable] = useState(leaveAppTable)
   const [sm, updateSm] = useState(false)
   const history = useHistory()
@@ -42,13 +29,13 @@ const LeaveApplication = ({ ...props }) => {
   //   add: false,
   //   data: '',
   // })
-  const [apiCallStatus, setApiCallStatus] = useState({
+  const [setApiCallStatus] = useState({
     status: '',
     message: '',
   })
   //need to add dispatch
   const callFormSubmit = async (data) => {
-    const dataAsFormData = getFormData(data)
+    // const dataAsFormData = getFormData(data)
     let callAPI = await dispatch()
     if (callAPI?.payload?.data?.isSuccess) {
       setApiCallStatus({
@@ -68,7 +55,7 @@ const LeaveApplication = ({ ...props }) => {
 
   //need to add dispatch for update
   const updateFormSubmit = async (data, id) => {
-    const dataAsFormData = getFormData(data)
+    // const dataAsFormData = getFormData(data)
     let callAPI = await dispatch()
     if (callAPI?.payload?.data?.isSuccess) {
       setApiCallStatus({

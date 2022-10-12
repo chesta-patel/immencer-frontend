@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import PageHeader from '../../PageHeader'
-import { companyPolicyForm, companyPolicyTable } from './CompanyPolicyJson'
-import { companyPolicyString } from '../../Strings'
+import { companyPolicyTable } from './CompanyPolicyJson'
 import CompanyPolicyPageTable from '../company-policy/CompanyPolicyPageTable'
 import { companyPolicy } from '../../../services/thunk/CompanyPolicyThunk'
 import { useDispatch } from 'react-redux'
-import { getFormData } from '../../../utils/Helpers'
-import { createNewCompanyPolicy } from '../../../services/thunk/CreateNewCompanyPolicyThunk'
-import { updateNewCompanyPolicy } from '../../../services/thunk/UpdateNewCompanyPolicyThunk'
 import { toastNotify } from '../../../layout/Index'
 import { deleteCompanyPolicy } from '../../../services/thunk/DeleteCompanyPolicyThunk'
+import {
+  BlockBetween,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  Icon,
+} from '../../../components/Component'
+import String from '../../../utils/String'
+import { Button } from 'reactstrap'
+import { useHistory } from 'react-router'
 
 const CompanyPolicy = ({ ...props }) => {
-  const [roleForm] = useState(companyPolicyForm)
   const [roleTable] = useState(companyPolicyTable)
+  const [sm, updateSm] = useState(false)
+  const history = useHistory()
   const [modal, setModal] = useState({
     edit: false,
     add: false,
@@ -26,62 +32,10 @@ const CompanyPolicy = ({ ...props }) => {
   useEffect(() => {
     dispatch(companyPolicy('companyPolicies'))
   }, [])
-
-  const [apiCallStatus, setApiCallStatus] = useState({
-    status: '',
-    message: '',
-  })
-
   const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
     status: '',
     message: '',
   })
-
-  const callFormSubmit = async (data) => {
-    const dataAsFormData = getFormData(data)
-    let callAPI = await dispatch(createNewCompanyPolicy(dataAsFormData))
-    if (callAPI?.payload?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(companyPolicy('companyPolicies'))
-    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'error',
-        message: callAPI?.payload?.response?.data?.message,
-      })
-      toastNotify('error', callAPI?.payload?.response?.data?.message)
-    }
-  }
-
-  const updateFormSubmit = async (data, id) => {
-    const dataAsFormData = getFormData(data)
-    let callAPI = await dispatch(
-      updateNewCompanyPolicy({ data: dataAsFormData, id })
-    )
-    if (callAPI?.payload?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(companyPolicy('companyPolicies'))
-      setModal({
-        edit: false,
-        add: false,
-        data: '',
-      })
-    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'error',
-        message: callAPI?.payload?.response?.data?.message,
-      })
-      toastNotify('error', callAPI?.payload?.response?.data?.message)
-    }
-  }
-
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteCompanyPolicy(id))
     if (callAPI?.payload?.data?.isSuccess) {
@@ -104,7 +58,7 @@ const CompanyPolicy = ({ ...props }) => {
     <React.Fragment>
       <Head title="Company Policy" />
       <Content>
-        <PageHeader
+        {/* <PageHeader
           json={roleForm}
           string={companyPolicyString}
           callFormSubmit={callFormSubmit}
@@ -113,8 +67,59 @@ const CompanyPolicy = ({ ...props }) => {
           setModal={setModal}
           modal={modal}
           updateFormSubmit={updateFormSubmit}
-        />
+        /> */}
         {/* <CompanyPolicyPageTable json={roleTable} /> */}
+        <BlockHead size="sm">
+          <BlockBetween>
+            <BlockHeadContent>
+              <BlockTitle tag="h3" page>
+                {String.company_policy}
+              </BlockTitle>
+            </BlockHeadContent>
+            <BlockHeadContent>
+              <div className="toggle-wrap nk-block-tools-toggle">
+                <Button
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                    sm ? 'active' : ''
+                  }`}
+                  onClick={() => updateSm(!sm)}
+                >
+                  <Icon name="menu-alt-r"></Icon>
+                </Button>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
+                  <ul className="nk-block-tools g-3">
+                    <li>
+                      <a
+                        href="#export"
+                        onClick={(ev) => {
+                          ev.preventDefault()
+                        }}
+                        className="btn btn-white btn-outline-light"
+                      >
+                        <Icon name="download-cloud"></Icon>
+                        <span>{String.export}</span>
+                      </a>
+                    </li>
+                    <li className="nk-block-tools-opt">
+                      <Button
+                        color="primary"
+                        className="btn-icon"
+                        onClick={() => {
+                          history.push('/company-info/company-policy/create')
+                        }}
+                      >
+                        <Icon name="plus"></Icon>
+                      </Button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </BlockHeadContent>
+          </BlockBetween>
+        </BlockHead>
         <CompanyPolicyPageTable
           json={roleTable}
           callDeleteFormSubmit={callDeleteFormSubmit}

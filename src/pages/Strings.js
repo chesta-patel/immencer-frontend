@@ -75,7 +75,7 @@ export const holidayListStrig = [
   {
     head_title: String.holiday_list,
     header: String.holiday_list,
-    form_title: `${String.create} ${String.holiday_list}`,
+    form_title: `${String.create} ${String.holiday}`,
   },
 ]
 export const holidayTypeString = [

@@ -67,6 +67,7 @@ function PageHeader(props) {
     }
 
     if (!isEmpty) {
+      console.log('mahendra ram', props.modal.edit)
       if (props.modal.edit) {
         props.updateFormSubmit(formData, props.modal?.data?.id)
       } else {
@@ -103,198 +104,121 @@ function PageHeader(props) {
 
   return (
     <React.Fragment>
-      <BlockHead size="sm">
-        <BlockBetween>
-          <BlockHeadContent>
-            <BlockTitle tag="h3" page>
-              {strings.head_title}
-            </BlockTitle>
-            <BlockDes className="text-soft"></BlockDes>
-          </BlockHeadContent>
-          <BlockHeadContent>
-            <div className="toggle-wrap nk-block-tools-toggle">
-              <Button
-                className={`btn-icon btn-trigger toggle-expand mr-n1 ${
-                  sm ? 'active' : ''
-                }`}
-                onClick={() => updateSm(!sm)}
-              >
-                <Icon name="menu-alt-r"></Icon>
-              </Button>
-              <div
-                className="toggle-expand-content"
-                style={{ display: sm ? 'block' : 'none' }}
-              >
-                <ul className="nk-block-tools g-3">
-                  <li>
-                    <a
-                      href="#export"
-                      onClick={(ev) => {
-                        ev.preventDefault()
-                      }}
-                      className="btn btn-white btn-outline-light"
-                    >
-                      {' '}
-                      <Icon name="download-cloud"></Icon>
-                      <span>{String.export}</span>
-                    </a>
-                  </li>
-                  <li className="nk-block-tools-opt">
-                    <Button
-                      color="primary"
-                      className="btn-icon"
-                      onClick={() => props.setModal({ add: true })}
-                    >
-                      <Icon name="plus"></Icon>
-                    </Button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </BlockHeadContent>
-        </BlockBetween>
-      </BlockHead>
-      <Modal
-        isOpen={props.modal.add || props.modal.edit}
-        toggle={() =>
-          props.setModal({
-            edit: false,
-            add: false,
-            data: '',
-          })
-        }
-        className="modal-dialog-centered"
-        size="lg"
-      >
-        <ModalBody>
-          <a
-            href="#cancel"
-            onClick={(ev) => {
-              ev.preventDefault()
-              onFormCancel()
-            }}
-            className="close"
+      <div className="p-3">
+        <h5 className="title">{strings.form_title}</h5>
+        <div className="mt-2">
+          <Form
+            className="row gy-3"
+            onSubmit={(e) => handleSubmit(onFormSubmit(e))}
           >
-            <Icon name="cross-sm"></Icon>
-          </a>
-          <div className="p-3">
-            <h5 className="title">{strings.form_title}</h5>
-            <div className="mt-2">
-              <Form
-                className="row gy-3"
-                onSubmit={(e) => handleSubmit(onFormSubmit(e))}
-              >
-                {props.json.map((formFields, id) => {
-                  if (
-                    (formFields.type !== 'text') &
-                    (formFields.type !== 'number') &
-                    (formFields.type !== 'date') &
-                    (formFields.type !== 'file')
-                  ) {
-                    return (
-                      <Col md="6">
-                        <FormGroup>
-                          <label className="form-label">
-                            {formFields.label_name}
-                          </label>
-                          <RSelect
-                            options={formFields.option}
-                            defaultValue={{
-                              value: formFields.option?.[0]?.value,
-                              label: formFields.option?.[0]?.label,
-                            }}
-                          />
-                        </FormGroup>
-                      </Col>
-                    )
-                  } else {
-                    if (formFields.type === 'file') {
-                      return (
-                        <Col md="6">
-                          <div className="form-group">
-                            <label className="form-label">
-                              {formFields.label_name}
-                            </label>
-                            <div className="form-control-wrap">
-                              <div className="custom-file">
-                                <input
-                                  type={formFields.type}
-                                  className="custom-file-input"
-                                  id="customMultipleFiles"
-                                  onChange={(e) => {
-                                    const oldState = cloneDeep(Fdata)
-                                    oldState[`${formFields.key_name}`] =
-                                      e.target.files[0]
-                                    setFdata({ ...oldState })
-                                    // setValidate(true)
-                                  }}
-                                />
-                                <label
-                                  className="custom-file-label"
-                                  htmlFor="customMultipleFiles"
-                                >
-                                  {Fdata?.attachment?.name
-                                    ? Fdata?.attachment?.name
-                                    : formFields.placeholder}
-                                </label>
-                              </div>
-                            </div>
-                            {formFields.required &&
-                              !Fdata[`${formFields.key_name}`] &&
-                              validate && (
-                                <p className="file-upload-error">
-                                  {formFields.required}
-                                </p>
-                              )}
-                          </div>
-                        </Col>
-                      )
-                    } else {
-                      return (
-                        <Col md="6">
-                          <FormGroup>
-                            <label className="form-label">
-                              {formFields.label_name}
-                            </label>
+            {props.json.map((formFields, id) => {
+              if (
+                (formFields.type !== 'text') &
+                (formFields.type !== 'number') &
+                (formFields.type !== 'date') &
+                (formFields.type !== 'file')
+              ) {
+                return (
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">
+                        {formFields.label_name}
+                      </label>
+                      <RSelect
+                        options={formFields.option}
+                        defaultValue={{
+                          value: formFields.option?.[0]?.value,
+                          label: formFields.option?.[0]?.label,
+                        }}
+                      />
+                    </FormGroup>
+                  </Col>
+                )
+              } else {
+                if (formFields.type === 'file') {
+                  return (
+                    <Col md="6">
+                      <div className="form-group">
+                        <label className="form-label">
+                          {formFields.label_name}
+                        </label>
+                        <div className="form-control-wrap">
+                          <div className="custom-file">
                             <input
-                              className="form-control"
                               type={formFields.type}
-                              name={formFields.key_name}
-                              placeholder={formFields.placeholder}
-                              value={Fdata[`${formFields.key_name}`]}
+                              className="custom-file-input"
+                              id="customMultipleFiles"
                               onChange={(e) => {
                                 const oldState = cloneDeep(Fdata)
                                 oldState[`${formFields.key_name}`] =
-                                  e.target.value
+                                  e.target.files[0]
                                 setFdata({ ...oldState })
                                 // setValidate(true)
                               }}
                             />
-                            {formFields.required &&
-                              !Fdata[`${formFields.key_name}`] &&
-                              validate && (
-                                <p className="invalid">{formFields.required}</p>
-                              )}
-                          </FormGroup>
-                        </Col>
-                      )
-                    }
-                  }
-                })}
-                <Col size="4">
-                  <Button
-                    color="primary"
-                    type="submit"
-                    className="header_submit_bn"
-                  >
-                    {String.submit}
-                  </Button>
-                </Col>
-              </Form>
-            </div>
-          </div>
-        </ModalBody>
-      </Modal>
+                            <label
+                              className="custom-file-label"
+                              htmlFor="customMultipleFiles"
+                            >
+                              {Fdata?.attachment?.name
+                                ? Fdata?.attachment?.name
+                                : formFields.placeholder}
+                            </label>
+                          </div>
+                        </div>
+                        {formFields.required &&
+                          !Fdata[`${formFields.key_name}`] &&
+                          validate && (
+                            <p className="file-upload-error">
+                              {formFields.required}
+                            </p>
+                          )}
+                      </div>
+                    </Col>
+                  )
+                } else {
+                  return (
+                    <Col md="6">
+                      <FormGroup>
+                        <label className="form-label">
+                          {formFields.label_name}
+                        </label>
+                        <input
+                          className="form-control"
+                          type={formFields.type}
+                          name={formFields.key_name}
+                          placeholder={formFields.placeholder}
+                          value={Fdata[`${formFields.key_name}`]}
+                          onChange={(e) => {
+                            const oldState = cloneDeep(Fdata)
+                            oldState[`${formFields.key_name}`] = e.target.value
+                            setFdata({ ...oldState })
+                            // setValidate(true)
+                          }}
+                        />
+                        {formFields.required &&
+                          !Fdata[`${formFields.key_name}`] &&
+                          validate && (
+                            <p className="invalid">{formFields.required}</p>
+                          )}
+                      </FormGroup>
+                    </Col>
+                  )
+                }
+              }
+            })}
+            <Col size="4">
+              <Button
+                color="primary"
+                type="submit"
+                className="header_submit_bn"
+              >
+                {String.submit}
+              </Button>
+            </Col>
+          </Form>
+        </div>
+      </div>
     </React.Fragment>
   )
 }

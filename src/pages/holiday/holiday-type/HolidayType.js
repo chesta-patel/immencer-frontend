@@ -1,77 +1,32 @@
 import React, { useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import PageHeader from '../../PageHeader'
 import PageTable from '../../PageTable'
-import { holidayTypeForm, holidayTypeTable } from './HolidayTypeJson'
-import { holidayTypeString } from '../../Strings'
+import { holidayTypeTable } from './HolidayTypeJson'
 import { useDispatch } from 'react-redux'
-import { getFormData } from '../../../utils/Helpers'
 import { toastNotify } from '../../../layout/Index'
+import { Button } from 'reactstrap'
+import {
+  BlockBetween,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  Icon,
+} from '../../../components/Component'
+import { useHistory } from 'react-router'
+import String from '../../../utils/String'
 
 const HolidayType = ({ ...props }) => {
-  const [roleForm] = useState(holidayTypeForm)
   const [roleTable] = useState(holidayTypeTable)
+  const [sm, updateSm] = useState(false)
   const dispatch = useDispatch()
-  const [modal, setModal] = useState({
-    edit: false,
-    add: false,
-    data: '',
-  })
-  const [apiCallStatus, setApiCallStatus] = useState({
-    status: '',
-    message: '',
-  })
-  //need to add dispatch
-  const callFormSubmit = async (data) => {
-    const dataAsFormData = getFormData(data)
-    let callAPI = await dispatch()
-    if (callAPI?.payload?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch()
-    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'error',
-        message: callAPI?.payload?.response?.data?.message,
-      })
-      toastNotify('error', callAPI?.payload?.response?.data?.message)
-    }
-  }
-
-  //need to add dispatch for update
-  const updateFormSubmit = async (data, id) => {
-    const dataAsFormData = getFormData(data)
-    let callAPI = await dispatch()
-    if (callAPI?.payload?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch()
-      setModal({
-        edit: false,
-        add: false,
-        data: '',
-      })
-    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'error',
-        message: callAPI?.payload?.response?.data?.message,
-      })
-      toastNotify('error', callAPI?.payload?.response?.data?.message)
-    }
-  }
+  const history = useHistory()
 
   return (
     <React.Fragment>
       <Head title="Holiday Type" />
       <Content>
-        <PageHeader
+        {/* <PageHeader
           json={roleForm}
           string={holidayTypeString}
           callFormSubmit={callFormSubmit}
@@ -80,7 +35,58 @@ const HolidayType = ({ ...props }) => {
           setModal={setModal}
           modal={modal}
           updateFormSubmit={updateFormSubmit}
-        />
+        /> */}
+        <BlockHead size="sm">
+          <BlockBetween>
+            <BlockHeadContent>
+              <BlockTitle tag="h3" page>
+                {String.holiday_type}
+              </BlockTitle>
+            </BlockHeadContent>
+            <BlockHeadContent>
+              <div className="toggle-wrap nk-block-tools-toggle">
+                <Button
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                    sm ? 'active' : ''
+                  }`}
+                  onClick={() => updateSm(!sm)}
+                >
+                  <Icon name="menu-alt-r"></Icon>
+                </Button>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
+                  <ul className="nk-block-tools g-3">
+                    <li>
+                      <a
+                        href="#export"
+                        onClick={(ev) => {
+                          ev.preventDefault()
+                        }}
+                        className="btn btn-white btn-outline-light"
+                      >
+                        <Icon name="download-cloud"></Icon>
+                        <span>{String.export}</span>
+                      </a>
+                    </li>
+                    <li className="nk-block-tools-opt">
+                      <Button
+                        color="primary"
+                        className="btn-icon"
+                        onClick={() => {
+                          history.push('/holiday/create-holiday-type')
+                        }}
+                      >
+                        <Icon name="plus"></Icon>
+                      </Button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </BlockHeadContent>
+          </BlockBetween>
+        </BlockHead>
         <PageTable json={roleTable} />
       </Content>
     </React.Fragment>

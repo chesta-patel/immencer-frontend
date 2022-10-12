@@ -27,6 +27,7 @@ import String from '../../../utils/String'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
+import { useHistory } from 'react-router'
 
 function CompanyDocumentPageTable(props) {
   const { infoList } = useSelector((state) => state.companyDocument)
@@ -42,9 +43,8 @@ function CompanyDocumentPageTable(props) {
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
   const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
-
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
-
+  const history = useHistory()
   useEffect(() => {
     setData(currentItems)
   }, [infoList])
@@ -480,10 +480,9 @@ function CompanyDocumentPageTable(props) {
                             color=""
                             className="btn-icon"
                             onClick={() =>
-                              props.setModal({
-                                edit: true,
-                                add: false,
-                                data: item,
+                              history.push({
+                                pathname: '/company-info/create',
+                                state: { add: false, edit: true, data: item },
                               })
                             }
                             style={{ margin: '0px' }}
