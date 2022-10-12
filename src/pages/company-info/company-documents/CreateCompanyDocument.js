@@ -45,7 +45,6 @@ function CreateCompanyDocument() {
     })
     setStrings(string)
   }, [strings])
-
   const callFormSubmit = async (data) => {
     const dataAsFormData = getFormData(data)
     let callAPI = await dispatch(addNewCompanyDoc(dataAsFormData))
@@ -55,7 +54,6 @@ function CreateCompanyDocument() {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      history.push()
       dispatch(companyDocument('companyDocument'))
       window.location.href = '/company-info/company-document'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
@@ -71,7 +69,6 @@ function CreateCompanyDocument() {
     let callAPI = await dispatch(
       updateNewCompanyDoc({ data: dataAsFormData, id })
     )
-    console.log(callAPI)
     if (callAPI?.payload?.data?.isSuccess) {
       setApiCallStatus({
         status: 'success',
@@ -88,10 +85,8 @@ function CreateCompanyDocument() {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
-
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteCompanyDoc(id))
-    console.log('call API Delete =====> ', callAPI)
     if (callAPI?.payload?.data?.isSuccess) {
       setDeleteApiCallStatus({
         status: 'success',
@@ -107,6 +102,7 @@ function CreateCompanyDocument() {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
+
   return (
     <>
       <Content>

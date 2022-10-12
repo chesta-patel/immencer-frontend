@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import Content from '../../../layout/content/Content'
 import { toastNotify } from '../../../layout/Index'
+import { companyPolicy } from '../../../services/thunk/CompanyPolicyThunk'
 import { createNewCompanyPolicy } from '../../../services/thunk/CreateNewCompanyPolicyThunk'
 import { updateNewCompanyPolicy } from '../../../services/thunk/UpdateNewCompanyPolicyThunk'
 import { getFormData } from '../../../utils/Helpers'
 import PageHeader from '../../PageHeader'
 import { companyPolicyString } from '../../Strings'
-import { companyPolicy } from '../../user-manage/UserData'
 import { companyPolicyForm } from './CompanyPolicyJson'
 
 function CreateCompanyPolicy() {
@@ -27,8 +27,6 @@ function CreateCompanyPolicy() {
 
   const updateFormSubmit = async (data, id) => {
     const dataAsFormData = getFormData(data)
-    debugger
-
     let callAPI = await dispatch(
       updateNewCompanyPolicy({ data: dataAsFormData, id })
     )
@@ -38,7 +36,7 @@ function CreateCompanyPolicy() {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      // dispatch(companyPolicy('companyPolicies'))
+      dispatch(companyPolicy('companyPolicies'))
       window.location.href = '/company-info/company-policy'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({

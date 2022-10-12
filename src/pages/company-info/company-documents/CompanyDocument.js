@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux'
 import { getFormData } from '../../../utils/Helpers'
 import { addNewCompanyDoc } from '../../../services/thunk/CreateNewCompanyDocThunk'
 import { updateNewCompanyDoc } from '../../../services/thunk/UpdateNewCompanyDocThunk'
-
 import { toastNotify } from '../../../layout/Index'
 import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
 import {
@@ -32,7 +31,6 @@ const CompanyDocument = ({ ...props }) => {
     add: false,
     data: '',
   })
-
   const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
     status: '',
     message: '',
@@ -113,7 +111,10 @@ const CompanyDocument = ({ ...props }) => {
                         color="primary"
                         className="btn-icon"
                         onClick={() => {
-                          history.push('/company-info/create')
+                          history.push({
+                            pathname: '/company-info/create',
+                            state: { add: true, edit: false, data: '' },
+                          })
                         }}
                       >
                         <Icon name="plus"></Icon>

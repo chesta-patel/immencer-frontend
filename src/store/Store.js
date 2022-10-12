@@ -11,6 +11,8 @@ import CreatePolicy from '../services/slices/CreateCompanyPolicySlice'
 import DeleteCompanyDoc from './../services/slices/DeleteCompanyDocSlice'
 import getEmpDetail from '../services/slices/EmployeeDetailSlice'
 import empUpdate from '../services/slices/EmployeeEditSlice'
+import getHolidayList from './../services/slices/HolidayListSlice'
+import DeleteHolidayList from './../services/slices/DeleteHolidayListSlice'
 
 export default configureStore({
   reducer: {
@@ -18,6 +20,8 @@ export default configureStore({
     dropdown: dropdown,
     getEmp: getEmp,
     companyDocument: getCompanyDocument,
+    holidayList: getHolidayList,
+    DeleteHolidayList: DeleteHolidayList,
     companyPolicy: getCompanyPolicy,
     getEmpDetail: getEmpDetail,
     createNewEmpData: CreateNewEmpData,

@@ -28,14 +28,14 @@ const CompanyPolicy = ({ ...props }) => {
     data: '',
   })
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(companyPolicy('companyPolicies'))
-  }, [])
   const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
     status: '',
     message: '',
   })
+
+  useEffect(() => {
+    dispatch(companyPolicy('companyPolicies'))
+  }, [])
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteCompanyPolicy(id))
     if (callAPI?.payload?.data?.isSuccess) {
@@ -108,7 +108,10 @@ const CompanyPolicy = ({ ...props }) => {
                         color="primary"
                         className="btn-icon"
                         onClick={() => {
-                          history.push('/company-info/company-policy/create')
+                          history.push({
+                            pathname: '/company-info/company-policy/create',
+                            state: { add: true, edit: false, data: '' },
+                          })
                         }}
                       >
                         <Icon name="plus"></Icon>
