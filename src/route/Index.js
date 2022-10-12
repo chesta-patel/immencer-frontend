@@ -18,7 +18,7 @@ import EmployeeDetail from '../pages/user-manage/user-info/employee-detail/Emplo
 import ApplyLeave from '../pages/leave/leave-application/ApplyLeave'
 import CreateAssetsType from '../pages/assets/asset-type/CreateAssetsType'
 import CreateAssetsApplication from '../pages/assets/assets-application/CreateAssetsApplication'
-import CreateHoliday from '../pages/holiday/holiday-list/CreateHoliday'
+// import CreateHoliday from '../pages/holiday/holiday-list/CreateHoliday'
 import CreateHolidayType from '../pages/holiday/holiday-type/CreateHolidayType'
 import CreateCompanyDocument from '../pages/company-info/company-documents/CreateCompanyDocument'
 import CreateCompanyPolicy from '../pages/company-info/company-policy/CreateCompanyPolicy'
@@ -164,7 +164,7 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
-        <Route
+        {/* <Route
           exact
           path={`/holiday/create-holiday`}
           render={() => (
@@ -172,7 +172,7 @@ const Pages = () => {
               <CreateHoliday />
             </UserContextProvider>
           )}
-        ></Route>
+        ></Route> */}
         <Route
           exact
           path={`/holiday/create-holiday-type`}
