@@ -71,7 +71,7 @@ export const leaveAppString = [
   },
 ]
 
-export const holidayListStrig = [
+export const holidayListString = [
   {
     head_title: String.holiday_list,
     header: String.holiday_list,

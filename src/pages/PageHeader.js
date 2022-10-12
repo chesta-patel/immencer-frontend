@@ -14,6 +14,7 @@ import { cloneDeep } from 'lodash'
 import './pageheader.scss'
 import String from '../utils/String'
 import { checkIsEmptyObjectKey } from '../utils/Helpers'
+import moment from 'moment'
 
 function PageHeader(props) {
   const initialState = {}
@@ -21,26 +22,36 @@ function PageHeader(props) {
     initialState[`${formFields.key_name}`] = ''
   })
   const [sm, updateSm] = useState(false)
-
   const { handleSubmit } = useForm()
   const [validate, setValidate] = useState(false)
   const [Fdata, setFdata] = useState({ ...initialState })
   const [strings, setStrings] = useState('')
-
   useEffect(() => {
     if (props?.modal?.data) {
-      let refactorModalData = {
-        title: props?.modal?.data?.title,
-        description: props?.modal?.data?.description,
-        seqNo: props?.modal?.data?.seqNo,
-        attachment: {
-          name: props?.modal?.data?.attachment?.split('/')[
-            props?.modal?.data?.attachment?.split('/')?.length - 1
-          ],
-          path: props?.modal?.data?.attachment,
-        },
+      if (props?.modal?.data?.attachment) {
+        let refactorModalData = {
+          title: props?.modal?.data?.title,
+          description: props?.modal?.data?.description,
+          seqNo: props?.modal?.data?.seqNo,
+          attachment: {
+            name: props?.modal?.data?.attachment?.split('/')[
+              props?.modal?.data?.attachment?.split('/')?.length - 1
+            ],
+            path: props?.modal?.data?.attachment,
+          },
+        }
+        setFdata(refactorModalData)
+      } else {
+        let updateData = moment(props?.modal?.data?.date).format('L')
+        let refactorModalData = {
+          title: props?.modal?.data?.title,
+          description: props?.modal?.data?.description,
+          date: moment(props?.modal?.data?.date).format('YYYY-DD-MM'),
+          // date: moment(props?.modal?.data?.date).format('L'),
+          type: props?.modal?.data?.type,
+        }
+        setFdata(refactorModalData)
       }
-      setFdata(refactorModalData)
     }
   }, [props?.modal?.data])
 
@@ -51,19 +62,22 @@ function PageHeader(props) {
       data: '',
     })
   }
+
   // submit function to add a new item
   const onFormSubmit = async (e) => {
-    setValidate(true)
+    // setValidate(true)
     e.preventDefault()
-    // checkValidate()
+
     const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
 
     let formData = { ...Fdata }
 
-    if (!formData?.attachment?.size) {
-      formData = { ...Fdata, attachment: Fdata?.attachment?.path }
-    } else {
-      formData = { ...Fdata }
+    if (formData.attachment) {
+      if (!formData?.attachment?.size) {
+        formData = { ...Fdata, attachment: Fdata?.attachment?.path }
+      } else {
+        formData = { ...Fdata }
+      }
     }
 
     if (!isEmpty) {
@@ -74,12 +88,14 @@ function PageHeader(props) {
       }
     }
   }
+
   useEffect(() => {
     var string = props.string.find(function (element) {
       return element
     })
     setStrings(string)
   }, [props.string])
+
   useEffect(() => {
     if (props.apiCallStatus.status === 'success') {
       props.setModal({
@@ -185,6 +201,18 @@ function PageHeader(props) {
                 onSubmit={(e) => handleSubmit(onFormSubmit(e))}
               >
                 {props.json.map((formFields, id) => {
+                  let selectOptionData = formFields?.option?.map((data) => {
+                    let dataObj = {
+                      value: data?.id,
+                      label: data?.holiday_type,
+                    }
+                    return dataObj
+                  })
+
+                  let selectOptionValueData = formFields?.option?.filter(
+                    (data) => data.id == props?.modal?.data?.type
+                  )
+
                   if (
                     (formFields.type !== 'text') &
                     (formFields.type !== 'number') &
@@ -198,12 +226,28 @@ function PageHeader(props) {
                             {formFields.label_name}
                           </label>
                           <RSelect
-                            options={formFields.option}
+                            options={
+                              selectOptionData?.length > 0
+                                ? selectOptionData
+                                : []
+                            }
                             defaultValue={{
-                              value: formFields.option?.[0]?.value,
-                              label: formFields.option?.[0]?.label,
+                              value: selectOptionValueData?.[0]?.id,
+                              label: selectOptionValueData?.[0]?.holiday_type,
+                            }}
+                            onChange={(e) => {
+                              const oldState = cloneDeep(Fdata)
+                              oldState[`${formFields.key_name}`] = e.value
+                              setFdata({ ...oldState })
                             }}
                           />
+                          {formFields.required &&
+                            !Fdata[`${formFields.key_name}`] &&
+                            validate && (
+                              <p className="file-upload-error">
+                                {formFields.required}
+                              </p>
+                            )}
                         </FormGroup>
                       </Col>
                     )
