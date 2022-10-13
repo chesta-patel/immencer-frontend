@@ -28,6 +28,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { empDetail } from '../services/thunk/EmployeeDetailThunk'
 import { toastNotify } from '../layout/Index'
+import './user-manage/user-info/PageTable.scss'
 
 function PageTable(props) {
   const [currentPage] = useState(1)
@@ -145,11 +146,10 @@ function PageTable(props) {
     // const dataAsFormData = getFormData(data)
     let callAPI = await dispatch(empDetail(`employee/${id}`))
     if (callAPI?.payload?.data?.isSuccess) {
-      // setApiCallStatus({
-      //   status: 'success',
-      //   message: callAPI?.payload?.data?.message,
-      // })
-      // toastNotify('success', callAPI?.payload?.data?.message)
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
       history.push('/employee/employee-update')
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
@@ -157,6 +157,7 @@ function PageTable(props) {
         message: callAPI?.payload?.response?.data?.message,
       })
       toastNotify('error', callAPI?.payload?.response?.data?.message)
+      history.push('/employee')
     }
   }
 

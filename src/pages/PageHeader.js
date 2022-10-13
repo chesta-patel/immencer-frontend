@@ -49,7 +49,6 @@ function PageHeader(props) {
           title: props?.modal?.data?.title,
           description: props?.modal?.data?.description,
           date: moment(props?.modal?.data?.date).format('YYYY-DD-MM'),
-          // date: moment(props?.modal?.data?.date).format('L'),
           type: props?.modal?.data?.type,
         }
         setFdata(refactorModalData)
@@ -65,7 +64,7 @@ function PageHeader(props) {
   }
   // submit function to add a new item
   const onFormSubmit = async (e) => {
-    // setValidate(true)
+    setValidate(true)
     e.preventDefault()
     const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
     let formData = { ...Fdata }

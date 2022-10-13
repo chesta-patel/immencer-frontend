@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
 import { assetAppTable } from './AssetsAppJson'
 import PageTable from '../../PageTable'
-import { useDispatch } from 'react-redux'
 import { toastNotify } from '../../../layout/Index'
 import { Button } from 'reactstrap'
+import AssetsApplicationPageTable from './AssetsApplicationPageTable'
+import { assetsApplication } from '../../../services/thunk/AssetsApplicationThunk'
+import { useDispatch } from 'react-redux'
+import { deleteAssetsApp } from './../../../services/thunk/DeleteAssetsAppThunk'
 import {
   BlockBetween,
   BlockHead,
@@ -17,9 +20,41 @@ import { useHistory } from 'react-router'
 import String from '../../../utils/String'
 
 const AssetApplication = ({ ...props }) => {
+  const dispatch = useDispatch()
   const [roleTable] = useState(assetAppTable)
   const [sm, updateSm] = useState(false)
   const history = useHistory()
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+    data: '',
+  })
+  const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
+    status: '',
+    message: '',
+  })
+
+  useEffect(() => {
+    dispatch(assetsApplication('assetsApplication'))
+  }, [])
+  const callDeleteFormSubmit = async (id) => {
+    let callAPI = await dispatch(deleteAssetsApp(id))
+    console.log('call API Delete =====> ', callAPI)
+    if (callAPI?.payload?.data?.isSuccess) {
+      setDeleteApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      dispatch(assetsApplication('assetsApplication'))
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setDeleteApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
 
   return (
     <React.Fragment>
@@ -74,7 +109,7 @@ const AssetApplication = ({ ...props }) => {
                         color="primary"
                         className="btn-icon"
                         onClick={() => {
-                          history.push('/assets/create-assets-application')
+                          history.push('/assets/create')
                         }}
                       >
                         <Icon name="plus"></Icon>
@@ -86,7 +121,14 @@ const AssetApplication = ({ ...props }) => {
             </BlockHeadContent>
           </BlockBetween>
         </BlockHead>
-        <PageTable json={roleTable} />
+        <AssetsApplicationPageTable
+          json={roleTable}
+          callDeleteFormSubmit={callDeleteFormSubmit}
+          deleteApiCallStatus={deleteApiCallStatus}
+          setDeleteApiCallStatus={setDeleteApiCallStatus}
+          setModal={setModal}
+          modal={modal}
+        />
       </Content>
     </React.Fragment>
   )

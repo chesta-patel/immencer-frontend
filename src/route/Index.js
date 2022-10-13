@@ -17,12 +17,13 @@ import HomePage from '../pages/HomePage'
 import EmployeeDetail from '../pages/user-manage/user-info/employee-detail/EmployeeDetail'
 import ApplyLeave from '../pages/leave/leave-application/ApplyLeave'
 import CreateAssetsType from '../pages/assets/asset-type/CreateAssetsType'
-import CreateAssetsApplication from '../pages/assets/assets-application/CreateAssetsApplication'
+import CreateAssetsApplication from './../pages/assets/assets-application/CreateAssetsApplication'
 // import CreateHoliday from '../pages/holiday/holiday-list/CreateHoliday'
 import CreateHolidayType from '../pages/holiday/holiday-type/CreateHolidayType'
 import CreateCompanyDocument from '../pages/company-info/company-documents/CreateCompanyDocument'
 import CreateCompanyPolicy from '../pages/company-info/company-policy/CreateCompanyPolicy'
 import CreateLeaveType from '../pages/leave/leave-type/CreateLeaveType'
+import CreateHoliday from '../pages/holiday/holiday-list/CreateHoliday'
 
 const Pages = () => {
   useLayoutEffect(() => {
@@ -94,7 +95,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/assets/assets-application`}
+          path={`/assets`}
           render={() => (
             <UserContextProvider>
               <AssetApplication />
@@ -103,7 +104,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/assets/create-assets-application`}
+          path={`/assets/create`}
           render={() => (
             <UserContextProvider>
               <CreateAssetsApplication />
@@ -130,7 +131,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/leave/leave-application`}
+          path={`/leave`}
           render={() => (
             <UserContextProvider>
               <LeaveApplication />
@@ -157,14 +158,14 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/holiday/holiday-list`}
+          path={`/holiday`}
           render={() => (
             <UserContextProvider>
               <HolidayList />
             </UserContextProvider>
           )}
         ></Route>
-        {/* <Route
+        <Route
           exact
           path={`/holiday/create-holiday`}
           render={() => (
@@ -172,7 +173,7 @@ const Pages = () => {
               <CreateHoliday />
             </UserContextProvider>
           )}
-        ></Route> */}
+        ></Route>
         <Route
           exact
           path={`/holiday/create-holiday-type`}
@@ -188,6 +189,24 @@ const Pages = () => {
           render={() => (
             <UserContextProvider>
               <CompanyDocument />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/assets-application`}
+          render={() => (
+            <UserContextProvider>
+              <AssetApplication />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/assets-application/create`}
+          render={() => (
+            <UserContextProvider>
+              <CreateAssetsApplication />
             </UserContextProvider>
           )}
         ></Route>

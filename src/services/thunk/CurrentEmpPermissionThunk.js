@@ -4,8 +4,8 @@ import axios from 'axios'
 let token = localStorage.getItem('token')
 const API_URL = `${process.env.REACT_APP_API_URL}`
 
-export const empDetail = createAsyncThunk(
-  'empDetail',
+export const currentEmployee = createAsyncThunk(
+  'currentEmployee',
   async (payload, thunkAPI) => {
     try {
       const response = await axios.get(

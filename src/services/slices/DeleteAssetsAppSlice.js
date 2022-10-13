@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { CreateNewEmployee } from '../thunk/CreateNewEmpDataThunk'
+import { deleteAssetsApp } from '../thunk/DeleteAssetsAppThunk'
 
 const initialState = {
   isLoading: false,
@@ -9,29 +9,24 @@ const initialState = {
   message: '',
 }
 
-export const CreateEmp = createSlice({
-  name: 'CreateEmp',
+export const DeleteAssetsApp = createSlice({
+  name: 'DeleteAssetsApplication',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(CreateNewEmployee.fulfilled, (state, action) => {
+      .addCase(deleteAssetsApp.fulfilled, (state, action) => {
         state.message = action.payload.code
         state.isLoading = false
         state.isSuccess = true
         state.isError = false
       })
-      .addCase(CreateNewEmployee.pending, function (state, action) {
+      .addCase(deleteAssetsApp.pending, function (state, action) {
         state.isLoading = true
         state.isSuccess = false
         state.isError = false
       })
-      .addCase(CreateNewEmployee.rejected, (state, action) => {
-        if (action.payload.response.data.code == '400') {
-          state.errorMessage = action.payload.response.data.message
-        } else {
-          state.errorMessage = action.payload.response.data.additionalInfo
-        }
+      .addCase(deleteAssetsApp.rejected, (state, action) => {
         state.isLoading = false
         state.isSuccess = false
         state.isError = true
@@ -40,5 +35,5 @@ export const CreateEmp = createSlice({
   },
 })
 
-export const {} = CreateEmp.actions
-export default CreateEmp.reducer
+export const {} = DeleteAssetsApp.actions
+export default DeleteAssetsApp.reducer
