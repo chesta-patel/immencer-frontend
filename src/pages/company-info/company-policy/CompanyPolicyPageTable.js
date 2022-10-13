@@ -455,7 +455,7 @@ function CompanyPolicyPageTable(props) {
                         </div>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{item.uploadedBy}</span>
+                        <span>{item.uploadedByName}</span>
                       </DataTableRow>
                       <DataTableRow size="md">
                         <span>
