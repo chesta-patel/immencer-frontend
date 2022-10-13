@@ -13,6 +13,7 @@ import getEmpDetail from '../services/slices/EmployeeDetailSlice'
 import empUpdate from '../services/slices/EmployeeEditSlice'
 import getHolidayList from './../services/slices/HolidayListSlice'
 import DeleteHolidayList from './../services/slices/DeleteHolidayListSlice'
+import getCurrentEmp from './../services/slices/CurrentEmpPermissionSlice'
 
 export default configureStore({
   reducer: {
@@ -30,5 +31,6 @@ export default configureStore({
     createPolicy: CreatePolicy,
     deleteCompanyDoc: DeleteCompanyDoc,
     empUpdate: empUpdate,
+    getCurrentEmp: getCurrentEmp,
   },
 })

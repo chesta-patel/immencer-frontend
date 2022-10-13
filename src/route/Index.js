@@ -23,6 +23,7 @@ import CreateHolidayType from '../pages/holiday/holiday-type/CreateHolidayType'
 import CreateCompanyDocument from '../pages/company-info/company-documents/CreateCompanyDocument'
 import CreateCompanyPolicy from '../pages/company-info/company-policy/CreateCompanyPolicy'
 import CreateLeaveType from '../pages/leave/leave-type/CreateLeaveType'
+import CreateHoliday from '../pages/holiday/holiday-list/CreateHoliday'
 
 const Pages = () => {
   useLayoutEffect(() => {
@@ -164,7 +165,7 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
-        {/* <Route
+        <Route
           exact
           path={`/holiday/create-holiday`}
           render={() => (
@@ -172,7 +173,7 @@ const Pages = () => {
               <CreateHoliday />
             </UserContextProvider>
           )}
-        ></Route> */}
+        ></Route>
         <Route
           exact
           path={`/holiday/create-holiday-type`}
