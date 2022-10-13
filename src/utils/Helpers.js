@@ -68,3 +68,9 @@ export const checkIsEmptyObjectKey = (objData, type) => {
   }
   return isEmpty
 }
+
+export const shortObjectWithNUmber = (sortBy) => (a, b) =>
+  a[sortBy] > b[sortBy] ? 1 : -1
+
+export const shortObjectWithString = (sortBy) => (a, b) =>
+  a[sortBy].toLowerCase() > b[sortBy].toLowerCase() ? 1 : -1
