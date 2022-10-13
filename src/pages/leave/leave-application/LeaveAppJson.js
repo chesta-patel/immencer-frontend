@@ -33,6 +33,37 @@ export const leaveAppForm = [
   // },
 ]
 
+export const defaultOptions = [
+  { value: 'Amit', label: 'Amit' },
+  { value: 'Pooja', label: 'Pooja' },
+  { value: 'Dip', label: 'Dip' },
+]
+export const leaveTypes = [
+  { value: 'Optional', label: 'Optional' },
+  { value: 'Compulsory', label: 'Compulsory' },
+]
+
+export const dayTypeJson = [
+  {
+    id: 1,
+    code: 'FL',
+    name: 'Full Day',
+    defaultChecked: 'defaultChecked',
+    value: 1,
+  },
+  {
+    id: 2,
+    code: 'Fh',
+    name: 'First Half',
+    value: 2,
+  },
+  {
+    id: 2,
+    code: 'Sh',
+    name: 'Second Half',
+    value: 2,
+  },
+]
 export const leaveAppTable = [
   {
     id: 1,

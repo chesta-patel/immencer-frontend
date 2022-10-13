@@ -186,6 +186,9 @@ const String = {
   day_type: 'Day Type',
   personal: 'Personal',
   master: 'Master',
+  full_day: 'Full Day',
+  reason: 'Reason',
+  i_want: 'I want to inform',
 }
 
 export default String
