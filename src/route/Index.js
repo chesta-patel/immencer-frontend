@@ -17,7 +17,7 @@ import HomePage from '../pages/HomePage'
 import EmployeeDetail from '../pages/user-manage/user-info/employee-detail/EmployeeDetail'
 import ApplyLeave from '../pages/leave/leave-application/ApplyLeave'
 import CreateAssetsType from '../pages/assets/asset-type/CreateAssetsType'
-import CreateAssetsApplication from '../pages/assets/assets-application/CreateAssetsApplication'
+import CreateAssetsApplication from './../pages/assets/assets-application/CreateAssetsApplication'
 // import CreateHoliday from '../pages/holiday/holiday-list/CreateHoliday'
 import CreateHolidayType from '../pages/holiday/holiday-type/CreateHolidayType'
 import CreateCompanyDocument from '../pages/company-info/company-documents/CreateCompanyDocument'
@@ -188,6 +188,24 @@ const Pages = () => {
           render={() => (
             <UserContextProvider>
               <CompanyDocument />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/assets-application`}
+          render={() => (
+            <UserContextProvider>
+              <AssetApplication />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/assets-application/create`}
+          render={() => (
+            <UserContextProvider>
+              <CreateAssetsApplication />
             </UserContextProvider>
           )}
         ></Route>

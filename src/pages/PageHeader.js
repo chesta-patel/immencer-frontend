@@ -65,7 +65,7 @@ function PageHeader(props) {
   }
   // submit function to add a new item
   const onFormSubmit = async (e) => {
-    // setValidate(true)
+    setValidate(true)
     e.preventDefault()
     const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
     let formData = { ...Fdata }

@@ -186,6 +186,11 @@ const String = {
   day_type: 'Day Type',
   personal: 'Personal',
   master: 'Master',
+  code: 'Code',
+  serialNumber: 'Serial Number',
+  assign: 'Assign',
+  assignDate: 'Assign Date',
+  notes: 'Notes',
 }
 
 export default String

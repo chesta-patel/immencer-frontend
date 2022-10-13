@@ -13,11 +13,18 @@ import {
 import String from '../../../utils/String'
 import { Button } from 'reactstrap'
 import { useHistory } from 'react-router'
+import AssetsPageTable from './AssetsPageTable'
 
 const AssetsType = ({ ...props }) => {
   const [roleTable] = useState(assetTypeTable)
   const [sm, updateSm] = useState(false)
   const history = useHistory()
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+    data: '',
+  })
+
   return (
     <React.Fragment>
       <Head title="Assets Type" />
@@ -83,7 +90,14 @@ const AssetsType = ({ ...props }) => {
             </BlockHeadContent>
           </BlockBetween>
         </BlockHead>
-        <PageTable json={roleTable} />
+        <AssetsPageTable
+          json={roleTable}
+          // callDeleteFormSubmit={callDeleteFormSubmit}
+          // deleteApiCallStatus={deleteApiCallStatus}
+          // setDeleteApiCallStatus={setDeleteApiCallStatus}
+          setModal={setModal}
+          modal={modal}
+        />
       </Content>
     </React.Fragment>
   )
