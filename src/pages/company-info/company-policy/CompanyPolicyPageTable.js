@@ -498,7 +498,7 @@ function CompanyPolicyPageTable(props) {
                             className="btn-icon"
                             onClick={() =>
                               history.push({
-                                pathname: '/company-info/company-policy/create',
+                                pathname: '/company-policy/create',
                                 state: { add: false, edit: true, data: item },
                               })
                             }

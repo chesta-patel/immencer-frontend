@@ -483,7 +483,7 @@ function CompanyDocumentPageTable(props) {
                             className="btn-icon"
                             onClick={() =>
                               history.push({
-                                pathname: '/company-info/create',
+                                pathname: '/company-document/create',
                                 state: { add: false, edit: true, data: item },
                               })
                             }
