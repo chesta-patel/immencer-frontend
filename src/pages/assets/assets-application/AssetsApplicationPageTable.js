@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { filterStatus, filterRole } from '../../user-manage/UserData'
 import {
   DropdownMenu,
@@ -22,35 +22,42 @@ import {
   DataTableRow,
   DataTableItem,
 } from '../../../components/Component'
-import { UserContext } from '../../user-manage/UserContext'
 import String from '../../../utils/String'
-import { useSelector } from 'react-redux'
+import PdfViewer from '../../../components/pdfviewer/PdfViewer'
 import moment from 'moment'
-import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { shortObjectWithNUmber } from '../../../utils/Helpers'
 
-function HolidayPageTable(props) {
-  const { infoList } = useSelector((state) => state.holidayList)
+function AssetsApplicationPageTable(props) {
+  const { infoList } = useSelector((state) => state.companyPolicy)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
   const [tablesm, updateTableSm] = useState(false)
   const [sort, setSortState] = useState('')
   const [data, setData] = useState([])
+  const history = useHistory()
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
-  const history = useHistory()
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
   const currentItems = infoList
     ?.filter((data) => data.isDeleted !== 1 && data.isActive === 1)
     ?.slice(indexOfFirstItem, indexOfLastItem)
-
+    ?.sort(shortObjectWithNUmber('seqNo'))
+  const [modal, setModal] = useState({ view: false, link: '' })
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
+
   useEffect(() => {
     setData(currentItems)
   }, [infoList])
+
+  const onFormCancel = () => {
+    setModal({ view: false, link: '' })
+  }
+
   // function which selects all the items
   const selectorCheck = (e) => {
     let newData
@@ -132,16 +139,15 @@ function HolidayPageTable(props) {
       setData([...sortedData])
     }
   }
-
-  useEffect(() => {
-    if (props.deleteApiCallStatus.status === 'success') {
-      setDeleteModal({ status: false, data: '' })
-      props.setDeleteApiCallStatus({
-        status: '',
-        message: '',
-      })
-    }
-  }, [props])
+  // useEffect(() => {
+  //   if (props.deleteApiCallStatus.status === 'success') {
+  //     setDeleteModal({ status: false, data: '' })
+  //     props.setDeleteApiCallStatus({
+  //       status: '',
+  //       message: '',
+  //     })
+  //   }
+  // }, [props])
 
   return (
     <React.Fragment>
@@ -436,30 +442,53 @@ function HolidayPageTable(props) {
               ? data.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
-                      <DataTableRow>
+                      <DataTableRow size="md">
                         <div className="user-card">
                           <div className="user-info">
-                            <span className="tb-lead">{item.title} </span>
+                            <span className="tb-lead">{item.assets_code} </span>
                           </div>
                         </div>
                       </DataTableRow>
                       <DataTableRow size="md">
                         <div className="user-info">
-                          <span className="tb-lead">
-                            {item.updatedAt
-                              ? moment(item.updatedAt).format('L')
-                              : moment(item.createdAt).format('L')}{' '}
-                          </span>
+                          <span className="tb-lead">{item.name} </span>
                         </div>
                       </DataTableRow>
                       <DataTableRow size="sm">
                         <span>{item.typeName}</span>
                       </DataTableRow>
-                      <DataTableRow size="md">
+                      <DataTableRow size="sm">
+                        <span>{item.status}</span>
+                      </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.serialNumber}</span>
+                      </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.assign}</span>
+                      </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.assignDate}</span>
+                      </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.notes}</span>
+                      </DataTableRow>
+                      <DataTableRow size="sm">
                         <span>{item.description}</span>
                       </DataTableRow>
                       <DataTableRow size="lg" className="action_icon">
-                        <span className="ml-2">
+                        <span>
+                          <Button
+                            color=""
+                            className="btn-icon eye_btn"
+                            onClick={() =>
+                              setModal({ view: true, link: item.attachment })
+                            }
+                            style={{ margin: '0px' }}
+                          >
+                            <em class="icon ni ni-eye"></em>
+                          </Button>
+                        </span>
+                        <span className="policy_edit">
                           <Button
                             color=""
                             className="btn-icon"
@@ -471,7 +500,7 @@ function HolidayPageTable(props) {
                             }
                             style={{ margin: '0px' }}
                           >
-                            <Icon name="trash" />
+                            <em class="icon ni ni-trash"></em>
                           </Button>
                         </span>
                         <span>
@@ -480,14 +509,14 @@ function HolidayPageTable(props) {
                             className="btn-icon"
                             onClick={() =>
                               history.push({
-                                pathname: '/holiday/create-holiday',
+                                pathname: '/assets-application/create',
                                 state: { add: false, edit: true, data: item },
                               })
                             }
                             style={{ margin: '0px' }}
                           >
                             <span style={{ display: 'flex' }}>
-                              <Icon name="edit" />
+                              <em class="icon ni ni-edit"></em>
                             </span>
                           </Button>
                         </span>
@@ -500,9 +529,19 @@ function HolidayPageTable(props) {
         </DataTable>
       </Block>
       <Modal
+        isOpen={modal.view}
+        toggle={() => setModal({ view: false, link: '' })}
+        className="modal-dialog-centered pdf_modal"
+        size="lg"
+      >
+        <ModalBody>
+          <PdfViewer url={modal.link} />
+        </ModalBody>
+      </Modal>
+      <Modal
         isOpen={deleteModal.status}
         toggle={() => setDeleteModal({ status: false, data: '' })}
-        className="modal-dialog-centered delete_policy"
+        className="modal-dialog-centered delete_assets_application"
         size="lg"
       >
         <ModalBody>
@@ -517,7 +556,7 @@ function HolidayPageTable(props) {
           </button>
           <h2 className="modal_title">{String.delete_confirmation}</h2>
           <p className="alert alert-danger">
-            {String.are_you_sure_you_want_to_delete_the}{' '}
+            {String.are_you_sure_you_want_to_delete_the}
             {deleteModal.data.title} ?
           </p>
           <button
@@ -543,4 +582,4 @@ function HolidayPageTable(props) {
   )
 }
 
-export default HolidayPageTable
+export default AssetsApplicationPageTable

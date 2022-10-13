@@ -134,7 +134,7 @@ const String = {
   personal_email: 'Personal Email',
   return_to_login: 'Return to login',
   access_immence_using_email_pass:
-    'Access immence using your email and passcode.',
+    'Access immence using your email and password.',
   forget_code: 'Forgot Code?',
   you_can_now_sign_in: 'You can now sign in with your new password',
   welcome_to_immence: 'Welcome to immence',
@@ -189,6 +189,11 @@ const String = {
   full_day: 'Full Day',
   reason: 'Reason',
   i_want: 'I want to inform',
+  code: 'Code',
+  serialNumber: 'Serial Number',
+  assign: 'Assign',
+  assignDate: 'Assign Date',
+  notes: 'Notes',
 }
 
 export default String
