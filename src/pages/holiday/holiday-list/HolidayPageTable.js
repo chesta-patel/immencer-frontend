@@ -456,7 +456,7 @@ function HolidayPageTable(props) {
                       <DataTableRow size="md">
                         <span>{item.description}</span>
                       </DataTableRow>
-                      <DataTableRow size="lg">
+                      <DataTableRow size="lg" className="action_icon">
                         <span className="ml-2">
                           <Button
                             color=""
@@ -517,7 +517,7 @@ function HolidayPageTable(props) {
           <h2 className="modal_title">{String.delete_confirmation}</h2>
           <p className="alert alert-danger">
             {String.are_you_sure_you_want_to_delete_the}{' '}
-            {deleteModal.data.title}
+            {deleteModal.data.title} ?
           </p>
           <button
             type="button"

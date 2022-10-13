@@ -316,3 +316,7 @@
     }
   }
 }
+.is-compact .nk-tb-item .nk-tb-col.action_icon {
+  display: flex !important;
+  align-items: center;
+}

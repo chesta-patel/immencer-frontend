@@ -464,7 +464,7 @@ function CompanyPolicyPageTable(props) {
                             : moment(item.createdAt).format('L')}
                         </span>
                       </DataTableRow>
-                      <DataTableRow size="lg">
+                      <DataTableRow size="lg" className="action_icon">
                         <span>
                           <Button
                             color=""
@@ -546,7 +546,7 @@ function CompanyPolicyPageTable(props) {
           <h2 className="modal_title">{String.delete_confirmation}</h2>
           <p className="alert alert-danger">
             {String.are_you_sure_you_want_to_delete_the}
-            {deleteModal.data.title}
+            {deleteModal.data.title} ?
           </p>
           <button
             type="button"
