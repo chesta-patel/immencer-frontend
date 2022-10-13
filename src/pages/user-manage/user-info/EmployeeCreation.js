@@ -58,7 +58,7 @@ const UserCreate = (props) => {
   }, [])
 
   useEffect(() => {
-    if (location.pathname === '/employee/employee_update') {
+    if (location.pathname === '/employee/employee-update') {
       setEmpCreate({ ...empCreate, ...isSuccess })
     } else {
       setEmpCreate({ ...empCreate, ...formData })
@@ -173,8 +173,7 @@ const UserCreate = (props) => {
                     options={dropDownData?.length > 0 ? dropDownData : []}
                     name={formFields.name}
                     value={dropDownData?.find((data) => {
-                      console.log(`${formFields.key_name}`, data)
-                      return data.value === empCreate[`${formFields.key_name}`]
+                      return data.label === empCreate[`${formFields.key_name}`]
                     })}
                     onChange={(e) => {
                       if (formFields.label_name == `${String.designation}`) {
@@ -211,7 +210,7 @@ const UserCreate = (props) => {
                       empCreate[`${formFields.key_name}`] &&
                       formFields.type === 'date'
                         ? moment(empCreate[`${formFields.key_name}`]).format(
-                            'YYYY-MM-DD'
+                            'YYYY-DD-MM'
                           )
                         : empCreate[`${formFields.key_name}`]
                     }
@@ -742,7 +741,7 @@ const Permission = (props) => {
     dispatch(getCreateNewEmpData(getPermission()))
   }
   const CreateEmployee = async () => {
-    if (location.pathname == '/employee/employee_update') {
+    if (location.pathname == '/employee/employee-update') {
       AddPermission()
       let callAPI = await dispatch(EmployeeUpdate(formData))
       if (callAPI?.payload?.data?.isSuccess) {

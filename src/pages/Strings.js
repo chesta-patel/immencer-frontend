@@ -67,15 +67,15 @@ export const leaveAppString = [
   {
     head_title: String.leave_application,
     header: String.leave_type,
-    form_title: `${String.create} ${String.leave_application}`,
+    form_title: `${String.apply} ${String.for} ${String.leave}`,
   },
 ]
 
-export const holidayListStrig = [
+export const holidayListString = [
   {
     head_title: String.holiday_list,
     header: String.holiday_list,
-    form_title: `${String.create} ${String.holiday_list}`,
+    form_title: `${String.create} ${String.holiday}`,
   },
 ]
 export const holidayTypeString = [

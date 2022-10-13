@@ -16,10 +16,6 @@ const menu = [
     active: false,
     subMenu: [
       {
-        text: `${String.assets_type}`,
-        link: '/assets/assets-type',
-      },
-      {
         text: `${String.assets_application}`,
         link: '/assets/assets-application',
       },
@@ -30,10 +26,6 @@ const menu = [
     text: `${String.leave}`,
     active: false,
     subMenu: [
-      {
-        text: `${String.leave_type}`,
-        link: '/leave/leave-type',
-      },
       {
         text: `${String.leave_application}`,
         link: '/leave/leave-application',
@@ -49,10 +41,6 @@ const menu = [
         text: `${String.holiday_list}`,
         link: '/holiday/holiday-list',
       },
-      {
-        text: `${String.holiday_type}`,
-        link: '/holiday/holiday-type',
-      },
     ],
   },
   {
@@ -64,6 +52,25 @@ const menu = [
     icon: 'policy',
     text: `${String.company_policy}`,
     link: '/company-info/company-policy',
+  },
+  {
+    icon: 'user',
+    text: `${String.master}`,
+    active: false,
+    subMenu: [
+      {
+        text: `${String.assets_type}`,
+        link: '/assets/assets-type',
+      },
+      {
+        text: `${String.leave_type}`,
+        link: '/leave/leave-type',
+      },
+      {
+        text: `${String.holiday_type}`,
+        link: '/holiday/holiday-type',
+      },
+    ],
   },
 ]
 export default menu

@@ -1,89 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import PageHeader from '../../PageHeader'
 import CompanyDocumentPageTable from './CompanyDocumentPageTable'
 import { companyDocForm, companyDocTable } from './CompanyDocumentJson'
-import { companyDocString } from '../../Strings'
 import { companyDocument } from '../../../services/thunk/CompanyDocumentThunk'
-import { useDispatch, useSelector } from 'react-redux'
-import { getFormData, logFormData } from '../../../utils/Helpers'
+import { useDispatch } from 'react-redux'
+import { getFormData } from '../../../utils/Helpers'
 import { addNewCompanyDoc } from '../../../services/thunk/CreateNewCompanyDocThunk'
 import { updateNewCompanyDoc } from '../../../services/thunk/UpdateNewCompanyDocThunk'
-
 import { toastNotify } from '../../../layout/Index'
 import { deleteCompanyDoc } from './../../../services/thunk/DeleteCompanyDocThunk'
+import {
+  BlockBetween,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  Icon,
+} from '../../../components/Component'
+import { Button } from 'reactstrap'
+import String from '../../../utils/String'
+import { useHistory } from 'react-router'
 
 const CompanyDocument = ({ ...props }) => {
-  const [roleForm] = useState(companyDocForm)
   const [roleTable] = useState(companyDocTable)
+  const [sm, updateSm] = useState(false)
+  const history = useHistory()
+  const dispatch = useDispatch()
   const [modal, setModal] = useState({
     edit: false,
     add: false,
     data: '',
   })
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(companyDocument('companyDocument'))
-  }, [])
-
-  const [apiCallStatus, setApiCallStatus] = useState({
-    status: '',
-    message: '',
-  })
-
   const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
     status: '',
     message: '',
   })
 
-  const callFormSubmit = async (data) => {
-    const dataAsFormData = getFormData(data)
-    let callAPI = await dispatch(addNewCompanyDoc(dataAsFormData))
-    if (callAPI?.payload?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(companyDocument('companyDocument'))
-    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'error',
-        message: callAPI?.payload?.response?.data?.message,
-      })
-      toastNotify('error', callAPI?.payload?.response?.data?.message)
-    }
-  }
-
-  const updateFormSubmit = async (data, id) => {
-    const dataAsFormData = getFormData(data)
-    let callAPI = await dispatch(
-      updateNewCompanyDoc({ data: dataAsFormData, id })
-    )
-    console.log(callAPI)
-    if (callAPI?.payload?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(companyDocument('companyDocument'))
-      setModal({
-        edit: false,
-        add: false,
-        data: '',
-      })
-    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'error',
-        message: callAPI?.payload?.response?.data?.message,
-      })
-      toastNotify('error', callAPI?.payload?.response?.data?.message)
-    }
-  }
-
+  useEffect(() => {
+    dispatch(companyDocument('companyDocument'))
+  }, [])
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteCompanyDoc(id))
     console.log('call API Delete =====> ', callAPI)
@@ -107,7 +62,7 @@ const CompanyDocument = ({ ...props }) => {
     <React.Fragment>
       <Head title="Company Document" />
       <Content>
-        <PageHeader
+        {/* <PageHeader
           json={roleForm}
           string={companyDocString}
           callFormSubmit={callFormSubmit}
@@ -116,7 +71,61 @@ const CompanyDocument = ({ ...props }) => {
           setModal={setModal}
           modal={modal}
           updateFormSubmit={updateFormSubmit}
-        />
+        /> */}
+        <BlockHead size="sm">
+          <BlockBetween>
+            <BlockHeadContent>
+              <BlockTitle tag="h3" page>
+                {String.company_document}
+              </BlockTitle>
+            </BlockHeadContent>
+            <BlockHeadContent>
+              <div className="toggle-wrap nk-block-tools-toggle">
+                <Button
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                    sm ? 'active' : ''
+                  }`}
+                  onClick={() => updateSm(!sm)}
+                >
+                  <Icon name="menu-alt-r"></Icon>
+                </Button>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
+                  <ul className="nk-block-tools g-3">
+                    <li>
+                      <a
+                        href="#export"
+                        onClick={(ev) => {
+                          ev.preventDefault()
+                        }}
+                        className="btn btn-white btn-outline-light"
+                      >
+                        <Icon name="download-cloud"></Icon>
+                        <span>{String.export}</span>
+                      </a>
+                    </li>
+                    <li className="nk-block-tools-opt">
+                      <Button
+                        color="primary"
+                        className="btn-icon"
+                        onClick={() => {
+                          history.push({
+                            pathname: '/company-info/create',
+                            state: { add: true, edit: false, data: '' },
+                          })
+                        }}
+                      >
+                        <Icon name="plus"></Icon>
+                      </Button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </BlockHeadContent>
+          </BlockBetween>
+        </BlockHead>
         <CompanyDocumentPageTable
           json={roleTable}
           callDeleteFormSubmit={callDeleteFormSubmit}
