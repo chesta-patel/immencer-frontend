@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { filterStatus, filterRole } from '../../user-manage/UserData'
 import {
   DropdownMenu,
@@ -22,22 +22,20 @@ import {
   DataTableRow,
   DataTableItem,
 } from '../../../components/Component'
+import { UserContext } from '../../user-manage/UserContext'
 import String from '../../../utils/String'
-import PdfViewer from '../../../components/pdfviewer/PdfViewer'
-import moment from 'moment'
 import { useSelector } from 'react-redux'
-import './companyPolicy.scss'
-import { useHistory } from 'react-router'
+import moment from 'moment'
+import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
 
-function CompanyPolicyPageTable(props) {
-  const { infoList } = useSelector((state) => state.companyPolicy)
+function HolidayPageTable(props) {
+  const { infoList } = useSelector((state) => state.holidayList)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
   const [tablesm, updateTableSm] = useState(false)
   const [sort, setSortState] = useState('')
   const [data, setData] = useState([])
-  const history = useHistory()
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
   // Get current list, pagination
@@ -45,17 +43,10 @@ function CompanyPolicyPageTable(props) {
   const indexOfFirstItem = indexOfLastItem - itemPerPage
   const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
 
-  const [modal, setModal] = useState({ view: false, link: '' })
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
-
   useEffect(() => {
     setData(currentItems)
   }, [infoList])
-
-  const onFormCancel = () => {
-    setModal({ view: false, link: '' })
-  }
-
   // function which selects all the items
   const selectorCheck = (e) => {
     let newData
@@ -137,6 +128,7 @@ function CompanyPolicyPageTable(props) {
       setData([...sortedData])
     }
   }
+
   useEffect(() => {
     if (props.deleteApiCallStatus.status === 'success') {
       setDeleteModal({ status: false, data: '' })
@@ -440,7 +432,7 @@ function CompanyPolicyPageTable(props) {
               ? data.map((item) => {
                   return (
                     <DataTableItem key={item.id}>
-                      <DataTableRow size="md">
+                      <DataTableRow>
                         <div className="user-card">
                           <div className="user-info">
                             <span className="tb-lead">{item.title} </span>
@@ -449,32 +441,20 @@ function CompanyPolicyPageTable(props) {
                       </DataTableRow>
                       <DataTableRow size="md">
                         <div className="user-info">
-                          <span className="tb-lead">{item.description} </span>
+                          <span className="tb-lead">
+                            {item.updatedAt
+                              ? moment(item.updatedAt).format('L')
+                              : moment(item.createdAt).format('L')}{' '}
+                          </span>
                         </div>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{item.uploadedBy}</span>
+                        <span>{item.typeName}</span>
                       </DataTableRow>
                       <DataTableRow size="md">
-                        <span>
-                          {item.updatedAt
-                            ? moment(item.updatedAt).format('L')
-                            : moment(item.createdAt).format('L')}
-                        </span>
+                        <span>{item.description}</span>
                       </DataTableRow>
                       <DataTableRow size="lg">
-                        <span>
-                          <Button
-                            color=""
-                            className="btn-icon eye_btn"
-                            onClick={() =>
-                              setModal({ view: true, link: item.attachment })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <em class="icon ni ni-eye"></em>
-                          </Button>
-                        </span>
                         <span className="ml-2">
                           <Button
                             color=""
@@ -487,7 +467,7 @@ function CompanyPolicyPageTable(props) {
                             }
                             style={{ margin: '0px' }}
                           >
-                            <em class="icon ni ni-trash"></em>
+                            <Icon name="trash" />
                           </Button>
                         </span>
                         <span>
@@ -495,15 +475,16 @@ function CompanyPolicyPageTable(props) {
                             color=""
                             className="btn-icon"
                             onClick={() =>
-                              history.push({
-                                pathname: '/company-info/company-policy/create',
-                                state: { add: false, edit: true, data: item },
+                              props.setModal({
+                                edit: true,
+                                add: false,
+                                data: item,
                               })
                             }
                             style={{ margin: '0px' }}
                           >
                             <span style={{ display: 'flex' }}>
-                              <em class="icon ni ni-edit"></em>
+                              <Icon name="edit" />
                             </span>
                           </Button>
                         </span>
@@ -515,16 +496,6 @@ function CompanyPolicyPageTable(props) {
           </DataTableBody>
         </DataTable>
       </Block>
-      <Modal
-        isOpen={modal.view}
-        toggle={() => setModal({ view: false, link: '' })}
-        className="modal-dialog-centered pdf_modal"
-        size="lg"
-      >
-        <ModalBody>
-          <PdfViewer url={modal.link} />
-        </ModalBody>
-      </Modal>
       <Modal
         isOpen={deleteModal.status}
         toggle={() => setDeleteModal({ status: false, data: '' })}
@@ -543,7 +514,7 @@ function CompanyPolicyPageTable(props) {
           </button>
           <h2 className="modal_title">{String.delete_confirmation}</h2>
           <p className="alert alert-danger">
-            {String.are_you_sure_you_want_to_delete_the}
+            {String.are_you_sure_you_want_to_delete_the}{' '}
             {deleteModal.data.title}
           </p>
           <button
@@ -569,4 +540,4 @@ function CompanyPolicyPageTable(props) {
   )
 }
 
-export default CompanyPolicyPageTable
+export default HolidayPageTable

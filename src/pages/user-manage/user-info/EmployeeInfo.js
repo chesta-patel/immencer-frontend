@@ -25,6 +25,7 @@ const UserInfo = ({ ...props }) => {
   const history = useHistory()
   const { employeeData, isLoading } = useSelector((state) => state.getEmp)
   const dispatch = useDispatch()
+  const [employeeDetail, setEmployeeDetail] = useState([])
 
   // Stats declaration for data
   const [sm, updateSm] = useState(false)
@@ -37,6 +38,9 @@ const UserInfo = ({ ...props }) => {
   useEffect(() => {
     dispatch(empData('employee'))
   }, [])
+  useEffect(() => {
+    setEmployeeDetail(employeeData)
+  }, [employeeData])
 
   return (
     <React.Fragment>
@@ -83,7 +87,7 @@ const UserInfo = ({ ...props }) => {
                         color="primary"
                         className="btn-icon"
                         onClick={() => {
-                          history.push('/employee/employee_creation')
+                          history.push('/employee/employee-creation')
                         }}
                       >
                         <Icon name="plus"></Icon>
@@ -98,7 +102,7 @@ const UserInfo = ({ ...props }) => {
         <PageTable
           json={roleTable}
           string={roleString}
-          employeeData={employeeData}
+          employeeData={employeeDetail}
         />
       </Content>
     </React.Fragment>

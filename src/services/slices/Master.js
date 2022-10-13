@@ -16,6 +16,7 @@ const initialState = {
   countries: [],
   states: [],
   city: [],
+  holidayType: [],
 }
 
 export const dropdownSlice = createSlice({
@@ -54,6 +55,9 @@ export const dropdownSlice = createSlice({
           break
         case 'cities':
           state.city = action.payload.data.cities
+          break
+        case 'holidayType':
+          state.holidayType = action.payload.data.holidayType
           break
         default:
           break
