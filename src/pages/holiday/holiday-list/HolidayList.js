@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
-import PageHeader from '../../PageHeader'
-import { holidayListForm, holidayListTable } from './HolidayListJson'
-import { holidayListString } from '../../Strings'
+import { holidayListTable } from './HolidayListJson'
 import { holidayList } from '../../../services/thunk/HolidayListThunk'
-import { getFormData } from '../../../utils/Helpers'
 import { useDispatch } from 'react-redux'
 import { toastNotify } from '../../../layout/Index'
 import HolidayPageTable from './HolidayPageTable'
-import { createNewHolidayList } from './../../../services/thunk/CreateNewHolidayListThunk'
-import { updateNewHolidayList } from '../../../services/thunk/UpdateNewHolidayListThunk'
 import { deleteHolidayData } from './../../../services/thunk/DeleteHolidayListThunk'
 import { fetchData } from '../../../services/thunk/AuthThunk'
-import { useSelector } from 'react-redux'
+import {
+  BlockBetween,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  Icon,
+} from '../../../components/Component'
+import { Button } from 'reactstrap'
+import { useHistory } from 'react-router'
 
 const HolidayList = ({ ...props }) => {
-  const [roleForm] = useState(holidayListForm)
   const [roleTable] = useState(holidayListTable)
-  const [modal, setModal] = useState({
-    edit: false,
-    add: false,
-    data: '',
-  })
-  const { holidayType } = useSelector((state) => state.dropdown)
+  const [sm, updateSm] = useState(false)
+  const history = useHistory()
 
   const dispatch = useDispatch()
 
@@ -31,57 +29,15 @@ const HolidayList = ({ ...props }) => {
     dispatch(holidayList('holiday'))
     dispatch(fetchData('master/holidayType'))
   }, [])
-
-  const [apiCallStatus, setApiCallStatus] = useState({
-    status: '',
-    message: '',
-  })
-
   const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
     status: '',
     message: '',
   })
-  //need to add dispatch
-  const callFormSubmit = async (data) => {
-    let callAPI = await dispatch(createNewHolidayList(data))
-    if (callAPI?.payload?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(holidayList('holiday'))
-    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'error',
-        message: callAPI?.payload?.response?.data?.message,
-      })
-      toastNotify('error', callAPI?.payload?.response?.data?.message)
-    }
-  }
-  //need to add dispatch for update HolidayList
-  const updateFormSubmit = async (data, id) => {
-    let callAPI = await dispatch(updateNewHolidayList({ data, id }))
-    if (callAPI?.payload?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(holidayList('holiday'))
-      setModal({
-        edit: false,
-        add: false,
-        data: '',
-      })
-    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-      setApiCallStatus({
-        status: 'error',
-        message: callAPI?.payload?.response?.data?.message,
-      })
-      toastNotify('error', callAPI?.payload?.response?.data?.message)
-    }
-  }
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+    data: '',
+  })
 
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteHolidayData(id))
@@ -101,30 +57,11 @@ const HolidayList = ({ ...props }) => {
     }
   }
 
-  const [roleFormData, setRoleFormData] = useState([])
-
-  useEffect(() => {
-    if (roleForm?.length > 0 && Array.isArray(holidayType)) {
-      let findType = roleForm?.filter(
-        (data) => data.type === 'select' && data.key_name === 'type'
-      )
-      let findTypeUpdatedData = { ...findType?.[0], option: holidayType }
-
-      let filterRoleForm = roleForm?.filter(
-        (data) => data.type !== 'select' && data.key_name !== 'type'
-      )
-
-      let filterRoleFormUpdated = [...filterRoleForm, findTypeUpdatedData]
-
-      setRoleFormData(filterRoleFormUpdated)
-    }
-  }, [roleForm, holidayType])
-
   return (
     <React.Fragment>
       <Head title="Holiday List" />
       <Content>
-        <PageHeader
+        {/* <PageHeader
           json={roleFormData}
           string={holidayListString}
           callFormSubmit={callFormSubmit}
@@ -133,7 +70,61 @@ const HolidayList = ({ ...props }) => {
           setModal={setModal}
           modal={modal}
           updateFormSubmit={updateFormSubmit}
-        />
+        /> */}
+        <BlockHead size="sm">
+          <BlockBetween>
+            <BlockHeadContent>
+              <BlockTitle tag="h3" page>
+                {String.holiday_type}
+              </BlockTitle>
+            </BlockHeadContent>
+            <BlockHeadContent>
+              <div className="toggle-wrap nk-block-tools-toggle">
+                <Button
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                    sm ? 'active' : ''
+                  }`}
+                  onClick={() => updateSm(!sm)}
+                >
+                  <Icon name="menu-alt-r"></Icon>
+                </Button>
+                <div
+                  className="toggle-expand-content"
+                  style={{ display: sm ? 'block' : 'none' }}
+                >
+                  <ul className="nk-block-tools g-3">
+                    <li>
+                      <a
+                        href="#export"
+                        onClick={(ev) => {
+                          ev.preventDefault()
+                        }}
+                        className="btn btn-white btn-outline-light"
+                      >
+                        <Icon name="download-cloud"></Icon>
+                        <span>{String.export}</span>
+                      </a>
+                    </li>
+                    <li className="nk-block-tools-opt">
+                      <Button
+                        color="primary"
+                        className="btn-icon"
+                        onClick={() => {
+                          history.push({
+                            pathname: '/holiday/create-holiday',
+                            state: { add: true, edit: false, data: '' },
+                          })
+                        }}
+                      >
+                        <Icon name="plus"></Icon>
+                      </Button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </BlockHeadContent>
+          </BlockBetween>
+        </BlockHead>
         <HolidayPageTable
           json={roleTable}
           callDeleteFormSubmit={callDeleteFormSubmit}

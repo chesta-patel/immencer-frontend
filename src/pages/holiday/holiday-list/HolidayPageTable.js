@@ -27,6 +27,7 @@ import String from '../../../utils/String'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
+import { useHistory } from 'react-router'
 
 function HolidayPageTable(props) {
   const { infoList } = useSelector((state) => state.holidayList)
@@ -38,6 +39,7 @@ function HolidayPageTable(props) {
   const [data, setData] = useState([])
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
+  const history = useHistory()
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
@@ -477,10 +479,9 @@ function HolidayPageTable(props) {
                             color=""
                             className="btn-icon"
                             onClick={() =>
-                              props.setModal({
-                                edit: true,
-                                add: false,
-                                data: item,
+                              history.push({
+                                pathname: '/holiday/create-holiday',
+                                state: { add: false, edit: true, data: item },
                               })
                             }
                             style={{ margin: '0px' }}
