@@ -6,6 +6,7 @@ const initialState = {
   isSuccess: false,
   isError: false,
   errorMessage: '',
+  message: '',
 }
 
 export const CreateEmp = createSlice({
@@ -15,8 +16,9 @@ export const CreateEmp = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(CreateNewEmployee.fulfilled, (state, action) => {
+        state.message = action.payload.code
         state.isLoading = false
-        state.isSuccessEmp = action.payload.data.data
+        state.isSuccess = true
         state.isError = false
       })
       .addCase(CreateNewEmployee.pending, function (state, action) {
@@ -30,9 +32,10 @@ export const CreateEmp = createSlice({
         } else {
           state.errorMessage = action.payload.response.data.additionalInfo
         }
-        state.isLoading = true
+        state.isLoading = false
         state.isSuccess = false
-        state.isError = false
+        state.isError = true
+        state.errorMessage = action.error
       })
   },
 })
