@@ -49,7 +49,6 @@ function PageHeader(props) {
           title: props?.modal?.data?.title,
           description: props?.modal?.data?.description,
           date: moment(props?.modal?.data?.date).format('YYYY-DD-MM'),
-          // date: moment(props?.modal?.data?.date).format('L'),
           type: props?.modal?.data?.type,
         }
         setFdata(refactorModalData)

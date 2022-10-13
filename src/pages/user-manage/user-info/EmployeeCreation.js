@@ -139,6 +139,11 @@ const UserCreate = (props) => {
     }
   }, [isSuccess?.designation])
 
+  const [
+    getMinDateForOnBoardingAndRelieving,
+    setGetMinDateForOnBoardingAndRelieving,
+  ] = useState(null)
+
   return (
     <form
       className="content clearfix"
@@ -172,7 +177,12 @@ const UserCreate = (props) => {
             return (
               <Col md="4" key={`userCreate-form-fields-${id + 10}`}>
                 <FormGroup>
-                  <label className="form-label">{formFields.label_name}</label>
+                  <label className="form-label">
+                    {formFields.label_name}
+                    {formFields.required && (
+                      <span className="error-message">*</span>
+                    )}
+                  </label>
                   <RSelect
                     options={dropDownData?.length > 0 ? dropDownData : []}
                     name={formFields.name}
@@ -204,38 +214,47 @@ const UserCreate = (props) => {
             return (
               <Col md="4">
                 <FormGroup>
-                  <label className="form-label">{formFields.label_name}</label>
+                  <label className="form-label">
+                    {formFields.label_name}
+                    {formFields.required && (
+                      <span className="error-message">*</span>
+                    )}
+                  </label>
                   <input
+                    id={`empCreate-${formFields.key_name}`}
                     className="form-control"
+                    disabled={
+                      (formFields.key_name == 'relievingDate' ||
+                        formFields.key_name == 'onboardingDate') &&
+                      (getMinDateForOnBoardingAndRelieving ? false : true)
+                    }
                     type={formFields.type}
                     name={formFields.name}
                     placeholder={formFields.placeholder}
                     value={empCreate[`${formFields.key_name}`]}
+                    max={formFields.max}
+                    min={
+                      (formFields.key_name == 'relievingDate' ||
+                        formFields.key_name == 'onboardingDate') &&
+                      getMinDateForOnBoardingAndRelieving
+                    }
                     onChange={(e) => {
                       const oldState = cloneDeep(empCreate)
                       oldState[`${formFields.key_name}`] = e.target.value
                       setEmpCreate({ ...oldState })
                       saveEmployeeData()
-                      // setValidation(true)
+                      if (formFields.key_name === 'joiningDate') {
+                        setGetMinDateForOnBoardingAndRelieving(e.target.value)
+                      }
                     }}
                     onBlur={(e) => {
-                      const oldState = cloneDeep(empCreate)
-                      oldState[`${formFields.key_name}`] = e.target.value
-                      setEmpCreate({ ...oldState })
                       if (`${formFields.key_name}` == 'mobileNumber') {
                         setEmpCreate({
                           ...empCreate,
                           whatsappNumber: e.target.value,
                         })
                       }
-                      // setValidation(true)
                     }}
-                    // onKeyUp={(e) => {
-                    //   const oldState = cloneDeep(empCreate)
-                    //   oldState[`${formFields.name}`] = e.target.value
-                    //   setEmpCreate({ ...oldState })
-                    //   checkValidate()
-                    // }}
                   />
                   {formFields.required &&
                     !empCreate[`${formFields.key_name}`] &&
