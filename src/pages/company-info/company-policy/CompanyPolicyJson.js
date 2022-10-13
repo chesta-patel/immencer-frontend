@@ -53,7 +53,7 @@ export const companyPolicyTable = [
   {
     id: 3,
     name: `${String.uploaded_by}`,
-    key_name: [`uploadedBy`],
+    key_name: [`uploadedByName`],
   },
   {
     id: 4,

@@ -46,12 +46,12 @@ const menu = [
   {
     icon: 'file-docs',
     text: `${String.company_document}`,
-    link: '/company-info/company-document',
+    link: '/company-document',
   },
   {
     icon: 'policy',
     text: `${String.company_policy}`,
-    link: '/company-info/company-policy',
+    link: '/company-policy',
   },
   {
     icon: 'user',

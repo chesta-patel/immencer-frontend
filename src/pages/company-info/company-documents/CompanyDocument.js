@@ -112,7 +112,7 @@ const CompanyDocument = ({ ...props }) => {
                         className="btn-icon"
                         onClick={() => {
                           history.push({
-                            pathname: '/company-info/create',
+                            pathname: '/company-document/create',
                             state: { add: true, edit: false, data: '' },
                           })
                         }}

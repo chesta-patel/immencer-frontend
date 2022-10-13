@@ -184,7 +184,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/company-info/company-document`}
+          path={`/company-document`}
           render={() => (
             <UserContextProvider>
               <CompanyDocument />
@@ -193,7 +193,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/company-info/create`}
+          path={`/company-document/create`}
           render={() => (
             <UserContextProvider>
               <CreateCompanyDocument />
@@ -202,7 +202,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/company-info/company-policy`}
+          path={`/company-policy`}
           render={() => (
             <UserContextProvider>
               <CompanyPolicy />
@@ -211,7 +211,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/company-info/company-policy/create`}
+          path={`/company-policy/create`}
           render={() => (
             <UserContextProvider>
               <CreateCompanyPolicy />
