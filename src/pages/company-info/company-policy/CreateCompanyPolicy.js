@@ -37,7 +37,7 @@ function CreateCompanyPolicy() {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch(companyPolicy('companyPolicies'))
-      window.location.href = '/company-info/company-policy'
+      window.location.href = '/company-policy'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -56,7 +56,7 @@ function CreateCompanyPolicy() {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch(companyPolicy('companyPolicies'))
-      window.location.href = '/company-info/company-policy'
+      window.location.href = '/company-policy'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',

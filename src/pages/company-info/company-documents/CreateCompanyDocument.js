@@ -55,7 +55,7 @@ function CreateCompanyDocument() {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch(companyDocument('companyDocument'))
-      window.location.href = '/company-info/company-document'
+      window.location.href = '/company-document'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -76,7 +76,7 @@ function CreateCompanyDocument() {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch(companyDocument('companyDocument'))
-      window.location.href = '/company-info/company-document'
+      window.location.href = '/company-document'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',

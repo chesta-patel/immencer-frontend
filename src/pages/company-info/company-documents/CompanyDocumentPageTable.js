@@ -42,7 +42,9 @@ function CompanyDocumentPageTable(props) {
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = infoList
+    ?.filter((data) => data.isDeleted !== 1 && data.isActive === 1)
+    ?.slice(indexOfFirstItem, indexOfLastItem)
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
   const history = useHistory()
   useEffect(() => {
@@ -447,7 +449,7 @@ function CompanyDocumentPageTable(props) {
                         </div>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{item.uploadedBy}</span>
+                        <span>{item.uploadedByName}</span>
                       </DataTableRow>
                       <DataTableRow size="md">
                         <span>
@@ -481,7 +483,7 @@ function CompanyDocumentPageTable(props) {
                             className="btn-icon"
                             onClick={() =>
                               history.push({
-                                pathname: '/company-info/create',
+                                pathname: '/company-document/create',
                                 state: { add: false, edit: true, data: item },
                               })
                             }
