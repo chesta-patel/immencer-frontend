@@ -478,7 +478,7 @@ function CompanyPolicyPageTable(props) {
                             <em class="icon ni ni-eye"></em>
                           </Button>
                         </span>
-                        <span className="ml-2">
+                        <span className="policy_edit">
                           <Button
                             color=""
                             className="btn-icon"
