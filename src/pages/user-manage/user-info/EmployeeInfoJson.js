@@ -1,3 +1,4 @@
+import moment from 'moment'
 import String from '../../../utils/String'
 
 export const userInfo = [
@@ -14,22 +15,22 @@ export const userInfo = [
   {
     id: 3,
     name: `${String.designation}`,
-    key_name: [`designation`],
+    key_name: [`designationName`],
   },
   {
     id: 3,
     name: `${String.blood_group}`,
-    key_name: [`bloodGroup`],
+    key_name: [`bloodGroupName`],
   },
   {
     id: 4,
     name: `${String.department}`,
-    key_name: [`department`],
+    key_name: [`departmentName`],
   },
   {
     id: 5,
     name: `${String.team_lead}`,
-    key_name: [`teamLead`],
+    key_name: [``],
   },
   {
     id: 6,
@@ -45,7 +46,7 @@ export const userCreate = [
     type: 'text',
     name: `${String.first_name}`,
     placeholder: `${String.enter} ${String.first_name}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'firstName',
   },
   {
@@ -62,7 +63,7 @@ export const userCreate = [
     type: 'text',
     name: `${String.last_name}`,
     placeholder: `${String.enter} ${String.last_name}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'lastName',
   },
   {
@@ -71,7 +72,7 @@ export const userCreate = [
     type: 'text',
     name: `${String.employee_code}`,
     placeholder: `${String.enter} ${String.employee_code}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'employeeCode',
   },
   {
@@ -80,7 +81,7 @@ export const userCreate = [
     type: 'email',
     name: `${String.company_email}`,
     placeholder: `${String.enter} ${String.company_email}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'companyEmail',
   },
   {
@@ -89,7 +90,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.employment} ${String.status}`,
     state_name: 'empStatus',
-    required: 'Required *',
+    required: 'Required',
     key_name: 'employmentStatus',
   },
   {
@@ -98,7 +99,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.department}`,
     state_name: 'department',
-    required: 'Required *',
+    required: 'Required',
     key_name: 'department',
   },
   {
@@ -107,7 +108,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.designation}`,
     state_name: 'designation',
-    required: 'Required *',
+    required: 'Required',
     key_name: 'designation',
   },
   {
@@ -116,15 +117,15 @@ export const userCreate = [
     type: 'select',
     name: `${String.manager_team_lead}`,
     state_name: 'teamLead',
+    required: 'Required',
     key_name: 'teamLead',
-    // required: 'Required *',
   },
   {
     id: 10,
     label_name: `${String.joining_date}`,
     type: 'date',
     name: `${String.joining_date}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'joiningDate',
   },
   {
@@ -132,7 +133,6 @@ export const userCreate = [
     label_name: `${String.onboarding_date}`,
     type: 'date',
     name: `${String.onboarding_date}`,
-    required: 'Required *',
     key_name: 'onboardingDate',
   },
   {
@@ -140,7 +140,6 @@ export const userCreate = [
     label_name: `${String.relieving_date}`,
     type: 'date',
     name: `${String.relieving_date}`,
-    required: 'Required *',
     key_name: 'relievingDate',
   },
   {
@@ -148,8 +147,8 @@ export const userCreate = [
     label_name: `${String.birth_day}`,
     type: 'date',
     name: `${String.birth_day}`,
-    required: 'Required *',
-    max: new Date().toISOString().split('T')[0],
+    required: 'Required',
+    max: moment().format('YYYY-MM-DD'),
     key_name: 'birthDate',
   },
   {
@@ -158,7 +157,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.nationality}`,
     state_name: 'nationality',
-    required: 'Required *',
+    required: 'Required',
     key_name: 'nationality',
   },
   {
@@ -167,7 +166,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.blood_group}`,
     state_name: 'bloodGroup',
-    required: 'Required *',
+    required: 'Required',
     key_name: 'bloodGroup',
   },
   {
@@ -176,7 +175,7 @@ export const userCreate = [
     type: 'select',
     name: `${String.gender}`,
     state_name: 'gender',
-    required: 'Required *',
+    required: 'Required',
     key_name: 'gender',
   },
   {
@@ -184,7 +183,7 @@ export const userCreate = [
     label_name: `${String.personal_email}`,
     type: 'email',
     name: `${String.personal_email}`,
-    required: 'Required *',
+    required: 'Required',
     placeholder: `${String.Please_enter} ${String.personal_email}`,
     key_name: 'personalEmail',
   },
@@ -195,7 +194,7 @@ export const userCreate = [
     name: `${String.mobile_number}`,
     validationType: 'mobile-number',
     validationMessage: `${String.Please_enter} ${String.valid} ${String.mobile_number}`,
-    required: 'Required *',
+    required: 'Required',
     placeholder: `${String.Please_enter} ${String.mobile_number}`,
     key_name: 'mobileNumber',
   },
@@ -207,7 +206,7 @@ export const userCreate = [
     validationType: 'mobile-number',
     validationMessage: `${String.Please_enter} ${String.valid} ${String.whatsapp_mobile}`,
     placeholder: `${String.Please_enter} ${String.whatsapp_mobile}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'whatsappNumber',
   },
   {
@@ -217,7 +216,7 @@ export const userCreate = [
     name: `${String.parent_mobile}`,
     validationType: 'mobile-number',
     validationMessage: `${String.Please_enter} ${String.valid} ${String.parent_mobile}`,
-    required: 'Required *',
+    required: 'Required',
     placeholder: `${String.Please_enter} ${String.parent_mobile}`,
     key_name: 'parentsMobileNumber',
   },
@@ -229,7 +228,6 @@ export const userCreate = [
     validationMessage: `${String.Please_enter} ${String.valid} ${String.aadhaar_card_number}`,
     name: `${String.aadhaar_card_number}`,
     placeholder: `${String.Please_enter} ${String.aadhaar_card_number}`,
-    required: 'Required *',
     key_name: 'aadharCard',
   },
   {
@@ -240,7 +238,6 @@ export const userCreate = [
     validationMessage: `${String.Please_enter} ${String.valid} ${String.pan_card_number}`,
     name: `${String.pan_card_number}`,
     placeholder: `${String.Please_enter} ${String.pan_card_number}`,
-    required: 'Required *',
     key_name: 'panCard',
   },
 ]
@@ -252,7 +249,7 @@ export const AddressDetailForm = [
     type: 'text',
     name: `${String.address_1}`,
     placeholder: `${String.enter} ${String.address_1}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'address1',
   },
   {
@@ -261,7 +258,7 @@ export const AddressDetailForm = [
     type: 'text',
     name: `${String.address_2}`,
     placeholder: `${String.enter} ${String.address_2}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'address2',
   },
   {
@@ -271,7 +268,7 @@ export const AddressDetailForm = [
     name: `${String.country}`,
     state_name: 'countries',
     placeholder: `${String.enter} ${String.country}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'country',
   },
   {
@@ -281,7 +278,7 @@ export const AddressDetailForm = [
     name: `${String.state_region}`,
     state_name: 'states',
     placeholder: `${String.enter} ${String.state_region}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'state',
   },
   {
@@ -291,7 +288,7 @@ export const AddressDetailForm = [
     name: `${String.city}`,
     state_name: 'city',
     placeholder: `${String.enter} ${String.city}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'city',
   },
   {
@@ -300,7 +297,7 @@ export const AddressDetailForm = [
     type: 'number',
     name: `${String.postal_code}`,
     placeholder: `${String.enter} ${String.postal_code}`,
-    required: 'Required *',
+    required: 'Required',
     key_name: 'zipCode',
   },
 ]
