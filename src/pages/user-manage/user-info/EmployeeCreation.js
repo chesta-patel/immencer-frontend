@@ -30,6 +30,7 @@ import {
   EmployeeEdit,
   EmployeeUpdate,
 } from '../../../services/thunk/EmployeeEditThunk'
+import { empDetail } from '../../../services/thunk/EmployeeDetailThunk'
 
 const UserCreate = (props) => {
   const allDropdownState = useSelector((state) => state.dropdown)
@@ -58,12 +59,13 @@ const UserCreate = (props) => {
   }, [])
 
   useEffect(() => {
-    if (location.pathname === '/employee/employee-update') {
-      setEmpCreate({ ...empCreate, ...isSuccess })
-    } else {
+    console.log('isSuccess', isSuccess)
+    if (location.pathname !== '/employee/employee-update') {
       setEmpCreate({ ...empCreate, ...formData })
+    } else {
+      setEmpCreate({ ...empCreate, ...isSuccess })
     }
-  }, [])
+  }, [location])
 
   const submitForm = (e) => {
     e.preventDefault()
@@ -173,7 +175,7 @@ const UserCreate = (props) => {
                     options={dropDownData?.length > 0 ? dropDownData : []}
                     name={formFields.name}
                     value={dropDownData?.find((data) => {
-                      return data.label === empCreate[`${formFields.key_name}`]
+                      return data.value === empCreate[`${formFields.key_name}`]
                     })}
                     onChange={(e) => {
                       if (formFields.label_name == `${String.designation}`) {
@@ -206,14 +208,7 @@ const UserCreate = (props) => {
                     type={formFields.type}
                     name={formFields.name}
                     placeholder={formFields.placeholder}
-                    value={
-                      empCreate[`${formFields.key_name}`] &&
-                      formFields.type === 'date'
-                        ? moment(empCreate[`${formFields.key_name}`]).format(
-                            'YYYY-DD-MM'
-                          )
-                        : empCreate[`${formFields.key_name}`]
-                    }
+                    value={empCreate[`${formFields.key_name}`]}
                     onChange={(e) => {
                       const oldState = cloneDeep(empCreate)
                       oldState[`${formFields.key_name}`] = e.target.value
@@ -599,18 +594,14 @@ const Permission = (props) => {
   const [permissionSt, setPermissionSt] = useState([])
   const dispatch = useDispatch()
   const { formData } = useSelector((state) => state.createNewEmpData)
-  const { isError, errorMessage, isSuccessEmp } = useSelector(
-    (state) => state.CreateEmp
-  )
   const { isSuccess } = useSelector((state) => state.getEmpDetail)
-
   const [apiCallStatus, setApiCallStatus] = useState({
     status: '',
     message: '',
   })
   const history = useHistory()
   const location = useLocation()
-  // const toggle = () => setDropdownOpen((prevState) => !prevState)
+
   tableHeader.map((e, index) => {
     for (const key in e) {
       if (e[key] === '') {
@@ -622,7 +613,7 @@ const Permission = (props) => {
     permissionSt['Leave'] = [false, false, false, false]
     permissionSt['Holiday'] = [false, false, false, false]
     permissionSt['Asset'] = [false, false, false, false]
-  })
+  }, [])
   const c = tableHeader.filter((value) => Object.keys(value).length !== 0)
   const handlechange = (e) => {
     var value = e.target.checked
@@ -750,13 +741,16 @@ const Permission = (props) => {
           message: callAPI?.payload?.data?.message,
         })
         toastNotify('success', callAPI?.payload?.data?.message)
-        // dispatch(CreateNewEmployee(formData))
+        dispatch(empDetail('empDetail'))
         history.push('/employee')
       } else if (!callAPI?.payload?.response?.data?.isSuccess) {
         setApiCallStatus({
           status: 'error',
           message: callAPI?.payload?.response?.data?.message,
         })
+        dispatch(empDetail('empDetail'))
+        history.push('/employee')
+
         toastNotify('error', callAPI?.payload?.response?.data?.message)
       }
     } else {
@@ -775,6 +769,8 @@ const Permission = (props) => {
           status: 'error',
           message: callAPI?.payload?.response?.data?.message,
         })
+        dispatch(getCreateNewEmpData('getCreateNewEmpData'))
+        history.push('/employee')
         toastNotify('error', callAPI?.payload?.response?.data?.message)
       }
     }

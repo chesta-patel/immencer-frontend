@@ -6,7 +6,7 @@ const initialState = {
   isSuccess: false,
   isError: false,
   errorMessage: '',
-  formData: {},
+  formData: [],
 }
 
 export const createNewEmpData = createSlice({

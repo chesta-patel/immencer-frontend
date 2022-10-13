@@ -16,7 +16,7 @@ export const getCreateNewEmpData = createAsyncThunk(
 )
 
 export const CreateNewEmployee = createAsyncThunk(
-  '',
+  'CreateNewEmployee',
   async (payload, thunkAPI) => {
     try {
       const response = await axios.post(`${API_URL}employee`, payload, {
