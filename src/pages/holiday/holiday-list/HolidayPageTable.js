@@ -41,7 +41,9 @@ function HolidayPageTable(props) {
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = infoList
+    ?.filter((data) => data.isDeleted !== 1 && data.isActive === 1)
+    ?.slice(indexOfFirstItem, indexOfLastItem)
 
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
   useEffect(() => {

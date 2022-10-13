@@ -43,7 +43,9 @@ function CompanyPolicyPageTable(props) {
   // Get current list, pagination
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  const currentItems = infoList?.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = infoList
+    ?.filter((data) => data.isDeleted !== 1 && data.isActive === 1)
+    ?.slice(indexOfFirstItem, indexOfLastItem)
 
   const [modal, setModal] = useState({ view: false, link: '' })
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
@@ -453,7 +455,7 @@ function CompanyPolicyPageTable(props) {
                         </div>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{item.uploadedBy}</span>
+                        <span>{item.uploadedByName}</span>
                       </DataTableRow>
                       <DataTableRow size="md">
                         <span>
@@ -496,7 +498,7 @@ function CompanyPolicyPageTable(props) {
                             className="btn-icon"
                             onClick={() =>
                               history.push({
-                                pathname: '/company-info/company-policy/create',
+                                pathname: '/company-policy/create',
                                 state: { add: false, edit: true, data: item },
                               })
                             }

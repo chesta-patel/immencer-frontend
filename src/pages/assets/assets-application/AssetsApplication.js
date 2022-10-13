@@ -74,7 +74,7 @@ const AssetApplication = ({ ...props }) => {
                         color="primary"
                         className="btn-icon"
                         onClick={() => {
-                          history.push('/assets/create-assets-application')
+                          history.push('/assets/create')
                         }}
                       >
                         <Icon name="plus"></Icon>
