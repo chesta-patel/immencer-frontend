@@ -94,7 +94,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/assets/assets-application`}
+          path={`/assets`}
           render={() => (
             <UserContextProvider>
               <AssetApplication />
@@ -103,7 +103,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/assets/create-assets-application`}
+          path={`/assets/create`}
           render={() => (
             <UserContextProvider>
               <CreateAssetsApplication />
@@ -130,7 +130,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/leave/leave-application`}
+          path={`/leave`}
           render={() => (
             <UserContextProvider>
               <LeaveApplication />
@@ -157,7 +157,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/holiday/holiday-list`}
+          path={`/holiday`}
           render={() => (
             <UserContextProvider>
               <HolidayList />
