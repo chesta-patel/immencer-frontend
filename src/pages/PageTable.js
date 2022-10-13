@@ -28,6 +28,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { empDetail } from '../services/thunk/EmployeeDetailThunk'
 import { toastNotify } from '../layout/Index'
+import './user-manage/user-info/PageTable.scss'
 
 function PageTable(props) {
   const [currentPage] = useState(1)

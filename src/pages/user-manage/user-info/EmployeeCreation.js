@@ -86,10 +86,12 @@ const UserCreate = (props) => {
     if (checkValidation.length === 0) {
       props.next()
       dispatch(getCreateNewEmpData(empCreate))
+      console.log('employe data in redux:', formData)
     }
   }
   const saveEmployeeData = () => {
     dispatch(getCreateNewEmpData(empCreate))
+    console.log('employe data in redux:', formData)
   }
 
   const checkValidate = () => {
@@ -322,6 +324,7 @@ const AddressDetails = (props) => {
     if (checkValidate.length === 0) {
       props.next()
       dispatch(getCreateNewEmpData({ currentAddress, permanentAddress }))
+      console.log('employe data in redux:', formData)
     }
   }
   const handleChangeAddress = (dropdown, dropDownType) => {
@@ -613,7 +616,7 @@ const Permission = (props) => {
   const [permissionSt, setPermissionSt] = useState([])
   const dispatch = useDispatch()
   const { formData } = useSelector((state) => state.createNewEmpData)
-  const { isSuccess } = useSelector((state) => state.getEmpDetail)
+  // const { isSuccess } = useSelector((state) => state.getEmpDetail)
   const [apiCallStatus, setApiCallStatus] = useState({
     status: '',
     message: '',
@@ -747,52 +750,48 @@ const Permission = (props) => {
         break
     }
   }
-  const AddPermission = () => {
-    dispatch(getCreateNewEmpData(getPermission()))
-  }
+  // const AddPermission = () => {
+  //   dispatch(getCreateNewEmpData(getPermission()))
+  //   // console.log('formdata', formData)
+  // }
   const CreateEmployee = async () => {
-    if (location.pathname == '/employee/employee-update') {
-      AddPermission()
-      let callAPI = await dispatch(EmployeeUpdate(formData))
-      if (callAPI?.payload?.data?.isSuccess) {
-        setApiCallStatus({
-          status: 'success',
-          message: callAPI?.payload?.data?.message,
-        })
-        toastNotify('success', callAPI?.payload?.data?.message)
-        dispatch(empDetail('empDetail'))
-        history.push('/employee')
-      } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-        setApiCallStatus({
-          status: 'error',
-          message: callAPI?.payload?.response?.data?.message,
-        })
-        dispatch(empDetail('empDetail'))
-        history.push('/employee')
+    // if (location.pathname == '/employee/employee-update') {
+    //   let callAPI = await dispatch(EmployeeUpdate(formData))
+    //   if (callAPI?.payload?.data?.isSuccess) {
+    //     setApiCallStatus({
+    //       status: 'success',
+    //       message: callAPI?.payload?.data?.message,
+    //     })
+    //     toastNotify('success', callAPI?.payload?.data?.message)
+    //     // dispatch(empDetail('empDetail'))
+    //     history.push('/employee')
+    //   } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+    //     setApiCallStatus({
+    //       status: 'error',
+    //       message: callAPI?.payload?.response?.data?.message,
+    //     })
+    //     // dispatch(empDetail('empDetail'))
+    //     toastNotify('error', callAPI?.payload?.response?.data?.message)
+    //   }
+    // } else {
+    dispatch(getCreateNewEmpData(getPermission()))
 
-        toastNotify('error', callAPI?.payload?.response?.data?.message)
-      }
-    } else {
-      AddPermission()
-      let callAPI = await dispatch(CreateNewEmployee(formData))
-      if (callAPI?.payload?.data?.isSuccess) {
-        setApiCallStatus({
-          status: 'success',
-          message: callAPI?.payload?.data?.message,
-        })
-        toastNotify('success', callAPI?.payload?.data?.message)
-        // dispatch(companyDocument('companyDocuments'))
-        history.push('/employee')
-      } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-        setApiCallStatus({
-          status: 'error',
-          message: callAPI?.payload?.response?.data?.message,
-        })
-        dispatch(getCreateNewEmpData('getCreateNewEmpData'))
-        history.push('/employee')
-        toastNotify('error', callAPI?.payload?.response?.data?.message)
-      }
+    let callAPI = await dispatch(CreateNewEmployee(formData))
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      history.push('/employee')
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
+    // }
   }
 
   return (
