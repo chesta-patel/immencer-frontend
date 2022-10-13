@@ -17,16 +17,12 @@ export const EmployeeUpdate = createAsyncThunk(
           },
         }
       )
-      console.log('response', response)
-
       if (response.status === 201) {
         return response
       } else {
         return thunkAPI.rejectWithValue(response)
       }
     } catch (error) {
-      console.log('error', error)
-
       return thunkAPI.rejectWithValue(error)
     }
   }
