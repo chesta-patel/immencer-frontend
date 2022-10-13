@@ -13,35 +13,17 @@ const menu = [
   {
     icon: 'archived',
     text: `${String.assets}`,
-    active: false,
-    subMenu: [
-      {
-        text: `${String.assets_application}`,
-        link: '/assets/assets-application',
-      },
-    ],
+    link: '/assets',
   },
   {
     icon: 'calendar-alt',
     text: `${String.leave}`,
-    active: false,
-    subMenu: [
-      {
-        text: `${String.leave_application}`,
-        link: '/leave/leave-application',
-      },
-    ],
+    link: '/leave',
   },
   {
     icon: 'calendar-booking',
     text: `${String.holiday}`,
-    active: false,
-    subMenu: [
-      {
-        text: `${String.holiday_list}`,
-        link: '/holiday/holiday-list',
-      },
-    ],
+    link: '/holiday',
   },
   {
     icon: 'file-docs',
