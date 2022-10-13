@@ -87,7 +87,7 @@ const UserInfo = ({ ...props }) => {
                         color="primary"
                         className="btn-icon"
                         onClick={() => {
-                          history.push('/employee/employee_creation')
+                          history.push('/employee/employee-creation')
                         }}
                       >
                         <Icon name="plus"></Icon>

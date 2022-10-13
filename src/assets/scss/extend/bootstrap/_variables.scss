@@ -53,6 +53,11 @@ $theme-colors: map-merge(
     'gray': $light-500,
     'light': $light-200,
     'lighter': $lighter,
+    'bluefirst': #1560bd,
+    'bluesecond': #192bc2,
+    'bluethird': #0047ab,
+    'lightCard': #6495ed,
+    'cardGray': #a8a9a8,
   ),
   $theme-colors
 );
@@ -143,7 +148,7 @@ $spacers: map-merge(
     // 2: ($spacer * .5),
     // 3: $spacer,
     // 4: ($spacer * 1.5),
-    // 5: ($spacer * 3),
+    // 5: ($spacer * 3),,,,,,,,,,,,,,
   ),
   $spacers
 );

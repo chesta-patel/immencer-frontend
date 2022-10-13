@@ -15,6 +15,14 @@ import CompanyPolicy from '../pages/company-info/company-policy/CompanyPolicy'
 import EmployeeCreation from '../pages/user-manage/user-info/EmployeeCreation'
 import HomePage from '../pages/HomePage'
 import EmployeeDetail from '../pages/user-manage/user-info/employee-detail/EmployeeDetail'
+import ApplyLeave from '../pages/leave/leave-application/ApplyLeave'
+import CreateAssetsType from '../pages/assets/asset-type/CreateAssetsType'
+import CreateAssetsApplication from '../pages/assets/assets-application/CreateAssetsApplication'
+// import CreateHoliday from '../pages/holiday/holiday-list/CreateHoliday'
+import CreateHolidayType from '../pages/holiday/holiday-type/CreateHolidayType'
+import CreateCompanyDocument from '../pages/company-info/company-documents/CreateCompanyDocument'
+import CreateCompanyPolicy from '../pages/company-info/company-policy/CreateCompanyPolicy'
+import CreateLeaveType from '../pages/leave/leave-type/CreateLeaveType'
 
 const Pages = () => {
   useLayoutEffect(() => {
@@ -36,7 +44,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/employee/employee_creation`}
+          path={`/employee/employee-creation`}
           render={() => (
             <UserContextProvider>
               <EmployeeCreation />
@@ -59,7 +67,7 @@ const Pages = () => {
         ></Route>
         <Route
           exact
-          path={`/employee/employee_update`}
+          path={`/employee/employee-update`}
           render={() => (
             <UserContextProvider>
               <EmployeeCreation />
@@ -77,10 +85,28 @@ const Pages = () => {
         ></Route>
         <Route
           exact
+          path={`/assets/create-assetsType`}
+          render={() => (
+            <UserContextProvider>
+              <CreateAssetsType />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
           path={`/assets/assets-application`}
           render={() => (
             <UserContextProvider>
               <AssetApplication />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/assets/create-assets-application`}
+          render={() => (
+            <UserContextProvider>
+              <CreateAssetsApplication />
             </UserContextProvider>
           )}
         ></Route>
@@ -95,10 +121,28 @@ const Pages = () => {
         ></Route>
         <Route
           exact
+          path={`/leave/leave-type/create`}
+          render={() => (
+            <UserContextProvider>
+              <CreateLeaveType />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
           path={`/leave/leave-application`}
           render={() => (
             <UserContextProvider>
               <LeaveApplication />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/leave/apply-leave`}
+          render={() => (
+            <UserContextProvider>
+              <ApplyLeave />
             </UserContextProvider>
           )}
         ></Route>
@@ -120,6 +164,24 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
+        {/* <Route
+          exact
+          path={`/holiday/create-holiday`}
+          render={() => (
+            <UserContextProvider>
+              <CreateHoliday />
+            </UserContextProvider>
+          )}
+        ></Route> */}
+        <Route
+          exact
+          path={`/holiday/create-holiday-type`}
+          render={() => (
+            <UserContextProvider>
+              <CreateHolidayType />
+            </UserContextProvider>
+          )}
+        ></Route>
         <Route
           exact
           path={`/company-info/company-document`}
@@ -131,10 +193,28 @@ const Pages = () => {
         ></Route>
         <Route
           exact
+          path={`/company-info/create`}
+          render={() => (
+            <UserContextProvider>
+              <CreateCompanyDocument />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
           path={`/company-info/company-policy`}
           render={() => (
             <UserContextProvider>
               <CompanyPolicy />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/company-info/company-policy/create`}
+          render={() => (
+            <UserContextProvider>
+              <CreateCompanyPolicy />
             </UserContextProvider>
           )}
         ></Route>
