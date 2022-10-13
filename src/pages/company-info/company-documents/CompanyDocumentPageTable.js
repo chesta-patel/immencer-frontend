@@ -28,6 +28,7 @@ import { useSelector } from 'react-redux'
 import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
 import { useHistory } from 'react-router'
+import { shortObjectWithNUmber } from '../../../utils/Helpers'
 
 function CompanyDocumentPageTable(props) {
   const { infoList } = useSelector((state) => state.companyDocument)
@@ -45,6 +46,7 @@ function CompanyDocumentPageTable(props) {
   const currentItems = infoList
     ?.filter((data) => data.isDeleted !== 1 && data.isActive === 1)
     ?.slice(indexOfFirstItem, indexOfLastItem)
+    ?.sort(shortObjectWithNUmber('seqNo'))
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
   const history = useHistory()
   useEffect(() => {

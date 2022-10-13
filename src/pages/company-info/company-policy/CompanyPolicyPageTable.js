@@ -28,6 +28,7 @@ import moment from 'moment'
 import { useSelector } from 'react-redux'
 import './companyPolicy.scss'
 import { useHistory } from 'react-router'
+import { shortObjectWithNUmber } from '../../../utils/Helpers'
 
 function CompanyPolicyPageTable(props) {
   const { infoList } = useSelector((state) => state.companyPolicy)
@@ -46,7 +47,7 @@ function CompanyPolicyPageTable(props) {
   const currentItems = infoList
     ?.filter((data) => data.isDeleted !== 1 && data.isActive === 1)
     ?.slice(indexOfFirstItem, indexOfLastItem)
-
+    ?.sort(shortObjectWithNUmber('seqNo'))
   const [modal, setModal] = useState({ view: false, link: '' })
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
 

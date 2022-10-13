@@ -146,11 +146,10 @@ function PageTable(props) {
     // const dataAsFormData = getFormData(data)
     let callAPI = await dispatch(empDetail(`employee/${id}`))
     if (callAPI?.payload?.data?.isSuccess) {
-      // setApiCallStatus({
-      //   status: 'success',
-      //   message: callAPI?.payload?.data?.message,
-      // })
-      // toastNotify('success', callAPI?.payload?.data?.message)
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
       history.push('/employee/employee-update')
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
@@ -158,6 +157,7 @@ function PageTable(props) {
         message: callAPI?.payload?.response?.data?.message,
       })
       toastNotify('error', callAPI?.payload?.response?.data?.message)
+      history.push('/employee')
     }
   }
 
