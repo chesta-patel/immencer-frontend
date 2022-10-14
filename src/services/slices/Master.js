@@ -17,6 +17,8 @@ const initialState = {
   states: [],
   city: [],
   holidayType: [],
+  leaveType: [],
+  leaveDayType: [],
 }
 
 export const dropdownSlice = createSlice({
@@ -24,45 +26,62 @@ export const dropdownSlice = createSlice({
   initialState,
   reducers: [],
   extraReducers: (builder) => {
-    builder.addCase(fetchData.fulfilled, (state, action) => {
-      switch (Object.keys(action.payload.data)?.[0]) {
-        case 'employmentStatus':
-          state.empStatus = action.payload.data.employmentStatus
-          break
-        case 'department':
-          state.department = action.payload.data.department
-          break
-        case 'designation':
-          state.designation = action.payload.data.designation
-          break
-        case 'bloodGroup':
-          state.bloodGroup = action.payload.data.bloodGroup
-          break
-        case 'gender':
-          state.gender = action.payload.data.gender
-          break
-        case 'nationality':
-          state.nationality = action.payload.data.nationality
-          break
-        case 'teamLead':
-          state.teamLead = action.payload.data.teamLead
-          break
-        case 'countries':
-          state.countries = action.payload.data.countries
-          break
-        case 'states':
-          state.states = action.payload.data.states
-          break
-        case 'cities':
-          state.city = action.payload.data.cities
-          break
-        case 'holidayType':
-          state.holidayType = action.payload.data.holidayType
-          break
-        default:
-          break
-      }
-    })
+    builder
+      .addCase(fetchData.fulfilled, (state, action) => {
+        switch (Object.keys(action.payload.data)?.[0]) {
+          case 'employmentStatus':
+            state.empStatus = action.payload.data.employmentStatus
+            break
+          case 'department':
+            state.department = action.payload.data.department
+            break
+          case 'designation':
+            state.designation = action.payload.data.designation
+            break
+          case 'bloodGroup':
+            state.bloodGroup = action.payload.data.bloodGroup
+            break
+          case 'gender':
+            state.gender = action.payload.data.gender
+            break
+          case 'nationality':
+            state.nationality = action.payload.data.nationality
+            break
+          case 'teamLead':
+            state.teamLead = action.payload.data.teamLead
+            break
+          case 'countries':
+            state.countries = action.payload.data.countries
+            break
+          case 'states':
+            state.states = action.payload.data.states
+            break
+          case 'cities':
+            state.city = action.payload.data.cities
+            break
+          case 'holidayType':
+            state.holidayType = action.payload.data.holidayType
+            break
+          case 'leaveType':
+            state.leaveType = action.payload.data.leaveType
+            break
+          case 'leaveDayType':
+            state.leaveDayType = action.payload.data.leaveDayType
+            break
+          default:
+            break
+        }
+      })
+      .addCase(fetchData.pending, function (state, action) {
+        state.isLoading = false
+        state.isSuccess = false
+        state.isError = false
+      })
+      .addCase(fetchData.rejected, function (state, action) {
+        state.isLoading = false
+        state.isSuccess = false
+        state.isError = true
+      })
   },
 })
 

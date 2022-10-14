@@ -502,7 +502,7 @@ function PageTable(props) {
                 </div>
               </DataTableRow> */}
               {props.json.map((colum, id) => (
-                <DataTableRow size="md" key={id}>
+                <DataTableRow size="sm" key={id}>
                   <span className="sub-text">{colum.name}</span>
                 </DataTableRow>
               ))}
