@@ -191,7 +191,7 @@ const String = {
   i_want: 'I want to inform',
   code: 'Code',
   serialNumber: 'Serial Number',
-  assign: 'Assign',
+  assignee: 'Assignee',
   assignDate: 'Assign Date',
   notes: 'Notes',
 }

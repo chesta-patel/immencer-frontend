@@ -123,11 +123,15 @@ function PageHeader(props) {
               let selectOptionData = formFields?.option?.map((data) => {
                 let dataObj = {
                   value: data?.id,
-                  label: data?.holiday_type,
+                  label:
+                    data?.firstName || data?.lastName
+                      ? `${data?.firstName} ${data?.lastName}`
+                      : data?.holiday_type
+                      ? data?.holiday_type
+                      : data.name,
                 }
                 return dataObj
               })
-
               let selectOptionValueData = formFields?.option?.filter(
                 (data) => data.id == props?.modal?.data?.type
               )
@@ -249,7 +253,7 @@ function PageHeader(props) {
                 }
               }
             })}
-            <Col size="4">
+            <Col size="4" className="col-lg-12">
               <Button
                 color="primary"
                 type="submit"

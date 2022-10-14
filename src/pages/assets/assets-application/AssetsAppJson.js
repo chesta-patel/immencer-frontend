@@ -1,4 +1,5 @@
 import String from '../../../utils/String'
+import moment from 'moment'
 
 export const assetAppForm = [
   {
@@ -26,7 +27,7 @@ export const assetAppForm = [
     name: `${String.type}`,
     required: `${String.Please_enter} ${String.type}`,
     placeholder: `${String.enter} ${String.type}`,
-    key_name: 'type',
+    key_name: `${String.type}`,
     option: [
       { value: 'Select type', label: 'Select type' },
       { value: 'Paid', label: 'Paid' },
@@ -57,12 +58,12 @@ export const assetAppForm = [
   },
   {
     id: 6,
-    label_name: `${String.assign}`,
-    type: 'number',
-    name: `${String.assign}`,
-    required: `${String.Please_enter} ${String.assign}`,
-    placeholder: `${String.enter} ${String.assign}`,
-    key_name: `${String.assign}`,
+    label_name: `${String.assignee}`,
+    type: 'select',
+    name: 'select',
+    required: `${String.Please_enter} ${String.assignee}`,
+    placeholder: `${String.enter} ${String.assignee}`,
+    key_name: `${String.assignee}`,
   },
   {
     id: 7,
@@ -70,6 +71,7 @@ export const assetAppForm = [
     type: 'date',
     name: `${String.assignDate}`,
     required: `${String.Please_enter} ${String.assignDate}`,
+    max: moment().format('YYYY-MM-DD'),
     key_name: 'assignDate',
   },
   {
