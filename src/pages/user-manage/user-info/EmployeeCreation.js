@@ -340,6 +340,8 @@ const AddressDetails = (props) => {
     }
   }
   const handleChangeAddress = (dropdown, dropDownType) => {
+    console.log('🚀 ~ dropDownType', dropDownType)
+    console.log('🚀 ~ dropdown', dropdown)
     switch (dropDownType) {
       case 'Country':
         setCountry(dropdown)
@@ -379,7 +381,7 @@ const AddressDetails = (props) => {
     setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
   }, [formData])
   useEffect(() => {
-    if (location.pathname === '/employee/employee_update') {
+    if (location.pathname === '/employee/employee-update') {
       setPermanentAddress({
         ...permanentAddress,
         ...formData?.permanentAddress,
