@@ -20,6 +20,7 @@ import { fetchData } from '../../../services/thunk/AuthThunk'
 import { useDispatch } from 'react-redux'
 import { empData } from '../../../services/thunk/GetEmployee'
 import Loader from '../../Loader'
+import { getCreateNewEmpData } from '../../../services/thunk/CreateNewEmpDataThunk'
 
 const UserInfo = ({ ...props }) => {
   const history = useHistory()
@@ -75,6 +76,7 @@ const UserInfo = ({ ...props }) => {
                         color="primary"
                         className="btn-icon"
                         onClick={() => {
+                          dispatch(getCreateNewEmpData())
                           history.push('/employee/employee-creation')
                         }}
                       >

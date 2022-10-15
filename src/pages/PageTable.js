@@ -526,7 +526,7 @@ function PageTable(props) {
                                   <UserAvatar
                                     theme={item.avatarBg}
                                     text={findUpper(
-                                      `${item.firstName} ${item.lastName}`
+                                      `${item?.firstName?.toUpperCase()} ${item?.lastName?.toUpperCase()}`
                                     )}
                                     image={item.image}
                                   ></UserAvatar>

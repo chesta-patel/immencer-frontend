@@ -42,15 +42,18 @@ const menu = [
     subMenu: [
       {
         text: `${String.assets_type}`,
-        link: '/assets/assets-type',
+        // link: '/assets/assets-type',
+        link: '',
       },
       {
         text: `${String.leave_type}`,
-        link: '/leave/leave-type',
+        // link: '/leave/leave-type',
+        link: '',
       },
       {
         text: `${String.holiday_type}`,
-        link: '/holiday/holiday-type',
+        // link: '/holiday/holiday-type',
+        link: '',
       },
     ],
   },
