@@ -16,16 +16,9 @@ import { currentEmployee } from '../services/thunk/CurrentEmpPermissionThunk'
 import { useSelector } from 'react-redux'
 
 const HomePage = () => {
-  const dispatch = useDispatch()
-
   useEffect(() => {
     tokenValidation()
   })
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    const emp = jwtDecode(token)
-    dispatch(currentEmployee(`employee/${emp.id}`))
-  }, [])
 
   return (
     <React.Fragment>

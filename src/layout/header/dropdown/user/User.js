@@ -7,6 +7,9 @@ import String from '../../../../utils/String'
 import immence_logo from '../../../../assets/images/immence_logo.svg'
 import { useSelector } from 'react-redux'
 import { findUpper } from '../../../../utils/Utils'
+import { currentEmployee } from '../../../../services/thunk/CurrentEmpPermissionThunk'
+import jwtDecode from 'jwt-decode'
+import { useDispatch } from 'react-redux'
 
 const User = (props) => {
   const [open, setOpen] = useState(false)
@@ -14,7 +17,13 @@ const User = (props) => {
   const [showimg, setShowimg] = useState('')
   const [text, settext] = useState('Admin')
   const { currentEmp } = useSelector((state) => state.getCurrentEmp)
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    const emp = jwtDecode(token)
+    dispatch(currentEmployee(`employee/${emp.id}`))
+  }, [])
   const handleSignout = () => {
     localStorage.removeItem('accessToken')
   }

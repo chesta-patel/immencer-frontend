@@ -22,6 +22,14 @@ import String from '../../../utils/String'
 import { leaveAppString } from '../../Strings'
 import { defaultOptions, leaveAppForm } from './LeaveAppJson'
 import './leaveapplication.scss'
+import { cloneDeep } from 'lodash'
+import { LeaveApply } from '../../../services/thunk/LeaveApplyThunk'
+import { toastNotify } from '../../../layout/Index'
+
+const initialLeaveDate = {
+  date: '',
+  dayType: '',
+}
 
 function ApplyLeave() {
   const [strings, setStrings] = useState('')
@@ -34,11 +42,17 @@ function ApplyLeave() {
   // const { errors, register, handleSubmit } = useForm()
   const [leaveData, setLeaveData] = useState({
     leaveType: '',
-    toInform: [],
-    reason: '',
+    inform: [],
+    description: '',
   })
-  const [dates, setDate] = useState([])
+  const [leaveDates, setLeaveDates] = useState([{ ...initialLeaveDate }])
   const [isShow, setisShow] = useState(false)
+  const [toInformEmpList, settoInformEmpList] = useState([])
+  const [toInform, setToInform] = useState([])
+  const [apiCallStatus, setApiCallStatus] = useState({
+    status: '',
+    message: '',
+  })
 
   useEffect(() => {
     dispatch(fetchData('master/leaveType'))
@@ -51,12 +65,18 @@ function ApplyLeave() {
     })
     setStrings(string)
   }, [strings])
+  useEffect(() => {
+    if (employeeData !== undefined) {
+      const employeeList = employeeData.map((empList, index) => {
+        return {
+          value: `${empList.id}`,
+          label: `${empList.firstName} ${empList.lastName}`,
+        }
+      })
+      settoInformEmpList(employeeList)
+    }
+  }, [employeeData])
   let name, value
-  const handledChange = (e) => {
-    name = e.target.name
-    value = e.target.value
-    setDate({ ...dates, [name]: value })
-  }
   const handle = (e) => {
     name = e.target.name
     value = e.target.value
@@ -66,28 +86,45 @@ function ApplyLeave() {
     setLeaveData({ ...leaveData, leaveType: e.value })
   }
   const handleInfo = (e) => {
-    setLeaveData({ ...leaveData, toInform: e })
+    e.map((empid, index) => {
+      if (toInform.includes(empid.value) === false) {
+        toInform.push(empid.value)
+      }
+    })
+    setLeaveData({ ...leaveData, inform: toInform })
   }
-  const applyLeave = (e) => {
-    e.preventDefault()
+  const apply = () => {
+    const requestBody = {
+      ...leaveData,
+      dates: leaveDates,
+    }
+    callFormSubmit(requestBody)
   }
-  const setDates = () => {
-    setisShow(true)
-    setLeaveData({ ...leaveData, ...dates })
-  }
-  console.log(employeeData)
-  // const employeeList = employeeData.map((empList, index) => {
-  //   return {
-  //     value: `${empList.id}`,
-  //     label: `${empList.firstName} ${empList.lastName}`,
-  //   }
-  // })
   const leaveOption = leaveType.map((list, index) => {
     return {
       value: `${list.id}`,
       label: `${list.name}`,
     }
   })
+  const callFormSubmit = async (data) => {
+    // const dataAsFormData = getFormData(data)
+    let callAPI = await dispatch(LeaveApply(data))
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      // dispatch(companyDocument('companyDocument'))
+      history.push('/leave')
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
 
   return (
     <>
@@ -104,7 +141,7 @@ function ApplyLeave() {
         </BlockHead>
         <Block size="lg">
           <PreviewCard>
-            <form onSubmit={applyLeave}>
+            <form>
               <Row className="gy-3">
                 <Col lg="6">
                   <FormGroup className="form-group">
@@ -120,77 +157,102 @@ function ApplyLeave() {
                   </FormGroup>
                 </Col>
               </Row>
-              <Row className="gy-3">
-                <Col lg="6">
-                  <FormGroup className="form-group">
-                    <label className="form-label">{`${String.date}`}</label>
-                    <div className="form-control-wrap">
-                      <input
-                        type="date"
-                        className="form-control"
-                        name="date"
-                        value={dates.date}
-                        onChange={handledChange}
-                      />
-                    </div>
-                  </FormGroup>
-                </Col>
-                <Col lg="6">
-                  <FormGroup>
-                    <label className="form-label">{`${String.day_type}`}</label>
-                    <ul className="custom-control-group g-3 align-center flex-wrap">
-                      {leaveDayType.map((dt, index) => {
-                        return (
-                          <li>
-                            <div className="custom-control custom-checkbox">
-                              <label>
-                                <input
-                                  className="custom-control custom-checkbox"
-                                  type="radio"
-                                  id="html"
-                                  name={`${dt.name}`}
-                                  value={`${dt.value}`}
-                                  onChange={handledChange}
-                                />
-                              </label>
-                              <label for="html">{`${dt.name}`}</label>
-                            </div>
-                          </li>
-                        )
-                      })}
-                      {/* {console.log(leaveDayType)} */}
-                      <Button
-                        color="primary"
-                        size="sm"
-                        onClick={setDates}
-                        className="add_date"
-                      >
-                        <Icon name="plus" />
-                      </Button>
-                    </ul>
-                  </FormGroup>
-                </Col>
-                {/* {isShow && (
-                  <Card>
-                    <CardBody>
-                      <CardTitle>
-                        <span>
-                          <h6>
-                            Date:-{`${dates.date}`} Day Type:
-                            {`${dates.value}`}
-                          </h6>
-                        </span>
-                      </CardTitle>
-                    </CardBody>
-                  </Card>
-                )} */}
-              </Row>
+              {leaveDates.map((leaveDate, index) => (
+                <Row className="gy-3">
+                  <Col lg="6">
+                    <FormGroup className="form-group">
+                      <label className="form-label">{`${String.date}`}</label>
+                      <div className="form-control-wrap">
+                        <input
+                          type="date"
+                          className="form-control"
+                          name="date"
+                          value={leaveDate.date}
+                          onChange={(e) => {
+                            const existingLeaveDates = cloneDeep(leaveDates)
+                            existingLeaveDates[index].date = e.target.value
+                            setLeaveDates(existingLeaveDates)
+                          }}
+                        />
+                      </div>
+                    </FormGroup>
+                  </Col>
+                  <Col lg="6">
+                    <FormGroup>
+                      <label className="form-label">{`${String.day_type}`}</label>
+                      <ul className="custom-control-group g-3 align-center flex-wrap">
+                        {leaveDayType.map((dt, ind) => {
+                          return (
+                            <li key={ind}>
+                              <div className="custom-control custom-checkbox">
+                                <label>
+                                  <input
+                                    className="custom-control custom-checkbox"
+                                    type="radio"
+                                    id="html"
+                                    value={`${dt.value}`}
+                                    checked={
+                                      `${dt.value}` === leaveDate.dayType
+                                    }
+                                    onChange={(e) => {
+                                      const existingLeaveDates =
+                                        cloneDeep(leaveDates)
+
+                                      existingLeaveDates[index].dayType =
+                                        e.target.value
+                                      setLeaveDates(existingLeaveDates)
+                                    }}
+                                  />
+                                </label>
+                                <label for="html">{`${dt.name}`}</label>
+                              </div>
+                            </li>
+                          )
+                        })}
+                        {index + 1 === leaveDates.length ? (
+                          <Button
+                            color="primary"
+                            size="sm"
+                            onClick={() => {
+                              setLeaveDates([
+                                ...leaveDates,
+                                { ...initialLeaveDate },
+                              ])
+                            }}
+                            className="add_date"
+                          >
+                            <Icon name="plus" />
+                          </Button>
+                        ) : (
+                          <Button
+                            color="primary"
+                            size="sm"
+                            onClick={() => {
+                              const existingLeaveDates = cloneDeep(leaveDates)
+
+                              setLeaveDates(
+                                existingLeaveDates.filter(
+                                  (_leaveDate, i) => i !== index
+                                )
+                              )
+                            }}
+                            className="add_date"
+                          >
+                            <Icon name="cross" />
+                          </Button>
+                        )}
+                      </ul>
+                    </FormGroup>
+                  </Col>
+                </Row>
+              ))}
+
               <Row className="gy-3">
                 <Col sm={6}>
                   <div className="form-group">
                     <label className="form-label">{String.i_want}</label>
                     <RSelect
-                      options={defaultOptions}
+                      options={toInformEmpList}
                       isMulti
                       onChange={handleInfo}
                     />
@@ -207,8 +269,8 @@ function ApplyLeave() {
                       <textarea
                         // value={leaveData.reason}
                         // name={leaveData.reason}
-                        name="reason"
-                        value={leaveData.reason}
+                        name="description"
+                        value={leaveData.description}
                         className="form-control form-control-sm"
                         id="cf-default-textarea"
                         placeholder="Write your message"
@@ -220,7 +282,7 @@ function ApplyLeave() {
               </Row>
               <Row className="gy-3">
                 <Col sm={6}>
-                  <Button color="primary">
+                  <Button color="primary" onClick={apply}>
                     <Icon name="check" />
                     <span>{String.apply}</span>
                   </Button>
