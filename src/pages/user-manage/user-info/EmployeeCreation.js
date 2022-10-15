@@ -31,6 +31,7 @@ import {
   EmployeeUpdate,
 } from '../../../services/thunk/EmployeeEditThunk'
 import { empDetail } from '../../../services/thunk/EmployeeDetailThunk'
+import { regex_validate_date_DD_MM_YYYY } from '../../../utils/constants'
 
 const UserCreate = (props) => {
   const allDropdownState = useSelector((state) => state.dropdown)
@@ -59,11 +60,10 @@ const UserCreate = (props) => {
   }, [])
 
   useEffect(() => {
-    console.log('isSuccess', isSuccess)
     if (location.pathname !== '/employee/employee-update') {
       setEmpCreate({ ...empCreate, ...formData })
     } else {
-      setEmpCreate({ ...empCreate, ...isSuccess })
+      setEmpCreate({ ...empCreate, ...isSuccess?.[0] })
     }
   }, [location])
 
@@ -91,7 +91,6 @@ const UserCreate = (props) => {
   }
   const saveEmployeeData = () => {
     dispatch(getCreateNewEmpData(empCreate))
-    console.log('employe data in redux:', formData)
   }
 
   const checkValidate = () => {
@@ -139,10 +138,10 @@ const UserCreate = (props) => {
     }
   }, [isSuccess?.designation])
 
-  const [
-    getMinDateForOnBoardingAndRelieving,
-    setGetMinDateForOnBoardingAndRelieving,
-  ] = useState(null)
+  // const [
+  //   getMinDateForOnBoardingAndRelieving,
+  //   setGetMinDateForOnBoardingAndRelieving,
+  // ] = useState(null)
 
   return (
     <form
@@ -187,7 +186,7 @@ const UserCreate = (props) => {
                     options={dropDownData?.length > 0 ? dropDownData : []}
                     name={formFields.name}
                     value={dropDownData?.find((data) => {
-                      return data.value === empCreate[`${formFields.key_name}`]
+                      return data.value == empCreate[`${formFields.key_name}`]
                     })}
                     onChange={(e) => {
                       if (formFields.label_name == `${String.designation}`) {
@@ -223,29 +222,41 @@ const UserCreate = (props) => {
                   <input
                     id={`empCreate-${formFields.key_name}`}
                     className="form-control"
-                    disabled={
-                      (formFields.key_name == 'relievingDate' ||
-                        formFields.key_name == 'onboardingDate') &&
-                      (getMinDateForOnBoardingAndRelieving ? false : true)
-                    }
+                    // disabled={
+                    //   (formFields.key_name == 'relievingDate' ||
+                    //     formFields.key_name == 'onboardingDate') &&
+                    //   (getMinDateForOnBoardingAndRelieving ? false : true)
+                    // }
                     type={formFields.type}
                     name={formFields.name}
                     placeholder={formFields.placeholder}
-                    value={empCreate[`${formFields.key_name}`]}
+                    // value={empCreate[`${formFields.key_name}`]}
                     max={formFields.max}
-                    min={
-                      (formFields.key_name == 'relievingDate' ||
-                        formFields.key_name == 'onboardingDate') &&
-                      getMinDateForOnBoardingAndRelieving
+                    value={
+                      empCreate[`${formFields.key_name}`] &&
+                      formFields.type === 'date' &&
+                      regex_validate_date_DD_MM_YYYY.test(
+                        empCreate[`${formFields.key_name}`]
+                      )
+                        ? moment(
+                            empCreate[`${formFields.key_name}`],
+                            'DD/MM/YYYY'
+                          ).format('YYYY-MM-DD')
+                        : empCreate[`${formFields.key_name}`]
                     }
+                    // min={
+                    //   (formFields.key_name == 'relievingDate' ||
+                    //     formFields.key_name == 'onboardingDate') &&
+                    //   getMinDateForOnBoardingAndRelieving
+                    // }
                     onChange={(e) => {
                       const oldState = cloneDeep(empCreate)
                       oldState[`${formFields.key_name}`] = e.target.value
                       setEmpCreate({ ...oldState })
                       saveEmployeeData()
-                      if (formFields.key_name === 'joiningDate') {
-                        setGetMinDateForOnBoardingAndRelieving(e.target.value)
-                      }
+                      // if (formFields.key_name === 'joiningDate') {
+                      //   setGetMinDateForOnBoardingAndRelieving(e.target.value)
+                      // }
                     }}
                     onBlur={(e) => {
                       if (`${formFields.key_name}` == 'mobileNumber') {
@@ -783,7 +794,17 @@ const Permission = (props) => {
     // } else {
     dispatch(getCreateNewEmpData(getPermission()))
 
-    let callAPI = await dispatch(CreateNewEmployee(formData))
+    let updateFormData = { ...formData }
+
+    for (var key in updateFormData) {
+      if (updateFormData[key] === '' || updateFormData[key] === undefined) {
+        updateFormData[key] = null
+      }
+    }
+    console.log('🚀 ~ formData', formData)
+    console.log('🚀 ~ updateFormData', updateFormData)
+
+    let callAPI = await dispatch(CreateNewEmployee(updateFormData))
     if (callAPI?.payload?.data?.isSuccess) {
       setApiCallStatus({
         status: 'success',

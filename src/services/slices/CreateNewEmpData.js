@@ -17,7 +17,10 @@ export const createNewEmpData = createSlice({
     builder
       .addCase(getCreateNewEmpData.fulfilled, (state, action) => {
         state.isLoading = false
-        state.formData = { ...state.formData, ...action.payload }
+        state.formData =
+          action.payload !== undefined
+            ? { ...state.formData, ...action.payload }
+            : []
       })
       .addCase(getCreateNewEmpData.pending, (state) => {
         state.isLoading = true
