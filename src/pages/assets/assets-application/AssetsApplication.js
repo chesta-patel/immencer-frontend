@@ -92,18 +92,6 @@ const AssetApplication = ({ ...props }) => {
                   style={{ display: sm ? 'block' : 'none' }}
                 >
                   <ul className="nk-block-tools g-3">
-                    <li>
-                      <a
-                        href="#export"
-                        onClick={(ev) => {
-                          ev.preventDefault()
-                        }}
-                        className="btn btn-white btn-outline-light"
-                      >
-                        <Icon name="download-cloud"></Icon>
-                        <span>{String.export}</span>
-                      </a>
-                    </li>
                     <li className="nk-block-tools-opt">
                       <Button
                         color="primary"
