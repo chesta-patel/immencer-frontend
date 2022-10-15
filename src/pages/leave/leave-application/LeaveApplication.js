@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
 import PageTable from '../../PageTable'
@@ -18,6 +18,8 @@ import {
 import './leaveapplication.scss'
 import String from '../../../utils/String'
 import { useHistory } from 'react-router'
+import { fetchData } from '../../../services/thunk/AuthThunk'
+import { empData } from '../../../services/thunk/GetEmployee'
 
 const LeaveApplication = ({ ...props }) => {
   const [roleTable] = useState(leaveAppTable)
@@ -33,6 +35,11 @@ const LeaveApplication = ({ ...props }) => {
     status: '',
     message: '',
   })
+  useEffect(() => {
+    dispatch(fetchData('master/leaveType'))
+    dispatch(fetchData('master/leaveDayType'))
+    dispatch(empData('employee'))
+  }, [])
   //need to add dispatch
   const callFormSubmit = async (data) => {
     // const dataAsFormData = getFormData(data)
@@ -52,7 +59,6 @@ const LeaveApplication = ({ ...props }) => {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
-
   //need to add dispatch for update
   const updateFormSubmit = async (data, id) => {
     // const dataAsFormData = getFormData(data)
@@ -114,18 +120,6 @@ const LeaveApplication = ({ ...props }) => {
                   style={{ display: sm ? 'block' : 'none' }}
                 >
                   <ul className="nk-block-tools g-3">
-                    <li>
-                      <a
-                        href="#export"
-                        onClick={(ev) => {
-                          ev.preventDefault()
-                        }}
-                        className="btn btn-white btn-outline-light"
-                      >
-                        <Icon name="download-cloud"></Icon>
-                        <span>{String.export}</span>
-                      </a>
-                    </li>
                     <li className="nk-block-tools-opt">
                       <Button
                         color="primary"
