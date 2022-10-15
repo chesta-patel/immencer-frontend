@@ -341,6 +341,8 @@ const AddressDetails = (props) => {
       default:
         break
     }
+    // dispatch(getCreateNewEmpData({ ...formData.permanentAddress }))
+    console.log('formData.permanentAddress==>')
   }
   const onChangeAddress = (event) => {
     if (event.target.checked) {
@@ -364,15 +366,15 @@ const AddressDetails = (props) => {
     })
     setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
   }, [formData])
-  // useEffect(() => {
-  //   if (location.pathname === '/employee/employee_update') {
-  //     setPermanentAddress({
-  //       ...permanentAddress,
-  //       ...formData?.permanentAddress,
-  //     })
-  //     setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
-  //   }
-  // }, [location])
+  useEffect(() => {
+    if (location.pathname === '/employee/employee_update') {
+      setPermanentAddress({
+        ...permanentAddress,
+        ...formData?.permanentAddress,
+      })
+      setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
+    }
+  }, [location])
 
   return (
     <>
@@ -431,6 +433,10 @@ const AddressDetails = (props) => {
                         oldState[`${formFields.key_name}`] = e.value
                         setPermanentAddress({ ...oldState })
                         // setValidate(true)
+                        // handleChangeAddress(e, formFields.label_name)
+                        dispatch(
+                          getCreateNewEmpData({ ...formData.permanentAddress })
+                        )
                       }}
                     />
                     {formFields.required &&
@@ -540,6 +546,7 @@ const AddressDetails = (props) => {
                         const oldState = cloneDeep(currentAddress)
                         oldState[`${formFields.key_name}`] = e.label
                         setCurrentAddress({ ...oldState })
+                        onChangeAddress()
                       }}
                     />
                     {formFields.required &&
