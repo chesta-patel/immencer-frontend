@@ -64,6 +64,7 @@ const UserCreate = (props) => {
       setEmpCreate({ ...empCreate, ...formData })
     } else {
       setEmpCreate({ ...empCreate, ...isSuccess?.[0] })
+      console.log('🚀 ~ isSuccess', isSuccess?.[0])
     }
   }, [location])
 
@@ -133,10 +134,10 @@ const UserCreate = (props) => {
   }
 
   useEffect(() => {
-    if (isSuccess?.designation && !allDropdownState?.teamLead?.length) {
-      handle({ value: isSuccess?.designation })
+    if (isSuccess?.[0]?.designation && !allDropdownState?.teamLead?.length) {
+      handle({ value: isSuccess?.[0]?.designation })
     }
-  }, [isSuccess?.designation])
+  }, [isSuccess?.[0]?.designation])
 
   // const [
   //   getMinDateForOnBoardingAndRelieving,
