@@ -18,6 +18,14 @@ import {
 } from '../../../components/Component'
 import { useHistory } from 'react-router'
 import String from '../../../utils/String'
+import { permissions } from '../../../layout/header/dropdown/PermissionJson'
+var hasAssetsAddPermissions = false
+permissions.map((permissionLIst, index) => {
+  if (permissionLIst.modalName == 'Assets') {
+    console.log('permissionLIst', permissionLIst.add)
+    hasAssetsAddPermissions = permissionLIst.add
+  }
+})
 
 const AssetApplication = ({ ...props }) => {
   const dispatch = useDispatch()
@@ -93,15 +101,17 @@ const AssetApplication = ({ ...props }) => {
                 >
                   <ul className="nk-block-tools g-3">
                     <li className="nk-block-tools-opt">
-                      <Button
-                        color="primary"
-                        className="btn-icon"
-                        onClick={() => {
-                          history.push('/assets/create')
-                        }}
-                      >
-                        <Icon name="plus"></Icon>
-                      </Button>
+                      {hasAssetsAddPermissions && (
+                        <Button
+                          color="primary"
+                          className="btn-icon"
+                          onClick={() => {
+                            history.push('/assets/create')
+                          }}
+                        >
+                          <Icon name="plus"></Icon>
+                        </Button>
+                      )}
                     </li>
                   </ul>
                 </div>

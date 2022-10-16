@@ -29,6 +29,15 @@ import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
 import { useHistory } from 'react-router'
 import { shortObjectWithNUmber } from '../../../utils/Helpers'
+import { permissions } from '../../../layout/header/dropdown/PermissionJson'
+var hasCompanyDocsEditPermissions = false
+var hasCompanyDocsDeletePermissions = false
+permissions.map((permissionLIst, index) => {
+  if (permissionLIst.modalName == 'CompanyDocument') {
+    hasCompanyDocsEditPermissions = permissionLIst.edit
+    hasCompanyDocsDeletePermissions = permissionLIst.delete
+  }
+})
 
 function CompanyDocumentPageTable(props) {
   const { infoList } = useSelector((state) => state.companyDocument)
@@ -464,38 +473,42 @@ function CompanyDocumentPageTable(props) {
                         <span>
                           <GoogleFileViewerLink link={item.attachment} />
                         </span>
-                        <span className="ml-2">
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              setDeleteModal({
-                                status: true,
-                                data: item,
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <Icon name="trash" />
-                          </Button>
-                        </span>
-                        <span>
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              history.push({
-                                pathname: '/company-document/create',
-                                state: { add: false, edit: true, data: item },
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <span style={{ display: 'flex' }}>
-                              <Icon name="edit" />
-                            </span>
-                          </Button>
-                        </span>
+                        {hasCompanyDocsDeletePermissions && (
+                          <span className="ml-2">
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                setDeleteModal({
+                                  status: true,
+                                  data: item,
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <Icon name="trash" />
+                            </Button>
+                          </span>
+                        )}
+                        {hasCompanyDocsEditPermissions && (
+                          <span>
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                history.push({
+                                  pathname: '/company-document/create',
+                                  state: { add: false, edit: true, data: item },
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <span style={{ display: 'flex' }}>
+                                <Icon name="edit" />
+                              </span>
+                            </Button>
+                          </span>
+                        )}
                       </DataTableRow>
                     </DataTableItem>
                   )

@@ -29,7 +29,15 @@ import { useSelector } from 'react-redux'
 import './companyPolicy.scss'
 import { useHistory } from 'react-router'
 import { shortObjectWithNUmber } from '../../../utils/Helpers'
-
+import { permissions } from '../../../layout/header/dropdown/PermissionJson'
+var hasCompanyPolicyEditPermissions = false
+var hasCompanyPolicyDeletePermissions = false
+permissions.map((permissionLIst, index) => {
+  if (permissionLIst.modalName == 'CompanyPolicy') {
+    hasCompanyPolicyEditPermissions = permissionLIst.edit
+    hasCompanyPolicyDeletePermissions = permissionLIst.delete
+  }
+})
 function CompanyPolicyPageTable(props) {
   const { infoList } = useSelector((state) => state.companyPolicy)
   const [actionText, setActionText] = useState('')
@@ -478,38 +486,42 @@ function CompanyPolicyPageTable(props) {
                             <em class="icon ni ni-eye"></em>
                           </Button>
                         </span>
-                        <span className="policy_edit">
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              setDeleteModal({
-                                status: true,
-                                data: item,
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <em class="icon ni ni-trash"></em>
-                          </Button>
-                        </span>
-                        <span>
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              history.push({
-                                pathname: '/company-policy/create',
-                                state: { add: false, edit: true, data: item },
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <span style={{ display: 'flex' }}>
-                              <em class="icon ni ni-edit"></em>
-                            </span>
-                          </Button>
-                        </span>
+                        {hasCompanyPolicyDeletePermissions && (
+                          <span className="policy_edit">
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                setDeleteModal({
+                                  status: true,
+                                  data: item,
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <em class="icon ni ni-trash"></em>
+                            </Button>
+                          </span>
+                        )}
+                        {hasCompanyPolicyEditPermissions && (
+                          <span>
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                history.push({
+                                  pathname: '/company-policy/create',
+                                  state: { add: false, edit: true, data: item },
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <span style={{ display: 'flex' }}>
+                                <em class="icon ni ni-edit"></em>
+                              </span>
+                            </Button>
+                          </span>
+                        )}
                       </DataTableRow>
                     </DataTableItem>
                   )

@@ -28,6 +28,15 @@ import { useSelector } from 'react-redux'
 import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
 import { useHistory } from 'react-router'
+import { permissions } from '../../../layout/header/dropdown/PermissionJson'
+var hasHolidayDeletePermissions = false
+var hasHolidayEditPermissions = false
+permissions.map((permissionLIst, index) => {
+  if (permissionLIst.modalName == 'Holiday') {
+    hasHolidayDeletePermissions = permissionLIst.delete
+    hasHolidayEditPermissions = permissionLIst.edit
+  }
+})
 
 function HolidayPageTable(props) {
   const { infoList } = useSelector((state) => state.holidayList)
@@ -459,38 +468,42 @@ function HolidayPageTable(props) {
                         <span>{item.description}</span>
                       </DataTableRow>
                       <DataTableRow size="lg" className="action_icon">
-                        <span className="ml-2">
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              setDeleteModal({
-                                status: true,
-                                data: item,
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <Icon name="trash" />
-                          </Button>
-                        </span>
-                        <span>
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              history.push({
-                                pathname: '/holiday/create-holiday',
-                                state: { add: false, edit: true, data: item },
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <span style={{ display: 'flex' }}>
-                              <Icon name="edit" />
-                            </span>
-                          </Button>
-                        </span>
+                        {hasHolidayDeletePermissions && (
+                          <span className="ml-2">
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                setDeleteModal({
+                                  status: true,
+                                  data: item,
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <Icon name="trash" />
+                            </Button>
+                          </span>
+                        )}
+                        {hasHolidayEditPermissions && (
+                          <span>
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                history.push({
+                                  pathname: '/holiday/create-holiday',
+                                  state: { add: false, edit: true, data: item },
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <span style={{ display: 'flex' }}>
+                                <Icon name="edit" />
+                              </span>
+                            </Button>
+                          </span>
+                        )}
                       </DataTableRow>
                     </DataTableItem>
                   )

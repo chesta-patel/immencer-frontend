@@ -21,13 +21,19 @@ import { useDispatch } from 'react-redux'
 import { empData } from '../../../services/thunk/GetEmployee'
 import Loader from '../../Loader'
 import { getCreateNewEmpData } from '../../../services/thunk/CreateNewEmpDataThunk'
+import { permissions } from '../../../layout/header/dropdown/PermissionJson'
+var hasEmployeeAddPermissions = false
+permissions.map((permissionLIst, index) => {
+  if (permissionLIst.modalName == 'Employee') {
+    hasEmployeeAddPermissions = permissionLIst.add
+  }
+})
 
 const UserInfo = ({ ...props }) => {
   const history = useHistory()
   const { employeeData, isLoading } = useSelector((state) => state.getEmp)
   const dispatch = useDispatch()
   const [employeeDetail, setEmployeeDetail] = useState([])
-
   // Stats declaration for data
   const [sm, updateSm] = useState(false)
   const { contextData } = useContext(UserContext)
@@ -72,16 +78,18 @@ const UserInfo = ({ ...props }) => {
                 >
                   <ul className="nk-block-tools g-3">
                     <li className="nk-block-tools-opt">
-                      <Button
-                        color="primary"
-                        className="btn-icon"
-                        onClick={() => {
-                          dispatch(getCreateNewEmpData())
-                          history.push('/employee/employee-creation')
-                        }}
-                      >
-                        <Icon name="plus"></Icon>
-                      </Button>
+                      {hasEmployeeAddPermissions && (
+                        <Button
+                          color="primary"
+                          className="btn-icon"
+                          onClick={() => {
+                            dispatch(getCreateNewEmpData())
+                            history.push('/employee/employee-creation')
+                          }}
+                        >
+                          <Icon name="plus"></Icon>
+                        </Button>
+                      )}
                     </li>
                   </ul>
                 </div>

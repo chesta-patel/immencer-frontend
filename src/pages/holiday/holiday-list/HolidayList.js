@@ -17,6 +17,14 @@ import {
 } from '../../../components/Component'
 import { Button } from 'reactstrap'
 import { useHistory } from 'react-router'
+import { permissions } from '../../../layout/header/dropdown/PermissionJson'
+import String from '../../../utils/String'
+var hasHolidayAddPermissions = false
+permissions.map((permissionLIst, index) => {
+  if (permissionLIst.modalName == 'Holiday') {
+    hasHolidayAddPermissions = permissionLIst.add
+  }
+})
 
 const HolidayList = ({ ...props }) => {
   const [roleTable] = useState(holidayListTable)
@@ -94,18 +102,20 @@ const HolidayList = ({ ...props }) => {
                 >
                   <ul className="nk-block-tools g-3">
                     <li className="nk-block-tools-opt">
-                      <Button
-                        color="primary"
-                        className="btn-icon"
-                        onClick={() => {
-                          history.push({
-                            pathname: '/holiday/create-holiday',
-                            state: { add: true, edit: false, data: '' },
-                          })
-                        }}
-                      >
-                        <Icon name="plus"></Icon>
-                      </Button>
+                      {hasHolidayAddPermissions && (
+                        <Button
+                          color="primary"
+                          className="btn-icon"
+                          onClick={() => {
+                            history.push({
+                              pathname: '/holiday/create-holiday',
+                              state: { add: true, edit: false, data: '' },
+                            })
+                          }}
+                        >
+                          <Icon name="plus"></Icon>
+                        </Button>
+                      )}
                     </li>
                   </ul>
                 </div>
