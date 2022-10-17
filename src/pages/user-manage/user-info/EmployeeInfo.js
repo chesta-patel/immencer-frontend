@@ -23,11 +23,14 @@ import Loader from '../../Loader'
 import { getCreateNewEmpData } from '../../../services/thunk/CreateNewEmpDataThunk'
 import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 var hasEmployeeAddPermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'Employee') {
-    hasEmployeeAddPermissions = permissionLIst.add
-  }
-})
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'Employee') {
+      hasEmployeeAddPermissions = permissionLIst.add
+    }
+  })
+}
 
 const UserInfo = ({ ...props }) => {
   const history = useHistory()

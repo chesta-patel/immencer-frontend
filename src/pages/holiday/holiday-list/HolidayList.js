@@ -20,12 +20,14 @@ import { useHistory } from 'react-router'
 import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 import String from '../../../utils/String'
 var hasHolidayAddPermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'Holiday') {
-    hasHolidayAddPermissions = permissionLIst.add
-  }
-})
-
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'Holiday') {
+      hasHolidayAddPermissions = permissionLIst.add
+    }
+  })
+}
 const HolidayList = ({ ...props }) => {
   const [roleTable] = useState(holidayListTable)
   const [sm, updateSm] = useState(false)

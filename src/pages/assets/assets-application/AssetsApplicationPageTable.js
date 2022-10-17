@@ -31,13 +31,15 @@ import { shortObjectWithNUmber } from '../../../utils/Helpers'
 import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 var hasAssetsEditPermissions = false
 var hasAssetsDeletePermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'Assets') {
-    console.log('permissionLIst', permissionLIst.add)
-    hasAssetsEditPermissions = permissionLIst.edit
-    hasAssetsDeletePermissions = permissionLIst.delete
-  }
-})
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'Assets') {
+      hasAssetsEditPermissions = permissionLIst.add
+      hasAssetsDeletePermissions = permissionLIst.delete
+    }
+  })
+}
 
 function AssetsApplicationPageTable(props) {
   const { infoList } = useSelector((state) => state.companyPolicy)

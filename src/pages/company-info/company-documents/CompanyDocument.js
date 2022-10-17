@@ -22,11 +22,14 @@ import String from '../../../utils/String'
 import { useHistory } from 'react-router'
 import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 var hasCompanyDocsAddPermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'CompanyDocument') {
-    hasCompanyDocsAddPermissions = permissionLIst.add
-  }
-})
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'CompanyDocument') {
+      hasCompanyDocsAddPermissions = permissionLIst.add
+    }
+  })
+}
 
 const CompanyDocument = ({ ...props }) => {
   const [roleTable] = useState(companyDocTable)

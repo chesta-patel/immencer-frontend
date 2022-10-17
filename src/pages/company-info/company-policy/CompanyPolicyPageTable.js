@@ -32,12 +32,16 @@ import { shortObjectWithNUmber } from '../../../utils/Helpers'
 import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 var hasCompanyPolicyEditPermissions = false
 var hasCompanyPolicyDeletePermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'CompanyPolicy') {
-    hasCompanyPolicyEditPermissions = permissionLIst.edit
-    hasCompanyPolicyDeletePermissions = permissionLIst.delete
-  }
-})
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'CompanyPolicy') {
+      hasCompanyPolicyDeletePermissions = permissionLIst.delete
+      hasCompanyPolicyEditPermissions = permissionLIst.edit
+    }
+  })
+}
+
 function CompanyPolicyPageTable(props) {
   const { infoList } = useSelector((state) => state.companyPolicy)
   const [actionText, setActionText] = useState('')

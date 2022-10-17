@@ -20,12 +20,14 @@ import { useHistory } from 'react-router'
 import String from '../../../utils/String'
 import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 var hasAssetsAddPermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'Assets') {
-    console.log('permissionLIst', permissionLIst.add)
-    hasAssetsAddPermissions = permissionLIst.add
-  }
-})
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'Assets') {
+      hasAssetsAddPermissions = permissionLIst.add
+    }
+  })
+}
 
 const AssetApplication = ({ ...props }) => {
   const dispatch = useDispatch()

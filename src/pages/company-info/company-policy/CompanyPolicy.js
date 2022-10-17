@@ -19,12 +19,14 @@ import { Button } from 'reactstrap'
 import { useHistory } from 'react-router'
 import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 var hasCompanyPolicyAddPermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'CompanyPolicy') {
-    console.log('CompanyPolicy', permissionLIst.add)
-    hasCompanyPolicyAddPermissions = permissionLIst.add
-  }
-})
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'CompanyPolicy') {
+      hasCompanyPolicyAddPermissions = permissionLIst.add
+    }
+  })
+}
 
 const CompanyPolicy = ({ ...props }) => {
   const [roleTable] = useState(companyPolicyTable)

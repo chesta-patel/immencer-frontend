@@ -31,12 +31,15 @@ import { useHistory } from 'react-router'
 import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 var hasHolidayDeletePermissions = false
 var hasHolidayEditPermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'Holiday') {
-    hasHolidayDeletePermissions = permissionLIst.delete
-    hasHolidayEditPermissions = permissionLIst.edit
-  }
-})
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'Holiday') {
+      hasHolidayDeletePermissions = permissionLIst.delete
+      hasHolidayEditPermissions = permissionLIst.edit
+    }
+  })
+}
 
 function HolidayPageTable(props) {
   const { infoList } = useSelector((state) => state.holidayList)

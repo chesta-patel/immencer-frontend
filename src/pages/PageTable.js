@@ -31,12 +31,15 @@ import { toastNotify } from '../layout/Index'
 import './user-manage/user-info/PageTable.scss'
 import { permissions } from '../layout/header/dropdown/PermissionJson'
 var hasEditPermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'Employee') {
-    console.log('permissionLIst', permissionLIst.add)
-    hasEditPermissions = permissionLIst.edit
-  }
-})
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'Employee') {
+      hasEditPermissions = permissionLIst.add
+    }
+  })
+}
+
 function PageTable(props) {
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)

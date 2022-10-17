@@ -32,12 +32,15 @@ import { shortObjectWithNUmber } from '../../../utils/Helpers'
 import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 var hasCompanyDocsEditPermissions = false
 var hasCompanyDocsDeletePermissions = false
-permissions.map((permissionLIst, index) => {
-  if (permissionLIst.modalName == 'CompanyDocument') {
-    hasCompanyDocsEditPermissions = permissionLIst.edit
-    hasCompanyDocsDeletePermissions = permissionLIst.delete
-  }
-})
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'CompanyDocument') {
+      hasCompanyDocsDeletePermissions = permissionLIst.delete
+      hasCompanyDocsEditPermissions = permissionLIst.edit
+    }
+  })
+}
 
 function CompanyDocumentPageTable(props) {
   const { infoList } = useSelector((state) => state.companyDocument)
