@@ -45,7 +45,7 @@ const AssetApplication = ({ ...props }) => {
   })
 
   useEffect(() => {
-    dispatch(assetsApplication('assetsApplication'))
+    dispatch(assetsApplication('asset'))
   }, [])
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteAssetsApp(id))
@@ -56,7 +56,9 @@ const AssetApplication = ({ ...props }) => {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(assetsApplication('assetsApplication'))
+      dispatch(assetsApplication('asset'))
+      setModal({ edit: false, add: false, data: '' })
+      window.location.href = '/assets-application'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setDeleteApiCallStatus({
         status: 'error',
@@ -68,7 +70,7 @@ const AssetApplication = ({ ...props }) => {
 
   return (
     <React.Fragment>
-      <Head title="Assets Appliaction" />
+      <Head title="Assets Application" />
       <Content>
         {/* <PageHeader
           json={roleForm}

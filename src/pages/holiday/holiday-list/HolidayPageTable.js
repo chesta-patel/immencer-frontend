@@ -109,15 +109,21 @@ function HolidayPageTable(props) {
       const filter = props?.json.map((d) => {
         return d?.key_name?.map((key) => {
           const filteredObject = currentItems?.filter((item) => {
-            if (key === 'updatedAt' || key === 'createdAt') {
-              let date = item.updatedAt
-                ? moment(item.updatedAt).format('L')
-                : moment(item.createdAt).format('L')
-              return date?.toLowerCase()?.includes(onSearchText?.toLowerCase())
-            } else {
-              return item[key]
-                ?.toLowerCase()
-                ?.includes(onSearchText?.toLowerCase())
+            switch (key) {
+              case 'updatedAt' || 'createdAt':
+                let date = item.updatedAt
+                  ? moment(item.updatedAt).format('L')
+                  : moment(item.createdAt).format('L')
+                return date
+                  ?.toString()
+                  ?.toLowerCase()
+                  ?.includes(onSearchText?.toString()?.toLowerCase())
+
+              default:
+                return item[key]
+                  ?.toString()
+                  ?.toLowerCase()
+                  ?.includes(onSearchText?.toString()?.toLowerCase())
             }
           })
           return filteredObject
@@ -457,11 +463,7 @@ function HolidayPageTable(props) {
                       </DataTableRow>
                       <DataTableRow size="md">
                         <div className="user-info">
-                          <span className="tb-lead">
-                            {item.updatedAt
-                              ? moment(item.updatedAt).format('L')
-                              : moment(item.createdAt).format('L')}{' '}
-                          </span>
+                          <span className="tb-lead">{item.date}</span>
                         </div>
                       </DataTableRow>
                       <DataTableRow size="sm">

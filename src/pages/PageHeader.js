@@ -15,8 +15,10 @@ import './pageheader.scss'
 import String from '../utils/String'
 import { checkIsEmptyObjectKey } from '../utils/Helpers'
 import moment from 'moment'
+import { useLocation } from 'react-router'
 
 function PageHeader(props) {
+  const location = useLocation()
   const initialState = {}
   props.json.forEach((formFields) => {
     initialState[`${formFields.key_name}`] = ''
@@ -44,17 +46,40 @@ function PageHeader(props) {
         // console.log('first', refactorModalData)
         setFdata(refactorModalData)
       } else {
-        let updateData = moment(props?.modal?.data?.date).format('L')
         let refactorModalData = {
           title: props?.modal?.data?.title,
           description: props?.modal?.data?.description,
-          date: moment(props?.modal?.data?.date).format('YYYY-DD-MM'),
+          date: moment(props?.modal?.data?.date, 'DD/MM/YYYY').format(
+            'YYYY-MM-DD'
+          ),
           type: props?.modal?.data?.type,
         }
         setFdata(refactorModalData)
       }
     }
   }, [props?.modal?.data])
+
+  useEffect(() => {
+    if (
+      location.pathname === '/assets-application/create' &&
+      props?.modal?.data
+    ) {
+      let refactorModalData = {
+        type: props?.modal?.data?.type,
+        name: props?.modal?.data?.name,
+        code: props?.modal?.data?.code,
+        serialNumber: props?.modal?.data?.serialNumber,
+        description: props?.modal?.data?.description,
+        status: props?.modal?.data?.status,
+        assignee: props?.modal?.data?.assignee,
+        assignDate: props?.modal?.data?.assignDate,
+        notes: props?.modal?.data?.notes,
+      }
+
+      setFdata(refactorModalData)
+    }
+  }, [location])
+
   const onFormCancel = () => {
     props.setModal({
       edit: false,
@@ -132,10 +157,42 @@ function PageHeader(props) {
                 }
                 return dataObj
               })
-              let selectOptionValueData = formFields?.option?.filter(
-                (data) => data.id == props?.modal?.data?.type
-              )
 
+              let selectOptionValueData = formFields?.option
+                ?.map((data) => {
+                  let checkId
+                  switch (location.pathname) {
+                    case '/holiday/create-holiday':
+                      let checkHolidayType = data.id == props?.modal?.data?.type
+                      checkId = checkHolidayType ? data.id : null
+                      break
+                    case '/assets-application/create':
+                      if (formFields?.key_name === 'type') {
+                        let check = data.id === props?.modal?.data?.type
+                        checkId = check ? data.id : null
+                      } else if (formFields?.key_name === 'status') {
+                        let check = data.id === props?.modal?.data?.status
+                        checkId = check ? data.id : null
+                      } else if (formFields?.key_name === 'assignee') {
+                        let check = data.id === props?.modal?.data?.assignee
+                        checkId = check ? data.id : null
+                      }
+                      break
+
+                    default:
+                      checkId = null
+                      break
+                  }
+
+                  let defaultSelect
+                  if (checkId) {
+                    defaultSelect = selectOptionData?.find(
+                      (ope) => ope.value == checkId
+                    )
+                  }
+                  return defaultSelect
+                })
+                ?.filter((data) => data !== undefined)
               if (
                 (formFields.type !== 'text') &
                 (formFields.type !== 'number') &
@@ -153,8 +210,8 @@ function PageHeader(props) {
                           selectOptionData?.length > 0 ? selectOptionData : []
                         }
                         defaultValue={{
-                          value: selectOptionValueData?.[0]?.id,
-                          label: selectOptionValueData?.[0]?.holiday_type,
+                          value: selectOptionValueData?.[0]?.value,
+                          label: selectOptionValueData?.[0]?.label,
                         }}
                         onChange={(e) => {
                           const oldState = cloneDeep(Fdata)
