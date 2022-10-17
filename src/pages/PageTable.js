@@ -29,6 +29,16 @@ import { useDispatch } from 'react-redux'
 import { empDetail } from '../services/thunk/EmployeeDetailThunk'
 import { toastNotify } from '../layout/Index'
 import './user-manage/user-info/PageTable.scss'
+import { permissions } from '../layout/header/dropdown/PermissionJson'
+var hasEditPermissions = false
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'Employee') {
+      hasEditPermissions = permissionLIst.add
+    }
+  })
+}
 
 function PageTable(props) {
   const [currentPage] = useState(1)
@@ -559,17 +569,18 @@ function PageTable(props) {
                       <DataTableRow className="nk-tb-col-tools" size="sm">
                         <ul className="nk-tb-actions gx-1">
                           <li>
-                            <DropdownItem
-                              tag="a"
-                              href="#edit"
-                              onClick={(ev) => {
-                                ev.preventDefault()
-                                handleChange(item.id)
-                              }}
-                            >
-                              <Icon name="edit"></Icon>
-                              {/* <span>{String.edit}</span> */}
-                            </DropdownItem>
+                            {hasEditPermissions && (
+                              <DropdownItem
+                                tag="a"
+                                href="#edit"
+                                onClick={(ev) => {
+                                  ev.preventDefault()
+                                  handleChange(item.id)
+                                }}
+                              >
+                                <Icon name="edit"></Icon>
+                              </DropdownItem>
+                            )}
                           </li>
                         </ul>
                       </DataTableRow>

@@ -39,14 +39,10 @@ function CreateAssetsApplication() {
     status: '',
     message: '',
   })
-  const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
-    status: '',
-    message: '',
-  })
+
   const { assetStatus } = useSelector((state) => state.dropdown)
   const { assetType } = useSelector((state) => state.dropdown)
   const { employeeData } = useSelector((state) => state.getEmp)
-  console.log('🚀 ~ employeeData', employeeData)
 
   useEffect(() => {
     dispatch(fetchData('master/assetStatus'))
@@ -63,15 +59,15 @@ function CreateAssetsApplication() {
   }, [strings])
 
   const callFormSubmit = async (data) => {
-    const dataAsFormData = getFormData(data)
-    let callAPI = await dispatch(addNewAssetsApp(dataAsFormData))
+    // const dataAsFormData = getFormData(data)
+    let callAPI = await dispatch(addNewAssetsApp(data))
     if (callAPI?.payload?.data?.isSuccess) {
       setApiCallStatus({
         status: 'success',
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(assetsApplication('assetsApplication'))
+      dispatch(assetsApplication('asset'))
       window.location.href = '/assets-application'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
@@ -83,16 +79,14 @@ function CreateAssetsApplication() {
   }
   const updateFormSubmit = async (data, id) => {
     const dataAsFormData = getFormData(data)
-    let callAPI = await dispatch(
-      updateNewAssetsApp({ data: dataAsFormData, id })
-    )
+    let callAPI = await dispatch(updateNewAssetsApp({ data: data, id }))
     if (callAPI?.payload?.data?.isSuccess) {
       setApiCallStatus({
         status: 'success',
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(assetsApplication('assetsApplication'))
+      dispatch(assetsApplication('asset'))
       window.location.href = '/assets-application'
       // setModal({
       //   edit: false,
@@ -107,36 +101,19 @@ function CreateAssetsApplication() {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
-  const callDeleteFormSubmit = async (id) => {
-    let callAPI = await dispatch(deleteAssetsApp(id))
-    if (callAPI?.payload?.data?.isSuccess) {
-      setDeleteApiCallStatus({
-        status: 'success',
-        message: callAPI?.payload?.data?.message,
-      })
-      toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(assetsApplication('assetsApp'))
-    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-      setDeleteApiCallStatus({
-        status: 'error',
-        message: callAPI?.payload?.response?.data?.message,
-      })
-      toastNotify('error', callAPI?.payload?.response?.data?.message)
-    }
-  }
 
   const [roleFormUpdatedData, setRoleFormUpdatedData] = useState([])
 
   useEffect(() => {
     let updatedData = roleForm?.map((data) => {
       switch (data.key_name) {
-        case 'Status':
+        case 'status':
           return { ...data, option: assetStatus }
 
-        case 'Type':
+        case 'type':
           return { ...data, option: assetType }
 
-        case 'Assignee':
+        case 'assignee':
           return { ...data, option: employeeData }
 
         default:
@@ -145,7 +122,7 @@ function CreateAssetsApplication() {
     })
     setRoleFormUpdatedData(updatedData)
   }, [roleForm, assetStatus, assetType, employeeData])
-  console.log('roleFormUpdatedData', roleFormUpdatedData)
+
   return (
     <>
       <Content>

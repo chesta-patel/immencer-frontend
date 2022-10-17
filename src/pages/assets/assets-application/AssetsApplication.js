@@ -18,6 +18,16 @@ import {
 } from '../../../components/Component'
 import { useHistory } from 'react-router'
 import String from '../../../utils/String'
+import { permissions } from '../../../layout/header/dropdown/PermissionJson'
+var hasAssetsAddPermissions = false
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'Assets') {
+      hasAssetsAddPermissions = permissionLIst.add
+    }
+  })
+}
 
 const AssetApplication = ({ ...props }) => {
   const dispatch = useDispatch()
@@ -35,7 +45,7 @@ const AssetApplication = ({ ...props }) => {
   })
 
   useEffect(() => {
-    dispatch(assetsApplication('assetsApplication'))
+    dispatch(assetsApplication('asset'))
   }, [])
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteAssetsApp(id))
@@ -46,7 +56,9 @@ const AssetApplication = ({ ...props }) => {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(assetsApplication('assetsApplication'))
+      dispatch(assetsApplication('asset'))
+      setModal({ edit: false, add: false, data: '' })
+      window.location.href = '/assets-application'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setDeleteApiCallStatus({
         status: 'error',
@@ -58,7 +70,7 @@ const AssetApplication = ({ ...props }) => {
 
   return (
     <React.Fragment>
-      <Head title="Assets Appliaction" />
+      <Head title="Assets Application" />
       <Content>
         {/* <PageHeader
           json={roleForm}
@@ -93,15 +105,17 @@ const AssetApplication = ({ ...props }) => {
                 >
                   <ul className="nk-block-tools g-3">
                     <li className="nk-block-tools-opt">
-                      <Button
-                        color="primary"
-                        className="btn-icon"
-                        onClick={() => {
-                          history.push('/assets/create')
-                        }}
-                      >
-                        <Icon name="plus"></Icon>
-                      </Button>
+                      {hasAssetsAddPermissions && (
+                        <Button
+                          color="primary"
+                          className="btn-icon"
+                          onClick={() => {
+                            history.push('/assets/create')
+                          }}
+                        >
+                          <Icon name="plus"></Icon>
+                        </Button>
+                      )}
                     </li>
                   </ul>
                 </div>
