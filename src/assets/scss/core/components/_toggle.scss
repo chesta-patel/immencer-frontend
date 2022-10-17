@@ -123,17 +123,18 @@ body.toggle-shown {
 @include media-breakpoint-down(xs) {
   .nk-block-tools-toggle {
     .toggle-expand-content {
-      position: absolute;
+      display: block;
+      position: relative;
       left: 0;
       right: 0;
-      top: 100%;
+      top: 0;
       z-index: 99;
-      width: 100vw;
-      padding: 0 $card-stretch-gap-x !important;
-      background: $white;
-      margin-left: -$card-stretch-gap-x;
-      margin-right: -$card-stretch-gap-x;
-      box-shadow: 0 20px 35px rgba(#000, 0.2);
+      // width: 100vw;
+      // padding: 0 $card-stretch-gap-x !important;
+      background: transparent;
+      // margin-left: -$card-stretch-gap-x;
+      // margin-right: -$card-stretch-gap-x;
+      // box-shadow: 0 20px 35px rgba(#000, 0.2);
     }
     .nk-block-tools {
       padding-top: 20px;
