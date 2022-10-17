@@ -509,18 +509,6 @@ function AssetsApplicationPageTable(props) {
                         <span>{item.statusName}</span>
                       </DataTableRow>
                       <DataTableRow size="lg" className="action_icon">
-                        <span>
-                          <Button
-                            color=""
-                            className="btn-icon eye_btn"
-                            onClick={() =>
-                              setModal({ view: true, link: item.attachment })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <em class="icon ni ni-eye"></em>
-                          </Button>
-                        </span>
                         {hasAssetsDeletePermissions && (
                           <span className="policy_edit">
                             <Button
@@ -543,12 +531,7 @@ function AssetsApplicationPageTable(props) {
                             <Button
                               color=""
                               className="btn-icon"
-                              onClick={() =>
-                                history.push({
-                                  pathname: '/assets-application/create',
-                                  state: { add: false, edit: true, data: item },
-                                })
-                              }
+                              onClick={() => handelAssetsEdit(item)}
                               style={{ margin: '0px' }}
                             >
                               <span style={{ display: 'flex' }}>
