@@ -17,8 +17,20 @@ import {
 } from '../../../components/Component'
 import { Button } from 'reactstrap'
 import { useHistory } from 'react-router'
+import String from '../../../utils/String'
+import { useSelector } from 'react-redux'
 
 const HolidayList = ({ ...props }) => {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasHolidayAddPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Holiday') {
+        hasHolidayAddPermissions = permissionLIst.add
+      }
+    })
+  }
   const [roleTable] = useState(holidayListTable)
   const [sm, updateSm] = useState(false)
   const history = useHistory()
@@ -81,7 +93,7 @@ const HolidayList = ({ ...props }) => {
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
                 <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 d-none ${
                     sm ? 'active' : ''
                   }`}
                   onClick={() => updateSm(!sm)}
@@ -90,34 +102,24 @@ const HolidayList = ({ ...props }) => {
                 </Button>
                 <div
                   className="toggle-expand-content"
-                  style={{ display: sm ? 'block' : 'none' }}
+                  style={{ display: 'block' }}
                 >
                   <ul className="nk-block-tools g-3">
-                    <li>
-                      <a
-                        href="#export"
-                        onClick={(ev) => {
-                          ev.preventDefault()
-                        }}
-                        className="btn btn-white btn-outline-light"
-                      >
-                        <Icon name="download-cloud"></Icon>
-                        <span>{String.export}</span>
-                      </a>
-                    </li>
                     <li className="nk-block-tools-opt">
-                      <Button
-                        color="primary"
-                        className="btn-icon"
-                        onClick={() => {
-                          history.push({
-                            pathname: '/holiday/create-holiday',
-                            state: { add: true, edit: false, data: '' },
-                          })
-                        }}
-                      >
-                        <Icon name="plus"></Icon>
-                      </Button>
+                      {hasHolidayAddPermissions && (
+                        <Button
+                          color="primary"
+                          className="btn-icon"
+                          onClick={() => {
+                            history.push({
+                              pathname: '/holiday/create-holiday',
+                              state: { add: true, edit: false, data: '' },
+                            })
+                          }}
+                        >
+                          <Icon name="plus"></Icon>
+                        </Button>
+                      )}
                     </li>
                   </ul>
                 </div>

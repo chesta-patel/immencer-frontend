@@ -5,6 +5,8 @@ import { Steps, Step } from 'react-step-builder'
 import { Row, Col, FormGroup, Button } from 'reactstrap'
 import {
   AddressDetailForm,
+  rows,
+  cols,
   tableHeader,
   tableRow,
   userCreate,
@@ -31,6 +33,7 @@ import {
   EmployeeUpdate,
 } from '../../../services/thunk/EmployeeEditThunk'
 import { empDetail } from '../../../services/thunk/EmployeeDetailThunk'
+import { regex_validate_date_DD_MM_YYYY } from '../../../utils/constants'
 
 const UserCreate = (props) => {
   const allDropdownState = useSelector((state) => state.dropdown)
@@ -59,11 +62,11 @@ const UserCreate = (props) => {
   }, [])
 
   useEffect(() => {
-    console.log('isSuccess', isSuccess)
     if (location.pathname !== '/employee/employee-update') {
       setEmpCreate({ ...empCreate, ...formData })
     } else {
-      setEmpCreate({ ...empCreate, ...isSuccess })
+      setEmpCreate({ ...empCreate, ...isSuccess?.[0] })
+      console.log('🚀 ~ isSuccess', isSuccess?.[0])
     }
   }, [location])
 
@@ -91,7 +94,6 @@ const UserCreate = (props) => {
   }
   const saveEmployeeData = () => {
     dispatch(getCreateNewEmpData(empCreate))
-    console.log('employe data in redux:', formData)
   }
 
   const checkValidate = () => {
@@ -134,15 +136,15 @@ const UserCreate = (props) => {
   }
 
   useEffect(() => {
-    if (isSuccess?.designation && !allDropdownState?.teamLead?.length) {
-      handle({ value: isSuccess?.designation })
+    if (isSuccess?.[0]?.designation && !allDropdownState?.teamLead?.length) {
+      handle({ value: isSuccess?.[0]?.designation })
     }
-  }, [isSuccess?.designation])
+  }, [isSuccess?.[0]?.designation])
 
-  const [
-    getMinDateForOnBoardingAndRelieving,
-    setGetMinDateForOnBoardingAndRelieving,
-  ] = useState(null)
+  // const [
+  //   getMinDateForOnBoardingAndRelieving,
+  //   setGetMinDateForOnBoardingAndRelieving,
+  // ] = useState(null)
 
   return (
     <form
@@ -187,7 +189,7 @@ const UserCreate = (props) => {
                     options={dropDownData?.length > 0 ? dropDownData : []}
                     name={formFields.name}
                     value={dropDownData?.find((data) => {
-                      return data.value === empCreate[`${formFields.key_name}`]
+                      return data.value == empCreate[`${formFields.key_name}`]
                     })}
                     onChange={(e) => {
                       if (formFields.label_name == `${String.designation}`) {
@@ -223,29 +225,41 @@ const UserCreate = (props) => {
                   <input
                     id={`empCreate-${formFields.key_name}`}
                     className="form-control"
-                    disabled={
-                      (formFields.key_name == 'relievingDate' ||
-                        formFields.key_name == 'onboardingDate') &&
-                      (getMinDateForOnBoardingAndRelieving ? false : true)
-                    }
+                    // disabled={
+                    //   (formFields.key_name == 'relievingDate' ||
+                    //     formFields.key_name == 'onboardingDate') &&
+                    //   (getMinDateForOnBoardingAndRelieving ? false : true)
+                    // }
                     type={formFields.type}
                     name={formFields.name}
                     placeholder={formFields.placeholder}
-                    value={empCreate[`${formFields.key_name}`]}
+                    // value={empCreate[`${formFields.key_name}`]}
                     max={formFields.max}
-                    min={
-                      (formFields.key_name == 'relievingDate' ||
-                        formFields.key_name == 'onboardingDate') &&
-                      getMinDateForOnBoardingAndRelieving
+                    value={
+                      empCreate[`${formFields.key_name}`] &&
+                      formFields.type === 'date' &&
+                      regex_validate_date_DD_MM_YYYY.test(
+                        empCreate[`${formFields.key_name}`]
+                      )
+                        ? moment(
+                            empCreate[`${formFields.key_name}`],
+                            'DD/MM/YYYY'
+                          ).format('YYYY-MM-DD')
+                        : empCreate[`${formFields.key_name}`]
                     }
+                    // min={
+                    //   (formFields.key_name == 'relievingDate' ||
+                    //     formFields.key_name == 'onboardingDate') &&
+                    //   getMinDateForOnBoardingAndRelieving
+                    // }
                     onChange={(e) => {
                       const oldState = cloneDeep(empCreate)
                       oldState[`${formFields.key_name}`] = e.target.value
                       setEmpCreate({ ...oldState })
                       saveEmployeeData()
-                      if (formFields.key_name === 'joiningDate') {
-                        setGetMinDateForOnBoardingAndRelieving(e.target.value)
-                      }
+                      // if (formFields.key_name === 'joiningDate') {
+                      //   setGetMinDateForOnBoardingAndRelieving(e.target.value)
+                      // }
                     }}
                     onBlur={(e) => {
                       if (`${formFields.key_name}` == 'mobileNumber') {
@@ -300,10 +314,27 @@ const AddressDetails = (props) => {
   const { handleSubmit } = useForm()
   const [currentAddress, setCurrentAddress] = useState({ ...initialState })
   const [permanentAddress, setPermanentAddress] = useState({ ...initialState })
-  const [Country, setCountry] = useState([])
+  const [countryPermanentAddress, setCountryPermanentAddress] = useState([])
+  const [countryCurrentAddress, setCountryCurrentAddress] = useState([])
+  const [allDropDownPermanentAddress, setAllDropdownPermanentAddress] =
+    useState(allDropDown)
+  const [allDropDownCurrentAddress, setAllDropdownCurrentAddress] =
+    useState(allDropDown)
+  const [addressType, setAddressType] = useState('')
   const { formData } = useSelector((state) => state.createNewEmpData)
   const location = useLocation()
   var checkValidate = []
+
+  useEffect(() => {
+    if (addressType === 'currentAddress') {
+      setAllDropdownCurrentAddress(allDropDown)
+    } else if (addressType === 'permanentAddress') {
+      setAllDropdownPermanentAddress(allDropDown)
+    } else {
+      setAllDropdownCurrentAddress(allDropDown)
+      setAllDropdownPermanentAddress(allDropDown)
+    }
+  }, [allDropDown, addressType, countryCurrentAddress, countryPermanentAddress])
 
   const submitForm = (e) => {
     e.preventDefault()
@@ -330,21 +361,42 @@ const AddressDetails = (props) => {
   const handleChangeAddress = (dropdown, dropDownType) => {
     switch (dropDownType) {
       case 'Country':
-        setCountry(dropdown)
-        dispatch(fetchData(`master/states/byCountryCode/${dropdown.value}`))
+        if (addressType === 'currentAddress') {
+          setCountryCurrentAddress(dropdown)
+          dispatch(fetchData(`master/states/byCountryCode/${dropdown.value}`))
+          setAllDropdownCurrentAddress(allDropDown)
+        } else if (addressType === 'permanentAddress') {
+          setCountryPermanentAddress(dropdown)
+          dispatch(fetchData(`master/states/byCountryCode/${dropdown.value}`))
+          setAllDropdownPermanentAddress(allDropDown)
+        }
         break
       case 'State/Region':
-        dispatch(
-          fetchData(`master/cities/${Country.value}/states/${dropdown.value}`)
-        )
+        if (addressType === 'currentAddress') {
+          dispatch(
+            fetchData(
+              `master/cities/${countryCurrentAddress.value}/states/${dropdown.value}`
+            )
+          )
+        } else if (addressType === 'permanentAddress') {
+          dispatch(
+            fetchData(
+              `master/cities/${countryPermanentAddress.value}/states/${dropdown.value}`
+            )
+          )
+        }
         break
       default:
         break
     }
+    // dispatch(getCreateNewEmpData({ ...formData.permanentAddress }))
+    console.log('formData.permanentAddress==>')
   }
   const onChangeAddress = (event) => {
-    if (event.target.checked) {
+    if (event?.target?.checked) {
       setCurrentAddress(permanentAddress)
+      setCountryPermanentAddress(countryPermanentAddress)
+      setAllDropdownCurrentAddress(allDropDownPermanentAddress)
     } else {
       const tempAdata = { ...currentAddress }
       Object.keys(tempAdata).forEach((key) => {
@@ -362,17 +414,50 @@ const AddressDetails = (props) => {
       ...permanentAddress,
       ...formData?.permanentAddress,
     })
+
+    if (formData?.permanentAddress) {
+      setAddressType('permanentAddress')
+      let findCountryData = allDropDownPermanentAddress?.countries?.find(
+        (data) => data?.iso2 == formData?.permanentAddress?.country
+      )
+      let countryData = {
+        value: `${findCountryData?.iso2}`,
+        label: `${findCountryData?.name}`,
+      }
+      handleChangeAddress(countryData, 'Country')
+      handleChangeAddress(
+        { value: formData?.permanentAddress?.state },
+        'State/Region'
+      )
+    }
+
     setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
+    if (formData?.currentAddress) {
+      setAddressType('currentAddress')
+      let findCountryData = allDropDownPermanentAddress?.countries?.find(
+        (data) => data?.iso2 == formData?.currentAddress?.country
+      )
+      let countryData = {
+        value: `${findCountryData?.iso2}`,
+        label: `${findCountryData?.name}`,
+      }
+      handleChangeAddress(countryData, 'Country')
+      handleChangeAddress(
+        { value: formData?.currentAddress?.state },
+        'State/Region'
+      )
+    }
   }, [formData])
-  // useEffect(() => {
-  //   if (location.pathname === '/employee/employee_update') {
-  //     setPermanentAddress({
-  //       ...permanentAddress,
-  //       ...formData?.permanentAddress,
-  //     })
-  //     setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
-  //   }
-  // }, [location])
+
+  useEffect(() => {
+    if (location.pathname === '/employee/employee-update') {
+      setPermanentAddress({
+        ...permanentAddress,
+        ...formData?.permanentAddress,
+      })
+      setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
+    }
+  }, [location])
 
   return (
     <>
@@ -391,26 +476,26 @@ const AddressDetails = (props) => {
               (formFields.type !== 'date') &
               (formFields.type !== 'email')
             ) {
-              const dropDownData = allDropDown[`${formFields.state_name}`]?.map(
-                (data) => {
-                  if (formFields.state_name === 'countries') {
-                    return {
-                      value: `${data.iso2}`,
-                      label: `${data.name}`,
-                    }
-                  } else if (formFields.state_name === 'states') {
-                    return {
-                      value: `${data.iso2}`,
-                      label: `${data.name}`,
-                    }
-                  } else {
-                    return {
-                      value: `${data.id}`,
-                      label: `${data.name}`,
-                    }
+              const dropDownData = allDropDownPermanentAddress[
+                `${formFields.state_name}`
+              ]?.map((data) => {
+                if (formFields.state_name === 'countries') {
+                  return {
+                    value: `${data.iso2}`,
+                    label: `${data.name}`,
+                  }
+                } else if (formFields.state_name === 'states') {
+                  return {
+                    value: `${data.iso2}`,
+                    label: `${data.name}`,
+                  }
+                } else {
+                  return {
+                    value: `${data.id}`,
+                    label: `${data.name}`,
                   }
                 }
-              )
+              })
               return (
                 <Col md="4">
                   <FormGroup>
@@ -427,10 +512,13 @@ const AddressDetails = (props) => {
                       )}
                       onChange={(e) => {
                         handleChangeAddress(e, formFields.label_name)
+                        setAddressType('permanentAddress')
                         const oldState = cloneDeep(permanentAddress)
                         oldState[`${formFields.key_name}`] = e.value
                         setPermanentAddress({ ...oldState })
-                        // setValidate(true)
+                        dispatch(
+                          getCreateNewEmpData({ ...formData.permanentAddress })
+                        )
                       }}
                     />
                     {formFields.required &&
@@ -460,13 +548,11 @@ const AddressDetails = (props) => {
                         const oldState = cloneDeep(permanentAddress)
                         oldState[`${formFields.key_name}`] = e.target.value
                         setPermanentAddress({ ...oldState })
-                        // setValidate(true)
                       }}
                       onBlur={(e) => {
                         const oldState = cloneDeep(permanentAddress)
                         oldState[`${formFields.key_name}`] = e.target.value
                         setPermanentAddress({ ...oldState })
-                        // setValidate(true)
                       }}
                     />
                     {formFields.required &&
@@ -502,26 +588,26 @@ const AddressDetails = (props) => {
               (formFields.type !== 'date') &
               (formFields.type !== 'email')
             ) {
-              const dropDownData = allDropDown[`${formFields.state_name}`]?.map(
-                (data) => {
-                  if (formFields.state_name === 'countries') {
-                    return {
-                      value: `${data.iso2}`,
-                      label: `${data.name}`,
-                    }
-                  } else if (formFields.state_name === 'states') {
-                    return {
-                      value: `${data.iso2}`,
-                      label: `${data.name}`,
-                    }
-                  } else {
-                    return {
-                      value: `${data.id}`,
-                      label: `${data.name}`,
-                    }
+              const dropDownData = allDropDownCurrentAddress[
+                `${formFields.state_name}`
+              ]?.map((data) => {
+                if (formFields.state_name === 'countries') {
+                  return {
+                    value: `${data.iso2}`,
+                    label: `${data.name}`,
+                  }
+                } else if (formFields.state_name === 'states') {
+                  return {
+                    value: `${data.iso2}`,
+                    label: `${data.name}`,
+                  }
+                } else {
+                  return {
+                    value: `${data.id}`,
+                    label: `${data.name}`,
                   }
                 }
-              )
+              })
               return (
                 <Col md="4">
                   <FormGroup>
@@ -536,10 +622,13 @@ const AddressDetails = (props) => {
                           ddd.value === currentAddress[`${formFields.key_name}`]
                       )}
                       onChange={(e) => {
+                        onChangeAddress()
                         handleChangeAddress(e, formFields.label_name)
+                        setAddressType('currentAddress')
                         const oldState = cloneDeep(currentAddress)
                         oldState[`${formFields.key_name}`] = e.label
                         setCurrentAddress({ ...oldState })
+                        setValidate(true)
                       }}
                     />
                     {formFields.required &&
@@ -611,172 +700,80 @@ const AddressDetails = (props) => {
 }
 
 const Permission = (props) => {
-  const [permissionList, setPermissionList] = useState([])
-  const [checked] = useState(false)
-  const [permissionSt, setPermissionSt] = useState([])
-  const dispatch = useDispatch()
-  const { formData } = useSelector((state) => state.createNewEmpData)
-  // const { isSuccess } = useSelector((state) => state.getEmpDetail)
+  const history = useHistory()
   const [apiCallStatus, setApiCallStatus] = useState({
     status: '',
     message: '',
   })
-  const history = useHistory()
-  const location = useLocation()
 
-  tableHeader.map((e, index) => {
-    for (const key in e) {
-      if (e[key] === '') {
-        delete e[key]
+  const [matrix, setMatrix] = useState(
+    new Array(rows.length).fill(new Array(cols.length).fill(false))
+  )
+  const { formData } = useSelector((state) => state.createNewEmpData)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    console.log('fData', formData)
+    const apiResponseData = formData?.permission
+    if (apiResponseData?.length > 0) {
+      const matrixFromResponse = apiResponseData?.map((ard) => {
+        const { modalName, ...rObject } = ard
+        return Object.keys(rObject).map((key) => rObject[key])
+      })
+      setMatrix(matrixFromResponse)
+    }
+  }, [])
+
+  const handleMatrixChange = (matrixRowIndex, matrixColIndex, value) => {
+    const clonedMatrix = [...matrix]
+    const rowUpdated = [...matrix[matrixRowIndex]]
+    rowUpdated[matrixColIndex] = value
+    clonedMatrix[matrixRowIndex] = rowUpdated
+    setMatrix(clonedMatrix)
+    dispatch(getCreateNewEmpData({ permission: clonedMatrix }))
+  }
+  const handleRowChange = (index, value) => {
+    const clonedMatrix = cloneDeep(matrix)
+    clonedMatrix[index] = new Array(cols.length).fill(value)
+    setMatrix(clonedMatrix)
+    dispatch(getCreateNewEmpData({ permission: clonedMatrix }))
+  }
+  const handleColChange = (index, value) => {
+    const clonedMatrix = cloneDeep(matrix)
+    clonedMatrix.forEach((matrixRow) => {
+      matrixRow[index] = value
+    })
+    setMatrix(clonedMatrix)
+    dispatch(getCreateNewEmpData({ permission: clonedMatrix }))
+  }
+  const handleSubmit = async () => {
+    const finalArray = []
+
+    await rows.forEach(async (row, rowi) => {
+      const obj = {
+        modalName: row,
+      }
+      await cols.forEach(async (col, coli) => {
+        obj[`${col}`] = matrix[rowi][coli]
+      })
+      await finalArray.push(obj)
+      console.log('🚀 ~ finalArray', finalArray)
+      dispatch(getCreateNewEmpData({ permission: finalArray }))
+    })
+    empCreateAPICall({ ...formData, permission: finalArray })
+  }
+
+  const empCreateAPICall = async (data) => {
+    console.log('🚀 ~ data', data)
+    let updateFormData = { ...data }
+
+    for (var key in updateFormData) {
+      if (updateFormData[key] === '' || updateFormData[key] === undefined) {
+        updateFormData[key] = null
       }
     }
-  })
-  useEffect(() => {
-    permissionSt['Leave'] = [false, false, false, false]
-    permissionSt['Holiday'] = [false, false, false, false]
-    permissionSt['Asset'] = [false, false, false, false]
-  }, [])
-  const c = tableHeader.filter((value) => Object.keys(value).length !== 0)
-  const handlechange = (e) => {
-    var value = e.target.checked
-    var string = e.target.id[1]
-    var rowPointer = parseInt(string) - 1
-    switch (true) {
-      case e.target.id.startsWith('c'):
-        for (var i = 0; i < tableRow.length; i++) {
-          var rowCheckbox = `${i}${rowPointer}`
-          document.getElementById(rowCheckbox).checked = value
-        }
-        setPermission(e, value)
-        break
-      case e.target.id.startsWith('r'):
-        for (var j = 0; j < tableHeader.length - 1; j++) {
-          var columnCheckbox = `${rowPointer}${j}`
-          document.getElementById(columnCheckbox).checked = value
-        }
-        setPermission(e, value)
-        break
-      default:
-        setPermission(e, value)
-        break
-    }
-    getPermission()
-  }
-  function getPermission() {
-    var per = []
-    var temp = []
-    let found = Object.entries(permissionSt).find((pair) => pair[0] === 'Leave')
-    temp.push({
-      view: found[1][0],
-      add: found[1][1],
-      edit: found[1][2],
-      delete: found[1][3],
-    })
-    per.push({
-      leave: temp,
-    })
-    temp = []
-    found = Object.entries(permissionSt).find((pair) => pair[0] === 'Holiday')
-    temp.push({
-      view: found[1][0],
-      add: found[1][1],
-      edit: found[1][2],
-      delete: found[1][3],
-    })
-    per.push({
-      holiday: temp,
-    })
-    temp = []
-    found = Object.entries(permissionSt).find((pair) => pair[0] === 'Asset')
-    temp.push({
-      view: found[1][0],
-      add: found[1][1],
-      edit: found[1][2],
-      delete: found[1][3],
-    })
-    per.push({
-      asset: temp,
-    })
-    return {
-      permission: per,
-    }
-  }
-  function setPermission(per, v) {
-    switch (per.target.id) {
-      case 'r1':
-        permissionSt['Leave'] = [v, v, v, v]
-        break
-      case 'r2':
-        permissionSt['Holiday'] = [v, v, v, v]
-        break
-      case 'r3':
-        permissionSt['Asset'] = [v, v, v, v]
-        break
-      case 'c1':
-        permissionSt['Asset'][0] = v
-        permissionSt['Leave'][0] = v
-        permissionSt['Holiday'][0] = v
-        break
-      case 'c2':
-        permissionSt['Asset'][1] = v
-        permissionSt['Leave'][1] = v
-        permissionSt['Holiday'][1] = v
-        break
-      case 'c3':
-        permissionSt['Asset'][2] = v
-        permissionSt['Leave'][2] = v
-        permissionSt['Holiday'][2] = v
-        break
-      case 'c4':
-        permissionSt['Asset'][3] = v
-        permissionSt['Leave'][3] = v
-        permissionSt['Holiday'][3] = v
-        break
-      default:
-        var chkid = per.target.id
-        switch (chkid[0]) {
-          case '0':
-            permissionSt['Leave'][chkid[1]] = v
-            break
-          case '1':
-            permissionSt['Holiday'][chkid[1]] = v
-            break
-          case '2':
-            permissionSt['Asset'][chkid[1]] = v
-            break
-          default:
-            break
-        }
-        break
-    }
-  }
-  // const AddPermission = () => {
-  //   dispatch(getCreateNewEmpData(getPermission()))
-  //   // console.log('formdata', formData)
-  // }
-  const CreateEmployee = async () => {
-    // if (location.pathname == '/employee/employee-update') {
-    //   let callAPI = await dispatch(EmployeeUpdate(formData))
-    //   if (callAPI?.payload?.data?.isSuccess) {
-    //     setApiCallStatus({
-    //       status: 'success',
-    //       message: callAPI?.payload?.data?.message,
-    //     })
-    //     toastNotify('success', callAPI?.payload?.data?.message)
-    //     // dispatch(empDetail('empDetail'))
-    //     history.push('/employee')
-    //   } else if (!callAPI?.payload?.response?.data?.isSuccess) {
-    //     setApiCallStatus({
-    //       status: 'error',
-    //       message: callAPI?.payload?.response?.data?.message,
-    //     })
-    //     // dispatch(empDetail('empDetail'))
-    //     toastNotify('error', callAPI?.payload?.response?.data?.message)
-    //   }
-    // } else {
-    dispatch(getCreateNewEmpData(getPermission()))
 
-    let callAPI = await dispatch(CreateNewEmployee(formData))
+    let callAPI = await dispatch(CreateNewEmployee(updateFormData))
     if (callAPI?.payload?.data?.isSuccess) {
       setApiCallStatus({
         status: 'success',
@@ -784,6 +781,7 @@ const Permission = (props) => {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       history.push('/employee')
+      dispatch(getCreateNewEmpData())
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -791,80 +789,102 @@ const Permission = (props) => {
       })
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
-    // }
   }
 
   return (
-    <>
-      <Table>
-        <thead>
-          {tableHeader.map((head, i) =>
-            head.type === 'checkbox' && head.header !== '' ? (
-              <th>
-                <tr>
-                  <input
-                    type="checkbox"
-                    onChange={(e) => handlechange(e)}
-                    id={head.id}
-                  />
-                </tr>
-                <tr>{head.header}</tr>
-              </th>
-            ) : (
-              <th></th>
-            )
-          )}
-        </thead>
-        <tbody>
-          {tableRow.map((row, i) => (
-            <tr key={i}>
-              <td>
+    <div className="App">
+      <div
+        style={{
+          display: 'flex',
+        }}
+      >
+        <div
+          style={{
+            flexDirection: 'column',
+            width: '200px',
+            justifyContent: 'space-between',
+            marginTop: '20px',
+          }}
+        >
+          {rows.map((row, i) => (
+            <div key={i}>
+              <input
+                type="checkbox"
+                checked={matrix?.[i].every((v) => v)}
+                onChange={(e) => {
+                  handleRowChange(i, e.target.checked)
+                }}
+              />
+              {row}
+            </div>
+          ))}
+        </div>
+        <div>
+          <div
+            style={{
+              display: 'flex',
+              width: '200px',
+              justifyContent: 'space-between',
+            }}
+          >
+            {cols.map((col, i) => (
+              <div style={{ display: 'flex' }} key={i}>
+                {col}
                 <input
                   type="checkbox"
-                  onChange={(e) => handlechange(e)}
-                  value={checked}
-                  id={row.id}
+                  checked={matrix.every((element) => element[i])}
+                  onChange={(e) => {
+                    handleColChange(i, e.target.checked)
+                  }}
                 />
-                {row.name}
-              </td>
-              {c.map((checkbox, index) => {
-                return (
-                  <td>
-                    <input
-                      type={checkbox.type}
-                      id={`${i}${index}`}
-                      onChange={(e) => handlechange(e)}
-                    />
-                  </td>
-                )
-              })}
-              <td></td>
-            </tr>
+              </div>
+            ))}
+          </div>
+          {matrix.map((matrixRow, matrixRowIndex) => (
+            <div
+              style={{
+                display: 'flex',
+                width: '200px',
+                justifyContent: 'space-between',
+              }}
+              key={`mr_idx_${matrixRowIndex}`}
+            >
+              {matrixRow.map((matrixCol, matrixColIndex) => (
+                <div key={`mtx_main_${matrixRowIndex}_${matrixColIndex}`}>
+                  <input
+                    type="checkbox"
+                    id={`id_${matrixRowIndex}${matrixColIndex}`}
+                    name={`id_${matrixRowIndex}${matrixColIndex}`}
+                    checked={matrixCol}
+                    onChange={(ev) => {
+                      handleMatrixChange(
+                        matrixRowIndex,
+                        matrixColIndex,
+                        ev.target.checked
+                      )
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
           ))}
-        </tbody>
-      </Table>
-      <div>
-        <div className="actions clearfix">
-          <ul>
-            <li>
-              <Button color="primary" onClick={CreateEmployee}>
-                {String.submit}
-              </Button>
-            </li>
-            {/* <li>
-              <Button color="primary" onClick={AddPermission}>
-                {String.submit}
-              </Button>
-            </li> */}
-            <li>
-              <Button color="primary" onClick={props.prev}>
-                {String.previous}
-              </Button>
-            </li>
-          </ul>
         </div>
       </div>
-    </>
+      <div className="actions clearfix">
+        <ul>
+          <li>
+            <Button color="primary" onClick={handleSubmit}>
+              {String.submit}
+            </Button>
+          </li>
+          <li>
+            <Button color="primary" onClick={props.prev}>
+              {String.previous}
+            </Button>
+          </li>
+        </ul>
+      </div>
+    </div>
   )
 }
 

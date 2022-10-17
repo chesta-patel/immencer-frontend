@@ -20,13 +20,23 @@ import { fetchData } from '../../../services/thunk/AuthThunk'
 import { useDispatch } from 'react-redux'
 import { empData } from '../../../services/thunk/GetEmployee'
 import Loader from '../../Loader'
+import { getCreateNewEmpData } from '../../../services/thunk/CreateNewEmpDataThunk'
 
 const UserInfo = ({ ...props }) => {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasEmployeeAddPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Employee') {
+        hasEmployeeAddPermissions = permissionLIst.add
+      }
+    })
+  }
   const history = useHistory()
   const { employeeData, isLoading } = useSelector((state) => state.getEmp)
   const dispatch = useDispatch()
   const [employeeDetail, setEmployeeDetail] = useState([])
-
   // Stats declaration for data
   const [sm, updateSm] = useState(false)
   const { contextData } = useContext(UserContext)
@@ -58,7 +68,7 @@ const UserInfo = ({ ...props }) => {
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
                 <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 d-none ${
                     sm ? 'active' : ''
                   }`}
                   onClick={() => updateSm(!sm)}
@@ -67,31 +77,22 @@ const UserInfo = ({ ...props }) => {
                 </Button>
                 <div
                   className="toggle-expand-content"
-                  style={{ display: sm ? 'block' : 'none' }}
+                  style={{ display: 'block' }}
                 >
                   <ul className="nk-block-tools g-3">
-                    <li>
-                      <a
-                        href="#export"
-                        onClick={(ev) => {
-                          ev.preventDefault()
-                        }}
-                        className="btn btn-white btn-outline-light"
-                      >
-                        <Icon name="download-cloud"></Icon>
-                        <span>{String.export}</span>
-                      </a>
-                    </li>
                     <li className="nk-block-tools-opt">
-                      <Button
-                        color="primary"
-                        className="btn-icon"
-                        onClick={() => {
-                          history.push('/employee/employee-creation')
-                        }}
-                      >
-                        <Icon name="plus"></Icon>
-                      </Button>
+                      {hasEmployeeAddPermissions && (
+                        <Button
+                          color="primary"
+                          className="btn-icon"
+                          onClick={() => {
+                            dispatch(getCreateNewEmpData())
+                            history.push('/employee/employee-creation')
+                          }}
+                        >
+                          <Icon name="plus"></Icon>
+                        </Button>
+                      )}
                     </li>
                   </ul>
                 </div>

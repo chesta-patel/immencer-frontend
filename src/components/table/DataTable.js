@@ -20,9 +20,9 @@ export const DataTableBody = ({ compact, className, bodyclass, ...props }) => {
   return (
     <div className={`card-inner p-0 ${className ? className : ''}`}>
       <div
-        className={`nk-tb-list nk-tb-ulist ${bodyclass ? bodyclass : ''} ${
-          compact ? 'is-compact' : ''
-        }`}
+        className={`nk-tb-list nk-tb-ulist table-responsive ${
+          bodyclass ? bodyclass : ''
+        } ${compact ? 'is-compact' : ''}`}
       >
         {props.children}
       </div>
@@ -36,7 +36,7 @@ export const DataTableRow = ({ className, size, ...props }) => {
   const rowClass = classNames({
     'nk-tb-col': true,
     [`${className}`]: className,
-    [`tb-col-${size}`]: size,
+    [`tb-col-${size} tb-col-sm tb-col-xs`]: size,
   })
   return <div className={rowClass}>{props.children}</div>
 }

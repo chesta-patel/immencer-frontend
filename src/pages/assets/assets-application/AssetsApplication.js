@@ -18,8 +18,19 @@ import {
 } from '../../../components/Component'
 import { useHistory } from 'react-router'
 import String from '../../../utils/String'
+import { useSelector } from 'react-redux'
 
 const AssetApplication = ({ ...props }) => {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasAssetsAddPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Assets') {
+        hasAssetsAddPermissions = permissionLIst.add
+      }
+    })
+  }
   const dispatch = useDispatch()
   const [roleTable] = useState(assetAppTable)
   const [sm, updateSm] = useState(false)
@@ -35,7 +46,7 @@ const AssetApplication = ({ ...props }) => {
   })
 
   useEffect(() => {
-    dispatch(assetsApplication('assetsApplication'))
+    dispatch(assetsApplication('asset'))
   }, [])
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteAssetsApp(id))
@@ -46,7 +57,9 @@ const AssetApplication = ({ ...props }) => {
         message: callAPI?.payload?.data?.message,
       })
       toastNotify('success', callAPI?.payload?.data?.message)
-      dispatch(assetsApplication('assetsApplication'))
+      dispatch(assetsApplication('asset'))
+      setModal({ edit: false, add: false, data: '' })
+      window.location.href = '/assets-application'
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setDeleteApiCallStatus({
         status: 'error',
@@ -58,7 +71,7 @@ const AssetApplication = ({ ...props }) => {
 
   return (
     <React.Fragment>
-      <Head title="Assets Appliaction" />
+      <Head title="Assets Application" />
       <Content>
         {/* <PageHeader
           json={roleForm}
@@ -80,7 +93,7 @@ const AssetApplication = ({ ...props }) => {
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
                 <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 d-none ${
                     sm ? 'active' : ''
                   }`}
                   onClick={() => updateSm(!sm)}
@@ -89,31 +102,21 @@ const AssetApplication = ({ ...props }) => {
                 </Button>
                 <div
                   className="toggle-expand-content"
-                  style={{ display: sm ? 'block' : 'none' }}
+                  style={{ display: 'block' }}
                 >
                   <ul className="nk-block-tools g-3">
-                    <li>
-                      <a
-                        href="#export"
-                        onClick={(ev) => {
-                          ev.preventDefault()
-                        }}
-                        className="btn btn-white btn-outline-light"
-                      >
-                        <Icon name="download-cloud"></Icon>
-                        <span>{String.export}</span>
-                      </a>
-                    </li>
                     <li className="nk-block-tools-opt">
-                      <Button
-                        color="primary"
-                        className="btn-icon"
-                        onClick={() => {
-                          history.push('/assets/create')
-                        }}
-                      >
-                        <Icon name="plus"></Icon>
-                      </Button>
+                      {hasAssetsAddPermissions && (
+                        <Button
+                          color="primary"
+                          className="btn-icon"
+                          onClick={() => {
+                            history.push('/assets/create')
+                          }}
+                        >
+                          <Icon name="plus"></Icon>
+                        </Button>
+                      )}
                     </li>
                   </ul>
                 </div>

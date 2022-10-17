@@ -357,3 +357,12 @@ export const tableRow = [
     type: 'checkbox',
   },
 ]
+
+export const rows = [
+  'Employee',
+  'Holiday',
+  'Assets',
+  'CompanyDocument',
+  'CompanyPolicy',
+]
+export const cols = ['add', 'edit', 'view', 'delete']

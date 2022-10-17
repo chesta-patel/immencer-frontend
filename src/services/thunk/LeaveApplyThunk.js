@@ -4,16 +4,20 @@ import axios from 'axios'
 let token = localStorage.getItem('token')
 const API_URL = `${process.env.REACT_APP_API_URL}`
 
-export const addNewAssetsApp = createAsyncThunk(
-  'addNewAssetsApp',
+export const LeaveApply = createAsyncThunk(
+  'LeaveApply',
   async (payload, thunkAPI) => {
     try {
-      const response = await axios.post(`${API_URL}asset`, payload, {
+      const response = await axios.post(`${API_URL}leave`, payload, {
         headers: {
           authentication: `${token}`,
         },
       })
-      return response
+      if (response.status === 201) {
+        return response
+      } else {
+        return thunkAPI.rejectWithValue(response)
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }

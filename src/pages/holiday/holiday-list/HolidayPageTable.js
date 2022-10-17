@@ -30,6 +30,18 @@ import GoogleFileViewerLink from '../../../components/google-file-viewer-link/Go
 import { useHistory } from 'react-router'
 
 function HolidayPageTable(props) {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasHolidayDeletePermissions = false
+  var hasHolidayEditPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Holiday') {
+        hasHolidayDeletePermissions = permissionLIst.delete
+        hasHolidayEditPermissions = permissionLIst.edit
+      }
+    })
+  }
   const { infoList } = useSelector((state) => state.holidayList)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
@@ -97,15 +109,21 @@ function HolidayPageTable(props) {
       const filter = props?.json.map((d) => {
         return d?.key_name?.map((key) => {
           const filteredObject = currentItems?.filter((item) => {
-            if (key === 'updatedAt' || key === 'createdAt') {
-              let date = item.updatedAt
-                ? moment(item.updatedAt).format('L')
-                : moment(item.createdAt).format('L')
-              return date?.toLowerCase()?.includes(onSearchText?.toLowerCase())
-            } else {
-              return item[key]
-                ?.toLowerCase()
-                ?.includes(onSearchText?.toLowerCase())
+            switch (key) {
+              case 'updatedAt' || 'createdAt':
+                let date = item.updatedAt
+                  ? moment(item.updatedAt).format('L')
+                  : moment(item.createdAt).format('L')
+                return date
+                  ?.toString()
+                  ?.toLowerCase()
+                  ?.includes(onSearchText?.toString()?.toLowerCase())
+
+              default:
+                return item[key]
+                  ?.toString()
+                  ?.toLowerCase()
+                  ?.includes(onSearchText?.toString()?.toLowerCase())
             }
           })
           return filteredObject
@@ -445,11 +463,7 @@ function HolidayPageTable(props) {
                       </DataTableRow>
                       <DataTableRow size="md">
                         <div className="user-info">
-                          <span className="tb-lead">
-                            {item.updatedAt
-                              ? moment(item.updatedAt).format('L')
-                              : moment(item.createdAt).format('L')}{' '}
-                          </span>
+                          <span className="tb-lead">{item.date}</span>
                         </div>
                       </DataTableRow>
                       <DataTableRow size="sm">
@@ -459,38 +473,42 @@ function HolidayPageTable(props) {
                         <span>{item.description}</span>
                       </DataTableRow>
                       <DataTableRow size="lg" className="action_icon">
-                        <span className="ml-2">
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              setDeleteModal({
-                                status: true,
-                                data: item,
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <Icon name="trash" />
-                          </Button>
-                        </span>
-                        <span>
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              history.push({
-                                pathname: '/holiday/create-holiday',
-                                state: { add: false, edit: true, data: item },
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <span style={{ display: 'flex' }}>
-                              <Icon name="edit" />
-                            </span>
-                          </Button>
-                        </span>
+                        {hasHolidayDeletePermissions && (
+                          <span className="ml-2">
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                setDeleteModal({
+                                  status: true,
+                                  data: item,
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <Icon name="trash" />
+                            </Button>
+                          </span>
+                        )}
+                        {hasHolidayEditPermissions && (
+                          <span>
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                history.push({
+                                  pathname: '/holiday/create-holiday',
+                                  state: { add: false, edit: true, data: item },
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <span style={{ display: 'flex' }}>
+                                <Icon name="edit" />
+                              </span>
+                            </Button>
+                          </span>
+                        )}
                       </DataTableRow>
                     </DataTableItem>
                   )

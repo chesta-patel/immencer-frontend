@@ -31,6 +31,18 @@ import { useHistory } from 'react-router'
 import { shortObjectWithNUmber } from '../../../utils/Helpers'
 
 function CompanyDocumentPageTable(props) {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasCompanyDocsEditPermissions = false
+  var hasCompanyDocsDeletePermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'CompanyDocument') {
+        hasCompanyDocsDeletePermissions = permissionLIst.delete
+        hasCompanyDocsEditPermissions = permissionLIst.edit
+      }
+    })
+  }
   const { infoList } = useSelector((state) => state.companyDocument)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
@@ -464,38 +476,42 @@ function CompanyDocumentPageTable(props) {
                         <span>
                           <GoogleFileViewerLink link={item.attachment} />
                         </span>
-                        <span className="ml-2">
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              setDeleteModal({
-                                status: true,
-                                data: item,
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <Icon name="trash" />
-                          </Button>
-                        </span>
-                        <span>
-                          <Button
-                            color=""
-                            className="btn-icon"
-                            onClick={() =>
-                              history.push({
-                                pathname: '/company-document/create',
-                                state: { add: false, edit: true, data: item },
-                              })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <span style={{ display: 'flex' }}>
-                              <Icon name="edit" />
-                            </span>
-                          </Button>
-                        </span>
+                        {hasCompanyDocsDeletePermissions && (
+                          <span className="ml-2">
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                setDeleteModal({
+                                  status: true,
+                                  data: item,
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <Icon name="trash" />
+                            </Button>
+                          </span>
+                        )}
+                        {hasCompanyDocsEditPermissions && (
+                          <span>
+                            <Button
+                              color=""
+                              className="btn-icon"
+                              onClick={() =>
+                                history.push({
+                                  pathname: '/company-document/create',
+                                  state: { add: false, edit: true, data: item },
+                                })
+                              }
+                              style={{ margin: '0px' }}
+                            >
+                              <span style={{ display: 'flex' }}>
+                                <Icon name="edit" />
+                              </span>
+                            </Button>
+                          </span>
+                        )}
                       </DataTableRow>
                     </DataTableItem>
                   )

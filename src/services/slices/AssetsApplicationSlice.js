@@ -15,7 +15,7 @@ export const getAssetsApplication = createSlice({
   reducers: [],
   extraReducers: (builder) => {
     builder.addCase(assetsApplication.fulfilled, (state, action) => {
-      state.infoList = action.payload?.data?.data?.asset
+      state.infoList = action.payload?.data?.data?.assets
       state.isLoading = false
       state.isSuccess = true
       state.isError = false

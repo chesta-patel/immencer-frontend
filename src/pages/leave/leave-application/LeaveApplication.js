@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Content from '../../../layout/content/Content'
 import Head from '../../../layout/head/Head'
 import PageTable from '../../PageTable'
 import { leaveAppTable } from './LeaveAppJson'
 import { useDispatch } from 'react-redux'
 import { toastNotify } from '../../../layout/Index'
-import { Button, Card, CardBody, Col } from 'reactstrap'
+import { Button, Card, CardBody, Col, Modal, ModalBody } from 'reactstrap'
 import {
   BlockBetween,
   BlockHead,
@@ -18,8 +18,15 @@ import {
 import './leaveapplication.scss'
 import String from '../../../utils/String'
 import { useHistory } from 'react-router'
+import { fetchData } from '../../../services/thunk/AuthThunk'
+import { empData } from '../../../services/thunk/GetEmployee'
+import GrantLeave from './GrantLeave'
 
 const LeaveApplication = ({ ...props }) => {
+  const [modal, setModal] = useState({
+    edit: false,
+    add: false,
+  })
   const [roleTable] = useState(leaveAppTable)
   const [sm, updateSm] = useState(false)
   const history = useHistory()
@@ -33,6 +40,12 @@ const LeaveApplication = ({ ...props }) => {
     status: '',
     message: '',
   })
+
+  useEffect(() => {
+    dispatch(fetchData('master/leaveType'))
+    dispatch(fetchData('master/leaveDayType'))
+    dispatch(empData('employee'))
+  }, [])
   //need to add dispatch
   const callFormSubmit = async (data) => {
     // const dataAsFormData = getFormData(data)
@@ -52,7 +65,6 @@ const LeaveApplication = ({ ...props }) => {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
-
   //need to add dispatch for update
   const updateFormSubmit = async (data, id) => {
     // const dataAsFormData = getFormData(data)
@@ -77,7 +89,10 @@ const LeaveApplication = ({ ...props }) => {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
-
+  // function to close the form modal
+  const onFormCancel = () => {
+    setModal({ edit: false, add: false })
+  }
   return (
     <React.Fragment>
       <Head title="Leave Application" />
@@ -102,7 +117,7 @@ const LeaveApplication = ({ ...props }) => {
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
                 <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 d-none ${
                     sm ? 'active' : ''
                   }`}
                   onClick={() => updateSm(!sm)}
@@ -111,21 +126,9 @@ const LeaveApplication = ({ ...props }) => {
                 </Button>
                 <div
                   className="toggle-expand-content"
-                  style={{ display: sm ? 'block' : 'none' }}
+                  style={{ display: 'block' }}
                 >
                   <ul className="nk-block-tools g-3">
-                    <li>
-                      <a
-                        href="#export"
-                        onClick={(ev) => {
-                          ev.preventDefault()
-                        }}
-                        className="btn btn-white btn-outline-light"
-                      >
-                        <Icon name="download-cloud"></Icon>
-                        <span>{String.export}</span>
-                      </a>
-                    </li>
                     <li className="nk-block-tools-opt">
                       <Button
                         color="primary"
@@ -135,6 +138,19 @@ const LeaveApplication = ({ ...props }) => {
                         }}
                       >
                         <Icon name="plus"></Icon>
+                        {`${String.apply} ${String.leave}`}
+                      </Button>
+                    </li>
+                    <li className="nk-block-tools-opt">
+                      <Button
+                        color="primary"
+                        className="btn-icon"
+                        onClick={() => {
+                          setModal({ add: true })
+                        }}
+                      >
+                        <Icon name="plus"></Icon>
+                        {`${String.grant} ${String.leave}`}
                       </Button>
                     </li>
                   </ul>
@@ -172,6 +188,26 @@ const LeaveApplication = ({ ...props }) => {
           </Row>
         </PreviewCard>
         <PageTable json={roleTable} />
+        <Modal
+          isOpen={modal.add}
+          toggle={() => setModal({ add: false })}
+          className="modal-dialog-centered"
+          size="md"
+        >
+          <ModalBody>
+            <a
+              href="#cancel"
+              onClick={(ev) => {
+                ev.preventDefault()
+                onFormCancel()
+              }}
+              className="close"
+            >
+              <Icon name="cross-sm"></Icon>
+            </a>
+            <GrantLeave />
+          </ModalBody>
+        </Modal>
       </Content>
     </React.Fragment>
   )

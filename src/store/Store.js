@@ -17,6 +17,7 @@ import getCurrentEmp from './../services/slices/CurrentEmpPermissionSlice'
 import getAssetsApplication from '../services/slices/AssetsApplicationSlice'
 import CreateAssetsApp from '../services/slices/CreateAssetsAppSlice'
 import DeleteAssetsApp from '../services/slices/DeleteAssetsAppSlice'
+import ApplyLeave from '../services/slices/LeaveApplySlice'
 
 export default configureStore({
   reducer: {
@@ -24,7 +25,7 @@ export default configureStore({
     dropdown: dropdown,
     getEmp: getEmp,
     companyDocument: getCompanyDocument,
-    AssetsApplication: getAssetsApplication,
+    assetsApplication: getAssetsApplication,
     holidayList: getHolidayList,
     DeleteHolidayList: DeleteHolidayList,
     companyPolicy: getCompanyPolicy,
@@ -38,5 +39,6 @@ export default configureStore({
     deleteAssetsApp: DeleteAssetsApp,
     empUpdate: empUpdate,
     getCurrentEmp: getCurrentEmp,
+    ApplyLeave: ApplyLeave,
   },
 })

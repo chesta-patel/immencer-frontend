@@ -31,6 +31,17 @@ import { toastNotify } from '../layout/Index'
 import './user-manage/user-info/PageTable.scss'
 
 function PageTable(props) {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasEditPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Employee') {
+        hasEditPermissions = permissionLIst.add
+      }
+    })
+  }
+
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
   // Get current list, pagination
@@ -502,7 +513,7 @@ function PageTable(props) {
                 </div>
               </DataTableRow> */}
               {props.json.map((colum, id) => (
-                <DataTableRow size="md" key={id}>
+                <DataTableRow size="sm" key={id}>
                   <span className="sub-text">{colum.name}</span>
                 </DataTableRow>
               ))}
@@ -526,7 +537,7 @@ function PageTable(props) {
                                   <UserAvatar
                                     theme={item.avatarBg}
                                     text={findUpper(
-                                      `${item.firstName} ${item.lastName}`
+                                      `${item?.firstName?.toUpperCase()} ${item?.lastName?.toUpperCase()}`
                                     )}
                                     image={item.image}
                                   ></UserAvatar>
@@ -559,17 +570,18 @@ function PageTable(props) {
                       <DataTableRow className="nk-tb-col-tools" size="sm">
                         <ul className="nk-tb-actions gx-1">
                           <li>
-                            <DropdownItem
-                              tag="a"
-                              href="#edit"
-                              onClick={(ev) => {
-                                ev.preventDefault()
-                                handleChange(item.id)
-                              }}
-                            >
-                              <Icon name="edit"></Icon>
-                              {/* <span>{String.edit}</span> */}
-                            </DropdownItem>
+                            {hasEditPermissions && (
+                              <DropdownItem
+                                tag="a"
+                                href="#edit"
+                                onClick={(ev) => {
+                                  ev.preventDefault()
+                                  handleChange(item.id)
+                                }}
+                              >
+                                <Icon name="edit"></Icon>
+                              </DropdownItem>
+                            )}
                           </li>
                         </ul>
                       </DataTableRow>
