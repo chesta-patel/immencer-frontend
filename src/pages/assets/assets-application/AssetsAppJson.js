@@ -1,15 +1,14 @@
 import String from '../../../utils/String'
-import moment from 'moment'
 
 export const assetAppForm = [
   {
     id: 1,
     label_name: `${String.code}`,
-    type: 'number',
+    type: 'text',
     name: `${String.code}`,
     required: `${String.Please_enter} ${String.code}`,
     placeholder: `${String.enter} ${String.code}`,
-    key_name: `${String.code}`,
+    key_name: `code`,
   },
   {
     id: 2,
@@ -18,7 +17,7 @@ export const assetAppForm = [
     name: `${String.name}`,
     required: `${String.Please_enter} ${String.name}`,
     placeholder: `${String.enter} ${String.name}`,
-    key_name: `${String.name}`,
+    key_name: `name`,
   },
   {
     id: 3,
@@ -27,25 +26,18 @@ export const assetAppForm = [
     name: `${String.type}`,
     required: `${String.Please_enter} ${String.type}`,
     placeholder: `${String.enter} ${String.type}`,
-    key_name: `${String.type}`,
-    option: [
-      { value: 'Select type', label: 'Select type' },
-      { value: 'Paid', label: 'Paid' },
-      { value: 'Optional', label: 'Optional' },
-      { value: 'Compulsory', label: 'Compulsory' },
-    ],
+    option: [],
+    key_name: `type`,
   },
   {
     id: 4,
     label_name: `${String.status}`,
     type: 'select',
-    name: 'select',
-    option: [
-      { value: `${String.active}`, label: `${String.active}` },
-      { value: `${String.pending}`, label: `${String.pending}` },
-      { value: `${String.suspend}`, label: `${String.suspend}` },
-    ],
-    key_name: `${String.status}`,
+    name: `${String.status}`,
+    required: `${String.Please_enter} ${String.status}`,
+    placeholder: `${String.enter} ${String.status}`,
+    key_name: `status`,
+    option: [],
   },
   {
     id: 5,
@@ -54,24 +46,24 @@ export const assetAppForm = [
     name: `${String.serialNumber}`,
     required: `${String.Please_enter} ${String.serialNumber}`,
     placeholder: `${String.enter} ${String.serialNumber}`,
-    key_name: `${String.serialNumber}`,
+    key_name: `serialNumber`,
   },
   {
     id: 6,
     label_name: `${String.assignee}`,
     type: 'select',
-    name: 'select',
+    name: 'assignee',
     required: `${String.Please_enter} ${String.assignee}`,
     placeholder: `${String.enter} ${String.assignee}`,
-    key_name: `${String.assignee}`,
+    key_name: `assignee`,
+    option: [],
   },
   {
     id: 7,
     label_name: `${String.assignDate}`,
     type: 'date',
-    name: `${String.assignDate}`,
+    name: `assignDate`,
     required: `${String.Please_enter} ${String.assignDate}`,
-    max: moment().format('YYYY-MM-DD'),
     key_name: 'assignDate',
   },
   {
@@ -79,7 +71,7 @@ export const assetAppForm = [
     label_name: `${String.description}`,
     type: 'text',
     name: `${String.description}`,
-    required: `${String.Please_enter} ${String.description}`,
+    // required: `${String.Please_enter} ${String.description}`,
     placeholder: `${String.enter} ${String.description}`,
     key_name: 'description',
   },
@@ -88,9 +80,9 @@ export const assetAppForm = [
     label_name: `${String.note}`,
     type: 'text',
     name: `${String.note}`,
-    required: `${String.Please_enter} ${String.note}`,
+    // required: `${String.Please_enter} ${String.note}`,
     placeholder: `${String.enter} ${String.note}`,
-    key_name: 'note',
+    key_name: 'notes',
   },
 ]
 
@@ -98,21 +90,26 @@ export const assetAppTable = [
   {
     id: 1,
     name: `${String.code}`,
+    key_name: [`code`],
   },
   {
     id: 2,
     name: `${String.name}`,
+    key_name: [`name`],
   },
   {
     id: 3,
     name: `${String.type}`,
+    key_name: [`typeName`],
   },
   {
     id: 4,
     name: `${String.status}`,
+    key_name: [`statusName`],
   },
   {
     id: 5,
     name: `${String.action}`,
+    key_name: [``],
   },
 ]

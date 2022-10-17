@@ -23,3 +23,23 @@ export const assetsApplication = createAsyncThunk(
     }
   }
 )
+
+export const getAssetsApplicationDataByID = createAsyncThunk(
+  'getAssetsApplicationDataByID',
+  async (payload, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        `${API_URL}/asset/${payload}`,
+        {
+          headers: {
+            authentication: `${token}`,
+          },
+        },
+        payload
+      )
+      return response
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)

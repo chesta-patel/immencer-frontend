@@ -57,7 +57,7 @@ export const holidayListTable = [
   {
     id: 3,
     name: `${String.type}`,
-    key_name: [`type`],
+    key_name: [`typeName`],
   },
   {
     id: 4,
