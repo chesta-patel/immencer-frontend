@@ -10,6 +10,8 @@ import { findUpper } from '../../../../utils/Utils'
 import { currentEmployee } from '../../../../services/thunk/CurrentEmpPermissionThunk'
 import jwtDecode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
+import { fetchData } from '../../../../services/thunk/AuthThunk'
+import { permissions } from '../PermissionJson'
 
 const User = (props) => {
   const [open, setOpen] = useState(false)
@@ -18,26 +20,31 @@ const User = (props) => {
   const [text, settext] = useState('Admin')
   const { currentEmp } = useSelector((state) => state.getCurrentEmp)
   const dispatch = useDispatch()
+  const { permission } = useSelector((state) => state.dropdown)
+  const hasThemePermissions = permissions.some(
+    (permission) => permission.add || permission.edit || permission.delete
+  )
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     const emp = jwtDecode(token)
     dispatch(currentEmployee(`employee/${emp.id}`))
   }, [])
+  useEffect(() => {
+    dispatch(fetchData('master/permission'))
+  }, [])
+
   const handleSignout = () => {
     localStorage.removeItem('accessToken')
   }
 
   return (
     <React.Fragment>
-      <Button color="white" onClick={props.changetheme}>
-        {' '}
-        <img
-          className="logo-dark logo-img"
-          src={immence_logo}
-          alt="logo"
-        />{' '}
-      </Button>
+      {hasThemePermissions && (
+        <Button color="white" onClick={props.changetheme}>
+          <img className="logo-dark logo-img" src={immence_logo} alt="logo" />
+        </Button>
+      )}
       {currentEmp.map((currentEmployee, index) => {
         return (
           <Dropdown isOpen={open} className="user-dropdown" toggle={toggle}>

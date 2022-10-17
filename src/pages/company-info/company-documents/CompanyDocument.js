@@ -20,6 +20,16 @@ import {
 import { Button } from 'reactstrap'
 import String from '../../../utils/String'
 import { useHistory } from 'react-router'
+import { permissions } from '../../../layout/header/dropdown/PermissionJson'
+var hasCompanyDocsAddPermissions = false
+const token = localStorage.getItem('navyblue')
+if (token == 'navyblue') {
+  permissions.map((permissionLIst, index) => {
+    if (permissionLIst.modalName == 'CompanyDocument') {
+      hasCompanyDocsAddPermissions = permissionLIst.add
+    }
+  })
+}
 
 const CompanyDocument = ({ ...props }) => {
   const [roleTable] = useState(companyDocTable)
@@ -95,18 +105,20 @@ const CompanyDocument = ({ ...props }) => {
                 >
                   <ul className="nk-block-tools g-3">
                     <li className="nk-block-tools-opt">
-                      <Button
-                        color="primary"
-                        className="btn-icon"
-                        onClick={() => {
-                          history.push({
-                            pathname: '/company-document/create',
-                            state: { add: true, edit: false, data: '' },
-                          })
-                        }}
-                      >
-                        <Icon name="plus"></Icon>
-                      </Button>
+                      {hasCompanyDocsAddPermissions && (
+                        <Button
+                          color="primary"
+                          className="btn-icon"
+                          onClick={() => {
+                            history.push({
+                              pathname: '/company-document/create',
+                              state: { add: true, edit: false, data: '' },
+                            })
+                          }}
+                        >
+                          <Icon name="plus"></Icon>
+                        </Button>
+                      )}
                     </li>
                   </ul>
                 </div>

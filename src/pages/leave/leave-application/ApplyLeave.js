@@ -33,7 +33,7 @@ const initialLeaveDate = {
 
 function ApplyLeave() {
   const [strings, setStrings] = useState('')
-  const [leaveForm] = useState(leaveAppForm)
+  // const [leaveForm] = useState(leaveAppForm)
   const history = useHistory()
   const dispatch = useDispatch()
   const { leaveType } = useSelector((state) => state.dropdown)
@@ -98,6 +98,7 @@ function ApplyLeave() {
       ...leaveData,
       dates: leaveDates,
     }
+    console.log()
     callFormSubmit(requestBody)
   }
   const leaveOption = leaveType.map((list, index) => {
@@ -210,19 +211,40 @@ function ApplyLeave() {
                           )
                         })}
                         {index + 1 === leaveDates.length ? (
-                          <Button
-                            color="primary"
-                            size="sm"
-                            onClick={() => {
-                              setLeaveDates([
-                                ...leaveDates,
-                                { ...initialLeaveDate },
-                              ])
-                            }}
-                            className="add_date"
-                          >
-                            <Icon name="plus" />
-                          </Button>
+                          <span style={{ display: 'flex' }}>
+                            {index !== 0 && (
+                              <Button
+                                color="primary"
+                                size="sm"
+                                onClick={() => {
+                                  const existingLeaveDates =
+                                    cloneDeep(leaveDates)
+
+                                  setLeaveDates(
+                                    existingLeaveDates.filter(
+                                      (_leaveDate, i) => i !== index
+                                    )
+                                  )
+                                }}
+                                className="add_date"
+                              >
+                                <Icon name="cross" />
+                              </Button>
+                            )}
+                            <Button
+                              color="primary"
+                              size="sm"
+                              onClick={() => {
+                                setLeaveDates([
+                                  ...leaveDates,
+                                  { ...initialLeaveDate },
+                                ])
+                              }}
+                              className="add_date"
+                            >
+                              <Icon name="plus" />
+                            </Button>
+                          </span>
                         ) : (
                           <Button
                             color="primary"

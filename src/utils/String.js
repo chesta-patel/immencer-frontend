@@ -194,6 +194,9 @@ const String = {
   assignee: 'Assignee',
   assignDate: 'Assign Date',
   notes: 'Notes',
+  grant: 'Grant',
+  month_year: 'Month-Year',
+  options: 'options',
 }
 
 export default String
