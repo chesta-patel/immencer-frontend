@@ -24,7 +24,7 @@ export default configureStore({
     dropdown: dropdown,
     getEmp: getEmp,
     companyDocument: getCompanyDocument,
-    AssetsApplication: getAssetsApplication,
+    assetsApplication: getAssetsApplication,
     holidayList: getHolidayList,
     DeleteHolidayList: DeleteHolidayList,
     companyPolicy: getCompanyPolicy,

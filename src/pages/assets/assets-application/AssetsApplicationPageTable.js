@@ -28,9 +28,15 @@ import moment from 'moment'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { shortObjectWithNUmber } from '../../../utils/Helpers'
+import { useDispatch } from 'react-redux'
+import { getAssetsApplicationDataByID } from '../../../services/thunk/AssetsApplicationThunk'
+import { toastNotify } from '../../../layout/Index'
+import { empData } from './../../../services/thunk/GetEmployee'
+import { fetchData } from '../../../services/thunk/AuthThunk'
 
 function AssetsApplicationPageTable(props) {
-  const { infoList } = useSelector((state) => state.companyPolicy)
+  const dispatch = useDispatch()
+  const { infoList } = useSelector((state) => state.assetsApplication)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -104,15 +110,21 @@ function AssetsApplicationPageTable(props) {
       const filter = props?.json.map((d) => {
         return d?.key_name?.map((key) => {
           const filteredObject = currentItems?.filter((item) => {
-            if (key === 'updatedAt' || key === 'createdAt') {
-              let date = item.updatedAt
-                ? moment(item.updatedAt).format('L')
-                : moment(item.createdAt).format('L')
-              return date?.toLowerCase()?.includes(onSearchText?.toLowerCase())
-            } else {
-              return item[key]
-                ?.toLowerCase()
-                ?.includes(onSearchText?.toLowerCase())
+            switch (key) {
+              case 'updatedAt' || 'createdAt':
+                let date = item.updatedAt
+                  ? moment(item.updatedAt).format('L')
+                  : moment(item.createdAt).format('L')
+                return date
+                  ?.toString()
+                  ?.toLowerCase()
+                  ?.includes(onSearchText?.toString()?.toLowerCase())
+
+              default:
+                return item[key]
+                  ?.toString()
+                  ?.toLowerCase()
+                  ?.includes(onSearchText?.toString()?.toLowerCase())
             }
           })
           return filteredObject
@@ -139,15 +151,36 @@ function AssetsApplicationPageTable(props) {
       setData([...sortedData])
     }
   }
-  // useEffect(() => {
-  //   if (props.deleteApiCallStatus.status === 'success') {
-  //     setDeleteModal({ status: false, data: '' })
-  //     props.setDeleteApiCallStatus({
-  //       status: '',
-  //       message: '',
-  //     })
-  //   }
-  // }, [props])
+
+  const handelAssetsEdit = async (assetInfo) => {
+    let callAPI = await dispatch(getAssetsApplicationDataByID(assetInfo?.id))
+    if (callAPI?.payload?.data?.isSuccess) {
+      let assetData = {
+        id: assetInfo?.id,
+        type: callAPI?.payload?.data?.data?.getAssetData?.type,
+        name: callAPI?.payload?.data?.data?.getAssetData?.name,
+        code: callAPI?.payload?.data?.data?.getAssetData?.code,
+        serialNumber: callAPI?.payload?.data?.data?.getAssetData?.serialNumber,
+        description: callAPI?.payload?.data?.data?.getAssetData?.description,
+        status: callAPI?.payload?.data?.data?.getAssetData?.status,
+        assignee: callAPI?.payload?.data?.data?.assetAssign?.assignee,
+        assignDate: moment(
+          callAPI?.payload?.data?.data?.assetAssign?.assignDate,
+          'DD/MM/YYYY'
+        ).format('YYYY-MM-DD'),
+        notes: callAPI?.payload?.data?.data?.assetAssign?.notes,
+      }
+      dispatch(empData('employee'))
+      dispatch(fetchData('master/assetStatus'))
+      dispatch(fetchData('assetType'))
+      history.push({
+        pathname: '/assets-application/create',
+        state: { add: false, edit: true, data: assetData },
+      })
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
 
   return (
     <React.Fragment>
@@ -445,7 +478,7 @@ function AssetsApplicationPageTable(props) {
                       <DataTableRow size="md">
                         <div className="user-card">
                           <div className="user-info">
-                            <span className="tb-lead">{item.assets_code} </span>
+                            <span className="tb-lead">{item.code} </span>
                           </div>
                         </div>
                       </DataTableRow>
@@ -458,36 +491,9 @@ function AssetsApplicationPageTable(props) {
                         <span>{item.typeName}</span>
                       </DataTableRow>
                       <DataTableRow size="sm">
-                        <span>{item.status}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.serialNumber}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.assign}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.assignDate}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.notes}</span>
-                      </DataTableRow>
-                      <DataTableRow size="sm">
-                        <span>{item.description}</span>
+                        <span>{item.statusName}</span>
                       </DataTableRow>
                       <DataTableRow size="lg" className="action_icon">
-                        <span>
-                          <Button
-                            color=""
-                            className="btn-icon eye_btn"
-                            onClick={() =>
-                              setModal({ view: true, link: item.attachment })
-                            }
-                            style={{ margin: '0px' }}
-                          >
-                            <em class="icon ni ni-eye"></em>
-                          </Button>
-                        </span>
                         <span className="policy_edit">
                           <Button
                             color=""
@@ -507,12 +513,7 @@ function AssetsApplicationPageTable(props) {
                           <Button
                             color=""
                             className="btn-icon"
-                            onClick={() =>
-                              history.push({
-                                pathname: '/assets-application/create',
-                                state: { add: false, edit: true, data: item },
-                              })
-                            }
+                            onClick={() => handelAssetsEdit(item)}
                             style={{ margin: '0px' }}
                           >
                             <span style={{ display: 'flex' }}>
@@ -556,8 +557,8 @@ function AssetsApplicationPageTable(props) {
           </button>
           <h2 className="modal_title">{String.delete_confirmation}</h2>
           <p className="alert alert-danger">
-            {String.are_you_sure_you_want_to_delete_the}
-            {deleteModal.data.title} ?
+            {String.are_you_sure_you_want_to_delete_the} {deleteModal.data.code}{' '}
+            ?
           </p>
           <button
             type="button"
