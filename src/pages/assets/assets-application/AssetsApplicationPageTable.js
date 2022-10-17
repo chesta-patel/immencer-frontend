@@ -35,19 +35,21 @@ import { toastNotify } from '../../../layout/Index'
 import { empData } from './../../../services/thunk/GetEmployee'
 import { fetchData } from '../../../services/thunk/AuthThunk'
 
-var hasAssetsEditPermissions = false
-var hasAssetsDeletePermissions = false
-const token = localStorage.getItem('navyblue')
-if (token == 'navyblue') {
-  permissions.map((permissionLIst, index) => {
-    if (permissionLIst.modalName == 'Assets') {
-      hasAssetsEditPermissions = permissionLIst.add
-      hasAssetsDeletePermissions = permissionLIst.delete
-    }
-  })
-}
-
 function AssetsApplicationPageTable(props) {
+  const { permission } = useSelector((state) => state.dropdown)
+
+  var hasAssetsEditPermissions = false
+  var hasAssetsDeletePermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Assets') {
+        hasAssetsEditPermissions = permissionLIst.add
+        hasAssetsDeletePermissions = permissionLIst.delete
+      }
+    })
+  }
+
   const dispatch = useDispatch()
   const { infoList } = useSelector((state) => state.assetsApplication)
   const [actionText, setActionText] = useState('')

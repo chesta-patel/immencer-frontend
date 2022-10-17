@@ -18,18 +18,19 @@ import {
 } from '../../../components/Component'
 import { useHistory } from 'react-router'
 import String from '../../../utils/String'
-import { permissions } from '../../../layout/header/dropdown/PermissionJson'
-var hasAssetsAddPermissions = false
-const token = localStorage.getItem('navyblue')
-if (token == 'navyblue') {
-  permissions.map((permissionLIst, index) => {
-    if (permissionLIst.modalName == 'Assets') {
-      hasAssetsAddPermissions = permissionLIst.add
-    }
-  })
-}
+import { useSelector } from 'react-redux'
 
 const AssetApplication = ({ ...props }) => {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasAssetsAddPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Assets') {
+        hasAssetsAddPermissions = permissionLIst.add
+      }
+    })
+  }
   const dispatch = useDispatch()
   const [roleTable] = useState(assetAppTable)
   const [sm, updateSm] = useState(false)

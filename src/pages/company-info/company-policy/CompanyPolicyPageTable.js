@@ -29,20 +29,20 @@ import { useSelector } from 'react-redux'
 import './companyPolicy.scss'
 import { useHistory } from 'react-router'
 import { shortObjectWithNUmber } from '../../../utils/Helpers'
-import { permissions } from '../../../layout/header/dropdown/PermissionJson'
-var hasCompanyPolicyEditPermissions = false
-var hasCompanyPolicyDeletePermissions = false
-const token = localStorage.getItem('navyblue')
-if (token == 'navyblue') {
-  permissions.map((permissionLIst, index) => {
-    if (permissionLIst.modalName == 'CompanyPolicy') {
-      hasCompanyPolicyDeletePermissions = permissionLIst.delete
-      hasCompanyPolicyEditPermissions = permissionLIst.edit
-    }
-  })
-}
 
 function CompanyPolicyPageTable(props) {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasCompanyPolicyEditPermissions = false
+  var hasCompanyPolicyDeletePermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'CompanyPolicy') {
+        hasCompanyPolicyDeletePermissions = permissionLIst.delete
+        hasCompanyPolicyEditPermissions = permissionLIst.edit
+      }
+    })
+  }
   const { infoList } = useSelector((state) => state.companyPolicy)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)

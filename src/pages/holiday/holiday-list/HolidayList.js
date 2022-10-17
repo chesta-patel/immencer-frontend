@@ -17,18 +17,20 @@ import {
 } from '../../../components/Component'
 import { Button } from 'reactstrap'
 import { useHistory } from 'react-router'
-import { permissions } from '../../../layout/header/dropdown/PermissionJson'
 import String from '../../../utils/String'
-var hasHolidayAddPermissions = false
-const token = localStorage.getItem('navyblue')
-if (token == 'navyblue') {
-  permissions.map((permissionLIst, index) => {
-    if (permissionLIst.modalName == 'Holiday') {
-      hasHolidayAddPermissions = permissionLIst.add
-    }
-  })
-}
+import { useSelector } from 'react-redux'
+
 const HolidayList = ({ ...props }) => {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasHolidayAddPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Holiday') {
+        hasHolidayAddPermissions = permissionLIst.add
+      }
+    })
+  }
   const [roleTable] = useState(holidayListTable)
   const [sm, updateSm] = useState(false)
   const history = useHistory()

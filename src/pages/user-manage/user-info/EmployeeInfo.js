@@ -21,18 +21,18 @@ import { useDispatch } from 'react-redux'
 import { empData } from '../../../services/thunk/GetEmployee'
 import Loader from '../../Loader'
 import { getCreateNewEmpData } from '../../../services/thunk/CreateNewEmpDataThunk'
-import { permissions } from '../../../layout/header/dropdown/PermissionJson'
-var hasEmployeeAddPermissions = false
-const token = localStorage.getItem('navyblue')
-if (token == 'navyblue') {
-  permissions.map((permissionLIst, index) => {
-    if (permissionLIst.modalName == 'Employee') {
-      hasEmployeeAddPermissions = permissionLIst.add
-    }
-  })
-}
 
 const UserInfo = ({ ...props }) => {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasEmployeeAddPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Employee') {
+        hasEmployeeAddPermissions = permissionLIst.add
+      }
+    })
+  }
   const history = useHistory()
   const { employeeData, isLoading } = useSelector((state) => state.getEmp)
   const dispatch = useDispatch()

@@ -29,20 +29,20 @@ import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
 import { useHistory } from 'react-router'
 import { shortObjectWithNUmber } from '../../../utils/Helpers'
-import { permissions } from '../../../layout/header/dropdown/PermissionJson'
-var hasCompanyDocsEditPermissions = false
-var hasCompanyDocsDeletePermissions = false
-const token = localStorage.getItem('navyblue')
-if (token == 'navyblue') {
-  permissions.map((permissionLIst, index) => {
-    if (permissionLIst.modalName == 'CompanyDocument') {
-      hasCompanyDocsDeletePermissions = permissionLIst.delete
-      hasCompanyDocsEditPermissions = permissionLIst.edit
-    }
-  })
-}
 
 function CompanyDocumentPageTable(props) {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasCompanyDocsEditPermissions = false
+  var hasCompanyDocsDeletePermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'CompanyDocument') {
+        hasCompanyDocsDeletePermissions = permissionLIst.delete
+        hasCompanyDocsEditPermissions = permissionLIst.edit
+      }
+    })
+  }
   const { infoList } = useSelector((state) => state.companyDocument)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)

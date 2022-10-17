@@ -29,18 +29,19 @@ import { useDispatch } from 'react-redux'
 import { empDetail } from '../services/thunk/EmployeeDetailThunk'
 import { toastNotify } from '../layout/Index'
 import './user-manage/user-info/PageTable.scss'
-import { permissions } from '../layout/header/dropdown/PermissionJson'
-var hasEditPermissions = false
-const token = localStorage.getItem('navyblue')
-if (token == 'navyblue') {
-  permissions.map((permissionLIst, index) => {
-    if (permissionLIst.modalName == 'Employee') {
-      hasEditPermissions = permissionLIst.add
-    }
-  })
-}
 
 function PageTable(props) {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasEditPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'Employee') {
+        hasEditPermissions = permissionLIst.add
+      }
+    })
+  }
+
   const [currentPage] = useState(1)
   const [itemPerPage, setItemPerPage] = useState(10)
   // Get current list, pagination
