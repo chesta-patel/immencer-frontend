@@ -24,6 +24,8 @@ import CreateCompanyDocument from '../pages/company-info/company-documents/Creat
 import CreateCompanyPolicy from '../pages/company-info/company-policy/CreateCompanyPolicy'
 import CreateLeaveType from '../pages/leave/leave-type/CreateLeaveType'
 import CreateHoliday from '../pages/holiday/holiday-list/CreateHoliday'
+import GrantLeave from '../pages/leave/leave-application/grant-leave/GrantLeave'
+import GrantLeaveInfo from '../pages/leave/leave-application/grant-leave/GrantLeaveInfo'
 
 const Pages = () => {
   useLayoutEffect(() => {
@@ -144,6 +146,25 @@ const Pages = () => {
           render={() => (
             <UserContextProvider>
               <ApplyLeave />
+            </UserContextProvider>
+          )}
+        ></Route>
+
+        <Route
+          exact
+          path={`/grantLeaveInfo`}
+          render={() => (
+            <UserContextProvider>
+              <GrantLeaveInfo />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/grantLeaveInfo/grant-leave`}
+          render={() => (
+            <UserContextProvider>
+              <GrantLeave />
             </UserContextProvider>
           )}
         ></Route>

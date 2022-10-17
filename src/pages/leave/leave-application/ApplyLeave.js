@@ -25,6 +25,8 @@ import './leaveapplication.scss'
 import { cloneDeep } from 'lodash'
 import { LeaveApply } from '../../../services/thunk/LeaveApplyThunk'
 import { toastNotify } from '../../../layout/Index'
+import { useForm } from 'react-hook-form'
+import classNames from 'classnames'
 
 const initialLeaveDate = {
   date: '',
@@ -39,7 +41,7 @@ function ApplyLeave() {
   const { leaveType } = useSelector((state) => state.dropdown)
   const { leaveDayType } = useSelector((state) => state.dropdown)
   const { employeeData } = useSelector((state) => state.getEmp)
-  // const { errors, register, handleSubmit } = useForm()
+  const { errors, register, handleSubmit } = useForm()
   const [leaveData, setLeaveData] = useState({
     leaveType: '',
     inform: [],
@@ -98,8 +100,9 @@ function ApplyLeave() {
       ...leaveData,
       dates: leaveDates,
     }
-    console.log()
-    callFormSubmit(requestBody)
+    // onFormSubmit()
+    // callFormSubmit(requestBody)
+    console.log(requestBody)
   }
   const leaveOption = leaveType.map((list, index) => {
     return {
@@ -126,6 +129,11 @@ function ApplyLeave() {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
+  const onFormSubmit = (e) => {}
+  const formClass = classNames({
+    'form-validate': true,
+    'is-alter': 1,
+  })
 
   return (
     <>
@@ -141,177 +149,193 @@ function ApplyLeave() {
           </BlockBetween>
         </BlockHead>
         <Block size="lg">
-          <PreviewCard>
-            <form>
+          <form className={formClass} onSubmit={handleSubmit(onFormSubmit)}>
+            <Row className="gy-3">
+              <Col lg="6">
+                <FormGroup className="form-group">
+                  <label className="form-label">{`${String.leave_type}`}</label>
+                  <div className="form-control-wrap">
+                    <RSelect
+                      ref={register({ required: true })}
+                      options={leaveOption}
+                      onChange={handleLeaveType}
+                    />
+                  </div>
+                  {errors.date && (
+                    <p className="error">This field is required</p>
+                  )}
+                </FormGroup>
+              </Col>
+            </Row>
+            {leaveDates.map((leaveDate, index) => (
               <Row className="gy-3">
                 <Col lg="6">
                   <FormGroup className="form-group">
-                    <label className="form-label">
-                      {`${String.leave_type}`}
-                    </label>
+                    <label className="form-label">{`${String.date}`}</label>
                     <div className="form-control-wrap">
-                      <RSelect
-                        options={leaveOption}
-                        onChange={handleLeaveType}
+                      <input
+                        ref={register({ required: true })}
+                        type="date"
+                        className="form-control"
+                        name="date"
+                        value={leaveDate.date}
+                        onChange={(e) => {
+                          const existingLeaveDates = cloneDeep(leaveDates)
+                          existingLeaveDates[index].date = e.target.value
+                          setLeaveDates(existingLeaveDates)
+                        }}
                       />
+                      {errors.date && (
+                        <p className="error">This field is required</p>
+                      )}
                     </div>
                   </FormGroup>
                 </Col>
-              </Row>
-              {leaveDates.map((leaveDate, index) => (
-                <Row className="gy-3">
-                  <Col lg="6">
-                    <FormGroup className="form-group">
-                      <label className="form-label">{`${String.date}`}</label>
-                      <div className="form-control-wrap">
-                        <input
-                          type="date"
-                          className="form-control"
-                          name="date"
-                          value={leaveDate.date}
-                          onChange={(e) => {
-                            const existingLeaveDates = cloneDeep(leaveDates)
-                            existingLeaveDates[index].date = e.target.value
-                            setLeaveDates(existingLeaveDates)
-                          }}
-                        />
-                      </div>
-                    </FormGroup>
-                  </Col>
-                  <Col lg="6">
-                    <FormGroup>
-                      <label className="form-label">{`${String.day_type}`}</label>
-                      <ul className="custom-control-group g-3 align-center flex-wrap">
-                        {leaveDayType.map((dt, ind) => {
-                          return (
-                            <li key={ind}>
-                              <div className="custom-control custom-checkbox">
-                                <label>
-                                  <input
-                                    className="custom-control custom-checkbox"
-                                    type="radio"
-                                    id="html"
-                                    value={`${dt.value}`}
-                                    checked={
-                                      `${dt.value}` === leaveDate.dayType
-                                    }
-                                    onChange={(e) => {
-                                      const existingLeaveDates =
-                                        cloneDeep(leaveDates)
+                <Col lg="6">
+                  <FormGroup>
+                    <label className="form-label">{`${String.day_type}`}</label>
+                    <ul className="custom-control-group g-3 align-center flex-wrap">
+                      {leaveDayType.map((dt, ind) => {
+                        return (
+                          <li key={ind}>
+                            <div className="custom-control custom-checkbox">
+                              <label>
+                                <input
+                                  required
+                                  className="custom-control custom-checkbox"
+                                  type="radio"
+                                  id="html"
+                                  value={`${dt.id}`}
+                                  checked={`${dt.id}` === leaveDate.dayType}
+                                  onChange={(e) => {
+                                    const existingLeaveDates =
+                                      cloneDeep(leaveDates)
 
-                                      existingLeaveDates[index].dayType =
-                                        e.target.value
-                                      setLeaveDates(existingLeaveDates)
-                                    }}
-                                  />
-                                </label>
-                                <label for="html">{`${dt.name}`}</label>
-                              </div>
-                            </li>
-                          )
-                        })}
-                        {index + 1 === leaveDates.length ? (
-                          <span style={{ display: 'flex' }}>
-                            {index !== 0 && (
-                              <Button
-                                color="primary"
-                                size="sm"
-                                onClick={() => {
-                                  const existingLeaveDates =
-                                    cloneDeep(leaveDates)
+                                    existingLeaveDates[index].dayType =
+                                      e.target.value
+                                    setLeaveDates(existingLeaveDates)
+                                  }}
+                                />
+                                {errors.dayType && (
+                                  <p className="Invalid">
+                                    This field is required
+                                  </p>
+                                )}
+                              </label>
+                              <label for="html">{`${dt.name}`}</label>
+                            </div>
+                          </li>
+                        )
+                      })}
 
-                                  setLeaveDates(
-                                    existingLeaveDates.filter(
-                                      (_leaveDate, i) => i !== index
-                                    )
-                                  )
-                                }}
-                                className="add_date"
-                              >
-                                <Icon name="cross" />
-                              </Button>
-                            )}
+                      {index + 1 === leaveDates.length ? (
+                        <span style={{ display: 'flex' }}>
+                          {index !== 0 && (
                             <Button
                               color="primary"
                               size="sm"
                               onClick={() => {
-                                setLeaveDates([
-                                  ...leaveDates,
-                                  { ...initialLeaveDate },
-                                ])
+                                const existingLeaveDates = cloneDeep(leaveDates)
+
+                                setLeaveDates(
+                                  existingLeaveDates.filter(
+                                    (_leaveDate, i) => i !== index
+                                  )
+                                )
                               }}
                               className="add_date"
                             >
-                              <Icon name="plus" />
+                              <Icon name="cross" />
                             </Button>
-                          </span>
-                        ) : (
+                          )}
                           <Button
                             color="primary"
                             size="sm"
                             onClick={() => {
-                              const existingLeaveDates = cloneDeep(leaveDates)
-
-                              setLeaveDates(
-                                existingLeaveDates.filter(
-                                  (_leaveDate, i) => i !== index
-                                )
-                              )
+                              setLeaveDates([
+                                ...leaveDates,
+                                { ...initialLeaveDate },
+                              ])
                             }}
                             className="add_date"
                           >
-                            <Icon name="cross" />
+                            <Icon name="plus" />
                           </Button>
-                        )}
-                      </ul>
-                    </FormGroup>
-                  </Col>
-                </Row>
-              ))}
+                        </span>
+                      ) : (
+                        <Button
+                          color="primary"
+                          size="sm"
+                          onClick={() => {
+                            const existingLeaveDates = cloneDeep(leaveDates)
 
-              <Row className="gy-3">
-                <Col sm={6}>
-                  <div className="form-group">
-                    <label className="form-label">{String.i_want}</label>
-                    <RSelect
-                      options={toInformEmpList}
-                      isMulti
-                      onChange={handleInfo}
-                    />
-                  </div>
-                </Col>
-              </Row>
-              <Row className="gy-3">
-                <Col md={12}>
-                  <FormGroup className="form-group">
-                    <label className="form-label" htmlFor="cf-default-textarea">
-                      {String.reason}
-                    </label>
-                    <div className="form-control-wrap">
-                      <textarea
-                        // value={leaveData.reason}
-                        // name={leaveData.reason}
-                        name="description"
-                        value={leaveData.description}
-                        className="form-control form-control-sm"
-                        id="cf-default-textarea"
-                        placeholder="Write your message"
-                        onChange={handle}
-                      ></textarea>
-                    </div>
+                            setLeaveDates(
+                              existingLeaveDates.filter(
+                                (_leaveDate, i) => i !== index
+                              )
+                            )
+                          }}
+                          className="add_date"
+                        >
+                          <Icon name="cross" />
+                        </Button>
+                      )}
+                    </ul>
                   </FormGroup>
                 </Col>
               </Row>
-              <Row className="gy-3">
-                <Col sm={6}>
-                  <Button color="primary" onClick={apply}>
-                    <Icon name="check" />
-                    <span>{String.apply}</span>
-                  </Button>
-                </Col>
-              </Row>
-            </form>
-          </PreviewCard>
+            ))}
+
+            <Row className="gy-3">
+              <Col sm={6}>
+                <div className="form-group">
+                  <label className="form-label">{String.i_want}</label>
+                  <RSelect
+                    ref={register({ required: true })}
+                    options={toInformEmpList}
+                    isMulti
+                    onChange={handleInfo}
+                  />
+                </div>
+                {errors.inform && (
+                  <span className="error">This field is required</span>
+                )}
+              </Col>
+            </Row>
+            <Row className="gy-3">
+              <Col md={12}>
+                <FormGroup className="form-group">
+                  <label className="form-label" htmlFor="cf-default-textarea">
+                    {String.reason}
+                  </label>
+                  <div className="form-control-wrap">
+                    <textarea
+                      ref={register({ required: true })}
+                      // value={leaveData.reason}
+                      // name={leaveData.reason}
+                      name="description"
+                      value={leaveData.description}
+                      className="form-control form-control-sm"
+                      id="cf-default-textarea"
+                      placeholder="Write your message"
+                      onChange={handle}
+                    />
+                    {errors.date && (
+                      <span className="error">This field is required</span>
+                    )}
+                  </div>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row className="gy-3">
+              <Col sm={6}>
+                <Button color="primary" type="submit" onClick={apply}>
+                  <Icon name="check" />
+                  <span>{String.apply}</span>
+                </Button>
+              </Col>
+            </Row>
+          </form>
         </Block>
       </Content>
     </>
