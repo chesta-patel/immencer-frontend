@@ -20,18 +20,20 @@ import {
 import { Button } from 'reactstrap'
 import String from '../../../utils/String'
 import { useHistory } from 'react-router'
-import { permissions } from '../../../layout/header/dropdown/PermissionJson'
-var hasCompanyDocsAddPermissions = false
-const token = localStorage.getItem('navyblue')
-if (token == 'navyblue') {
-  permissions.map((permissionLIst, index) => {
-    if (permissionLIst.modalName == 'CompanyDocument') {
-      hasCompanyDocsAddPermissions = permissionLIst.add
-    }
-  })
-}
+import { useSelector } from 'react-redux'
 
 const CompanyDocument = ({ ...props }) => {
+  const { permission } = useSelector((state) => state.dropdown)
+  var hasCompanyDocsAddPermissions = false
+  const token = localStorage.getItem('navyblue')
+  if (token == 'navyblue') {
+    permission?.[0]?.permission?.map((permissionLIst, index) => {
+      if (permissionLIst.modalName == 'CompanyDocument') {
+        hasCompanyDocsAddPermissions = permissionLIst.add
+      }
+    })
+  }
+
   const [roleTable] = useState(companyDocTable)
   const [sm, updateSm] = useState(false)
   const history = useHistory()

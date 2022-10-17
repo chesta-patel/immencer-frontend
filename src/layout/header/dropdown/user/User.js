@@ -21,7 +21,7 @@ const User = (props) => {
   const { currentEmp } = useSelector((state) => state.getCurrentEmp)
   const dispatch = useDispatch()
   const { permission } = useSelector((state) => state.dropdown)
-  const hasThemePermissions = permissions.some(
+  const hasThemePermissions = permission?.[0]?.permission?.some(
     (permission) => permission.add || permission.edit || permission.delete
   )
 
