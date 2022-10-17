@@ -68,7 +68,7 @@ const UserInfo = ({ ...props }) => {
             <BlockHeadContent>
               <div className="toggle-wrap nk-block-tools-toggle">
                 <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${
+                  className={`btn-icon btn-trigger toggle-expand mr-n1 d-none ${
                     sm ? 'active' : ''
                   }`}
                   onClick={() => updateSm(!sm)}
@@ -77,7 +77,7 @@ const UserInfo = ({ ...props }) => {
                 </Button>
                 <div
                   className="toggle-expand-content"
-                  style={{ display: sm ? 'block' : 'none' }}
+                  style={{ display: 'block' }}
                 >
                   <ul className="nk-block-tools g-3">
                     <li className="nk-block-tools-opt">
