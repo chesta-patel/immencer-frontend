@@ -19,9 +19,6 @@ const Layout = () => {
   )
   const holidayListReduxState = useSelector((state) => state.holidayList)
   const companyPolicyReduxState = useSelector((state) => state.companyPolicy)
-  const createNewEmpDataReduxState = useSelector(
-    (state) => state.createNewEmpData
-  )
   const CreateEmpReduxState = useSelector((state) => state.CreateEmp)
   const createCompanyDocReduxState = useSelector(
     (state) => state.createCompanyDoc
@@ -123,7 +120,6 @@ const Layout = () => {
         companyDocumentReduxState?.isLoading ||
         holidayListReduxState?.isLoading ||
         companyPolicyReduxState?.isLoading ||
-        createNewEmpDataReduxState?.isLoading ||
         CreateEmpReduxState?.isLoading ||
         createCompanyDocReduxState?.isLoading ||
         deleteCompanyDocReduxState?.isLoading ||
