@@ -23,6 +23,7 @@ import { empData } from '../../../services/thunk/GetEmployee'
 import GrantLeave from './grant-leave/GrantLeave'
 import styled from 'styled-components'
 import LeaveApplicationPageTable from './LeaveApplicationPageTable'
+import { GetLeave } from '../../../services/thunk/GetLeaveThunk'
 
 const LeaveApplication = ({ ...props }) => {
   const [modal, setModal] = useState({
@@ -47,6 +48,7 @@ const LeaveApplication = ({ ...props }) => {
     color: ${({ color }) => color};
   `
   useEffect(() => {
+    dispatch(GetLeave('leave'))
     dispatch(fetchData('master/leaveType'))
     dispatch(fetchData('master/leaveDayType'))
     dispatch(empData('employee'))
@@ -139,7 +141,7 @@ const LeaveApplication = ({ ...props }) => {
                         }}
                       >
                         <Icon name="plus"></Icon>{' '}
-                        {`${String.apply} ${String.leave}`}
+                        <span>{`${String.apply} ${String.leave}`}</span>
                       </Button>
                     </li>
                     <li>
@@ -164,23 +166,26 @@ const LeaveApplication = ({ ...props }) => {
               <Card className="leaveCard" inverse>
                 <CardBody className="card-text">
                   <h5 className="grantedLeave">{`${String.granted} ${String.leave}`}</h5>
-                  <Percent color={handleColors(18)}>18</Percent>
+                  <h4 className="grantedLeave">18</h4>
                 </CardBody>
               </Card>
             </Col>
             <Col sm="4">
               <Card className="leaveCard" inverse>
                 <CardBody className="card-text">
-                  <h5 className="appliedLeave">{`${String.applied} ${String.leave}`}</h5>
-                  <Percent color={handleColors(19)}>19</Percent>
+                  <h5 className="grantedLeave">{`${String.approved} ${String.leave}`}</h5>
+                  <h4 className="grantedLeave"> 10</h4>
                 </CardBody>
               </Card>
             </Col>
             <Col sm="4">
               <Card className="leaveCard" inverse>
                 <CardBody className="card-text">
-                  <h5 className="balance">{`${String.balance}`}</h5>
-                  <Percent color={handleColors(-1)}>-1</Percent>
+                  <Percent
+                    className="balance"
+                    color={handleColors(8)}
+                  >{`${String.balance}`}</Percent>
+                  <Percent color={handleColors(8)}>8</Percent>
                 </CardBody>
               </Card>
             </Col>
