@@ -89,6 +89,9 @@ $menu-main-sub-toggle-icon-rtl: $ni-chevron-left !default;
 /////////////////////////
 .nk-menu {
   li {
+    .nk-menu-icon.immence_fav_icon img {
+      width: 24px !important;
+    }
     a {
       vertical-align: middle;
       display: flex;

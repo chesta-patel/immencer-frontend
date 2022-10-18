@@ -20,6 +20,7 @@ const MenuItem = ({
   sidebarToggle,
   mobileView,
   badge,
+  iconType,
   ...props
 }) => {
   let currentUrl
@@ -173,9 +174,13 @@ const MenuItem = ({
           className={`nk-menu-link${sub ? ' nk-menu-toggle' : ''}`}
           onClick={sub ? menuToggle : null}
         >
-          {icon ? (
+          {icon && iconType === 'icon' ? (
             <span className="nk-menu-icon">
               <Icon name={icon} />
+            </span>
+          ) : iconType === 'img' ? (
+            <span className="nk-menu-icon immence_fav_icon">
+              <img src={icon} alt={`sideBar-icon`} />
             </span>
           ) : null}
           <span className="nk-menu-text">{text}</span>
@@ -237,6 +242,7 @@ const Menu = ({ sidebarToggle, mobileView }) => {
             badge={item.badge}
             sidebarToggle={sidebarToggle}
             mobileView={mobileView}
+            iconType={item.iconType}
           />
         )
       )}
