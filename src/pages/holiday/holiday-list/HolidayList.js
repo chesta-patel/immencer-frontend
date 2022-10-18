@@ -71,7 +71,7 @@ const HolidayList = ({ ...props }) => {
 
   return (
     <React.Fragment>
-      <Head title="Holiday List" />
+      <Head title="Holidays" />
       <Content>
         {/* <PageHeader
           json={roleFormData}
@@ -87,7 +87,7 @@ const HolidayList = ({ ...props }) => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                {String.holiday_list}
+                {String.holidays}
               </BlockTitle>
             </BlockHeadContent>
             <BlockHeadContent>

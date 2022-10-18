@@ -28,7 +28,7 @@ const menu = [
   {
     icon: 'calendar-booking',
     iconType: 'icon',
-    text: `${String.holiday}`,
+    text: `${String.holidays}`,
     link: '/holiday',
   },
   {

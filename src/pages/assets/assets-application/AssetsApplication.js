@@ -19,6 +19,8 @@ import {
 import { useHistory } from 'react-router'
 import String from '../../../utils/String'
 import { useSelector } from 'react-redux'
+import { fetchData } from '../../../services/thunk/AuthThunk'
+import { empData } from '../../../services/thunk/GetEmployee'
 
 const AssetApplication = ({ ...props }) => {
   const { permission } = useSelector((state) => state.dropdown)
@@ -47,7 +49,11 @@ const AssetApplication = ({ ...props }) => {
 
   useEffect(() => {
     dispatch(assetsApplication('asset'))
+    dispatch(fetchData('master/assetStatus'))
+    dispatch(fetchData('assetType'))
+    dispatch(empData('employee'))
   }, [])
+
   const callDeleteFormSubmit = async (id) => {
     let callAPI = await dispatch(deleteAssetsApp(id))
     console.log('call API Delete =====> ', callAPI)
@@ -59,7 +65,7 @@ const AssetApplication = ({ ...props }) => {
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch(assetsApplication('asset'))
       setModal({ edit: false, add: false, data: '' })
-      window.location.href = '/assets-application'
+      history.push('/assets-application')
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setDeleteApiCallStatus({
         status: 'error',
@@ -71,7 +77,7 @@ const AssetApplication = ({ ...props }) => {
 
   return (
     <React.Fragment>
-      <Head title="Assets Application" />
+      <Head title="Assets" />
       <Content>
         {/* <PageHeader
           json={roleForm}
@@ -87,7 +93,7 @@ const AssetApplication = ({ ...props }) => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                {String.assets_application}
+                {String.assets}
               </BlockTitle>
             </BlockHeadContent>
             <BlockHeadContent>

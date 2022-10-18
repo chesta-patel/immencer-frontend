@@ -96,7 +96,7 @@ const ForgotPassword = () => {
                     id="default-01"
                     name="name"
                     ref={register({ required: 'This field is required' })}
-                    defaultValue="user@immence.in"
+                    defaultValue=""
                     placeholder="Enter your email address"
                     className="form-control-lg form-control"
                   />

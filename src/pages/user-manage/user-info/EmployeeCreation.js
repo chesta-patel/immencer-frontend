@@ -71,7 +71,6 @@ const UserCreate = (props) => {
   }, [location])
 
   const submitForm = (e) => {
-    props.next()
     e.preventDefault()
     setValidation(true)
     userCreate.map((formFields) => {
@@ -512,14 +511,17 @@ const AddressDetails = (props) => {
                           permanentAddress[`${formFields.key_name}`]
                       )}
                       onChange={(e) => {
-                        handleChangeAddress(e, formFields.label_name)
                         setAddressType('permanentAddress')
+                        handleChangeAddress(e, formFields.label_name)
                         const oldState = cloneDeep(permanentAddress)
                         oldState[`${formFields.key_name}`] = e.value
                         setPermanentAddress({ ...oldState })
                         dispatch(
                           getCreateNewEmpData({ ...formData.permanentAddress })
                         )
+                      }}
+                      onFocus={() => {
+                        setAddressType('permanentAddress')
                       }}
                     />
                     {formFields.required &&
@@ -623,14 +625,14 @@ const AddressDetails = (props) => {
                           ddd.value === currentAddress[`${formFields.key_name}`]
                       )}
                       onChange={(e) => {
-                        onChangeAddress()
-                        handleChangeAddress(e, formFields.label_name)
                         setAddressType('currentAddress')
+                        handleChangeAddress(e, formFields.label_name)
+                        onChangeAddress()
                         const oldState = cloneDeep(currentAddress)
                         oldState[`${formFields.key_name}`] = e.label
                         setCurrentAddress({ ...oldState })
-                        setValidate(true)
                       }}
+                      onFocus={() => setAddressType('currentAddress')}
                     />
                     {formFields.required &&
                       !currentAddress[`${formFields.key_name}`] &&
