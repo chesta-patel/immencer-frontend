@@ -48,7 +48,6 @@ const LeaveApplication = ({ ...props }) => {
     color: ${({ color }) => color};
   `
   useEffect(() => {
-    dispatch(GetLeave('leave'))
     dispatch(fetchData('master/leaveType'))
     dispatch(fetchData('master/leaveDayType'))
     dispatch(empData('employee'))
@@ -115,7 +114,7 @@ const LeaveApplication = ({ ...props }) => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                {String.leave_application}
+                {String.leave}
               </BlockTitle>
             </BlockHeadContent>
             <BlockHeadContent>

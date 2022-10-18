@@ -5,8 +5,6 @@ import {
   FormGroup,
   UncontrolledDropdown,
   DropdownItem,
-  Modal,
-  ModalBody,
 } from 'reactstrap'
 import {
   Block,
@@ -23,15 +21,18 @@ import {
 } from '../../../components/Component'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 import { shortObjectWithNUmber } from '../../../utils/Helpers'
 import String from '../../../utils/String'
 import { filterRole, filterStatus } from '../../user-manage/UserData'
 import { appliedLeave, leaveAppTable } from './LeaveAppJson'
+import moment from 'moment'
+import { GetLeave } from '../../../services/thunk/GetLeaveThunk'
 
 function LeaveApplicationPageTable() {
   const dispatch = useDispatch()
   const { infoList } = useSelector((state) => state.assetsApplication)
+  const { leaveList } = useSelector((state) => state.GetLeaveList)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -50,48 +51,14 @@ function LeaveApplicationPageTable() {
     ?.sort(shortObjectWithNUmber('seqNo'))
   const [modal, setModal] = useState({ view: false, link: '' })
   const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
+  const location = useLocation()
 
   useEffect(() => {
     setData(currentItems)
   }, [infoList])
 
-  const onFormCancel = () => {
-    setModal({ view: false, link: '' })
-  }
-
-  // function which selects all the items
-  const selectorCheck = (e) => {
-    let newData
-    newData = data.map((item) => {
-      item.checked = e.currentTarget.checked
-      return item
-    })
-    setData([...newData])
-  }
-  // function to change the selected property of an item
-  const onSelectChange = (e, id) => {
-    let newData = data
-    let index = newData.findIndex((item) => item.id === id)
-    newData[index].checked = e.currentTarget.checked
-    setData([...newData])
-  }
-  // function to set the action to be taken in table header
-  const onActionText = (e) => {
-    setActionText(e.value)
-  }
-  // function which fires on applying selected action
-  const onActionClick = (e) => {
-    if (actionText === 'suspend') {
-      let newData = data.map((item) => {
-        if (item.checked === true) item.status = 'Suspend'
-        return item
-      })
-      setData([...newData])
-    } else if (actionText === 'delete') {
-      let newData
-      newData = data.filter((item) => item.checked !== true)
-      setData([...newData])
-    }
+  const onEditClick = (id) => {
+    console.log('leave app id', id)
   }
   // function to toggle the search option
   const toggle = () => setonSearch(!onSearch)
@@ -99,6 +66,10 @@ function LeaveApplicationPageTable() {
   const onFilterChange = (e) => {
     setSearchText(e.target.value)
   }
+
+  useEffect(() => {
+    console.log('leaveList', leaveList)
+  }, [leaveList])
   // Changing state value when searching name
   //   useEffect(() => {
   //     if (onSearchText !== '') {
@@ -422,136 +393,142 @@ function LeaveApplicationPageTable() {
         <DataTableBody compact>
           <DataTableHead>
             {leaveAppTable.map((colum, id) => (
-              <DataTableRow size="md" key={id}>
+              <DataTableRow size="lg" key={id}>
                 <span className="sub-text">{colum.name}</span>
               </DataTableRow>
             ))}
           </DataTableHead>
-          {appliedLeave?.length > 0
-            ? appliedLeave.map((item) => {
-                return (
-                  <DataTableItem key={item.id}>
-                    <DataTableRow size="sm">
-                      <div className="user-card">
-                        <div className="user-info">
-                          <span className="tb-lead">{item.employeeName} </span>
+          {leaveList?.length > 0
+            ? leaveList.map((item) => {
+                return item.datesDetails.map((date) => {
+                  return (
+                    <DataTableItem key={item.id}>
+                      <DataTableRow size="lg">
+                        <div className="user-card">
+                          <div className="user-info">
+                            <span className="tb-lead">
+                              {item.employeeName}{' '}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    </DataTableRow>
-                    <DataTableRow size="sm">
-                      {item.dates.map((date) => {
-                        return (
+                      </DataTableRow>
+                      <DataTableRow size="lg">
+                        <div className="user-card">
                           <div className="user-info">
-                            <span className="tb-lead">{date.date} </span>
+                            <span className="tb-lead">
+                              {moment(date.date).format('DD/MM/YYYY')}{' '}
+                            </span>
                           </div>
-                        )
-                      })}
-                    </DataTableRow>
-                    <DataTableRow size="sm">
-                      {item.dates.map((date) => {
-                        return (
+                        </div>
+                      </DataTableRow>
+                      <DataTableRow size="lg">
+                        <div className="user-card">
                           <div className="user-info">
-                            <span className="tb-lead">{date.dayType} </span>
+                            <span className="tb-lead">{date.dayTypeName}</span>
                           </div>
-                        )
-                      })}
-                    </DataTableRow>
-                    <DataTableRow size="sm">
-                      <span>{item.description}</span>
-                    </DataTableRow>
-                    <DataTableRow size="md">
-                      <span
-                        className={`tb-status text-${
-                          item.status === 'Applied'
-                            ? 'Active'
-                            : item.status === 'Pending'
-                            ? 'warning'
-                            : 'danger'
-                        }`}
-                      >
-                        {item.status}
-                      </span>
-                    </DataTableRow>
-                    <DataTableRow size="sm">
-                      <span>{item.leave}</span>
-                    </DataTableRow>
-                    <DataTableRow>
-                      <ul>
-                        <li>
-                          <UncontrolledDropdown>
-                            <DropdownToggle
-                              tag="a"
-                              href="#more"
-                              onClick={(ev) => ev.preventDefault()}
-                              className="dropdown-toggle btn btn-icon btn-trigger"
-                            >
-                              <Icon name="more-h"></Icon>
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                              <ul className="link-list-opt no-bdr">
-                                <li>
-                                  <DropdownItem
-                                    tag="a"
-                                    href="#edit"
-                                    onClick={(ev) => {
-                                      ev.preventDefault()
-                                      //   onEditClick(item.id)
-                                      toggle('edit')
-                                    }}
-                                  >
-                                    <Icon name="eye"></Icon>
-                                    <span>{`${String.view} ${String.leave}`}</span>
-                                  </DropdownItem>
-                                </li>
-                                <li>
-                                  <DropdownItem
-                                    tag="a"
-                                    href="#remove"
-                                    onClick={(ev) => {
-                                      ev.preventDefault()
-                                      //   deleteProduct(item.id)
-                                    }}
-                                  >
-                                    <Icon name="check-thick"></Icon>
-                                    <span>{`${String.approve} ${String.leave}`}</span>
-                                  </DropdownItem>
-                                </li>
-                                <li>
-                                  <DropdownItem
-                                    tag="a"
-                                    href="#view"
-                                    onClick={(ev) => {
-                                      ev.preventDefault()
-                                      //   onEditClick(item.id)
-                                      toggle('details')
-                                    }}
-                                  >
-                                    <Icon name="edit"></Icon>
-                                    <span>{`${String.edit} ${String.leave}`}</span>
-                                  </DropdownItem>
-                                </li>
+                        </div>
+                      </DataTableRow>
+                      <DataTableRow size="lg">
+                        <div className="user-card">
+                          <div className="user-info">
+                            <span className="tb-lead">{item.description} </span>
+                          </div>
+                        </div>
+                      </DataTableRow>
+                      <DataTableRow size="lg">
+                        <div className="user-info">
+                          <span
+                            className={`tb-status text-${
+                              item.status === 'Active'
+                                ? 'Active'
+                                : item.status === 'Pending'
+                                ? 'warning'
+                                : 'danger'
+                            }`}
+                          >
+                            {date.statusName}
+                          </span>
+                        </div>
+                      </DataTableRow>
+                      <DataTableRow size="lg">
+                        <span>{item.leave}</span>
+                      </DataTableRow>
+                      <DataTableRow>
+                        <ul>
+                          <li>
+                            <UncontrolledDropdown>
+                              <DropdownToggle
+                                tag="a"
+                                href="#more"
+                                onClick={(ev) => ev.preventDefault()}
+                                className="dropdown-toggle btn btn-icon btn-trigger"
+                              >
+                                <Icon name="more-h"></Icon>
+                              </DropdownToggle>
+                              <DropdownMenu right>
+                                <ul className="link-list-opt no-bdr">
+                                  <li>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#edit"
+                                      onClick={(ev) => {
+                                        ev.preventDefault()
+                                        toggle('edit')
+                                      }}
+                                    >
+                                      <Icon name="eye"></Icon>
+                                      <span>{`${String.view} ${String.leave}`}</span>
+                                    </DropdownItem>
+                                  </li>
+                                  <li>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#remove"
+                                      onClick={(ev) => {
+                                        ev.preventDefault()
+                                      }}
+                                    >
+                                      <Icon name="check-thick"></Icon>
+                                      <span>{`${String.approve} ${String.leave}`}</span>
+                                    </DropdownItem>
+                                  </li>
+                                  <li>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#view"
+                                      onClick={(ev) => {
+                                        ev.preventDefault()
+                                        onEditClick(item.id)
+                                        toggle('details')
+                                      }}
+                                    >
+                                      <Icon name="edit"></Icon>
+                                      <span>{`${String.edit} ${String.leave}`}</span>
+                                    </DropdownItem>
+                                  </li>
 
-                                <li>
-                                  <DropdownItem
-                                    tag="a"
-                                    href="#remove"
-                                    onClick={(ev) => {
-                                      ev.preventDefault()
-                                      //   deleteProduct(item.id)
-                                    }}
-                                  >
-                                    <Icon name="trash"></Icon>
-                                    <span>{`${String.delete} ${String.leave}`}</span>
-                                  </DropdownItem>
-                                </li>
-                              </ul>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </li>
-                      </ul>
-                    </DataTableRow>
-                  </DataTableItem>
-                )
+                                  <li>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#remove"
+                                      onClick={(ev) => {
+                                        ev.preventDefault()
+                                        //   deleteProduct(item.id)
+                                      }}
+                                    >
+                                      <Icon name="trash"></Icon>
+                                      <span>{`${String.delete} ${String.leave}`}</span>
+                                    </DropdownItem>
+                                  </li>
+                                </ul>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+                          </li>
+                        </ul>
+                      </DataTableRow>
+                    </DataTableItem>
+                  )
+                })
               })
             : null}
         </DataTableBody>
