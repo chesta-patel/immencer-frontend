@@ -18,6 +18,7 @@ import getAssetsApplication from '../services/slices/AssetsApplicationSlice'
 import CreateAssetsApp from '../services/slices/CreateAssetsAppSlice'
 import DeleteAssetsApp from '../services/slices/DeleteAssetsAppSlice'
 import ApplyLeave from '../services/slices/LeaveApplySlice'
+import GetLeaveList from '../services/slices/GetLeaveSlice'
 
 export default configureStore({
   reducer: {
@@ -40,5 +41,6 @@ export default configureStore({
     empUpdate: empUpdate,
     getCurrentEmp: getCurrentEmp,
     ApplyLeave: ApplyLeave,
+    GetLeaveList: GetLeaveList,
   },
 })
