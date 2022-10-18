@@ -107,7 +107,7 @@ const Login = () => {
                     className="link link-primary link-sm"
                     to={`/auth-reset`}
                   >
-                    {String.forget_code}
+                    {String.forgot_password} ?
                   </Link>
                 </div>
                 <div className="form-control-wrap">

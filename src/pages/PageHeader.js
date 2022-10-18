@@ -87,11 +87,42 @@ function PageHeader(props) {
       data: '',
     })
   }
+
+  useEffect(() => {
+    if (Object.keys(Fdata).length === 0 && !props?.modal?.data) {
+      props.json.forEach((formFields) => {
+        initialState[`${formFields.key_name}`] = ''
+      })
+      setFdata({ ...initialState })
+    }
+  }, [props, Fdata])
+
   // submit function to add a new item
   const onFormSubmit = async (e) => {
     setValidate(true)
     e.preventDefault()
-    const isEmpty = checkIsEmptyObjectKey(Fdata, 'every')
+
+    const tempRequiredFromDataFilter = props?.json
+      ?.map((info) => {
+        const FdataKeys = Object.keys(Fdata)
+        const currentKey = FdataKeys?.find((key) => key === info?.key_name)
+        const currentKeyData = currentKey ? Fdata[currentKey] : ''
+        const data = { [`${currentKey}`]: currentKeyData }
+        return info?.required ? data : null
+      })
+      ?.filter((info) => info !== null)
+
+    const tempRequiredFromDataObject = Object.assign(
+      {},
+      ...tempRequiredFromDataFilter?.map((item) => {
+        const itemKey = Object.keys(item)
+
+        return { [`${itemKey?.[0]}`]: item[`${itemKey?.[0]}`] }
+      })
+    )
+
+    const isEmpty = checkIsEmptyObjectKey(tempRequiredFromDataObject, 'every')
+
     let formData = { ...Fdata }
     if (formData.attachment) {
       if (!formData?.attachment?.size) {
@@ -204,6 +235,9 @@ function PageHeader(props) {
                     <FormGroup>
                       <label className="form-label">
                         {formFields.label_name}
+                        {formFields.required && (
+                          <span className="error-message">*</span>
+                        )}
                       </label>
                       <RSelect
                         options={
@@ -236,6 +270,9 @@ function PageHeader(props) {
                       <div className="form-group">
                         <label className="form-label">
                           {formFields.label_name}
+                          {formFields.required && (
+                            <span className="error-message">*</span>
+                          )}
                         </label>
                         <div className="form-control-wrap">
                           <div className="custom-file">
@@ -277,6 +314,9 @@ function PageHeader(props) {
                       <FormGroup>
                         <label className="form-label">
                           {formFields.label_name}
+                          {formFields.required && (
+                            <span className="error-message">*</span>
+                          )}
                         </label>
                         <input
                           type={formFields.type}

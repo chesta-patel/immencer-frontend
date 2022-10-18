@@ -185,9 +185,9 @@ function AssetsApplicationPageTable(props) {
         ).format('YYYY-MM-DD'),
         notes: callAPI?.payload?.data?.data?.assetAssign?.notes,
       }
-      dispatch(empData('employee'))
-      dispatch(fetchData('master/assetStatus'))
-      dispatch(fetchData('assetType'))
+      // dispatch(empData('employee'))
+      // dispatch(fetchData('master/assetStatus'))
+      // dispatch(fetchData('assetType'))
       history.push({
         pathname: '/assets-application/create',
         state: { add: false, edit: true, data: assetData },
@@ -196,6 +196,16 @@ function AssetsApplicationPageTable(props) {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
+
+  useEffect(() => {
+    if (props.deleteApiCallStatus.status === 'success') {
+      setDeleteModal({ status: false, data: '' })
+      props.setDeleteApiCallStatus({
+        status: '',
+        message: '',
+      })
+    }
+  }, [props])
 
   return (
     <React.Fragment>

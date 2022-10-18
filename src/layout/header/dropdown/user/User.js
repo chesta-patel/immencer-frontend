@@ -35,7 +35,7 @@ const User = (props) => {
   }, [])
 
   const handleSignout = () => {
-    localStorage.removeItem('accessToken')
+    localStorage.removeItem('token')
   }
 
   return (
