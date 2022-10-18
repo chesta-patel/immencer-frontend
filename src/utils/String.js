@@ -68,6 +68,7 @@ const String = {
   assets: 'Assets',
   leave: 'Leave',
   holiday: 'Holiday',
+  holidays: 'Holidays',
   policy: 'Policy',
   login: 'Login',
   sign_in: 'Sign In',

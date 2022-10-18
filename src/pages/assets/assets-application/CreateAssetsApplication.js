@@ -44,11 +44,11 @@ function CreateAssetsApplication() {
   const { assetType } = useSelector((state) => state.dropdown)
   const { employeeData } = useSelector((state) => state.getEmp)
 
-  useEffect(() => {
-    dispatch(fetchData('master/assetStatus'))
-    dispatch(fetchData('assetType'))
-    dispatch(empData('employee'))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(fetchData('master/assetStatus'))
+  //   dispatch(fetchData('assetType'))
+  //   dispatch(empData('employee'))
+  // }, [])
   //need to add dispatch
   //need to add dispatch for update
   useEffect(() => {
@@ -68,7 +68,7 @@ function CreateAssetsApplication() {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch(assetsApplication('asset'))
-      window.location.href = '/assets-application'
+      history.push('/assets-application')
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',
@@ -87,12 +87,7 @@ function CreateAssetsApplication() {
       })
       toastNotify('success', callAPI?.payload?.data?.message)
       dispatch(assetsApplication('asset'))
-      window.location.href = '/assets-application'
-      // setModal({
-      //   edit: false,
-      //   add: false,
-      //   data: '',
-      // })
+      history.push('/assets-application')
     } else if (!callAPI?.payload?.response?.data?.isSuccess) {
       setApiCallStatus({
         status: 'error',

@@ -52,13 +52,13 @@ const Layout = () => {
       updateTheme.sidebar = 'navyblue'
       setTheme(updateTheme)
       localStorage.setItem('navyblue', themeState.sidebar)
-      window.location.href = '/'
+      // window.location.reload()
     } else {
       localStorage.removeItem('navyblue')
       let updateTheme = themeState
       updateTheme.sidebar = 'dark'
       setTheme(updateTheme)
-      window.location.href = '/'
+      // window.location.reload()
     }
   }
   useEffect(() => {
