@@ -71,6 +71,7 @@ const UserCreate = (props) => {
   }, [location])
 
   const submitForm = (e) => {
+    props.next()
     e.preventDefault()
     setValidation(true)
     userCreate.map((formFields) => {
@@ -760,7 +761,13 @@ const Permission = (props) => {
       console.log('🚀 ~ finalArray', finalArray)
       dispatch(getCreateNewEmpData({ permission: finalArray }))
     })
-    empCreateAPICall({ ...formData, permission: finalArray })
+    if (formData.id) {
+      // console.log('if id is available call update fun ')
+      empUpdateAPICall({ ...formData, permission: finalArray })
+    } else {
+      // console.log('if id is not available call create fun ')
+      empCreateAPICall({ ...formData, permission: finalArray })
+    }
   }
 
   const empCreateAPICall = async (data) => {
@@ -790,7 +797,37 @@ const Permission = (props) => {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
+  const empUpdateAPICall = async (data) => {
+    console.log('🚀 ~ data', data)
+    let updateFormData = { ...data }
 
+    for (var key in updateFormData) {
+      if (
+        updateFormData[key] === '' ||
+        updateFormData[key] === undefined ||
+        updateFormData[key] === 'Invalid date'
+      ) {
+        updateFormData[key] = null
+      }
+    }
+
+    let callAPI = await dispatch(EmployeeUpdate(updateFormData))
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      history.push('/employee')
+      dispatch(getCreateNewEmpData())
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
   return (
     <div className="App">
       <div

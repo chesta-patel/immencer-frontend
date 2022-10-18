@@ -20,7 +20,9 @@ import String from '../../../utils/String'
 import { useHistory } from 'react-router'
 import { fetchData } from '../../../services/thunk/AuthThunk'
 import { empData } from '../../../services/thunk/GetEmployee'
-import GrantLeave from './GrantLeave'
+import GrantLeave from './grant-leave/GrantLeave'
+import styled from 'styled-components'
+import LeaveApplicationPageTable from './LeaveApplicationPageTable'
 
 const LeaveApplication = ({ ...props }) => {
   const [modal, setModal] = useState({
@@ -41,6 +43,9 @@ const LeaveApplication = ({ ...props }) => {
     message: '',
   })
 
+  const Percent = styled.div`
+    color: ${({ color }) => color};
+  `
   useEffect(() => {
     dispatch(fetchData('master/leaveType'))
     dispatch(fetchData('master/leaveDayType'))
@@ -93,20 +98,17 @@ const LeaveApplication = ({ ...props }) => {
   const onFormCancel = () => {
     setModal({ edit: false, add: false })
   }
+
+  //change color according positive and negative number
+  const handleColors = (value) => {
+    if (value > 0) return 'green'
+    if (value < 0) return 'red'
+    return 'gray'
+  }
   return (
     <React.Fragment>
       <Head title="Leave Application" />
       <Content>
-        {/* <PageHeader
-          json={roleForm}
-          string={leaveAppString}
-          callFormSubmit={callFormSubmit}
-          apiCallStatus={apiCallStatus}
-          setApiCallStatus={setApiCallStatus}
-          setModal={setModal}
-          modal={modal}
-          updateFormSubmit={updateFormSubmit}
-        /> */}
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
@@ -132,24 +134,21 @@ const LeaveApplication = ({ ...props }) => {
                     <li className="nk-block-tools-opt">
                       <Button
                         color="primary"
-                        className="btn-icon"
                         onClick={() => {
                           history.push('/leave/apply-leave')
                         }}
                       >
-                        <Icon name="plus"></Icon>
+                        <Icon name="plus"></Icon>{' '}
                         {`${String.apply} ${String.leave}`}
                       </Button>
                     </li>
-                    <li className="nk-block-tools-opt">
+                    <li>
                       <Button
                         color="primary"
-                        className="btn-icon"
                         onClick={() => {
-                          setModal({ add: true })
+                          history.push('/grantLeaveInfo')
                         }}
                       >
-                        <Icon name="plus"></Icon>
                         {`${String.grant} ${String.leave}`}
                       </Button>
                     </li>
@@ -163,51 +162,32 @@ const LeaveApplication = ({ ...props }) => {
           <Row>
             <Col sm="4">
               <Card className="leaveCard" inverse>
-                <CardBody>
+                <CardBody className="card-text">
                   <h5 className="grantedLeave">{`${String.granted} ${String.leave}`}</h5>
-                  <h4 className="grantedLeave">18</h4>
+                  <Percent color={handleColors(18)}>18</Percent>
                 </CardBody>
               </Card>
             </Col>
             <Col sm="4">
               <Card className="leaveCard" inverse>
-                <CardBody>
+                <CardBody className="card-text">
                   <h5 className="appliedLeave">{`${String.applied} ${String.leave}`}</h5>
-                  <h4 className="appliedLeave">10</h4>
+                  <Percent color={handleColors(19)}>19</Percent>
                 </CardBody>
               </Card>
             </Col>
             <Col sm="4">
               <Card className="leaveCard" inverse>
-                <CardBody>
+                <CardBody className="card-text">
                   <h5 className="balance">{`${String.balance}`}</h5>
-                  <h4 className="balance">8</h4>
+                  <Percent color={handleColors(-1)}>-1</Percent>
                 </CardBody>
               </Card>
             </Col>
           </Row>
         </PreviewCard>
-        <PageTable json={roleTable} />
-        <Modal
-          isOpen={modal.add}
-          toggle={() => setModal({ add: false })}
-          className="modal-dialog-centered"
-          size="md"
-        >
-          <ModalBody>
-            <a
-              href="#cancel"
-              onClick={(ev) => {
-                ev.preventDefault()
-                onFormCancel()
-              }}
-              className="close"
-            >
-              <Icon name="cross-sm"></Icon>
-            </a>
-            <GrantLeave />
-          </ModalBody>
-        </Modal>
+        {/* <PageTable json={roleTable} /> */}
+        <LeaveApplicationPageTable />
       </Content>
     </React.Fragment>
   )
