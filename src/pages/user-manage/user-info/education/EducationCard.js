@@ -1,19 +1,23 @@
 import React, { useEffect } from 'react'
-import PlanS1 from '../../../../assets/images/plan-s1.145bedf2dff953a59fca891147d5fcf6.svg'
 import { Icon } from '../../../../components/Component'
-import { Button, Card } from 'reactstrap'
+import { Button } from 'reactstrap'
 import String from '../../../../utils/String'
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { getCreateNewEmpData } from '../../../../services/thunk/CreateNewEmpDataThunk'
 function EducationCard(props) {
-  const { formData } = useSelector((state) => state.createNewEmpData)
+  const dispatch = useDispatch()
 
-  useEffect(() => {}, [])
   const deleteItem = (index) => {
-    props.setItems((tempItem) => {
-      return tempItem.filter((item, id) => {
-        return id !== index
-      })
+    let tempData = [...props.item]
+    let tempDataFilter = tempData.filter((item, id) => {
+      return id !== index
     })
+    props.setItems(tempDataFilter)
+    dispatch(
+      getCreateNewEmpData({
+        education: tempDataFilter,
+      })
+    )
   }
 
   return (
@@ -38,7 +42,7 @@ function EducationCard(props) {
           </tr>
         </thead>
         <tbody className="tb-odr-body">
-          {props.item.map((item, index) => (
+          {props?.item?.map((item, index) => (
             <tr className="tb-odr-item" key={item.id}>
               <td className="tb-odr-info">
                 <span className="tb-odr-date d-none d-md-inline-block">

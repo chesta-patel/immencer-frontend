@@ -71,6 +71,7 @@ const UserCreate = (props) => {
   }, [location])
 
   const submitForm = (e) => {
+    props.next()
     e.preventDefault()
     setValidation(true)
     userCreate.map((formFields) => {
