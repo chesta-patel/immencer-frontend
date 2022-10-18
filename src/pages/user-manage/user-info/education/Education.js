@@ -15,10 +15,13 @@ import { Icon } from '../../../../components/Component'
 import { getCreateNewEmpData } from '../../../../services/thunk/CreateNewEmpDataThunk'
 import commonString from '../../../../utils/String'
 import EducationCard from './EducationCard'
+import { isEqual } from 'lodash'
 
 function Education(props) {
   const dispatch = useDispatch()
+  const { isSuccess } = useSelector((state) => state.getEmpDetail)
   const { formData } = useSelector((state) => state.createNewEmpData)
+
   const [data, setData] = useState({
     degree: '',
     startDate: new Date(),
@@ -37,38 +40,42 @@ function Education(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    let tempSetItems = items
+    let tempSetItems = items?.length ? [...items] : []
     tempSetItems.push(data)
+    dispatch(
+      getCreateNewEmpData({
+        education: tempSetItems,
+      })
+    )
     setItems(tempSetItems)
     setData('')
     setModal({ add: false })
   }
   useEffect(() => {
-    if (!formData?.education?.length) return
+    if (!isSuccess?.[0]?.education) {
+      setItems(formData?.education)
+    } else {
+      let checkIsSame = isEqual(formData?.education, isSuccess?.[0].education)
+      if (checkIsSame) {
+        setItems(isSuccess?.[0].education)
+      } else {
+        setItems(formData?.education)
+      }
+    }
+  }, [isSuccess, formData])
 
-    setItems(formData.education)
-  }, [formData?.education?.length])
   let name, value
   const handledChange = (event) => {
     name = event.target.name
     value = event.target.value
     setData({ ...data, [name]: value })
   }
-  const getEducationList = () => {
-    var list = []
-    Object.entries(educationList).forEach((element) => {
-      list.push(element[1])
-    })
-    return {
-      education: list,
-    }
-  }
+
   const displaydata = () => {
     setEducationList(items)
   }
   const senData = () => {
     props.next()
-    dispatch(getCreateNewEmpData(getEducationList()))
   }
 
   return (

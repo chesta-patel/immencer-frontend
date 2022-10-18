@@ -305,7 +305,7 @@ $avatar-adj-colors: (
   &-name {
     color: $base-text;
     font-size: 12px;
-    line-height: 16px;
+    line-height: 12px;
     font-weight: $fw-bold;
     @if ($dark_option==true) {
       .is-dark & {
@@ -603,5 +603,13 @@ $avatar-adj-colors: (
   &-progress {
     width: 100%;
     margin-top: 1rem;
+  }
+}
+.user-toggle .user-info {
+  display: inline-flex !important;
+  flex-direction: row;
+  align-items: center;
+  .user-status {
+    padding: 0 !important;
   }
 }

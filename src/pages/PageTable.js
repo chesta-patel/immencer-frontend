@@ -22,7 +22,7 @@ import {
   DataTableItem,
   UserAvatar,
 } from '../components/Component'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import String from '../utils/String'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -31,6 +31,7 @@ import { toastNotify } from '../layout/Index'
 import './user-manage/user-info/PageTable.scss'
 
 function PageTable(props) {
+  const location = useLocation()
   const { permission } = useSelector((state) => state.dropdown)
   var hasEditPermissions = false
   const token = localStorage.getItem('navyblue')
@@ -517,6 +518,11 @@ function PageTable(props) {
                   <span className="sub-text">{colum.name}</span>
                 </DataTableRow>
               ))}
+              {location?.pathname === '/employee' && (
+                <DataTableRow size="sm">
+                  <span className="sub-text">{String.action}</span>
+                </DataTableRow>
+              )}
             </DataTableHead>
             {/*Head*/}
             {data?.length > 0
