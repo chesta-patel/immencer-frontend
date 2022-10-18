@@ -316,9 +316,14 @@
     }
   }
 }
-.is-compact .nk-tb-item .nk-tb-col.action_icon {
-  display: flex !important;
-  align-items: center;
+.is-compact .nk-tb-item {
+  .nk-tb-col.action_icon {
+    display: flex !important;
+    align-items: center;
+  }
+  .nk-tb-col ul {
+    margin-bottom: 0;
+  }
 }
 .policy_edit {
   margin-left: 2px !important;

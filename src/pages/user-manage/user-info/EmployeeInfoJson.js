@@ -32,11 +32,6 @@ export const userInfo = [
     name: `${String.team_lead}`,
     key_name: [``],
   },
-  {
-    id: 6,
-    name: '',
-    key_name: [``],
-  },
 ]
 
 export const userCreate = [

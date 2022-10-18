@@ -170,8 +170,8 @@ function ApplyLeave() {
               <Row className="gy-3">
                 <Col lg="6">
                   <FormGroup className="form-group">
-                    <label className="form-label">{`${String.date}`}</label>
                     <div className="form-control-wrap">
+                      <label className="form-label">{`${String.date}`}</label>
                       <input
                         ref={register({ required: true })}
                         type="date"
@@ -191,7 +191,7 @@ function ApplyLeave() {
                   </FormGroup>
                 </Col>
                 <Col lg="6">
-                  <FormGroup>
+                  <FormGroup className="flex_box">
                     <label className="form-label">{`${String.day_type}`}</label>
                     <ul className="custom-control-group g-3 align-center flex-wrap">
                       {leaveDayType.map((dt, ind) => {
@@ -228,39 +228,42 @@ function ApplyLeave() {
                       })}
 
                       {index + 1 === leaveDates.length ? (
-                        <span style={{ display: 'flex' }}>
-                          {index !== 0 && (
+                        <li>
+                          <span style={{ display: 'flex' }}>
+                            {index !== 0 && (
+                              <Button
+                                color="primary"
+                                size="sm"
+                                onClick={() => {
+                                  const existingLeaveDates =
+                                    cloneDeep(leaveDates)
+
+                                  setLeaveDates(
+                                    existingLeaveDates.filter(
+                                      (_leaveDate, i) => i !== index
+                                    )
+                                  )
+                                }}
+                                className="add_date"
+                              >
+                                <Icon name="cross" />
+                              </Button>
+                            )}
                             <Button
                               color="primary"
                               size="sm"
                               onClick={() => {
-                                const existingLeaveDates = cloneDeep(leaveDates)
-
-                                setLeaveDates(
-                                  existingLeaveDates.filter(
-                                    (_leaveDate, i) => i !== index
-                                  )
-                                )
+                                setLeaveDates([
+                                  ...leaveDates,
+                                  { ...initialLeaveDate },
+                                ])
                               }}
                               className="add_date"
                             >
-                              <Icon name="cross" />
+                              <Icon name="plus" />
                             </Button>
-                          )}
-                          <Button
-                            color="primary"
-                            size="sm"
-                            onClick={() => {
-                              setLeaveDates([
-                                ...leaveDates,
-                                { ...initialLeaveDate },
-                              ])
-                            }}
-                            className="add_date"
-                          >
-                            <Icon name="plus" />
-                          </Button>
-                        </span>
+                          </span>
+                        </li>
                       ) : (
                         <Button
                           color="primary"
@@ -286,8 +289,8 @@ function ApplyLeave() {
             ))}
 
             <Row className="gy-3">
-              <Col sm={6}>
-                <div className="form-group">
+              <Col lg={6}>
+                <div className="form-group flex_box">
                   <label className="form-label">{String.i_want}</label>
                   <RSelect
                     ref={register({ required: true })}
@@ -302,8 +305,8 @@ function ApplyLeave() {
               </Col>
             </Row>
             <Row className="gy-3">
-              <Col md={12}>
-                <FormGroup className="form-group">
+              <Col lg={12}>
+                <FormGroup className="form-group reason_box">
                   <label className="form-label" htmlFor="cf-default-textarea">
                     {String.reason}
                   </label>
@@ -328,7 +331,12 @@ function ApplyLeave() {
             </Row>
             <Row className="gy-3">
               <Col sm={6}>
-                <Button color="primary" type="submit" onClick={apply}>
+                <Button
+                  className="mrt_20"
+                  color="primary"
+                  type="submit"
+                  onClick={apply}
+                >
                   <Icon name="check" />
                   <span>{String.apply}</span>
                 </Button>
