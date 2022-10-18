@@ -9,7 +9,7 @@ const String = {
   assets_application: 'Assets Application',
   leave_type: 'Leave Type',
   leave_application: 'Leave Application',
-  holiday_list: 'Holiday List',
+  holiday_list: 'Holiday',
   holiday_type: 'Holiday Type',
   company_document: 'Company Document',
   company_policy: 'Company Policy',
@@ -197,6 +197,9 @@ const String = {
   grant: 'Grant',
   month_year: 'Month-Year',
   options: 'options',
+  approve: 'Approve',
+  count: 'Count',
+  grant_leave: 'Grant Leave',
 }
 
 export default String

@@ -87,7 +87,7 @@ const HolidayList = ({ ...props }) => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                {String.holiday_type}
+                {String.holiday_list}
               </BlockTitle>
             </BlockHeadContent>
             <BlockHeadContent>
