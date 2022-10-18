@@ -1,5 +1,5 @@
 import String from '../../utils/String'
-import immenceLogo from '../../assets/images/immence_logo.svg'
+import immenceLogo from '../../assets/images/immence_logo_white.svg'
 const menu = [
   {
     icon: immenceLogo,

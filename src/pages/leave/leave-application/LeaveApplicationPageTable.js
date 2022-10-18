@@ -483,7 +483,8 @@ function LeaveApplicationPageTable() {
                               tag="a"
                               href="#more"
                               onClick={(ev) => ev.preventDefault()}
-                              className="dropdown-toggle btn btn-icon btn-trigger"
+                              className="dropdown-toggle btn btn-icon btn-trigger mrg_left_right"
+                              // style={{ marginLeft: 0, marginRight: 0 }}
                             >
                               <Icon name="more-h"></Icon>
                             </DropdownToggle>
