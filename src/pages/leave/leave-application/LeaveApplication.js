@@ -22,6 +22,7 @@ import { fetchData } from '../../../services/thunk/AuthThunk'
 import { empData } from '../../../services/thunk/GetEmployee'
 import GrantLeave from './grant-leave/GrantLeave'
 import styled from 'styled-components'
+import LeaveApplicationPageTable from './LeaveApplicationPageTable'
 
 const LeaveApplication = ({ ...props }) => {
   const [modal, setModal] = useState({
@@ -137,7 +138,7 @@ const LeaveApplication = ({ ...props }) => {
                           history.push('/leave/apply-leave')
                         }}
                       >
-                        <Icon name="plus"></Icon>
+                        <Icon name="plus"></Icon>{' '}
                         {`${String.apply} ${String.leave}`}
                       </Button>
                     </li>
@@ -185,7 +186,8 @@ const LeaveApplication = ({ ...props }) => {
             </Col>
           </Row>
         </PreviewCard>
-        <PageTable json={roleTable} />
+        {/* <PageTable json={roleTable} /> */}
+        <LeaveApplicationPageTable />
       </Content>
     </React.Fragment>
   )

@@ -100,9 +100,8 @@ function ApplyLeave() {
       ...leaveData,
       dates: leaveDates,
     }
-    // onFormSubmit()
-    // callFormSubmit(requestBody)
-    console.log(requestBody)
+    onFormSubmit()
+    callFormSubmit(requestBody)
   }
   const leaveOption = leaveType.map((list, index) => {
     return {
@@ -153,8 +152,8 @@ function ApplyLeave() {
             <Row className="gy-3">
               <Col lg="6">
                 <FormGroup className="form-group">
-                  <label className="form-label">{`${String.leave_type}`}</label>
                   <div className="form-control-wrap">
+                    <label className="form-label">{`${String.leave_type}`}</label>
                     <RSelect
                       ref={register({ required: true })}
                       options={leaveOption}
@@ -162,7 +161,7 @@ function ApplyLeave() {
                     />
                   </div>
                   {errors.date && (
-                    <p className="error">This field is required</p>
+                    <p className="error">{`${String.required_field}`}</p>
                   )}
                 </FormGroup>
               </Col>
@@ -186,7 +185,7 @@ function ApplyLeave() {
                         }}
                       />
                       {errors.date && (
-                        <p className="error">This field is required</p>
+                        <p className="error">{`${String.required_field}`}</p>
                       )}
                     </div>
                   </FormGroup>
@@ -218,7 +217,7 @@ function ApplyLeave() {
                                 />
                                 {errors.dayType && (
                                   <p className="Invalid">
-                                    This field is required
+                                    {`${String.required_field}`}
                                   </p>
                                 )}
                               </label>
@@ -298,7 +297,7 @@ function ApplyLeave() {
                   />
                 </div>
                 {errors.inform && (
-                  <span className="error">This field is required</span>
+                  <span className="error">{`${String.required_field}`}</span>
                 )}
               </Col>
             </Row>

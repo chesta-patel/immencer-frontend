@@ -76,4 +76,48 @@ export const leaveAppTable = [
     name: `${String.leave}`,
     key_name: [`leave`],
   },
+  {
+    id: 7,
+    name: `${String.action}`,
+    key_name: [`action`],
+  },
+]
+
+export const appliedLeave = [
+  {
+    employeeName: 'Dip Vachani',
+    leaveType: '1',
+    inform: ['81', '90'],
+    description: 'applied leave for half day',
+    dates: [
+      {
+        date: '2022-09-29',
+        dayType: 'Full Day',
+      },
+      {
+        date: '2022-10-07',
+        dayType: 'First Half',
+      },
+    ],
+    status: 'Pending',
+    leave: 'Full',
+  },
+  {
+    employeeName: 'Niraj Padaria',
+    leaveType: '1',
+    inform: ['81', '90'],
+    description: 'applied leave for half day',
+    dates: [
+      {
+        date: '2022-09-29',
+        dayType: 'Full Day',
+      },
+      {
+        date: '2022-10-07',
+        dayType: 'Second Half',
+      },
+    ],
+    status: 'Applied',
+    leave: 'Full',
+  },
 ]

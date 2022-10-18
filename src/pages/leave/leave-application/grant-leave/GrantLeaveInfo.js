@@ -12,6 +12,7 @@ import {
 import Content from '../../../../layout/content/Content'
 import Head from '../../../../layout/head/Head'
 import String from '../../../../utils/String'
+import GrantLeavePageTable from './GrantLeavePageTable'
 import GrantLeaveTable from './GrantLeaveTable'
 
 function GrantLeaveInfo() {
@@ -61,7 +62,7 @@ function GrantLeaveInfo() {
             </BlockHeadContent>
           </BlockBetween>
         </BlockHead>
-        <GrantLeaveTable />
+        <GrantLeavePageTable />
         {/* <Modal
           isOpen={modal.add}
           toggle={() => setModal({ add: false })}

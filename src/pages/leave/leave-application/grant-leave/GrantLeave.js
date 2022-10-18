@@ -27,6 +27,7 @@ import { defaultOptions } from '../LeaveAppJson'
 function GrantLeave() {
   const [toInformEmpList, settoInformEmpList] = useState([])
   const { employeeData } = useSelector((state) => state.getEmp)
+  const { leaveType } = useSelector((state) => state.dropdown)
 
   useEffect(() => {
     if (employeeData !== undefined) {
@@ -39,6 +40,12 @@ function GrantLeave() {
       settoInformEmpList(employeeList)
     }
   }, [employeeData])
+  const leaveOption = leaveType.map((list, index) => {
+    return {
+      value: `${list.id}`,
+      label: `${list.name}`,
+    }
+  })
   return (
     <>
       <Content>
@@ -57,11 +64,11 @@ function GrantLeave() {
             <Col md="6" className="">
               <FormGroup className="form-group">
                 <label className="form-label">{`${String.month_year}`}</label>
-                <input type="month" className="form-control" />
+                <input type="month" className="form-control" required />
               </FormGroup>
               <FormGroup className="form-group">
                 <label className="form-label">{`${String.leave} ${String.options}`}</label>
-                <RSelect options={defaultOptions} />
+                <RSelect options={leaveOption} />
               </FormGroup>
               <FormGroup className="form-group">
                 <label className="form-label">{`${String.employee}`}</label>
@@ -78,7 +85,13 @@ function GrantLeave() {
                 </div>
               </FormGroup>
               <FormGroup className="form-group">
-                <Button color="primary" size="lg">
+                <Button
+                  color="primary"
+                  size="lg"
+                  onClick={(e) => {
+                    e.preventDefault()
+                  }}
+                >
                   {`${String.grant} ${String.leave}`}
                 </Button>
               </FormGroup>
