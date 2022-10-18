@@ -18,7 +18,8 @@ import EducationCard from './EducationCard'
 
 function Education(props) {
   const dispatch = useDispatch()
-  const { formData } = useSelector((state) => state.createNewEmpData)
+  const { isSuccess } = useSelector((state) => state.getEmpDetail)
+
   const [data, setData] = useState({
     degree: '',
     startDate: new Date(),
@@ -37,17 +38,20 @@ function Education(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    let tempSetItems = items
+    let tempSetItems = [...items]
+    console.log('tempSetItems', tempSetItems)
+    console.log('data', data)
     tempSetItems.push(data)
+
     setItems(tempSetItems)
     setData('')
     setModal({ add: false })
   }
   useEffect(() => {
-    if (!formData?.education?.length) return
+    if (!isSuccess?.[0]?.education?.length) return
 
-    setItems(formData.education)
-  }, [formData?.education?.length])
+    setItems(isSuccess?.[0].education)
+  }, [isSuccess?.[0]?.education?.length])
   let name, value
   const handledChange = (event) => {
     name = event.target.name

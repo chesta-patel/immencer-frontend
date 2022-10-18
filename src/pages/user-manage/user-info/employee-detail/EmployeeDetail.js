@@ -184,7 +184,7 @@ function EmployeeDetail() {
                         <span>{String.education}</span>
                       </NavLink>
                     </NavItem>
-                    <NavItem>
+                    {/* <NavItem>
                       <NavLink
                         tag="a"
                         href="#tab"
@@ -197,7 +197,7 @@ function EmployeeDetail() {
                         <Icon name="list-check" />
                         <span>{String.permission}</span>
                       </NavLink>
-                    </NavItem>
+                    </NavItem> */}
                   </Nav>
                   <TabContent activeTab={activeTab}>
                     <TabPane tabId="1">
@@ -211,9 +211,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.first_name}
                                     </span>
-                                    <span className="profile-ud-value">
-                                      {`${currentEmp.firstName}`}
-                                    </span>
+                                    <span>{`${currentEmp.firstName}`}</span>
                                   </div>
                                 </div>
                                 <div className="profile-ud-item">
@@ -221,9 +219,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.last_name}
                                     </span>
-                                    <span className="profile-ud-value">
-                                      {currentEmp.lastName}
-                                    </span>
+                                    <span>{currentEmp.lastName}</span>
                                   </div>
                                 </div>
                                 <div className="profile-ud-item">
@@ -231,9 +227,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.employee_code}
                                     </span>
-                                    <span className="profile-ud-value">
-                                      {currentEmp.employeeCode}
-                                    </span>
+                                    <span>{currentEmp.employeeCode}</span>
                                   </div>
                                 </div>
                                 <div className="profile-ud-item">
@@ -241,9 +235,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.email}
                                     </span>
-                                    <span className="profile-ud-value">
-                                      {currentEmp.companyEmail}
-                                    </span>
+                                    <span>{currentEmp.companyEmail}</span>
                                   </div>
                                 </div>
                                 <div className="profile-ud-item">
@@ -251,9 +243,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.email}
                                     </span>
-                                    <span className="profile-ud-value">
-                                      {currentEmp.companyEmail}
-                                    </span>
+                                    <span>{currentEmp.companyEmail}</span>
                                   </div>
                                 </div>
                                 <div className="profile-ud-item">
@@ -261,7 +251,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.birth_day}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {moment(currentEmp.birthDate).format(
                                         'DD/MM/YYYY'
                                       )}
@@ -274,9 +264,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.mobile_number}
                                     </span>
-                                    <span className="profile-ud-value">
-                                      {currentEmp.mobileNumbers}
-                                    </span>
+                                    <span>{currentEmp.mobileNumber}</span>
                                   </div>
                                 </div>
 
@@ -285,9 +273,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.whatsapp_mobile}
                                     </span>
-                                    <span className="profile-ud-value">
-                                      {currentEmp.whatsappNumber}
-                                    </span>
+                                    <span>{currentEmp.whatsappNumber}</span>
                                   </div>
                                 </div>
                                 <div className="profile-ud-item">
@@ -295,9 +281,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.personal_email}
                                     </span>
-                                    <span className="profile-ud-value">
-                                      {currentEmp.personalEmail}
-                                    </span>
+                                    <span>{currentEmp.personalEmail}</span>
                                   </div>
                                 </div>
                                 <div className="profile-ud-item">
@@ -305,7 +289,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.joining_date}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {moment(currentEmp.birthDate).format(
                                         'DD/MM/YYYY'
                                       )}
@@ -334,7 +318,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.address_1}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {`${currentEmp.permanentAddress.address1}`}
                                     </span>
                                   </div>
@@ -344,7 +328,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.address_2}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {`${currentEmp.permanentAddress.address2}`}
                                     </span>
                                   </div>
@@ -354,7 +338,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.city}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {currentEmp.permanentAddress.city}
                                     </span>
                                   </div>
@@ -364,7 +348,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.state_region}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {currentEmp.permanentAddress.state}
                                     </span>
                                   </div>
@@ -374,7 +358,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.country}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {currentEmp.permanentAddress.country}
                                     </span>
                                   </div>
@@ -384,7 +368,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.postal_code}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {currentEmp.permanentAddress.zipCode}
                                     </span>
                                   </div>
@@ -403,7 +387,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.address_1}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {`${currentEmp.currentAddress.address1}`}
                                     </span>
                                   </div>
@@ -413,7 +397,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.address_2}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {`${currentEmp.currentAddress.address2}`}
                                     </span>
                                   </div>
@@ -423,7 +407,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.city}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {currentEmp.currentAddress.city}
                                     </span>
                                   </div>
@@ -433,7 +417,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.state_region}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {currentEmp.currentAddress.state}
                                     </span>
                                   </div>
@@ -443,7 +427,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.country}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {currentEmp.currentAddress.country}
                                     </span>
                                   </div>
@@ -453,7 +437,7 @@ function EmployeeDetail() {
                                     <span className="profile-ud-label">
                                       {String.postal_code}
                                     </span>
-                                    <span className="profile-ud-value">
+                                    <span>
                                       {currentEmp.currentAddress.zipCode}
                                     </span>
                                   </div>
@@ -465,46 +449,40 @@ function EmployeeDetail() {
                       </div>
                     </TabPane>
                     <TabPane tabId="3">
-                      {console.log('currentEmp', currentEmp.education)}
-                      {/* {currentEmp.education.map((educationList, index) => {
+                      {console.log('currentEmp', currentEmp.education[0])}
+                      {currentEmp.education.map((educationList, index) => {
                         console.log('educationList', educationList)
-                        // return (
-                        //   <Block>
-                        //     <div className="profile-ud-list">
-                        //       <div className="profile-ud-item">
-                        //         <div className="profile-ud wider">
-                        //           <span className="profile-ud-label">
-                        //             {String.education}
-                        //           </span>
-                        //           <span className="profile-ud-value">
-                        //             {`${educationList.degree}`}
-                        //           </span>
-                        //         </div>
-                        //       </div>
-                        //       <div className="profile-ud-item">
-                        //         <div className="profile-ud wider">
-                        //           <span className="profile-ud-label">
-                        //             {String.start_date}
-                        //           </span>
-                        //           <span className="profile-ud-value">
-                        //             {`${educationList.startDate}`}
-                        //           </span>
-                        //         </div>
-                        //       </div>
-                        //       <div className="profile-ud-item">
-                        //         <div className="profile-ud wider">
-                        //           <span className="profile-ud-label">
-                        //             {String.end_date}
-                        //           </span>
-                        //           <span className="profile-ud-value">
-                        //             {`${educationList.endDate}`}
-                        //           </span>
-                        //         </div>
-                        //       </div>
-                        //     </div>
-                        //   </Block>
-                        // )
-                      })} */}
+                        return (
+                          <Block>
+                            <div className="profile-ud-list">
+                              <div className="profile-ud-item">
+                                <div className="profile-ud wider">
+                                  <span className="profile-ud-label">
+                                    {String.education}
+                                  </span>
+                                  <span>{`${educationList.degree}`}</span>
+                                </div>
+                              </div>
+                              <div className="profile-ud-item">
+                                <div className="profile-ud wider">
+                                  <span className="profile-ud-label">
+                                    {String.start_date}
+                                  </span>
+                                  <span>{`${educationList.startDate}`}</span>
+                                </div>
+                              </div>
+                              <div className="profile-ud-item">
+                                <div className="profile-ud wider">
+                                  <span className="profile-ud-label">
+                                    {String.end_date}
+                                  </span>
+                                  <span>{`${educationList.endDate}`}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </Block>
+                        )
+                      })}
                     </TabPane>
                     <TabPane tabId="4"></TabPane>
                   </TabContent>
