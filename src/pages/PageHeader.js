@@ -43,7 +43,6 @@ function PageHeader(props) {
             path: props?.modal?.data?.attachment,
           },
         }
-        // console.log('first', refactorModalData)
         setFdata(refactorModalData)
       } else {
         let refactorModalData = {
@@ -307,6 +306,46 @@ function PageHeader(props) {
                             </p>
                           )}
                       </div>
+                    </Col>
+                  )
+                }
+                if (formFields.type === 'textarea') {
+                  return (
+                    <Col md="6">
+                      <FormGroup>
+                        <label className="form-label">
+                          {formFields.label_name}
+                          {formFields.required && (
+                            <span className="error-message">*</span>
+                          )}
+                        </label>
+                        <textarea
+                          type={formFields.type}
+                          className="form-control"
+                          value={Fdata[`${formFields.key_name}`]}
+                          onChange={(e) => {
+                            const oldState = cloneDeep(Fdata)
+                            oldState[`${formFields.key_name}`] = e.target.value
+                            setFdata({ ...oldState })
+                            // setValidate(true)
+                          }}
+                        />
+                        {/* <label
+                              className="custom-file-label"
+                              htmlFor="customMultipleFiles"
+                            > */}
+                        {/* {Fdata?.attachment?.name
+                                ? Fdata?.attachment?.name
+                                : formFields.placeholder} */}
+                        {/* </label> */}
+                        {formFields.required &&
+                          !Fdata[`${formFields.key_name}`] &&
+                          validate && (
+                            <p className="file-upload-error">
+                              {formFields.required}
+                            </p>
+                          )}
+                      </FormGroup>
                     </Col>
                   )
                 } else {
