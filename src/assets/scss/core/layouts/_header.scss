@@ -325,6 +325,10 @@
     }
   }
 }
+.img_center {
+  margin: 0 auto !important;
+  right: 0;
+}
 @media screen and (max-width: 575px) {
   .nk-quick-nav > li {
     display: flex;

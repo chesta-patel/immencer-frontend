@@ -22,6 +22,7 @@ const initialState = {
   leaveType: [],
   leaveDayType: [],
   permission: [],
+  leaveStatus: [],
 }
 
 export const dropdownSlice = createSlice({
@@ -79,6 +80,9 @@ export const dropdownSlice = createSlice({
             break
           case 'permission':
             state.permission = action.payload.data.permission
+            break
+          case 'leaveStatus':
+            state.leaveStatus = action.payload.data.leaveStatus
             break
           default:
             break

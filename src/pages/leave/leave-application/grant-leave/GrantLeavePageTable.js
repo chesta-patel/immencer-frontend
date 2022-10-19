@@ -484,19 +484,7 @@ function GrantLeavePageTable() {
                                     <span>{`${String.view} ${String.granted} ${String.leave}`}</span>
                                   </DropdownItem>
                                 </li>
-                                <li>
-                                  <DropdownItem
-                                    tag="a"
-                                    href="#remove"
-                                    onClick={(ev) => {
-                                      ev.preventDefault()
-                                      //   deleteProduct(item.id)
-                                    }}
-                                  >
-                                    <Icon name="check-thick"></Icon>
-                                    <span>{`${String.approve} ${String.granted} ${String.leave}`}</span>
-                                  </DropdownItem>
-                                </li>
+
                                 <li>
                                   <DropdownItem
                                     tag="a"

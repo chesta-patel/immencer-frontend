@@ -33,6 +33,7 @@ function LeaveApplicationPageTable() {
   const dispatch = useDispatch()
   const { infoList } = useSelector((state) => state.assetsApplication)
   const { leaveList } = useSelector((state) => state.GetLeaveList)
+  const { leaveStatus } = useSelector((state) => state.dropdown)
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -68,8 +69,11 @@ function LeaveApplicationPageTable() {
   }
 
   useEffect(() => {
-    console.log('leaveList', leaveList)
-  }, [leaveList])
+    console.log('leaveStatus', leaveStatus)
+  }, [leaveStatus])
+  const loadDetail = (id) => {
+    console.log(id)
+  }
   // Changing state value when searching name
   //   useEffect(() => {
   //     if (onSearchText !== '') {
@@ -424,7 +428,9 @@ function LeaveApplicationPageTable() {
                       <DataTableRow size="lg">
                         <div className="user-card">
                           <div className="user-info">
-                            <span className="tb-lead">{date.dayTypeName}</span>
+                            <span className="tb-lead">
+                              {item.leaveTypeName}
+                            </span>
                           </div>
                         </div>
                       </DataTableRow>
@@ -435,32 +441,108 @@ function LeaveApplicationPageTable() {
                           </div>
                         </div>
                       </DataTableRow>
-                      <DataTableRow size="lg">
-                        <div className="user-info">
+                      <DataTableRow size="md">
+                        <span
+                          className={`tb-status text-${
+                            date.statusName === 'Approved'
+                              ? 'success'
+                              : date.statusName === 'Applied'
+                              ? 'info'
+                              : 'danger'
+                          }`}
+                        >
+                          {date.statusName}
+                        </span>
+                        {date.statusName !== 'Pending' && (
                           <span
-                            className={`tb-status text-${
-                              item.status === 'Active'
-                                ? 'Active'
-                                : item.status === 'Pending'
-                                ? 'warning'
-                                : 'danger'
-                            }`}
-                          >
-                            {date.statusName}
+                            icon="info"
+                            direction="top"
+                            // id={item.id + 'pendingless'}
+                            // text={`${item.status} at Dec 18, 2019 01:02 am`}
+                          ></span>
+                        )}
+                        {!date.statusName === 'Pending' && (
+                          <span>
+                            <span
+                              icon="info"
+                              direction="top"
+                              // text={item.date}
+                              // id={item.id}
+                            />
                           </span>
-                        </div>
+                        )}
                       </DataTableRow>
                       <DataTableRow size="lg">
-                        <span>{item.leave}</span>
+                        <span>{date.dayTypeName}</span>
                       </DataTableRow>
-                      <DataTableRow>
-                        <ul>
+
+                      <DataTableRow className="nk-tb-col-tools">
+                        <ul className="nk-tb-actions gx-1">
+                          <li
+                            className="nk-tb-action-hidden"
+                            onClick={() => {
+                              // loadDetail(item.id)
+                              // setViewModal(true)
+                            }}
+                          >
+                            <span
+                              tag="a"
+                              containerClassName="btn btn-trigger btn-icon"
+                              id={'view' + item.id}
+                              icon="eye-fill"
+                              direction="top"
+                              text="Quick View"
+                            />
+                          </li>
+                          {item.status === 'Rejected' ? null : item.status ===
+                            'Approved' ? (
+                            <li
+                              className="nk-tb-action-hidden"
+                              // onClick={() => onRejectClick(item.id)}
+                            >
+                              <span
+                                tag="a"
+                                containerClassName="btn btn-trigger btn-icon"
+                                id={'reject' + item.id}
+                                icon="cross-fill-c"
+                                direction="top"
+                                text="Reject"
+                              />
+                            </li>
+                          ) : (
+                            <React.Fragment>
+                              <li
+                                className="nk-tb-action-hidden"
+                                // onClick={() => onApproveClick(item.id)}
+                              >
+                                <span
+                                  tag="a"
+                                  containerClassName="btn btn-trigger btn-icon"
+                                  id={'approve' + item.id}
+                                  icon="check-fill-c"
+                                  direction="top"
+                                  text="Approve"
+                                />
+                              </li>
+                              <li
+                                className="nk-tb-action-hidden"
+                                // onClick={() => onRejectClick(item.id)}
+                              >
+                                <span
+                                  tag="a"
+                                  containerClassName="btn btn-trigger btn-icon"
+                                  id={'reject' + item.id}
+                                  icon="cross-fill-c"
+                                  direction="top"
+                                  text="Reject"
+                                />
+                              </li>
+                            </React.Fragment>
+                          )}
                           <li>
                             <UncontrolledDropdown>
                               <DropdownToggle
                                 tag="a"
-                                href="#more"
-                                onClick={(ev) => ev.preventDefault()}
                                 className="dropdown-toggle btn btn-icon btn-trigger"
                               >
                                 <Icon name="more-h"></Icon>
@@ -470,56 +552,81 @@ function LeaveApplicationPageTable() {
                                   <li>
                                     <DropdownItem
                                       tag="a"
-                                      href="#edit"
-                                      onClick={(ev) => {
-                                        ev.preventDefault()
-                                        toggle('edit')
-                                      }}
-                                    >
-                                      <Icon name="eye"></Icon>
-                                      <span>{`${String.view} ${String.leave}`}</span>
-                                    </DropdownItem>
-                                  </li>
-                                  <li>
-                                    <DropdownItem
-                                      tag="a"
-                                      href="#remove"
-                                      onClick={(ev) => {
-                                        ev.preventDefault()
-                                      }}
-                                    >
-                                      <Icon name="check-thick"></Icon>
-                                      <span>{`${String.approve} ${String.leave}`}</span>
-                                    </DropdownItem>
-                                  </li>
-                                  <li>
-                                    <DropdownItem
-                                      tag="a"
                                       href="#view"
                                       onClick={(ev) => {
                                         ev.preventDefault()
-                                        onEditClick(item.id)
-                                        toggle('details')
+                                        loadDetail(item.id)
                                       }}
                                     >
-                                      <Icon name="edit"></Icon>
-                                      <span>{`${String.edit} ${String.leave}`}</span>
+                                      <Icon name="eye"></Icon>
+                                      <span>{String.view}</span>
                                     </DropdownItem>
                                   </li>
 
-                                  <li>
-                                    <DropdownItem
-                                      tag="a"
-                                      href="#remove"
-                                      onClick={(ev) => {
-                                        ev.preventDefault()
-                                        //   deleteProduct(item.id)
-                                      }}
+                                  {item.status ===
+                                  'Rejected' ? null : item.status ===
+                                    'Approved' ? (
+                                    <li
+                                    // onClick={() => onRejectClick(item.id)}
                                     >
-                                      <Icon name="trash"></Icon>
-                                      <span>{`${String.delete} ${String.leave}`}</span>
-                                    </DropdownItem>
-                                  </li>
+                                      <DropdownItem
+                                        tag="a"
+                                        href="#reject"
+                                        onClick={(ev) => {
+                                          ev.preventDefault()
+                                        }}
+                                      >
+                                        <Icon name="na"></Icon>
+                                        <span>Reject User</span>
+                                      </DropdownItem>
+                                    </li>
+                                  ) : (
+                                    <React.Fragment>
+                                      <li
+                                      // onClick={() => onApproveClick(item.id)}
+                                      >
+                                        <DropdownItem
+                                          tag="a"
+                                          href="#approve"
+                                          onClick={(ev) => {
+                                            ev.preventDefault()
+                                          }}
+                                        >
+                                          <Icon name="check-thick"></Icon>
+                                          <span>Approve</span>
+                                        </DropdownItem>
+                                      </li>
+                                      <li>
+                                        <DropdownItem
+                                          tag="a"
+                                          href="#details"
+                                          onClick={(ev) => {
+                                            ev.preventDefault()
+                                            // history.push(
+                                            //   `${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`
+                                            // )
+                                          }}
+                                        >
+                                          <Icon name="edit"></Icon>
+                                          <span>Edit</span>
+                                        </DropdownItem>
+                                      </li>
+                                      <li
+                                      // onClick={() => onRejectClick(item.id)}
+                                      >
+                                        <DropdownItem
+                                          tag="a"
+                                          href="#suspend"
+                                          onClick={(ev) => {
+                                            ev.preventDefault()
+                                          }}
+                                        >
+                                          <Icon name="na"></Icon>
+                                          <span>{`${String.cancel}`}</span>
+                                        </DropdownItem>
+                                      </li>
+                                    </React.Fragment>
+                                  )}
                                 </ul>
                               </DropdownMenu>
                             </UncontrolledDropdown>

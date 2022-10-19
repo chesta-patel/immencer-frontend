@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import {
   Button,
@@ -21,6 +22,7 @@ import {
   RSelect,
 } from '../../../../components/Component'
 import Content from '../../../../layout/content/Content'
+import { empData } from '../../../../services/thunk/GetEmployee'
 import String from '../../../../utils/String'
 import { defaultOptions } from '../LeaveAppJson'
 
@@ -28,6 +30,11 @@ function GrantLeave() {
   const [toInformEmpList, settoInformEmpList] = useState([])
   const { employeeData } = useSelector((state) => state.getEmp)
   const { leaveType } = useSelector((state) => state.dropdown)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(empData('employee'))
+  }, [])
 
   useEffect(() => {
     if (employeeData !== undefined) {
@@ -40,6 +47,7 @@ function GrantLeave() {
       settoInformEmpList(employeeList)
     }
   }, [employeeData])
+
   const leaveOption = leaveType.map((list, index) => {
     return {
       value: `${list.id}`,
@@ -68,16 +76,17 @@ function GrantLeave() {
               </FormGroup>
               <FormGroup className="form-group">
                 <label className="form-label">{`${String.leave} ${String.options}`}</label>
-                <RSelect options={leaveOption} />
+                <RSelect options={leaveOption} required />
               </FormGroup>
               <FormGroup className="form-group">
                 <label className="form-label">{`${String.employee}`}</label>
-                <RSelect options={toInformEmpList} isMulti />
+                <RSelect options={toInformEmpList} isMulti required />
               </FormGroup>
               <FormGroup className="form-group">
                 <label className="form-label">{`${String.note}`}</label>
                 <div className="form-control-wrap">
                   <textarea
+                    required
                     className="form-control form-control-sm"
                     id="cf-default-textarea"
                     placeholder="Write your message"
@@ -86,6 +95,7 @@ function GrantLeave() {
               </FormGroup>
               <FormGroup className="form-group">
                 <Button
+                  type="submit"
                   color="primary"
                   size="lg"
                   onClick={(e) => {
