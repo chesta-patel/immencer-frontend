@@ -557,7 +557,7 @@ function PageTable(props) {
                                             : item.status === 'Pending'
                                             ? 'warning'
                                             : 'danger'
-                                        } d-md-none ml-1`}
+                                        } d-md-none d-none ml-1`}
                                       ></span>
                                     </span>
                                   </div>
