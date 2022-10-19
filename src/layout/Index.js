@@ -17,22 +17,37 @@ const Layout = () => {
   const companyDocumentReduxState = useSelector(
     (state) => state.companyDocument
   )
-  const holidayListReduxState = useSelector((state) => state.holidayList)
-  const companyPolicyReduxState = useSelector((state) => state.companyPolicy)
-  const createNewEmpDataReduxState = useSelector(
-    (state) => state.createNewEmpData
+  const assetsApplicationReduxState = useSelector(
+    (state) => state.assetsApplication
   )
+  const holidayListReduxState = useSelector((state) => state.holidayList)
+  const deleteHolidayListReduxState = useSelector(
+    (state) => state.DeleteHolidayList
+  )
+  const companyPolicyReduxState = useSelector((state) => state.companyPolicy)
+  const getEmpDetailReduxState = useSelector((state) => state.getEmpDetail)
   const CreateEmpReduxState = useSelector((state) => state.CreateEmp)
   const createCompanyDocReduxState = useSelector(
     (state) => state.createCompanyDoc
   )
+  const createAssetsAppReduxState = useSelector(
+    (state) => state.createAssetsApp
+  )
+  const createPolicyReduxState = useSelector((state) => state.createPolicy)
   const deleteCompanyDocReduxState = useSelector(
     (state) => state.deleteCompanyDoc
   )
+  const deleteAssetsAppReduxState = useSelector(
+    (state) => state.deleteAssetsApp
+  )
+  const empUpdateReduxState = useSelector((state) => state.empUpdate)
+  const getCurrentEmpReduxState = useSelector((state) => state.getCurrentEmp)
+  const ApplyLeaveReduxState = useSelector((state) => state.ApplyLeave)
+  const GetLeaveListReduxState = useSelector((state) => state.GetLeaveList)
   const deleteCompanyPolicyReduxState = useSelector(
     (state) => state.deleteCompanyPolicy
   )
-  const createPolicyReduxState = useSelector((state) => state.createPolicy)
+
   //Sidebar
   const [mobileView, setMobileView] = useState()
   const [visibility, setVisibility] = useState(false)
@@ -121,14 +136,22 @@ const Layout = () => {
         dropdownReduxState?.isLoading ||
         getEmpReduxState?.isLoading ||
         companyDocumentReduxState?.isLoading ||
+        assetsApplicationReduxState?.isLoading ||
         holidayListReduxState?.isLoading ||
+        deleteHolidayListReduxState?.isLoading ||
         companyPolicyReduxState?.isLoading ||
-        createNewEmpDataReduxState?.isLoading ||
+        getEmpDetailReduxState?.isLoading ||
         CreateEmpReduxState?.isLoading ||
         createCompanyDocReduxState?.isLoading ||
+        createAssetsAppReduxState?.isLoading ||
+        createPolicyReduxState?.isLoading ||
         deleteCompanyDocReduxState?.isLoading ||
-        deleteCompanyPolicyReduxState?.isLoading ||
-        createPolicyReduxState?.isLoading) && <Loader />}
+        deleteAssetsAppReduxState?.isLoading ||
+        empUpdateReduxState?.isLoading ||
+        getCurrentEmpReduxState?.isLoading ||
+        ApplyLeaveReduxState?.isLoading ||
+        GetLeaveListReduxState?.isLoading ||
+        deleteCompanyPolicyReduxState?.isLoading) && <Loader />}
       <Head title="Loading" />
       <div className="nk-app-root">
         <div className="nk-main">

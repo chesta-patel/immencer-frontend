@@ -185,9 +185,9 @@ function AssetsApplicationPageTable(props) {
         ).format('YYYY-MM-DD'),
         notes: callAPI?.payload?.data?.data?.assetAssign?.notes,
       }
-      // dispatch(empData('employee'))
-      // dispatch(fetchData('master/assetStatus'))
-      // dispatch(fetchData('assetType'))
+      dispatch(empData('employee'))
+      dispatch(fetchData('master/assetStatus'))
+      dispatch(fetchData('assetType'))
       history.push({
         pathname: '/assets-application/create',
         state: { add: false, edit: true, data: assetData },
