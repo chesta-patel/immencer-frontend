@@ -97,7 +97,6 @@ function ApplyLeave() {
   }
   const apply = () => {}
   const onFormSubmit = (e) => {
-    e.preventDefault()
     const requestBody = {
       ...leaveData,
       dates: leaveDates,

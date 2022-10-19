@@ -68,11 +68,11 @@ function LeaveApplicationPageTable() {
     setSearchText(e.target.value)
   }
 
-  useEffect(() => {
-    console.log('leaveStatus', leaveStatus)
-  }, [leaveStatus])
   const loadDetail = (id) => {
-    console.log(id)
+    history.push({
+      pathname: '/leave/leave-view',
+      state: { data: id },
+    })
   }
   // Changing state value when searching name
   //   useEffect(() => {

@@ -8,6 +8,7 @@ const initialState = {
   isError: false,
   errorMessage: '',
   message: '',
+  employeeLeave: [],
 }
 
 export const GetLeaveList = createSlice({
@@ -18,12 +19,14 @@ export const GetLeaveList = createSlice({
     builder
       .addCase(GetLeave.fulfilled, (state, action) => {
         state.leaveList = action.payload.data.data.leave
-        console.log('action.payload', action.payload)
+        state.employeeLeave = action.payload.data.data.leave
         state.isLoading = false
         state.isSuccess = true
         state.isError = false
       })
       .addCase(GetLeave.pending, function (state, action) {
+        console.log('action.payload', action.payload)
+
         state.isLoading = true
         state.isSuccess = false
         state.isError = false
