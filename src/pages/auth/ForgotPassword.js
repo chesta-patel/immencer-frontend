@@ -59,7 +59,7 @@ const ForgotPassword = () => {
                 alt="logo"
               />
               <img
-                className="logo-dark logo-img logo-img-lg"
+                className="logo-dark logo-img logo-img-lg img_center"
                 src={LogoDark}
                 alt="logo-dark"
               />
