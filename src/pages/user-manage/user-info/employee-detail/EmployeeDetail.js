@@ -454,8 +454,8 @@ function EmployeeDetail() {
                         console.log('educationList', educationList)
                         return (
                           <Block>
-                            <div className="profile-ud-list">
-                              <div className="profile-ud-item">
+                            <div className="profile-ud-list m-0 justify-content-between">
+                              <div className="">
                                 <div className="profile-ud wider">
                                   <span className="profile-ud-label">
                                     {String.education}
@@ -463,7 +463,7 @@ function EmployeeDetail() {
                                   <span>{`${educationList.degree}`}</span>
                                 </div>
                               </div>
-                              <div className="profile-ud-item">
+                              <div className="">
                                 <div className="profile-ud wider">
                                   <span className="profile-ud-label">
                                     {String.start_date}
@@ -471,7 +471,7 @@ function EmployeeDetail() {
                                   <span>{`${educationList.startDate}`}</span>
                                 </div>
                               </div>
-                              <div className="profile-ud-item">
+                              <div className="">
                                 <div className="profile-ud wider">
                                   <span className="profile-ud-label">
                                     {String.end_date}
