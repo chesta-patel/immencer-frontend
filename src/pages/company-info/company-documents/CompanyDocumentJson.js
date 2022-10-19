@@ -13,7 +13,7 @@ export const companyDocForm = [
   {
     id: 2,
     label_name: `${String.description}`,
-    type: 'text',
+    type: 'textarea',
     name: `${String.description}`,
     required: `${String.Please_enter} ${String.description}`,
     placeholder: `${String.enter} ${String.description}`,
