@@ -228,7 +228,8 @@ function PageHeader(props) {
                 (formFields.type !== 'text') &
                 (formFields.type !== 'number') &
                 (formFields.type !== 'date') &
-                (formFields.type !== 'file')
+                (formFields.type !== 'file') &
+                (formFields.type !== 'textarea')
               ) {
                 return (
                   <Col md="6">

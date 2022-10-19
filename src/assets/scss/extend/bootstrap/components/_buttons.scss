@@ -5,6 +5,10 @@
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
   &-xl {
     @include button-size(
       $btn-padding-y-lg,

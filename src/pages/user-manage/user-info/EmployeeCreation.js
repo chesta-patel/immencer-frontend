@@ -72,6 +72,7 @@ const UserCreate = (props) => {
   }, [location])
 
   const submitForm = (e) => {
+    props.next()
     e.preventDefault()
     setValidation(true)
     userCreate.map((formFields) => {
@@ -921,24 +922,25 @@ const Permission = (props) => {
     }
   }
   return (
-    <div className="App">
+    <div className="App permission_check_box">
       <div
         style={{
           display: 'flex',
         }}
       >
         <div
+          className="permission_left"
           style={{
             flexDirection: 'column',
-            width: '200px',
             justifyContent: 'space-between',
-            marginTop: '20px',
+            marginTop: '40px',
           }}
         >
           {rows.map((row, i) => (
-            <div key={i}>
+            <div key={i} className="mr_btm_10">
               <input
                 type="checkbox"
+                className="check_box"
                 checked={matrix?.[i].every((v) => v)}
                 onChange={(e) => {
                   handleRowChange(i, e.target.checked)
@@ -948,16 +950,18 @@ const Permission = (props) => {
             </div>
           ))}
         </div>
-        <div>
+        <div className="permission_flex_box">
           <div
+            className="permission_right"
             style={{
               display: 'flex',
-              width: '200px',
-              justifyContent: 'space-between',
             }}
           >
             {cols.map((col, i) => (
-              <div style={{ display: 'flex' }} key={i}>
+              <div
+                style={{ display: 'flex', textTransform: 'capitalize' }}
+                key={i}
+              >
                 {col}
                 <input
                   type="checkbox"
@@ -971,10 +975,9 @@ const Permission = (props) => {
           </div>
           {matrix.map((matrixRow, matrixRowIndex) => (
             <div
+              className="select_checkbox"
               style={{
                 display: 'flex',
-                width: '200px',
-                justifyContent: 'space-between',
               }}
               key={`mr_idx_${matrixRowIndex}`}
             >

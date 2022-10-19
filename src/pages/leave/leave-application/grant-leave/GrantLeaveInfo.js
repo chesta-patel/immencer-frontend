@@ -53,7 +53,7 @@ function GrantLeaveInfo() {
                         }}
                       >
                         <Icon name="plus"></Icon>
-                        {`${String.grant} ${String.leave}`}
+                        <span> {`${String.grant} ${String.leave}`}</span>
                       </Button>
                     </li>
                   </ul>
