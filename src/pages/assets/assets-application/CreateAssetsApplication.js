@@ -44,13 +44,12 @@ function CreateAssetsApplication() {
   const { assetType } = useSelector((state) => state.dropdown)
   const { employeeData } = useSelector((state) => state.getEmp)
 
-  // useEffect(() => {
-  //   dispatch(fetchData('master/assetStatus'))
-  //   dispatch(fetchData('assetType'))
-  //   dispatch(empData('employee'))
-  // }, [])
-  //need to add dispatch
-  //need to add dispatch for update
+  useEffect(() => {
+    dispatch(fetchData('master/assetStatus'))
+    dispatch(fetchData('assetType'))
+    dispatch(empData('employee'))
+  }, [])
+
   useEffect(() => {
     var string = assetsAppString.find(function (element) {
       return element

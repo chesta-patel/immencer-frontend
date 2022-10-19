@@ -59,6 +59,7 @@ const UserCreate = (props) => {
     dispatch(fetchData('master/bloodGroup'))
     dispatch(fetchData('master/gender'))
     dispatch(fetchData('master/nationality'))
+    dispatch(fetchData('master/countries'))
   }, [])
 
   useEffect(() => {
@@ -314,27 +315,37 @@ const AddressDetails = (props) => {
   const { handleSubmit } = useForm()
   const [currentAddress, setCurrentAddress] = useState({ ...initialState })
   const [permanentAddress, setPermanentAddress] = useState({ ...initialState })
-  const [countryPermanentAddress, setCountryPermanentAddress] = useState([])
-  const [countryCurrentAddress, setCountryCurrentAddress] = useState([])
-  const [allDropDownPermanentAddress, setAllDropdownPermanentAddress] =
-    useState(allDropDown)
-  const [allDropDownCurrentAddress, setAllDropdownCurrentAddress] =
-    useState(allDropDown)
+  const [countryPermanentAddress, setCountryPermanentAddress] = useState()
+  const [countryCurrentAddress, setCountryCurrentAddress] = useState()
+
   const [addressType, setAddressType] = useState('')
   const { formData } = useSelector((state) => state.createNewEmpData)
   const location = useLocation()
   var checkValidate = []
 
+  const [permanentAddressCSCInfo, setPermanentAddressCSCInfo] = useState({})
+  const [currentAddressCSCInfo, setCurrentAddressCSCInfo] = useState({})
+  const [callFormData, setCallFormData] = useState(true)
+
   useEffect(() => {
-    if (addressType === 'currentAddress') {
-      setAllDropdownCurrentAddress(allDropDown)
-    } else if (addressType === 'permanentAddress') {
-      setAllDropdownPermanentAddress(allDropDown)
-    } else {
-      setAllDropdownCurrentAddress(allDropDown)
-      setAllDropdownPermanentAddress(allDropDown)
+    if (
+      addressType !== 'currentAddress' &&
+      addressType !== 'permanentAddress' &&
+      !formData?.currentAddress &&
+      !formData?.permanentAddress
+    ) {
+      setCurrentAddressCSCInfo({
+        countries: allDropDown.countries,
+        states: allDropDown.states,
+        city: allDropDown.city,
+      })
+      setPermanentAddressCSCInfo({
+        countries: allDropDown.countries,
+        states: allDropDown.states,
+        city: allDropDown.city,
+      })
     }
-  }, [allDropDown, addressType, countryCurrentAddress, countryPermanentAddress])
+  }, [allDropDown, addressType, formData])
 
   const submitForm = (e) => {
     e.preventDefault()
@@ -354,110 +365,176 @@ const AddressDetails = (props) => {
 
     if (checkValidate.length === 0) {
       props.next()
+      setCallFormData(true)
       dispatch(getCreateNewEmpData({ currentAddress, permanentAddress }))
-      console.log('employe data in redux:', formData)
     }
   }
-  const handleChangeAddress = (dropdown, dropDownType) => {
+  const handleChangeAddress = async (dropdown, dropDownType) => {
     switch (dropDownType) {
       case 'Country':
         if (addressType === 'currentAddress') {
           setCountryCurrentAddress(dropdown)
-          dispatch(fetchData(`master/states/byCountryCode/${dropdown.value}`))
-          setAllDropdownCurrentAddress(allDropDown)
+          let APICallCurrentAddressStates = await dispatch(
+            fetchData(`master/states/byCountryCode/${dropdown.value}`)
+          )
+          let updateCurrentAddressCSCInfo = {
+            ...currentAddressCSCInfo,
+            states: APICallCurrentAddressStates?.payload?.data?.states,
+            city: [],
+          }
+          setCurrentAddressCSCInfo(updateCurrentAddressCSCInfo)
         } else if (addressType === 'permanentAddress') {
           setCountryPermanentAddress(dropdown)
-          dispatch(fetchData(`master/states/byCountryCode/${dropdown.value}`))
-          setAllDropdownPermanentAddress(allDropDown)
+          let APICallPermanentAddressStates = await dispatch(
+            fetchData(`master/states/byCountryCode/${dropdown.value}`)
+          )
+          let updatePermanentAddressCSCInfo = {
+            ...permanentAddressCSCInfo,
+            states: APICallPermanentAddressStates?.payload?.data?.states,
+            city: [],
+          }
+          setPermanentAddressCSCInfo(updatePermanentAddressCSCInfo)
         }
         break
       case 'State/Region':
         if (addressType === 'currentAddress') {
-          dispatch(
-            fetchData(
-              `master/cities/${countryCurrentAddress.value}/states/${dropdown.value}`
-            )
+          let country = countryCurrentAddress
+            ? countryCurrentAddress
+            : formData?.currentAddress?.country
+
+          let APICallCurrentAddressCities = await dispatch(
+            fetchData(`master/cities/${country}/states/${dropdown.value}`)
           )
+          let updateCurrentAddressCSCInfo = {
+            ...currentAddressCSCInfo,
+            city: APICallCurrentAddressCities?.payload?.data?.cities,
+          }
+          setCurrentAddressCSCInfo(updateCurrentAddressCSCInfo)
         } else if (addressType === 'permanentAddress') {
-          dispatch(
-            fetchData(
-              `master/cities/${countryPermanentAddress.value}/states/${dropdown.value}`
-            )
+          let country = countryPermanentAddress
+            ? countryPermanentAddress
+            : formData?.permanentAddress?.country
+
+          let APICallPermanentAddressCities = await dispatch(
+            fetchData(`master/cities/${country}/states/${dropdown.value}`)
           )
+          let updatePermanentAddressCSCInfo = {
+            ...permanentAddressCSCInfo,
+            city: APICallPermanentAddressCities?.payload?.data?.cities,
+          }
+          setPermanentAddressCSCInfo(updatePermanentAddressCSCInfo)
         }
         break
       default:
         break
     }
-    // dispatch(getCreateNewEmpData({ ...formData.permanentAddress }))
-    console.log('formData.permanentAddress==>')
   }
   const onChangeAddress = (event) => {
+    setCallFormData(false)
     if (event?.target?.checked) {
+      setCurrentAddressCSCInfo(permanentAddressCSCInfo)
       setCurrentAddress(permanentAddress)
-      setCountryPermanentAddress(countryPermanentAddress)
-      setAllDropdownCurrentAddress(allDropDownPermanentAddress)
     } else {
       const tempAdata = { ...currentAddress }
       Object.keys(tempAdata).forEach((key) => {
         tempAdata[key] = ''
       })
       setCurrentAddress(tempAdata)
+      dispatch(getCreateNewEmpData({ ...formData.currentAddress }))
     }
   }
-  useEffect(() => {
-    dispatch(fetchData('master/countries'))
-  }, [])
 
   useEffect(() => {
-    setPermanentAddress({
-      ...permanentAddress,
-      ...formData?.permanentAddress,
-    })
+    ;(async () => {
+      if (formData?.permanentAddress && callFormData) {
+        let tempCSCInfo = {
+          countries: allDropDown.countries,
+          states: [],
+          city: [],
+        }
 
-    if (formData?.permanentAddress) {
-      setAddressType('permanentAddress')
-      let findCountryData = allDropDownPermanentAddress?.countries?.find(
-        (data) => data?.iso2 == formData?.permanentAddress?.country
-      )
-      let countryData = {
-        value: `${findCountryData?.iso2}`,
-        label: `${findCountryData?.name}`,
-      }
-      handleChangeAddress(countryData, 'Country')
-      handleChangeAddress(
-        { value: formData?.permanentAddress?.state },
-        'State/Region'
-      )
-    }
+        await setPermanentAddress({
+          ...permanentAddress,
+          ...formData?.permanentAddress,
+        })
 
-    setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
-    if (formData?.currentAddress) {
-      setAddressType('currentAddress')
-      let findCountryData = allDropDownPermanentAddress?.countries?.find(
-        (data) => data?.iso2 == formData?.currentAddress?.country
-      )
-      let countryData = {
-        value: `${findCountryData?.iso2}`,
-        label: `${findCountryData?.name}`,
+        // call api for state
+        let APICallPermanentAddressStates = await dispatch(
+          fetchData(
+            `master/states/byCountryCode/${formData?.permanentAddress?.country}`
+          )
+        )
+
+        tempCSCInfo = {
+          ...tempCSCInfo,
+          states: APICallPermanentAddressStates?.payload?.data?.states,
+        }
+
+        // api call city
+        let APICallPermanentAddressCities = await dispatch(
+          fetchData(
+            `master/cities/${formData?.permanentAddress?.country}/states/${formData?.permanentAddress?.state}`
+          )
+        )
+        tempCSCInfo = {
+          ...tempCSCInfo,
+          city: APICallPermanentAddressCities?.payload?.data?.cities,
+        }
+        // update state
+        setPermanentAddressCSCInfo(tempCSCInfo)
       }
-      handleChangeAddress(countryData, 'Country')
-      handleChangeAddress(
-        { value: formData?.currentAddress?.state },
-        'State/Region'
-      )
-    }
+
+      if (formData?.currentAddress && callFormData) {
+        let tempCSCInfo = {
+          countries: allDropDown.countries,
+          states: [],
+          city: [],
+        }
+
+        await setCurrentAddress({
+          ...currentAddress,
+          ...formData?.currentAddress,
+        })
+
+        // call api for state
+        let APICallCurrentAddressStates = await dispatch(
+          fetchData(
+            `master/states/byCountryCode/${formData?.currentAddress?.country}`
+          )
+        )
+
+        tempCSCInfo = {
+          ...tempCSCInfo,
+          states: APICallCurrentAddressStates?.payload?.data?.states,
+        }
+
+        // api call city
+        let APICallCurrentAddressCities = await dispatch(
+          fetchData(
+            `master/cities/${formData?.currentAddress?.country}/states/${formData?.currentAddress?.state}`
+          )
+        )
+
+        tempCSCInfo = {
+          ...tempCSCInfo,
+          city: APICallCurrentAddressCities?.payload?.data?.cities,
+        }
+
+        // set state
+        setCurrentAddressCSCInfo(tempCSCInfo)
+      }
+    })()
   }, [formData])
 
-  useEffect(() => {
-    if (location.pathname === '/employee/employee-update') {
-      setPermanentAddress({
-        ...permanentAddress,
-        ...formData?.permanentAddress,
-      })
-      setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
-    }
-  }, [location])
+  // useEffect(() => {
+  //   if (location.pathname === '/employee/employee-update') {
+  //     setPermanentAddress({
+  //       ...permanentAddress,
+  //       ...formData?.permanentAddress,
+  //     })
+  //     setCurrentAddress({ ...currentAddress, ...formData?.currentAddress })
+  //   }
+  // }, [location])
 
   return (
     <>
@@ -476,7 +553,7 @@ const AddressDetails = (props) => {
               (formFields.type !== 'date') &
               (formFields.type !== 'email')
             ) {
-              const dropDownData = allDropDownPermanentAddress[
+              const dropDownData = permanentAddressCSCInfo[
                 `${formFields.state_name}`
               ]?.map((data) => {
                 if (formFields.state_name === 'countries') {
@@ -511,6 +588,7 @@ const AddressDetails = (props) => {
                           permanentAddress[`${formFields.key_name}`]
                       )}
                       onChange={(e) => {
+                        setCallFormData(false)
                         setAddressType('permanentAddress')
                         handleChangeAddress(e, formFields.label_name)
                         const oldState = cloneDeep(permanentAddress)
@@ -548,6 +626,7 @@ const AddressDetails = (props) => {
                       placeholder={formFields.placeholder}
                       value={permanentAddress[`${formFields.key_name}`]}
                       onChange={(e) => {
+                        setCallFormData(false)
                         const oldState = cloneDeep(permanentAddress)
                         oldState[`${formFields.key_name}`] = e.target.value
                         setPermanentAddress({ ...oldState })
@@ -591,7 +670,7 @@ const AddressDetails = (props) => {
               (formFields.type !== 'date') &
               (formFields.type !== 'email')
             ) {
-              const dropDownData = allDropDownCurrentAddress[
+              const dropDownData = currentAddressCSCInfo[
                 `${formFields.state_name}`
               ]?.map((data) => {
                 if (formFields.state_name === 'countries') {
@@ -625,12 +704,16 @@ const AddressDetails = (props) => {
                           ddd.value === currentAddress[`${formFields.key_name}`]
                       )}
                       onChange={(e) => {
+                        setCallFormData(false)
                         setAddressType('currentAddress')
                         handleChangeAddress(e, formFields.label_name)
                         onChangeAddress()
                         const oldState = cloneDeep(currentAddress)
-                        oldState[`${formFields.key_name}`] = e.label
+                        oldState[`${formFields.key_name}`] = e.value
                         setCurrentAddress({ ...oldState })
+                        dispatch(
+                          getCreateNewEmpData({ ...formData.currentAddress })
+                        )
                       }}
                       onFocus={() => setAddressType('currentAddress')}
                     />
@@ -658,6 +741,7 @@ const AddressDetails = (props) => {
                       placeholder={formFields.placeholder}
                       value={currentAddress[`${formFields.key_name}`]}
                       onChange={(e) => {
+                        setCallFormData(false)
                         const oldState = cloneDeep(currentAddress)
                         oldState[`${formFields.key_name}`] = e.target.value
                         setCurrentAddress({ ...oldState })
@@ -691,7 +775,13 @@ const AddressDetails = (props) => {
               </Button>
             </li>
             <li>
-              <Button color="primary" onClick={props.prev}>
+              <Button
+                color="primary"
+                onClick={() => {
+                  props.prev()
+                  setCallFormData(true)
+                }}
+              >
                 {String.previous}
               </Button>
             </li>
