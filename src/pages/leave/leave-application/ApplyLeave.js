@@ -101,7 +101,6 @@ function ApplyLeave() {
       ...leaveData,
       dates: leaveDates,
     }
-    debugger
     if (requestBody !== null) {
       callFormSubmit(requestBody)
     }
@@ -209,11 +208,7 @@ function ApplyLeave() {
                                   className="custom-control custom-checkbox"
                                   type="radio"
                                   id="html"
-                                  name="daytype"
-                                  // value={`${dt.id}`}
-                                  // checked={`${dt.id}` === '1'}
-                                  // defaultChecked={`${dt.id}` == '1'}
-                                  // defaultValue={`${dt.value}` == '1'}
+                                  name={`daytype${index}`}
                                   value={`${dt.id}`}
                                   checked={`${dt.id}` === leaveDate.dayType}
                                   onChange={(e) => {
