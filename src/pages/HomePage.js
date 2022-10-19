@@ -22,7 +22,7 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
-      <Head title="Homepage"></Head>
+      <Head title="Home"></Head>
       <Content>
         <BlockHead size="sm">
           <BlockBetween>

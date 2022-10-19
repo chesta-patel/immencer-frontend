@@ -48,9 +48,11 @@ const LeaveApplication = ({ ...props }) => {
     color: ${({ color }) => color};
   `
   useEffect(() => {
+    dispatch(GetLeave('leave'))
     dispatch(fetchData('master/leaveType'))
     dispatch(fetchData('master/leaveDayType'))
     dispatch(empData('employee'))
+    dispatch(fetchData('master/leaveStatus'))
   }, [])
   //need to add dispatch
   const callFormSubmit = async (data) => {

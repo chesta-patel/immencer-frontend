@@ -95,13 +95,16 @@ function ApplyLeave() {
     })
     setLeaveData({ ...leaveData, inform: toInform })
   }
-  const apply = () => {
+  const apply = () => {}
+  const onFormSubmit = (e) => {
     const requestBody = {
       ...leaveData,
       dates: leaveDates,
     }
-    onFormSubmit()
-    callFormSubmit(requestBody)
+    debugger
+    if (requestBody !== null) {
+      callFormSubmit(requestBody)
+    }
   }
   const leaveOption = leaveType.map((list, index) => {
     return {
@@ -128,7 +131,7 @@ function ApplyLeave() {
       toastNotify('error', callAPI?.payload?.response?.data?.message)
     }
   }
-  const onFormSubmit = (e) => {}
+
   const formClass = classNames({
     'form-validate': true,
     'is-alter': 1,
@@ -154,15 +157,17 @@ function ApplyLeave() {
                 <FormGroup className="form-group">
                   <div className="form-control-wrap">
                     <label className="form-label">{`${String.leave_type}`}</label>
+
                     <RSelect
                       ref={register({ required: true })}
                       options={leaveOption}
                       onChange={handleLeaveType}
+                      name="date"
                     />
+                    {errors.date && (
+                      <p className="error">{String.required_field}</p>
+                    )}
                   </div>
-                  {errors.date && (
-                    <p className="error">{`${String.required_field}`}</p>
-                  )}
                 </FormGroup>
               </Col>
             </Row>
@@ -185,7 +190,7 @@ function ApplyLeave() {
                         }}
                       />
                       {errors.date && (
-                        <p className="error">{`${String.required_field}`}</p>
+                        <p className="error">{String.required_field}</p>
                       )}
                     </div>
                   </FormGroup>
@@ -204,6 +209,11 @@ function ApplyLeave() {
                                   className="custom-control custom-checkbox"
                                   type="radio"
                                   id="html"
+                                  name="daytype"
+                                  // value={`${dt.id}`}
+                                  // checked={`${dt.id}` === '1'}
+                                  // defaultChecked={`${dt.id}` == '1'}
+                                  // defaultValue={`${dt.value}` == '1'}
                                   value={`${dt.id}`}
                                   checked={`${dt.id}` === leaveDate.dayType}
                                   onChange={(e) => {
@@ -215,11 +225,11 @@ function ApplyLeave() {
                                     setLeaveDates(existingLeaveDates)
                                   }}
                                 />
-                                {errors.dayType && (
-                                  <p className="Invalid">
-                                    {`${String.required_field}`}
+                                {/* {errors.date && (
+                                  <p className="error">
+                                    {String.required_field}
                                   </p>
-                                )}
+                                )} */}
                               </label>
                               <label for="html">{`${dt.name}`}</label>
                             </div>
@@ -299,9 +309,6 @@ function ApplyLeave() {
                     onChange={handleInfo}
                   />
                 </div>
-                {errors.inform && (
-                  <span className="error">{`${String.required_field}`}</span>
-                )}
               </Col>
             </Row>
             <Row className="gy-3">
@@ -323,7 +330,7 @@ function ApplyLeave() {
                       onChange={handle}
                     />
                     {errors.date && (
-                      <span className="error">This field is required</span>
+                      <p className="error">{String.required_field}</p>
                     )}
                   </div>
                 </FormGroup>
