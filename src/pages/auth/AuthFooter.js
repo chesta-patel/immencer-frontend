@@ -12,14 +12,24 @@ const AuthFooter = () => {
           <Col lg={12} className="order-lg-last">
             <ul className="nav nav-sm justify-content-center justify-content-lg-end">
               <li className="nav-item">
-                <Link className="nav-link" target="_blank" to={`/`}>
+                <a
+                  className="nav-link"
+                  target="_blank"
+                  href="https://immence.com/terms-of-use"
+                  rel="noreferrer"
+                >
                   {String.term_condition}
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" target="_blank" to={`/`}>
+                <a
+                  className="nav-link"
+                  target="_blank"
+                  href="https://immence.com/privacy-policy"
+                  rel="noreferrer"
+                >
                   {`${String.privacy} ${String.policy}`}
-                </Link>
+                </a>
               </li>
               {/* <li className="nav-item">
                 <Link className="nav-link" target="_blank" to={`/auths/faq`}>
