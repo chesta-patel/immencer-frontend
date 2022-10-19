@@ -399,7 +399,7 @@ const AddressDetails = (props) => {
       case 'State/Region':
         if (addressType === 'currentAddress') {
           let country = countryCurrentAddress
-            ? countryCurrentAddress
+            ? countryCurrentAddress?.value
             : formData?.currentAddress?.country
 
           let APICallCurrentAddressCities = await dispatch(
@@ -412,7 +412,7 @@ const AddressDetails = (props) => {
           setCurrentAddressCSCInfo(updateCurrentAddressCSCInfo)
         } else if (addressType === 'permanentAddress') {
           let country = countryPermanentAddress
-            ? countryPermanentAddress
+            ? countryPermanentAddress?.value
             : formData?.permanentAddress?.country
 
           let APICallPermanentAddressCities = await dispatch(
