@@ -68,21 +68,21 @@ export const assetAppForm = [
   },
   {
     id: 8,
-    label_name: `${String.description}`,
-    type: 'text',
-    name: `${String.description}`,
-    // required: `${String.Please_enter} ${String.description}`,
-    placeholder: `${String.enter} ${String.description}`,
-    key_name: 'description',
-  },
-  {
-    id: 9,
     label_name: `${String.note}`,
     type: 'text',
     name: `${String.note}`,
     // required: `${String.Please_enter} ${String.note}`,
     placeholder: `${String.enter} ${String.note}`,
     key_name: 'notes',
+  },
+  {
+    id: 9,
+    label_name: `${String.description}`,
+    type: 'textarea',
+    name: `${String.description}`,
+    // required: `${String.Please_enter} ${String.description}`,
+    placeholder: `${String.enter} ${String.description}`,
+    key_name: 'description',
   },
 ]
 

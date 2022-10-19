@@ -84,7 +84,9 @@ function CreateHoliday() {
 
       let filterRoleFormUpdated = [...filterRoleForm, findTypeUpdatedData]
 
-      setRoleFormData(filterRoleFormUpdated)
+      setRoleFormData(filterRoleFormUpdated.sort())
+
+      console.log('roleFormData', roleFormData)
     }
   }, [roleForm, holidayType])
 
