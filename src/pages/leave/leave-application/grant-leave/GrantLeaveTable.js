@@ -96,8 +96,8 @@ function GrantLeaveTable({}) {
   //         const filteredObject = currentItems?.filter((item) => {
   //           if (key === 'updatedAt' || key === 'createdAt') {
   //             let date = item.updatedAt
-  //               ? moment(item.updatedAt).format('L')
-  //               : moment(item.createdAt).format('L')
+  //               ? Formate_Date_DD_MM_YYYY(item.updatedAt)
+  //               : Formate_Date_DD_MM_YYYY(item.createdAt)
   //             return date?.toLowerCase()?.includes(onSearchText?.toLowerCase())
   //           } else {
   //             return item[key]

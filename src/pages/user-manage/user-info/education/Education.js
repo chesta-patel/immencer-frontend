@@ -21,6 +21,7 @@ function Education(props) {
   const dispatch = useDispatch()
   const { isSuccess } = useSelector((state) => state.getEmpDetail)
   const { formData } = useSelector((state) => state.createNewEmpData)
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
 
   const [data, setData] = useState({
     degree: '',
@@ -74,19 +75,34 @@ function Education(props) {
   const displaydata = () => {
     setEducationList(items)
   }
+
   const senData = () => {
-    props.next()
+    console.log('🚀 ~ items', items)
+    if (!items || items.length === 0) {
+      setShowErrorMessage(true)
+    } else {
+      setShowErrorMessage(false)
+      props.next()
+    }
   }
+
+  useEffect(() => {
+    if (items?.length > 0) {
+      setShowErrorMessage(false)
+    }
+  }, [items])
 
   return (
     <React.Fragment>
-      <Button
-        color="primary"
-        className="btn-icon"
-        onClick={() => setModal({ add: true })}
-      >
-        <Icon name="plus"></Icon>
-      </Button>
+      <div>
+        <Button
+          color="primary"
+          className="btn-icon"
+          onClick={() => setModal({ add: true })}
+        >
+          <Icon name="plus"></Icon>
+        </Button>
+      </div>
       <Container>
         <Row className="gy-3">
           <EducationCard item={items} setItems={setItems} />
@@ -163,6 +179,11 @@ function Education(props) {
         </ModalBody>
       </Modal>
       <div>
+        {showErrorMessage && (
+          <span className="error-message">
+            Add At Least one Education Information
+          </span>
+        )}
         <div className="actions clearfix">
           <ul>
             <li>

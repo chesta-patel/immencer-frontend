@@ -27,7 +27,7 @@ import {
 import Content from '../../../../layout/content/Content'
 import { empDetail } from '../../../../services/thunk/EmployeeDetailThunk'
 import String from '../../../../utils/String'
-import { findUpper } from '../../../../utils/Utils'
+import { findUpper, Formate_Date_DD_MM_YYYY } from '../../../../utils/Utils'
 import classnames from 'classnames'
 import { toastNotify } from '../../../../layout/Index'
 
@@ -79,6 +79,7 @@ function EmployeeDetail() {
   return (
     <>
       {isSuccess.map((currentEmp, index) => {
+        console.log('🚀 ~ currentEmp', currentEmp)
         return (
           <Content>
             <BlockHead className="detail-card">
@@ -107,9 +108,11 @@ function EmployeeDetail() {
                         {String.last_login}
                         <span className="text-base">
                           {' '}
-                          {`: ${moment(currentEmp.birthDate).format(
-                            'DD/MM/YYYY'
-                          )}`}
+                          {`: ${
+                            currentEmp.lastLogin
+                              ? Formate_Date_DD_MM_YYYY(currentEmp.lastLogin)
+                              : ''
+                          }`}
                         </span>
                       </li>
                     </ul>
@@ -252,9 +255,11 @@ function EmployeeDetail() {
                                       {String.birth_day}
                                     </span>
                                     <span>
-                                      {moment(currentEmp.birthDate).format(
-                                        'DD/MM/YYYY'
-                                      )}
+                                      {currentEmp.birthDate
+                                        ? Formate_Date_DD_MM_YYYY(
+                                            currentEmp.birthDate
+                                          )
+                                        : ''}
                                     </span>
                                   </div>
                                 </div>
@@ -290,9 +295,11 @@ function EmployeeDetail() {
                                       {String.joining_date}
                                     </span>
                                     <span>
-                                      {moment(currentEmp.birthDate).format(
-                                        'DD/MM/YYYY'
-                                      )}
+                                      {currentEmp.birthDate
+                                        ? Formate_Date_DD_MM_YYYY(
+                                            currentEmp.birthDate
+                                          )
+                                        : ''}
                                     </span>
                                   </div>
                                 </div>
@@ -468,7 +475,13 @@ function EmployeeDetail() {
                                   <span className="profile-ud-label">
                                     {String.start_date}
                                   </span>
-                                  <span>{`${educationList.startDate}`}</span>
+                                  <span>{`${
+                                    educationList.startDate
+                                      ? Formate_Date_DD_MM_YYYY(
+                                          educationList.startDate
+                                        )
+                                      : ''
+                                  }`}</span>
                                 </div>
                               </div>
                               <div className="">
@@ -476,7 +489,13 @@ function EmployeeDetail() {
                                   <span className="profile-ud-label">
                                     {String.end_date}
                                   </span>
-                                  <span>{`${educationList.endDate}`}</span>
+                                  <span>{`${
+                                    educationList.endDate
+                                      ? Formate_Date_DD_MM_YYYY(
+                                          educationList.endDate
+                                        )
+                                      : ''
+                                  }`}</span>
                                 </div>
                               </div>
                             </div>
