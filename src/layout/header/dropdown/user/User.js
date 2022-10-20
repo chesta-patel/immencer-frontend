@@ -58,9 +58,11 @@ const User = (props) => {
             >
               <div className="user-toggle">
                 <UserAvatar
-                  text={findUpper(
-                    `${currentEmployee.firstName} ${currentEmployee.lastName}`
-                  )}
+                  text={`${currentEmployee?.firstName
+                    ?.toUpperCase()
+                    ?.charAt(0)}${currentEmployee?.lastName
+                    ?.toUpperCase()
+                    ?.charAt(0)}`}
                 ></UserAvatar>
                 <div className="user-info d-none d-md-block">
                   <div className="user-status">
