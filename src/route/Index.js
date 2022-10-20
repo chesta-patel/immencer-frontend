@@ -172,6 +172,15 @@ const Pages = () => {
         ></Route>
         <Route
           exact
+          path={`/grantLeaveInfo/update-grantLeave/:id`}
+          render={() => (
+            <UserContextProvider>
+              <GrantLeave />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
           path={`/holiday/holiday-type`}
           render={() => (
             <UserContextProvider>
