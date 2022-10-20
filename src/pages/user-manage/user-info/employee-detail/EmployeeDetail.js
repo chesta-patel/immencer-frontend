@@ -346,7 +346,7 @@ function EmployeeDetail() {
                                       {String.city}
                                     </span>
                                     <span>
-                                      {currentEmp.permanentAddress.city}
+                                      {currentEmp.permanentAddress.stateName}
                                     </span>
                                   </div>
                                 </div>
@@ -356,7 +356,7 @@ function EmployeeDetail() {
                                       {String.state_region}
                                     </span>
                                     <span>
-                                      {currentEmp.permanentAddress.state}
+                                      {currentEmp.permanentAddress.stateName}
                                     </span>
                                   </div>
                                 </div>
@@ -415,7 +415,7 @@ function EmployeeDetail() {
                                       {String.city}
                                     </span>
                                     <span>
-                                      {currentEmp.currentAddress.city}
+                                      {currentEmp.currentAddress.cityName}
                                     </span>
                                   </div>
                                 </div>
@@ -425,7 +425,7 @@ function EmployeeDetail() {
                                       {String.state_region}
                                     </span>
                                     <span>
-                                      {currentEmp.currentAddress.state}
+                                      {currentEmp.currentAddress.stateName}
                                     </span>
                                   </div>
                                 </div>
