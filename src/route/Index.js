@@ -26,6 +26,8 @@ import CreateLeaveType from '../pages/leave/leave-type/CreateLeaveType'
 import CreateHoliday from '../pages/holiday/holiday-list/CreateHoliday'
 import GrantLeave from '../pages/leave/leave-application/grant-leave/GrantLeave'
 import GrantLeaveInfo from '../pages/leave/leave-application/grant-leave/GrantLeaveInfo'
+import LevaeView from '../pages/leave/leave-application/LeaveView'
+import LeaveView from '../pages/leave/leave-application/LeaveView'
 
 const Pages = () => {
   useLayoutEffect(() => {
@@ -170,6 +172,15 @@ const Pages = () => {
         ></Route>
         <Route
           exact
+          path={`/grantLeaveInfo/update-grantLeave/:id`}
+          render={() => (
+            <UserContextProvider>
+              <GrantLeave />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
           path={`/holiday/holiday-type`}
           render={() => (
             <UserContextProvider>
@@ -255,6 +266,15 @@ const Pages = () => {
           render={() => (
             <UserContextProvider>
               <CreateCompanyPolicy />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/leave/leave-view`}
+          render={() => (
+            <UserContextProvider>
+              <LeaveView />
             </UserContextProvider>
           )}
         ></Route>

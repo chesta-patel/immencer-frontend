@@ -26,11 +26,16 @@ import { shortObjectWithNUmber } from '../../../../utils/Helpers'
 import String from '../../../../utils/String'
 import { filterRole, filterStatus } from '../../../user-manage/UserData'
 import { grantedLeaveTEmp, grantLeaveAppTable } from './GrantLeaveJson'
+import { GetGrantLeave } from '../../../../services/thunk/GetGrantLeaveThunk'
+import moment from 'moment'
 import { Formate_Date_DD_MM_YYYY } from '../../../../utils/Utils'
 
 function GrantLeavePageTable() {
   const dispatch = useDispatch()
   const { infoList } = useSelector((state) => state.assetsApplication)
+  const { grantLeaveAssignList } = useSelector(
+    (state) => state.GetGrantLeaveList
+  )
   const [actionText, setActionText] = useState('')
   const [onSearch, setonSearch] = useState(true)
   const [onSearchText, setSearchText] = useState('')
@@ -54,6 +59,9 @@ function GrantLeavePageTable() {
     setData(currentItems)
   }, [infoList])
 
+  useEffect(() => {
+    dispatch(GetGrantLeave('grantLeaveAssign'))
+  }, [])
   const onFormCancel = () => {
     setModal({ view: false, link: '' })
   }
@@ -426,21 +434,16 @@ function GrantLeavePageTable() {
               </DataTableRow>
             ))}
           </DataTableHead>
-          {grantedLeaveTEmp?.length > 0
-            ? grantedLeaveTEmp.map((item) => {
+          {grantLeaveAssignList?.length > 0
+            ? grantLeaveAssignList.map((grantLeaveList) => {
                 return (
-                  <DataTableItem key={item.id}>
+                  <DataTableItem key={grantLeaveList.id}>
                     <DataTableRow size="sm">
                       <div className="user-card">
                         <div className="user-info">
-                          <span className="tb-lead">{item.employeeName} </span>
-                        </div>
-                      </div>
-                    </DataTableRow>
-                    <DataTableRow size="sm">
-                      <div className="user-card">
-                        <div className="user-info">
-                          <span className="tb-lead">{item.leaveCount} </span>
+                          <span className="tb-lead">
+                            {grantLeaveList.empName}{' '}
+                          </span>
                         </div>
                       </div>
                     </DataTableRow>
@@ -448,18 +451,29 @@ function GrantLeavePageTable() {
                       <div className="user-card">
                         <div className="user-info">
                           <span className="tb-lead">
-                            {item.date
-                              ? Formate_Date_DD_MM_YYYY(item?.date)
+                            {grantLeaveList.leaveCount}{' '}
+                          </span>
+                        </div>
+                      </div>
+                    </DataTableRow>
+                    <DataTableRow size="sm">
+                      <div className="user-card">
+                        <div className="user-info">
+                          <span className="tb-lead">
+                            {grantLeaveList.createdAt
+                              ? Formate_Date_DD_MM_YYYY(
+                                  grantLeaveList.createdAt
+                                )
                               : ''}{' '}
                           </span>
                         </div>
                       </div>
                     </DataTableRow>
                     <DataTableRow size="sm">
-                      <span>{item.month_year}</span>
+                      <span>{grantLeaveList.monthYear}</span>
                     </DataTableRow>
                     <DataTableRow size="sm">
-                      <span>{item.description}</span>
+                      <span>{grantLeaveList.description}</span>
                     </DataTableRow>
                     <DataTableRow>
                       <ul>
@@ -496,7 +510,10 @@ function GrantLeavePageTable() {
                                     href="#view"
                                     onClick={(ev) => {
                                       ev.preventDefault()
-                                      //   onEditClick(item.id)
+                                      history.push(
+                                        `/grantLeaveInfo/update-grantLeave/${grantLeaveList.id}`
+                                      )
+                                      // onEditClick(grantLeaveList.id)
                                       toggle('details')
                                     }}
                                   >

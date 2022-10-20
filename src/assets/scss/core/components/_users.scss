@@ -611,5 +611,8 @@ $avatar-adj-colors: (
   align-items: center;
   .user-status {
     padding: 0 !important;
+    span {
+      color: $navyblue;
+    }
   }
 }
