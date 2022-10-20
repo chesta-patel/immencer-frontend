@@ -80,13 +80,15 @@ function Education(props) {
 
   return (
     <React.Fragment>
-      <Button
-        color="primary"
-        className="btn-icon"
-        onClick={() => setModal({ add: true })}
-      >
-        <Icon name="plus"></Icon>
-      </Button>
+      <div className="btn_right">
+        <Button
+          color="primary"
+          className="btn-icon"
+          onClick={() => setModal({ add: true })}
+        >
+          <Icon name="plus"></Icon>
+        </Button>
+      </div>
       <Container>
         <Row className="gy-3">
           <EducationCard item={items} setItems={setItems} />
