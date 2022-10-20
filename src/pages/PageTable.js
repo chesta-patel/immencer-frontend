@@ -542,9 +542,11 @@ function PageTable(props) {
                                 <div className="user-card">
                                   <UserAvatar
                                     theme={item.avatarBg}
-                                    text={findUpper(
-                                      `${item?.firstName?.toUpperCase()} ${item?.lastName?.toUpperCase()}`
-                                    )}
+                                    text={`${item?.firstName
+                                      ?.toUpperCase()
+                                      ?.charAt(0)}${item?.lastName
+                                      ?.toUpperCase()
+                                      ?.charAt(0)}`}
                                     image={item.image}
                                   ></UserAvatar>
                                   <div className="user-info">

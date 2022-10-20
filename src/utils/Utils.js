@@ -1,6 +1,8 @@
 import { Redirect } from 'react-router-dom'
 import commonString from './String'
 import jwt_decode from 'jwt-decode'
+import moment from 'moment'
+import { regex_validate_date_DD_MM_YYYY } from './constants'
 //url for production
 export var url = ''
 if (process.env.NODE_ENV === 'development') {
@@ -142,3 +144,8 @@ export const bytesToMegaBytes = (bytes) => {
   return result.toFixed(2)
 }
 export const monthNames = [`${commonString.month}`]
+
+export const Formate_Date_DD_MM_YYYY = (date) => {
+  let checkDate = regex_validate_date_DD_MM_YYYY.test(date)
+  return checkDate ? date : moment(date).format('DD/MM/YYYY')
+}

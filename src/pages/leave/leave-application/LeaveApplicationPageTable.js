@@ -28,6 +28,7 @@ import { filterRole, filterStatus } from '../../user-manage/UserData'
 import { appliedLeave, leaveAppTable } from './LeaveAppJson'
 import moment from 'moment'
 import { GetLeave } from '../../../services/thunk/GetLeaveThunk'
+import { Formate_Date_DD_MM_YYYY } from '../../../utils/Utils'
 
 function LeaveApplicationPageTable() {
   const dispatch = useDispatch()
@@ -68,11 +69,11 @@ function LeaveApplicationPageTable() {
     setSearchText(e.target.value)
   }
 
-  useEffect(() => {
-    console.log('leaveStatus', leaveStatus)
-  }, [leaveStatus])
   const loadDetail = (id) => {
-    console.log(id)
+    history.push({
+      pathname: '/leave/leave-view',
+      state: { data: id },
+    })
   }
   // Changing state value when searching name
   //   useEffect(() => {
@@ -83,8 +84,8 @@ function LeaveApplicationPageTable() {
   //             switch (key) {
   //               case 'updatedAt' || 'createdAt':
   //                 let date = item.updatedAt
-  //                   ? moment(item.updatedAt).format('L')
-  //                   : moment(item.createdAt).format('L')
+  //                   ? Formate_Date_DD_MM_YYYY(item.updatedAt)
+  //                   : Formate_Date_DD_MM_YYYY(item.createdAt)
   //                 return date
   //                   ?.toString()
   //                   ?.toLowerCase()
@@ -420,7 +421,9 @@ function LeaveApplicationPageTable() {
                         <div className="user-card">
                           <div className="user-info">
                             <span className="tb-lead">
-                              {moment(date.date).format('DD/MM/YYYY')}{' '}
+                              {date.date
+                                ? Formate_Date_DD_MM_YYYY(date.date)
+                                : ''}{' '}
                             </span>
                           </div>
                         </div>

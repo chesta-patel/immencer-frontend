@@ -26,6 +26,7 @@ import { shortObjectWithNUmber } from '../../../../utils/Helpers'
 import String from '../../../../utils/String'
 import { filterRole, filterStatus } from '../../../user-manage/UserData'
 import { grantedLeaveTEmp, grantLeaveAppTable } from './GrantLeaveJson'
+import { Formate_Date_DD_MM_YYYY } from '../../../../utils/Utils'
 
 function GrantLeavePageTable() {
   const dispatch = useDispatch()
@@ -106,8 +107,8 @@ function GrantLeavePageTable() {
   //             switch (key) {
   //               case 'updatedAt' || 'createdAt':
   //                 let date = item.updatedAt
-  //                   ? moment(item.updatedAt).format('L')
-  //                   : moment(item.createdAt).format('L')
+  //                   ? Formate_Date_DD_MM_YYYY(item.updatedAt)
+  //                   : Formate_Date_DD_MM_YYYY(item.createdAt)
   //                 return date
   //                   ?.toString()
   //                   ?.toLowerCase()
@@ -446,7 +447,11 @@ function GrantLeavePageTable() {
                     <DataTableRow size="sm">
                       <div className="user-card">
                         <div className="user-info">
-                          <span className="tb-lead">{item.date} </span>
+                          <span className="tb-lead">
+                            {item.date
+                              ? Formate_Date_DD_MM_YYYY(item?.date)
+                              : ''}{' '}
+                          </span>
                         </div>
                       </div>
                     </DataTableRow>

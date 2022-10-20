@@ -28,6 +28,7 @@ import { useSelector } from 'react-redux'
 import moment from 'moment'
 import GoogleFileViewerLink from '../../../components/google-file-viewer-link/GoogleFileViewerLink'
 import { useHistory } from 'react-router'
+import { Formate_Date_DD_MM_YYYY } from '../../../utils/Utils'
 
 function HolidayPageTable(props) {
   const { permission } = useSelector((state) => state.dropdown)
@@ -112,8 +113,8 @@ function HolidayPageTable(props) {
             switch (key) {
               case 'updatedAt' || 'createdAt':
                 let date = item.updatedAt
-                  ? moment(item.updatedAt).format('L')
-                  : moment(item.createdAt).format('L')
+                  ? Formate_Date_DD_MM_YYYY(item.updatedAt)
+                  : Formate_Date_DD_MM_YYYY(item.createdAt)
                 return date
                   ?.toString()
                   ?.toLowerCase()
@@ -463,7 +464,11 @@ function HolidayPageTable(props) {
                       </DataTableRow>
                       <DataTableRow size="md">
                         <div className="user-info">
-                          <span className="tb-lead">{item.date}</span>
+                          <span className="tb-lead">
+                            {item.date
+                              ? Formate_Date_DD_MM_YYYY(item.date)
+                              : ''}
+                          </span>
                         </div>
                       </DataTableRow>
                       <DataTableRow size="sm">

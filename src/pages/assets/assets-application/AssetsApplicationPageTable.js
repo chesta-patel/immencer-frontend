@@ -34,6 +34,7 @@ import { getAssetsApplicationDataByID } from '../../../services/thunk/AssetsAppl
 import { toastNotify } from '../../../layout/Index'
 import { empData } from './../../../services/thunk/GetEmployee'
 import { fetchData } from '../../../services/thunk/AuthThunk'
+import { Formate_Date_DD_MM_YYYY } from '../../../utils/Utils'
 
 function AssetsApplicationPageTable(props) {
   const { permission } = useSelector((state) => state.dropdown)
@@ -128,8 +129,8 @@ function AssetsApplicationPageTable(props) {
             switch (key) {
               case 'updatedAt' || 'createdAt':
                 let date = item.updatedAt
-                  ? moment(item.updatedAt).format('L')
-                  : moment(item.createdAt).format('L')
+                  ? Formate_Date_DD_MM_YYYY(item.updatedAt)
+                  : Formate_Date_DD_MM_YYYY(item.createdAt)
                 return date
                   ?.toString()
                   ?.toLowerCase()
@@ -179,10 +180,11 @@ function AssetsApplicationPageTable(props) {
         description: callAPI?.payload?.data?.data?.getAssetData?.description,
         status: callAPI?.payload?.data?.data?.getAssetData?.status,
         assignee: callAPI?.payload?.data?.data?.assetAssign?.assignee,
-        assignDate: moment(
-          callAPI?.payload?.data?.data?.assetAssign?.assignDate,
-          'DD/MM/YYYY'
-        ).format('YYYY-MM-DD'),
+        assignDate: callAPI?.payload?.data?.data?.assetAssign?.assignDate
+          ? Formate_Date_DD_MM_YYYY(
+              callAPI?.payload?.data?.data?.assetAssign?.assignDate
+            )
+          : '',
         notes: callAPI?.payload?.data?.data?.assetAssign?.notes,
       }
       dispatch(empData('employee'))
