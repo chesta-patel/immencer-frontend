@@ -20,6 +20,8 @@ import DeleteAssetsApp from '../services/slices/DeleteAssetsAppSlice'
 import ApplyLeave from '../services/slices/LeaveApplySlice'
 import GetLeaveList from '../services/slices/GetLeaveSlice'
 import DeleteCompanyPolicy from '../services/slices/DeleteCompanyPolicySlice'
+import ApplyGrantLeave from '../services/slices/GrantLeaveSlice'
+import GetGrantLeaveList from '../services/slices/GetGrantLeaveSlice'
 
 export default configureStore({
   reducer: {
@@ -44,5 +46,7 @@ export default configureStore({
     ApplyLeave: ApplyLeave,
     GetLeaveList: GetLeaveList,
     deleteCompanyPolicy: DeleteCompanyPolicy,
+    ApplyGrantLeave: ApplyGrantLeave,
+    GetGrantLeaveList: GetGrantLeaveList,
   },
 })
