@@ -233,7 +233,7 @@ $menu-main-sub-toggle-icon-rtl: $ni-chevron-left !default;
     .nk-menu-link:hover &,
     .nk-menu-item.active > .nk-menu-link &,
     .nk-menu-item.current-menu > .nk-menu-link & {
-      color: $darker;
+      color: var(--themeColor);
       @if ($menu_dark_theme_option==true) {
         .is-theme & {
           color: $white;

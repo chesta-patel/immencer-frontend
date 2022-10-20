@@ -8,6 +8,7 @@ import classNames from 'classnames'
 import Loader from '../pages/Loader'
 import { useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toastify'
+import variables from '../assets/scss/variables.scss'
 
 const Layout = () => {
   // Redux States
@@ -59,6 +60,8 @@ const Layout = () => {
     skin: 'light',
   })
 
+  console.log('variables', variables)
+
   const changeTheme = () => {
     const token = localStorage.getItem('navyblue')
     setShowimg(token)
@@ -67,12 +70,20 @@ const Layout = () => {
       updateTheme.sidebar = 'navyblue'
       setTheme(updateTheme)
       localStorage.setItem('navyblue', themeState.sidebar)
+      document.documentElement.style.setProperty(
+        '--themeColor',
+        variables?.navyblue
+      )
       // window.location.reload()
     } else {
       localStorage.removeItem('navyblue')
       let updateTheme = themeState
       updateTheme.sidebar = 'dark'
       setTheme(updateTheme)
+      document.documentElement.style.setProperty(
+        '--themeColor',
+        variables?.darker
+      )
       // window.location.reload()
     }
   }

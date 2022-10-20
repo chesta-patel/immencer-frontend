@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   color: $white;
-  background: $accent-color;
+  background: var(--themeColor);
   font-size: 14px;
   font-weight: $fw-medium;
   letter-spacing: 0.06em;
@@ -96,6 +96,11 @@
       @if ($rtl==true) {
         left: -6px;
       }
+    }
+  }
+  @if ($dark_option==true) {
+    .is-dark {
+      background: #0231c8;
     }
   }
 }

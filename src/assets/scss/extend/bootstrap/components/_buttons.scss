@@ -414,3 +414,6 @@ $dim-btns: 'primary' $primary mix($primary, $dim-mix, 11%),
 .btn_right {
   text-align: right;
 }
+.darker_color {
+  background-color: $darker;
+}
