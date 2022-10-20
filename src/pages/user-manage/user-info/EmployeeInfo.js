@@ -21,6 +21,8 @@ import { useDispatch } from 'react-redux'
 import { empData } from '../../../services/thunk/GetEmployee'
 import Loader from '../../Loader'
 import { getCreateNewEmpData } from '../../../services/thunk/CreateNewEmpDataThunk'
+import { deleteEmployee } from '../../../services/thunk/DeleteEmployeeThunk'
+import { toastNotify } from '../../../layout/Index'
 
 const UserInfo = ({ ...props }) => {
   const { permission } = useSelector((state) => state.dropdown)
@@ -44,6 +46,10 @@ const UserInfo = ({ ...props }) => {
   // Get current list, pagination
   const [onSearchText] = useState('')
   const [roleTable] = useState(userInfo)
+  const [deleteApiCallStatus, setDeleteApiCallStatus] = useState({
+    status: '',
+    message: '',
+  })
 
   useEffect(() => {
     dispatch(empData('employee'))
@@ -51,6 +57,24 @@ const UserInfo = ({ ...props }) => {
   useEffect(() => {
     setEmployeeDetail(employeeData)
   }, [employeeData])
+
+  const callDeleteFormSubmit = async (id) => {
+    let callAPI = await dispatch(deleteEmployee(id))
+    if (callAPI?.payload?.data?.isSuccess) {
+      setDeleteApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      // dispatch(holidayList('holiday'))
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setDeleteApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
 
   return (
     <React.Fragment>
@@ -104,6 +128,11 @@ const UserInfo = ({ ...props }) => {
           json={roleTable}
           string={roleString}
           employeeData={employeeDetail}
+          deleteApiCallStatus={deleteApiCallStatus}
+          callDeleteFormSubmit={callDeleteFormSubmit}
+          setDeleteApiCallStatus={setDeleteApiCallStatus}
+          // setModal={setModal}
+          // modal={modal}
         />
       </Content>
     </React.Fragment>

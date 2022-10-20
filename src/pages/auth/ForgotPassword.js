@@ -18,32 +18,22 @@ import { FormGroup, Spinner, Alert } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import String from '../../utils/String'
+import { useDispatch } from 'react-redux'
+import { forgotPassword } from '../../services/thunk/ForgotPasswordThunk'
+import { useSelector } from 'react-redux'
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false)
   const [errorVal, setError] = useState('')
   const { errors, register, handleSubmit } = useForm()
+  const [componyEmail, setComponyEmail] = useState()
+  const dispatch = useDispatch()
+  const { message, isLoading, errorMessage } = useSelector(
+    (state) => state.forgotPasswordSlice
+  )
 
-  const onFormSubmit = (formData) => {
-    setLoading(true)
-    const loginName = 'user@immence.in'
-    const pass = '123456'
-    if (formData.name === loginName && formData.passcode === pass) {
-      localStorage.setItem('accessToken', 'token')
-      setTimeout(() => {
-        window.history.pushState(
-          `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '/'}`,
-          'auth-login',
-          `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : '/'}`
-        )
-        window.location.reload()
-      }, 2000)
-    } else {
-      setTimeout(() => {
-        setError(`${String.can_not_login}`)
-        setLoading(false)
-      }, 2000)
-    }
+  const onFormSubmit = (e) => {
+    dispatch(forgotPassword(e))
   }
 
   return (
@@ -94,8 +84,8 @@ const ForgotPassword = () => {
                   <input
                     type="email"
                     id="default-01"
-                    name="name"
-                    ref={register({ required: 'This field is required' })}
+                    name="componyEmail"
+                    ref={register({ required: '* required' })}
                     defaultValue=""
                     placeholder="Enter your email address"
                     className="form-control-lg form-control"
@@ -104,7 +94,12 @@ const ForgotPassword = () => {
                     <span className="invalid">{errors.name.message}</span>
                   )}
                 </div>
+                <div className="form-note-s2 text-center pt-4">
+                  {message && <span className="alert-success">{message}</span>}
+                  {errorMessage && <p className="error">{errorMessage}</p>}
+                </div>
               </FormGroup>
+
               <FormGroup>
                 <Button
                   size="lg"
@@ -112,7 +107,11 @@ const ForgotPassword = () => {
                   type="submit"
                   color="primary"
                 >
-                  {loading ? <Spinner size="sm" color="light" /> : 'Sign in'}
+                  {isLoading ? (
+                    <Spinner size="sm" color="light" />
+                  ) : (
+                    `${String.sign_in}`
+                  )}
                 </Button>
               </FormGroup>
             </form>
