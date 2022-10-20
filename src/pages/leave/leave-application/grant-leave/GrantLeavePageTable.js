@@ -460,8 +460,10 @@ function GrantLeavePageTable() {
                       <div className="user-card">
                         <div className="user-info">
                           <span className="tb-lead">
-                            {item.date
-                              ? Formate_Date_DD_MM_YYYY(item?.date)
+                            {grantLeaveList.createdAt
+                              ? Formate_Date_DD_MM_YYYY(
+                                  grantLeaveList.createdAt
+                                )
                               : ''}{' '}
                           </span>
                         </div>
