@@ -94,7 +94,7 @@ function Education(props) {
 
   return (
     <React.Fragment>
-      <div>
+      <div className="btn_right">
         <Button
           color="primary"
           className="btn-icon"
