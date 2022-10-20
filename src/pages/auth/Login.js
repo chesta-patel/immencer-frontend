@@ -153,7 +153,7 @@ const Login = () => {
                   size="lg"
                   className="btn-block"
                   type="submit"
-                  color="primary"
+                  color="primary darker_color"
                 >
                   {isLoading ? (
                     <Spinner size="sm" color="light" />
