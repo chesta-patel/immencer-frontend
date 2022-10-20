@@ -492,12 +492,26 @@ function AssetsApplicationPageTable(props) {
           </div>
           <DataTableBody compact>
             <DataTableHead>
-              {props.json.map((colum, id) => (
-                <DataTableRow size="md" key={id}>
-                  <span className="sub-text">{colum.name}</span>
-                </DataTableRow>
-              ))}
+              {props.json.map((colum, id) => {
+                if (
+                  (hasAssetsEditPermissions || hasAssetsEditPermissions) &&
+                  colum.name === 'Action'
+                ) {
+                  return (
+                    <DataTableRow size="md" key={id}>
+                      <span className="sub-text">{colum.name}</span>
+                    </DataTableRow>
+                  )
+                } else if (colum.name !== 'Action') {
+                  return (
+                    <DataTableRow size="md" key={id}>
+                      <span className="sub-text">{colum.name}</span>
+                    </DataTableRow>
+                  )
+                }
+              })}
             </DataTableHead>
+
             {data?.length > 0
               ? data.map((item) => {
                   return (
@@ -520,39 +534,42 @@ function AssetsApplicationPageTable(props) {
                       <DataTableRow size="sm">
                         <span>{item.statusName}</span>
                       </DataTableRow>
-                      <DataTableRow size="lg" className="action_icon">
-                        {hasAssetsDeletePermissions && (
-                          <span className="policy_edit">
-                            <Button
-                              color=""
-                              className="btn-icon"
-                              onClick={() =>
-                                setDeleteModal({
-                                  status: true,
-                                  data: item,
-                                })
-                              }
-                              style={{ margin: '0px' }}
-                            >
-                              <em class="icon ni ni-trash"></em>
-                            </Button>
-                          </span>
-                        )}
-                        {hasAssetsEditPermissions && (
-                          <span>
-                            <Button
-                              color=""
-                              className="btn-icon"
-                              onClick={() => handelAssetsEdit(item)}
-                              style={{ margin: '0px' }}
-                            >
-                              <span style={{ display: 'flex' }}>
-                                <em class="icon ni ni-edit"></em>
-                              </span>
-                            </Button>
-                          </span>
-                        )}
-                      </DataTableRow>
+                      {(hasAssetsDeletePermissions ||
+                        hasAssetsEditPermissions) && (
+                        <DataTableRow size="lg" className="action_icon">
+                          {hasAssetsDeletePermissions && (
+                            <span className="policy_edit">
+                              <Button
+                                color=""
+                                className="btn-icon"
+                                onClick={() =>
+                                  setDeleteModal({
+                                    status: true,
+                                    data: item,
+                                  })
+                                }
+                                style={{ margin: '0px' }}
+                              >
+                                <em class="icon ni ni-trash"></em>
+                              </Button>
+                            </span>
+                          )}
+                          {hasAssetsEditPermissions && (
+                            <span>
+                              <Button
+                                color=""
+                                className="btn-icon"
+                                onClick={() => handelAssetsEdit(item)}
+                                style={{ margin: '0px' }}
+                              >
+                                <span style={{ display: 'flex' }}>
+                                  <em class="icon ni ni-edit"></em>
+                                </span>
+                              </Button>
+                            </span>
+                          )}
+                        </DataTableRow>
+                      )}
                     </DataTableItem>
                   )
                 })
