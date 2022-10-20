@@ -323,8 +323,15 @@
   }
   .nk-tb-col ul {
     margin-bottom: 0;
+    right: 0;
   }
 }
 .policy_edit {
   margin-left: 2px !important;
+}
+.nk-tb-ulist {
+  right: 0 !important;
+  .nk-tb-actions {
+    justify-content: flex-start !important;
+  }
 }

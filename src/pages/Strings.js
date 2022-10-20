@@ -50,9 +50,9 @@ export const assetsTypeString = [
 
 export const assetsAppString = [
   {
-    head_title: String.assets_application,
-    header: String.assets_application,
-    form_title: `${String.create} ${String.assets_application}`,
+    head_title: String.assets,
+    header: String.assets,
+    form_title: `${String.create} ${String.assets}`,
   },
 ]
 

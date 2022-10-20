@@ -28,6 +28,7 @@ import { filterRole, filterStatus } from '../../../user-manage/UserData'
 import { grantedLeaveTEmp, grantLeaveAppTable } from './GrantLeaveJson'
 import { GetGrantLeave } from '../../../../services/thunk/GetGrantLeaveThunk'
 import moment from 'moment'
+import { Formate_Date_DD_MM_YYYY } from '../../../../utils/Utils'
 
 function GrantLeavePageTable() {
   const dispatch = useDispatch()
@@ -114,8 +115,8 @@ function GrantLeavePageTable() {
   //             switch (key) {
   //               case 'updatedAt' || 'createdAt':
   //                 let date = item.updatedAt
-  //                   ? moment(item.updatedAt).format('L')
-  //                   : moment(item.createdAt).format('L')
+  //                   ? Formate_Date_DD_MM_YYYY(item.updatedAt)
+  //                   : Formate_Date_DD_MM_YYYY(item.createdAt)
   //                 return date
   //                   ?.toString()
   //                   ?.toLowerCase()
@@ -459,9 +460,9 @@ function GrantLeavePageTable() {
                       <div className="user-card">
                         <div className="user-info">
                           <span className="tb-lead">
-                            {moment(grantLeaveList.createdAt).format(
-                              'DD/MM/YYYY'
-                            )}
+                            {item.date
+                              ? Formate_Date_DD_MM_YYYY(item?.date)
+                              : ''}{' '}
                           </span>
                         </div>
                       </div>
