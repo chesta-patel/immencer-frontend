@@ -60,8 +60,6 @@ const Layout = () => {
     skin: 'light',
   })
 
-  console.log('variables', variables)
-
   const changeTheme = () => {
     const token = localStorage.getItem('navyblue')
     setShowimg(token)
@@ -183,6 +181,7 @@ const Layout = () => {
               fixed
               theme={themeState.header}
               changetheme={changeTheme}
+              currentTheme={showimg}
             />
             <Pages />
             <Footer />

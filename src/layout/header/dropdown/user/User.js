@@ -5,6 +5,7 @@ import { Icon } from '../../../../components/Component'
 import { LinkList, LinkItem } from '../../../../components/links/Links'
 import String from '../../../../utils/String'
 import immence_logo from '../../../../assets/images/immence_logo.svg'
+import immence_logo_navyblue from '../../../../assets/images/logo-navyblue.svg'
 import { useSelector } from 'react-redux'
 import { findUpper } from '../../../../utils/Utils'
 import { currentEmployee } from '../../../../services/thunk/CurrentEmpPermissionThunk'
@@ -42,7 +43,15 @@ const User = (props) => {
     <React.Fragment>
       {hasThemePermissions && (
         <Button color="white" onClick={props.changetheme}>
-          <img className="logo-dark logo-img" src={immence_logo} alt="logo" />
+          {props?.currentTheme ? (
+            <img className="logo-dark logo-img" src={immence_logo} alt="logo" />
+          ) : (
+            <img
+              className="logo-dark logo-img"
+              src={immence_logo_navyblue}
+              alt="logo"
+            />
+          )}
         </Button>
       )}
       {currentEmp.map((currentEmployee, index) => {
