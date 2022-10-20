@@ -30,7 +30,7 @@ export const userInfo = [
   {
     id: 5,
     name: `${String.team_lead}`,
-    key_name: [``],
+    key_name: [`teamLeadName`],
   },
 ]
 
