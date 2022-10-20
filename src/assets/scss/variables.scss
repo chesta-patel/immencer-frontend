@@ -6,6 +6,10 @@ $font-url: '../../../fonts';
 
 /////////    COLORS    ///////////
 //////////////////////////////////////
+:root {
+  --themeColor: #0231c8;
+}
+
 $white: #fff;
 $black: #000;
 $secondry: #eff6ff;
@@ -839,4 +843,6 @@ $nk-dashlite-font-url: '../../../fonts';
   white: $white;
   accent-4oo: $accent-400;
   accent-dark: $accent-dark;
+  darker: $darker;
+  navyblue: $navyblue;
 }
