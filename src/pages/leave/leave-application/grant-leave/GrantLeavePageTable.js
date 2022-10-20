@@ -495,7 +495,9 @@ function GrantLeavePageTable() {
                                     href="#edit"
                                     onClick={(ev) => {
                                       ev.preventDefault()
-                                      //   onEditClick(item.id)
+                                      history.push(
+                                        `/grantLeaveInfo/grantLeave-view${grantLeaveList.id}`
+                                      )
                                       toggle('edit')
                                     }}
                                   >
