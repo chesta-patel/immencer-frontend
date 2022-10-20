@@ -28,6 +28,7 @@ import GrantLeave from '../pages/leave/leave-application/grant-leave/GrantLeave'
 import GrantLeaveInfo from '../pages/leave/leave-application/grant-leave/GrantLeaveInfo'
 import LevaeView from '../pages/leave/leave-application/LeaveView'
 import LeaveView from '../pages/leave/leave-application/LeaveView'
+import GrantLeaveView from '../pages/leave/leave-application/grant-leave/GrantLeaveView'
 
 const Pages = () => {
   useLayoutEffect(() => {
@@ -275,6 +276,15 @@ const Pages = () => {
           render={() => (
             <UserContextProvider>
               <LeaveView />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/grantLeaveInfo/grantLeave-view:id`}
+          render={() => (
+            <UserContextProvider>
+              <GrantLeaveView />
             </UserContextProvider>
           )}
         ></Route>

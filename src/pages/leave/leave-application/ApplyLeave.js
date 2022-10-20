@@ -149,7 +149,7 @@ function ApplyLeave() {
             </BlockHeadContent>
           </BlockBetween>
         </BlockHead>
-        <Block size="lg">
+        <Block size="lg" className="leave_form">
           <form className={formClass} onSubmit={handleSubmit(onFormSubmit)}>
             <Row className="gy-3">
               <Col lg="6">
@@ -164,7 +164,7 @@ function ApplyLeave() {
                       name="date"
                     />
                     {errors.date && (
-                      <p className="error">{String.required_field}</p>
+                      <span className="error">{String.required_field}</span>
                     )}
                   </div>
                 </FormGroup>
@@ -189,7 +189,7 @@ function ApplyLeave() {
                         }}
                       />
                       {errors.date && (
-                        <p className="error">{String.required_field}</p>
+                        <span className="error">{String.required_field}</span>
                       )}
                     </div>
                   </FormGroup>
@@ -325,7 +325,9 @@ function ApplyLeave() {
                       onChange={handle}
                     />
                     {errors.date && (
-                      <p className="error">{String.required_field}</p>
+                      <span className="error reason_error">
+                        {String.required_field}
+                      </span>
                     )}
                   </div>
                 </FormGroup>
