@@ -8,6 +8,7 @@ const initialState = {
   errorMessage: '',
   message: '',
   grantLeaveAssignList: [],
+  assignGrantLeave: [],
 }
 
 export const GetGrantLeaveList = createSlice({
@@ -18,6 +19,7 @@ export const GetGrantLeaveList = createSlice({
     builder
       .addCase(GetGrantLeave.fulfilled, (state, action) => {
         state.grantLeaveAssignList = action.payload.data.data.grantLeaveAssign
+        state.assignGrantLeave = action.payload.data.data.grantLeaveAssign
         state.isLoading = false
         state.isSuccess = true
         state.isError = false
