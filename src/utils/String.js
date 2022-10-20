@@ -201,6 +201,7 @@ const String = {
   approve: 'Approve',
   count: 'Count',
   grant_leave: 'Grant Leave',
+  back: 'Back',
 }
 
 export default String
