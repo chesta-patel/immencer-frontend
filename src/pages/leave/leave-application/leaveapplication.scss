@@ -76,6 +76,23 @@
 .dropdown .mrg_left_right {
   margin: 10px 0;
 }
+.leave_form {
+  .form-validate .form-group .form-control-wrap {
+    position: relative;
+    margin-bottom: 18px;
+  }
+  .error {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+    left: 18%;
+    top: 100%;
+    &.reason_error {
+      left: 0;
+    }
+  }
+}
 @media screen and (max-width: 991px) {
   .form-validate .form-group.reason_box label {
     flex: 0 0 18% !important;
@@ -105,5 +122,8 @@
   }
   .flex_box {
     flex-direction: column;
+  }
+  .leave_form .error {
+    left: 0 !important;
   }
 }
