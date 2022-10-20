@@ -411,3 +411,6 @@ $dim-btns: 'primary' $primary mix($primary, $dim-mix, 11%),
     box-shadow: none !important;
   }
 }
+.btn_right {
+  text-align: right;
+}
