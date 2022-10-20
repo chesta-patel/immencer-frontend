@@ -7,6 +7,8 @@ import {
   FormGroup,
   UncontrolledDropdown,
   DropdownItem,
+  Modal,
+  ModalBody,
 } from 'reactstrap'
 import {
   Block,
@@ -31,14 +33,17 @@ import { toastNotify } from '../layout/Index'
 import './user-manage/user-info/PageTable.scss'
 
 function PageTable(props) {
+  const [deleteModal, setDeleteModal] = useState({ status: false, data: '' })
   const location = useLocation()
   const { permission } = useSelector((state) => state.dropdown)
   var hasEditPermissions = false
+  var hasDeletePermissions = false
   const token = localStorage.getItem('navyblue')
   if (token == 'navyblue') {
     permission?.[0]?.permission.map((permissionLIst, index) => {
       if (permissionLIst.modalName == 'Employee') {
         hasEditPermissions = permissionLIst.add
+        hasDeletePermissions = permissionLIst.delete
       }
     })
   }
@@ -106,6 +111,15 @@ function PageTable(props) {
   const onFilterChange = (e) => {
     setSearchText(e.target.value)
   }
+  useEffect(() => {
+    if (props.deleteApiCallStatus.status === 'success') {
+      setDeleteModal({ status: false, data: '' })
+      props.setDeleteApiCallStatus({
+        status: '',
+        message: '',
+      })
+    }
+  }, [props])
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== '') {
@@ -591,6 +605,22 @@ function PageTable(props) {
                               </DropdownItem>
                             )}
                           </li>
+                          <li>
+                            {hasDeletePermissions && (
+                              <DropdownItem
+                                tag="a"
+                                href="#delete"
+                                onClick={(ev) => {
+                                  setDeleteModal({
+                                    status: true,
+                                    data: item,
+                                  })
+                                }}
+                              >
+                                <Icon name="trash"></Icon>
+                              </DropdownItem>
+                            )}
+                          </li>
                         </ul>
                       </DataTableRow>
                     </DataTableItem>
@@ -600,6 +630,46 @@ function PageTable(props) {
           </DataTableBody>
         </DataTable>
       </Block>
+      <Modal
+        isOpen={deleteModal.status}
+        toggle={() => setDeleteModal({ status: false, data: '' })}
+        className="modal-dialog-centered delete_policy"
+        size="lg"
+      >
+        <ModalBody>
+          <button
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+            }}
+            className="close"
+          >
+            <Icon name="cross-sm"></Icon>
+          </button>
+          <h2 className="modal_title">{String.delete_confirmation}</h2>
+          <p className="alert alert-danger">
+            {String.are_you_sure_you_want_to_delete_the}{' '}
+            {`${deleteModal.data.firstName} ${deleteModal.data.lastName}`} ?
+          </p>
+          <button
+            type="button"
+            onClick={(ev) => {
+              ev.preventDefault()
+              setDeleteModal({ status: false, data: '' })
+            }}
+            className="Pre btn header_submit_bn"
+          >
+            {String.cancel}
+          </button>
+          <button
+            type="button"
+            className="header_submit_bn btn btn-danger"
+            onClick={() => props.callDeleteFormSubmit(deleteModal.data.id)}
+          >
+            {String.delete}
+          </button>
+        </ModalBody>
+      </Modal>
     </React.Fragment>
   )
 }

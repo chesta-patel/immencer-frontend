@@ -359,5 +359,7 @@ export const rows = [
   'Assets',
   'CompanyDocument',
   'CompanyPolicy',
+  'Leave',
+  'GrantLeave',
 ]
 export const cols = ['add', 'edit', 'view', 'delete']
