@@ -416,4 +416,7 @@ $dim-btns: 'primary' $primary mix($primary, $dim-mix, 11%),
 }
 .darker_color {
   background-color: $darker;
+  &:hover {
+    background-color: $darker;
+  }
 }
