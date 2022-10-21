@@ -91,10 +91,18 @@ const Layout = () => {
       let updateTheme = themeState
       updateTheme.sidebar = 'navyblue'
       setTheme(updateTheme)
+      document.documentElement.style.setProperty(
+        '--themeColor',
+        variables?.navyblue
+      )
     } else {
       let updateTheme = themeState
       updateTheme.sidebar = 'dark'
       setTheme(updateTheme)
+      document.documentElement.style.setProperty(
+        '--themeColor',
+        variables?.darker
+      )
     }
     viewChange()
   }, [])

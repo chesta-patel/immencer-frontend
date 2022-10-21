@@ -43,7 +43,7 @@ const User = (props) => {
     <React.Fragment>
       {hasThemePermissions && (
         <Button color="white" onClick={props.changetheme}>
-          {props?.currentTheme ? (
+          {props?.currentTheme || props?.currentTheme === undefined ? (
             <img className="logo-dark logo-img" src={immence_logo} alt="logo" />
           ) : (
             <img
