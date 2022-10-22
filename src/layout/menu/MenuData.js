@@ -2,8 +2,8 @@ import String from '../../utils/String'
 import immenceLogo from '../../assets/images/immence_logo_white.svg'
 const menu = [
   {
-    icon: immenceLogo,
-    iconType: 'img',
+    icon: 'home',
+    iconType: 'icon',
     text: `${String.dashboard}`,
     link: '/',
   },
