@@ -413,10 +413,35 @@ $dim-btns: 'primary' $primary mix($primary, $dim-mix, 11%),
 }
 .btn_right {
   text-align: right;
+  button {
+    margin: 0;
+  }
 }
 .darker_color {
   background-color: $darker;
   &:hover {
     background-color: $darker;
+  }
+}
+.education_table {
+  position: relative;
+  .btn_right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .tb-odr-head th {
+    padding: 18px 0.25rem;
+  }
+  .tb-odr-body {
+    tr .tb-odr-info {
+      padding: 12px 0.25rem;
+      &:first-child {
+        padding-left: 1.25rem;
+      }
+    }
+    .tb-odr-action {
+      padding-right: 0;
+    }
   }
 }
