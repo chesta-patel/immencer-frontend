@@ -16,7 +16,6 @@ import { roleString } from '../../Strings'
 import { useHistory } from 'react-router-dom'
 import String from '../../../utils/String'
 import { useSelector } from 'react-redux'
-import { fetchData } from '../../../services/thunk/AuthThunk'
 import { useDispatch } from 'react-redux'
 import { empData } from '../../../services/thunk/GetEmployee'
 import Loader from '../../Loader'
@@ -52,8 +51,12 @@ const UserInfo = ({ ...props }) => {
   })
 
   useEffect(() => {
-    dispatch(empData('employee'))
-  }, [])
+    if (!token) {
+      dispatch(empData('employee'))
+    } else {
+      dispatch(empData('employee/admin'))
+    }
+  }, [token])
   useEffect(() => {
     setEmployeeDetail(employeeData)
   }, [employeeData])
