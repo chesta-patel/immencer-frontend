@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation, useParams } from 'react-router'
 import { Button, FormGroup, Row } from 'reactstrap'
 import {
   Block,
@@ -27,12 +27,19 @@ import { LeaveApply } from '../../../services/thunk/LeaveApplyThunk'
 import { toastNotify } from '../../../layout/Index'
 import { useForm } from 'react-hook-form'
 import classNames from 'classnames'
+import { GetLeave } from '../../../services/thunk/GetLeaveThunk'
+import moment from 'moment'
+import { EditLeave } from '../../../services/thunk/EditLeaveThunk'
 
 const initialLeaveDate = {
   date: '',
   dayType: '',
 }
-
+const initialEditLeaveDate = {
+  id: '',
+  date: '',
+  dayType: '',
+}
 function ApplyLeave() {
   const [strings, setStrings] = useState('')
   // const [leaveForm] = useState(leaveAppForm)
@@ -47,6 +54,9 @@ function ApplyLeave() {
     inform: [],
     description: '',
   })
+  const [editLeaveDate, setEditLeaveDates] = useState([
+    { ...initialEditLeaveDate },
+  ])
   const [leaveDates, setLeaveDates] = useState([{ ...initialLeaveDate }])
   const [isShow, setisShow] = useState(false)
   const [toInformEmpList, settoInformEmpList] = useState([])
@@ -55,8 +65,37 @@ function ApplyLeave() {
     status: '',
     message: '',
   })
+  const { employeeLeave } = useSelector((state) => state.GetLeaveList)
+  const { id } = useParams()
+  const location = useLocation()
 
   useEffect(() => {
+    employeeLeave.map((empList, id) => {
+      setLeaveData({
+        ...leaveData,
+        leaveType: empList.leaveType,
+        inform: empList.inform,
+        description: empList.description,
+      })
+      empList.datesDetails.map((dates) => {
+        editLeaveDate.id = dates.id
+        editLeaveDate.date = moment(dates.date).format('MM/DD/YYYY')
+        editLeaveDate.dayType = dates.dayType
+      })
+    })
+  }, [id])
+
+  useEffect(() => {
+    if (id) {
+      // console.log('call create leave')
+    } else {
+      //for clearing state
+      setLeaveData('')
+      setEditLeaveDates('')
+    }
+  }, [id])
+  useEffect(() => {
+    dispatch(GetLeave(`leave/${id}`))
     dispatch(fetchData('master/leaveType'))
     dispatch(fetchData('master/leaveDayType'))
     dispatch(empData('employee'))
@@ -90,7 +129,7 @@ function ApplyLeave() {
   const handleInfo = (e) => {
     e.map((empid, index) => {
       if (toInform.includes(empid.value) === false) {
-        toInform.push(empid.value)
+        toInform.push(Number(empid.value))
       }
     })
     setLeaveData({ ...leaveData, inform: toInform })
@@ -101,8 +140,20 @@ function ApplyLeave() {
       ...leaveData,
       dates: leaveDates,
     }
-    if (requestBody !== null) {
-      callFormSubmit(requestBody)
+    const requestUpdateBody = {
+      ...leaveData,
+      dates: editLeaveDate,
+    }
+    // if (requestBody !== null) {
+    // }
+    if (id) {
+      //call for edit leave on apply click
+      console.log('edit call ', requestUpdateBody)
+      // callFormUpdate(requestUpdateBody)
+    } else {
+      //call for new leave on apply click
+      console.log('create call ', requestBody)
+      // callFormSubmit(requestBody)
     }
   }
   const leaveOption = leaveType.map((list, index) => {
@@ -114,6 +165,25 @@ function ApplyLeave() {
   const callFormSubmit = async (data) => {
     // const dataAsFormData = getFormData(data)
     let callAPI = await dispatch(LeaveApply(data))
+    if (callAPI?.payload?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'success',
+        message: callAPI?.payload?.data?.message,
+      })
+      toastNotify('success', callAPI?.payload?.data?.message)
+      // dispatch(companyDocument('companyDocument'))
+      history.push('/leave')
+    } else if (!callAPI?.payload?.response?.data?.isSuccess) {
+      setApiCallStatus({
+        status: 'error',
+        message: callAPI?.payload?.response?.data?.message,
+      })
+      toastNotify('error', callAPI?.payload?.response?.data?.message)
+    }
+  }
+  const callFormUpdate = async (data) => {
+    // const dataAsFormData = getFormData(data)
+    let callAPI = await dispatch(EditLeave(data))
     if (callAPI?.payload?.data?.isSuccess) {
       setApiCallStatus({
         status: 'success',
@@ -161,6 +231,9 @@ function ApplyLeave() {
                       ref={register({ required: true })}
                       options={leaveOption}
                       onChange={handleLeaveType}
+                      value={leaveOption?.find((data) => {
+                        return data.value == leaveData.leaveType
+                      })}
                       name="date"
                     />
                     {errors.date && (
@@ -181,11 +254,22 @@ function ApplyLeave() {
                         type="date"
                         className="form-control"
                         name="date"
-                        value={leaveDate.date}
+                        value={
+                          leaveDate.date ||
+                          moment(editLeaveDate.date, 'MM/DD/YYYY').format(
+                            'YYYY-MM-DD'
+                          )
+                        }
                         onChange={(e) => {
-                          const existingLeaveDates = cloneDeep(leaveDates)
-                          existingLeaveDates[index].date = e.target.value
-                          setLeaveDates(existingLeaveDates)
+                          if (id) {
+                            const existingLeaveDates = cloneDeep(editLeaveDate)
+                            existingLeaveDates[index].date = e.target.value
+                            setEditLeaveDates(existingLeaveDates)
+                          } else {
+                            const existingLeaveDates = cloneDeep(leaveDates)
+                            existingLeaveDates[index].date = e.target.value
+                            setLeaveDates(existingLeaveDates)
+                          }
                         }}
                       />
                       {errors.date && (
@@ -199,6 +283,8 @@ function ApplyLeave() {
                     <label className="form-label">{`${String.day_type}`}</label>
                     <ul className="custom-control-group g-3 align-center flex-wrap">
                       {leaveDayType.map((dt, ind) => {
+                        let defaultChecked =
+                          dt.id === editLeaveDate.dayType || leaveData.dayType
                         return (
                           <li key={ind}>
                             <div className="custom-control custom-checkbox">
@@ -208,16 +294,23 @@ function ApplyLeave() {
                                   className="custom-control custom-checkbox"
                                   type="radio"
                                   id="html"
-                                  name={`daytype${index}`}
                                   value={`${dt.id}`}
-                                  checked={`${dt.id}` === leaveDate.dayType}
+                                  checked={defaultChecked}
                                   onChange={(e) => {
-                                    const existingLeaveDates =
-                                      cloneDeep(leaveDates)
-
-                                    existingLeaveDates[index].dayType =
-                                      e.target.value
-                                    setLeaveDates(existingLeaveDates)
+                                    if (id) {
+                                      const existingLeaveDates =
+                                        cloneDeep(editLeaveDate)
+                                      existingLeaveDates[index].dayType =
+                                        e.target.value
+                                      defaultChecked = e.target.value
+                                      setEditLeaveDates(existingLeaveDates)
+                                    } else {
+                                      const existingLeaveDates =
+                                        cloneDeep(leaveDates)
+                                      existingLeaveDates[index].dayType =
+                                        e.target.value
+                                      setLeaveDates(existingLeaveDates)
+                                    }
                                   }}
                                 />
                                 {/* {errors.date && (

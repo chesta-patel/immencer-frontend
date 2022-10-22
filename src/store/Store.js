@@ -24,6 +24,7 @@ import ApplyGrantLeave from '../services/slices/GrantLeaveSlice'
 import GetGrantLeaveList from '../services/slices/GetGrantLeaveSlice'
 import forgotPasswordSlice from '../services/slices/ForgotPasswordSlice'
 import DeleteLeaveDetail from '../services/slices/DeleteLeaveSlice'
+import EditLeaveApplication from '../services/slices/EditLeaveSlice'
 
 export default configureStore({
   reducer: {
@@ -52,5 +53,6 @@ export default configureStore({
     GetGrantLeaveList: GetGrantLeaveList,
     forgotPasswordSlice: forgotPasswordSlice,
     DeleteLeaveDetail: DeleteLeaveDetail,
+    EditLeaveApplication: EditLeaveApplication,
   },
 })

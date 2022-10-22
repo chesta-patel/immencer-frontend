@@ -143,9 +143,19 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
+
         <Route
           exact
           path={`/leave/apply-leave`}
+          render={() => (
+            <UserContextProvider>
+              <ApplyLeave />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route
+          exact
+          path={`/leave/update-leave/:id`}
           render={() => (
             <UserContextProvider>
               <ApplyLeave />

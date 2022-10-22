@@ -84,8 +84,8 @@ function LeaveApplicationPageTable() {
   useEffect(() => {
     setData(currentItems)
   }, [infoList])
+  console.log('leaveList', leaveList)
   useEffect(() => {
-    console.log(deleteApiCallStatus)
     if (deleteApiCallStatus.status === 'success') {
       setDeleteModal({ status: false, data: '' })
       setDeleteApiCallStatus({
@@ -524,7 +524,9 @@ function LeaveApplicationPageTable() {
                         <DataTableRow size="lg">
                           <span>{date.dayTypeName}</span>
                         </DataTableRow>
-
+                        {/* {leaveStatus.map((leaveAction, index) => {
+                          console.log('leaveAction', leaveAction)
+                        })} */}
                         <DataTableRow className="nk-tb-col-tools">
                           <ul className="nk-tb-actions gx-1">
                             <li
@@ -651,9 +653,9 @@ function LeaveApplicationPageTable() {
                                             href="#details"
                                             onClick={(ev) => {
                                               ev.preventDefault()
-                                              // history.push(
-                                              //   `${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`
-                                              // )
+                                              history.push(
+                                                `/leave/update-leave/${item.id}`
+                                              )
                                             }}
                                           >
                                             <Icon name="edit"></Icon>
