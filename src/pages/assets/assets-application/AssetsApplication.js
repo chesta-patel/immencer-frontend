@@ -48,6 +48,13 @@ const AssetApplication = ({ ...props }) => {
   })
 
   useEffect(() => {
+    if (!token) {
+      dispatch(assetsApplication('asset'))
+    } else {
+      dispatch(assetsApplication('asset/admin'))
+    }
+  }, [token])
+  useEffect(() => {
     dispatch(assetsApplication('asset'))
     dispatch(fetchData('master/assetStatus'))
     dispatch(fetchData('assetType'))
